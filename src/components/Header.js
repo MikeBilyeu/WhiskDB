@@ -2,9 +2,9 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <h3 className="ui block header center aligned">
-      Recipes
-    </h3>
+    <h1 className="ui block inverted header center aligned">
+      WhiskD
+    </h1>
   );
 }
 
