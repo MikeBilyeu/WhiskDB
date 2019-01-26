@@ -1,10 +1,10 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 
-const ContentContainer = () => {
+const ContentContainer = (props) => {
   return (
     <div>
-      <SearchBar />
+      <SearchBar onSubmit={props.onSubmit} placeholder='Search Recipes...' />
     </div>
   );
 }
