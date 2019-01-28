@@ -1,9 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import edamam from '../api/edamam';
 import Header from './Header';
 import ContentContainer from './ContentContainer';
-import SearchBar from './SearchBar';
 
 require('dotenv').config();
 
