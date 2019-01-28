@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Header from './Header';
 import ContentContainer from './ContentContainer';
+import NavigationBar from './NavigationBar';
 
 require('dotenv').config();
 
@@ -29,6 +30,7 @@ class App extends React.Component {
       <div>
         <Header />
         <ContentContainer onSubmit={this.onSearchSubmit} />
+        <NavigationBar />
       </div>
     );
   }
