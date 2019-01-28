@@ -3,11 +3,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const Data = require("./data");
-require('dotenv').config()
+
 
 const API_PORT = 3001;
 const app = express();
 const router = express.Router();
+
+require('dotenv').config();
 
 // this is our MongoDB database
 const dbRoute = process.env.DB_ROUTE;
