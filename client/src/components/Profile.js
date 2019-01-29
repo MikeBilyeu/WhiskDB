@@ -1,15 +1,14 @@
 import React from 'react';
 
 class Profile extends React.Component {
-  state = { profileButton: '' }
 
-  onButtonClick = (e) => {
-    console.log(e);
-    this.setState({ profileButton: 'create' });
+
+  onButtonClick = () => {
+    this.props.onCreateRecipeClick('create');
   }
 
   render() {
-    if(!this.state.profileButton) {
+    if(this.props.profilePage === 'profile') {
       return (
         <div>
           <h1>Profile</h1>
@@ -17,7 +16,7 @@ class Profile extends React.Component {
           <button onClick={this.onButtonClick}>Create Recipe</button>
         </div>
       );
-    } else if(this.state.profileButton === 'create') {
+    } else if(this.props.profilePage === 'create') {
       return (
         <div>
           <h1>Create Recipe</h1>

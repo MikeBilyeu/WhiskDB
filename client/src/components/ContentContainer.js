@@ -4,9 +4,15 @@ import Profile from './Profile';
 
 const ContentContainer = (props) => {
 
-  if(props.page === 'profile') {
-    return <Profile userName='User Name'/>;
-  }
+  if(props.childState.page === 'profile') {
+    return (
+      <Profile
+        profilePage={props.childState.profilePage}
+        onCreateRecipeClick={props.onCreateRecipeClick}
+        userName='User Name'
+        />
+    );
+  } 
 
   return (
     <div>

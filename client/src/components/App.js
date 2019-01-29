@@ -7,7 +7,10 @@ import NavigationBar from './NavigationBar';
 require('dotenv').config();
 
 class App extends React.Component {
-  state = { recipes: [], page: 'home'};
+  state = {
+    page: 'home',
+    profilePage: 'profile'
+  };
 
   onSearchSubmit(term) {
     axios.get('https://api.edamam.com/search', {
@@ -27,16 +30,28 @@ class App extends React.Component {
 
   onNavClick = page => {
     this.setState({
-      page: page
+      page: page,
+      profilePage: page
     })
+  }
+
+  onCreateRecipeClick = page => {
+    this.setState({
+      profilePage: page
+    });
   }
 
 
   render() {
+    console.log('STATE: ', this.state);
     return (
       <div>
         <Header />
-        <ContentContainer page={this.state.page} onSubmit={this.onSearchSubmit} />
+        <ContentContainer
+          childState={this.state}
+          onCreateRecipeClick={this.onCreateRecipeClick}
+          onSubmit={this.onSearchSubmit}
+        />
         <NavigationBar onNavClick={this.onNavClick} />
       </div>
     );
