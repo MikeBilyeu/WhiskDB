@@ -1,7 +1,7 @@
 import React from 'react';
 import NavigationButton from './NavigationButton';
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
   return (
     <nav className="ui block inverted header center aligned" style={
       {
@@ -10,7 +10,7 @@ const NavigationBar = () => {
       bottom: '0'
     }
   }>
-    <NavigationButton buttonName="Profile" />
+    <NavigationButton onNavClick={props.onNavClick} page="profile" buttonName="Profile" />
     </nav>
   );
 }

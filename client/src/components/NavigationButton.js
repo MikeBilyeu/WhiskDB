@@ -1,8 +1,17 @@
 import React from 'react';
 
-const NavigationButton = (props) => {
+class NavigationButton extends React.Component {
 
-  return <button>{props.buttonName}</button>
+  onButtonClick = () => {
+    this.props.onNavClick(this.props.page);
+
+  }
+
+  render() {
+    return <button onClick={this.onButtonClick}>{this.props.buttonName}</button>;
+  }
+
+
 }
 
 export default NavigationButton;
