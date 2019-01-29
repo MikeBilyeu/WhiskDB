@@ -8,7 +8,7 @@ class NavigationButton extends React.Component {
   }
 
   render() {
-    return <button onClick={this.onButtonClick}>{this.props.buttonName}</button>;
+    return <button onClick={this.onButtonClick}>{this.props.page}</button>;
   }
 
 

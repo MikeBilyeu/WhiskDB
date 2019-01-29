@@ -41,6 +41,12 @@ class App extends React.Component {
     });
   }
 
+  putDataToDB = recipe => {
+    axios.post("http://localhost:3001/api/putData", {
+      recipe
+    });
+  };
+
 
   render() {
     console.log('STATE: ', this.state);
@@ -51,6 +57,7 @@ class App extends React.Component {
           childState={this.state}
           onCreateRecipeClick={this.onCreateRecipeClick}
           onSubmit={this.onSearchSubmit}
+          putData={this.putDataToDB}
         />
         <NavigationBar onNavClick={this.onNavClick} />
       </div>

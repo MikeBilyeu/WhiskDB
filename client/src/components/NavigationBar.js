@@ -10,8 +10,8 @@ const NavigationBar = (props) => {
       bottom: '0'
     }
   }>
-    <NavigationButton onNavClick={props.onNavClick} page="home" buttonName="Home" />
-    <NavigationButton onNavClick={props.onNavClick} page="profile" buttonName="Profile" />
+    <NavigationButton onNavClick={props.onNavClick} page="home" />
+    <NavigationButton onNavClick={props.onNavClick} page="profile" />
     </nav>
   );
 }

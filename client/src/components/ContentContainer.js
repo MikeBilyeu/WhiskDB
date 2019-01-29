@@ -10,9 +10,10 @@ const ContentContainer = (props) => {
         profilePage={props.childState.profilePage}
         onCreateRecipeClick={props.onCreateRecipeClick}
         userName='User Name'
+        putData={props.putData}
         />
     );
-  } 
+  }
 
   return (
     <div>
