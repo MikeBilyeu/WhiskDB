@@ -27,7 +27,7 @@ const ContentContainer = (props) => {
             ? "NO DB ENTRIES YET"
             : props.childState.data.map(dat => (
                 <li style={{ padding: "10px" }} key={dat.title}>
-                  <span style={{ color: "gray" }}> data: </span>
+                  <span style={{ color: "gray" }}> Recipe: </span>
                   {dat.title}
                 </li>
               ))}

@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 // this will be our data base's data structure
 const recipeSchema = new Schema(
   {
-    title: String
+    title: String,
+    ingredient: String
   }
 );
 

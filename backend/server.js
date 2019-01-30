@@ -68,7 +68,7 @@ router.post("/putData", (req, res) => {
   let data = new Data();
 
   const { recipe } = req.body;
-  console.log(req.body);
+  console.log('This is the recipe data :', recipe);
 
   // if ((!id && id !== 0) || !message) {
   //   return res.json({
@@ -76,7 +76,8 @@ router.post("/putData", (req, res) => {
   //     error: "INVALID INPUTS"
   //   });
   // }
-  data.title = recipe;
+  data.title = recipe.title;
+  data.ingredient = recipe.ingredient
   // data.id = id;
   data.save(err => {
     if (err) return res.json({ success: false, error: err });

@@ -1,7 +1,8 @@
 import React from 'react';
+import InputField from './InputField';
 
 class Profile extends React.Component {
-  state={ title: '' }
+  state = { title: '', ingredient: '' }
 
   onButtonClick = () => {
     this.props.onCreateRecipeClick('create');
@@ -9,7 +10,13 @@ class Profile extends React.Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.putData(this.state.title)
+    this.props.putData(this.state)
+  }
+
+
+  onInputChange = (key, value) => {
+    console.log('onInputChange: ', key, value);
+    this.setState({ [key]: value });
   }
 
   render() {
@@ -24,15 +31,21 @@ class Profile extends React.Component {
     } else if(this.props.profilePage === 'create') {
       return (
         <form className="ui form" onSubmit={this.onFormSubmit}>
-          <div className="field">
-            <label>Recipe Title</label>
-            <input
-              type="text"
-              value={this.state.title}
-              onChange={e => this.setState({ title: e.target.value })}
-              placeholder="Recipe Title"
-            />
-          </div>
+          <InputField
+            inputLabel="Title"
+            stateKey="title"
+            inputType="text"
+            placeholder="Recipe Title"
+            onInputChange={this.onInputChange}
+          />
+          <InputField
+            inputLabel="Ingredient"
+            stateKey="ingredient"
+            inputType="text"
+            placeholder="Ingredient"
+            onInputChange={this.onInputChange}
+          />
+
           <button className="ui button" type="submit">Submit Recipe</button>
         </form>
       );
