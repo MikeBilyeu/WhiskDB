@@ -68,6 +68,7 @@ router.post("/putData", (req, res) => {
   let data = new Data();
 
   const { recipe } = req.body;
+  console.log(req.body);
 
   // if ((!id && id !== 0) || !message) {
   //   return res.json({

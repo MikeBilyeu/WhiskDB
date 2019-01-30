@@ -9,7 +9,7 @@ class Profile extends React.Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.putData(this.state.recipe)
+    this.props.putData(this.state.title)
   }
 
   render() {

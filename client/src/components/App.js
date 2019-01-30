@@ -9,8 +9,20 @@ require('dotenv').config();
 class App extends React.Component {
   state = {
     page: 'home',
-    profilePage: 'profile'
+    profilePage: 'profile',
+    data: []
   };
+
+  componentDidMount() {
+    this.getDataFromDb();
+  }
+
+  getDataFromDb = () => {
+    fetch("http://localhost:3001/api/getData")
+      .then(data => data.json())
+      .then(res => this.setState({ data: res.data }));
+  };
+
 
   onSearchSubmit(term) {
     axios.get('https://api.edamam.com/search', {
@@ -42,6 +54,7 @@ class App extends React.Component {
   }
 
   putDataToDB = recipe => {
+    console.log('This is the recipe: ', recipe);
     axios.post("http://localhost:3001/api/putData", {
       recipe
     });
