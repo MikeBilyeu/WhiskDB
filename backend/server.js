@@ -77,7 +77,12 @@ router.post("/putData", (req, res) => {
   //   });
   // }
   data.title = recipe.title;
-  data.ingredient = recipe.ingredient
+  data.ingredients = recipe.ingredients;
+  data.servings = recipe.servgins;
+  data.time = recipe.time;
+  data.directions = recipe.directions;
+  data.tips = recipe.tips;
+  data.imageURL = recipe.imageURL;
   // data.id = id;
   data.save(err => {
     if (err) return res.json({ success: false, error: err });

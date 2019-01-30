@@ -5,8 +5,19 @@ const Schema = mongoose.Schema;
 // this will be our data base's data structure
 const recipeSchema = new Schema(
   {
+    userName: String,
+    totalVotes: Number,
+    upVotes: Number,
+    downVotes: Number,
+    rating: Number,
     title: String,
-    ingredient: String
+    servgins: Number,
+    ingredients: [],
+    time: Number,
+    directions: [],
+    tips: String,
+    tags: [],
+    imageURL: String
   }
 );
 

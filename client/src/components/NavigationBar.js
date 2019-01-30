@@ -5,7 +5,7 @@ const NavigationBar = (props) => {
   return (
     <nav className="ui block inverted header center aligned" style={
       {
-      position: 'absolute',
+      position: 'fixed',
       width: '100%',
       bottom: '0'
     }

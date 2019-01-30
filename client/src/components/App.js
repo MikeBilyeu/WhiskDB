@@ -64,7 +64,7 @@ class App extends React.Component {
   render() {
     console.log('STATE: ', this.state);
     return (
-      <div>
+      <div style={{height: '100%', paddingBottom: '7rem'}}>
         <Header />
         <ContentContainer
           childState={this.state}
