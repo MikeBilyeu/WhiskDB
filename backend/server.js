@@ -68,7 +68,7 @@ router.post("/putData", (req, res) => {
   let data = new Data();
 
   const { recipe } = req.body;
-  console.log('This is the recipe data :', recipe);
+  console.log('This is the servings: ', recipe.servings);
 
   // if ((!id && id !== 0) || !message) {
   //   return res.json({
@@ -78,7 +78,8 @@ router.post("/putData", (req, res) => {
   // }
   data.title = recipe.title;
   data.ingredients = recipe.ingredients;
-  data.servings = recipe.servgins;
+
+  data.servings = recipe.servings;
   data.time = recipe.time;
   data.directions = recipe.directions;
   data.tips = recipe.tips;

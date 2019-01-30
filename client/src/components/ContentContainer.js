@@ -3,7 +3,7 @@ import SearchBar from './SearchBar';
 import Profile from './Profile';
 
 const ContentContainer = (props) => {
-  console.log(props.childState.data);
+
   if(props.childState.page === 'profile') {
     return (
       <Profile
@@ -25,10 +25,16 @@ const ContentContainer = (props) => {
       <ul>
           {props.childState.data.length <= 0
             ? "NO DB ENTRIES YET"
-            : props.childState.data.map(dat => (
-                <li style={{ padding: "10px" }} key={dat.title}>
+            : props.childState.data.map(recipe => (
+                <li style={{ padding: "10px" }} key={recipe._id}>
                   <span style={{ color: "gray" }}> Recipe: </span>
-                  {dat.title}
+                  <ul>
+                    <li>{recipe.title}</li>
+                    <li>{recipe.time}</li>
+                    <li>{recipe.servings}</li>
+                    <li>{recipe.ingredients}</li>
+                    <li>{recipe.directions}</li>
+                  </ul>
                 </li>
               ))}
         </ul>

@@ -11,7 +11,7 @@ const recipeSchema = new Schema(
     downVotes: Number,
     rating: Number,
     title: String,
-    servgins: Number,
+    servings: Number,
     ingredients: [],
     time: Number,
     directions: [],
