@@ -4,12 +4,13 @@ import InputField from './InputField';
 class Profile extends React.Component {
   state = {
     title: '',
-    ingredients: '',
+    ingredients: ['', '', ''],
     tips: '',
     servings: '',
     time: '',
     directions: '',
     imageURL: '',
+    ingredientNum: 3
   }
 
   onButtonClick = () => {
@@ -21,13 +22,54 @@ class Profile extends React.Component {
     this.props.putData(this.state)
   }
 
-
-  onInputChange = (key, value) => {
-    console.log('onInputChange: ', key, value);
-    this.setState({ [key]: value });
+//Update state on input change
+  onInputChange = (key, value, i) => {
+    if(Array.isArray(this.state[key])) {
+      let keyCopy = [...this.state[key]];
+      keyCopy[i] = value;
+      this.setState({ [key]: keyCopy });
+    } else {
+      this.setState({ [key]: value });
+    }
   }
 
+//Add an Ingredient input
+  onAddClick = () => {
+    if(this.state.ingredientNum < 15) {
+      this.setState({
+        ingredientNum: this.state.ingredientNum + 1,
+        ingredients: [...this.state.ingredients, '']
+      });
+    }
+  }
+
+//Remove Ingredient input
+  onRemoveClick = () => {
+    if(this.state.ingredientNum > 1) {
+      let removeIngredient = [...this.state.ingredients]
+        .slice(0, this.state.ingredients.length-1);
+      this.setState({
+        ingredientNum: this.state.ingredientNum - 1,
+        ingredients: removeIngredient
+      });
+    }
+  }
+
+
   render() {
+    let ingredientComponent = [];
+    for(let i = 0; i < this.state.ingredientNum; i++) {
+      ingredientComponent.push(<InputField
+        key={i}
+        inputLabel="Ingredient"
+        stateKey="ingredients"
+        inputType="text"
+        placeholder="Ingredient"
+        onInputChange={this.onInputChange}
+        index={i}
+      />);
+    }
+
     if(this.props.profilePage === 'profile') {
       return (
         <div>
@@ -46,13 +88,21 @@ class Profile extends React.Component {
             placeholder="Recipe Title"
             onInputChange={this.onInputChange}
           />
-          <InputField
-            inputLabel="Ingredients"
-            stateKey="ingredients"
-            inputType="text"
-            placeholder="Ingredient"
-            onInputChange={this.onInputChange}
-          />
+          {ingredientComponent}
+          <div className="ui buttons">
+            <button
+              type="button"
+              className="ui button"
+              onClick={this.onRemoveClick}
+              >Remove</button>
+            <div className="or"></div>
+            <button
+              type="button"
+              className="ui positive button"
+              onClick={this.onAddClick}
+              >Add Ingredient</button>
+          </div>
+
           <InputField
             inputLabel="Servgins"
             stateKey="servings"

@@ -5,7 +5,7 @@ class InputField extends React.Component {
 
   onInputChange = (event) => {
     this.setState({ value: event.target.value });
-    this.props.onInputChange(this.props.stateKey, event.target.value);
+    this.props.onInputChange(this.props.stateKey, event.target.value, this.props.index);
   }
 
   render() {
@@ -23,7 +23,6 @@ class InputField extends React.Component {
       );
     }
     return (
-
         <div className="field twelve wide required">
         <label>{this.props.inputLabel}</label>
         <textarea

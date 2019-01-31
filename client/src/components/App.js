@@ -54,7 +54,6 @@ class App extends React.Component {
   }
 
   putDataToDB = recipe => {
-    console.log('This is the recipe: ', recipe);
     axios.post("http://localhost:3001/api/putData", {
       recipe
     });
@@ -62,7 +61,6 @@ class App extends React.Component {
 
 
   render() {
-    console.log('STATE: ', this.state);
     return (
       <div style={{height: '100%', paddingBottom: '7rem'}}>
         <Header />
