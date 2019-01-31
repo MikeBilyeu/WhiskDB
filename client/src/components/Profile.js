@@ -80,7 +80,9 @@ class Profile extends React.Component {
       );
     } else if(this.props.profilePage === 'create') {
       return (
+
         <form className="ui form" onSubmit={this.onFormSubmit} style={{padding: '2rem'}}>
+        <h2 className="ui header">Create Recipe</h2>
           <InputField
             inputLabel="Title"
             stateKey="title"
