@@ -6,6 +6,7 @@ import Header from './Header';
 import NavigationBar from './NavigationBar';
 import Home from './Home';
 import Profile from './Profile';
+import SignUp from './SignUp';
 
 
 require('dotenv').config();
@@ -71,6 +72,7 @@ class App extends React.Component {
   render() {
     const HomeROUTE = () => <Home onSubmit={this.props.onSubmit} data={this.state.data} />;
     const ProfileROUTE = () => <Profile />;
+    const SignUpROUTE = () => <SignUp />;
 
     return (
       <Router>
@@ -78,6 +80,7 @@ class App extends React.Component {
           <Header />
           <Route exact path="/" component={HomeROUTE} />
           <Route path="/profile" component={ProfileROUTE} />
+          <Route path="/sign-up" component={SignUpROUTE} />
           <NavigationBar />
         </div>
       </Router>

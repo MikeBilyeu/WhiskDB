@@ -1,17 +1,12 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-class NavigationButton extends React.Component {
-
-  onButtonClick = () => {
-    this.props.onNavClick(this.props.page);
-
-  }
-
-  render() {
-    return <button onClick={this.onButtonClick}>{this.props.page}</button>;
-  }
-
-
+const NavigationButton = (props) => {
+  return (
+    <div class="item">
+      <Link class="ui button" to={props.link}>{props.text}</Link>
+    </div>
+  );
 }
 
 export default NavigationButton;

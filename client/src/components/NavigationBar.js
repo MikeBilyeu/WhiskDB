@@ -3,16 +3,15 @@ import NavigationButton from './NavigationButton';
 
 const NavigationBar = (props) => {
   return (
-    <nav className="ui block inverted header center aligned" style={
+    <div class="ui menu inverted" style={
       {
       position: 'fixed',
-      width: '100%',
-      bottom: '0'
-    }
-  }>
-    <NavigationButton onNavClick={props.onNavClick} page="home" />
-    <NavigationButton onNavClick={props.onNavClick} page="profile" />
-    </nav>
+      bottom: '0',
+      width: '100%'
+    }}>
+      <NavigationButton link="/" text="Home" />
+      <NavigationButton link="/profile" text="Profile" />
+    </div>
   );
 }
 
