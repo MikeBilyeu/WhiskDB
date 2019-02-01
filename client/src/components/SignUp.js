@@ -11,9 +11,15 @@ class SignUp extends React.Component {
     this.setState({ password: event.target.value});
   }
 
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    console.log('sign up form, Username: ');
+    console.log(this.state.username);
+
+  }
   render() {
     return (
-      <form className="ui form">
+      <form className="ui form" onSubmit={this.onFormSubmit}>
         <h2 className="ui center aligned icon header">
           <i className="user circle icon"></i>
           Sign up

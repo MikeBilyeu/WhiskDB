@@ -1,17 +1,17 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
+
 import Header from './Header';
-import ContentContainer from './ContentContainer';
 import NavigationBar from './NavigationBar';
+import Home from './Home';
+import Profile from './Profile';
+
 
 require('dotenv').config();
 
 class App extends React.Component {
-  state = {
-    page: 'home',
-    profilePage: 'signup',
-    data: []
-  };
+  state = { data: [] }
 
   componentDidMount() {
     this.getDataFromDb();
@@ -40,18 +40,26 @@ class App extends React.Component {
     });
   }
 
-  onNavClick = page => {
-    this.setState({
-      page: page,
-      profilePage: page
-    })
-  }
+  // onNavClick = page => {
+  //   this.setState({
+  //     page: page,
+  //     profilePage: page
+  //   })
+  // }
 
-  onCreateRecipeClick = page => {
-    this.setState({
-      profilePage: page
-    });
-  }
+  // onCreateRecipeClick = page => {
+  //   this.setState({
+  //     profilePage: page
+  //   });
+  // }
+
+  // <Route path="/profile" component={
+  //   <Profile
+  //     onCreateRecipeClick={this.onCreateRecipeClick}
+  //     userName='User Name'
+  //     putData={this.putDataToDB}
+  //     />
+  // } />
 
   putDataToDB = recipe => {
     axios.post("http://localhost:3001/api/putData", {
@@ -61,19 +69,22 @@ class App extends React.Component {
 
 
   render() {
+    const HomeROUTE = () => <Home onSubmit={this.props.onSubmit} data={this.state.data} />;
+    const ProfileROUTE = () => <Profile />;
+
     return (
-      <div style={{height: '100%', paddingBottom: '7rem'}}>
-        <Header />
-        <ContentContainer
-          childState={this.state}
-          onCreateRecipeClick={this.onCreateRecipeClick}
-          onSubmit={this.onSearchSubmit}
-          putData={this.putDataToDB}
-        />
-        <NavigationBar onNavClick={this.onNavClick} />
-      </div>
+      <Router>
+        <div>
+          <Header />
+          <Route exact path="/" component={HomeROUTE} />
+          <Route path="/profile" component={ProfileROUTE} />
+          <NavigationBar />
+        </div>
+      </Router>
     );
   }
+
+
 }
 
 export default App;

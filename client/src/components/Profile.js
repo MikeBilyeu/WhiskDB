@@ -4,27 +4,33 @@ import SignUp from './SignUp';
 
 class Profile extends React.Component {
 
-  onButtonClick = () => {
-    this.props.onCreateRecipeClick('create');
-  }
+  // onButtonClick = () => {
+  //   this.props.onCreateRecipeClick('create');
+  // }
 
+
+
+
+  // if(this.props.profilePage === 'profile') {
+  //   return <SignUp />;
+  // } else if(this.props.profilePage === 'create') {
+  //   return <CreateRecipe putData={this.props.putData} />;
+  // } else if(this.props.profilePage === 'loggedin') {
+  //   return (
+  //     <div>
+  //       <h1>Profile</h1>
+  //       <h2>{this.props.userName}</h2>
+  //       <button className='ui button' onClick={this.onButtonClick}>Create New Recipe</button>
+  //     </div>
+  //   );
+  // }
+
+  
   render() {
+    return(<h1>This is the profile ROUTE!</h1>);
 
 
 
-    if(this.props.profilePage === 'profile') {
-      return <SignUp />;
-    } else if(this.props.profilePage === 'create') {
-      return <CreateRecipe putData={this.props.putData} />;
-    } else if(this.props.profilePage === 'loggedin') {
-      return (
-        <div>
-          <h1>Profile</h1>
-          <h2>{this.props.userName}</h2>
-          <button className='ui button' onClick={this.onButtonClick}>Create New Recipe</button>
-        </div>
-      );
-    }
 
   }
 }
