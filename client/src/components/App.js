@@ -9,7 +9,7 @@ require('dotenv').config();
 class App extends React.Component {
   state = {
     page: 'home',
-    profilePage: 'profile',
+    profilePage: 'signup',
     data: []
   };
 
