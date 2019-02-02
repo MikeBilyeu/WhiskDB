@@ -35,7 +35,7 @@ app.use(logger("dev"));
 
 
 router.post('/sign-up', (req, res) => {
-  console.log('HELLO SERVER');
+  console.log(req.body);
 });
 
 // this is our get method

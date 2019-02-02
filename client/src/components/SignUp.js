@@ -17,8 +17,18 @@ class SignUp extends React.Component {
     console.log('sign up form, Username: ');
     console.log(this.state.username);
     axios.post("http://localhost:3001/api/sign-up", {
-      username: 'Mike'
-    })
+      username: this.state.username,
+      password: this.state.password
+    }).then(res => {
+      if(res.data) {
+        console.log('success');
+        console.log(res.data);
+      } else {
+        console.log('ERROR');
+      }
+    }).catch(err => {
+      console.log(err)
+    });
 
   }
   render() {
