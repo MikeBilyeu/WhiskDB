@@ -1,7 +1,10 @@
+const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const dbConnection = require("./database");
+// const Recipe = require('./database/models/recipe');
+const User = require('./database/models/user')
 
 
 const API_PORT = 3001;
@@ -17,9 +20,27 @@ app.use(bodyParser.json());
 app.use(logger("dev"));
 
 
-router.post('/sign-up', (req, res) => {
+app.post('/sign-up', (req, res) => {
+
   console.log(req.body);
+  let newUser = new User();
+
+  const { username, password } = req.body;
+
+
+  newUser.username = username;
+  newUser.password = password;
+  
+  console.log(newUser);
+
+
+  newUser.save(err => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+
 });
+
 
 // this is our get method
 // this method fetches all available data in our database
