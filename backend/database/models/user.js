@@ -7,9 +7,8 @@ const userSchema = new Schema(
   {
     firstName: String,
     lastName: String
-
   }
 );
 
 // export the new Schema so we could modify it using Node.js
-module.exports = mongoose.model("Userd", userSchema);
+module.exports = mongoose.model("User", userSchema);
