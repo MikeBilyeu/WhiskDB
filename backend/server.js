@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-const Data = require("./data");
+const Recipe = require("./database/models/recipe");
 
 
 const API_PORT = 3001;
@@ -41,7 +41,7 @@ router.post('/sign-up', (req, res) => {
 // this is our get method
 // this method fetches all available data in our database
 router.get("/getData", (req, res) => {
-  Data.find((err, data) => {
+  Recipe.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
@@ -51,7 +51,7 @@ router.get("/getData", (req, res) => {
 // this method overwrites existing data in our database
 router.post("/updateData", (req, res) => {
   const { id, update } = req.body;
-  Data.findOneAndUpdate(id, update, err => {
+  Recipe.findOneAndUpdate(id, update, err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
@@ -61,7 +61,7 @@ router.post("/updateData", (req, res) => {
 // this method removes existing data in our database
 router.delete("/deleteData", (req, res) => {
   const { id } = req.body;
-  Data.findOneAndDelete(id, err => {
+  Recipe.findOneAndDelete(id, err => {
     if (err) return res.send(err);
     return res.json({ success: true });
   });
@@ -70,27 +70,17 @@ router.delete("/deleteData", (req, res) => {
 // this is our create methid
 // this method adds new data in our database
 router.post("/putData", (req, res) => {
-  let data = new Data();
+  let newRecipe = new Recipe();
 
   const { recipe } = req.body;
   console.log('This is the servings: ', recipe.servings);
 
-  // if ((!id && id !== 0) || !message) {
-  //   return res.json({
-  //     success: false,
-  //     error: "INVALID INPUTS"
-  //   });
-  // }
-  data.title = recipe.title;
-  data.ingredients = recipe.ingredients;
 
-  data.servings = recipe.servings;
-  data.time = recipe.time;
-  data.directions = recipe.directions;
-  data.tips = recipe.tips;
-  data.imageURL = recipe.imageURL;
+  recipe.title = recipe.title;
+
+
   // data.id = id;
-  data.save(err => {
+  newRecipe.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
