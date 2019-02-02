@@ -41,26 +41,6 @@ class App extends React.Component {
     });
   }
 
-  // onNavClick = page => {
-  //   this.setState({
-  //     page: page,
-  //     profilePage: page
-  //   })
-  // }
-
-  // onCreateRecipeClick = page => {
-  //   this.setState({
-  //     profilePage: page
-  //   });
-  // }
-
-  // <Route path="/profile" component={
-  //   <Profile
-  //     onCreateRecipeClick={this.onCreateRecipeClick}
-  //     userName='User Name'
-  //     putData={this.putDataToDB}
-  //     />
-  // } />
 
   putDataToDB = recipe => {
     axios.post("http://localhost:3001/api/putData", {
@@ -71,7 +51,7 @@ class App extends React.Component {
 
   render() {
     const HomeROUTE = () => <Home onSubmit={this.props.onSubmit} data={this.state.data} />;
-    const ProfileROUTE = () => <Profile />;
+    const ProfileROUTE = ({ match }) => <Profile putData={this.putDataToDB} />;
     const SignUpROUTE = () => <SignUp />;
 
     return (

@@ -3,7 +3,7 @@ import NavigationButton from './NavigationButton';
 
 const NavigationBar = (props) => {
   return (
-    <div class="ui menu inverted" style={
+    <div className="ui menu inverted" style={
       {
       position: 'fixed',
       bottom: '0',

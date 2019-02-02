@@ -15,7 +15,7 @@ class CreateRecipe extends React.Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.putData(this.state)
+    this.props.putData(this.state);
   }
 
   //Update state on input change
@@ -64,7 +64,7 @@ class CreateRecipe extends React.Component {
         index={i}
       />);
     }
-    
+
     return (
       <form className="ui form" onSubmit={this.onFormSubmit} style={{padding: '2rem'}}>
       <h2 className="ui header">Create Recipe</h2>

@@ -1,40 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CreateRecipe from './CreateRecipe';
-import SignUp from './SignUp';
 
 class Profile extends React.Component {
 
-  // onButtonClick = () => {
-  //   this.props.onCreateRecipeClick('create');
-  // }
 
 
-
-
-  // if(this.props.profilePage === 'profile') {
-  //   return <SignUp />;
-  // } else if(this.props.profilePage === 'create') {
-  //   return <CreateRecipe putData={this.props.putData} />;
-  // } else if(this.props.profilePage === 'loggedin') {
-  //   return (
-  //     <div>
-  //       <h1>Profile</h1>
-  //       <h2>{this.props.userName}</h2>
-  //       <button className='ui button' onClick={this.onButtonClick}>Create New Recipe</button>
-  //     </div>
-  //   );
-  // }
-
-  
-  render() {
-    return(<h1>This is the profile ROUTE!</h1>);
-
-
-
-
-  }
+    render() {
+      const CreateRecipeROUTE = () => <CreateRecipe putData={this.props.putData} />;
+      return(
+        <div>
+          <Link to={`/profile/create-recipe`}>Create Recipe</Link>
+          <Route path={`/profile/create-recipe`} component={CreateRecipeROUTE} />
+        </div>
+      );
+    }
 }
 
 export default Profile;
-
-//putData
