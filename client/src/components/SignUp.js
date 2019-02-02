@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class SignUp extends React.Component {
   state = { username: '', password: '' }
@@ -15,6 +16,9 @@ class SignUp extends React.Component {
     event.preventDefault();
     console.log('sign up form, Username: ');
     console.log(this.state.username);
+    axios.post("http://localhost:3001/api/sign-up", {
+      username: 'Mike'
+    })
 
   }
   render() {

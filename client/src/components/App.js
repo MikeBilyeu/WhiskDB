@@ -14,15 +14,15 @@ require('dotenv').config();
 class App extends React.Component {
   state = { data: [] }
 
-  componentDidMount() {
-    this.getDataFromDb();
-  }
+  // componentDidMount() {
+  //   this.getDataFromDb();
+  // }
 
-  getDataFromDb = () => {
-    fetch("http://localhost:3001/api/getData")
-      .then(data => data.json())
-      .then(res => this.setState({ data: res.data }));
-  };
+  // getDataFromDb = () => {
+  //   fetch("http://localhost:3001/api/getData")
+  //     .then(data => data.json())
+  //     .then(res => this.setState({ data: res.data }));
+  // };
 
 
   onSearchSubmit(term) {

@@ -33,6 +33,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
+
+router.post('/sign-up', (req, res) => {
+  console.log('HELLO SERVER');
+});
+
 // this is our get method
 // this method fetches all available data in our database
 router.get("/getData", (req, res) => {
