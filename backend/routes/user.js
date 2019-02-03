@@ -8,7 +8,7 @@ const User = require('../models/user');
 
 
 // Handle post request to /sign-up
-router.post("/sign-up", (req, res) => {
+router.post("/", (req, res) => {
   // Get data from req
   const {
     firstName,

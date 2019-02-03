@@ -1,6 +1,9 @@
 import React from 'react';
 import InputField from './InputField';
 
+// Import axios for post req
+import axios from 'axios';
+
 class CreateRecipe extends React.Component {
   state = {
     title: '',
@@ -15,7 +18,11 @@ class CreateRecipe extends React.Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    this.props.putData(this.state);
+    let recipe = this.state;
+
+    axios.post("http://localhost:3001/create-recipe", {
+      recipe
+    });
   }
 
   //Update state on input change

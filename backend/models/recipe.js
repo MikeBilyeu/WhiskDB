@@ -1,11 +1,11 @@
-// /backend/data.js
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-// this will be our data base's data structure
-const recipeSchema = new Schema(
+const mongoose = require("mongoose");
+
+// Recipe Schema
+const recipe = new mongoose.Schema(
   {
-    userName: String,
+    firstName: String,
+    lastName: String,
     totalVotes: Number,
     upVotes: Number,
     downVotes: Number,
@@ -22,4 +22,4 @@ const recipeSchema = new Schema(
 );
 
 // export the new Schema so we could modify it using Node.js
-module.exports = mongoose.model("Recipe", recipeSchema);
+module.exports = mongoose.model("Recipe", recipe);

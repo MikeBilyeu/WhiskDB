@@ -7,7 +7,7 @@ class Profile extends React.Component {
 
 
     render() {
-      const CreateRecipeROUTE = () => <CreateRecipe putData={this.props.putData} />;
+      const CreateRecipeROUTE = () => <CreateRecipe />;
       return(
         <div>
           <Link to={`/profile/create-recipe`}>Create Recipe</Link>

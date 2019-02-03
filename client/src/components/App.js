@@ -41,17 +41,9 @@ class App extends React.Component {
     });
   }
 
-
-  putDataToDB = recipe => {
-    axios.post("http://localhost:3001/api/putData", {
-      recipe
-    });
-  };
-
-
   render() {
     const HomeROUTE = () => <Home onSubmit={this.props.onSubmit} data={this.state.data} />;
-    const ProfileROUTE = ({ match }) => <Profile putData={this.putDataToDB} />;
+    const ProfileROUTE = ({ match }) => <Profile />;
     const SignUpROUTE = () => <SignUp />;
 
     return (

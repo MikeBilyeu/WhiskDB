@@ -22,7 +22,12 @@ app.use(logger("dev"));
 
 
 // Routes
-app.use("/", require('./routes/index'));
+// Sign up
+app.use("/sign-up", require('./routes/user'));
+
+//Create Recipe
+app.use("/create-recipe", require('./routes/recipe'));
+
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
