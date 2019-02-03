@@ -2,23 +2,39 @@ import React from 'react';
 import axios from 'axios';
 
 class SignUp extends React.Component {
-  state = { username: '', password: '' }
-
-  onUsernameChange = (event) => {
-    this.setState({ username: event.target.value});
+  state = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    password2: ''
   }
 
+  onFirstNameChange = (event) => {
+    this.setState({ firstName: event.target.value});
+  }
+  onLastNameChange = (event) => {
+    this.setState({ lastName: event.target.value});
+  }
+  onEmailChange = (event) => {
+    this.setState({ email: event.target.value});
+  }
   onPasswordChange = (event) => {
     this.setState({ password: event.target.value});
+  }
+  onPassword2Change = (event) => {
+    this.setState({ password2: event.target.value});
   }
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    console.log('sign up form, Username: ');
-    console.log(this.state.username);
+    console.log('onFormSubit');
     axios.post("http://localhost:3001/sign-up", {
-      username: this.state.username,
-      password: this.state.password
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
     }).then(res => {
       if(res.data) {
         console.log('success');
@@ -39,22 +55,52 @@ class SignUp extends React.Component {
           Sign up
         </h2>
         <div className="field">
-          <label>Username</label>
+          <label>First Name</label>
           <input
             value={this.state.username}
-            onChange={this.onUsernameChange}
+            onChange={this.onFirstNameChange}
             type="text"
-            name="username"
-            placeholder="Username"
+            name="first"
+            placeholder="First"
+          />
+        </div>
+        <div className="field">
+          <label>Last Name</label>
+          <input
+            value={this.state.lastName}
+            onChange={this.onLastNameChange}
+            type="text"
+            name="last"
+            placeholder="Last"
+          />
+        </div>
+        <div className="field">
+          <label>Email</label>
+          <input
+            value={this.state.email}
+            onChange={this.onEmailChange}
+            type="text"
+            name="eamil"
+            placeholder="Email"
           />
         </div>
         <div className="field">
           <label>Password</label>
           <input
-            value={this.state.password}
+            value={this.state.Password}
             onChange={this.onPasswordChange}
-            type="Password"
-            name="Password"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+        <div className="field">
+          <label>Verify Password</label>
+          <input
+            value={this.state.Password2}
+            onChange={this.onPassword2Change}
+            type="password"
+            name="password2"
             placeholder="Password"
           />
         </div>
