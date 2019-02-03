@@ -7,6 +7,7 @@ import NavigationBar from './NavigationBar';
 import Home from './Home';
 import Profile from './Profile';
 import SignUp from './SignUp';
+import Login from './Login';
 
 
 require('dotenv').config();
@@ -45,7 +46,7 @@ class App extends React.Component {
     const HomeROUTE = () => <Home onSubmit={this.props.onSubmit} data={this.state.data} />;
     const ProfileROUTE = ({ match }) => <Profile />;
     const SignUpROUTE = () => <SignUp />;
-
+    const LoginROUTE = () => <Login />;
     return (
       <Router>
         <div>
@@ -53,6 +54,7 @@ class App extends React.Component {
           <Route exact path="/" component={HomeROUTE} />
           <Route path="/profile" component={ProfileROUTE} />
           <Route path="/sign-up" component={SignUpROUTE} />
+          <Route path="/Login" component={LoginROUTE} />
           <NavigationBar />
         </div>
       </Router>

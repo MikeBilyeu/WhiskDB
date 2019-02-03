@@ -4,8 +4,6 @@ const mongoose = require("mongoose");
 // Recipe Schema
 const recipe = new mongoose.Schema(
   {
-    firstName: String,
-    lastName: String,
     totalVotes: Number,
     upVotes: Number,
     downVotes: Number,
@@ -17,7 +15,8 @@ const recipe = new mongoose.Schema(
     directions: [],
     tips: String,
     tags: [],
-    imageURL: String
+    imageURL: String,
+    user_id: String
   }
 );
 
