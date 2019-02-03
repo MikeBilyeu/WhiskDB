@@ -11,7 +11,6 @@ const dbConnection = require("./database");
 
 const API_PORT = 3001;
 const app = express();
-const router = express.Router();
 
 
 
