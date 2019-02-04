@@ -1,42 +1,40 @@
-import React from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
-class Login extends React.Component {
-  state = { email: "", password: "" };
-
-  onEmailChange = e => {
-    this.setState({ email: e.target.value });
+class Login extends Component {
+  state = {
+    email: "",
+    password: "",
+    errors: []
   };
 
-  onPasswordChange = e => {
-    this.setState({ password: e.target.value });
+  onInputChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
   };
 
   onFormSubmit = e => {
     e.preventDefault();
     console.log("onFormSubit");
-    axios
-      .post("/api/users/login", {
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(res => {
-        if (res.data) {
-          console.log("success");
-          console.log(res.data);
-        } else {
-          console.log("ERROR");
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+
+    const loginData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    console.log(loginData);
   };
 
   render() {
+    const { errors } = this.state;
     return (
-      <form className="ui form" onSubmit={this.onFormSubmit}>
+      <form noValidate className="ui form" onSubmit={this.onFormSubmit}>
+        <Link to="/" className="ui button">
+          Back to Home
+        </Link>
+        <p>
+          Don't have an account? <Link to="/sign-up">Sign up</Link>
+        </p>
         <h2 className="ui center aligned icon header">
           <i className="user circle icon" />
           Login
@@ -45,24 +43,26 @@ class Login extends React.Component {
           <label>Email</label>
           <input
             value={this.state.email}
-            onChange={this.onEmailChange}
+            onChange={this.onInputChange}
             type="text"
-            name="email"
+            id="email"
             placeholder="Email"
+            errors={errors.email}
           />
         </div>
         <div className="field">
           <label>Password</label>
           <input
             value={this.state.password}
-            onChange={this.onPasswordChange}
+            onChange={this.onInputChange}
             type="password"
-            name="password"
+            id="password"
             placeholder="Password"
+            errors={errors.password}
           />
         </div>
         <button className="ui button blue" type="submit">
-          Login
+          Log in
         </button>
       </form>
     );
