@@ -1,26 +1,44 @@
-import React from 'react';
+import React from "react";
+
+import axios from "axios";
 
 class Login extends React.Component {
-  state = { email: '', password: '' };
+  state = { email: "", password: "" };
 
-  onEmailChange = (e) => {
-    this.setState({ email: e.target.value});
-  }
+  onEmailChange = e => {
+    this.setState({ email: e.target.value });
+  };
 
-  onPasswordChange = (e) => {
-    this.setState({ password: e.target.value});
-  }
+  onPasswordChange = e => {
+    this.setState({ password: e.target.value });
+  };
 
-  onFormSubmit = (e) => {
+  onFormSubmit = e => {
     e.preventDefault();
-    console.log('onFormSubit');
-  }
+    console.log("onFormSubit");
+    axios
+      .post("/api/users/login", {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(res => {
+        if (res.data) {
+          console.log("success");
+          console.log(res.data);
+        } else {
+          console.log("ERROR");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   render() {
     return (
       <form className="ui form" onSubmit={this.onFormSubmit}>
         <h2 className="ui center aligned icon header">
-          <i className="user circle icon"></i>
+          <i className="user circle icon" />
           Login
         </h2>
         <div className="field">
@@ -43,7 +61,9 @@ class Login extends React.Component {
             placeholder="Password"
           />
         </div>
-        <button className="ui button blue" type="submit">Login</button>
+        <button className="ui button blue" type="submit">
+          Login
+        </button>
       </form>
     );
   }
