@@ -9,6 +9,8 @@
 # testing
 /coverage
 
+/backend/config/keys.js
+
 # production
 /build
 

@@ -1,19 +1,18 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
-import Header from './Header';
-import NavigationBar from './NavigationBar';
-import Home from './Home';
-import Profile from './Profile';
-import SignUp from './SignUp';
-import Login from './Login';
+import Header from "./Header";
+import NavigationBar from "./NavigationBar";
+import Home from "./Home";
+import Profile from "./Profile";
+import SignUp from "./SignUp";
+import Login from "./Login";
 
-
-require('dotenv').config();
+require("dotenv").config();
 
 class App extends React.Component {
-  state = { data: [] }
+  state = { data: [] };
 
   // componentDidMount() {
   //   this.getDataFromDb();
@@ -25,25 +24,27 @@ class App extends React.Component {
   //     .then(res => this.setState({ data: res.data }));
   // };
 
-
   onSearchSubmit(term) {
-    axios.get('https://api.edamam.com/search', {
-      params: {
-        q: term,
-        app_id: process.env.REACT_APP_APP_ID,
-        app_key: process.env.REACT_APP_APP_KEY
-      }
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .get("https://api.edamam.com/search", {
+        params: {
+          q: term,
+          app_id: process.env.REACT_APP_APP_ID,
+          app_key: process.env.REACT_APP_APP_KEY
+        }
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   render() {
-    const HomeROUTE = () => <Home onSubmit={this.props.onSubmit} data={this.state.data} />;
+    const HomeROUTE = () => (
+      <Home onSubmit={this.props.onSubmit} data={this.state.data} />
+    );
     const ProfileROUTE = ({ match }) => <Profile />;
     const SignUpROUTE = () => <SignUp />;
     const LoginROUTE = () => <Login />;
@@ -60,8 +61,6 @@ class App extends React.Component {
       </Router>
     );
   }
-
-
 }
 
 export default App;
