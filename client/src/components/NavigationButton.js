@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-const NavigationButton = (props) => {
+const NavigationButton = props => {
   return (
-    <div className="item">
-      <Link className="ui button" to={props.link}>{props.text}</Link>
-    </div>
+    <Link to={props.link}>
+      <button className="ui icon button">
+        <i className={props.icon} />
+      </button>
+    </Link>
   );
-}
+};
 
 export default NavigationButton;

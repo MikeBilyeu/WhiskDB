@@ -8,6 +8,7 @@ import Home from "./Home";
 import Profile from "./Profile";
 import SignUp from "./auth/SignUp";
 import Login from "./auth/Login";
+import Recipe from "./Recipe";
 
 require("dotenv").config();
 
@@ -24,38 +25,39 @@ class App extends React.Component {
   //     .then(res => this.setState({ data: res.data }));
   // };
 
-  onSearchSubmit(term) {
-    axios
-      .get("https://api.edamam.com/search", {
-        params: {
-          q: term,
-          app_id: process.env.REACT_APP_APP_ID,
-          app_key: process.env.REACT_APP_APP_KEY
-        }
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  }
+  // onSearchSubmit(term) {
+  //   axios
+  //     .get("https://api.edamam.com/search", {
+  //       params: {
+  //         q: term,
+  //         app_id: process.env.REACT_APP_APP_ID,
+  //         app_key: process.env.REACT_APP_APP_KEY
+  //       }
+  //     })
+  //     .then(function(response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function(error) {
+  //       console.log(error);
+  //     });
+  // }
 
   render() {
-    const HomeROUTE = () => (
-      <Home onSubmit={this.props.onSubmit} data={this.state.data} />
-    );
-    const ProfileROUTE = ({ match }) => <Profile />;
-    const SignUpROUTE = () => <SignUp />;
-    const LoginROUTE = () => <Login />;
     return (
       <Router>
-        <div>
+        <div className="ui container">
           <Header />
-          <Route exact path="/" component={HomeROUTE} />
-          <Route path="/profile" component={ProfileROUTE} />
-          <Route path="/sign-up" component={SignUpROUTE} />
-          <Route path="/Login" component={LoginROUTE} />
+          <Route
+            exact
+            path="/"
+            component={() => (
+              <Home onSubmit={this.props.onSubmit} data={this.state.data} />
+            )}
+          />
+          <Route path="/profile" component={Profile} />
+          <Route path="/sign-up" component={SignUp} />
+          <Route path="/login" component={Login} />
+          <Route path="/recipe" component={Recipe} />
           <NavigationBar />
         </div>
       </Router>

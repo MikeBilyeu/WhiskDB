@@ -11,35 +11,37 @@ class SignUp extends Component {
     errors: {}
   };
 
-  onInputChange = e => {
-    if (e.target.id === "name") {
-      let nameInput = e.target.value.toLowerCase().split(" ");
-      let nameCap = nameInput
-        .map(word => {
-          return word.charAt(0).toUpperCase() + word.slice(1);
-        })
-        .join(" ");
-      this.setState({ [e.target.id]: nameCap });
-    } else {
-      this.setState({ [e.target.id]: e.target.value });
-    }
-  };
+  // onInputChange = e => {
+  //   if (e.target.id === "name") {
+  //     // let nameInput = e.target.value.toLowerCase().split(" ");
+  //     // let nameCap = nameInput
+  //     //   .map(word => {
+  //     //     return word.charAt(0).toUpperCase() + word.slice(1);
+  //     //   })
+  //     //   .join(" ");
+  //     this.props.signup(this.props.signupInfo);
+  //     // this.setState({ [e.target.id]: nameCap });
+  //   } else {
+  //     this.setState({ [e.target.id]: e.target.value });
+  //   }
+  // };
 
-  onFormSubmit = event => {
-    event.preventDefault();
-    const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
-    };
-
-    console.log(newUser);
-  };
+  // onFormSubmit = event => {
+  //   event.preventDefault();
+  //   const newUser = {
+  //     name: this.state.name,
+  //     email: this.state.email,
+  //     password: this.state.password,
+  //     password2: this.state.password2
+  //   };
+  //
+  //   console.log(newUser);
+  // };
   render() {
+    console.log(this.props);
     const { errors } = this.state;
     return (
-      <form noValidate className="ui form" onSubmit={this.onFormSubmit}>
+      <form noValidate className="ui form" /*onSubmit={this.onFormSubmit}*/>
         <Link to="/" className="ui button">
           Back to Home
         </Link>

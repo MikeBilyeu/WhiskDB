@@ -1,18 +1,21 @@
-import React from 'react';
-import NavigationButton from './NavigationButton';
+import React from "react";
+import NavigationButton from "./NavigationButton";
 
-const NavigationBar = (props) => {
+const NavigationBar = props => {
   return (
-    <div className="ui menu inverted" style={
-      {
-      position: 'fixed',
-      bottom: '0',
-      width: '100%'
-    }}>
-      <NavigationButton link="/" text="Home" />
-      <NavigationButton link="/profile" text="Profile" />
+    <div
+      className="ui menu inverted"
+      style={{
+        position: "fixed",
+        bottom: "0",
+        width: "100%"
+      }}
+    >
+      <NavigationButton link="/" icon="arrow left icon" />
+      <NavigationButton link="/" icon="home icon" />
+      <NavigationButton link="/profile" icon="user icon" />
     </div>
   );
-}
+};
 
 export default NavigationBar;
