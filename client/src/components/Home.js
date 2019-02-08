@@ -12,7 +12,7 @@ const Home = props => {
       <h1 className="ui header center aligned ">Browse Recipes</h1>
       <BrowseOption text="Non-Vegitarian" />
       <BrowseOption text="Vegitarian" />
-      <Button text="Continue" />
+      <Button text="Continue" linkTo="/" />
     </div>
   );
 };

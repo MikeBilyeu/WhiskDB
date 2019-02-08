@@ -50,12 +50,15 @@ class Recipe extends React.Component {
           className="ui medium bordered image big"
           src={this.state.imageURL}
         />
-        <Button text="Change Yeild" />
+        <Button text="Change Yeild" linkTo="/recipe" />
         <p>Servings: {this.state.servings}</p>
+        <div className="ui section divider" />
         <h2>Ingredients</h2>
         <ul>{this.renderIngredients(this.state.ingredients)}</ul>
+        <div className="ui section divider" />
         <h2>Directions</h2>
         <ol>{this.renderDirections(this.state.directions)}</ol>
+        <div className="ui section divider" />
         <h2>How was it?</h2>
         <i className="thumbs up icon big" />
         <i className="thumbs down icon big" />

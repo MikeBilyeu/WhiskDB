@@ -1,11 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Button = props => {
   return (
-    <button className="ui active button">
+    <Link className="ui active button" to={props.linkTo}>
       {props.text}
-      <i className="arrow alternate circle right icon" />
-    </button>
+    </Link>
   );
 };
 

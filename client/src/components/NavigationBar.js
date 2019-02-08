@@ -4,8 +4,8 @@ import NavigationButton from "./NavigationButton";
 const NavigationBar = props => {
   return (
     <div
-      className="ui menu inverted"
       style={{
+        backgroundColor: "grey",
         position: "fixed",
         bottom: "0",
         width: "100%"
