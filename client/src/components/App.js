@@ -1,6 +1,6 @@
 import React from "react";
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import axios from "axios";
 
 import Header from "./Header";
 import NavigationBar from "./nav/NavigationBar";
@@ -15,20 +15,10 @@ require("dotenv").config();
 class App extends React.Component {
   state = { data: [] };
 
-  // componentDidMount() {
-  //   this.getDataFromDb();
-  // }
-
-  // getDataFromDb = () => {
-  //   fetch("http://localhost:3001/api/getData")
-  //     .then(data => data.json())
-  //     .then(res => this.setState({ data: res.data }));
-  // };
-
   render() {
     return (
       <Router>
-        <div className="ui container">
+        <div className="ui container" style={{ padding: "5rem" }}>
           <Header />
           <Route
             exact

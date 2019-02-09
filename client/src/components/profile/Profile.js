@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import CreateRecipe from "./CreateRecipe";
+import NewRecipe from "./NewRecipe";
 import SavedRecipes from "./SavedRecipes";
 import MyRecipes from "./MyRecipes";
 import Contact from "../Contact";
@@ -18,7 +19,7 @@ class Profile extends React.Component {
         <Button text="Edit Profile" linkTo="/profile/edit" />
         <Button text="Contact Us" linkTo="/profile/contact" />
 
-        <Route path={`/profile/create-recipe`} component={CreateRecipe} />
+        <Route path={`/profile/create-recipe`} component={NewRecipe} />
         <Route path={`/profile/saved-recipes`} component={SavedRecipes} />
         <Route path={`/profile/my-recipes`} component={MyRecipes} />
         <Route path={`/profile/edit`} component={EditProfile} />
