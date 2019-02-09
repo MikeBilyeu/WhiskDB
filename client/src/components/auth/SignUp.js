@@ -1,47 +1,46 @@
 import React, { Component } from "react";
+import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 class SignUp extends Component {
-  state = {
-    name: "",
-    email: "",
-    password: "",
-    password2: "",
-    errors: {}
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div className="ui error message">
+          <div className="header">{error}</div>
+        </div>
+      );
+    }
+  }
+
+  renderInput = ({ input, label, meta, placeholder }) => {
+    const className = `field twelve wide ${
+      meta.error && meta.touched ? "error" : ""
+    }`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <input
+          {...input}
+          placeholder={label}
+          autoComplete="off"
+          placeholder={placeholder}
+        />
+        {this.renderError(meta)}
+      </div>
+    );
   };
 
-  // onInputChange = e => {
-  //   if (e.target.id === "name") {
-  //     // let nameInput = e.target.value.toLowerCase().split(" ");
-  //     // let nameCap = nameInput
-  //     //   .map(word => {
-  //     //     return word.charAt(0).toUpperCase() + word.slice(1);
-  //     //   })
-  //     //   .join(" ");
-  //     this.props.signup(this.props.signupInfo);
-  //     // this.setState({ [e.target.id]: nameCap });
-  //   } else {
-  //     this.setState({ [e.target.id]: e.target.value });
-  //   }
-  // };
+  onFormSubmit(formValues) {
+    console.log(formValues);
+  }
 
-  // onFormSubmit = event => {
-  //   event.preventDefault();
-  //   const newUser = {
-  //     name: this.state.name,
-  //     email: this.state.email,
-  //     password: this.state.password,
-  //     password2: this.state.password2
-  //   };
-  //
-  //   console.log(newUser);
-  // };
   render() {
-    console.log(this.props);
-    const { errors } = this.state;
     return (
-      <form noValidate className="ui form" /*onSubmit={this.onFormSubmit}*/>
+      <form
+        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+        className="ui form error"
+      >
         <Link to="/" className="ui button">
           Back to Home
         </Link>
@@ -52,50 +51,32 @@ class SignUp extends Component {
           <i className="user circle icon" />
           Sign up
         </h2>
-        <div className="field">
-          <label>Full Name</label>
-          <input
-            id="name"
-            value={this.state.name}
-            onChange={this.onInputChange}
-            type="text"
-            error={errors.name}
-            placeholder="First Last"
-          />
-        </div>
-        <div className="field">
-          <label>Email</label>
-          <input
-            id="email"
-            value={this.state.email}
-            onChange={this.onInputChange}
-            type="text"
-            error={errors.email}
-            placeholder="Email"
-          />
-        </div>
-        <div className="field">
-          <label>Password</label>
-          <input
-            id="password"
-            value={this.state.Password}
-            onChange={this.onInputChange}
-            type="password"
-            error={errors.password}
-            placeholder="Password"
-          />
-        </div>
-        <div className="field">
-          <label>Verify Password</label>
-          <input
-            id="password2"
-            value={this.state.Password2}
-            onChange={this.onInputChange}
-            type="password"
-            error={errors.password2}
-            placeholder="Password"
-          />
-        </div>
+        <Field
+          name="name"
+          component={this.renderInput}
+          label="Full Name"
+          placeholder="First & Last"
+        />
+        <Field
+          name="email"
+          component={this.renderInput}
+          label="Email"
+          placeholder="Eamil Address"
+        />
+        <Field
+          type="password"
+          name="password"
+          component={this.renderInput}
+          label="Password"
+          placeholder="Enter a Password"
+        />
+        <Field
+          type="password"
+          name="password2"
+          component={this.renderInput}
+          label="Verify Password"
+          placeholder="Enter the same password"
+        />
         <button className="ui button blue" type="submit">
           Sign up
         </button>
@@ -104,4 +85,27 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const validate = formValues => {
+  const errors = {};
+
+  if (!formValues.name) {
+    errors.name = "You must enter your name";
+  }
+  if (!formValues.email) {
+    errors.email = "You must enter a valid email address";
+  }
+  if (!formValues.password) {
+    errors.password = "You must enter a password";
+  }
+  if (!formValues.password2) {
+    errors.password2 = "You must validate the password";
+  } else if (formValues.password2 !== formValues.password) {
+    errors.password2 = "Passwords don't match";
+  }
+  return errors;
+};
+
+export default reduxForm({
+  form: "signup",
+  validate: validate
+})(SignUp);
