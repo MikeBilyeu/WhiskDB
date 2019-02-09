@@ -18,19 +18,21 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="ui container" style={{ }}>
+        <div>
           <Header />
-          <Route
-            exact
-            path="/"
-            component={() => (
-              <Home onSubmit={this.props.onSubmit} data={this.state.data} />
-            )}
-          />
-          <Route path="/profile" component={Profile} />
-          <Route path="/sign-up" component={SignUp} />
-          <Route path="/login" component={Login} />
-          <Route path="/recipe" component={Recipe} />
+          <div className="ui very padded segment">
+            <Route
+              exact
+              path="/"
+              component={() => (
+                <Home onSubmit={this.props.onSubmit} data={this.state.data} />
+              )}
+            />
+            <Route path="/profile" component={Profile} />
+            <Route path="/sign-up" component={SignUp} />
+            <Route path="/login" component={Login} />
+            <Route path="/recipe" component={Recipe} />
+          </div>
           <NavigationBar />
         </div>
       </Router>
