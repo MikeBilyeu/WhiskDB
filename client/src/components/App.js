@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Header from "./Header";
 import NavigationBar from "./nav/NavigationBar";
-import Home from "./home/Home";
+import Home from "./browse/Home";
 import Profile from "./profile/Profile";
 import SignUp from "./auth/SignUp";
 import Login from "./auth/Login";
@@ -24,23 +24,6 @@ class App extends React.Component {
   //     .then(data => data.json())
   //     .then(res => this.setState({ data: res.data }));
   // };
-
-  // onSearchSubmit(term) {
-  //   axios
-  //     .get("https://api.edamam.com/search", {
-  //       params: {
-  //         q: term,
-  //         app_id: process.env.REACT_APP_APP_ID,
-  //         app_key: process.env.REACT_APP_APP_KEY
-  //       }
-  //     })
-  //     .then(function(response) {
-  //       console.log(response);
-  //     })
-  //     .catch(function(error) {
-  //       console.log(error);
-  //     });
-  // }
 
   render() {
     return (
