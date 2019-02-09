@@ -1,34 +1,46 @@
 import React, { Component } from "react";
+import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 
-import axios from "axios";
-
 class Login extends Component {
-  state = {
-    email: "",
-    password: "",
-    errors: []
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div className="ui error message">
+          <div className="header">{error}</div>
+        </div>
+      );
+    }
+  }
+
+  renderInput = ({ input, label, meta, placeholder }) => {
+    const className = `field twelve wide ${
+      meta.error && meta.touched ? "error" : ""
+    }`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <input
+          {...input}
+          placeholder={label}
+          autoComplete="off"
+          placeholder={placeholder}
+        />
+        {this.renderError(meta)}
+      </div>
+    );
   };
 
-  onInputChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
-
-  onFormSubmit = e => {
-    e.preventDefault();
-    console.log("onFormSubit");
-
-    const loginData = {
-      email: this.state.email,
-      password: this.state.password
-    };
-    console.log(loginData);
-  };
+  onFormSubmit(formValues) {
+    console.log(formValues);
+  }
 
   render() {
-    const { errors } = this.state;
     return (
-      <form noValidate className="ui form" onSubmit={this.onFormSubmit}>
+      <form
+        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+        className="ui form error"
+      >
         <Link to="/" className="ui button">
           Back to Home
         </Link>
@@ -39,28 +51,18 @@ class Login extends Component {
           <i className="user circle icon" />
           Login
         </h2>
-        <div className="field">
-          <label>Email</label>
-          <input
-            value={this.state.email}
-            onChange={this.onInputChange}
-            type="text"
-            id="email"
-            placeholder="Email"
-            errors={errors.email}
-          />
-        </div>
-        <div className="field">
-          <label>Password</label>
-          <input
-            value={this.state.password}
-            onChange={this.onInputChange}
-            type="password"
-            id="password"
-            placeholder="Password"
-            errors={errors.password}
-          />
-        </div>
+        <Field
+          name="email"
+          component={this.renderInput}
+          label="Email"
+          placeholder="Email Address"
+        />
+        <Field
+          name="password"
+          component={this.renderInput}
+          label="Password"
+          placeholder="Password"
+        />
         <button className="ui button blue" type="submit">
           Log in
         </button>
@@ -69,4 +71,19 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const validate = formValues => {
+  const errors = {};
+
+  if (!formValues.email) {
+    errors.email = "Please Enter your Email Address";
+  }
+  if (!formValues.password) {
+    errors.password = "Please Enter your Password";
+  }
+  return errors;
+};
+
+export default reduxForm({
+  form: "login",
+  validate: validate
+})(Login);

@@ -1,6 +1,5 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import InputField from "../InputField";
 
 class NewRecipe extends React.Component {
   renderError({ error, touched }) {
@@ -12,26 +11,31 @@ class NewRecipe extends React.Component {
       );
     }
   }
-  renderInput = ({ input, label, meta }) => {
+  renderInput = ({ input, label, meta, placeholder }) => {
     const className = `field twelve wide ${
       meta.error && meta.touched ? "error" : ""
     }`;
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} placeholder={label} autoComplete="off" />
+        <input
+          {...input}
+          placeholder={label}
+          autoComplete="off"
+          placeholder={placeholder}
+        />
         {this.renderError(meta)}
       </div>
     );
   };
 
-  renderTextArea({ input, label }) {
+  renderTextArea({ input, label, placeholder }) {
     return (
       <div className="field twelve wide">
         <label>{label}</label>
         <textarea
           {...input}
-          placeholder={label}
+          placeholder={placeholder}
           style={{ marginTop: "0px", marginBottom: "0px", height: "115px" }}
         />
       </div>
@@ -49,21 +53,29 @@ class NewRecipe extends React.Component {
         className="ui form error"
       >
         <h2 className="ui header">Create Recipe</h2>
-        <Field name="title" component={this.renderInput} label="Recipe Title" />
         <Field
-          name="ingredient"
+          name="title"
           component={this.renderInput}
-          label="Ingredient"
+          label="Title"
+          placeholder="Recipe Title"
         />
         <Field
-          name="ingredient"
+          name="ingredient-1"
           component={this.renderInput}
           label="Ingredient"
+          placeholder="Ingredient"
         />
         <Field
-          name="ingredient"
+          name="ingredient-2"
           component={this.renderInput}
           label="Ingredient"
+          placeholder="Ingredient"
+        />
+        <Field
+          name="ingredient-3"
+          component={this.renderInput}
+          label="Ingredient"
+          placeholder="Ingredient"
         />
         <div className="ui buttons">
           <button type="button" className="ui button">
@@ -74,15 +86,37 @@ class NewRecipe extends React.Component {
             Add Ingredient
           </button>
         </div>
-        <Field name="servings" component={this.renderInput} label="Servgins" />
         <Field
-          name="directions"
-          component={this.renderTextArea}
-          label="Directions"
+          name="servings"
+          component={this.renderInput}
+          label="Servgins"
+          placeholder="Serving Size"
         />
-        <Field name="tips" component={this.renderTextArea} label="Tips" />
-        <Field name="time" component={this.renderInput} label="Time" />
-        <Field name="imageURL" component={this.renderInput} label="Image URL" />
+        <h5>Directions</h5>
+        <Field
+          name="directions-1"
+          component={this.renderTextArea}
+          label="Step"
+          placeholder="Directions..."
+        />
+        <Field
+          name="tips"
+          component={this.renderTextArea}
+          label="Tips"
+          placeholder="Any extra tips?"
+        />
+        <Field
+          name="time"
+          component={this.renderInput}
+          label="Time"
+          placeholder="minutes"
+        />
+        <Field
+          name="imageURL"
+          component={this.renderInput}
+          label="Image URL"
+          placeholder="Image URL"
+        />
         <button className="ui button" type="submit">
           Submit Recipe
         </button>
