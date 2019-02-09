@@ -3,18 +3,13 @@ import NavigationButton from "./NavigationButton";
 
 const NavigationBar = props => {
   return (
-    <div
-      style={{
-        backgroundColor: "grey",
-        position: "fixed",
-        bottom: "0",
-        width: "100%"
-      }}
-    >
-      <NavigationButton link="/" icon="arrow left icon" />
-      <NavigationButton link="/" icon="home icon" />
-      <NavigationButton link="/profile" icon="user icon" />
+    <div className="ui attached stackable menu">
+    <div className="ui container">
+      <NavigationButton link='/' icon='arrow left' text='Back' />
+      <NavigationButton link='/' icon='home' text='Home' />
+      <NavigationButton link='/profile' icon='user' text='Profile' />
     </div>
+  </div>
   );
 };
 

@@ -18,7 +18,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="ui container" style={{ padding: "5rem" }}>
+        <div className="ui container" style={{ }}>
           <Header />
           <Route
             exact
