@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import CreateRecipe from "./CreateRecipe";
 import SavedRecipes from "./SavedRecipes";
 import MyRecipes from "./MyRecipes";
-import Contact from "./Contact";
+import Contact from "../Contact";
 import EditProfile from "./EditProfile";
-import Button from "./Button";
+import Button from "../Button";
 
 class Profile extends React.Component {
   render() {

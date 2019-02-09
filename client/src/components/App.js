@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 
 import Header from "./Header";
-import NavigationBar from "./NavigationBar";
-import Home from "./Home";
-import Profile from "./Profile";
+import NavigationBar from "./nav/NavigationBar";
+import Home from "./home/Home";
+import Profile from "./profile/Profile";
 import SignUp from "./auth/SignUp";
 import Login from "./auth/Login";
 import Recipe from "./Recipe";
