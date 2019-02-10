@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const Button = props => {
   return (
     <Link to={props.linkTo}>
-      <button className="ui button">{props.text}</button>
+      <button className="ui button" style={{ width: "15rem" }}>
+        {props.text}
+      </button>
     </Link>
   );
 };

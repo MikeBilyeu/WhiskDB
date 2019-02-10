@@ -4,12 +4,13 @@ const BrowseOption = props => {
   return (
     <div
       style={{
-        border: "solid grey",
+        border: "solid grey 1px",
         width: "15rem",
         height: "15rem",
-        borderRadius: "50%",
         textAlign: "center",
-        lineHeight: "15rem"
+        lineHeight: "15rem",
+        borderRadius: "100%",
+        margin: "0rem 1rem"
       }}
     >
       {props.text}

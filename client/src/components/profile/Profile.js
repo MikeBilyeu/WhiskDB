@@ -11,11 +11,10 @@ import Button from "../Button";
 class Profile extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{ display: "grid", placeItems: "center", gridGap: "3rem" }}>
         <Button text="Create Recipe" linkTo="/profile/create-recipe" />
         <Button text="My Recipes" linkTo="/profile/my-recipes" />
         <Button text="Saved Recipes" linkTo="/profile/saved-recipes" />
-        <div className="ui horizontal divider">Or</div>
         <Button text="Edit Profile" linkTo="/profile/edit" />
         <Button text="Contact Us" linkTo="/profile/contact" />
 
