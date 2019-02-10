@@ -1,30 +1,48 @@
-import React from 'react';
+import React, { Component } from "react";
+import { Field, reduxForm } from "redux-form";
 
-class SearchBar extends React.Component {
-  state = { term: '' };
+class SearchBar extends Component {
+  renderInput = ({ input }) => {
+    return (
+      <div className="ui fluid icon big input">
+        <input
+          className="prompt"
+          {...input}
+          autoComplete="off"
+          placeholder={this.props.placeholder}
+        />
+        <i
+          onClick={this.props.handleSubmit(this.onFormSubmit)}
+          className="search link icon"
+        />
+      </div>
+    );
+  };
 
-  onFormSubmit = (event) => {
-    event.preventDefault();
-    this.props.onSubmit(this.state.term);
+  onFormSubmit(formValues) {
+    console.log(formValues);
   }
 
   render() {
     return (
       <div className="ui search">
-        <form className="ui fluid icon huge input" onSubmit={this.onFormSubmit}>
-          <input
-            className='prompt'
-            type="text"
-            placeholder={this.props.placeholder}
-            value={this.state.term}
-            onChange={e => this.setState({ term: e.target.value })}
-          />
-          <i onClick={this.onFormSubmit}  className="search link icon"></i>
+        <form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
+          <Field name="search" component={this.renderInput} />
         </form>
-        <div className="results"></div>
       </div>
     );
   }
 }
 
-export default SearchBar;
+const validate = formValues => {
+  const errors = {};
+  if (!formValues.search) {
+    errors.search = "Add a search term";
+  }
+  return errors;
+};
+
+export default reduxForm({
+  form: "search",
+  validate: validate
+})(SearchBar);
