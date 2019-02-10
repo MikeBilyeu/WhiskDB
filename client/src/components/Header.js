@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="ui inverted fluid one huge borderless item huge top fixed menu">
+    <div className="ui inverted fluid massive borderless item top fixed menu">
       <Link to="/" className="item">
-        WhiskDB
+        <h1>WhiskDB</h1>
       </Link>
     </div>
   );

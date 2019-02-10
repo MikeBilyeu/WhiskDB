@@ -20,7 +20,7 @@ class App extends React.Component {
       <Router>
         <div>
           <Header />
-          <div className="ui very padded segment">
+          <div style={{ padding: "6rem 2rem 5rem 2rem" }}>
             <Route
               exact
               path="/"
