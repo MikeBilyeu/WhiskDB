@@ -28,7 +28,7 @@ class App extends React.Component {
                 <Home onSubmit={this.props.onSubmit} data={this.state.data} />
               )}
             />
-            <Route path="/profile" component={Profile} />
+            <Route path="/profile/:page?" component={Profile} />
             <Route path="/sign-up" component={SignUp} />
             <Route path="/login" component={Login} />
             <Route path="/recipe" component={Recipe} />

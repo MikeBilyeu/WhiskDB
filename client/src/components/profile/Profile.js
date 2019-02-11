@@ -10,37 +10,37 @@ import Button from "../Button";
 
 class Profile extends React.Component {
   render() {
-    return (
-      <div>
-        <Route
-          exact
-          path={"/profile"}
-          component={() => {
-            return (
-              <div
-                style={{
-                  display: "grid",
-                  placeItems: "center",
-                  gridGap: "3rem"
-                }}
-              >
-                <Button text="Create Recipe" linkTo="/profile/create-recipe" />
-                <Button text="My Recipes" linkTo="/profile/my-recipes" />
-                <Button text="Saved Recipes" linkTo="/profile/saved-recipes" />
-                <Button text="Edit Profile" linkTo="/profile/edit" />
-                <Button text="Contact Us" linkTo="/profile/contact" />
-              </div>
-            );
-          }}
-        />
-
-        <Route path={`/profile/create-recipe`} component={NewRecipe} />
-        <Route path={`/profile/saved-recipes`} component={SavedRecipes} />
-        <Route path={`/profile/my-recipes`} component={MyRecipes} />
-        <Route path={`/profile/edit`} component={EditProfile} />
-        <Route path={`/profile/contact`} component={Contact} />
-      </div>
-    );
+    const page = this.props.match.params.page;
+    const path = this.props.match.url;
+    console.log(this.props.match);
+    switch (page) {
+      case "create-recipe":
+        return <Route path={path} component={NewRecipe} />;
+      case "my-recipes":
+        return <Route path={path} component={MyRecipes} />;
+      case "saved-recipes":
+        return <Route path={path} component={SavedRecipes} />;
+      case "edit":
+        return <Route path={path} component={EditProfile} />;
+      case "contact":
+        return <Route path={this.props.match.url} component={Contact} />;
+      default:
+        return (
+          <div
+            style={{
+              display: "grid",
+              placeItems: "center",
+              gridGap: "3rem"
+            }}
+          >
+            <Button text="Create Recipe" linkTo="/profile/create-recipe" />
+            <Button text="My Recipes" linkTo="/profile/my-recipes" />
+            <Button text="Saved Recipes" linkTo="/profile/saved-recipes" />
+            <Button text="Edit Profile" linkTo="/profile/edit" />
+            <Button text="Contact Us" linkTo="/profile/contact" />
+          </div>
+        );
+    }
   }
 }
 
