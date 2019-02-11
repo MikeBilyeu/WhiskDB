@@ -1,5 +1,7 @@
 import React from "react";
-import { Field, FieldArray, reduxForm } from "redux-form";
+import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { addIngredient, subtractIngredient } from "../../../actions";
 
 class NewRecipe extends React.Component {
   renderError({ error, touched }) {
@@ -27,7 +29,6 @@ class NewRecipe extends React.Component {
 
   //Drop down select
   renderDropDown(formProps) {
-    console.log(formProps);
     return (
       <div className="four wide field">
         <label>Unit of Measurement</label>
@@ -54,32 +55,40 @@ class NewRecipe extends React.Component {
   }
 
   // Renders all of the ingredient inputs i.e. unit, amount
-  renderIngredients = () => {
+  renderIngredient = key => {
     return (
-      <div className="fields">
+      <div key={key} className="fields">
         <Field
-          name="ingredient-1.ingredient"
+          name={`ingredient-${key}.ingredient`}
           component={this.renderInput}
           label="Ingredient"
           placeholder="E.g. All Purpose Flour"
           classStyle="six wide"
         />
         <Field
-          name="ingredient-1.amount"
+          name={`ingredient-${key}.amount`}
           component={this.renderInput}
           label="Amount"
           placeholder="1-1/2"
           classStyle="two wide"
         />
         <Field
-          name="ingredient-1.unit"
+          name={`ingredient-${key}.unit`}
           component={this.renderDropDown}
           label="Unit of Measurement"
         />
+        <div className="ui hidden divider" />
       </div>
     );
   };
 
+  renderAllIngredients = () => {
+    let ingredientInputs = [];
+    for (let i = 0; i < this.props.numOfIngredients; i++) {
+      ingredientInputs.push(this.renderIngredient(i));
+    }
+    return ingredientInputs;
+  };
   renderTextArea({ input, label, placeholder }) {
     return (
       <div className="field twelve wide">
@@ -111,16 +120,26 @@ class NewRecipe extends React.Component {
           placeholder="Recipe Title"
         />
         <h4 className="ui dividing header">Ingredients</h4>
-        {this.renderIngredients()}
+        {this.renderAllIngredients()}
+        <div className="ui hidden divider" />
         <div className="ui buttons">
-          <button type="button" className="ui button">
+          <button
+            onClick={this.props.subtractIngredient}
+            type="button"
+            className="ui button"
+          >
             Remove
           </button>
           <div className="or" />
-          <button type="button" className="ui positive button">
+          <button
+            onClick={this.props.addIngredient}
+            type="button"
+            className="ui positive button"
+          >
             Add Ingredient
           </button>
         </div>
+        <div className="ui hidden divider" />
         <Field
           name="servings"
           component={this.renderInput}
@@ -178,7 +197,20 @@ const validate = formValues => {
   return errors;
 };
 
+const mapStateToProps = state => {
+  return { numOfIngredients: state.numOfIngredients };
+};
+
+NewRecipe = connect(
+  mapStateToProps,
+  {
+    addIngredient,
+    subtractIngredient
+  }
+)(NewRecipe);
+
 export default reduxForm({
   form: "newRecipe",
+  destroyOnUnmount: false,
   validate: validate
 })(NewRecipe);
