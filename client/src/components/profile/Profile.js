@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import CreateRecipe from "./CreateRecipe";
-import NewRecipe from "./NewRecipe";
+import NewRecipe from "./createRecipe/NewRecipe";
 import SavedRecipes from "./SavedRecipes";
 import MyRecipes from "./MyRecipes";
 import Contact from "../Contact";
@@ -12,7 +12,6 @@ class Profile extends React.Component {
   render() {
     const page = this.props.match.params.page;
     const path = this.props.match.url;
-    console.log(this.props.match);
     switch (page) {
       case "create-recipe":
         return <Route path={path} component={NewRecipe} />;

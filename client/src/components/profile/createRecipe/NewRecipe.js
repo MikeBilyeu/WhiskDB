@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, FieldArray, reduxForm } from "redux-form";
 
 class NewRecipe extends React.Component {
   renderError({ error, touched }) {
@@ -11,68 +11,74 @@ class NewRecipe extends React.Component {
       );
     }
   }
-  renderInput = ({ input, label, meta, placeholder }) => {
-    const className = `field twelve wide ${
+
+  renderInput = ({ input, label, meta, placeholder, classStyle }) => {
+    const className = `field ${classStyle} ${
       meta.error && meta.touched ? "error" : ""
     }`;
     return (
       <div className={className}>
         <label>{label}</label>
-        <input
-          {...input}
-          placeholder={label}
-          autoComplete="off"
-          placeholder={placeholder}
-        />
+        <input {...input} autoComplete="off" placeholder={placeholder} />
         {this.renderError(meta)}
       </div>
     );
   };
 
-  renderIngredient({ input, label, meta, placeholder }) {
-    const className = `field twelve wide ${
-      meta.error && meta.touched ? "error" : ""
-    }`;
+  //Drop down select
+  renderDropDown(formProps) {
+    console.log(formProps);
     return (
-      <div className="fields">
-        <div className="six wide field">
-          <label>Ingredient</label>
-          <input
-            type="text"
-            name="ingredient"
-            autoComplete="off"
-            placeholder="E.g. All Purpose Flour"
-          />
-        </div>
-        <div className="two wide field">
-          <label>Amount</label>
-          <input
-            type="text"
-            name="amount"
-            placeholder="1-1/4"
-            autoComplete="off"
-          />
-        </div>
-        <div className="four wide field">
-          <label>Unit of Measurement</label>
-          <select className="ui fluid dropdown">
-            <option value="">Select a unit</option>
-            <option value="tsp">Teaspoon</option>
-            <option value="tbsp">Tablespoon</option>
-            <option value="floz">Fluid Ounce</option>
-            <option value="c">Cup</option>
-            <option value="pt">Pint</option>
-            <option value="qt">Quart</option>
-            <option value="gal">Gallon</option>
-            <option value="lb">Pound</option>
-            <option value="oz">Ounce</option>
-            <option value="ml">Milliliter</option>
-            <option value="l">Liter</option>
-          </select>
-        </div>
+      <div className="four wide field">
+        <label>Unit of Measurement</label>
+        <select
+          className="ui fluid dropdown"
+          onChange={formProps.input.onChange}
+          value={formProps.input.value}
+        >
+          <option value="">Select a unit</option>
+          <option value="tsp">Teaspoon</option>
+          <option value="tbsp">Tablespoon</option>
+          <option value="floz">Fluid Ounce</option>
+          <option value="c">Cup</option>
+          <option value="pt">Pint</option>
+          <option value="qt">Quart</option>
+          <option value="gal">Gallon</option>
+          <option value="lb">Pound</option>
+          <option value="oz">Ounce</option>
+          <option value="ml">Milliliter</option>
+          <option value="l">Liter</option>
+        </select>
       </div>
     );
   }
+
+  // Renders all of the ingredient inputs i.e. unit, amount
+  renderIngredients = () => {
+    return (
+      <div className="fields">
+        <Field
+          name="ingredient-1.ingredient"
+          component={this.renderInput}
+          label="Ingredient"
+          placeholder="E.g. All Purpose Flour"
+          classStyle="six wide"
+        />
+        <Field
+          name="ingredient-1.amount"
+          component={this.renderInput}
+          label="Amount"
+          placeholder="1-1/2"
+          classStyle="two wide"
+        />
+        <Field
+          name="ingredient-1.unit"
+          component={this.renderDropDown}
+          label="Unit of Measurement"
+        />
+      </div>
+    );
+  };
 
   renderTextArea({ input, label, placeholder }) {
     return (
@@ -105,8 +111,7 @@ class NewRecipe extends React.Component {
           placeholder="Recipe Title"
         />
         <h4 className="ui dividing header">Ingredients</h4>
-        <Field name="ingredient" component={this.renderIngredient} />
-
+        {this.renderIngredients()}
         <div className="ui buttons">
           <button type="button" className="ui button">
             Remove
