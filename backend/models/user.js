@@ -18,7 +18,9 @@ const userSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  recipes: [],
+  SavedRecipes: []
 });
 
 // export the new Schema so we could modify it using Node.js
