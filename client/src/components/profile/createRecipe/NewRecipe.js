@@ -223,5 +223,6 @@ const validate = formValues => {
 
 export default reduxForm({
   form: "newRecipe",
+  destroyOnUnmount: false,
   validate: validate
 })(NewRecipe);
