@@ -1,7 +1,6 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, FieldArray, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { addIngredient, subtractIngredient } from "../../../actions";
 
 class NewRecipe extends React.Component {
   renderError({ error, touched }) {
@@ -37,58 +36,99 @@ class NewRecipe extends React.Component {
           onChange={formProps.input.onChange}
           value={formProps.input.value}
         >
-          <option value="">Select a unit</option>
-          <option value="tsp">Teaspoon</option>
-          <option value="tbsp">Tablespoon</option>
-          <option value="floz">Fluid Ounce</option>
-          <option value="c">Cup</option>
-          <option value="pt">Pint</option>
-          <option value="qt">Quart</option>
-          <option value="gal">Gallon</option>
-          <option value="lb">Pound</option>
-          <option value="oz">Ounce</option>
-          <option value="ml">Milliliter</option>
-          <option value="l">Liter</option>
+          <option value="">None</option>
+          <option disabled>———Volume———</option>
+          <option value="teaspoon">Teaspoon</option>
+          <option value="tablespoon">Tablespoon</option>
+          <option value="fluid_ounce">Fluid Ounce</option>
+          <option value="gill">Gill</option>
+          <option value="cup">Cup</option>
+          <option value="pint">Pint</option>
+          <option value="quart">Quart</option>
+          <option value="gallon">Gallon</option>
+          <option value="milliliter">Milliliter</option>
+          <option value="liter">Liter</option>
+          <option value="deciliter">Deciliter</option>
+          <option disabled>———Approximate———</option>
+          <option value="smidgen">Smidgen</option>
+          <option value="pinch">Pinch</option>
+          <option value="dash">Dash</option>
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+          <option disabled>———Mass & Weight———</option>
+          <option value="pound">Pound</option>
+          <option value="ounce">Ounce</option>
+          <option value="milligram">Milligram</option>
+          <option value="gram">Gram</option>
+          <option value="kilogram">Kilogram</option>
         </select>
       </div>
     );
   }
 
-  // Renders all of the ingredient inputs i.e. unit, amount
-  renderIngredient = key => {
+  // Renders all of the ingredient fields i.e. ingredient, unit, amount
+  renderIngredients = ({ fields, meta: { touched, error } }) => {
     return (
-      <div key={key} className="fields">
-        <Field
-          name={`ingredient-${key}.ingredient`}
-          component={this.renderInput}
-          label="Ingredient"
-          placeholder="E.g. All Purpose Flour"
-          classStyle="six wide"
-        />
-        <Field
-          name={`ingredient-${key}.amount`}
-          component={this.renderInput}
-          label="Amount"
-          placeholder="1-1/2"
-          classStyle="two wide"
-        />
-        <Field
-          name={`ingredient-${key}.unit`}
-          component={this.renderDropDown}
-          label="Unit of Measurement"
-        />
-        <div className="ui hidden divider" />
+      <div>
+        {fields.map((ingredient, index) => (
+          <div key={index}>
+            <div className="ui hidden divider" />
+            <div className="fields">
+              <Field
+                name={`${ingredient}.ingredient`}
+                component={this.renderInput}
+                label={`Ingredient ${index + 1}`}
+                placeholder="E.g. Red Bell Pepper"
+                classStyle="four wide"
+              />
+              <Field
+                name={`${ingredient}.amount`}
+                component={this.renderInput}
+                label="Amount"
+                placeholder="1 1/2"
+                classStyle="two wide"
+              />
+              <Field
+                name={`${ingredient}.unit`}
+                component={this.renderDropDown}
+                label="Unit of Measurement"
+              />
+              <Field
+                name={`${ingredient}.prep`}
+                component={this.renderInput}
+                label="Cut/Prep"
+                placeholder="Diced"
+                classStyle="three wide"
+              />
+              <div className="ui buttons">
+                <button
+                  className="ui button"
+                  type="button"
+                  title="Remove"
+                  onClick={() => fields.remove(index)}
+                >
+                  Remove
+                </button>
+              </div>
+              <div className="ui hidden divider" />
+            </div>
+            <div className="ui hidden divider" />
+          </div>
+        ))}
+        <div className="ui buttons">
+          <button
+            className="ui positive button"
+            type="button"
+            onClick={() => fields.push({})}
+          >
+            Add Ingredient
+          </button>
+        </div>
       </div>
     );
   };
 
-  renderAllIngredients = () => {
-    let ingredientInputs = [];
-    for (let i = 0; i < this.props.numOfIngredients; i++) {
-      ingredientInputs.push(this.renderIngredient(i));
-    }
-    return ingredientInputs;
-  };
   renderTextArea({ input, label, placeholder }) {
     return (
       <div className="field twelve wide">
@@ -120,26 +160,10 @@ class NewRecipe extends React.Component {
           placeholder="Recipe Title"
         />
         <h4 className="ui dividing header">Ingredients</h4>
-        {this.renderAllIngredients()}
         <div className="ui hidden divider" />
-        <div className="ui buttons">
-          <button
-            onClick={this.props.subtractIngredient}
-            type="button"
-            className="ui button"
-          >
-            Remove
-          </button>
-          <div className="or" />
-          <button
-            onClick={this.props.addIngredient}
-            type="button"
-            className="ui positive button"
-          >
-            Add Ingredient
-          </button>
-        </div>
+        <FieldArray name="allIngredients" component={this.renderIngredients} />
         <div className="ui hidden divider" />
+
         <Field
           name="servings"
           component={this.renderInput}
@@ -197,20 +221,7 @@ const validate = formValues => {
   return errors;
 };
 
-const mapStateToProps = state => {
-  return { numOfIngredients: state.numOfIngredients };
-};
-
-NewRecipe = connect(
-  mapStateToProps,
-  {
-    addIngredient,
-    subtractIngredient
-  }
-)(NewRecipe);
-
 export default reduxForm({
   form: "newRecipe",
-  destroyOnUnmount: false,
   validate: validate
 })(NewRecipe);
