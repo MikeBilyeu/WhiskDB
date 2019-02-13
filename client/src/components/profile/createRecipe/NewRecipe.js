@@ -42,7 +42,7 @@ class NewRecipe extends React.Component {
   renderDropDown(formProps) {
     return (
       <div className="field">
-        <label>Unit of Measurement</label>
+        <label>Unit</label>
         <select
           className="ui fluid dropdown"
           onChange={formProps.input.onChange}
@@ -104,7 +104,6 @@ class NewRecipe extends React.Component {
               <Field
                 name={`${ingredient}.unit`}
                 component={this.renderDropDown}
-                label="Unit of Measurement"
               />
               <Field
                 name={`${ingredient}.prep`}
@@ -230,7 +229,7 @@ class NewRecipe extends React.Component {
             <Field
               name="time.hours"
               component={this.renderInput}
-              label="Hours"
+              label="Hour"
               placeholder="1"
               classStyle="eight wide"
             />

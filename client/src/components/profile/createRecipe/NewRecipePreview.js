@@ -1,8 +1,14 @@
 import React from "react";
+import { getFormValues } from "redux-form";
 import { connect } from "react-redux";
 
 class NewRecipePreview extends React.Component {
   render() {
+    if (this.props.formValues) {
+      const { title, time } = this.props.formValues;
+      console.log(this.props.formValues);
+    }
+
     return (
       <div style={{ border: "solid red" }} className="eight wide column">
         <div className="ui hidden divider" />
@@ -56,8 +62,7 @@ class NewRecipePreview extends React.Component {
 }
 
 const mapSateToProps = state => {
-  console.log(state);
-  return { formInput: state.form.newRecipe };
+  return { formValues: getFormValues("newRecipe")(state) };
 };
 
 export default connect(mapSateToProps)(NewRecipePreview);
