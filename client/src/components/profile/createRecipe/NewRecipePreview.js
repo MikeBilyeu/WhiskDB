@@ -89,7 +89,7 @@ const NewRecipePreview = props => {
     }
   }
   return (
-    <div className="eight wide column">
+    <div style={{ overflowY: "scroll" }} className="eight wide column">
       <div className="ui hidden divider" />
       <h1 className="ui dividing header">Preview Recipe</h1>
       <div className="ui hidden divider" />
@@ -99,6 +99,7 @@ const NewRecipePreview = props => {
       <div className="ui hidden divider" />
       {renderIngredients()}
       {renderDirections()}
+      <div className="ui hidden divider" />
     </div>
   );
 };

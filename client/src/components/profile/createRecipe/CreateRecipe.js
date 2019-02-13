@@ -4,7 +4,7 @@ import NewRecipePreview from "./NewRecipePreview";
 
 const CreateRecipe = () => {
   return (
-    <div className="ui grid">
+    <div style={{ height: "calc(100vh - 9rem)" }} className="ui grid">
       <NewRecipe />
       <NewRecipePreview />
     </div>

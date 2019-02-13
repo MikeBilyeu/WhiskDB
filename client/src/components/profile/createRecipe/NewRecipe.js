@@ -209,7 +209,7 @@ class NewRecipe extends React.Component {
   render() {
     return (
       <div
-        style={{ borderRight: "solid grey 2px" }}
+        style={{ borderRight: "solid grey 2px", overflowY: "scroll" }}
         className="eight wide column"
       >
         <form
