@@ -13,14 +13,26 @@ class NewRecipe extends React.Component {
     }
   }
 
-  renderInput = ({ input, label, meta, placeholder, classStyle }) => {
+  renderInput = ({
+    input,
+    label,
+    meta,
+    placeholder,
+    type = "text",
+    classStyle
+  }) => {
     const className = `field ${classStyle} ${
       meta.error && meta.touched ? "error" : ""
     }`;
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} autoComplete="off" placeholder={placeholder} />
+        <input
+          {...input}
+          autoComplete="off"
+          type={type}
+          placeholder={placeholder}
+        />
         {this.renderError(meta)}
       </div>
     );
@@ -29,7 +41,7 @@ class NewRecipe extends React.Component {
   //Drop down select
   renderDropDown(formProps) {
     return (
-      <div className="four wide field">
+      <div className="field">
         <label>Unit of Measurement</label>
         <select
           className="ui fluid dropdown"
@@ -50,9 +62,11 @@ class NewRecipe extends React.Component {
           <option value="liter">Liter</option>
           <option value="deciliter">Deciliter</option>
           <option disabled>———Approximate———</option>
+          <option value="drop">Drop</option>
           <option value="smidgen">Smidgen</option>
           <option value="pinch">Pinch</option>
           <option value="dash">Dash</option>
+          <option value="handful">Handful</option>
           <option value="small">Small</option>
           <option value="medium">Medium</option>
           <option value="large">Large</option>
@@ -80,14 +94,12 @@ class NewRecipe extends React.Component {
                 component={this.renderInput}
                 label={`Ingredient ${index + 1}`}
                 placeholder="E.g. Red Bell Pepper"
-                classStyle="four wide"
               />
               <Field
                 name={`${ingredient}.amount`}
                 component={this.renderInput}
                 label="Amount"
                 placeholder="1 1/2"
-                classStyle="two wide"
               />
               <Field
                 name={`${ingredient}.unit`}
@@ -99,19 +111,18 @@ class NewRecipe extends React.Component {
                 component={this.renderInput}
                 label="Cut/Prep"
                 placeholder="Diced"
-                classStyle="three wide"
               />
-              <div className="ui buttons">
-                <button
-                  className="ui button"
-                  type="button"
-                  title="Remove"
-                  onClick={() => fields.remove(index)}
-                >
-                  Remove
-                </button>
-              </div>
               <div className="ui hidden divider" />
+            </div>
+            <div className="ui buttons">
+              <button
+                className="ui button"
+                type="button"
+                title="Remove"
+                onClick={() => fields.remove(index)}
+              >
+                Remove
+              </button>
             </div>
             <div className="ui hidden divider" />
           </div>
@@ -129,9 +140,59 @@ class NewRecipe extends React.Component {
     );
   };
 
+  // Renders all steps of directions
+  renderDirections = ({ fields, meta: { touched, error } }) => {
+    return (
+      <div>
+        {fields.map((step, index) => (
+          <div key={index}>
+            <div className="ui hidden divider" />
+            <div className="field">
+              <Field
+                name={`${step}.step`}
+                component={this.renderTextArea}
+                label={`Step ${index + 1}`}
+                placeholder="Set oven to 375(f)..."
+              />
+              <div className="ui hidden divider" />
+              <Field
+                name={`${step}.tip`}
+                component={this.renderInput}
+                label="Tip"
+                placeholder="Cover hands in flour to prevent sticky fingers"
+              />
+              <div className="ui hidden divider" />
+            </div>
+            <div className="ui hidden divider" />
+            <div className="ui buttons">
+              <button
+                className="ui button"
+                type="button"
+                title="Remove"
+                onClick={() => fields.remove(index)}
+              >
+                Remove Step
+              </button>
+            </div>
+            <div className="ui hidden divider" />
+          </div>
+        ))}
+        <div className="ui buttons">
+          <button
+            className="ui positive button"
+            type="button"
+            onClick={() => fields.push({})}
+          >
+            Add Step
+          </button>
+        </div>
+      </div>
+    );
+  };
+
   renderTextArea({ input, label, placeholder }) {
     return (
-      <div className="field twelve wide">
+      <div className="field">
         <label>{label}</label>
         <textarea
           {...input}
@@ -148,66 +209,97 @@ class NewRecipe extends React.Component {
 
   render() {
     return (
-      <form
-        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
-        className="ui form error"
-      >
-        <h2 className="ui header">Create Recipe</h2>
-        <Field
-          name="title"
-          component={this.renderInput}
-          label="Title"
-          placeholder="Recipe Title"
-        />
-        <h4 className="ui dividing header">Ingredients</h4>
-        <div className="ui hidden divider" />
-        <FieldArray name="allIngredients" component={this.renderIngredients} />
-        <div className="ui hidden divider" />
+      <div style={{ border: "solid red" }} className="eight wide column">
+        <form
+          onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+          className="ui form error"
+        >
+          <div className="ui hidden divider" />
+          <h1 className="ui dividing header">Create Recipe</h1>
+          <div className="ui hidden divider" />
+          <Field
+            name="title"
+            component={this.renderInput}
+            label="Recipe Title"
+            placeholder="The Best Homemade Pizza"
+          />
+          <div className="ui hidden divider" />
 
-        <Field
-          name="servings"
-          component={this.renderInput}
-          label="Servgins"
-          placeholder="Serving Size"
-        />
-        <h5>Directions</h5>
-        <Field
-          name="directions-1"
-          component={this.renderTextArea}
-          label="Step"
-          placeholder="Directions..."
-        />
-        <div className="ui buttons">
-          <button type="button" className="ui button">
-            Remove
+          <h4 className="ui dividing header">Time</h4>
+          <div className="fields">
+            <Field
+              name="time.hours"
+              component={this.renderInput}
+              label="Hours"
+              placeholder="1"
+              classStyle="eight wide"
+            />
+            <Field
+              name="teim.minutes"
+              component={this.renderInput}
+              label="Minutes"
+              placeholder="15"
+              classStyle="eight wide"
+            />
+          </div>
+          <Field
+            name="servings"
+            component={this.renderInput}
+            label="Number of servings"
+            placeholder="3"
+          />
+          <div className="ui hidden divider" />
+
+          <div className="ui hidden divider" />
+          <Field
+            name="image"
+            component={() => {
+              return (
+                <div>
+                  <input
+                    style={{
+                      width: "0.1px",
+                      height: "0.1px",
+                      opacity: "0",
+                      overflow: "hidden",
+                      position: "absolute",
+                      zIndex: "-1"
+                    }}
+                    type="file"
+                    id="imageFile"
+                    name="image"
+                    accept="image/*"
+                  />
+                  <label htmlFor="imageFile" className="ui small green button">
+                    <i className="ui upload icon" />
+                    Upload Recipe Image
+                  </label>
+                </div>
+              );
+            }}
+          />
+
+          <div className="ui hidden divider" />
+
+          <div className="ui hidden divider" />
+          <h4 className="ui dividing header">Ingredients</h4>
+          <div className="ui hidden divider" />
+          <FieldArray
+            name="allIngredients"
+            component={this.renderIngredients}
+          />
+          <div className="ui hidden divider" />
+
+          <h4 className="ui dividing header">Directions</h4>
+          <div className="ui hidden divider" />
+          <FieldArray name="directions" component={this.renderDirections} />
+          <div className="ui hidden divider" />
+
+          <button className="ui button blue" type="submit">
+            Submit Recipe
           </button>
-          <div className="or" />
-          <button type="button" className="ui positive button">
-            Add Step
-          </button>
-        </div>
-        <Field
-          name="tips"
-          component={this.renderTextArea}
-          label="Tips"
-          placeholder="Any extra tips?"
-        />
-        <Field
-          name="time"
-          component={this.renderInput}
-          label="Time"
-          placeholder="minutes"
-        />
-        <Field
-          name="imageURL"
-          component={this.renderInput}
-          label="Image URL"
-          placeholder="Image URL"
-        />
-        <button className="ui button" type="submit">
-          Submit Recipe
-        </button>
-      </form>
+        </form>
+      </div>
     );
   }
 }

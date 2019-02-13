@@ -1,7 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import CreateRecipe from "./CreateRecipe";
-import NewRecipe from "./createRecipe/NewRecipe";
+import CreateRecipe from "./createRecipe/CreateRecipe";
 import SavedRecipes from "./SavedRecipes";
 import MyRecipes from "./MyRecipes";
 import Contact from "../Contact";
@@ -14,7 +13,7 @@ class Profile extends React.Component {
     const path = this.props.match.url;
     switch (page) {
       case "create-recipe":
-        return <Route path={path} component={NewRecipe} />;
+        return <Route path={path} component={CreateRecipe} />;
       case "my-recipes":
         return <Route path={path} component={MyRecipes} />;
       case "saved-recipes":
