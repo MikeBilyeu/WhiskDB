@@ -19,9 +19,9 @@ class NewRecipe extends React.Component {
     meta,
     placeholder,
     type = "text",
-    classStyle
+    addClass
   }) => {
-    const className = `field ${classStyle} ${
+    const className = `field ${addClass} ${
       meta.error && meta.touched ? "error" : ""
     }`;
     return (
@@ -208,13 +208,21 @@ class NewRecipe extends React.Component {
 
   render() {
     return (
-      <div style={{ border: "solid red" }} className="eight wide column">
+      <div
+        style={{ borderRight: "solid grey 2px" }}
+        className="eight wide column"
+      >
         <form
           onSubmit={this.props.handleSubmit(this.onFormSubmit)}
           className="ui form error"
         >
           <div className="ui hidden divider" />
           <h1 className="ui dividing header">Create Recipe</h1>
+          <div className="ui hidden divider" />
+          <label htmlFor="imageFile" className="ui small green button">
+            <i className="ui upload icon" />
+            Upload Recipe Image
+          </label>
           <div className="ui hidden divider" />
           <Field
             name="title"
@@ -223,62 +231,32 @@ class NewRecipe extends React.Component {
             placeholder="The Best Homemade Pizza"
           />
           <div className="ui hidden divider" />
+          <Field
+            name="servings"
+            component={this.renderInput}
+            label="Number of servings"
+            placeholder="3"
+            addClass="five wide"
+          />
+          <div className="ui hidden divider" />
 
-          <h4 className="ui dividing header">Time</h4>
+          <h4 className="ui dividing header">Time Required</h4>
           <div className="fields">
             <Field
               name="time.hours"
               component={this.renderInput}
-              label="Hour"
+              label="Hours"
               placeholder="1"
               classStyle="eight wide"
             />
             <Field
-              name="teim.minutes"
+              name="time.minutes"
               component={this.renderInput}
               label="Minutes"
               placeholder="15"
               classStyle="eight wide"
             />
           </div>
-          <Field
-            name="servings"
-            component={this.renderInput}
-            label="Number of servings"
-            placeholder="3"
-          />
-          <div className="ui hidden divider" />
-
-          <div className="ui hidden divider" />
-          <Field
-            name="image"
-            component={() => {
-              return (
-                <div>
-                  <input
-                    style={{
-                      width: "0.1px",
-                      height: "0.1px",
-                      opacity: "0",
-                      overflow: "hidden",
-                      position: "absolute",
-                      zIndex: "-1"
-                    }}
-                    type="file"
-                    id="imageFile"
-                    name="image"
-                    accept="image/*"
-                  />
-                  <label htmlFor="imageFile" className="ui small green button">
-                    <i className="ui upload icon" />
-                    Upload Recipe Image
-                  </label>
-                </div>
-              );
-            }}
-          />
-
-          <div className="ui hidden divider" />
 
           <div className="ui hidden divider" />
           <h4 className="ui dividing header">Ingredients</h4>
