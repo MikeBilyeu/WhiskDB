@@ -1,12 +1,11 @@
 import React from "react";
 import { Field, FieldArray, reduxForm } from "redux-form";
-import { connect } from "react-redux";
 
-import RenderDropDown from "./RenderDropDown";
+
 import TextInput from "./TextInput";
-import TextAreaInput from "./TextAreaInput";
 import IngredientInputs from "./IngredientInput";
 import DirectionInput from "./DirectionInput";
+import ImageUpload from './ImageUpload';
 
 class NewRecipe extends React.Component {
   renderError({ error, touched }) {
@@ -40,16 +39,7 @@ class NewRecipe extends React.Component {
           <div className="ui hidden divider" />
           <h1 className="ui dividing header">Create Recipe</h1>
           <div className="ui hidden divider" />
-          <label htmlFor="imageFile" className="ui medium green button">
-            <i className="ui upload icon" />
-            Upload Recipe Image
-          </label>
-          <input
-            type="file"
-            onChange={this.onImageChange}
-            id="imageFile"
-            style={{ display: "none" }}
-          />
+          <Field name="image" component={ImageUpload} />
           <div className="ui hidden divider" />
           <Field
             name="title"
