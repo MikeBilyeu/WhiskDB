@@ -77,7 +77,10 @@ const NewRecipePreview = props => {
               let tip = direction.tip ? `Tip: ${direction.tip}` : "";
               return (
                 <div key={index}>
-                  <h5 className="ui header">{`Step ${index + 1}`}</h5>
+                  <div className="ui hidden divider" />
+                  <h5 className="ui header">
+                    {step ? `Step ${index + 1}` : ""}
+                  </h5>
                   <p>{step}</p>
                   <p style={{ color: "#a5a5a5" }}>{tip}</p>
                 </div>

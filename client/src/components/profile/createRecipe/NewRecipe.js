@@ -111,22 +111,19 @@ class NewRecipe extends React.Component {
                 label="Cut/Prep"
                 placeholder="Diced"
               />
-              <div className="ui hidden divider" />
             </div>
-            <div className="ui buttons">
-              <button
-                className="ui button"
-                type="button"
-                title="Remove"
-                onClick={() => fields.remove(index)}
-              >
-                Remove
-              </button>
-            </div>
-            <div className="ui hidden divider" />
+            <div className="ui divider" />
           </div>
         ))}
-        <div className="ui buttons">
+        <div className="ui large buttons">
+          <button
+            className="ui button negative"
+            type="button"
+            onClick={() => fields.remove(fields.length - 1)}
+          >
+            remove
+          </button>
+          <div className="or" />
           <button
             className="ui positive button"
             type="button"
@@ -135,6 +132,55 @@ class NewRecipe extends React.Component {
             Add Ingredient
           </button>
         </div>
+      </div>
+    );
+  };
+
+  // Dynamiclly render timers for each step
+  renderTimer = ({ fields, step }) => {
+    return (
+      <div>
+        {fields.map((timer, index) => {
+          return (
+            <div key={index}>
+              <div className="ui hidden divider" />
+              <h5 className="ui dividing header">Timer for step {step}</h5>
+              <div className="fields">
+                <Field
+                  name={`${timer}.hour`}
+                  component={this.renderInput}
+                  label="Hours"
+                  placeholder="1"
+                />
+                <Field
+                  name={`${timer}.minute`}
+                  component={this.renderInput}
+                  label="Minutes"
+                  placeholder="15"
+                />
+              </div>
+            </div>
+          );
+        })}
+        <div className="ui small buttons">
+          <button
+            className="ui button"
+            type="button"
+            onClick={() => fields.remove(fields.length - 1)}
+          >
+            remove
+          </button>
+          <div className="or" />
+          <button
+            className="ui yellow button"
+            type="button"
+            onClick={() => fields.push({})}
+          >
+            Add Timer
+          </button>
+        </div>
+
+        <div className="ui hidden divider" />
       </div>
     );
   };
@@ -160,23 +206,25 @@ class NewRecipe extends React.Component {
                 label="Tip"
                 placeholder="Cover hands in flour to prevent sticky fingers"
               />
+              <FieldArray
+                name={`${step}.timer`}
+                step={index + 1}
+                component={this.renderTimer}
+              />
               <div className="ui hidden divider" />
             </div>
-            <div className="ui hidden divider" />
-            <div className="ui buttons">
-              <button
-                className="ui button"
-                type="button"
-                title="Remove"
-                onClick={() => fields.remove(index)}
-              >
-                Remove Step
-              </button>
-            </div>
-            <div className="ui hidden divider" />
+            <div className="ui divider" />
           </div>
         ))}
-        <div className="ui buttons">
+        <div className="ui large buttons">
+          <button
+            className="ui button negative"
+            type="button"
+            onClick={() => fields.remove(fields.length - 1)}
+          >
+            remove
+          </button>
+          <div className="or" />
           <button
             className="ui positive button"
             type="button"
@@ -219,7 +267,7 @@ class NewRecipe extends React.Component {
           <div className="ui hidden divider" />
           <h1 className="ui dividing header">Create Recipe</h1>
           <div className="ui hidden divider" />
-          <label htmlFor="imageFile" className="ui small green button">
+          <label htmlFor="imageFile" className="ui medium green button">
             <i className="ui upload icon" />
             Upload Recipe Image
           </label>
@@ -236,7 +284,7 @@ class NewRecipe extends React.Component {
             component={this.renderInput}
             label="Number of servings"
             placeholder="3"
-            addClass="five wide"
+            addClassName="five wide"
           />
           <div className="ui hidden divider" />
 
@@ -271,10 +319,11 @@ class NewRecipe extends React.Component {
           <div className="ui hidden divider" />
           <FieldArray name="directions" component={this.renderDirections} />
           <div className="ui hidden divider" />
-
-          <button className="ui button blue" type="submit">
+          <div className="ui hidden divider" />
+          <button className="ui button big blue" type="submit">
             Submit Recipe
           </button>
+          <div className="ui hidden divider" />
         </form>
       </div>
     );
