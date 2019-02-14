@@ -67,7 +67,6 @@ const NewRecipePreview = props => {
 
   function renderDirections() {
     if (values && values.directions) {
-      console.log(values);
       return (
         <div>
           <div className="ui hidden divider" />
@@ -93,12 +92,25 @@ const NewRecipePreview = props => {
       );
     }
   }
+
+  function renderImage() {
+    if (values && values.image) {
+      console.log(values.image);
+      return (
+        <img
+          className="ui large image"
+          src={URL.createObjectURL(values.image)}
+        />
+      );
+    }
+  }
   return (
     <div style={{ overflowY: "scroll" }} className="eight wide column">
       <div className="ui hidden divider" />
       <h1 className="ui dividing header">Preview Recipe</h1>
       <div className="ui hidden divider" />
       {renderTitle()}
+      {renderImage()}
       {renderTime()}
       {renderServings()}
       <div className="ui hidden divider" />
