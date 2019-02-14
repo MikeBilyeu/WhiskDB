@@ -23,6 +23,10 @@ class NewRecipe extends React.Component {
     console.log(formValues);
   }
 
+  onImageChange(event) {
+    console.log(event.target.files[0]);
+  }
+
   render() {
     return (
       <div
@@ -40,6 +44,12 @@ class NewRecipe extends React.Component {
             <i className="ui upload icon" />
             Upload Recipe Image
           </label>
+          <input
+            type="file"
+            onChange={this.onImageChange}
+            id="imageFile"
+            style={{ display: "none" }}
+          />
           <div className="ui hidden divider" />
           <Field
             name="title"
@@ -78,7 +88,7 @@ class NewRecipe extends React.Component {
           <div className="ui hidden divider" />
           <h4 className="ui dividing header">Ingredients</h4>
           <div className="ui hidden divider" />
-          <FieldArray name="Ingredients" component={IngredientInputs} />
+          <FieldArray name="ingredients" component={IngredientInputs} />
           <div className="ui hidden divider" />
 
           <h4 className="ui dividing header">Directions</h4>
@@ -108,5 +118,9 @@ const validate = formValues => {
 export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
+  initialValues: {
+    ingredients: [{}, {}, {}],
+    directions: [{}]
+  },
   validate: validate
 })(NewRecipe);

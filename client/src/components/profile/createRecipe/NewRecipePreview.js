@@ -37,25 +37,27 @@ const NewRecipePreview = props => {
   }
 
   function renderIngredients() {
-    if (values && values.allIngredients) {
+    if (values && values.ingredients) {
       return (
         <div>
           <div className="ui hidden divider" />
           <h3 className="ui dividing header">Ingredients</h3>
           <div className="ui hidden divider" />
           <div className="ui bulleted list">
-            {values.allIngredients.map((ingredientInfo, index) => {
+            {values.ingredients.map((ingredientInfo, index) => {
               let amount = ingredientInfo.amount ? ingredientInfo.amount : "";
               let ingredient = ingredientInfo.ingredient
                 ? ingredientInfo.ingredient
                 : "";
               let unit = ingredientInfo.unit ? ingredientInfo.unit : "";
               let prep = ingredientInfo.prep ? `(${ingredientInfo.prep})` : "";
-              return (
-                <div key={index} className="item">
-                  {`${amount} ${unit} ${ingredient} ${prep}`}
-                </div>
-              );
+              if (ingredient !== "") {
+                return (
+                  <div key={index} className="item">
+                    {`${amount} ${unit} ${ingredient} ${prep}`}
+                  </div>
+                );
+              }
             })}
           </div>
         </div>

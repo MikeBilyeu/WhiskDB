@@ -5,7 +5,7 @@ import RenderDropDown from "./RenderDropDown";
 import TextInput from "./TextInput";
 
 // Renders all of the ingredient fields i.e. ingredient, unit, amount
-const IngredientInput = ({ fields, meta: { touched, error } }) => {
+const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
   return (
     <div>
       {fields.map((ingredient, index) => (
