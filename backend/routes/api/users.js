@@ -1,26 +1,32 @@
-// const express = require("express");
-// const router = express.Router();
-// const bcrypt = require("bcryptjs");
-// const jwt = require("jsonwebtoken");
-//
-// const keys = require("../../config/keys");
-//
-// require("dotenv").config();
-//
-// // Load input validation
-// const validateRegisterInput = require("../../validation/register");
-// const validateLoginInput = require("../../validation/login");
-//
-// // Load User model
+const express = require("express");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const keys = require("../../config/keys");
+
+require("dotenv").config();
+
+// Load input validation
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
+
+// Load User model
 // const User = require("../../models/user");
-//
-// // @route POST api/users/register
-// // @desc Register user
-// // @access Publi
-//
-// // @route POST api/users/register
-// // @desc Register user
-// // @access Public
+
+// @route POST api/users/register
+// @desc Register user
+// @access Publi
+
+// @route POST api/users/register
+// @desc Register user
+// @access Public
+
+// router.get("/hello", (req, res) => {
+//   console.log("HELLO");
+//   res.json({ info: "Node.js, Express, and Postgres API" });
+// });
+
 // router.post("/register", (req, res) => {
 //   // Form validation
 //   const { errors, isValid } = validateRegisterInput(req.body);
@@ -52,10 +58,10 @@
 //     });
 //   });
 // });
-//
-// // @route POST api/users/login
-// // @desc Login user and return JWT token
-// // @access Public
+
+// @route POST api/users/login
+// @desc Login user and return JWT token
+// @access Public
 // router.post("/login", (req, res) => {
 //   // Form validation
 //   const { errors, isValid } = validateLoginInput(req.body);
@@ -102,5 +108,5 @@
 //     });
 //   });
 // });
-//
-// module.exports = router;
+
+module.exports = router;
