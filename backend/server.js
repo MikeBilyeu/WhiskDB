@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
@@ -14,18 +13,18 @@ const app = express();
 
 // Parses the request body to be a readable json format
 // Passport middleware
-app.use(passport.initialize());
+// app.use(passport.initialize());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
 // Passport config
-require("./config/passport")(passport);
+// require("./config/passport")(passport);
 
 // Routes
 
 // Routes
-app.use("/api/users", users);
+// app.use("/api/users", users);
 
 // // Sign up
 // app.use("/sign-up", require("./routes/user"));
