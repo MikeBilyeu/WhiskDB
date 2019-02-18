@@ -52,16 +52,16 @@ class SignUp extends Component {
           Sign up
         </h2>
         <Field
-          name="name"
+          name="username"
           component={this.renderInput}
-          label="Full Name"
-          placeholder="First & Last"
+          label="Username"
+          placeholder="Enter a Username"
         />
         <Field
           name="email"
           component={this.renderInput}
           label="Email"
-          placeholder="Eamil Address"
+          placeholder="Enter an Eamil Address"
         />
         <Field
           type="password"

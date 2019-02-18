@@ -8,15 +8,24 @@ const pool = new Pool({
   port: keys.port
 });
 
-const getUsers = (request, response) => {
-  pool.query("SELECT * FROM users ORDER BY id ASC", (error, results) => {
-    if (error) {
-      throw error;
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const createUser = (request, response) => {
+  const { name, email } = request.body;
+
+  pool.query(
+    "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
+    [name, email, password],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(201).send(`User added with ID: ${result.insertId}`);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 module.exports = {
-  getUsers
+  createUser
 };
