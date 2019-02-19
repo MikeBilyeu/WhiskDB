@@ -55,7 +55,7 @@ app.get("/hello", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
 });
 
-app.post("/users", db.createUser);
+app.post("/register", db.createUser);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);

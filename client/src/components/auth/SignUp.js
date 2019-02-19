@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class SignUp extends Component {
   renderError({ error, touched }) {
     if (touched && error) {
       return (
         <div className="ui error message">
-          <div className="header">{error}</div>
+          <div>{error}</div>
         </div>
       );
     }
@@ -20,12 +21,7 @@ class SignUp extends Component {
     return (
       <div className={className}>
         <label>{label}</label>
-        <input
-          {...input}
-          placeholder={label}
-          autoComplete="off"
-          placeholder={placeholder}
-        />
+        <input {...input} autoComplete="off" placeholder={placeholder} />
         {this.renderError(meta)}
       </div>
     );
@@ -33,6 +29,19 @@ class SignUp extends Component {
 
   onFormSubmit(formValues) {
     console.log(formValues);
+    axios
+      .post("/register", {
+        username: formValues.username,
+        email: formValues.email,
+        password: formValues.password,
+        password2: formValues.password2
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log("onFormSubmit err", error);
+      });
   }
 
   render() {
@@ -88,8 +97,8 @@ class SignUp extends Component {
 const validate = formValues => {
   const errors = {};
 
-  if (!formValues.name) {
-    errors.name = "You must enter your name";
+  if (!formValues.username) {
+    errors.username = "You must enter your name";
   }
   if (!formValues.email) {
     errors.email = "You must enter a valid email address";

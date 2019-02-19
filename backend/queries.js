@@ -11,19 +11,40 @@ const pool = new Pool({
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const createUser = (request, response) => {
-  const { name, email } = request.body;
+// Load input validation
+const validateRegisterInput = require("./validation/register");
 
-  pool.query(
-    "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
-    [name, email, password],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(201).send(`User added with ID: ${result.insertId}`);
-    }
-  );
+const createUser = (request, response) => {
+  const { username, email, password } = request.body;
+  console.log("INPUT: ", username, email, password);
+
+  // Form validation
+  const { errors, isValid } = validateRegisterInput(request.body);
+  // Check validation
+  if (!isValid) {
+    console.log("Error: ", errors);
+    return res.status(400).json(errors);
+  }
+
+  // Hash password before saving in database
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(password, salt, (err, hash) => {
+      if (err) throw err;
+      password_encrypted = hash;
+      pool.query(
+        "INSERT INTO users (username, email, password_encrypted) VALUES ($1, $2, $3)",
+        [username, email, password_encrypted],
+        (error, result) => {
+          if (error) {
+            console.log("SERVER ERR");
+            console.log(error);
+            throw error;
+          }
+          response.status(201).send(`User added with ID: ${result.insertId}`);
+        }
+      );
+    });
+  });
 };
 
 module.exports = {
