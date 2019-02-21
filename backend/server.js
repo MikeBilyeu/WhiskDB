@@ -43,6 +43,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 3001;
 const db = require("./queries");
+const passport = require("passport");
 
 app.use(bodyParser.json());
 app.use(
@@ -51,11 +52,18 @@ app.use(
   })
 );
 
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+
 app.get("/hello", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
 });
 
 app.post("/register", db.createUser);
+
+app.post("/login", db.userLogin);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);

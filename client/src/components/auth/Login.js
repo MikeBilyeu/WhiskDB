@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Login extends Component {
   renderError({ error, touched }) {
@@ -33,6 +34,17 @@ class Login extends Component {
 
   onFormSubmit(formValues) {
     console.log(formValues);
+    axios
+      .post("/login", {
+        email: formValues.email,
+        password: formValues.password
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log("onFormSubmit err", error);
+      });
   }
 
   render() {
