@@ -43,16 +43,6 @@ module.exports = passport => {
             console.log(e);
           });
       });
-
-      // FOR mongodb
-      // User.findById(jwt_payload.id)
-      //   .then(user => {
-      //     if (user) {
-      //       return done(null, user);
-      //     }
-      //     return done(null, false);
-      //   })
-      //   .catch(err => console.log(err));
     })
   );
 };
