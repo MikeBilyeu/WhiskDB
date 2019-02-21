@@ -9,7 +9,6 @@ const pool = new Pool({
 });
 
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
 // Load input validation
 const validateRegisterInput = require("./validation/register");
@@ -22,28 +21,61 @@ const createUser = (request, response) => {
   const { errors, isValid } = validateRegisterInput(request.body);
   // Check validation
   if (!isValid) {
-    console.log("Error: ", errors);
-    return res.status(400).json(errors);
+    throw errors;
   }
 
-  // Hash password before saving in database
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(password, salt, (err, hash) => {
-      if (err) throw err;
-      password_encrypted = hash;
-      pool.query(
-        "INSERT INTO users (username, email, password_encrypted) VALUES ($1, $2, $3)",
-        [username, email, password_encrypted],
-        (error, result) => {
-          if (error) {
-            console.log("SERVER ERR");
-            console.log(error);
-            throw error;
+  pool.connect().then(client => {
+    return client
+      .query("SELECT * FROM users WHERE username = $1 OR email = $2", [
+        username,
+        email
+      ])
+      .then(res => {
+        if (res.rowCount > 0) {
+          if (username === res.rows[0].username) {
+            console.log("Username is already registered, Sorry");
+            console.log(res.rows[0].username);
+          } else if (email === res.rows[0].email) {
+            console.log("This email is already registered, Want to Log in");
+            console.log(res.rows[0].email);
+          } else {
+            console.log("username or email already registered, Sorry");
+            console.log(res.rows[0]);
           }
-          response.status(201).send(`User added with ID: ${result.insertId}`);
+          client.release();
+        } else {
+          console.log("Adding user to DB");
+          console.log("Salt & Hashing password...");
+          // Hash password before saving in database
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(password, salt, (err, hash) => {
+              if (err) throw err;
+              password_encrypted = hash;
+              client.query(
+                "INSERT INTO users (username, email, password_encrypted) VALUES ($1, $2, $3)",
+                [username, email, password_encrypted],
+                (error, result) => {
+                  if (error) {
+                    client.release();
+                    console.log("SERVER ERROR");
+                    console.log(error);
+                    throw error;
+                  }
+                  client.release();
+                  response
+                    .status(201)
+                    .send(`User added with ID: ${result.insertId}`);
+                  console.log("User successfully added to DB!");
+                }
+              );
+            });
+          });
         }
-      );
-    });
+      })
+      .catch(e => {
+        client.release();
+        console.log(e);
+      });
   });
 };
 
