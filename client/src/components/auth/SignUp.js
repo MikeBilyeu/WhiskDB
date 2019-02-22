@@ -22,19 +22,17 @@ class SignUp extends Component {
   //   }
   // }
 
-  renderError({ error, submitFailed }) {
-    if (submitFailed && error) {
-      return <div className="ui mini red message">{error}</div>;
-    }
-  }
-
-  renderInput = ({ input, label, meta, placeholder }) => {
+  renderInput = ({ input, label, meta, placeholder, type = "text" }) => {
     const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} autoComplete="off" placeholder={placeholder} />
-        {this.renderError(meta)}
+        <input
+          {...input}
+          autoComplete="off"
+          type={type}
+          placeholder={placeholder}
+        />
       </div>
     );
   };
@@ -67,7 +65,7 @@ class SignUp extends Component {
             className="ui form error attached segment"
           >
             <div className="ui center aligned icon header">
-              Make an Account! It's Easy.
+              Make an Account. It's Easy!
             </div>
             <Field
               name="username"
@@ -88,13 +86,7 @@ class SignUp extends Component {
               label="Password"
               placeholder="Enter a Password"
             />
-            <Field
-              type="password"
-              name="password2"
-              component={this.renderInput}
-              label="Verify Password"
-              placeholder="Enter the same password"
-            />
+
             <button className="ui button blue fluid" type="submit">
               Sign up
             </button>

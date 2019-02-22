@@ -21,19 +21,11 @@ class Login extends Component {
     }
   }
 
-  renderError({ error, submitFailed }) {
-    if (submitFailed && error) {
-      return <div className="ui mini red message">{error}</div>;
-    }
-  }
-
   renderInput = ({ input, label, meta, placeholder }) => {
     const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
-    console.log(meta);
     return (
       <div className={className}>
         <input {...input} autoComplete="off" placeholder={placeholder} />
-        {this.renderError(meta)}
       </div>
     );
   };
@@ -44,14 +36,17 @@ class Login extends Component {
     }`;
     return (
       <div className={className}>
-        <input {...input} autoComplete="off" placeholder={placeholder} />
-        {this.renderError(meta)}
+        <input
+          {...input}
+          type="password"
+          autoComplete="off"
+          placeholder={placeholder}
+        />
       </div>
     );
   };
 
   onFormSubmit = formValues => {
-    console.log(formValues);
     const userData = {
       email: formValues.email,
       password: formValues.password
