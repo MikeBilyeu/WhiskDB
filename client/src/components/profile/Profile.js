@@ -10,13 +10,7 @@ import Button from "../Button";
 
 import PropTypes from "prop-types";
 
-import { logoutUser } from "../../actions/authActions";
-
 class Profile extends React.Component {
-  onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-  };
   render() {
     const { user } = this.props.auth;
 
@@ -39,16 +33,14 @@ class Profile extends React.Component {
             style={{
               display: "grid",
               placeItems: "center",
-              gridGap: "3rem"
+              gridGap: "2rem"
             }}
           >
-            <h4>
-              <b>Hey there,</b> {user.username}
-              <p>
-                You are logged into a full-stack <span>MERN</span> app 👏
-              </p>
-            </h4>
-            <button onClick={this.onLogoutClick}>Logout</button>
+            <div className="ui center aligned icon header">
+              <i className="user circle icon" />
+              <h2>{user.name}</h2>
+            </div>
+
             <Button text="Create Recipe" linkTo="/profile/create-recipe" />
             <Button text="My Recipes" linkTo="/profile/my-recipes" />
             <Button text="Saved Recipes" linkTo="/profile/saved-recipes" />
@@ -61,7 +53,6 @@ class Profile extends React.Component {
 }
 
 Profile.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
@@ -69,5 +60,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  {}
 )(Profile);

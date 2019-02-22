@@ -22,20 +22,14 @@ class SignUp extends Component {
   //   }
   // }
 
-  renderError({ error, touched }) {
-    if (touched && error) {
-      return (
-        <div className="ui error message">
-          <div>{error}</div>
-        </div>
-      );
+  renderError({ error, submitFailed }) {
+    if (submitFailed && error) {
+      return <div className="ui mini red message">{error}</div>;
     }
   }
 
   renderInput = ({ input, label, meta, placeholder }) => {
-    const className = `field twelve wide ${
-      meta.error && meta.touched ? "error" : ""
-    }`;
+    const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
     return (
       <div className={className}>
         <label>{label}</label>
@@ -47,21 +41,6 @@ class SignUp extends Component {
 
   onFormSubmit = formValues => {
     console.log(formValues);
-
-    // axios
-    //   .post("/register", {
-    //     username: formValues.username,
-    //     email: formValues.email,
-    //     password: formValues.password,
-    //     password2: formValues.password2
-    //   })
-    //   .then(function(response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function(error) {
-    //     console.log("onFormSubmit err", error);
-    //   });
-
     const newUser = {
       username: formValues.username,
       email: formValues.email,
@@ -73,50 +52,58 @@ class SignUp extends Component {
 
   render() {
     return (
-      <form
-        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
-        className="ui form error"
-      >
-        <Link to="/" className="ui button">
-          Back to Home
-        </Link>
-        <p>
-          Already have an account? <Link to="/login">Log in</Link>
-        </p>
-        <h2 className="ui center aligned icon header">
-          <i className="user circle icon" />
-          Sign up
-        </h2>
-        <Field
-          name="username"
-          component={this.renderInput}
-          label="Username"
-          placeholder="Enter a Username"
-        />
-        <Field
-          name="email"
-          component={this.renderInput}
-          label="Email"
-          placeholder="Enter an Eamil Address"
-        />
-        <Field
-          type="password"
-          name="password"
-          component={this.renderInput}
-          label="Password"
-          placeholder="Enter a Password"
-        />
-        <Field
-          type="password"
-          name="password2"
-          component={this.renderInput}
-          label="Verify Password"
-          placeholder="Enter the same password"
-        />
-        <button className="ui button blue" type="submit">
-          Sign up
-        </button>
-      </form>
+      <div className="ui grid">
+        <div
+          className="fluid column centered"
+          style={{
+            maxWidth: "31rem"
+          }}
+        >
+          <div className="ui attached message">
+            <div className="ui center aligned header">Sign Up</div>
+          </div>
+          <form
+            onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+            className="ui form error attached segment"
+          >
+            <div className="ui center aligned icon header">
+              Make an Account! It's Easy.
+            </div>
+            <Field
+              name="username"
+              component={this.renderInput}
+              label="Username"
+              placeholder="Enter a Username"
+            />
+            <Field
+              name="email"
+              component={this.renderInput}
+              label="Email"
+              placeholder="Enter an Eamil Address"
+            />
+            <Field
+              type="password"
+              name="password"
+              component={this.renderInput}
+              label="Password"
+              placeholder="Enter a Password"
+            />
+            <Field
+              type="password"
+              name="password2"
+              component={this.renderInput}
+              label="Verify Password"
+              placeholder="Enter the same password"
+            />
+            <button className="ui button blue fluid" type="submit">
+              Sign up
+            </button>
+          </form>
+          <div className="ui bottom attached warning message">
+            Already have an account? <Link to="/login">Log in</Link>
+          </div>
+        </div>
+      </div>
     );
   }
 }

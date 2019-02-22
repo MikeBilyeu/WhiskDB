@@ -55,7 +55,7 @@ class App extends React.Component {
               )}
             />
             <Switch>
-              <PrivateRoute exact path="/profile" component={Profile} />
+              <PrivateRoute path="/profile/:page?" component={Profile} />
             </Switch>
             <Route path="/sign-up" component={SignUp} />
             <Route path="/login" component={Login} />

@@ -9,40 +9,42 @@ import classnames from "classnames";
 
 class Login extends Component {
   componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to dashboard
+    // If logged in and user navigates to Login page, navigate back to profile
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/profile");
     }
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/profile"); // push user to dashboard when they login
+      // push user to profile when they login
+      this.props.history.push("/profile");
     }
   }
 
-  renderError({ error, touched }) {
-    if (touched && error) {
-      return (
-        <div className="ui error message">
-          <div className="header">{error}</div>
-        </div>
-      );
+  renderError({ error, submitFailed }) {
+    if (submitFailed && error) {
+      return <div className="ui mini red message">{error}</div>;
     }
   }
 
   renderInput = ({ input, label, meta, placeholder }) => {
-    const className = `field twelve wide ${
-      meta.error && meta.touched ? "error" : ""
+    const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
+    console.log(meta);
+    return (
+      <div className={className}>
+        <input {...input} autoComplete="off" placeholder={placeholder} />
+        {this.renderError(meta)}
+      </div>
+    );
+  };
+
+  renderPassword = ({ input, meta, label, placeholder }) => {
+    const className = `field ${
+      meta.error && meta.submitFailed ? "error teal" : ""
     }`;
     return (
       <div className={className}>
-        <label>{label}</label>
-        <input
-          {...input}
-          placeholder={label}
-          autoComplete="off"
-          placeholder={placeholder}
-        />
+        <input {...input} autoComplete="off" placeholder={placeholder} />
         {this.renderError(meta)}
       </div>
     );
@@ -50,56 +52,53 @@ class Login extends Component {
 
   onFormSubmit = formValues => {
     console.log(formValues);
-    // axios
-    //   .post("/login", {
-    //     email: formValues.email,
-    //     password: formValues.password
-    //   })
-    //   .then(function(response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function(error) {
-    //     console.log("onFormSubmit err", error);
-    //   });
     const userData = {
       email: formValues.email,
       password: formValues.password
     };
-    this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+    this.props.loginUser(userData);
+    // since we handle the redirect within our component,
+    // we don't need to pass in this.props.history as a parameter
   };
 
   render() {
     return (
-      <form
-        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
-        className="ui form error"
-      >
-        <Link to="/" className="ui button">
-          Back to Home
-        </Link>
-        <p>
-          Don't have an account? <Link to="/sign-up">Sign up</Link>
-        </p>
-        <h2 className="ui center aligned icon header">
-          <i className="user circle icon" />
-          Login
-        </h2>
-        <Field
-          name="email"
-          component={this.renderInput}
-          label="Email"
-          placeholder="Email Address"
-        />
-        <Field
-          name="password"
-          component={this.renderInput}
-          label="Password"
-          placeholder="Password"
-        />
-        <button className="ui button blue" type="submit">
-          Log in
-        </button>
-      </form>
+      <div className="ui grid" style={{ margin: "1.5rem 0rem" }}>
+        <div
+          className="fluid column centered"
+          style={{
+            maxWidth: "31rem"
+          }}
+        >
+          <div className="ui attached message">
+            <div className="ui center aligned header">Log into WhiskDB </div>
+          </div>
+          <form
+            onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+            className="ui form error attached segment"
+          >
+            <div className="ui center aligned icon header">
+              <i className="user circle icon" />
+            </div>
+            <Field
+              name="email"
+              component={this.renderInput}
+              placeholder="Email Address"
+            />
+            <Field
+              name="password"
+              component={this.renderPassword}
+              placeholder="Password"
+            />
+            <button className="ui button blue fluid" type="submit">
+              Log in
+            </button>
+          </form>
+          <div className="ui bottom attached warning message">
+            Don't have an account? <Link to="/sign-up">Sign up</Link>
+          </div>
+        </div>
+      </div>
     );
   }
 }
@@ -108,10 +107,10 @@ const validate = formValues => {
   const errors = {};
 
   if (!formValues.email) {
-    errors.email = "Please Enter your Email Address";
+    errors.email = "Please Enter Email Address";
   }
   if (!formValues.password) {
-    errors.password = "Please Enter your Password";
+    errors.password = "Please Enter Password";
   }
   return errors;
 };

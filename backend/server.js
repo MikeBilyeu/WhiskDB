@@ -41,7 +41,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const port = 3001;
+const port = 3005;
 const db = require("./queries");
 const passport = require("passport");
 
