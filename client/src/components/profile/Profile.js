@@ -8,8 +8,18 @@ import Contact from "../Contact";
 import EditProfile from "./EditProfile";
 import Button from "../Button";
 
+import PropTypes from "prop-types";
+
+import { logoutUser } from "../../actions/authActions";
+
 class Profile extends React.Component {
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+  };
   render() {
+    const { user } = this.props.auth;
+
     const page = this.props.match.params.page;
     const path = this.props.match.url;
     switch (page) {
@@ -32,6 +42,13 @@ class Profile extends React.Component {
               gridGap: "3rem"
             }}
           >
+            <h4>
+              <b>Hey there,</b> {user.username}
+              <p>
+                You are logged into a full-stack <span>MERN</span> app 👏
+              </p>
+            </h4>
+            <button onClick={this.onLogoutClick}>Logout</button>
             <Button text="Create Recipe" linkTo="/profile/create-recipe" />
             <Button text="My Recipes" linkTo="/profile/my-recipes" />
             <Button text="Saved Recipes" linkTo="/profile/saved-recipes" />
@@ -43,4 +60,14 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+Profile.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(Profile);

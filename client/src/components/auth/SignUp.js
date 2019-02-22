@@ -1,9 +1,27 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import classnames from "classnames";
 import axios from "axios";
 
 class SignUp extends Component {
+  componentDidMount() {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/profile");
+    }
+  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.errors) {
+  //     this.setState({
+  //       errors: nextProps.errors
+  //     });
+  //   }
+  // }
+
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -27,22 +45,31 @@ class SignUp extends Component {
     );
   };
 
-  onFormSubmit(formValues) {
+  onFormSubmit = formValues => {
     console.log(formValues);
-    axios
-      .post("/register", {
-        username: formValues.username,
-        email: formValues.email,
-        password: formValues.password,
-        password2: formValues.password2
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log("onFormSubmit err", error);
-      });
-  }
+
+    // axios
+    //   .post("/register", {
+    //     username: formValues.username,
+    //     email: formValues.email,
+    //     password: formValues.password,
+    //     password2: formValues.password2
+    //   })
+    //   .then(function(response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function(error) {
+    //     console.log("onFormSubmit err", error);
+    //   });
+
+    const newUser = {
+      username: formValues.username,
+      email: formValues.email,
+      password: formValues.password,
+      password2: formValues.password2
+    };
+    this.props.registerUser(newUser, this.props.history);
+  };
 
   render() {
     return (
@@ -113,6 +140,21 @@ const validate = formValues => {
   }
   return errors;
 };
+
+SignUp.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+SignUp = connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(SignUp));
 
 export default reduxForm({
   form: "signup",

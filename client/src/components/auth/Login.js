@@ -2,8 +2,24 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import classnames from "classnames";
 
 class Login extends Component {
+  componentDidMount() {
+    // If logged in and user navigates to Login page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/profile");
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/profile"); // push user to dashboard when they login
+    }
+  }
+
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -32,20 +48,25 @@ class Login extends Component {
     );
   };
 
-  onFormSubmit(formValues) {
+  onFormSubmit = formValues => {
     console.log(formValues);
-    axios
-      .post("/login", {
-        email: formValues.email,
-        password: formValues.password
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log("onFormSubmit err", error);
-      });
-  }
+    // axios
+    //   .post("/login", {
+    //     email: formValues.email,
+    //     password: formValues.password
+    //   })
+    //   .then(function(response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function(error) {
+    //     console.log("onFormSubmit err", error);
+    //   });
+    const userData = {
+      email: formValues.email,
+      password: formValues.password
+    };
+    this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+  };
 
   render() {
     return (
@@ -94,6 +115,21 @@ const validate = formValues => {
   }
   return errors;
 };
+
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+Login = connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
 
 export default reduxForm({
   form: "login",
