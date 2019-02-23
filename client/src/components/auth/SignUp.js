@@ -50,7 +50,7 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="ui grid">
+      <div className="ui grid" style={{ margin: "1.5rem 0rem" }}>
         <div
           className="fluid column centered"
           style={{
@@ -87,6 +87,13 @@ class SignUp extends Component {
               placeholder="Enter a Password"
             />
 
+            <Field
+              type="password"
+              name="password2"
+              component={this.renderInput}
+              label="Verify Password"
+              placeholder="Verify Password"
+            />
             <button className="ui button blue fluid" type="submit">
               Sign up
             </button>
