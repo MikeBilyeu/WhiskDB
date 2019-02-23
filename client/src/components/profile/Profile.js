@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import CreateRecipe from "./createRecipe/CreateRecipe";
 import SavedRecipes from "./SavedRecipes";
 import MyRecipes from "./MyRecipes";
-import Contact from "../Contact";
+import Contact from "./Contact";
 import EditProfile from "./EditProfile";
 import Button from "../Button";
 
