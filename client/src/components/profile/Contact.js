@@ -42,7 +42,7 @@ class Contact extends React.Component {
         <div
           className="fluid column centered"
           style={{
-            maxWidth: "31rem"
+            maxWidth: "40rem"
           }}
         >
           <div className="ui attached message">

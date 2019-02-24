@@ -104,9 +104,9 @@ class NewRecipe extends React.Component {
 const validate = formValues => {
   const errors = {};
 
-  if (!formValues.title) {
-    errors.title = "You must enter a title";
-  }
+  // if (!formValues.title) {
+  //   errors.title = "You must enter a title";
+  // }
   return errors;
 };
 
