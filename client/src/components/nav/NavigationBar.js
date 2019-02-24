@@ -1,14 +1,23 @@
 import React from "react";
 import NavigationButton from "./NavigationButton";
+import { withRouter } from "react-router";
 
 const NavigationBar = props => {
+  console.log(props);
   return (
     <div className="ui inverted fluid three borderless item bottom fixed menu">
-      <NavigationButton link="/" icon="arrow left" text="Back" />
+      <a
+        className="item"
+        onClick={() => props.history.goBack()}
+        style={{ border: "none", cursor: "pointer" }}
+      >
+        <i className="icon large arrow left" />
+        Back
+      </a>
       <NavigationButton link="/" icon="home" text="Home" />
       <NavigationButton link="/profile" icon="user" text="Profile" />
     </div>
   );
 };
 
-export default NavigationBar;
+export default withRouter(NavigationBar);
