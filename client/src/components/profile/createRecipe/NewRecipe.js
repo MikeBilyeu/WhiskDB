@@ -1,11 +1,10 @@
 import React from "react";
 import { Field, FieldArray, reduxForm } from "redux-form";
 
-
 import TextInput from "./TextInput";
 import IngredientInputs from "./IngredientInput";
 import DirectionInput from "./DirectionInput";
-import ImageUpload from './ImageUpload';
+import ImageUpload from "./ImageUpload";
 
 class NewRecipe extends React.Component {
   renderError({ error, touched }) {
@@ -29,7 +28,12 @@ class NewRecipe extends React.Component {
   render() {
     return (
       <div
-        style={{ borderRight: "solid grey 2px", overflowY: "scroll" }}
+        style={{
+          borderRight: "solid grey 2px",
+          height: "calc(100% - 8.5rem)",
+          position: "fixed",
+          overflowY: "scroll"
+        }}
         className="eight wide column"
       >
         <form
@@ -89,6 +93,7 @@ class NewRecipe extends React.Component {
           <button className="ui button big blue" type="submit">
             Submit Recipe
           </button>
+          <div className="ui hidden divider" />
           <div className="ui hidden divider" />
         </form>
       </div>

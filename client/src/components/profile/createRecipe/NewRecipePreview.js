@@ -100,12 +100,21 @@ const NewRecipePreview = props => {
         <img
           className="ui large image"
           src={URL.createObjectURL(values.image)}
+          style={{ width: "auto", height: "23rem" }}
         />
       );
     }
   }
   return (
-    <div style={{ overflowY: "scroll" }} className="eight wide column">
+    <div
+      className="eight wide column"
+      style={{
+        height: "calc(100vh - 8.5rem)",
+        position: "relative",
+        left: "51%",
+        overflowY: "scroll"
+      }}
+    >
       <div className="ui hidden divider" />
       <h1 className="ui dividing header">Preview Recipe</h1>
       <div className="ui hidden divider" />
