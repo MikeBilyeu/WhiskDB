@@ -1,6 +1,12 @@
 import React from "react";
 import { Field, FieldArray, reduxForm } from "redux-form";
 
+import { withRouter } from "react-router-dom";
+
+import { createRecipe } from "../../../actions/recipeActions";
+
+import { connect } from "react-redux";
+
 import TextInput from "./TextInput";
 import IngredientInputs from "./IngredientInput";
 import DirectionInput from "./DirectionInput";
@@ -17,9 +23,22 @@ class NewRecipe extends React.Component {
     }
   }
 
-  onFormSubmit(formValues) {
+  onFormSubmit = formValues => {
     console.log(formValues);
-  }
+    const { title, servings, ingredients, directions, image_url } = formValues;
+    const { hours, minutes } = formValues.time;
+    const total_time_mins = hours * 60 + minutes;
+
+    const newRecipe = {
+      title,
+      servings,
+      total_time_mins,
+      image_url,
+      ingredients,
+      directions
+    };
+    this.props.createRecipe(newRecipe, this.props.history);
+  };
 
   onImageChange(event) {
     console.log(event.target.files[0]);
@@ -109,6 +128,11 @@ const validate = formValues => {
   // }
   return errors;
 };
+
+NewRecipe = connect(
+  null,
+  { createRecipe }
+)(withRouter(NewRecipe));
 
 export default reduxForm({
   form: "newRecipe",

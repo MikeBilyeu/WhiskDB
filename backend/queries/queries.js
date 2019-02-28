@@ -1,6 +1,6 @@
 const Pool = require("pg").Pool;
 const jwt = require("jsonwebtoken");
-const keys = require("./config/keys");
+const keys = require("../config/keys");
 // Connect to pool
 const pool = new Pool({
   user: keys.user,
@@ -13,8 +13,8 @@ const pool = new Pool({
 const bcrypt = require("bcryptjs");
 
 // Load input validation
-const validateRegisterInput = require("./validation/register");
-const validateLoginInput = require("./validation/login");
+const validateRegisterInput = require("../validation/register");
+const validateLoginInput = require("../validation/login");
 
 const createUser = (request, response) => {
   const { username, email, password } = request.body;
@@ -144,7 +144,39 @@ const userLogin = (request, response) => {
   });
 };
 
+const createRecipe = (request, response) => {
+  console.log(request.body);
+  const {
+    title,
+    servings,
+    image_url,
+    prep_time,
+    cook_time,
+    ingredients,
+    directions,
+    footnote,
+    categories
+  } = request.body;
+
+  pool.connect().then(client => {
+    return client
+      .query("INSERT INTO recipes (title, servings) VALUES ($1, $2)", [
+        title,
+        servings
+      ])
+      .then(res => {
+        client.release();
+        console.log("Recipe added to database");
+      })
+      .catch(e => {
+        client.release();
+        console.log(e);
+      });
+  });
+};
+
 module.exports = {
   createUser,
-  userLogin
+  userLogin,
+  createRecipe
 };

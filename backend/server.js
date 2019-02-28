@@ -1,8 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const port = 3005;
-const db = require("./queries");
+const PORT = process.env.PROT || 3005;
+const db = require("./queries/queries");
 const passport = require("passport");
 
 app.use(bodyParser.json());
@@ -21,6 +21,8 @@ app.post("/register", db.createUser);
 
 app.post("/login", db.userLogin);
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
+app.post("/profile/create-recipe", db.createRecipe);
+
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}.`);
 });
