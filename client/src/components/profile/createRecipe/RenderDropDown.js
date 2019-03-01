@@ -4,7 +4,7 @@ const RenderDropDown = ({ input }) => {
   //Drop down select
 
   return (
-    <div className="field">
+    <div className="field four wide">
       <label>Unit</label>
       <select className="ui fluid dropdown" {...input}>
         <option value="">None</option>

@@ -75,7 +75,6 @@ const NewRecipePreview = props => {
           <div>
             {values.directions.map((direction, index) => {
               let step = direction.step ? direction.step : "";
-              let tip = direction.tip ? `Tip: ${direction.tip}` : "";
               return (
                 <div key={index}>
                   <div className="ui hidden divider" />
@@ -83,11 +82,24 @@ const NewRecipePreview = props => {
                     {step ? `Step ${index + 1}` : ""}
                   </h5>
                   <p>{step}</p>
-                  <p style={{ color: "#a5a5a5" }}>{tip}</p>
                 </div>
               );
             })}
           </div>
+        </div>
+      );
+    }
+  }
+
+  function renderFootnotes() {
+    if (values && values.footnote) {
+      let note = values.footnote ? values.footnote : "";
+      return (
+        <div>
+          <div className="ui hidden divider" />
+          <h3 className="ui dividing header">Footnote</h3>
+          <div className="ui hidden divider" />
+          <p style={{ color: "grey" }}>{note}</p>
         </div>
       );
     }
@@ -125,6 +137,7 @@ const NewRecipePreview = props => {
       <div className="ui hidden divider" />
       {renderIngredients()}
       {renderDirections()}
+      {renderFootnotes()}
       <div className="ui hidden divider" />
     </div>
   );

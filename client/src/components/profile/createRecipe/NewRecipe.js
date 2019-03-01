@@ -11,6 +11,7 @@ import TextInput from "./TextInput";
 import IngredientInputs from "./IngredientInput";
 import DirectionInput from "./DirectionInput";
 import ImageUpload from "./ImageUpload";
+import TextAreaInput from "./TextAreaInput";
 
 class NewRecipe extends React.Component {
   renderError({ error, touched }) {
@@ -108,6 +109,16 @@ class NewRecipe extends React.Component {
           <div className="ui hidden divider" />
           <FieldArray name="directions" component={DirectionInput} />
           <div className="ui hidden divider" />
+          <h4 className="ui dividing header">Footnotes/Tips</h4>
+          <div className="field">
+            <Field
+              name="footnote"
+              component={TextAreaInput}
+              label="Note"
+              placeholder="Add lemon juice for more flavor"
+            />
+            <div className="ui hidden divider" />
+          </div>
           <div className="ui hidden divider" />
           <button className="ui button big blue" type="submit">
             Submit Recipe
@@ -138,7 +149,7 @@ export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
   initialValues: {
-    ingredients: [{}, {}, {}],
+    ingredients: [{}],
     directions: [{}]
   },
   validate: validate

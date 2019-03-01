@@ -13,22 +13,25 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
           <div className="ui hidden divider" />
           <div className="fields">
             <Field
-              name={`${ingredient}.ingredient`}
-              component={TextInput}
-              label={`Ingredient ${index + 1}`}
-              placeholder="E.g. Red Bell Pepper"
-            />
-            <Field
               name={`${ingredient}.amount`}
               component={TextInput}
               label="Amount"
+              addClass="three wide"
               placeholder="1 1/2"
             />
             <Field name={`${ingredient}.unit`} component={RenderDropDown} />
             <Field
+              name={`${ingredient}.ingredient`}
+              component={TextInput}
+              label={`Ingredient ${index + 1}`}
+              addClass="seven wide"
+              placeholder="E.g. Red Bell Pepper"
+            />
+            <Field
               name={`${ingredient}.prep`}
               component={TextInput}
               label="Cut/Prep"
+              addClass="four wide"
               placeholder="Diced"
             />
           </div>
@@ -41,7 +44,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
           type="button"
           onClick={() => fields.remove(fields.length - 1)}
         >
-          remove
+          Remove
         </button>
         <div className="or" />
         <button

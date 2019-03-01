@@ -1,9 +1,7 @@
 import React from "react";
 import { Field, FieldArray } from "redux-form";
 
-import TextInput from "./TextInput";
 import TextAreaInput from "./TextAreaInput";
-import TimerInput from "./TimerInput";
 // Renders all steps of directions
 const DirectionInput = ({ fields, meta: { touched, error } }) => {
   return (
@@ -19,18 +17,6 @@ const DirectionInput = ({ fields, meta: { touched, error } }) => {
               placeholder="Set oven to 375(f)..."
             />
             <div className="ui hidden divider" />
-            <Field
-              name={`${step}.tip`}
-              component={TextInput}
-              label="Tip"
-              placeholder="Cover hands in flour to prevent sticky fingers"
-            />
-            <FieldArray
-              name={`${step}.timer`}
-              step={index + 1}
-              component={TimerInput}
-            />
-            <div className="ui hidden divider" />
           </div>
           <div className="ui divider" />
         </div>
@@ -41,7 +27,7 @@ const DirectionInput = ({ fields, meta: { touched, error } }) => {
           type="button"
           onClick={() => fields.remove(fields.length - 1)}
         >
-          remove
+          Remove
         </button>
         <div className="or" />
         <button
