@@ -1,8 +1,8 @@
 import React from "react";
 import { Field } from "redux-form";
 
-import RenderDropDown from "./RenderDropDown";
-import TextInput from "./TextInput";
+import UnitDropDown from "./inputs/UnitDropDown";
+import TextInput from "./inputs/TextInput";
 
 // Renders all of the ingredient fields i.e. ingredient, unit, amount
 const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
@@ -19,7 +19,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               addClass="three wide"
               placeholder="1 1/2"
             />
-            <Field name={`${ingredient}.unit`} component={RenderDropDown} />
+            <Field name={`${ingredient}.unit`} component={UnitDropDown} />
             <Field
               name={`${ingredient}.ingredient`}
               component={TextInput}

@@ -2,7 +2,7 @@ import React from "react";
 import { getFormValues } from "redux-form";
 import { connect } from "react-redux";
 
-const NewRecipePreview = props => {
+const PreviewNewRecipe = props => {
   const values = props.formValues;
 
   function renderTitle() {
@@ -148,4 +148,4 @@ const mapSateToProps = state => {
   return { formValues: getFormValues("newRecipe")(state) };
 };
 
-export default connect(mapSateToProps)(NewRecipePreview);
+export default connect(mapSateToProps)(PreviewNewRecipe);

@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const PORT = process.env.PROT || 3005;
+const PORT = process.env.PROT || 3001;
 const db = require("./queries/queries");
 const passport = require("passport");
 

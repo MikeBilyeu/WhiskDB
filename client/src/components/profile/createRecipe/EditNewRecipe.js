@@ -7,13 +7,14 @@ import { createRecipe } from "../../../actions/recipeActions";
 
 import { connect } from "react-redux";
 
-import TextInput from "./TextInput";
+import TextInput from "./inputs/TextInput";
 import IngredientInputs from "./IngredientInput";
 import DirectionInput from "./DirectionInput";
 import ImageUpload from "./ImageUpload";
-import TextAreaInput from "./TextAreaInput";
+import TextAreaInput from "./inputs/TextAreaInput";
+import ToggleSwitch from "./inputs/ToggleSwitch";
 
-class NewRecipe extends React.Component {
+class EditNewRecipe extends React.Component {
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -118,6 +119,11 @@ class NewRecipe extends React.Component {
               placeholder="Add lemon juice for more flavor"
             />
             <div className="ui hidden divider" />
+            <Field
+              name="private"
+              label="Private Recipe"
+              component={ToggleSwitch}
+            />
           </div>
           <div className="ui hidden divider" />
           <button className="ui button big blue" type="submit">
@@ -140,17 +146,18 @@ const validate = formValues => {
   return errors;
 };
 
-NewRecipe = connect(
+EditNewRecipe = connect(
   null,
   { createRecipe }
-)(withRouter(NewRecipe));
+)(withRouter(EditNewRecipe));
 
 export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
   initialValues: {
     ingredients: [{}],
-    directions: [{}]
+    directions: [{}],
+    private: false
   },
   validate: validate
-})(NewRecipe);
+})(EditNewRecipe);
