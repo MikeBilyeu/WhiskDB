@@ -55,7 +55,7 @@ class EditNewRecipe extends React.Component {
           position: "fixed",
           overflowY: "scroll"
         }}
-        className="seven wide column"
+        className="nine wide column"
       >
         <form
           onSubmit={this.props.handleSubmit(this.onFormSubmit)}
@@ -64,8 +64,6 @@ class EditNewRecipe extends React.Component {
           <div className="ui hidden divider" />
           <h1 className="ui dividing header">Create Recipe</h1>
           <div className="ui hidden divider" />
-          <Field name="image" component={ImageUpload} />
-          <div className="ui hidden divider" />
           <Field
             name="title"
             component={TextInput}
@@ -73,15 +71,8 @@ class EditNewRecipe extends React.Component {
             placeholder="The Best Homemade Pizza"
           />
           <div className="ui hidden divider" />
-          <Field
-            name="servings"
-            component={TextInput}
-            label="Number of servings"
-            placeholder="3"
-            addClassName="five wide"
-          />
+          <Field name="image" component={ImageUpload} />
           <div className="ui hidden divider" />
-
           <h4 className="ui dividing header">Time Required</h4>
           <div className="fields">
             <Field
@@ -99,6 +90,16 @@ class EditNewRecipe extends React.Component {
               classStyle="eight wide"
             />
           </div>
+          <div className="ui divider" />
+          <div className="ui hidden divider" />
+
+          <Field
+            name="servings"
+            component={TextInput}
+            label="Number of servings"
+            placeholder="3"
+            addClass="three wide"
+          />
 
           <div className="ui hidden divider" />
           <h4 className="ui dividing header">Ingredients</h4>

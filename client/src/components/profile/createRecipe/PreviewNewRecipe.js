@@ -7,7 +7,7 @@ const PreviewNewRecipe = props => {
 
   function renderTitle() {
     if (values && values.title) {
-      return <h1>{values.title}</h1>;
+      return <h1 className="ui header center aligned">{values.title}</h1>;
     }
   }
 
@@ -110,31 +110,39 @@ const PreviewNewRecipe = props => {
       console.log(values.image);
       return (
         <img
-          className="ui large image"
+          className="ui medium image centered"
           src={URL.createObjectURL(values.image)}
-          style={{ width: "auto", height: "23rem" }}
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+            width: "27rem",
+            height: "20rem",
+            borderRadius: ".1rem"
+          }}
         />
       );
     }
   }
   return (
     <div
-      className="nine wide column"
+      className="seven wide column"
       style={{
         height: "calc(100vh - 8.5rem)",
         position: "relative",
-        left: "45%",
+        left: "57.3%",
         overflowY: "scroll"
       }}
     >
       <div className="ui hidden divider" />
-      <h1 className="ui dividing header">Preview Recipe</h1>
+      <h1 className="ui dividing header center aligned">Preview Recipe</h1>
       <div className="ui hidden divider" />
       {renderTitle()}
       {renderImage()}
       <div className="ui hidden divider" />
+
       {renderTime()}
       {renderServings()}
+
       <div className="ui hidden divider" />
       {renderIngredients()}
       {renderDirections()}

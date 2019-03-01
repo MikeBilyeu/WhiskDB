@@ -59,7 +59,7 @@ class Contact extends React.Component {
               placeholder="Subject"
             />
             <Field
-              name="subject"
+              name="message"
               component={this.TextAreaInput}
               label="Message"
               placeholder="Message..."
@@ -86,5 +86,6 @@ Contact = connect(
 )(Contact);
 
 export default reduxForm({
-  form: "contact"
+  form: "contact",
+  destroyOnUnmount: false
 })(Contact);
