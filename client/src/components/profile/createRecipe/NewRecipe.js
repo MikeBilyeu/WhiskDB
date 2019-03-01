@@ -54,7 +54,7 @@ class NewRecipe extends React.Component {
           position: "fixed",
           overflowY: "scroll"
         }}
-        className="eight wide column"
+        className="seven wide column"
       >
         <form
           onSubmit={this.props.handleSubmit(this.onFormSubmit)}

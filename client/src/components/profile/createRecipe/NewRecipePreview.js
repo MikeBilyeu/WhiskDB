@@ -119,11 +119,11 @@ const NewRecipePreview = props => {
   }
   return (
     <div
-      className="eight wide column"
+      className="nine wide column"
       style={{
         height: "calc(100vh - 8.5rem)",
         position: "relative",
-        left: "51%",
+        left: "45%",
         overflowY: "scroll"
       }}
     >
@@ -132,6 +132,7 @@ const NewRecipePreview = props => {
       <div className="ui hidden divider" />
       {renderTitle()}
       {renderImage()}
+      <div className="ui hidden divider" />
       {renderTime()}
       {renderServings()}
       <div className="ui hidden divider" />
