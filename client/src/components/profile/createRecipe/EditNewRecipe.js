@@ -27,8 +27,12 @@ class EditNewRecipe extends React.Component {
 
   onFormSubmit = formValues => {
     console.log(formValues);
+    const newRecipe = {
+      ...formValues,
+      created_by: this.props.auth.user.id
+    };
 
-    this.props.createRecipe(formValues, this.props.history);
+    this.props.createRecipe(newRecipe, this.props.history);
   };
 
   onImageChange(event) {
@@ -135,9 +139,12 @@ const validate = formValues => {
   // }
   return errors;
 };
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 
 EditNewRecipe = connect(
-  null,
+  mapStateToProps,
   { createRecipe }
 )(withRouter(EditNewRecipe));
 

@@ -105,6 +105,7 @@ const userLogin = (request, response) => {
             .json({ emailnotfound: "Email not found" });
         }
         const user = res.rows[0];
+        console.log(user);
         // Check password
         bcrypt.compare(password, user.password_encrypted).then(isMatch => {
           if (isMatch) {
@@ -112,8 +113,8 @@ const userLogin = (request, response) => {
             // User matched
             // Create JWT Payload
             const payload = {
-              id: user.id,
-              name: user.username
+              user_id: user.user_id,
+              username: user.username
             };
             // Sign token
             jwt.sign(
@@ -152,17 +153,21 @@ const createRecipe = (request, response) => {
     footnote,
     private,
     directions,
-    ingredients
+    ingredients,
+    created_by
   } = request.body;
+
   const timeHours = time.hours > 0 ? time.hours : 0;
   const timeMinutes = time.minutes > 0 ? parseInt(time.minutes) : 0;
   const total_time_mins = timeHours * 60 + timeMinutes;
+  console.log("REQ: ", request.body);
 
   pool.connect().then(client => {
     return client
       .query(
-        "INSERT INTO recipes (title, servings, total_time_mins, footnote, private, directions, ingredients) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+        "INSERT INTO recipes (created_by, title, servings, total_time_mins, footnote, private, directions, ingredients) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
         [
+          created_by,
           title,
           servings,
           total_time_mins,
@@ -173,16 +178,15 @@ const createRecipe = (request, response) => {
         ]
       )
       .then(res => {
+        console.log("QUERY RES: ", res);
         for (let i = 0; i < ingredients.length; i++) {
           let { ingredient } = ingredients[i];
-          console.log(ingredient);
           client
             .query("INSERT INTO ingredients (ingredient_name) VALUES ($1)", [
               ingredient
             ])
             .then(res => {
               response.status(201).send("recipe added to db");
-              console.log("Recipe successfully added to DB!");
             })
             .catch(e => console.error(e));
         }
