@@ -161,7 +161,7 @@ const createRecipe = (request, response) => {
   pool.connect().then(client => {
     return client
       .query(
-        "INSERT INTO recipes (title, servings, total_time_mins, footnote, private, directions, ingredients ) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+        "INSERT INTO recipes (title, servings, total_time_mins, footnote, private, directions, ingredients) VALUES ($1, $2, $3, $4, $5, $6, $7)",
         [
           title,
           servings,
@@ -180,6 +180,10 @@ const createRecipe = (request, response) => {
             .query("INSERT INTO ingredients (ingredient_name) VALUES ($1)", [
               ingredient
             ])
+            .then(res => {
+              response.status(201).send("recipe added to db");
+              console.log("Recipe successfully added to DB!");
+            })
             .catch(e => console.error(e));
         }
 
