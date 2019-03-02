@@ -27,19 +27,8 @@ class EditNewRecipe extends React.Component {
 
   onFormSubmit = formValues => {
     console.log(formValues);
-    const { title, servings, ingredients, directions, image_url } = formValues;
-    const { hours, minutes } = formValues.time;
-    const total_time_mins = hours * 60 + minutes;
 
-    const newRecipe = {
-      title,
-      servings,
-      total_time_mins,
-      image_url,
-      ingredients,
-      directions
-    };
-    this.props.createRecipe(newRecipe, this.props.history);
+    this.props.createRecipe(formValues, this.props.history);
   };
 
   onImageChange(event) {

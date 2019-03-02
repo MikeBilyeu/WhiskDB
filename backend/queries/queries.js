@@ -145,28 +145,46 @@ const userLogin = (request, response) => {
 };
 
 const createRecipe = (request, response) => {
-  console.log(request.body);
   const {
     title,
     servings,
-    image_url,
-    prep_time,
-    cook_time,
-    ingredients,
-    directions,
+    time,
     footnote,
-    categories
+    private,
+    directions,
+    ingredients
   } = request.body;
+  const timeHours = time.hours > 0 ? time.hours : 0;
+  const timeMinutes = time.minutes > 0 ? parseInt(time.minutes) : 0;
+  const total_time_mins = timeHours * 60 + timeMinutes;
 
   pool.connect().then(client => {
     return client
-      .query("INSERT INTO recipes (title, servings) VALUES ($1, $2)", [
-        title,
-        servings
-      ])
+      .query(
+        "INSERT INTO recipes (title, servings, total_time_mins, footnote, private, directions, ingredients ) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+        [
+          title,
+          servings,
+          total_time_mins,
+          footnote,
+          private,
+          directions,
+          ingredients
+        ]
+      )
       .then(res => {
-        client.release();
+        for (let i = 0; i < ingredients.length; i++) {
+          let { ingredient } = ingredients[i];
+          console.log(ingredient);
+          client
+            .query("INSERT INTO ingredients (ingredient_name) VALUES ($1)", [
+              ingredient
+            ])
+            .catch(e => console.error(e));
+        }
+
         console.log("Recipe added to database");
+        client.release();
       })
       .catch(e => {
         client.release();

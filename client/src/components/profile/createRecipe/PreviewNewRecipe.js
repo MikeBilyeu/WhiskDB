@@ -110,6 +110,7 @@ const PreviewNewRecipe = props => {
       console.log(values.image);
       return (
         <img
+          alt=""
           className="ui medium image centered"
           src={URL.createObjectURL(values.image)}
           style={{

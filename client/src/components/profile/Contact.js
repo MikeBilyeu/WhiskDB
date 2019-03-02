@@ -31,10 +31,6 @@ class Contact extends React.Component {
   };
   onFormSubmit = formValues => {
     console.log(formValues);
-    const contactForm = {
-      subject: formValues.subject,
-      message: formValues.message
-    };
   };
   render() {
     return (

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CREATE_RECIPE, GET_ERRORS } from "./types";
+import { GET_ERRORS } from "./types";
 
 // Create Recipe
 export const createRecipe = (recipeData, history) => dispatch => {

@@ -47,6 +47,7 @@ class Recipe extends React.Component {
         <h4>-{this.state.author}</h4>
         <div>Time: {this.state.time}</div>
         <img
+          alt=""
           className="ui medium bordered image big"
           src={this.state.imageURL}
         />
