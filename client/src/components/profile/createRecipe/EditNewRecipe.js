@@ -47,7 +47,16 @@ class EditNewRecipe extends React.Component {
       "category.diet.nonVegetarian",
       "category.meal.breakfast",
       "category.meal.lunch",
-      "category.meal.dinner"
+      "category.meal.dinner",
+      "category.meal.appetizer",
+      "category.meal.dessert",
+      "category.meal.drink",
+      "category.cusine.chinese",
+      "category.cusine.indian",
+      "category.cusine.italian",
+      "category.cusine.mexican",
+      "category.cusine.southern",
+      "category.cusine.thia"
     ];
     return (
       <div
