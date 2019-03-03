@@ -2,6 +2,11 @@ import React from "react";
 import { getFormValues } from "redux-form";
 import { connect } from "react-redux";
 
+import { withRouter } from "react-router-dom";
+import { createRecipe } from "../../../actions/recipeActions";
+
+// onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+
 const PreviewNewRecipe = props => {
   const values = props.formValues;
 
@@ -24,6 +29,16 @@ const PreviewNewRecipe = props => {
       );
     }
   }
+
+  // onFormSubmit = formValues => {
+  //   console.log(formValues);
+  //   const newRecipe = {
+  //     ...formValues,
+  //     created_by: this.props.auth.user.id
+  //   };
+  //
+  //   this.props.createRecipe(newRecipe, this.props.history);
+  // };
 
   function renderServings() {
     if (values && values.servings) {
@@ -128,10 +143,7 @@ const PreviewNewRecipe = props => {
     <div
       className="seven wide column"
       style={{
-        height: "calc(100vh - 8.5rem)",
-        position: "relative",
-        left: "57.3%",
-        overflowY: "scroll"
+        height: "calc(100vh - 8.5rem)"
       }}
     >
       <div className="ui hidden divider" />
@@ -154,7 +166,13 @@ const PreviewNewRecipe = props => {
 };
 
 const mapSateToProps = state => {
-  return { formValues: getFormValues("newRecipe")(state) };
+  return {
+    auth: state.auth,
+    formValues: getFormValues("newRecipe")(state)
+  };
 };
 
-export default connect(mapSateToProps)(PreviewNewRecipe);
+export default connect(
+  mapSateToProps,
+  { createRecipe }
+)(PreviewNewRecipe);

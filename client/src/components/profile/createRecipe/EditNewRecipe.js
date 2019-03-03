@@ -1,9 +1,10 @@
 import React from "react";
 import { Field, FieldArray, Fields, reduxForm } from "redux-form";
+import { Route } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 
 import { withRouter } from "react-router-dom";
-
-import { createRecipe } from "../../../actions/recipeActions";
 
 import { connect } from "react-redux";
 
@@ -26,15 +27,9 @@ class EditNewRecipe extends React.Component {
     }
   }
 
-  onFormSubmit = formValues => {
-    console.log(formValues);
-    const newRecipe = {
-      ...formValues,
-      created_by: this.props.auth.user.id
-    };
-
-    this.props.createRecipe(newRecipe, this.props.history);
-  };
+  // onPreviewClick() {
+  //   console.log("Preview Page");
+  // }
 
   onImageChange(event) {
     console.log(event.target.files[0]);
@@ -59,21 +54,10 @@ class EditNewRecipe extends React.Component {
       "category.cusine.thia"
     ];
     return (
-      <div
-        style={{
-          borderRight: "solid grey 2px",
-          height: "calc(100% - 8.5rem)",
-          position: "fixed",
-          overflowY: "scroll"
-        }}
-        className="nine wide column"
-      >
-        <form
-          onSubmit={this.props.handleSubmit(this.onFormSubmit)}
-          className="ui form error"
-        >
+      <div style={{}} className="fluid column">
+        <div className="ui form error">
           <div className="ui hidden divider" />
-          <h1 className="ui dividing header">Create Recipe</h1>
+          <h1 className="ui dividing header centered">Create Recipe</h1>
           <div className="ui hidden divider" />
           <Field
             name="title"
@@ -91,25 +75,23 @@ class EditNewRecipe extends React.Component {
               component={TextInput}
               label="Hours"
               placeholder="1"
-              classStyle="eight wide"
             />
             <Field
               name="time.minutes"
               component={TextInput}
               label="Minutes"
               placeholder="15"
-              classStyle="eight wide"
             />
           </div>
           <div className="ui divider" />
           <div className="ui hidden divider" />
-
+          <h4 className="ui dividing header">Servings</h4>
           <Field
             name="servings"
             component={TextInput}
             label="Number of servings"
             placeholder="3"
-            addclassName="three wide"
+            addClass="four wide"
           />
 
           <div className="ui hidden divider" />
@@ -141,13 +123,13 @@ class EditNewRecipe extends React.Component {
           <h4 className="ui dividing header">Categories</h4>
           <Fields names={categoryNames} component={CategoryInput} />
           <div className="ui hidden divider" />
+          <Link to="/profile/create-recipe/preview">
+            <button className="ui button big blue">Preview Recipe</button>
+          </Link>
 
-          <button className="ui button big blue" type="submit">
-            Submit Recipe
-          </button>
           <div className="ui hidden divider" />
           <div className="ui hidden divider" />
-        </form>
+        </div>
       </div>
     );
   }
@@ -161,14 +143,6 @@ const validate = formValues => {
   // }
   return errors;
 };
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-EditNewRecipe = connect(
-  mapStateToProps,
-  { createRecipe }
-)(withRouter(EditNewRecipe));
 
 export default reduxForm({
   form: "newRecipe",
@@ -179,4 +153,4 @@ export default reduxForm({
     private: false
   },
   validate: validate
-})(EditNewRecipe);
+})(withRouter(EditNewRecipe));

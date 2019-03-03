@@ -56,10 +56,11 @@ class App extends React.Component {
             />
             <Switch>
               <PrivateRoute path="/profile/:page?" component={Profile} />
+
+              <Route path="/sign-up" component={SignUp} />
+              <Route path="/login" component={Login} />
+              <Route path="/recipe" component={Recipe} />
             </Switch>
-            <Route path="/sign-up" component={SignUp} />
-            <Route path="/login" component={Login} />
-            <Route path="/recipe" component={Recipe} />
           </div>
           <NavigationBar />
         </div>
