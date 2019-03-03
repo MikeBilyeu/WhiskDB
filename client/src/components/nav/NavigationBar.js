@@ -3,7 +3,6 @@ import NavigationButton from "./NavigationButton";
 import { withRouter } from "react-router";
 
 const NavigationBar = props => {
-  console.log(props);
   return (
     <div className="ui inverted fluid three borderless item bottom fixed menu">
       <a

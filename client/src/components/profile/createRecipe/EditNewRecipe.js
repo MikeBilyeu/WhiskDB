@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, FieldArray, reduxForm } from "redux-form";
+import { Field, FieldArray, Fields, reduxForm } from "redux-form";
 
 import { withRouter } from "react-router-dom";
 
@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import TextInput from "./inputs/TextInput";
 import IngredientInputs from "./IngredientInput";
 import DirectionInput from "./DirectionInput";
+import CategoryInput from "./CategoryInput";
 import ImageUpload from "./ImageUpload";
 import TextAreaInput from "./inputs/TextAreaInput";
 import ToggleSwitch from "./inputs/ToggleSwitch";
@@ -40,6 +41,14 @@ class EditNewRecipe extends React.Component {
   }
 
   render() {
+    const categoryNames = [
+      "category.diet.vegetarian",
+      "category.diet.vegan",
+      "category.diet.nonVegetarian",
+      "category.meal.breakfast",
+      "category.meal.lunch",
+      "category.meal.dinner"
+    ];
     return (
       <div
         style={{
@@ -91,7 +100,7 @@ class EditNewRecipe extends React.Component {
             component={TextInput}
             label="Number of servings"
             placeholder="3"
-            addClass="three wide"
+            addclassName="three wide"
           />
 
           <div className="ui hidden divider" />
@@ -120,6 +129,10 @@ class EditNewRecipe extends React.Component {
             />
           </div>
           <div className="ui hidden divider" />
+          <h4 className="ui dividing header">Categories</h4>
+          <Fields names={categoryNames} component={CategoryInput} />
+          <div className="ui hidden divider" />
+
           <button className="ui button big blue" type="submit">
             Submit Recipe
           </button>
