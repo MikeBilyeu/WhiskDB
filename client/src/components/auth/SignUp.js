@@ -20,15 +20,24 @@ class SignUp extends Component {
   //   }
   // }
 
-  renderInput = ({ input, label, meta, placeholder, type = "text" }) => {
+  renderInput = ({
+    input,
+    label,
+    labelFor,
+    meta,
+    placeholder,
+    inputId,
+    type = "text"
+  }) => {
     const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
     return (
       <div className={className}>
-        <label>{label}</label>
+        <label for={labelFor}>{label}</label>
         <input
           {...input}
           autoComplete="off"
           type={type}
+          id={inputId}
           placeholder={placeholder}
         />
       </div>
@@ -69,12 +78,16 @@ class SignUp extends Component {
               name="username"
               component={this.renderInput}
               label="Username"
+              inputId="username"
+              labelFor="username"
               placeholder="Enter a Username"
             />
             <Field
               name="email"
               component={this.renderInput}
               label="Email"
+              inputId="email"
+              labelFor="email"
               placeholder="Enter an Eamil Address"
             />
             <Field
@@ -82,6 +95,8 @@ class SignUp extends Component {
               name="password"
               component={this.renderInput}
               label="Password"
+              inputId="password"
+              labelFor="password"
               placeholder="Enter a Password"
             />
 
@@ -90,6 +105,8 @@ class SignUp extends Component {
               name="password2"
               component={this.renderInput}
               label="Verify Password"
+              inputId="password2"
+              labelFor="password2"
               placeholder="Verify Password"
             />
             <button className="ui button blue fluid" type="submit">

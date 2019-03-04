@@ -19,25 +19,24 @@ class Login extends Component {
     }
   }
 
-  renderInput = ({ input, label, meta, placeholder }) => {
+  renderInput = ({
+    input,
+    label,
+    labelFor,
+    meta,
+    placeholder,
+    inputId,
+    type = "text"
+  }) => {
     const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
     return (
       <div className={className}>
-        <input {...input} autoComplete="off" placeholder={placeholder} />
-      </div>
-    );
-  };
-
-  renderPassword = ({ input, meta, label, placeholder }) => {
-    const className = `field ${
-      meta.error && meta.submitFailed ? "error teal" : ""
-    }`;
-    return (
-      <div className={className}>
+        <label for={labelFor}>{label}</label>
         <input
           {...input}
-          type="password"
+          id={inputId}
           autoComplete="off"
+          type={type}
           placeholder={placeholder}
         />
       </div>
@@ -76,11 +75,18 @@ class Login extends Component {
             <Field
               name="email"
               component={this.renderInput}
+              label="Email"
+              labelFor="email"
+              inputId="email"
               placeholder="Email Address"
             />
             <Field
               name="password"
-              component={this.renderPassword}
+              component={this.renderInput}
+              label="Password"
+              labelFor="password"
+              inputId="password"
+              type="password"
               placeholder="Password"
             />
             <button className="ui button blue fluid" type="submit">

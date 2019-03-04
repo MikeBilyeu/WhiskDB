@@ -23,6 +23,6 @@ app.post("/login", db.userLogin);
 
 app.post("/profile/create-recipe", db.createRecipe);
 
-app.listen(PORT, () => {
+app.listen(PORT, "192.168.1.15", () => {
   console.log(`App running on port ${PORT}.`);
 });
