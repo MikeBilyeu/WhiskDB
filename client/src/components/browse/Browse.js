@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import BrowseOption from "./BrowseOption";
 
 class Browse extends Component {
+  state = { x: 50 };
   render() {
     return (
       <div
@@ -10,15 +11,25 @@ class Browse extends Component {
           display: "grid",
           alignItems: "center",
           justifyItems: "center",
-          gridGap: "3rem"
+          gridGap: "1rem"
         }}
       >
-        <h1 className="ui header center aligned ">{this.props.header}</h1>
-        <div style={{ display: "grid", gridAutoFlow: "column" }}>
-          <BrowseOption text="Non-Vegetarian" />
-          <BrowseOption text="Vegetarian" />
+        <h2 style={{ textAlign: "center", margin: "0" }}>
+          {this.props.header}
+        </h2>
+        <div
+          style={{
+            display: "grid",
+            gridAutoFlow: "row"
+            // overflowX: "hidden",
+          }}
+          onTouchStart={event => {
+            console.log(event);
+          }}
+        >
+          <BrowseOption text="Vegan" />
         </div>
-        <button className="ui button">Continue</button>
+        <button className="fluid ui blue big button">Continue</button>
       </div>
     );
   }

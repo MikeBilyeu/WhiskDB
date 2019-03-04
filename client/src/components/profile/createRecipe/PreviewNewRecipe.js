@@ -30,7 +30,7 @@ const PreviewNewRecipe = props => {
     }
   }
 
-  // onFormSubmit = formValues => {
+  // onRecipeSubmit = formValues => {
   //   console.log(formValues);
   //   const newRecipe = {
   //     ...formValues,
@@ -140,12 +140,7 @@ const PreviewNewRecipe = props => {
     }
   }
   return (
-    <div
-      className="seven wide column"
-      style={{
-        height: "calc(100vh - 8.5rem)"
-      }}
-    >
+    <div className="seven wide column">
       <div className="ui hidden divider" />
       <h1 className="ui dividing header center aligned">Preview Recipe</h1>
       <div className="ui hidden divider" />
@@ -161,6 +156,8 @@ const PreviewNewRecipe = props => {
       {renderDirections()}
       {renderFootnotes()}
       <div className="ui hidden divider" />
+
+      <button className="ui button green fluid big blue">Submit Recipe</button>
     </div>
   );
 };
@@ -175,4 +172,4 @@ const mapSateToProps = state => {
 export default connect(
   mapSateToProps,
   { createRecipe }
-)(PreviewNewRecipe);
+)(withRouter(PreviewNewRecipe));

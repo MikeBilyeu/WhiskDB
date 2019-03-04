@@ -27,10 +27,6 @@ class EditNewRecipe extends React.Component {
     }
   }
 
-  // onPreviewClick() {
-  //   console.log("Preview Page");
-  // }
-
   onImageChange(event) {
     console.log(event.target.files[0]);
   }
@@ -54,7 +50,7 @@ class EditNewRecipe extends React.Component {
       "category.cusine.thia"
     ];
     return (
-      <div style={{}} className="fluid column">
+      <div className="fluid column">
         <div className="ui form error">
           <div className="ui hidden divider" />
           <h1 className="ui dividing header centered">Create Recipe</h1>
@@ -124,7 +120,12 @@ class EditNewRecipe extends React.Component {
           <Fields names={categoryNames} component={CategoryInput} />
           <div className="ui hidden divider" />
           <Link to="/profile/create-recipe/preview">
-            <button className="ui button big blue">Preview Recipe</button>
+            <div class="ui animated button big blue fluid" tabindex="0">
+              <div class="visible content">Preview Recipe</div>
+              <div class="hidden content">
+                <i class="right arrow icon" />
+              </div>
+            </div>
           </Link>
 
           <div className="ui hidden divider" />

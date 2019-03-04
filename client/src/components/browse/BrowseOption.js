@@ -10,7 +10,8 @@ const BrowseOption = props => {
         textAlign: "center",
         lineHeight: "15rem",
         borderRadius: "100%",
-        margin: "0rem 1rem"
+        margin: "1rem 1rem",
+        cursor: "pointer"
       }}
     >
       {props.text}

@@ -14,6 +14,7 @@ import PreviewNewRecipe from "./createRecipe/PreviewNewRecipe";
 class Profile extends React.Component {
   render() {
     const { user } = this.props.auth;
+
     return (
       <Switch>
         <Route
@@ -37,7 +38,7 @@ class Profile extends React.Component {
               >
                 <div className="ui center aligned icon header">
                   <i className="user circle icon" />
-                  <h2>{user.name}</h2>
+                  <h2>{user.username}</h2>
                 </div>
 
                 <Button text="Create Recipe" linkTo="/profile/create-recipe" />
@@ -64,42 +65,3 @@ export default connect(
   mapStateToProps,
   {}
 )(Profile);
-
-// render() {
-//   const { user } = this.props.auth;
-//
-//   const page = this.props.match.params.page;
-//   const path = this.props.match.url;
-//
-//   switch (page) {
-//     case "create-recipe":
-//       return <Route path={path} component={CreateRecipe} />;
-//     case "saved-recipes":
-//       return <Route path={path} component={SavedRecipes} />;
-//     case "edit":
-//       return <Route path={path} component={EditProfile} />;
-//     case "contact":
-//       return <Route path={this.props.match.url} component={Contact} />;
-//     default:
-//       return (
-//         <div
-//           style={{
-//             display: "grid",
-//             placeItems: "center",
-//             gridGap: "2rem"
-//           }}
-//         >
-//           <div className="ui center aligned icon header">
-//             <i className="user circle icon" />
-//             <h2>{user.name}</h2>
-//           </div>
-//
-//           <Button text="Create Recipe" linkTo="/profile/create-recipe" />
-//           <Button text="My Recipes" linkTo="/profile/my-recipes" />
-//           <Button text="Saved Recipes" linkTo="/profile/saved-recipes" />
-//           <Button text="Edit Profile" linkTo="/profile/edit" />
-//           <Button text="Contact Us" linkTo="/profile/contact" />
-//         </div>
-//       );
-//   }
-// }

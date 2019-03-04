@@ -10,7 +10,8 @@ class Home extends React.Component {
       <div>
         <SearchBar placeholder="Search Recipes..." />
         <div className="ui horizontal divider">Or</div>
-        <Browse header="Browse Recipes" />
+        <h1 style={{ textAlign: "center", margin: "0" }}>Browse Recipes</h1>
+        <Browse header="Select Diet" />
       </div>
     );
   }
