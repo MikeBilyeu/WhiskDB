@@ -162,43 +162,43 @@ const createRecipe = (request, response) => {
   const total_time_mins = timeHours * 60 + timeMinutes;
   console.log("REQ: ", request.body);
 
-  pool.connect().then(client => {
-    return client
-      .query(
-        "INSERT INTO recipes (created_by, title, servings, total_time_mins, footnote, private, directions, ingredients) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
-        [
-          created_by,
-          title,
-          servings,
-          total_time_mins,
-          footnote,
-          private,
-          directions,
-          ingredients
-        ]
-      )
-      .then(res => {
-        console.log("QUERY RES: ", res);
-        for (let i = 0; i < ingredients.length; i++) {
-          let { ingredient } = ingredients[i];
-          client
-            .query("INSERT INTO ingredients (ingredient_name) VALUES ($1)", [
-              ingredient
-            ])
-            .then(res => {
-              response.status(201).send("recipe added to db");
-            })
-            .catch(e => console.error(e));
-        }
-
-        console.log("Recipe added to database");
-        client.release();
-      })
-      .catch(e => {
-        client.release();
-        console.log(e);
-      });
-  });
+  // pool.connect().then(client => {
+  //   return client
+  //     .query(
+  //       "INSERT INTO recipes (created_by, title, servings, total_time_mins, footnote, private, directions, ingredients) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
+  //       [
+  //         created_by,
+  //         title,
+  //         servings,
+  //         total_time_mins,
+  //         footnote,
+  //         private,
+  //         directions,
+  //         ingredients
+  //       ]
+  //     )
+  //     .then(res => {
+  //       console.log("QUERY RES: ", res);
+  //       for (let i = 0; i < ingredients.length; i++) {
+  //         let { ingredient } = ingredients[i];
+  //         client
+  //           .query("INSERT INTO ingredients (ingredient_name) VALUES ($1)", [
+  //             ingredient
+  //           ])
+  //           .then(res => {
+  //             response.status(201).send("recipe added to db");
+  //           })
+  //           .catch(e => console.error(e));
+  //       }
+  //
+  //       console.log("Recipe added to database");
+  //       client.release();
+  //     })
+  //     .catch(e => {
+  //       client.release();
+  //       console.log(e);
+  //     });
+  // });
 };
 
 module.exports = {

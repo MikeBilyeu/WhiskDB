@@ -120,10 +120,10 @@ class EditNewRecipe extends React.Component {
           <Fields names={categoryNames} component={CategoryInput} />
           <div className="ui hidden divider" />
           <Link to="/profile/create-recipe/preview">
-            <div class="ui animated button big blue fluid" tabindex="0">
-              <div class="visible content">Preview Recipe</div>
-              <div class="hidden content">
-                <i class="right arrow icon" />
+            <div className="ui animated button big blue fluid" tabIndex="0">
+              <div className="visible content">Preview Recipe</div>
+              <div className="hidden content">
+                <i className="right arrow icon" />
               </div>
             </div>
           </Link>

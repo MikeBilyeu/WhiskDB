@@ -9,7 +9,7 @@ import Contact from "./Contact";
 import EditProfile from "./EditProfile";
 import Button from "../Button";
 import EditNewRecipe from "./createRecipe/EditNewRecipe";
-import PreviewNewRecipe from "./createRecipe/PreviewNewRecipe";
+import PreviewNewRecipe from "./createRecipe/previewRecipe/PreviewNewRecipe";
 
 class Profile extends React.Component {
   render() {

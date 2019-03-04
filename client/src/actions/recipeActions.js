@@ -8,9 +8,9 @@ export const createRecipe = (recipeData, history) => dispatch => {
     .post("/profile/create-recipe", recipeData)
     .then(res => {
       //clear the recipe form after successful submit
-      dispatch(reset("newRecipe"));
+      // dispatch(reset("newRecipe"));
       // redirect to home after successful submit
-      return history.push("/");
+      // return history.push("/");
     }) // re-direct to profile on successful create recipe
     .catch(err =>
       dispatch({
