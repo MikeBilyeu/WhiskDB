@@ -3,14 +3,16 @@ import { Field, FieldArray, Fields, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
-// Form Inputs
+// Single Inputs
 import TextInput from "./inputs/TextInput";
-import IngredientInputs from "./IngredientInput";
-import DirectionInput from "./DirectionInput";
-import CategoryInput from "./CategoryInput";
-import ImageUpload from "./ImageUpload";
 import TextAreaInput from "./inputs/TextAreaInput";
 import ToggleSwitch from "./inputs/ToggleSwitch";
+
+// Field Components
+import ImageUpload from "./renderFields/ImageUpload";
+import IngredientInput from "./renderFields/IngredientInput";
+import DirectionInput from "./renderFields/DirectionInput";
+import CategoryInput from "./renderFields/CategoryInput";
 
 class EditNewRecipe extends React.Component {
   renderError({ error, touched }) {
@@ -89,7 +91,7 @@ class EditNewRecipe extends React.Component {
           <div className="ui hidden divider" />
           <h4 className="ui dividing header">Ingredients</h4>
           <div className="ui hidden divider" />
-          <FieldArray name="ingredients" component={IngredientInputs} />
+          <FieldArray name="ingredients" component={IngredientInput} />
           <div className="ui hidden divider" />
 
           <h4 className="ui dividing header">Directions</h4>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import CheckboxInput from "./inputs/CheckboxInput";
+import CheckboxInput from "../inputs/CheckboxInput";
 
 const CategoryInput = fields => {
   return (
