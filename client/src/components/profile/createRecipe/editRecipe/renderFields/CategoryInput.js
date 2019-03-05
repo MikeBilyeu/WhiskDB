@@ -3,6 +3,7 @@ import React from "react";
 import CheckboxInput from "../inputs/CheckboxInput";
 
 const CategoryInput = fields => {
+  console.log("CategoryInput");
   return (
     <div className="ui form">
       <div className="grouped fields">
