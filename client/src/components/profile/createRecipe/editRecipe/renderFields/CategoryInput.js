@@ -18,7 +18,7 @@ const CategoryInput = fields => {
           fields={fields}
           label="Non-Vegetarian"
           categoryType="diet"
-          name="nonVegetarian"
+          name="nonvegetarian"
         />
         <CheckboxInput
           fields={fields}

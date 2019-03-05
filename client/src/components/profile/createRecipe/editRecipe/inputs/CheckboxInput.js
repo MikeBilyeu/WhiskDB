@@ -5,9 +5,9 @@ const CheckboxInput = ({ fields, label, name, categoryType }) => {
     <div className="field">
       <div className="ui checkbox">
         <input
-          {...fields.category[categoryType][name].input}
+          {...fields.categories[categoryType][name].input}
           type="checkbox"
-          checked={fields.category[categoryType][name].input.value}
+          checked={fields.categories[categoryType][name].input.value}
         />
         <label>{label}</label>
       </div>

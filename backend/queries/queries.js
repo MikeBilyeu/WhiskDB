@@ -157,7 +157,8 @@ const createRecipe = (request, response) => {
     directions,
     footnote,
     privateRecipe,
-    created_by
+    created_by,
+    categories
   } = request.body;
 
   const timeHours = time.hours > 0 ? time.hours : 0;
@@ -182,7 +183,7 @@ const createRecipe = (request, response) => {
         ]
       )
       .then(res => {
-        let recipe_id = res.rows[0].recipe_id;
+        recipe_id = res.rows[0].recipe_id;
         // loop through the ingredients
         for (let i = 0; i < ingredients.length; i++) {
           let { ingredient } = ingredients[i];
@@ -220,6 +221,33 @@ const createRecipe = (request, response) => {
         }
         //end of for loop
       })
+      .then(res => {
+        // loop through the keys of the category object
+        for (let i = 0, keys = Object.keys(categories); i < keys.length; i++) {
+          // loop through sub categories
+          for (
+            let j = 0, subKeys = Object.keys(categories[keys[i]]);
+            j < subKeys.length;
+            j++
+          ) {
+            if (categories[keys[i]][subKeys[j]] === true) {
+              client
+                .query(
+                  "SELECT category_id FROM categories WHERE category_name = $1",
+                  [subKeys[j]]
+                )
+                .then(res => {
+                  console.log(res.rows[0].category_id);
+                  console.log(recipe_id);
+                  client.query(
+                    "INSERT INTO recipes_join_categories (recipe, category) VALUES ($1, $2)",
+                    [recipe_id, res.rows[0].category_id]
+                  );
+                });
+            }
+          }
+        }
+      })
       .catch(e => {
         client.release();
         console.log(e);
@@ -243,3 +271,6 @@ module.exports = {
 //into the ingredient_name column of the ingredients table then insert that ingredient_id into the
 //ingredient column of recipes_join_ingredients table
 //along with the recipe id into the recipe column of recipes_join_ingredients
+
+//categories
+//loop through categories check

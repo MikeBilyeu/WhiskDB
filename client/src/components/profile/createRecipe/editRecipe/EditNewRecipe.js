@@ -31,21 +31,21 @@ class EditNewRecipe extends React.Component {
 
   render() {
     const categoryNames = [
-      "category.diet.vegetarian",
-      "category.diet.vegan",
-      "category.diet.nonVegetarian",
-      "category.meal.breakfast",
-      "category.meal.lunch",
-      "category.meal.dinner",
-      "category.meal.appetizer",
-      "category.meal.dessert",
-      "category.meal.drink",
-      "category.cusine.chinese",
-      "category.cusine.indian",
-      "category.cusine.italian",
-      "category.cusine.mexican",
-      "category.cusine.southern",
-      "category.cusine.thia"
+      "categories.diet.vegetarian",
+      "categories.diet.vegan",
+      "categories.diet.nonvegetarian",
+      "categories.meal.breakfast",
+      "categories.meal.lunch",
+      "categories.meal.dinner",
+      "categories.meal.appetizer",
+      "categories.meal.dessert",
+      "categories.meal.drink",
+      "categories.cusine.chinese",
+      "categories.cusine.indian",
+      "categories.cusine.italian",
+      "categories.cusine.mexican",
+      "categories.cusine.southern",
+      "categories.cusine.thia"
     ];
     return (
       <div className="fluid column">
@@ -149,7 +149,8 @@ export default reduxForm({
   initialValues: {
     ingredients: [{}],
     directions: [{}],
-    privateRecipe: false
+    privateRecipe: false,
+    categories: {}
   },
   validate: validate
 })(withRouter(EditNewRecipe));
