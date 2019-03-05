@@ -1,11 +1,12 @@
 import React from "react";
 import { getFormValues } from "redux-form";
 import { connect } from "react-redux";
-
 import { withRouter } from "react-router-dom";
+
+// Action Creator
 import { createRecipe } from "../../../../actions/recipeActions";
 
-//render Form values
+// Render Form values
 import { RenderTitle } from "./renderFormValues/RenderTitle";
 import { RenderImage } from "./renderFormValues/RenderImage";
 import { RenderTime } from "./renderFormValues/RenderTime";
@@ -14,23 +15,17 @@ import { RenderIngredients } from "./renderFormValues/RenderIngredients";
 import { RenderDirections } from "./renderFormValues/RenderDirections";
 import { RenderFootnote } from "./renderFormValues/RenderFootnote";
 
-// onSubmit={this.props.handleSubmit(this.onFormSubmit)}
-
 class PreviewNewRecipe extends React.Component {
-  // onRecipeSubmit = () => {
-  //   // maybe get the created_by user id from the backend after it ahs been sent
-  //   const newRecipe = {
-  //     ...values,
-  //     created_by: props.auth.user.user_id
-  //   };
-  //   console.log("The New Recipe: ", newRecipe);
-  //   // this.props.createRecipe(newRecipe, this.props.history);
-  // };
-
+  onRecipeSubmit = () => {
+    // maybe get the created_by user id from the backend after it ahs been
+    const newRecipe = {
+      ...this.props.formValues,
+      created_by: this.props.auth.user.user_id
+    };
+    this.props.createRecipe(newRecipe, this.props.history);
+  };
   render() {
     const values = this.props.formValues;
-    console.log(this.props);
-    console.log(values);
 
     if (values) {
       return (
@@ -48,7 +43,10 @@ class PreviewNewRecipe extends React.Component {
           <RenderDirections values={values} />
           <RenderFootnote values={values} />
           <div className="ui hidden divider" />
-          <button className="ui button green fluid big blue">
+          <button
+            className="ui button green fluid big blue"
+            onClick={this.onRecipeSubmit}
+          >
             Submit Recipe
           </button>
         </div>

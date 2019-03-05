@@ -1,13 +1,9 @@
 import React from "react";
 import { Field, FieldArray, Fields, reduxForm } from "redux-form";
-import { Route } from "react-router-dom";
-
 import { Link } from "react-router-dom";
-
 import { withRouter } from "react-router-dom";
 
-import { connect } from "react-redux";
-
+// Form Inputs
 import TextInput from "./inputs/TextInput";
 import IngredientInputs from "./IngredientInput";
 import DirectionInput from "./DirectionInput";
@@ -110,7 +106,7 @@ class EditNewRecipe extends React.Component {
             />
             <div className="ui hidden divider" />
             <Field
-              name="private"
+              name="privateRecipe"
               label="Private Recipe"
               component={ToggleSwitch}
             />
@@ -151,7 +147,7 @@ export default reduxForm({
   initialValues: {
     ingredients: [{}],
     directions: [{}],
-    private: false
+    privateRecipe: false
   },
   validate: validate
 })(withRouter(EditNewRecipe));
