@@ -31,7 +31,7 @@ class Login extends Component {
     const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
     return (
       <div className={className}>
-        <label for={labelFor}>{label}</label>
+        <label htmlFor={labelFor}>{label}</label>
         <input
           {...input}
           id={inputId}
@@ -54,6 +54,7 @@ class Login extends Component {
   };
 
   render() {
+    const lower = value => value && value.toLowerCase();
     return (
       <div className="ui grid" style={{ margin: "1.5rem 0rem" }}>
         <div
@@ -79,6 +80,7 @@ class Login extends Component {
               labelFor="email"
               inputId="email"
               placeholder="Email Address"
+              normalize={lower}
             />
             <Field
               name="password"

@@ -47,6 +47,35 @@ class EditNewRecipe extends React.Component {
       "categories.cusine.southern",
       "categories.cusine.thia"
     ];
+    const capitalize = value => {
+      return (
+        value &&
+        value
+          .toLowerCase()
+          .split(" ")
+          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+          .join(" ")
+      );
+    };
+    const minuteLimit = value => {
+      if (value && !isNaN(value)) {
+        return value.charAt(0) > 5 || value.charAt(0) < 1
+          ? null
+          : value.length > 2
+          ? value.substring(0, 2)
+          : value;
+      }
+      return null;
+    };
+    const numberLimit = value => {
+      return value && !isNaN(value)
+        ? value.charAt(0) < 1
+          ? null
+          : value.length > 2
+          ? value.substring(0, 2)
+          : value
+        : null;
+    };
     return (
       <div className="fluid column">
         <div className="ui form error">
@@ -58,6 +87,7 @@ class EditNewRecipe extends React.Component {
             component={TextInput}
             label="Recipe Title"
             placeholder="The Best Homemade Pizza"
+            normalize={capitalize}
           />
           <div className="ui hidden divider" />
           <Field name="image" component={ImageUpload} />
@@ -69,12 +99,14 @@ class EditNewRecipe extends React.Component {
               component={TextInput}
               label="Hours"
               placeholder="1"
+              normalize={numberLimit}
             />
             <Field
               name="time.minutes"
               component={TextInput}
               label="Minutes"
               placeholder="15"
+              normalize={minuteLimit}
             />
           </div>
           <div className="ui divider" />
@@ -86,6 +118,7 @@ class EditNewRecipe extends React.Component {
             label="Number of servings"
             placeholder="3"
             addClass="four wide"
+            normalize={numberLimit}
           />
 
           <div className="ui hidden divider" />

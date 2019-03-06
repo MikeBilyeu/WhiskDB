@@ -56,6 +56,7 @@ class SignUp extends Component {
   };
 
   render() {
+    const lower = value => value && value.toLowerCase();
     return (
       <div className="ui grid" style={{ margin: "1.5rem 0rem" }}>
         <div
@@ -89,6 +90,7 @@ class SignUp extends Component {
               inputId="email"
               labelFor="email"
               placeholder="Enter an Eamil Address"
+              normalize={lower}
             />
             <Field
               type="password"

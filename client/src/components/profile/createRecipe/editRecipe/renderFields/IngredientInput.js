@@ -6,6 +6,18 @@ import TextInput from "../inputs/TextInput";
 
 // Renders all of the ingredient fields i.e. ingredient, unit, amount
 const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
+  const capitalize = value => {
+    return (
+      value &&
+      value
+        .toLowerCase()
+        .split(" ")
+        .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+        .join(" ")
+    );
+  };
+  //make sure that user input is only number, / or a space, or .
+
   return (
     <div>
       {fields.map((ingredient, index) => (
@@ -26,6 +38,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               label={`Ingredient ${index + 1}`}
               addClass="seven wide"
               placeholder="E.g. Red Bell Pepper"
+              normalize={capitalize}
             />
             <Field
               name={`${ingredient}.prep`}
@@ -33,6 +46,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               label="Cut/Prep"
               addClass="four wide"
               placeholder="Diced"
+              normalize={capitalize}
             />
           </div>
           <div className="ui divider" />
