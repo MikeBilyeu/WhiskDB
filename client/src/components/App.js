@@ -16,7 +16,7 @@ import Profile from "./profile/Profile";
 import SignUp from "./auth/SignUp";
 import Login from "./auth/Login";
 import Recipe from "./Recipe";
-
+import ScrollToTop from "./ScrollToTop";
 require("dotenv").config();
 
 // Check for token to keep user logged in
@@ -44,26 +44,28 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
-          <Header />
-          <div style={{ padding: "6rem 2rem 5rem 2rem" }}>
-            <Route
-              exact
-              path="/"
-              component={() => (
-                <Home onSubmit={this.props.onSubmit} data={this.state.data} />
-              )}
-            />
-            <Switch>
-              <PrivateRoute path="/profile/:page?" component={Profile} />
+        <ScrollToTop>
+          <div>
+            <Header />
+            <div style={{ padding: "6rem 2rem 5rem 2rem" }}>
+              <Route
+                exact
+                path="/"
+                component={() => (
+                  <Home onSubmit={this.props.onSubmit} data={this.state.data} />
+                )}
+              />
+              <Switch>
+                <PrivateRoute path="/profile/:page?" component={Profile} />
 
-              <Route path="/sign-up" component={SignUp} />
-              <Route path="/login" component={Login} />
-              <Route path="/recipe" component={Recipe} />
-            </Switch>
+                <Route path="/sign-up" component={SignUp} />
+                <Route path="/login" component={Login} />
+                <Route path="/recipe" component={Recipe} />
+              </Switch>
+            </div>
+            <NavigationBar />
           </div>
-          <NavigationBar />
-        </div>
+        </ScrollToTop>
       </Router>
     );
   }
