@@ -2,7 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PROT || 3001;
-const db = require("./queries/queries");
+const createUser = require("./queries/createUser");
+const userLogin = require("./queries/userLogin");
+const createRecipe = require("./queries/createRecipe");
 const passport = require("passport");
 
 app.use(bodyParser.json());
@@ -17,11 +19,11 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
-app.post("/register", db.createUser);
+app.post("/register", createUser.createUser);
 
-app.post("/login", db.userLogin);
+app.post("/login", userLogin.userLogin);
 
-app.post("/profile/create-recipe", db.createRecipe);
+app.post("/profile/create-recipe", createRecipe.createRecipe);
 
 app.listen(PORT, "192.168.1.15", () => {
   console.log(`App running on port ${PORT}.`);
