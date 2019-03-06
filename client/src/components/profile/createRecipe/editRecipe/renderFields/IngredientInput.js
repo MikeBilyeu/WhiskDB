@@ -17,6 +17,12 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
     );
   };
   //make sure that user input is only number, / or a space, or .
+  const amountNorm = value => {
+    const amountRegEx = /^\d{0,3}(\.\d{0,2}|(?<=\d)\/\d{0,2}|(?<=\d) \d{0,2}((?<! )\/)?(?<!\d)\d{0,2})?/;
+    let strArr = value.match(amountRegEx);
+    console.log(strArr);
+    return value && strArr[0];
+  };
 
   return (
     <div>
@@ -30,6 +36,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               label="Amount"
               addClass="three wide"
               placeholder="1 1/2"
+              normalize={amountNorm}
             />
             <Field name={`${ingredient}.unit`} component={UnitDropDown} />
             <Field
