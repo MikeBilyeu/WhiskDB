@@ -16,11 +16,14 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
         .join(" ")
     );
   };
+  const textParse = value => {
+    let strArr = value.match(/[\w ]{0,255}/) || [""];
+    return value && strArr[0];
+  };
   //make sure that user input is only number, / or a space, or .
-  const amountNorm = value => {
+  const amountParse = value => {
     const amountRegEx = /^\d{0,3}(\.\d{0,2}|(?<=\d)\/\d{0,2}|(?<=\d) \d{0,2}((?<! )\/)?(?<!\d)\d{0,2})?/;
-    let strArr = value.match(amountRegEx);
-    console.log(strArr);
+    let strArr = value.match(amountRegEx) || [""];
     return value && strArr[0];
   };
 
@@ -36,7 +39,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               label="Amount"
               addClass="three wide"
               placeholder="1 1/2"
-              normalize={amountNorm}
+              parse={amountParse}
             />
             <Field name={`${ingredient}.unit`} component={UnitDropDown} />
             <Field
@@ -46,6 +49,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               addClass="seven wide"
               placeholder="E.g. Red Bell Pepper"
               normalize={capitalize}
+              parse={textParse}
             />
             <Field
               name={`${ingredient}.prep`}
@@ -54,6 +58,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               addClass="four wide"
               placeholder="Diced"
               normalize={capitalize}
+              parse={textParse}
             />
           </div>
           <div className="ui divider" />

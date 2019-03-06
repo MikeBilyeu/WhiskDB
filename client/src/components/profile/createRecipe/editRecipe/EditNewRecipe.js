@@ -57,24 +57,17 @@ class EditNewRecipe extends React.Component {
           .join(" ")
       );
     };
-    const minuteLimit = value => {
-      if (value && !isNaN(value)) {
-        return value.charAt(0) > 5 || value.charAt(0) < 1
-          ? null
-          : value.length > 2
-          ? value.substring(0, 2)
-          : value;
-      }
-      return null;
+    const textParse = value => {
+      let strArr = value.match(/[\w ]{0,255}/) || [""];
+      return value && strArr[0];
     };
-    const numberLimit = value => {
-      return value && !isNaN(value)
-        ? value.charAt(0) < 1
-          ? null
-          : value.length > 2
-          ? value.substring(0, 2)
-          : value
-        : null;
+    const minuteParse = value => {
+      let strArr = value.match(/^[1-5][\d]?/) || [""];
+      return value && strArr[0];
+    };
+    const numberParse = value => {
+      let strArr = value.match(/^[1-9][\d]?/) || [""];
+      return value && strArr[0];
     };
     return (
       <div className="fluid column">
@@ -88,6 +81,7 @@ class EditNewRecipe extends React.Component {
             label="Recipe Title"
             placeholder="The Best Homemade Pizza"
             normalize={capitalize}
+            parse={textParse}
           />
           <div className="ui hidden divider" />
           <Field name="image" component={ImageUpload} />
@@ -99,14 +93,14 @@ class EditNewRecipe extends React.Component {
               component={TextInput}
               label="Hours"
               placeholder="1"
-              normalize={numberLimit}
+              normalize={numberParse}
             />
             <Field
               name="time.minutes"
               component={TextInput}
               label="Minutes"
               placeholder="15"
-              normalize={minuteLimit}
+              parse={minuteParse}
             />
           </div>
           <div className="ui divider" />
@@ -118,7 +112,7 @@ class EditNewRecipe extends React.Component {
             label="Number of servings"
             placeholder="3"
             addClass="four wide"
-            normalize={numberLimit}
+            parse={numberParse}
           />
 
           <div className="ui hidden divider" />
