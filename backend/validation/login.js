@@ -1,23 +1,17 @@
-const Validator = require("validator");
-const isEmpty = require("is-empty");
 module.exports = function validateRegisterInput(data) {
   let errors = {};
-  // Convert empty fields to an empty string so we can use validator functions
-  data.email = !isEmpty(data.email) ? data.email : "";
-  data.password = !isEmpty(data.password) ? data.password : "";
-  // Email checks
-  if (Validator.isEmpty(data.email)) {
+  // Check if the email is empty so error res is correct
+  if (!data.email) {
     errors.email = "Email field is required";
-  } else if (!Validator.isEmail(data.email)) {
+    // check if the email is a valid email address so error res is correct
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)) {
     errors.email = "Email is invalid";
   }
-  // Password checks
-  if (Validator.isEmpty(data.password)) {
+
+  // check if password if empty so error res is correct
+  if (!data.password) {
     errors.password = "Password field is required";
   }
-  console.log(errors);
-  return {
-    errors,
-    isValid: isEmpty(errors)
-  };
+
+  return errors;
 };

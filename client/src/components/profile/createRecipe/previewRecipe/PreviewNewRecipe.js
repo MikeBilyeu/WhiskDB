@@ -22,7 +22,8 @@ class PreviewNewRecipe extends React.Component {
       ...this.props.formValues,
       created_by: this.props.auth.user.user_id
     };
-    this.props.createRecipe(newRecipe, this.props.history);
+    console.log(newRecipe);
+    // this.props.createRecipe(newRecipe, this.props.history);
   };
   render() {
     const values = this.props.formValues;
@@ -32,6 +33,12 @@ class PreviewNewRecipe extends React.Component {
         <div className="seven wide column">
           <div className="ui hidden divider" />
           <h1 className="ui dividing header center aligned">Preview Recipe</h1>
+          <button
+            className="ui button green fluid big blue"
+            onClick={this.onRecipeSubmit}
+          >
+            Submit Recipe
+          </button>
           <div className="ui hidden divider" />
           <RenderTitle values={values} />
           <RenderImage values={values} />

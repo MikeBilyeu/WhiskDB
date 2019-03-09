@@ -17,13 +17,12 @@ const validateRegisterInput = require("../validation/register");
 
 const createUser = (request, response) => {
   const { username, email, password } = request.body;
-  console.log("INPUT: ", username, email, password);
 
   // Form validation
-  const { errors, isValid } = validateRegisterInput(request.body);
+  const errors = validateRegisterInput(request.body);
   // Check validation
-  if (!isValid) {
-    throw errors;
+  if (!(Object.keys(errors).length === 0)) {
+    return response.status(400).json(errors);
   }
 
   pool.connect().then(client => {
@@ -54,7 +53,7 @@ const createUser = (request, response) => {
               if (err) throw err;
               password_encrypted = hash;
               client.query(
-                "INSERT INTO users (username, email, password_encrypted) VALUES ($1, $2, $3)",
+                "INSERT INTO users (username, email, password_encrypted) VALUES ($1, $2, $3) RETURNING user_id",
                 [username, email, password_encrypted],
                 (error, result) => {
                   if (error) {
@@ -64,9 +63,10 @@ const createUser = (request, response) => {
                     throw error;
                   }
                   client.release();
+                  console.log(result);
                   response
                     .status(201)
-                    .send(`User added with ID: ${result.insertId}`);
+                    .send(`User added with ID: ${result.rows[0].user_id}`);
                   console.log("User successfully added to DB!");
                 }
               );

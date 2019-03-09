@@ -57,7 +57,6 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               label="Cut/Prep"
               addClass="four wide"
               placeholder="Diced"
-              normalize={capitalize}
               parse={textParse}
             />
           </div>

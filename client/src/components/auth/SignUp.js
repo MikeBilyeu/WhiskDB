@@ -32,7 +32,7 @@ class SignUp extends Component {
     const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
     return (
       <div className={className}>
-        <label for={labelFor}>{label}</label>
+        <label htmlFor={labelFor}>{label}</label>
         <input
           {...input}
           autoComplete="off"
@@ -125,16 +125,25 @@ class SignUp extends Component {
 }
 
 const validate = formValues => {
+  let userNameRegEx = /^(?=.{2,20}$)(?![_])(?!.*[_.]{2})[a-zA-Z0-9_]+(?<![_])$/;
+  let emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  let passwordRegEx = /^\S{8,30}$/;
   const errors = {};
 
   if (!formValues.username) {
-    errors.username = "You must enter your name";
+    errors.username = "You must enter a username";
+  } else if (!userNameRegEx.test(formValues.username)) {
+    errors.username = "Username must be 3-20 alphanumeric characters";
   }
   if (!formValues.email) {
-    errors.email = "You must enter a valid email address";
+    errors.email = "You must email address";
+  } else if (!emailRegEx.test(formValues.email)) {
+    errors.email = "Email is invalid";
   }
   if (!formValues.password) {
     errors.password = "You must enter a password";
+  } else if (!passwordRegEx.test(formValues.passpord)) {
+    errors.password = "Password must be 6 - 30 characters";
   }
   if (!formValues.password2) {
     errors.password2 = "You must validate the password";
@@ -150,8 +159,8 @@ SignUp.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors
+  auth: state.auth
+  // errors: state.errors
 });
 
 SignUp = connect(

@@ -9,7 +9,7 @@ const TextInput = ({
   addClass
 }) => {
   const className = `field ${addClass} ${
-    meta.error && meta.submitFailed ? "error" : ""
+    meta.error && meta.touched ? "error" : ""
   }`;
   return (
     <div className={className}>

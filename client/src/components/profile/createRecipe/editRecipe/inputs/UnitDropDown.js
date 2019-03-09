@@ -29,6 +29,7 @@ const RenderDropDown = ({ input }) => {
         <option value="small">Small</option>
         <option value="medium">Medium</option>
         <option value="large">Large</option>
+        <option value="slice">Slice</option>
         <option disabled>———Mass & Weight———</option>
         <option value="pound">Pound</option>
         <option value="ounce">Ounce</option>

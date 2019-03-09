@@ -1,15 +1,15 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const app = express();
-const PORT = process.env.PROT || 3001;
+const PORT = process.env.PORT || 3001;
 const createUser = require("./queries/createUser");
 const userLogin = require("./queries/userLogin");
 const createRecipe = require("./queries/createRecipe");
 const passport = require("passport");
 
-app.use(bodyParser.json());
+// Parse middleware
+app.use(express.json());
 app.use(
-  bodyParser.urlencoded({
+  express.urlencoded({
     extended: true
   })
 );
@@ -25,6 +25,6 @@ app.post("/login", userLogin.userLogin);
 
 app.post("/profile/create-recipe", createRecipe.createRecipe);
 
-app.listen(PORT, "192.168.1.15", () => {
+app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);
 });

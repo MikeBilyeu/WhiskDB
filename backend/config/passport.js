@@ -14,10 +14,6 @@ const pool = new Pool({
   port: keys.port
 });
 
-// Swap out mongodb for postgresql
-
-require("dotenv").config();
-
 const opts = {};
 
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();

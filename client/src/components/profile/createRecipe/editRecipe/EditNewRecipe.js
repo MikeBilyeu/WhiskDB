@@ -47,18 +47,8 @@ class EditNewRecipe extends React.Component {
       "categories.cusine.southern",
       "categories.cusine.thia"
     ];
-    const capitalize = value => {
-      return (
-        value &&
-        value
-          .toLowerCase()
-          .split(" ")
-          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-          .join(" ")
-      );
-    };
     const textParse = value => {
-      let strArr = value.match(/[\w ]{0,255}/) || [""];
+      let strArr = value.match(/[\w -]{0,255}/) || [""];
       return value && strArr[0];
     };
     const minuteParse = value => {
@@ -80,7 +70,6 @@ class EditNewRecipe extends React.Component {
             component={TextInput}
             label="Recipe Title"
             placeholder="The Best Homemade Pizza"
-            normalize={capitalize}
             parse={textParse}
           />
           <div className="ui hidden divider" />
@@ -161,12 +150,22 @@ class EditNewRecipe extends React.Component {
   }
 }
 
-const validate = formValues => {
+const validate = values => {
   const errors = {};
 
-  // if (!formValues.title) {
-  //   errors.title = "You must enter a title";
-  // }
+  if (!values.title) {
+    errors.title = "You must enter a title";
+  }
+  if (!values.servings) {
+    errors.servings = "Enter recipe servings";
+  }
+
+  if (!values.time) {
+    errors.time = {};
+    errors.time.minutes = "enter a time";
+    errors.time.hours = "enter a time";
+  }
+
   return errors;
 };
 
@@ -174,7 +173,7 @@ export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
   initialValues: {
-    ingredients: [{}],
+    ingredients: [{ amount: "" }],
     directions: [{}],
     privateRecipe: false,
     categories: {}

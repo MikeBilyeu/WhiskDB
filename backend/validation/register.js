@@ -1,37 +1,34 @@
-const Validator = require("validator");
-const isEmpty = require("is-empty");
 module.exports = function validateRegisterInput(data) {
   let errors = {};
-  // Convert empty fields to an empty string so we can use validator functions
-  data.username = !isEmpty(data.username) ? data.username : "";
-  data.email = !isEmpty(data.email) ? data.email : "";
-  data.password = !isEmpty(data.password) ? data.password : "";
-  data.password2 = !isEmpty(data.password2) ? data.password2 : "";
-  // Name checks
-  if (Validator.isEmpty(data.username)) {
+
+  let userNameRegEx = /^(?=.{2,20}$)(?![_])(?!.*[_.]{2})[a-zA-Z0-9_]+(?<![_])$/;
+  let emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  let passwordRegEx = /^\S{8,30}$/;
+
+  if (!data.username) {
     errors.username = "Username field is required";
+  } else if (!userNameRegEx.test(data.username)) {
+    errors.username = "Username must be 3-20 alphanumeric characters";
   }
-  // Email checks
-  if (Validator.isEmpty(data.email)) {
+
+  if (!data.email) {
     errors.email = "Email field is required";
-  } else if (!Validator.isEmail(data.email)) {
+  } else if (!emailRegEx.test(data.email)) {
     errors.email = "Email is invalid";
   }
   // Password checks
-  if (Validator.isEmpty(data.password)) {
+  if (!data.password) {
     errors.password = "Password field is required";
   }
-  if (Validator.isEmpty(data.password2)) {
+  if (!data.password2) {
     errors.password2 = "Confirm password field is required";
   }
-  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = "Password must be at least 6 characters";
+  if (!passwordRegEx.test(data.password)) {
+    errors.password = "Password must be 6 - 30 characters";
   }
-  if (!Validator.equals(data.password, data.password2)) {
+  if (data.password !== data.password2) {
     errors.password2 = "Passwords must match";
   }
-  return {
-    errors,
-    isValid: isEmpty(errors)
-  };
+
+  return errors;
 };

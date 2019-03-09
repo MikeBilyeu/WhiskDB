@@ -17,9 +17,10 @@ const validateLoginInput = require("../validation/login");
 
 const userLogin = (request, response) => {
   // Form validation
-  const { errors, isValid } = validateLoginInput(request.body);
-  // Check validation
-  if (!isValid) {
+  const errors = validateLoginInput(request.body);
+  // checking if login validator has errors
+
+  if (!(Object.keys(errors).length === 0)) {
     return response.status(400).json(errors);
   }
   const email = request.body.email;
