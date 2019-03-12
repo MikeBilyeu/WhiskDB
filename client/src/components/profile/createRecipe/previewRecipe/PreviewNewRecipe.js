@@ -23,7 +23,7 @@ class PreviewNewRecipe extends React.Component {
       created_by: this.props.auth.user.user_id
     };
     console.log(newRecipe);
-    // this.props.createRecipe(newRecipe, this.props.history);
+    this.props.createRecipe(newRecipe, this.props.history);
   };
   render() {
     const values = this.props.formValues;

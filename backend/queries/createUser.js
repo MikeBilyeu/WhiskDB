@@ -21,7 +21,7 @@ const createUser = (request, response) => {
   // Form validation
   const errors = validateRegisterInput(request.body);
   // Check validation
-  if (!(Object.keys(errors).length === 0)) {
+  if (Object.keys(errors).length !== 0) {
     return response.status(400).json(errors);
   }
 

@@ -9,6 +9,9 @@ const pool = new Pool({
   port: keys.port
 });
 
+// Load input validation
+const validateRecipeInput = require("../validation/recipe");
+
 const createRecipe = (request, response) => {
   const {
     title,
@@ -21,6 +24,13 @@ const createRecipe = (request, response) => {
     created_by,
     categories
   } = request.body;
+
+  // Form validation
+  const errors = validateRecipeInput(request.body);
+  // Check validation
+  if (Object.keys(errors).length !== 0) {
+    return response.status(400).json(errors);
+  }
 
   const timeHours = time.hours > 0 ? time.hours : 0;
   const timeMinutes = time.minutes > 0 ? parseInt(time.minutes) : 0;

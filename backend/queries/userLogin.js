@@ -20,7 +20,7 @@ const userLogin = (request, response) => {
   const errors = validateLoginInput(request.body);
   // checking if login validator has errors
 
-  if (!(Object.keys(errors).length === 0)) {
+  if (Object.keys(errors).length !== 0) {
     return response.status(400).json(errors);
   }
   const email = request.body.email;

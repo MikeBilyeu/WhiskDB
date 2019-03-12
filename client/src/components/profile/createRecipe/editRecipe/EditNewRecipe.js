@@ -149,22 +149,20 @@ class EditNewRecipe extends React.Component {
     );
   }
 }
-
+// validate on client side for better ux
 const validate = values => {
   const errors = {};
 
-  if (!values.title) {
-    errors.title = "You must enter a title";
-  }
-  if (!values.servings) {
-    errors.servings = "Enter recipe servings";
-  }
-
-  if (!values.time) {
-    errors.time = {};
-    errors.time.minutes = "enter a time";
-    errors.time.hours = "enter a time";
-  }
+  // if (!values.title) {
+  //   errors.title = "You must enter a title";
+  // }
+  // if (!values.servings) {
+  //   errors.servings = "Enter recipe servings";
+  // }
+  //
+  // if (!values.time) {
+  //   errors.time = { minutes: "Enter a time", hours: "Enter a time" };
+  // }
 
   return errors;
 };
@@ -173,7 +171,7 @@ export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
   initialValues: {
-    ingredients: [{ amount: "" }],
+    ingredients: [{}],
     directions: [{}],
     privateRecipe: false,
     categories: {}
