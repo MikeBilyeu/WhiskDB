@@ -24,6 +24,7 @@ const createRecipe = (request, response) => {
     created_by,
     categories
   } = request.body;
+  console.log(request.body);
 
   // Form validation
   const errors = validateRecipeInput(request.body);

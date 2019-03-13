@@ -17,7 +17,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
     );
   };
   const textParse = value => {
-    let strArr = value.match(/[\w ]{0,255}/) || [""];
+    let strArr = value.match(/[\w ]{0,55}/) || [""];
     return value && strArr[0];
   };
   //make sure that user input is only number, / or a space, or .

@@ -3,7 +3,7 @@ module.exports = function validateRecipeInput(data) {
   // store regex to check validation
   const titleRegEx = /^[A-Z]{1}((\s)?[a-zA-Z0-9\(\)])+$/;
   const amountRegEx = /^\d{0,3}(\.\d{1,2}|(?<=\d)\/\d{1,2}|(?<=\d) \d{0,2}((?<! )\/)(?<!\d)\d{1,2})?$/;
-  const ingredientNameRegEx = /^[A-Z0-9][\w ]{2,255}$/;
+  const ingredientNameRegEx = /^[A-Z0-9][\w ]{2,55}$/;
 
   // Keep Recipe form inputs consistant w/ validation
 
@@ -29,10 +29,10 @@ module.exports = function validateRecipeInput(data) {
   }
 
   // Making sure user enters two or more ingredients for the recipe
-  if (Object.keys(data.ingredients).length <= 1) {
+  if (data.ingredients && data.ingredients.length <= 1) {
     errors.ingredients = "Must add more ingredients";
-  } else {
-    // Loop through ingredients object to validate each ingredient object
+  } else if (data.ingredients) {
+    // Loop through ingredients array to validate each ingredient object
     for (let i = 0; i < data.ingredients.length; i++) {
       // validate user enters an amount and ingredient name
       if (!data.ingredients[i].amount && !data.ingredients[i].ingredient) {
@@ -47,23 +47,28 @@ module.exports = function validateRecipeInput(data) {
   }
 
   // Making sure user enters directions
-  if (Object.keys(data.directions).length === 0) {
+  if (data.directions && data.directions.length === 0) {
     errors.directions = "Directions are required";
-  } else {
+  } else if (data.directions) {
+    // Loop through directions array to validate each direction object
     for (let i = 0; i < data.directions.length; i++) {
-      if (data.directions[i].step.length < 5) {
-        errors.directions = `Directions in step ${i + 1} are too short`;
-      } else if (data.directions[i].step.length > 150) {
-        errors.directions = `Directions is step ${i + 1} are too long`;
+      if (!data.directions[i].step) {
+        errors.directions = `Directions are required`;
+      } else if (
+        data.directions[i].step.length < 15 ||
+        data.directions[i].step.length > 150
+      ) {
+        errors.directions = "Directions must be 15 - 150 characters";
       }
     }
   }
 
   // Make sure user enters valid footnote
-  if (data.footnote.length <= 3) {
-    errors.footnote = "Footnote text length is too short";
-  } else if (data.footnote.length > 255) {
-    errors.Footnote = "Footnote text length is too long";
+  if (
+    data.footnote &&
+    (data.footnote.length <= 3 || data.footnote.length > 455)
+  ) {
+    errors.footnote = "Footnote must be 3 - 255 characters";
   }
 
   return errors;

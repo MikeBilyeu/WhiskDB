@@ -122,8 +122,8 @@ Login.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors
+  auth: state.auth
+  // errors: state.errors
 });
 
 Login = connect(
