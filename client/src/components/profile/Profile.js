@@ -9,7 +9,6 @@ import Contact from "./Contact";
 import EditProfile from "./EditProfile";
 import Button from "../Button";
 import EditNewRecipe from "./createRecipe/editRecipe/EditNewRecipe";
-import PreviewNewRecipe from "./createRecipe/previewRecipe/PreviewNewRecipe";
 
 class Profile extends React.Component {
   render() {
@@ -17,10 +16,6 @@ class Profile extends React.Component {
 
     return (
       <Switch>
-        <Route
-          path="/profile/create-recipe/preview"
-          component={PreviewNewRecipe}
-        />
         <Route path="/profile/create-recipe" component={EditNewRecipe} />
         <Route path="/profile/edit" component={EditProfile} />
         <Route path="/profile/my-recipes" component={MyRecipes} />

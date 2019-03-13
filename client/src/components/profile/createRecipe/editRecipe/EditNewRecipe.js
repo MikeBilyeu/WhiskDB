@@ -2,6 +2,10 @@ import React from "react";
 import { Field, FieldArray, Fields, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+
+// Action Creator
+import { createRecipe } from "../../../../actions/recipeActions";
 
 // Single Inputs
 import TextInput from "./inputs/TextInput";
@@ -14,6 +18,9 @@ import IngredientInput from "./renderFields/IngredientInput";
 import DirectionInput from "./renderFields/DirectionInput";
 import CategoryInput from "./renderFields/CategoryInput";
 
+// import validation
+import { Validate } from "./RecipeValidation";
+
 class EditNewRecipe extends React.Component {
   renderError({ error, touched }) {
     if (touched && error) {
@@ -25,13 +32,22 @@ class EditNewRecipe extends React.Component {
     }
   }
 
-  onImageChange(event) {
-    console.log(event.target.files[0]);
-  }
-  handleSubmit = e => {
+  handleSubmit = values => {
     // maybe get the created_by user id from the backend after it ahs been
-    e.preventDefault();
+    const newRecipe = {
+      ...values,
+      created_by: this.props.auth.user.user_id
+    };
+    this.props.createRecipe(newRecipe, this.props.history);
   };
+
+  // onImageChange(event) {
+  //   console.log(event.target.files[0]);
+  // }
+  // handleSubmit = e => {
+  //   // maybe get the created_by user id from the backend after it ahs been
+  //   e.preventDefault();
+  // };
 
   render() {
     const categoryNames = [
@@ -160,7 +176,7 @@ class EditNewRecipe extends React.Component {
               className="ui animated button big blue fluid"
               tabIndex="0"
             >
-              <div className="visible content">Preview Recipe</div>
+              <div className="visible content">Submit Recipe</div>
               <div className="hidden content">
                 <i className="right arrow icon" />
               </div>
@@ -174,80 +190,17 @@ class EditNewRecipe extends React.Component {
     );
   }
 }
-// validate on client side for better ux
-const validate = formValues => {
-  const errors = {};
-  // store regex to check validation
-  const titleRegEx = /^[A-Z]{1}((\s)?[a-zA-Z0-9\(\)])+$/;
-  const amountRegEx = /^\d{0,3}(\.\d{1,2}|(?<=\d)\/\d{1,2}|(?<=\d) \d{0,2}((?<! )\/)(?<!\d)\d{1,2})?$/;
-  const ingredientNameRegEx = /^[A-Z0-9][\w ]{2,255}$/;
 
-  // Keep Recipe form inputs consistant w/ validation
-
-  // Title validation
-  if (!formValues.title) {
-    errors.title = "Title field is required";
-  } else if (!titleRegEx.test(formValues.title)) {
-    errors.title = "Title is not valid";
-  }
-  // Time validation
-  if (!formValues.time) {
-    errors.time = {
-      hours: "Time field is required",
-      minutes: "Time field is required"
-    };
-  } else if (formValues.time.hours && isNaN(formValues.time.hours)) {
-    errors.time = { hours: "Time field is required" };
-  } else if (formValues.time.minutes && isNaN(formValues.time.minutes)) {
-    errors.time = { minutes: "Time field is required" };
-  }
-  // Servings validation
-  if (!formValues.servings) {
-    errors.servings = "Servings field is required";
-  } else if (isNaN(formValues.servings)) {
-    errors.servings = "Servings is not valid";
-  }
-
-  // Making sure user enters two or more ingredients for the recipe
-  if (formValues.ingredients && formValues.ingredients.length <= 1) {
-    errors.ingredients = "Must add more ingredients";
-  } else if (formValues.ingredients && formValues.ingredients.length > 1) {
-    errors.ingredients = [];
-    // Loop through ingredients array to validate each ingredient object
-    for (let i = 0; i < formValues.ingredients.length; i++) {
-      errors.ingredients.push({});
-      // validate user enters an amount and ingredient name
-      if (!formValues.ingredients[i].amount) {
-        errors.ingredients[i] = {
-          ...errors.ingredients[i],
-          amount: `Ingredient ${i +
-            1} must contain an amount and ingredient name`
-        };
-      } else if (!amountRegEx.test(formValues.ingredients[i].amount)) {
-        errors.ingredients[i] = {
-          ...errors.ingredients[i],
-          amount: "Ingredient amount is not valid"
-        };
-      }
-      if (!formValues.ingredients[i].ingredient) {
-        errors.ingredients[i] = {
-          ...errors.ingredients[i],
-          ingredient: `Ingredient ${i +
-            1} must contain an amount and ingredient name`
-        };
-      } else if (
-        !ingredientNameRegEx.test(formValues.ingredients[i].ingredient)
-      ) {
-        errors.ingredients[i] = {
-          ...errors.ingredients[i],
-          ingredient: `Ingredient ${i + 1} ingredient name is not valid`
-        };
-      }
-    }
-  }
-
-  return errors;
+const mapSateToProps = state => {
+  return {
+    auth: state.auth
+  };
 };
+
+EditNewRecipe = connect(
+  mapSateToProps,
+  { createRecipe }
+)(EditNewRecipe);
 
 export default reduxForm({
   form: "newRecipe",
@@ -258,5 +211,5 @@ export default reduxForm({
     privateRecipe: false,
     categories: {}
   },
-  validate: validate
+  validate: Validate
 })(withRouter(EditNewRecipe));

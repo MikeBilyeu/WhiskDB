@@ -120,6 +120,7 @@ const createRecipe = (request, response) => {
           }
         }
       })
+      .then(() => response.status(200).send("Recipe added"))
       .catch(e => {
         client.release();
         console.log(e);
