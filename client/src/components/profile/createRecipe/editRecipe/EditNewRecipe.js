@@ -171,15 +171,8 @@ class EditNewRecipe extends React.Component {
             <Fields names={categoryNames} component={CategoryInput} />
             <div className="ui hidden divider" />
 
-            <button
-              type="submit"
-              className="ui animated button big blue fluid"
-              tabIndex="0"
-            >
-              <div className="visible content">Submit Recipe</div>
-              <div className="hidden content">
-                <i className="right arrow icon" />
-              </div>
+            <button type="submit" className="ui button big blue fluid">
+              Submit Recipe
             </button>
 
             <div className="ui hidden divider" />

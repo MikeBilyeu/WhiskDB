@@ -1,8 +1,11 @@
 import React from "react";
 
-const TextAreaInput = ({ input, label, placeholder }) => {
+const TextAreaInput = ({ input, label, placeholder, addClass, meta }) => {
+  const className = `field ${addClass} ${
+    meta.error && meta.touched ? "error" : ""
+  }`;
   return (
-    <div className="field">
+    <div className={className}>
       <label>{label}</label>
       <textarea
         {...input}

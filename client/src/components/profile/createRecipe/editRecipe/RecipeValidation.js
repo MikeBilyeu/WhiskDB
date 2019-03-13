@@ -70,5 +70,49 @@ export const Validate = formValues => {
     }
   }
 
+  if (formValues.directions && formValues.directions.length < 1) {
+    errors.directions = "You must add at least one step for directions";
+  } else if (formValues.directions && formValues.directions.length >= 1) {
+    errors.directions = [];
+    for (let i = 0; i < formValues.directions.length; i++) {
+      errors.directions.push({});
+      if (!formValues.directions[i].step) {
+        errors.directions[i] = { step: "You must add a step to directions" };
+      } else if (formValues.directions[i].step.length < 15) {
+        errors.directions[i] = {
+          ...errors.directions[i],
+          step: `step ${i + 1} must be 15 - 150 characters`
+        };
+      } else if (formValues.directions[i] > 150) {
+        errors.directions[i] = {
+          ...errors.directions[i],
+          step: `step ${i + 1} must be 15 - 150 characters`
+        };
+      }
+    }
+  }
+
+  if (
+    !formValues.categories ||
+    Object.keys(formValues.categories).length === 0
+  ) {
+    errors.categories = "Select  1 - 3 from each category";
+  } else if (Object.keys(formValues.categories).length < 3) {
+    errors.categories = "Select 1 - 3 from each category";
+  } else if (Object.keys(formValues.categories).length === 3) {
+    // check that each category is in the categories object so we can iterate over that object
+
+    for (let subCat in formValues.categories) {
+      // checking that each subCategory contains 1 - 3 true values to validate Categories
+      let allValues = Object.values(formValues.categories[subCat]);
+      let allTrue = allValues.filter(x => x === true);
+      if (allTrue.length < 1 || allTrue.length > 3) {
+        errors.categories = "Select 1 - 3 from each category";
+      }
+    }
+    // - keeping count of the number of true values
+  }
+
+  console.log(errors);
   return errors;
 };
