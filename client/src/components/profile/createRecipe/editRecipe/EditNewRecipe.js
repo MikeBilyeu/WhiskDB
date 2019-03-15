@@ -60,12 +60,13 @@ class EditNewRecipe extends React.Component {
       "categories.meal.appetizer",
       "categories.meal.dessert",
       "categories.meal.drink",
-      "categories.cusine.chinese",
-      "categories.cusine.indian",
-      "categories.cusine.italian",
-      "categories.cusine.mexican",
-      "categories.cusine.southern",
-      "categories.cusine.thia"
+      "categories.cuisine.chinese",
+      "categories.cuisine.indian",
+      "categories.cuisine.italian",
+      "categories.cuisine.mexican",
+      "categories.cuiisine.southern",
+      "categories.cuisine.thia",
+      "categories.cuisine.other"
     ];
     const capitalize = value => {
       return (
@@ -202,7 +203,7 @@ export default reduxForm({
     ingredients: [{}, {}],
     directions: [{}],
     privateRecipe: false,
-    categories: {}
+    categories: { diet: {}, meal: {}, cuisine: {} }
   },
   validate: Validate
 })(withRouter(EditNewRecipe));

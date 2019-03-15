@@ -66,36 +66,42 @@ const CategoryInput = fields => {
         />
       </div>
       <div className="grouped fields">
-        <label>Cusine type:</label>
+        <label>Cuisine type:</label>
         <CheckboxInput
           fields={fields}
           label="Chinese"
-          categoryType="cusine"
+          categoryType="cuisine"
           name="chinese"
         />
         <CheckboxInput
           fields={fields}
           label="Indian"
-          categoryType="cusine"
+          categoryType="cuisine"
           name="indian"
         />
         <CheckboxInput
           fields={fields}
           label="Italian"
-          categoryType="cusine"
+          categoryType="cuisine"
           name="italian"
         />
         <CheckboxInput
           fields={fields}
           label="Mexican"
-          categoryType="cusine"
+          categoryType="cuisine"
           name="mexican"
         />
         <CheckboxInput
           fields={fields}
           label="Thia"
-          categoryType="cusine"
+          categoryType="cuisine"
           name="thia"
+        />
+        <CheckboxInput
+          fields={fields}
+          label="Other*"
+          categoryType="cuisine"
+          name="other"
         />
       </div>
     </div>

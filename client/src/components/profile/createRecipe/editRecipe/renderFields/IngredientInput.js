@@ -63,11 +63,16 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
           <div className="ui divider" />
         </div>
       ))}
+
       <div className="ui large buttons">
         <button
           className="ui button negative"
           type="button"
-          onClick={() => fields.remove(fields.length - 1)}
+          onClick={() => {
+            if (fields.length > 2) {
+              fields.remove(fields.length - 1);
+            }
+          }}
         >
           Remove
         </button>
@@ -75,7 +80,11 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
         <button
           className="ui positive button"
           type="button"
-          onClick={() => fields.push({})}
+          onClick={() => {
+            if (fields.length < 20) {
+              fields.push({});
+            }
+          }}
         >
           Add Ingredient
         </button>

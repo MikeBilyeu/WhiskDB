@@ -25,7 +25,11 @@ const DirectionInput = ({ fields, meta: { touched, error } }) => {
         <button
           className="ui button negative"
           type="button"
-          onClick={() => fields.remove(fields.length - 1)}
+          onClick={() => {
+            if (fields.length > 1) {
+              fields.remove(fields.length - 1);
+            }
+          }}
         >
           Remove
         </button>
@@ -33,7 +37,11 @@ const DirectionInput = ({ fields, meta: { touched, error } }) => {
         <button
           className="ui positive button"
           type="button"
-          onClick={() => fields.push({})}
+          onClick={() => {
+            if (fields.length < 10) {
+              fields.push({});
+            }
+          }}
         >
           Add Step
         </button>

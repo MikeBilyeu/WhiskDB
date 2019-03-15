@@ -1,118 +1,114 @@
-// validate on client side for better ux
-export const Validate = formValues => {
-  const errors = {};
-  // store regex to check validation
-  const titleRegEx = /^[A-Z]{1}((\s)?[a-zA-Z0-9\(\)])+$/;
-  const amountRegEx = /^\d{0,3}(\.\d{1,2}|(?<=\d)\/\d{1,2}|(?<=\d) \d{0,2}((?<! )\/)(?<!\d)\d{1,2})?$/;
-  const ingredientNameRegEx = /^[A-Z0-9][\w ]{2,255}$/;
+// store regex to check validation
+const titleRegEx = /^[A-Z]{1}((\s)?[a-zA-Z0-9\(\)])+$/;
+const amountRegEx = /^\d{0,3}(\.\d{1,2}|(?<=\d)\/\d{1,2}|(?<=\d) \d{0,2}((?<! )\/)(?<!\d)\d{1,2})?$/;
+const ingredientNameRegEx = /^[A-Z0-9][\w ]{2,255}$/;
 
-  // Keep Recipe form inputs consistant w/ validation
+let errors = {};
 
-  // Title validation
-  if (!formValues.title) {
-    errors.title = "Title field is required";
-  } else if (!titleRegEx.test(formValues.title)) {
-    errors.title = "Title is not valid";
+function validateTitle(title) {
+  if (!title) {
+    return (errors.title = "Title field is required");
+  } else if (!titleRegEx.test(title)) {
+    // The field parse doesn't prevent invalid title, must check title here
+    return (errors.title = "Title is not valid");
   }
-  // Time validation
-  if (!formValues.time) {
+}
+
+function validateTime(time) {
+  if (!time) {
     errors.time = {
       hours: "Time field is required",
       minutes: "Time field is required"
     };
-  } else if (formValues.time.hours && isNaN(formValues.time.hours)) {
-    errors.time = { hours: "Time field is required" };
-  } else if (formValues.time.minutes && isNaN(formValues.time.minutes)) {
-    errors.time = { minutes: "Time field is required" };
   }
-  // Servings validation
-  if (!formValues.servings) {
+}
+
+function validateServings(servings) {
+  if (!servings) {
     errors.servings = "Servings field is required";
-  } else if (isNaN(formValues.servings)) {
-    errors.servings = "Servings is not valid";
   }
+}
 
-  // Making sure user enters two or more ingredients for the recipe
-  if (formValues.ingredients && formValues.ingredients.length <= 1) {
-    errors.ingredients = "Must add more ingredients";
-  } else if (formValues.ingredients && formValues.ingredients.length > 1) {
-    errors.ingredients = [];
-    // Loop through ingredients array to validate each ingredient object
-    for (let i = 0; i < formValues.ingredients.length; i++) {
-      errors.ingredients.push({});
-      // validate user enters an amount and ingredient name
-      if (!formValues.ingredients[i].amount) {
-        errors.ingredients[i] = {
-          ...errors.ingredients[i],
-          amount: `Ingredient ${i +
-            1} must contain an amount and ingredient name`
-        };
-      } else if (!amountRegEx.test(formValues.ingredients[i].amount)) {
-        errors.ingredients[i] = {
-          ...errors.ingredients[i],
-          amount: "Ingredient amount is not valid"
-        };
-      }
-      if (!formValues.ingredients[i].ingredient) {
-        errors.ingredients[i] = {
-          ...errors.ingredients[i],
-          ingredient: `Ingredient ${i +
-            1} must contain an amount and ingredient name`
-        };
-      } else if (
-        !ingredientNameRegEx.test(formValues.ingredients[i].ingredient)
-      ) {
-        errors.ingredients[i] = {
-          ...errors.ingredients[i],
-          ingredient: `Ingredient ${i + 1} ingredient name is not valid`
+function validateIngredients(ingredients) {
+  // set errors to an empty array beacuse ingredients input is a FieldArray
+  errors.ingredients = [];
+
+  const numOfIngredients = ingredients ? ingredients.length : 0;
+
+  for (let i = 0; i < numOfIngredients; i++) {
+    errors.ingredients.push({});
+    // validate user enters an amount and ingredient name for each ingredient
+    if (!ingredients[i].amount) {
+      errors.ingredients[i] = {
+        amount: `Ingredient ${i + 1} must contain an amount`
+      };
+    } else if (!amountRegEx.test(ingredients[i].amount)) {
+      errors.ingredients[i] = {
+        amount: "Ingredient amount is not valid"
+      };
+    }
+    if (!ingredients[i].ingredient) {
+      errors.ingredients[i] = {
+        ...errors.ingredients[i],
+        ingredient: `Ingredient ${i + 1} must contain an ingredient name`
+      };
+    } else if (!ingredientNameRegEx.test(ingredients[i].ingredient)) {
+      errors.ingredients[i] = {
+        ...errors.ingredients[i],
+        ingredient: `Ingredient ${i + 1} ingredient name is not valid`
+      };
+    }
+  }
+}
+
+function validateDirections(directions) {
+  // set errors to an empty array beacuse directions input is a FieldArray
+  errors.directions = [];
+  let numOfDirections = directions ? directions.length : 0;
+  for (let i = 0; i < numOfDirections; i++) {
+    errors.directions.push({});
+    if (!/.{15,150}/.test(directions[i].step)) {
+      errors.directions[i] = {
+        step: `step ${i + 1} must be 15 - 150 characters`
+      };
+    }
+  }
+}
+
+function validateCategories(categories) {
+  if (categories) {
+    //get the values of the sub-categories
+    for (let subCategory in categories) {
+      let numOfTrueValues = Object.values(categories[subCategory]).filter(
+        value => value
+      ).length;
+      if (numOfTrueValues < 1 || numOfTrueValues > 3) {
+        errors.categories = {
+          diet: { vegetarian: "categories must be 1 - 3 selected" }
         };
       }
     }
   }
+}
 
-  if (formValues.directions && formValues.directions.length < 1) {
-    errors.directions = "You must add at least one step for directions";
-  } else if (formValues.directions && formValues.directions.length >= 1) {
-    errors.directions = [];
-    for (let i = 0; i < formValues.directions.length; i++) {
-      errors.directions.push({});
-      if (!formValues.directions[i].step) {
-        errors.directions[i] = { step: "You must add a step to directions" };
-      } else if (formValues.directions[i].step.length < 15) {
-        errors.directions[i] = {
-          ...errors.directions[i],
-          step: `step ${i + 1} must be 15 - 150 characters`
-        };
-      } else if (formValues.directions[i] > 150) {
-        errors.directions[i] = {
-          ...errors.directions[i],
-          step: `step ${i + 1} must be 15 - 150 characters`
-        };
-      }
-    }
-  }
+export const Validate = formValues => {
+  const {
+    title,
+    time,
+    servings,
+    ingredients,
+    directions,
+    categories
+  } = formValues;
+  errors = {};
 
-  if (
-    !formValues.categories ||
-    Object.keys(formValues.categories).length === 0
-  ) {
-    errors.categories = "Select  1 - 3 from each category";
-  } else if (Object.keys(formValues.categories).length < 3) {
-    errors.categories = "Select 1 - 3 from each category";
-  } else if (Object.keys(formValues.categories).length === 3) {
-    // check that each category is in the categories object so we can iterate over that object
-
-    for (let subCat in formValues.categories) {
-      // checking that each subCategory contains 1 - 3 true values to validate Categories
-      let allValues = Object.values(formValues.categories[subCat]);
-      let allTrue = allValues.filter(x => x === true);
-      if (allTrue.length < 1 || allTrue.length > 3) {
-        errors.categories = "Select 1 - 3 from each category";
-      }
-    }
-    // - keeping count of the number of true values
-  }
-
+  validateTitle(title);
+  validateTime(time);
+  validateServings(servings);
+  validateIngredients(ingredients);
+  validateDirections(directions);
+  validateCategories(categories);
   console.log(errors);
+
   return errors;
 };
