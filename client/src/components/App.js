@@ -15,7 +15,7 @@ import Home from "./browse/Home";
 import Profile from "./profile/Profile";
 import SignUp from "./auth/SignUp";
 import Login from "./auth/Login";
-import Recipe from "./Recipe";
+import Recipe from "./recipes/Recipe";
 import ScrollToTop from "./ScrollToTop";
 require("dotenv").config();
 
@@ -59,7 +59,7 @@ class App extends React.Component {
                 <PrivateRoute path="/profile/:page?" component={Profile} />
                 <Route path="/sign-up" component={SignUp} />
                 <Route path="/login" component={Login} />
-                <Route path="/recipe" component={Recipe} />
+                <Route path="/recipe/:recipe_id" component={Recipe} />
               </Switch>
             </div>
             <NavigationBar />

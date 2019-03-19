@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3001;
 const createUser = require("./queries/createUser");
 const userLogin = require("./queries/userLogin");
 const createRecipe = require("./queries/createRecipe");
+const getRecipe = require("./queries/getRecipe");
 const passport = require("passport");
 
 // Parse middleware
@@ -24,6 +25,8 @@ app.post("/register", createUser.createUser);
 app.post("/login", userLogin.userLogin);
 
 app.post("/profile/create-recipe", createRecipe.createRecipe);
+
+app.get("/recipe", getRecipe.getRecipe);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);
