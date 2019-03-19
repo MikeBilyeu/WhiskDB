@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS, GET_RECIPE } from "./types";
+import { GET_ERRORS, GET_RECIPE, GET_RECIPE_REQUEST } from "./types";
 
 import { reset } from "redux-form";
 
@@ -22,10 +22,11 @@ export const createRecipe = (recipeData, history) => dispatch => {
 };
 
 export const getRecipe = recipe_id => dispatch => {
+  dispatch({ type: GET_RECIPE_REQUEST });
   axios
     .get("/recipe", { params: recipe_id })
     .then(res => {
       dispatch({ type: GET_RECIPE, payload: res.data });
     })
-    .catch(err => console.log(err));
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };

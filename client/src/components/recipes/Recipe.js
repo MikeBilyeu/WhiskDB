@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 // Action Creator
 import { getRecipe } from "../../actions/recipeActions";
 
+import { Loading } from "../loading/Loading";
+
 class Recipe extends React.Component {
   componentDidMount() {
     const recipe_id = this.props.match.params;
@@ -33,7 +35,8 @@ class Recipe extends React.Component {
       ingredients,
       directions,
       footnote
-    } = this.props.recipe;
+    } = this.props.recipe.recipe;
+    const { isFetching } = this.props.recipe;
 
     const renderIngredientList =
       ingredients &&
@@ -53,6 +56,11 @@ class Recipe extends React.Component {
       directions.map((step, i) => {
         return <li key={`step${i}`}>{step.step}</li>;
       });
+
+    // display loading if isFetching
+    if (isFetching) {
+      return <Loading />;
+    }
 
     return (
       <div>

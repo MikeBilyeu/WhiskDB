@@ -19,7 +19,7 @@ const getRecipe = (request, response) => {
       .query("SELECT * FROM recipes WHERE recipe_id = $1", [recipe_id])
       .then(res => {
         client.release();
-        response.json(res.rows[0]);
+        response.status(200).json(res.rows[0]);
       })
       .catch(e => {
         client.release();
