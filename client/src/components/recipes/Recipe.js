@@ -10,6 +10,17 @@ class Recipe extends React.Component {
     const recipe_id = this.props.match.params;
     this.props.getRecipe(recipe_id);
   }
+  renderFootnote = footnote => {
+    if (footnote !== null) {
+      return (
+        <div>
+          <h3>Footnote:</h3>
+          <p>{footnote}</p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   render() {
     console.log(this.props.recipe);
@@ -56,6 +67,10 @@ class Recipe extends React.Component {
         <ul>{renderIngredientList}</ul>
         <h2>directions</h2>
         <ol>{renderDirections}</ol>
+        {this.renderFootnote(footnote)}
+        <h3>How was it?</h3>
+        <button>Like</button>
+        <button>Dislike</button>
       </div>
     );
   }
