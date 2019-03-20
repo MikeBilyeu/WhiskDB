@@ -24,8 +24,29 @@ class Recipe extends React.Component {
     return null;
   };
 
+  formatDate(dateTime) {
+    const date = new Date(dateTime);
+    const allMonths = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    const month = allMonths[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${month} ${day}, ${year}`;
+  }
+
   render() {
-    console.log(this.props.recipe);
     const {
       title,
       created_at,
@@ -66,7 +87,7 @@ class Recipe extends React.Component {
     return (
       <div>
         <h1>{title}</h1>
-        <div>{created_at}</div>
+        <div>{this.formatDate(created_at)}</div>
         <div>rating</div>
         <div>Time:{total_time_mins}</div>
         <div>-{username}</div>
