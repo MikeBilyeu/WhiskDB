@@ -76,7 +76,12 @@ class Recipe extends React.Component {
     const renderDirections =
       directions &&
       directions.map((step, i) => {
-        return <li key={`step${i}`}>{step.step}</li>;
+        return (
+          <li key={`step${i}`}>
+            <h4>Step {i + 1}</h4>
+            {step.step}
+          </li>
+        );
       });
 
     // display loading if isFetching
