@@ -34,7 +34,8 @@ class Recipe extends React.Component {
       servings,
       ingredients,
       directions,
-      footnote
+      footnote,
+      username
     } = this.props.recipe.recipe;
     const { isFetching } = this.props.recipe;
 
@@ -68,7 +69,7 @@ class Recipe extends React.Component {
         <div>{created_at}</div>
         <div>rating</div>
         <div>Time:{total_time_mins}</div>
-        <div>-Create_by</div>
+        <div>-{username}</div>
         <img href="recipe photo" src={image_url} />
         <button>Servings {servings}</button>
         <h2>Ingredients</h2>
