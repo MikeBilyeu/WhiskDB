@@ -24,7 +24,6 @@ const createRecipe = (request, response) => {
     created_by,
     categories
   } = request.body;
-  console.log(request.body);
 
   // Form validation
   const errors = validateRecipeInput(request.body);
@@ -37,9 +36,8 @@ const createRecipe = (request, response) => {
   const timeMinutes = time.minutes > 0 ? parseInt(time.minutes) : 0;
   const total_time_mins = timeHours * 60 + timeMinutes;
 
-  let recipe_id = null;
-
   pool.connect().then(client => {
+    let recipe_id = null;
     return client
       .query(
         "INSERT INTO recipes (created_by, title, servings, total_time_mins, footnote, private, directions, ingredients) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING recipe_id",
@@ -120,7 +118,9 @@ const createRecipe = (request, response) => {
           }
         }
       })
-      .then(() => response.status(200).send("Recipe added"))
+      .then(() => {
+        return response.status(200).send({ recipe_id: recipe_id });
+      })
       .catch(e => {
         client.release();
         console.log(e);

@@ -10,8 +10,9 @@ export const createRecipe = (recipeData, history) => dispatch => {
     .then(res => {
       //clear the recipe form after successful submit
       dispatch(reset("newRecipe"));
+      let recipe_id = res.data.recipe_id;
       // redirect to home after successful submit
-      return history.push("/");
+      return history.push(`/recipe/${recipe_id}`);
     })
     .catch(err =>
       dispatch({
