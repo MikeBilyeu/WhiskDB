@@ -1,4 +1,9 @@
-import { GET_RECIPE, GET_RECIPE_REQUEST } from "../actions/types";
+import {
+  GET_RECIPE,
+  GET_RECIPE_REQUEST,
+  LIKED_RECIPE,
+  DISLIKED_RECIPE
+} from "../actions/types";
 
 const initialState = { recipe: {}, isFetching: true };
 
@@ -8,6 +13,10 @@ export default function(state = initialState, action) {
       return { ...state, isFetching: true };
     case GET_RECIPE:
       return { ...state, recipe: action.payload, isFetching: false };
+    case LIKED_RECIPE:
+      return { ...state, liked: !state.liked, disliked: false };
+    case DISLIKED_RECIPE:
+      return { ...state, disliked: !state.disliked, liked: false };
     default:
       return state;
   }

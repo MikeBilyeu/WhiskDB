@@ -5,6 +5,7 @@ const createUser = require("./queries/createUser");
 const userLogin = require("./queries/userLogin");
 const createRecipe = require("./queries/createRecipe");
 const getRecipe = require("./queries/getRecipe");
+const voteRecipe = require("./queries/voteRecipe");
 const passport = require("passport");
 
 // Parse middleware
@@ -27,6 +28,9 @@ app.post("/login", userLogin.userLogin);
 app.post("/profile/create-recipe", createRecipe.createRecipe);
 
 app.get("/recipe", getRecipe.getRecipe);
+
+//post route for Liked_recips
+app.post("/recipe/vote", voteRecipe.voteRecipe);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);
