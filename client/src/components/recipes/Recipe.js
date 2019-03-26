@@ -13,8 +13,11 @@ import { Loading } from "../loading/Loading";
 
 class Recipe extends React.Component {
   componentDidMount() {
-    const recipe_id = this.props.match.params;
-    this.props.getRecipe(recipe_id);
+    const recipe_id = this.props.match.params.recipe_id;
+    const user_id = this.props.auth.isAuthenticated
+      ? this.props.auth.user.user_id
+      : null;
+    this.props.getRecipe(recipe_id, user_id);
   }
   renderFootnote = footnote => {
     if (footnote !== null) {
@@ -63,10 +66,10 @@ class Recipe extends React.Component {
       username
     } = this.props.recipe.recipe;
     const { isFetching } = this.props.recipe;
-    const recipe_id = Number(this.props.match.params.recipe_id);
+    const recipe_id = this.props.match.params.recipe_id;
     const user_id = this.props.auth.isAuthenticated
       ? this.props.auth.user.user_id
-      : "noUserId";
+      : null;
 
     const renderIngredientList =
       ingredients &&
@@ -118,7 +121,7 @@ class Recipe extends React.Component {
             // check for user id
             // if no user id route to login page
             // else all likeRecipe action
-            if (user_id !== "noUserId") {
+            if (user_id !== null) {
               this.props.likeRecipe(recipe_id, user_id);
             } else {
               console.log("user Must login to vote");
@@ -130,7 +133,7 @@ class Recipe extends React.Component {
         </button>
         <button
           onClick={() => {
-            if (user_id !== "noUserId") {
+            if (user_id !== null) {
               this.props.dislikeRecipe(recipe_id, user_id);
             } else {
               console.log("user Must login to vote");
