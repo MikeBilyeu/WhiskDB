@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Action Creator
 import {
@@ -65,7 +66,7 @@ class Recipe extends React.Component {
       footnote,
       username
     } = this.props.recipe.recipe;
-    const { isFetching } = this.props.recipe;
+    const { isFetching, voteClicked } = this.props.recipe;
     const recipe_id = this.props.match.params.recipe_id;
     const user_id = this.props.auth.isAuthenticated
       ? this.props.auth.user.user_id
@@ -116,31 +117,27 @@ class Recipe extends React.Component {
         <ol>{renderDirections}</ol>
         {this.renderFootnote(footnote)}
         <h3>How was it?</h3>
+        {voteClicked && user_id === null ? (
+          <h1>You must {<Link to="/login">Login</Link>} to vote</h1>
+        ) : null}
         <button
           onClick={() => {
-            // check for user id
-            // if no user id route to login page
-            // else all likeRecipe action
-            if (user_id !== null) {
-              this.props.likeRecipe(recipe_id, user_id);
-            } else {
-              console.log("user Must login to vote");
-            }
+            this.props.likeRecipe(recipe_id, user_id);
           }}
-          style={{ color: this.props.recipe.liked ? "green" : "black" }}
+          style={{
+            color:
+              this.props.recipe.liked && user_id !== null ? "green" : "black"
+          }}
         >
           Like
         </button>
         <button
           onClick={() => {
-            if (user_id !== null) {
-              this.props.dislikeRecipe(recipe_id, user_id);
-            } else {
-              console.log("user Must login to vote");
-            }
+            this.props.dislikeRecipe(recipe_id, user_id);
           }}
           style={{
-            color: this.props.recipe.disliked ? "red" : "black"
+            color:
+              this.props.recipe.disliked && user_id !== null ? "red" : "black"
           }}
         >
           Dislike
