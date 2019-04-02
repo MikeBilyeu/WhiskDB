@@ -1,15 +1,13 @@
 import React from "react";
 
-const FilterButton = props => {
-  return <button>{props.buttonName}</button>;
-};
+import HeaderOption from "../../options/HeaderOption";
 
 const RecipeFilter = props => {
   return (
     <div>
-      <FilterButton buttonName="Diet" />
-      <FilterButton buttonName="Cuisine" />
-      <FilterButton buttonName="Sort" />
+      <HeaderOption buttonName="Diet" />
+      <HeaderOption buttonName="Cuisine" />
+      <HeaderOption buttonName="Sort" />
     </div>
   );
 };

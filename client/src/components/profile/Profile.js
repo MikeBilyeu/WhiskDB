@@ -19,7 +19,7 @@ class Profile extends React.Component {
         <Route path="/profile/create-recipe" component={EditNewRecipe} />
         <Route path="/profile/edit" component={EditProfile} />
         <Route path="/profile/my-recipes" component={MyRecipes} />
-        <Route path="/profile/SavedRecipes" component={SavedRecipes} />
+        <Route path="/profile/saved-recipes" component={SavedRecipes} />
         <Route path="/profile/contact" component={Contact} />
         <Route
           component={() => {
@@ -31,15 +31,11 @@ class Profile extends React.Component {
                   gridGap: "2rem"
                 }}
               >
-                <div className="ui center aligned icon header">
-                  <i className="user circle icon" />
-                  <h2>{user.username}</h2>
-                </div>
-
-                <Button text="Create Recipe" linkTo="/profile/create-recipe" />
-                <Button text="My Recipes" linkTo="/profile/my-recipes" />
-                <Button text="Saved Recipes" linkTo="/profile/saved-recipes" />
+                <h1>Profile</h1>
                 <Button text="Edit Profile" linkTo="/profile/edit" />
+                <Button text="My Recipes" linkTo="/profile/my-recipes" />
+                <Button text="Create Recipe" linkTo="/profile/create-recipe" />
+                <Button text="Saved Recipes" linkTo="/profile/saved-recipes" />
                 <Button text="Contact Us" linkTo="/profile/contact" />
               </div>
             );
@@ -56,7 +52,4 @@ Profile.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth
 });
-export default connect(
-  mapStateToProps,
-  {}
-)(Profile);
+export default connect(mapStateToProps)(Profile);
