@@ -40,6 +40,20 @@ const getRecipe = (request, response) => {
           // checking if user is auth
           client.release();
           if (user_id !== null) {
+            // check if user saved recipe
+            client
+              .query(
+                "SELECT * FROM saved_recipes WHERE saved_by = $1 AND recipe_saved = $2",
+                [user_id, recipe_id]
+              )
+              .then(res => {
+                if (res.rowCount > 0) {
+                  recipeData = { ...recipeData, saved: true };
+                } else if (res.rowCount === 0) {
+                  recipeData = { ...recipeData, saved: false };
+                }
+              });
+
             client
               .query(
                 "SELECT * FROM liked_recipes WHERE liked_by = $1 AND recipe_liked = $2",

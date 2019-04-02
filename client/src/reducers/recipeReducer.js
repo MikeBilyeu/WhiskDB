@@ -3,7 +3,8 @@ import {
   GET_RECIPE_REQUEST,
   LIKED_RECIPE,
   DISLIKED_RECIPE,
-  VOTE_CLICKED
+  VOTE_CLICKED,
+  SAVE_RECIPE
 } from "../actions/types";
 
 const initialState = { recipe: {}, isFetching: true };
@@ -14,6 +15,8 @@ export default function(state = initialState, action) {
       return { ...state, isFetching: true };
     case GET_RECIPE:
       return { ...state, recipe: action.payload, isFetching: false };
+    case SAVE_RECIPE:
+      return { ...state, saved: !state.saved };
     case LIKED_RECIPE:
       return { ...state, liked: !state.liked, disliked: false };
     case DISLIKED_RECIPE:

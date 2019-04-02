@@ -5,7 +5,8 @@ import {
   GET_RECIPE_REQUEST,
   LIKED_RECIPE,
   DISLIKED_RECIPE,
-  VOTE_CLICKED
+  VOTE_CLICKED,
+  SAVE_RECIPE
 } from "./types";
 
 import { reset } from "redux-form";
@@ -40,9 +41,27 @@ export const getRecipe = (recipe_id, user_id) => dispatch => {
       } else if (res.data.vote === "disliked") {
         dispatch({ type: DISLIKED_RECIPE });
       }
-      // else if diliked displach disliked
+      if (res.data.saved) {
+        dispatch({ type: SAVE_RECIPE });
+      }
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+};
+
+// Save Recipe Action Creator
+export const saveRecipe = (recipe_id, user_id) => dispatch => {
+  if (user_id !== null) {
+    dispatch({ type: SAVE_RECIPE });
+    console.log("USER SAVED THE RECIPE");
+    console.log("Recipe: ", recipe_id);
+    console.log("user: ", user_id);
+    axios
+      .post("/save-recipe", { user_id, recipe_id })
+      .then(res => {
+        console.log("User saved the recipe");
+      })
+      .catch(err => console.log(err));
+  }
 };
 
 // This is an action creator for when a user likes a recipe

@@ -6,3 +6,4 @@ export const GET_RECIPE_REQUEST = "GET_RECIPE_REQUEST";
 export const LIKED_RECIPE = "LIKED_RECIPE";
 export const DISLIKED_RECIPE = "DISLIKED_RECIPE";
 export const VOTE_CLICKED = "VOTE_CLICKED";
+export const SAVE_RECIPE = "SAVE_RECIPE";

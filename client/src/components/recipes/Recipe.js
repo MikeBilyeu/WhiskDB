@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import RecipeHeader from "./RecipeHeader";
 // Action Creator
 import {
   getRecipe,
@@ -104,6 +105,7 @@ class Recipe extends React.Component {
 
     return (
       <div>
+        <RecipeHeader recipe_id={recipe_id} user_id={user_id} />
         <h1>{title}</h1>
         <div>{this.formatDate(created_at)}</div>
         <div>rating</div>
