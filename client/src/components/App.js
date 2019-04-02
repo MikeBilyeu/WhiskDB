@@ -39,31 +39,18 @@ if (localStorage.jwtToken) {
 }
 
 class App extends React.Component {
-  state = { data: [] };
-
   render() {
     return (
       <Router>
         <ScrollToTop>
-          <div>
-            <Header />
-            <div style={{ padding: "6rem 2rem 5rem 2rem" }}>
-              <Route
-                exact
-                path="/"
-                component={() => (
-                  <Home onSubmit={this.props.onSubmit} data={this.state.data} />
-                )}
-              />
-              <Switch>
-                <PrivateRoute path="/profile/:page?" component={Profile} />
-                <Route path="/sign-up" component={SignUp} />
-                <Route path="/login" component={Login} />
-                <Route path="/recipe/:recipe_id" component={Recipe} />
-              </Switch>
-            </div>
-            <NavigationBar />
-          </div>
+          <Route exact path="/" component={Home} />
+          <Switch>
+            <PrivateRoute path="/profile/:page?" component={Profile} />
+            <Route path="/sign-up" component={SignUp} />
+            <Route path="/login" component={Login} />
+            <Route path="/recipe/:recipe_id" component={Recipe} />
+          </Switch>
+          <NavigationBar />
         </ScrollToTop>
       </Router>
     );
