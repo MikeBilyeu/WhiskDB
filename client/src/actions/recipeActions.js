@@ -6,7 +6,9 @@ import {
   LIKED_RECIPE,
   DISLIKED_RECIPE,
   VOTE_CLICKED,
-  SAVE_RECIPE
+  SAVE_RECIPE,
+  GET_SAVED_RECIPES,
+  GET_SAVED_RECIPES_REQUEST
 } from "./types";
 
 import { reset } from "redux-form";
@@ -44,6 +46,17 @@ export const getRecipe = (recipe_id, user_id) => dispatch => {
       if (res.data.saved) {
         dispatch({ type: SAVE_RECIPE });
       }
+    })
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+};
+
+export const getSavedRecipes = user_id => dispatch => {
+  dispatch({ type: GET_SAVED_RECIPES_REQUEST });
+  // dispatch({ type: GET_RECIPE_REQUEST });
+  axios
+    .get("/save-recipe", { params: { user_id } })
+    .then(res => {
+      dispatch({ type: GET_SAVED_RECIPES, payload: res.data });
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
