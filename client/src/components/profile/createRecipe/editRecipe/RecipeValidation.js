@@ -1,5 +1,5 @@
 // store regex to check validation
-const titleRegEx = /^[A-Z]{1}((\s)?[a-zA-Z0-9\(\)])+$/;
+const titleRegEx = /^[A-Z]{1}((\s)?[a-zA-Z0-9])+$/;
 const amountRegEx = /^\d{0,3}(\.\d{1,2}|(?<=\d)\/\d{1,2}|(?<=\d) \d{0,2}((?<! )\/)(?<!\d)\d{1,2})?$/;
 const ingredientNameRegEx = /^[A-Z0-9][\w ]{2,255}$/;
 let errors = {};

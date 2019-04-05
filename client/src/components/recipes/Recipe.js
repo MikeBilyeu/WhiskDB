@@ -56,6 +56,7 @@ class Recipe extends React.Component {
   }
 
   render() {
+    console.log(this.props.recipe.recipe);
     const {
       title,
       created_at,
@@ -97,11 +98,19 @@ class Recipe extends React.Component {
         );
       });
 
+    const renderTime = totalMinutes => {
+      let hours =
+        Math.floor(totalMinutes / 60) !== 0
+          ? `${Math.floor(totalMinutes / 60)}h`
+          : ``;
+      let minutes = totalMinutes % 60 !== 0 ? `${totalMinutes % 60}m` : ``;
+      return `${hours} ${minutes}`;
+    };
+
     // display loading if isFetching
     if (isFetching) {
       return <Loading />;
     }
-    console.log(this.props);
 
     return (
       <div>
@@ -109,9 +118,9 @@ class Recipe extends React.Component {
         <h1>{title}</h1>
         <div>{this.formatDate(created_at)}</div>
         <div>rating</div>
-        <div>Time:{total_time_mins}</div>
+        <div>Time:{renderTime(total_time_mins)}</div>
         <div>-{username}</div>
-        <img href="recipe photo" src={image_url} />
+        <img href="recipe photo" alt="" src={image_url} />
         <button>Servings {servings}</button>
         <h2>Ingredients</h2>
         <ul>{renderIngredientList}</ul>

@@ -43,9 +43,6 @@ export const getRecipe = (recipe_id, user_id) => dispatch => {
       } else if (res.data.vote === "disliked") {
         dispatch({ type: DISLIKED_RECIPE });
       }
-      if (res.data.saved) {
-        dispatch({ type: SAVE_RECIPE });
-      }
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
@@ -65,9 +62,6 @@ export const getSavedRecipes = user_id => dispatch => {
 export const saveRecipe = (recipe_id, user_id) => dispatch => {
   if (user_id !== null) {
     dispatch({ type: SAVE_RECIPE });
-    console.log("USER SAVED THE RECIPE");
-    console.log("Recipe: ", recipe_id);
-    console.log("user: ", user_id);
     axios
       .post("/save-recipe", { user_id, recipe_id })
       .then(res => {

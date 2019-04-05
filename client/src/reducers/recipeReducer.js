@@ -14,7 +14,12 @@ export default function(state = initialState, action) {
     case GET_RECIPE_REQUEST:
       return { ...state, isFetching: true };
     case GET_RECIPE:
-      return { ...state, recipe: action.payload, isFetching: false };
+      return {
+        ...state,
+        recipe: action.payload,
+        isFetching: false,
+        saved: action.payload.saved
+      };
     case SAVE_RECIPE:
       return { ...state, saved: !state.saved };
     case LIKED_RECIPE:

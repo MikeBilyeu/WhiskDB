@@ -9,7 +9,6 @@ import { setCurrentUser, logoutUser } from "../actions/authActions";
 import PrivateRoute from "../private-route/PrivateRoute";
 import store from "../store/store";
 
-import Header from "./Header";
 import NavigationBar from "./nav/NavigationBar";
 import Home from "./browse/Home";
 import Profile from "./profile/Profile";

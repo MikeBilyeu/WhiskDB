@@ -9,7 +9,6 @@ import { saveRecipe } from "../../actions/recipeActions";
 
 const RecipeHeader = props => {
   const { recipe_id, user_id } = props;
-
   return (
     <div>
       <button onClick={() => props.history.goBack()}>Back</button>

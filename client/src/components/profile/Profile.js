@@ -12,8 +12,6 @@ import EditNewRecipe from "./createRecipe/editRecipe/EditNewRecipe";
 
 class Profile extends React.Component {
   render() {
-    const { user } = this.props.auth;
-
     return (
       <Switch>
         <Route path="/profile/create-recipe" component={EditNewRecipe} />
