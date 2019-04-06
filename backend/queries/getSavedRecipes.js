@@ -14,63 +14,72 @@ const getSavedRecipes = (request, response) => {
   const { user_id } = request.query;
   //connect pool
   pool.connect().then(client => {
-    // Searching saved recipes where saved_by == user_id
+    // searching saved recipe table with user id
     return client
-      .query("SELECT * FROM saved_recipes WHERE saved_by = $1", [user_id]) //1
+      .query("SELECT recipe_saved FROM saved_recipes WHERE saved_by = $1", [
+        user_id
+      ])
       .then(res => {
-        let savedRecipe_ids = [...res.rows];
-        let savedRecipeData = [];
-        // Response if user has 0 saved recipes
-        if (savedRecipe_ids.length === 0) {
-          response.status(200).json(savedRecipeData);
+        client.release();
+
+        // make array of recipe ids to search
+        let recipe_ids = res.rows.map(recipe => recipe.recipe_saved);
+        let savedRecipes = [];
+
+        // response if user has no saved recipes else it wont respond
+        if (recipe_ids.length === 0) {
+          response.status(200).json(savedRecipes);
         }
-        // Loop through recipe ids and get the data for each recipe
-        for (let i = 0; i < savedRecipe_ids.length; i++) {
-          let recipe_id = savedRecipe_ids[i].recipe_saved;
-          // getting recipe data from the recipe table
-          let currentRecipeData = {};
-          // get the data for each recipe
-          client
-            .query("SELECT * FROM recipes WHERE recipe_id = $1", [recipe_id]) //2
-            .then(res => {
-              let { title, total_time_mins, image_url } = res.rows[0];
-              currentRecipeData = {
-                recipe_id,
-                title,
-                total_time_mins,
-                image_url
-              };
-            })
-            .then(() => {
-              // get number of likes
-              client
-                .query("SELECT * FROM liked_recipes WHERE recipe_liked = $1", [
-                  recipe_id
-                ]) //3
-                .then(res => {
-                  let likes = res.rowCount;
-                  currentRecipeData = { ...currentRecipeData, likes };
-                });
-            })
-            .then(() => {
-              // get number of dislikes
+        // search recipes
+        client
+          .query(
+            "SELECT recipe_id, title, image_url, total_time_mins FROM recipes WHERE recipe_id = ANY ($1)",
+            [recipe_ids]
+          )
+          .then(res => {
+            savedRecipes = [...res.rows];
+          })
+          .then(() => {
+            // loop throughe the array of ids and get the recipe id and search
+            // the likes table wit it
+
+            for (let id of recipe_ids) {
+              // search like table with recipe id to get number of likes
               client
                 .query(
-                  "SELECT * FROM disliked_recipes WHERE recipe_disliked = $1",
-                  [recipe_id]
-                ) //4
+                  "SELECT recipe_liked FROM liked_recipes WHERE recipe_liked = $1",
+                  [id]
+                )
+                .then(res => {
+                  let likes = res.rowCount;
+                  //store likes in savedRecipes
+                  savedRecipes.map(recipe => {
+                    if (recipe.recipe_id === id) {
+                      return (recipe.likes = likes);
+                    }
+                  });
+                });
+              // search dislike table with recipe id to get number of dislikes
+              client
+                .query(
+                  "SELECT recipe_disliked FROM disliked_recipes WHERE recipe_disliked = $1",
+                  [id]
+                )
                 .then(res => {
                   let dislikes = res.rowCount;
-                  currentRecipeData = { ...currentRecipeData, dislikes };
-                  savedRecipeData = [...savedRecipeData, currentRecipeData];
-                  // responed when all data has been added
-
-                  if (i === savedRecipe_ids.length - 1) {
-                    response.status(200).json(savedRecipeData);
+                  //store dislikes in savedRecipes
+                  savedRecipes.map(recipe => {
+                    if (recipe.recipe_id === id) {
+                      return (recipe.dislikes = dislikes);
+                    }
+                  });
+                  // This will run when the last recipe has finished
+                  if (id === recipe_ids[recipe_ids.length - 1]) {
+                    response.status(200).json(savedRecipes);
                   }
                 });
-            });
-        }
+            }
+          });
       })
       .catch(err => {
         client.release();
