@@ -64,6 +64,7 @@ const getSavedRecipes = (request, response) => {
                   currentRecipeData = { ...currentRecipeData, dislikes };
                   savedRecipeData = [...savedRecipeData, currentRecipeData];
                   // responed when all data has been added
+
                   if (i === savedRecipe_ids.length - 1) {
                     response.status(200).json(savedRecipeData);
                   }
