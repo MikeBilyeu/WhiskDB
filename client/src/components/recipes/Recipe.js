@@ -21,17 +21,6 @@ class Recipe extends React.Component {
       : null;
     this.props.getRecipe(recipe_id, user_id);
   }
-  renderFootnote = footnote => {
-    if (footnote !== null) {
-      return (
-        <div>
-          <h3>Footnote:</h3>
-          <p>{footnote}</p>
-        </div>
-      );
-    }
-    return null;
-  };
 
   formatDate(dateTime) {
     const date = new Date(dateTime);
@@ -66,13 +55,37 @@ class Recipe extends React.Component {
       ingredients,
       directions,
       footnote,
-      username
+      username,
+      likes,
+      dislikes
     } = this.props.recipe.recipe;
     const { isFetching, voteClicked } = this.props.recipe;
     const recipe_id = this.props.match.params.recipe_id;
     const user_id = this.props.auth.isAuthenticated
       ? this.props.auth.user.user_id
       : null;
+
+    const renderRating = (likes, dislikes) => {
+      let totalVotes = likes + dislikes;
+      // get a rating of 0 - 5
+      // rating is num of likes divided by total votes multiplied by 5
+      let rating = totalVotes === 0 ? 5 : (likes / totalVotes) * 5;
+      return `${rating} stars from ${totalVotes} vote${
+        totalVotes === 1 ? "" : "s"
+      }`;
+    };
+
+    const renderFootnote = footnote => {
+      if (footnote !== null) {
+        return (
+          <div>
+            <h3>Footnote:</h3>
+            <p>{footnote}</p>
+          </div>
+        );
+      }
+      return null;
+    };
 
     const renderIngredientList =
       ingredients &&
@@ -117,7 +130,7 @@ class Recipe extends React.Component {
         <RecipeHeader recipe_id={recipe_id} user_id={user_id} />
         <h1>{title}</h1>
         <div>{this.formatDate(created_at)}</div>
-        <div>rating</div>
+        <div>{renderRating(likes, dislikes)}</div>
         <div>Time:{renderTime(total_time_mins)}</div>
         <div>-{username}</div>
         <img href="recipe photo" alt="" src={image_url} />
@@ -126,7 +139,7 @@ class Recipe extends React.Component {
         <ul>{renderIngredientList}</ul>
         <h2>Directions</h2>
         <ol>{renderDirections}</ol>
-        {this.renderFootnote(footnote)}
+        {renderFootnote(footnote)}
         <h3>How was it?</h3>
         {voteClicked && user_id === null ? (
           <h1>You must {<Link to="/login">Login</Link>} to vote</h1>

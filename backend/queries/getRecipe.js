@@ -37,6 +37,27 @@ const getRecipe = (request, response) => {
             });
         })
         .then(() => {
+          //get number of likes
+          client
+            .query("SELECT * FROM liked_recipes WHERE recipe_liked = $1", [
+              recipe_id
+            ])
+            .then(res => {
+              recipeData = { ...recipeData, likes: res.rowCount };
+            });
+        })
+        .then(() => {
+          // get number of dislikes
+          client
+            .query(
+              "SELECT * FROM disliked_recipes WHERE recipe_disliked = $1",
+              [recipe_id]
+            )
+            .then(res => {
+              recipeData = { ...recipeData, dislikes: res.rowCount };
+            });
+        })
+        .then(() => {
           // checking if user is auth
           client.release();
           if (user_id !== null) {
