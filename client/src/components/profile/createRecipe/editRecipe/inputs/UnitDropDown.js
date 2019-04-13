@@ -8,19 +8,20 @@ const RenderDropDown = ({ input }) => {
       <label>Unit</label>
       <select className="ui fluid dropdown" {...input}>
         <option value="">None</option>
-        <option disabled>———Volume———</option>
-        <option value="teaspoon">Teaspoon</option>
-        <option value="tablespoon">Tablespoon</option>
-        <option value="fluid ounce">Fluid Ounce</option>
-        <option value="gill">Gill</option>
-        <option value="cup">Cup</option>
-        <option value="pint">Pint</option>
-        <option value="quart">Quart</option>
-        <option value="gallon">Gallon</option>
+        <option disabled>————Weight————</option>
+        <option value="gram">Gram</option>
+        <option value="kilogram">Kilogram</option>
+        <option value="ounce">Ounce(28g)</option>
+        <option value="pound">Pound(454g)</option>
+
+        <option disabled>————Volume————</option>
         <option value="milliliter">Milliliter</option>
         <option value="liter">Liter</option>
-        <option value="deciliter">Deciliter</option>
-        <option disabled>———Approximate———</option>
+        <option value="teaspoon">Teaspoon(5ml)</option>
+        <option value="tablespoon">Tablespoon(15ml)</option>
+        <option value="cup">Cup(237ml)</option>
+
+        <option disabled>————Approximate————</option>
         <option value="drop">Drop</option>
         <option value="smidgen">Smidgen</option>
         <option value="pinch">Pinch</option>
@@ -30,12 +31,6 @@ const RenderDropDown = ({ input }) => {
         <option value="medium">Medium</option>
         <option value="large">Large</option>
         <option value="slice">Slice</option>
-        <option disabled>———Mass & Weight———</option>
-        <option value="pound">Pound</option>
-        <option value="ounce">Ounce</option>
-        <option value="milligram">Milligram</option>
-        <option value="gram">Gram</option>
-        <option value="kilogram">Kilogram</option>
       </select>
     </div>
   );

@@ -22,7 +22,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
   };
   //make sure that user input is only number, / or a space, or .
   const amountParse = value => {
-    const amountRegEx = /^\d{0,3}(\.\d{0,2}|(?<=\d)\/\d{0,2}|(?<=\d) \d{0,2}((?<! )\/)?(?<!\d)\d{0,2})?/;
+    const amountRegEx = /^\d{0,3}(\.\d{0,2}|(?<=\d)\/\d{0,2}|(?<=\d) \d?((?<! )\/)?(?<!\d)[1-9]{0,2})?/;
     let strArr = value.match(amountRegEx) || [""];
     return value && strArr[0];
   };

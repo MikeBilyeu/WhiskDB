@@ -135,7 +135,7 @@ class EditNewRecipe extends React.Component {
               name="servings"
               component={TextInput}
               label="Number of servings"
-              placeholder="3"
+              placeholder="2"
               addClass="four wide"
               parse={numberParse}
             />
