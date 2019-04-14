@@ -32,7 +32,6 @@ class EditNewRecipe extends React.Component {
   }
 
   handleSubmit = values => {
-    // maybe get the created_by user id from the backend after it ahs been
     const newRecipe = {
       ...values,
       created_by: this.props.auth.user.user_id

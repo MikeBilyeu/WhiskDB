@@ -79,7 +79,7 @@ const createRecipe = (request, response) => {
   const timeMinutes = time.minutes > 0 ? parseInt(time.minutes) : 0;
   const total_time_mins = timeHours * 60 + timeMinutes;
 
-  ingredients = formatIngredientList(ingredients);
+  let metricIngredients = formatIngredientList(ingredients);
 
   pool.connect().then(client => {
     let recipe_id = null;
@@ -94,7 +94,7 @@ const createRecipe = (request, response) => {
           footnote,
           privateRecipe,
           directions,
-          ingredients
+          metricIngredients
         ]
       )
       .then(res => {
@@ -152,8 +152,6 @@ const createRecipe = (request, response) => {
                   [subKeys[j]]
                 )
                 .then(res => {
-                  console.log(res.rows[0].category_id);
-                  console.log(recipe_id);
                   client.query(
                     "INSERT INTO recipes_join_categories (recipe, category) VALUES ($1, $2)",
                     [recipe_id, res.rows[0].category_id]
