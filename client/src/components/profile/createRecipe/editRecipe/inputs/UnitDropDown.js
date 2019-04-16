@@ -31,6 +31,8 @@ const RenderDropDown = ({ input }) => {
         <option value="medium">Medium</option>
         <option value="large">Large</option>
         <option value="slice">Slice</option>
+        <option value="stalk">Stalk</option>
+        <option value="clove">Clove</option>
       </select>
     </div>
   );
