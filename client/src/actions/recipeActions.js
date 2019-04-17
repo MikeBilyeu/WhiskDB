@@ -8,7 +8,8 @@ import {
   VOTE_CLICKED,
   SAVE_RECIPE,
   GET_SAVED_RECIPES,
-  GET_SAVED_RECIPES_REQUEST
+  GET_SAVED_RECIPES_REQUEST,
+  TOGGLE_UNIT
 } from "./types";
 
 import { reset } from "redux-form";
@@ -101,4 +102,8 @@ export const dislikeRecipe = (recipe_id, user_id) => dispatch => {
       })
       .catch(err => console.log(err));
   }
+};
+
+export const toggleUnit = unit => {
+  return { type: TOGGLE_UNIT, payload: unit };
 };

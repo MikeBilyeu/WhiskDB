@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import RecipeHeader from "./RecipeHeader";
+import ServingsAndUnit from "./servingsAndUnit/ServingsAndUnit";
 // Action Creator
 import {
   getRecipe,
@@ -45,7 +46,7 @@ class Recipe extends React.Component {
   }
 
   render() {
-    console.log(this.props.recipe.recipe);
+    console.log(this.props.recipe);
     const {
       title,
       created_at,
@@ -134,7 +135,7 @@ class Recipe extends React.Component {
         <div>Time:{renderTime(total_time_mins)}</div>
         <div>-{username}</div>
         <img href="recipe photo" alt="" src={image_url} />
-        <button>Servings {servings}</button>
+        <ServingsAndUnit />
         <h2>Ingredients</h2>
         <ul>{renderIngredientList}</ul>
         <h2>Directions</h2>

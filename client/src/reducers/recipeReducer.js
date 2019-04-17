@@ -4,10 +4,11 @@ import {
   LIKED_RECIPE,
   DISLIKED_RECIPE,
   VOTE_CLICKED,
-  SAVE_RECIPE
+  SAVE_RECIPE,
+  TOGGLE_UNIT
 } from "../actions/types";
 
-const initialState = { recipe: {}, isFetching: true };
+const initialState = { recipe: {}, isFetching: true, unit: "US" };
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -28,6 +29,8 @@ export default function(state = initialState, action) {
       return { ...state, disliked: !state.disliked, liked: false };
     case VOTE_CLICKED:
       return { ...state, voteClicked: true };
+    case TOGGLE_UNIT:
+      return { ...state, unit: action.payload };
 
     default:
       return state;
