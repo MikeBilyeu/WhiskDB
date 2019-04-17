@@ -10,6 +10,10 @@ class Unit extends React.Component {
     super(props);
     this.state = {};
   }
+  componentDidMount() {
+    // Sets the Unit to US on mount
+    this.props.toggleUnit("US");
+  }
   handleClick = () => {
     this.props.toggleUnit(this.props.unitName);
   };
@@ -29,7 +33,10 @@ class Unit extends React.Component {
           width: "20%",
           display: "inline-block",
           textAlign: "center",
-          cursor: "pointer"
+          cursor: "pointer",
+          fontWeight:
+            this.props.unitName === this.props.unitSelect ? "bold" : "normal",
+          opacity: this.props.unitName === this.props.unitSelect ? "1" : ".5"
         }}
         onClick={this.handleClick}
       >

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import RecipeHeader from "./RecipeHeader";
 import ServingsAndUnit from "./servingsAndUnit/ServingsAndUnit";
+import IngredientList from "./IngredientList";
 // Action Creator
 import {
   getRecipe,
@@ -46,14 +47,11 @@ class Recipe extends React.Component {
   }
 
   render() {
-    console.log(this.props.recipe);
     const {
       title,
       created_at,
       total_time_mins,
       image_url,
-      servings,
-      ingredients,
       directions,
       footnote,
       username,
@@ -87,19 +85,6 @@ class Recipe extends React.Component {
       }
       return null;
     };
-
-    const renderIngredientList =
-      ingredients &&
-      ingredients.map((ingredientObj, i) => {
-        let { amount, unit, ingredient, prep } = ingredientObj;
-        unit = unit ? unit : "";
-        prep = prep ? `(${prep})` : "";
-        return (
-          <li key={`ingredient${i}`}>
-            {`${amount} ${unit} ${ingredient} ${prep}`}
-          </li>
-        );
-      });
 
     const renderDirections =
       directions &&
@@ -137,7 +122,7 @@ class Recipe extends React.Component {
         <img href="recipe photo" alt="" src={image_url} />
         <ServingsAndUnit />
         <h2>Ingredients</h2>
-        <ul>{renderIngredientList}</ul>
+        <IngredientList />
         <h2>Directions</h2>
         <ol>{renderDirections}</ol>
         {renderFootnote(footnote)}

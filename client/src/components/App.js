@@ -16,7 +16,6 @@ import SignUp from "./auth/SignUp";
 import Login from "./auth/Login";
 import Recipe from "./recipes/Recipe";
 import ScrollToTop from "./ScrollToTop";
-require("dotenv").config();
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {

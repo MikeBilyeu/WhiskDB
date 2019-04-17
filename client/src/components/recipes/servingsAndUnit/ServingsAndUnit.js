@@ -16,7 +16,10 @@ class ServingsAndUnit extends React.Component {
           border: "solid black .1rem",
           width: "25rem",
           height: "4rem",
-          margin: "0 auto"
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 4fr",
+          placeItems: "center"
         }}
       >
         <Unit unitName="US" />
