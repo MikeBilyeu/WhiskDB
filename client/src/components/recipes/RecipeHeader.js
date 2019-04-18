@@ -8,14 +8,14 @@ import { withRouter } from "react-router-dom";
 import { saveRecipe } from "../../actions/recipeActions";
 
 const RecipeHeader = props => {
-  const { recipe_id, user_id } = props;
+  const { recipe_id, user_id, saveRecipe, recipeSaved, history } = props;
   return (
     <div>
-      <button onClick={() => props.history.goBack()}>Back</button>
+      <button onClick={() => history.goBack()}>Back</button>
       <button
-        onClick={() => props.saveRecipe(recipe_id, user_id)}
+        onClick={() => saveRecipe(recipe_id, user_id)}
         style={{
-          color: props.recipeSaved && user_id !== null ? "Green" : "black"
+          color: recipeSaved && user_id !== null ? "Green" : "black"
         }}
       >
         Save
