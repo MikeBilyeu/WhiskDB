@@ -19,7 +19,9 @@ export default function(state = initialState, action) {
         ...state,
         recipe: action.payload,
         isFetching: false,
-        saved: action.payload.saved
+        saved: action.payload.saved,
+        liked: action.payload.vote === "liked" ? true : false,
+        disliked: action.payload.vote === "disliked" ? true : false
       };
     case SAVE_RECIPE:
       return { ...state, saved: !state.saved };

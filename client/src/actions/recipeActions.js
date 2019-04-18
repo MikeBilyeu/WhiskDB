@@ -40,18 +40,13 @@ export const getRecipe = (recipe_id, user_id) => dispatch => {
     .get("/recipe", { params: { recipe_id, user_id } })
     .then(res => {
       dispatch({ type: GET_RECIPE, payload: res.data });
-      if (res.data.vote === "liked") {
-        dispatch({ type: LIKED_RECIPE });
-      } else if (res.data.vote === "disliked") {
-        dispatch({ type: DISLIKED_RECIPE });
-      }
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
 
 export const getSavedRecipes = user_id => dispatch => {
   dispatch({ type: GET_SAVED_RECIPES_REQUEST });
-  // dispatch({ type: GET_RECIPE_REQUEST });
+
   axios
     .get("/save-recipe", { params: { user_id } })
     .then(res => {
@@ -83,7 +78,7 @@ export const likeRecipe = (recipe_id, user_id) => dispatch => {
     axios
       .post("/recipe/vote", { user_id, recipe_id, vote })
       .then(res => {
-        console.log("User Liked the recipe");
+        console.log("User clicked the like button");
       })
       .catch(err => console.log(err));
   }
@@ -98,7 +93,7 @@ export const dislikeRecipe = (recipe_id, user_id) => dispatch => {
     axios
       .post("/recipe/vote", { user_id, recipe_id, vote })
       .then(res => {
-        console.log("User disliked the recipe");
+        console.log("User clicked the disliked button");
       })
       .catch(err => console.log(err));
   }

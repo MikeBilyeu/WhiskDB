@@ -19,7 +19,12 @@ class IngredientList extends React.Component {
   };
 
   render() {
-    return <ul>{this.renderIngredientList()}</ul>;
+    return (
+      <div>
+        <h2>Ingredients</h2>
+        <ul>{this.renderIngredientList()}</ul>
+      </div>
+    );
   }
 }
 

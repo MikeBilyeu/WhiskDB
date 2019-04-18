@@ -1,17 +1,14 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import RecipeHeader from "./RecipeHeader";
 import ServingsAndUnit from "./servingsAndUnit/ServingsAndUnit";
 import IngredientList from "./IngredientList";
+import Vote from "./Vote";
+
 // Action Creator
-import {
-  getRecipe,
-  likeRecipe,
-  dislikeRecipe
-} from "../../actions/recipeActions";
+import { getRecipe } from "../../actions/recipeActions";
 
 import { Loading } from "../loading/Loading";
 
@@ -57,8 +54,8 @@ class Recipe extends React.Component {
       username,
       likes,
       dislikes
-    } = this.props.recipe.recipe;
-    const { isFetching, voteClicked } = this.props.recipe;
+    } = this.props.recipeData.recipe;
+    const { isFetching } = this.props.recipeData;
     const recipe_id = this.props.match.params.recipe_id;
     const user_id = this.props.auth.isAuthenticated
       ? this.props.auth.user.user_id
@@ -121,49 +118,23 @@ class Recipe extends React.Component {
         <div>-{username}</div>
         <img href="recipe photo" alt="" src={image_url} />
         <ServingsAndUnit />
-        <h2>Ingredients</h2>
         <IngredientList />
         <h2>Directions</h2>
         <ol>{renderDirections}</ol>
         {renderFootnote(footnote)}
-        <h3>How was it?</h3>
-        {voteClicked && user_id === null ? (
-          <h1>You must {<Link to="/login">Login</Link>} to vote</h1>
-        ) : null}
-        <button
-          onClick={() => {
-            this.props.likeRecipe(recipe_id, user_id);
-          }}
-          style={{
-            color:
-              this.props.recipe.liked && user_id !== null ? "green" : "black"
-          }}
-        >
-          Like
-        </button>
-        <button
-          onClick={() => {
-            this.props.dislikeRecipe(recipe_id, user_id);
-          }}
-          style={{
-            color:
-              this.props.recipe.disliked && user_id !== null ? "red" : "black"
-          }}
-        >
-          Dislike
-        </button>
+        <Vote user_id={user_id} recipe_id={recipe_id} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  recipe: state.recipe,
+  recipeData: state.recipe,
   auth: state.auth
 });
 Recipe = connect(
   mapStateToProps,
-  { getRecipe, likeRecipe, dislikeRecipe }
+  { getRecipe }
 )(Recipe);
 
 export default withRouter(Recipe);
