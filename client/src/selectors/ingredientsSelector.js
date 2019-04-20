@@ -39,6 +39,7 @@ const convertIngredients = (unit, ingredientList) => {
       45,
       30,
       15,
+      10,
       5,
       2.5,
       1.25,
@@ -54,14 +55,14 @@ const convertIngredients = (unit, ingredientList) => {
     if (ingredientObj.unit === "milliliter") {
       while (remainder >= threshold) {
         //for loop to loop the measuringIncrements
-        for (let milliliters of measuringIncrements) {
+        for (let i = 0; i < measuringIncrements.length; i++) {
           if (remainder < threshold) {
-            milliliters = measuringIncrements.length;
-          } else if (remainder >= milliliters - threshold) {
-            remainder -= milliliters;
-            roundedAmount += milliliters;
+            i = measuringIncrements.length;
+          } else if (remainder >= measuringIncrements[i] - threshold) {
+            remainder -= measuringIncrements[i];
+            roundedAmount += measuringIncrements[i];
+            i = measuringIncrements.length;
           }
-          milliliters++;
         }
       }
       return { ...ingredientObj, amount: roundedAmount };
