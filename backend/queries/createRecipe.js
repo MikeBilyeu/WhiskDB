@@ -35,6 +35,10 @@ const formatIngredientList = ingredients => {
         decimalAmount *= 5;
         metricUnit = "milliliter";
         break;
+      case "liter":
+        decimalAmount *= 1000;
+        metricUnit = "milliliter";
+        break;
       case "ounce":
         decimalAmount *= 28;
         metricUnit = "gram";
@@ -42,6 +46,11 @@ const formatIngredientList = ingredients => {
       case "pound":
         decimalAmount *= 454;
         metricUnit = "gram";
+        break;
+      case "kilogram":
+        decimalAmount *= 1000;
+        metricUnit = "gram";
+        break;
       default:
         break;
     }
