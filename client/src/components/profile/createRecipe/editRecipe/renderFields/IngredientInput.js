@@ -21,11 +21,11 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
     return value && strArr[0];
   };
   //make sure that user input is only number, / or a space, or .
-  const amountParse = value => {
-    const amountRegEx = /^\d{0,3}(\.\d{0,2}|(?<=\d)\/\d{0,2}|(?<=\d) \d?((?<! )\/)?(?<!\d)[1-9]{0,2})?/;
-    let strArr = value.match(amountRegEx) || [""];
-    return value && strArr[0];
-  };
+  // const amountParse = value => {
+  //   // const amountRegEx = /^\d{0,3}(\.\d{0,2}|(?<=\d)\/\d{0,2}|(?<=\d) \d?((?<! )\/)?(?<!\d)[1-9]{0,2})?/;
+  //   let strArr = value.match(amountRegEx) || [""];
+  //   return value && strArr[0];
+  // };
 
   return (
     <div>
@@ -39,7 +39,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               label="Amount"
               addClass="three wide"
               placeholder="1 1/2"
-              parse={amountParse}
+              parse={/*amountParse*/ null}
             />
             <Field name={`${ingredient}.unit`} component={UnitDropDown} />
             <Field

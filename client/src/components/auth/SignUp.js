@@ -12,13 +12,6 @@ class SignUp extends Component {
       this.props.history.push("/profile");
     }
   }
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.errors) {
-  //     this.setState({
-  //       errors: nextProps.errors
-  //     });
-  //   }
-  // }
 
   renderInput = ({
     input,
@@ -125,16 +118,16 @@ class SignUp extends Component {
 }
 
 const validate = formValues => {
-  let userNameRegEx = /^(?=.{2,20}$)(?![_])(?!.*[_.]{2})[a-zA-Z0-9_]+(?<![_])$/;
+  // let userNameRegEx = /^(?=.{2,20}$)(?![_])(?!.*[_.]{2})[a-zA-Z0-9_]+(?<![_])$/;
   let emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   let passwordRegEx = /^\S{8,30}$/;
   const errors = {};
-
-  if (!formValues.username) {
-    errors.username = "You must enter a username";
-  } else if (!userNameRegEx.test(formValues.username)) {
-    errors.username = "Username must be 3-20 alphanumeric characters";
-  }
+  //
+  // if (!formValues.username) {
+  //   errors.username = "You must enter a username";
+  // } else if (!userNameRegEx.test(formValues.username)) {
+  //   errors.username = "Username must be 3-20 alphanumeric characters";
+  // }
   if (!formValues.email) {
     errors.email = "You must email address";
   } else if (!emailRegEx.test(formValues.email)) {

@@ -1,6 +1,6 @@
-// store regex to check validation
+// // store regex to check validation
 const titleRegEx = /^[A-Z]{1}((\s)?[a-zA-Z0-9])+$/;
-const amountRegEx = /^\d{0,3}(\.\d{1,2}|(?<=\d)\/\d{1,2}|(?<=\d) \d{0,2}((?<! )\/)(?<!\d)\d{1,2})?$/;
+// const amountRegEx = /^\d{0,3}(\.\d{1,2}|(?<=\d)\/\d{1,2}|(?<=\d) \d{0,2}((?<! )\/)(?<!\d)\d{1,2})?$/;
 const ingredientNameRegEx = /^[A-Z0-9][\w ]{2,255}$/;
 let errors = {};
 
@@ -28,37 +28,37 @@ function validateServings(servings) {
   }
 }
 
-function validateIngredients(ingredients) {
-  // set errors to an empty array beacuse ingredients input is a FieldArray
-  errors.ingredients = [];
-
-  const numOfIngredients = ingredients ? ingredients.length : 0;
-
-  for (let i = 0; i < numOfIngredients; i++) {
-    errors.ingredients.push({});
-    // validate user enters an amount and ingredient name for each ingredient
-    if (!ingredients[i].amount) {
-      errors.ingredients[i] = {
-        amount: `Ingredient ${i + 1} must contain an amount`
-      };
-    } else if (!amountRegEx.test(ingredients[i].amount)) {
-      errors.ingredients[i] = {
-        amount: "Ingredient amount is not valid"
-      };
-    }
-    if (!ingredients[i].ingredient) {
-      errors.ingredients[i] = {
-        ...errors.ingredients[i],
-        ingredient: `Ingredient ${i + 1} must contain an ingredient name`
-      };
-    } else if (!ingredientNameRegEx.test(ingredients[i].ingredient)) {
-      errors.ingredients[i] = {
-        ...errors.ingredients[i],
-        ingredient: `Ingredient ${i + 1} ingredient name is not valid`
-      };
-    }
-  }
-}
+// function validateIngredients(ingredients) {
+//   // set errors to an empty array beacuse ingredients input is a FieldArray
+//   errors.ingredients = [];
+//
+//   const numOfIngredients = ingredients ? ingredients.length : 0;
+//
+//   for (let i = 0; i < numOfIngredients; i++) {
+//     errors.ingredients.push({});
+//     // validate user enters an amount and ingredient name for each ingredient
+//     if (!ingredients[i].amount) {
+//       errors.ingredients[i] = {
+//         amount: `Ingredient ${i + 1} must contain an amount`
+//       };
+//     } else if (!amountRegEx.test(ingredients[i].amount)) {
+//       errors.ingredients[i] = {
+//         amount: "Ingredient amount is not valid"
+//       };
+//     }
+//     if (!ingredients[i].ingredient) {
+//       errors.ingredients[i] = {
+//         ...errors.ingredients[i],
+//         ingredient: `Ingredient ${i + 1} must contain an ingredient name`
+//       };
+//     } else if (!ingredientNameRegEx.test(ingredients[i].ingredient)) {
+//       errors.ingredients[i] = {
+//         ...errors.ingredients[i],
+//         ingredient: `Ingredient ${i + 1} ingredient name is not valid`
+//       };
+//     }
+//   }
+// }
 
 function validateDirections(directions) {
   // set errors to an empty array beacuse directions input is a FieldArray
@@ -104,7 +104,7 @@ export const Validate = formValues => {
   validateTitle(title);
   validateTime(time);
   validateServings(servings);
-  validateIngredients(ingredients);
+  // validateIngredients(ingredients);
   validateDirections(directions);
   validateCategories(categories);
 

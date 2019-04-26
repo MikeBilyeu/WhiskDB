@@ -2,6 +2,10 @@ import React from "react";
 
 import { connect } from "react-redux";
 
+const Serving = props => {
+  return <div style={{ cursor: "pointer" }}>{props.servings}</div>;
+};
+
 class Servings extends React.Component {
   constructor(props) {
     super(props);
@@ -10,9 +14,18 @@ class Servings extends React.Component {
   render() {
     return (
       <div
-        style={{ width: "60%", display: "inline-block", textAlign: "center" }}
+        style={{
+          border: "solid red",
+          width: "60%",
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          placeItems: "center"
+        }}
       >
-        {this.props.servings}
+        <Serving servings={this.props.servings / 2} />
+        <Serving servings={this.props.servings} />
+        <Serving servings={this.props.servings * 2} />
       </div>
     );
   }

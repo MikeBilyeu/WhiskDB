@@ -39,18 +39,20 @@ if (localStorage.jwtToken) {
 class App extends React.Component {
   render() {
     return (
-      <Router>
-        <ScrollToTop>
-          <Route exact path="/" component={Home} />
-          <Switch>
-            <PrivateRoute path="/profile/:page?" component={Profile} />
-            <Route path="/sign-up" component={SignUp} />
-            <Route path="/login" component={Login} />
-            <Route path="/recipe/:recipe_id" component={Recipe} />
-          </Switch>
-          <NavigationBar />
-        </ScrollToTop>
-      </Router>
+      <div style={{ paddingTop: "4rem", paddingBottom: "8rem" }}>
+        <Router>
+          <ScrollToTop>
+            <Route exact path="/" component={Home} />
+            <Switch>
+              <PrivateRoute path="/profile/:page?" component={Profile} />
+              <Route path="/sign-up" component={SignUp} />
+              <Route path="/login" component={Login} />
+              <Route path="/recipe/:recipe_id" component={Recipe} />
+            </Switch>
+            <NavigationBar />
+          </ScrollToTop>
+        </Router>
+      </div>
     );
   }
 }

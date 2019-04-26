@@ -9,6 +9,16 @@ const renderIngredientList = props => {
     let { amount, unit, ingredient, prep } = ingredientObj;
     unit = unit ? unit : "";
     prep = prep ? `(${prep})` : "";
+    if (typeof amount === "object") {
+      let amounts = amount.map(amount => {
+        return `${amount.amount} ${amount.unit}`;
+      });
+      return (
+        <li key={`ingredient${i}`}>{`${amounts.join(
+          " + "
+        )} ${ingredient} ${prep}`}</li>
+      );
+    }
     return (
       <li key={`ingredient${i}`}>
         {`${amount} ${unit} ${ingredient} ${prep}`}
