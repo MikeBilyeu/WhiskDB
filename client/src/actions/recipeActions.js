@@ -9,7 +9,8 @@ import {
   SAVE_RECIPE,
   GET_SAVED_RECIPES,
   GET_SAVED_RECIPES_REQUEST,
-  TOGGLE_UNIT
+  TOGGLE_UNIT,
+  CONVERT_SERVINGS
 } from "./types";
 
 import { reset } from "redux-form";
@@ -102,4 +103,8 @@ export const dislikeRecipe = (recipe_id, user_id) => dispatch => {
 
 export const toggleUnit = unit => {
   return { type: TOGGLE_UNIT, payload: unit };
+};
+
+export const convertServings = number => {
+  return { type: CONVERT_SERVINGS, payload: number };
 };

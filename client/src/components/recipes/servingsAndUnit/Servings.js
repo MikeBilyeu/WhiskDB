@@ -1,35 +1,37 @@
 import React from "react";
 
 import { connect } from "react-redux";
-
-const Serving = props => {
-  return <div style={{ cursor: "pointer" }}>{props.servings}</div>;
-};
+// action creator
+import { convertServings } from "../../../actions/recipeActions";
 
 class Servings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  handleChange = event => {
+    this.props.convertServings(event.target.value);
+  };
   render() {
     return (
-      <div
+      <input
         style={{
-          border: "solid red",
-          width: "60%",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
-          placeItems: "center"
+          width: "50%",
+          textAlign: "center"
         }}
-      >
-        <Serving servings={this.props.servings / 2} />
-        <Serving servings={this.props.servings} />
-        <Serving servings={this.props.servings * 2} />
-      </div>
+        value={this.props.convertedServings}
+        type="text"
+        onChange={this.handleChange}
+      />
     );
   }
 }
 
-const mapStateToProps = state => ({ servings: state.recipe.recipe.servings });
-export default connect(mapStateToProps)(Servings);
+const mapStateToProps = state => ({
+  convertedServings: state.recipe.convertedServings
+});
+export default connect(
+  mapStateToProps,
+  { convertServings }
+)(Servings);

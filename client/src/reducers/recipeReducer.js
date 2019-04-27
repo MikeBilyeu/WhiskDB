@@ -5,7 +5,8 @@ import {
   DISLIKED_RECIPE,
   VOTE_CLICKED,
   SAVE_RECIPE,
-  TOGGLE_UNIT
+  TOGGLE_UNIT,
+  CONVERT_SERVINGS
 } from "../actions/types";
 
 const initialState = { recipe: {}, isFetching: true, unit: "US" };
@@ -21,7 +22,8 @@ export default function(state = initialState, action) {
         isFetching: false,
         saved: action.payload.saved,
         liked: action.payload.vote === "liked" ? true : false,
-        disliked: action.payload.vote === "disliked" ? true : false
+        disliked: action.payload.vote === "disliked" ? true : false,
+        convertedServings: action.payload.servings
       };
     case SAVE_RECIPE:
       return { ...state, saved: !state.saved };
@@ -33,6 +35,8 @@ export default function(state = initialState, action) {
       return { ...state, voteClicked: true };
     case TOGGLE_UNIT:
       return { ...state, unit: action.payload };
+    case CONVERT_SERVINGS:
+      return { ...state, convertedServings: action.payload };
 
     default:
       return state;
