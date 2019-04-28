@@ -11,7 +11,11 @@ class Servings extends React.Component {
   }
 
   handleChange = event => {
-    this.props.convertServings(event.target.value);
+    const re = /^(?!0)[0-9]{0,2}$/;
+
+    if (event.target.value === "" || re.test(event.target.value)) {
+      this.props.convertServings(event.target.value);
+    }
   };
   render() {
     return (

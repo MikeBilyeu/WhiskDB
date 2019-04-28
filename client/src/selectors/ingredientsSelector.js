@@ -2,6 +2,8 @@ import { createSelector } from "reselect";
 
 const unitSelector = state => state.recipe.unit;
 const ingredientListSelector = state => state.recipe.recipe.ingredients;
+const convertedServingsSelector = state => state.recipe.convertedServings;
+const servingsSelector = state => state.recipe.recipe.servings;
 
 const measuringIncrements = [
   237,
@@ -20,9 +22,15 @@ const measuringIncrements = [
   0.63
 ];
 
-const convertIngredients = (unit, ingredientList) => {
+const convertIngredients = (
+  unit,
+  servings,
+  convertedServings,
+  ingredientList
+) => {
+  console.log(unit, servings, convertedServings, ingredientList);
   const roundedMetricAmounts = ingredientList.map(ingredientObj => {
-    const amount = ingredientObj.amount;
+    const amount = ingredientObj.amount * (convertedServings / servings);
 
     if (ingredientObj.unit === "milliliter") {
       let roundedAmount = amount <= 0.625 ? 0.63 : 0;
@@ -136,6 +144,8 @@ const convertIngredients = (unit, ingredientList) => {
 
 export default createSelector(
   unitSelector,
+  servingsSelector,
+  convertedServingsSelector,
   ingredientListSelector,
   convertIngredients
 );
