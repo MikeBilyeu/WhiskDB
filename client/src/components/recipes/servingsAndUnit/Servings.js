@@ -21,7 +21,7 @@ class Servings extends React.Component {
     return (
       <input
         style={{
-          width: "50%",
+          width: "25%",
           textAlign: "center"
         }}
         value={this.props.convertedServings}

@@ -87,7 +87,7 @@ class Recipe extends React.Component {
       directions &&
       directions.map((step, i) => {
         return (
-          <li key={`step${i}`}>
+          <li key={`step${i}`} style={{ listStyleType: "none" }}>
             <h4>Step {i + 1}</h4>
             {step.step}
           </li>

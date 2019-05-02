@@ -1,7 +1,23 @@
 import React from "react";
 
 const HeaderOption = props => {
-  return <button>{props.buttonName}</button>;
+  return (
+    <div
+      style={{
+        width: "7rem",
+        borderRadius: ".2rem",
+        cursor: "pointer",
+        backgroundColor: "#313131",
+        color: "#FFFFFF",
+        textAlign: "center",
+        fontSize: "1.2rem",
+        margin: "1rem .2rem",
+        padding: ".6rem"
+      }}
+    >
+      {props.buttonName}
+    </div>
+  );
 };
 
 export default HeaderOption;

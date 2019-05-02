@@ -28,7 +28,6 @@ const convertIngredients = (
   convertedServings,
   ingredientList
 ) => {
-  console.log(unit, servings, convertedServings, ingredientList);
   const roundedMetricAmounts = ingredientList.map(ingredientObj => {
     const amount = ingredientObj.amount * (convertedServings / servings);
 
@@ -61,8 +60,13 @@ const convertIngredients = (
         amount <= 0.4 ? Math.ceil(amount) : Math.round(amount);
       return { ...ingredientObj, amount: roundedAmount };
     }
-
-    return ingredientObj;
+    // round amount to nearest 1/4 or 1/2
+    let roundedAmount = Math.round(amount * 4) / 4;
+    roundedAmount = roundedAmount < 0.25 ? 0.25 : roundedAmount;
+    return {
+      ...ingredientObj,
+      amount: roundedAmount
+    };
   });
 
   const USIngredientList = roundedMetricAmounts.map(ingredientObj => {
