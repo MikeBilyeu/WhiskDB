@@ -63,7 +63,7 @@ class EditNewRecipe extends React.Component {
       "categories.cuisine.italian",
       "categories.cuisine.mexican",
       "categories.cuiisine.southern",
-      "categories.cuisine.thia",
+      "categories.cuisine.thai",
       "categories.cuisine.other"
     ];
     const capitalize = value => {

@@ -93,9 +93,9 @@ const CategoryInput = fields => {
         />
         <CheckboxInput
           fields={fields}
-          label="Thia"
+          label="Thai"
           categoryType="cuisine"
-          name="thia"
+          name="thai"
         />
         <CheckboxInput
           fields={fields}

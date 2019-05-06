@@ -10,7 +10,9 @@ import {
   GET_SAVED_RECIPES,
   GET_SAVED_RECIPES_REQUEST,
   TOGGLE_UNIT,
-  CONVERT_SERVINGS
+  CONVERT_SERVINGS,
+  GET_BROWSE_RECIPES,
+  GET_BROWSE_REQUEST
 } from "./types";
 
 import { reset } from "redux-form";
@@ -44,7 +46,20 @@ export const getRecipe = (recipe_id, user_id) => dispatch => {
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
-
+// getbrowseRecipes
+// pass the browse form data
+// dispatch an action witha type of get browse request
+export const getBrowseRecipes = browseData => dispatch => {
+  // dispatch a browse request
+  dispatch({ type: GET_BROWSE_REQUEST });
+  // make axios request
+  axios
+    .get("/save-recipe", { params: { browseData } })
+    .then(res => {
+      dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
+    })
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+};
 export const getSavedRecipes = user_id => dispatch => {
   dispatch({ type: GET_SAVED_RECIPES_REQUEST });
 

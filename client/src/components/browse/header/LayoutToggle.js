@@ -4,7 +4,7 @@ const LayoutToggle = () => {
   return (
     <div
       style={{
-        border: ".17rem solid #313131",
+        border: ".2rem solid #313131",
         borderRadius: ".5rem",
         width: "6rem",
         height: "2.9rem",
@@ -18,7 +18,7 @@ const LayoutToggle = () => {
           height: "2.6rem",
           borderRadius: "0 .5rem .5rem 0",
           position: "relative",
-          left: "0rem"
+          left: "-0.05rem"
         }}
       />
     </div>

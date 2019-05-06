@@ -6,7 +6,7 @@ class SearchBar extends Component {
     return (
       <input
         style={{
-          width: "18rem",
+          width: "14rem",
           height: "2.9rem",
           fontSize: "1.3rem",
           border: ".1rem solid #BFBFBF",
@@ -35,5 +35,5 @@ class SearchBar extends Component {
 }
 
 export default reduxForm({
-  form: "search"
+  form: "browse"
 })(SearchBar);
