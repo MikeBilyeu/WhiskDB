@@ -54,7 +54,7 @@ export const getBrowseRecipes = browseData => dispatch => {
   dispatch({ type: GET_BROWSE_REQUEST });
   // make axios request
   axios
-    .get("/save-recipe", { params: { browseData } })
+    .get("/browse-recipe", { params: { browseData } })
     .then(res => {
       dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
     })

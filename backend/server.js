@@ -8,6 +8,7 @@ const getRecipe = require("./queries/getRecipe").getRecipe;
 const voteRecipe = require("./queries/voteRecipe").voteRecipe;
 const saveRecipe = require("./queries/saveRecipe").saveRecipe;
 const getSavedRecipes = require("./queries/getSavedRecipes").getSavedRecipes;
+const getBrowseRecipes = require("./queries/getBrowseRecipes").getBrowseRecipes;
 const passport = require("passport");
 
 // Parse middleware
@@ -38,8 +39,10 @@ app.post("/recipe/vote", voteRecipe);
 app.post("/save-recipe", saveRecipe);
 
 // get saved recipes
-
 app.get("/save-recipe", getSavedRecipes);
+
+// get Browse recipes
+app.get("/browse-recipe", getBrowseRecipes);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);
