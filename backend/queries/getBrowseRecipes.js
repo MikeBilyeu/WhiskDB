@@ -21,6 +21,7 @@ const getBrowseRecipes = (request, response) => {
     return client
       .query("SELECT recipe_id, title, image_url, total_time_mins FROM recipes")
       .then(res => {
+        client.release();
         if (res.rows.length === 0) {
           response.status(200).json(browseRecipes);
         }

@@ -29,7 +29,11 @@ class Results extends React.Component {
     if (isFetching) {
       return <Loading />;
     }
-    return <ul>{renderRecipeList}</ul>;
+    return (
+      <ul style={{ listStyleType: "none", marginLeft: ".8rem", padding: "0" }}>
+        {renderRecipeList}
+      </ul>
+    );
   }
 }
 

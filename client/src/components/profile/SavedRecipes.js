@@ -72,7 +72,7 @@ class SavedRecipes extends React.Component {
       <div>
         <h1>Saved Recipes</h1>
         <HeaderOption buttonName="Sort" />
-        <ul>{renderRecipeList}</ul>
+        <ul style={{ listStyleType: "none" }}>{renderRecipeList}</ul>
       </div>
     );
   }
