@@ -1,6 +1,7 @@
 import React from "react";
 
 import { ReactComponent as Arrow } from "./arrow.svg";
+import Rating from "./rating/Rating";
 
 const RecipeDisplay = props => {
   const { title, likes, dislikes, total_time_mins } = props.recipe;
@@ -17,10 +18,10 @@ const RecipeDisplay = props => {
       style={{
         borderBottom: "solid .1rem #BFBFBF",
         padding: ".5rem",
-        margin: "1rem 0",
+        margin: ".5rem 0",
         display: "grid",
-        gridTemplateColumns: "1fr 4fr 1fr",
-        gridGap: "1rem"
+        gridTemplateColumns: "1fr 4fr .5fr",
+        gridGap: ".5rem"
       }}
     >
       <img
@@ -44,13 +45,12 @@ const RecipeDisplay = props => {
             fontSize: "1.4rem"
           }}
         >{`${title}`}</div>
-        <div>{`${rating} stars ${totalVotes} vote${
-          totalVotes !== 1 ? "s" : ""
-        }`}</div>
+
+        <Rating rating={rating} totalVotes={totalVotes} />
         <div style={{ color: "#464646" }}>{` Time: ${hours} ${minutes}`}</div>
       </div>
 
-      <Arrow style={{ width: "2.5rem", placeSelf: "center" }} />
+      <Arrow style={{ width: "1rem", placeSelf: "center" }} />
     </li>
   );
 };

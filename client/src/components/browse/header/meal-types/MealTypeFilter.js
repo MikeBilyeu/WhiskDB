@@ -13,7 +13,8 @@ const MealTypeFilter = () => {
         gridAutoFlow: "column",
         placeItems: "center",
         margin: "1.5rem 0",
-        padding: ".9rem"
+        padding: ".9rem",
+        overflow: "hidden"
       }}
     >
       <MealTypes type="Breakfast" />
