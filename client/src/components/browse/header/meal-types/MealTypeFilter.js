@@ -3,6 +3,19 @@ import React from "react";
 import MealTypes from "./MealTypes";
 
 const MealTypeFilter = () => {
+  const renderMealType = () => {
+    const mealTypes = [
+      "Breakfast",
+      "lunch",
+      "Dinner",
+      "Appitizer",
+      "Dessert",
+      "Drink"
+    ];
+    return mealTypes.map((meal, i) => {
+      return <MealTypes key={"meal" + i} type={meal} />;
+    });
+  };
   return (
     <div
       style={{
@@ -17,12 +30,7 @@ const MealTypeFilter = () => {
         overflow: "hidden"
       }}
     >
-      <MealTypes type="Breakfast" />
-      <MealTypes type="Lunch" />
-      <MealTypes type="Dinner" />
-      <MealTypes type="Appitizer" />
-      <MealTypes type="Dessert" />
-      <MealTypes type="Drink" />
+      {renderMealType()}
     </div>
   );
 };

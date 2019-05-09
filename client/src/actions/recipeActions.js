@@ -3,16 +3,11 @@ import {
   GET_ERRORS,
   GET_RECIPE,
   GET_RECIPE_REQUEST,
-  LIKED_RECIPE,
-  DISLIKED_RECIPE,
-  VOTE_CLICKED,
   SAVE_RECIPE,
   GET_SAVED_RECIPES,
   GET_SAVED_RECIPES_REQUEST,
   TOGGLE_UNIT,
-  CONVERT_SERVINGS,
-  GET_BROWSE_RECIPES,
-  GET_BROWSE_REQUEST
+  CONVERT_SERVINGS
 } from "./types";
 
 import { reset } from "redux-form";
@@ -46,20 +41,7 @@ export const getRecipe = (recipe_id, user_id) => dispatch => {
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
-// getbrowseRecipes
-// pass the browse form data
-// dispatch an action witha type of get browse request
-export const getBrowseRecipes = browseData => dispatch => {
-  // dispatch a browse request
-  dispatch({ type: GET_BROWSE_REQUEST });
-  // make axios request
-  axios
-    .get("/browse-recipe", { params: { browseData } })
-    .then(res => {
-      dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
-    })
-    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
-};
+
 export const getSavedRecipes = user_id => dispatch => {
   dispatch({ type: GET_SAVED_RECIPES_REQUEST });
 
@@ -80,37 +62,6 @@ export const saveRecipe = (recipe_id, user_id) => dispatch => {
       .post("/save-recipe", { user_id, recipe_id })
       .then(res => {
         console.log("User saved the recipe");
-      })
-      .catch(err => console.log(err));
-  }
-};
-
-// This is an action creator for when a user likes a recipe
-export const likeRecipe = (recipe_id, user_id) => dispatch => {
-  const vote = "liked";
-  dispatch({ type: VOTE_CLICKED });
-  if (user_id !== null) {
-    dispatch({ type: LIKED_RECIPE });
-    console.log(recipe_id, user_id, vote);
-    axios
-      .post("/recipe/vote", { user_id, recipe_id, vote })
-      .then(res => {
-        console.log("User clicked the like button");
-      })
-      .catch(err => console.log(err));
-  }
-};
-
-export const dislikeRecipe = (recipe_id, user_id) => dispatch => {
-  const vote = "disliked";
-  dispatch({ type: VOTE_CLICKED });
-  if (user_id !== null) {
-    dispatch({ type: DISLIKED_RECIPE });
-    console.log(recipe_id, user_id, vote);
-    axios
-      .post("/recipe/vote", { user_id, recipe_id, vote })
-      .then(res => {
-        console.log("User clicked the disliked button");
       })
       .catch(err => console.log(err));
   }

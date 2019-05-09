@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { getBrowseRecipes } from "../../actions/recipeActions";
+import { getBrowseRecipes } from "../../actions/browseActions";
 
 import { Loading } from "../loading/Loading";
 import RecipeDisplay from "../recipes/recipe-display/RecipeDisplay";

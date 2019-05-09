@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 // Action Creator
-import { likeRecipe, dislikeRecipe } from "../../actions/recipeActions";
+import { likeRecipe, dislikeRecipe } from "../../actions/voteActions";
 
 const Vote = props => {
   const {

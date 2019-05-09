@@ -35,5 +35,9 @@ class SearchBar extends Component {
 }
 
 export default reduxForm({
-  form: "browse"
+  form: "browse",
+  initialValues: {
+    search: "",
+    mealType: "Breakfast"
+  }
 })(SearchBar);
