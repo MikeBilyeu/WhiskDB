@@ -1,47 +1,42 @@
 import React from "react";
-import { Field, reduxForm, getFormValues } from "redux-form";
 import { connect } from "react-redux";
 
-let MealTypes = props => {
-  const { formValues } = props;
+// impor the actions
+import { getBrowseRecipes } from "../../../../actions/browseActions";
 
-  const handleClick = meal => {
-    // change field value when user clicks on mealType
-    props.change("mealType", meal);
+let MealTypes = props => {
+  const { type, browseData } = props;
+  const handleClick = mealType => {
+    let browse = { ...browseData, mealType: mealType };
+
+    // don't run aciton if data is the same
+    if (JSON.stringify(browse) !== JSON.stringify(browseData)) {
+      props.getBrowseRecipes(browse);
+    }
   };
 
   return (
-    <Field
-      style={{ color: "#464646", cursor: "pointer", margin: "0 1rem" }}
-      name="mealType"
-      component={() => {
-        let color = "";
-        if (props.formValues) {
-          color =
-            props.formValues.mealType === props.type ? "#0172C4" : "#464646";
-        }
-        return (
-          <div
-            onClick={() => {
-              handleClick(props.type);
-            }}
-            style={{
-              color: color,
-              cursor: "pointer",
-              margin: "0 1rem"
-            }}
-          >
-            {props.type}
-          </div>
-        );
+    <div
+      key={props.type}
+      style={{
+        color: browseData.mealType === type ? "#0172C4" : "#464646",
+        cursor: "pointer",
+        margin: "0 1rem"
       }}
-    />
+      onClick={() => {
+        handleClick(props.type);
+      }}
+    >
+      {props.type}
+    </div>
   );
 };
 
 const mapSateToProps = state => {
-  return { formValues: getFormValues("browse")(state) };
+  return { browseData: state.browseRecipes.browseData };
 };
 
-MealTypes = connect(mapSateToProps)(MealTypes);
-export default reduxForm({ form: "browse" })(MealTypes);
+export default connect(
+  mapSateToProps,
+  { getBrowseRecipes }
+)(MealTypes);
