@@ -7,7 +7,7 @@ import {
 const initialState = {
   recipes: [],
   isFetching: true,
-  browseData: { search: "", mealType: "Breakfast", diet: [], cuisine: [] }
+  browseData: { search: "", meal: "Breakfast", diet: [], cuisine: [] }
 };
 
 export default function(state = initialState, action) {

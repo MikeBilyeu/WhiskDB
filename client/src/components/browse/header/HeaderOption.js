@@ -1,0 +1,23 @@
+import React from "react";
+
+import FilterButton from "./FilterButton";
+import SortButton from "./SortButton";
+
+const HeaderOption = props => {
+  return (
+    <div
+      style={{
+        height: "2.5rem",
+        display: "grid",
+        gridAutoFlow: "column",
+        placeItems: "center"
+      }}
+    >
+      <FilterButton buttonName="Diet" />
+      <FilterButton buttonName="Cuisine" />
+      <SortButton buttonName="Sort" />
+    </div>
+  );
+};
+
+export default HeaderOption;

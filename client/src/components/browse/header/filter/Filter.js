@@ -1,19 +1,17 @@
 import React from "react";
 
-import MealTypes from "./MealTypes";
+import FilterOption from "./FilterOption";
 
-const MealTypeFilter = () => {
-  const renderMealType = () => {
-    const mealTypes = [
-      "Breakfast",
-      "lunch",
-      "Dinner",
-      "Appitizer",
-      "Dessert",
-      "Drink"
-    ];
-    return mealTypes.map((meal, i) => {
-      return <MealTypes key={"meal" + i} type={meal} />;
+const Filter = props => {
+  const renderFilterOptions = () => {
+    return props.filterOptions.map((option, i) => {
+      return (
+        <FilterOption
+          key={option + i}
+          option={option}
+          filterType={props.filterType}
+        />
+      );
     });
   };
   return (
@@ -30,8 +28,8 @@ const MealTypeFilter = () => {
         overflow: "hidden"
       }}
     >
-      {renderMealType()}
+      {renderFilterOptions()}
     </div>
   );
 };
-export default MealTypeFilter;
+export default Filter;

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import HeaderOption from "../options/HeaderOption";
 import { Link } from "react-router-dom";
 
 import { Loading } from "../loading/Loading";
@@ -71,7 +70,6 @@ class SavedRecipes extends React.Component {
     return (
       <div>
         <h1>Saved Recipes</h1>
-        <HeaderOption buttonName="Sort" />
         <ul style={{ listStyleType: "none" }}>{renderRecipeList}</ul>
       </div>
     );

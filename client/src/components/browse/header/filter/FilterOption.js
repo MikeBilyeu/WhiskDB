@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 // impor the actions
 import { getBrowseRecipes } from "../../../../actions/browseActions";
 
-let MealTypes = props => {
-  const { type, browseData } = props;
-  const handleClick = mealType => {
-    let browse = { ...browseData, mealType: mealType };
+let FilterOption = props => {
+  const { option, browseData, filterType } = props;
+  const handleClick = option => {
+    // if filter type == diet or cuisine
+    // make filterType an array of options
+    let browse = { ...browseData, [filterType]: option };
 
     // don't run aciton if data is the same
     if (JSON.stringify(browse) !== JSON.stringify(browseData)) {
@@ -17,17 +19,17 @@ let MealTypes = props => {
 
   return (
     <div
-      key={props.type}
+      key={props.option}
       style={{
-        color: browseData.mealType === type ? "#0172C4" : "#464646",
+        color: "#464646",
         cursor: "pointer",
         margin: "0 1rem"
       }}
       onClick={() => {
-        handleClick(props.type);
+        handleClick(props.option);
       }}
     >
-      {props.type}
+      {props.option}
     </div>
   );
 };
@@ -39,4 +41,4 @@ const mapSateToProps = state => {
 export default connect(
   mapSateToProps,
   { getBrowseRecipes }
-)(MealTypes);
+)(FilterOption);

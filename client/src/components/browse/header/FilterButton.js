@@ -1,6 +1,6 @@
 import React from "react";
 
-const HeaderOption = props => {
+const FilterButton = props => {
   return (
     <div
       style={{
@@ -20,4 +20,4 @@ const HeaderOption = props => {
   );
 };
 
-export default HeaderOption;
+export default FilterButton;

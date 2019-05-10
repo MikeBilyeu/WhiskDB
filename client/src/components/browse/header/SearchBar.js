@@ -5,7 +5,7 @@ const SearchBar = () => {
   return (
     <input
       style={{
-        width: "14rem",
+        width: "100%",
         height: "2.9rem",
         fontSize: "1.3rem",
         border: ".1rem solid #BFBFBF",

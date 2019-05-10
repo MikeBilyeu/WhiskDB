@@ -2,8 +2,33 @@ import React from "react";
 
 import LayoutToggle from "./LayoutToggle";
 import SearchBar from "./SearchBar";
-import RecipeFilter from "./RecipeFilter";
-import MealTypeFilter from "./meal-types/MealTypeFilter";
+import HeaderOption from "./HeaderOption";
+import Filter from "./filter/Filter";
+
+const mealOptions = [
+  "Breakfast",
+  "Lunch",
+  "Dinner",
+  "Appitizer",
+  "Dessert",
+  "Drink"
+];
+
+const dietOptions = ["Vegetarian", "Non-Vegetarian", "Vegan", "Ketogenic"];
+
+const cuisineOptions = [
+  "Chinese",
+
+  "Indian",
+
+  "Italian",
+
+  "Mexican",
+
+  "Thai",
+
+  "Other"
+];
 
 const HomeHeader = () => {
   return (
@@ -18,12 +43,13 @@ const HomeHeader = () => {
           margin: "1rem"
         }}
       >
-        <LayoutToggle />
         <SearchBar />
       </div>
 
-      <RecipeFilter />
-      <MealTypeFilter />
+      <HeaderOption />
+      <Filter filterType={"meal"} filterOptions={mealOptions} />
+      <Filter filterType={"diet"} filterOptions={dietOptions} />
+      <Filter filterType={"cuisine"} filterOptions={cuisineOptions} />
     </div>
   );
 };
