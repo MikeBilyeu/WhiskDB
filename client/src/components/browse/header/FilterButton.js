@@ -1,6 +1,9 @@
 import React from "react";
 
 const FilterButton = props => {
+  const handleClick = () => {
+    console.log(props.buttonName, "clicked");
+  };
   return (
     <div
       style={{
@@ -14,6 +17,7 @@ const FilterButton = props => {
         margin: "1rem .2rem",
         padding: ".6rem"
       }}
+      onClick={handleClick}
     >
       {props.buttonName}
     </div>

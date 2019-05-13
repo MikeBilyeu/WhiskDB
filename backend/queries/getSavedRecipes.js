@@ -15,6 +15,11 @@ const getSavedRecipes = (request, response) => {
   //connect pool
   pool.connect().then(client => {
     // searching saved recipe table with user id
+    // SELECT r.recipe_id, r.title, count(lr.*) AS likes, count(dr.*) AS dislikes FROM recipes r
+    // LEFT JOIN liked_recipes lr ON r.recipe_id = lr.recipe_liked LEFT JOIN disliked_recipes dr ON r.recipe_id = dr.recipe_disliked
+    // WHERE r.recipe_id IN (
+    //   SELECT recipe_saved FROM saved_recipes WHERE saved_by = $1
+    // ) GROUP BY r.recipe_id;
     return client
       .query("SELECT recipe_saved FROM saved_recipes WHERE saved_by = $1", [
         user_id

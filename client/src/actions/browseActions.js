@@ -24,7 +24,3 @@ export const getBrowseRecipes = browseData => dispatch => {
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
-
-// export const setMealType = mealType => {
-//   return { type: SET_MEALT_YPE, payload: mealType };
-// };

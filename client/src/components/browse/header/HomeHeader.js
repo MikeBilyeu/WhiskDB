@@ -18,15 +18,10 @@ const dietOptions = ["Vegetarian", "Non-Vegetarian", "Vegan", "Ketogenic"];
 
 const cuisineOptions = [
   "Chinese",
-
   "Indian",
-
   "Italian",
-
   "Mexican",
-
   "Thai",
-
   "Other"
 ];
 
@@ -45,11 +40,11 @@ const HomeHeader = () => {
       >
         <SearchBar />
       </div>
-
       <HeaderOption />
+
       <Filter filterType={"meal"} filterOptions={mealOptions} />
-      <Filter filterType={"diet"} filterOptions={dietOptions} />
-      <Filter filterType={"cuisine"} filterOptions={cuisineOptions} />
+      {/*<Filter filterType={"diet"} filterOptions={dietOptions} />
+      <Filter filterType={"cuisine"} filterOptions={cuisineOptions} />*/}
     </div>
   );
 };
