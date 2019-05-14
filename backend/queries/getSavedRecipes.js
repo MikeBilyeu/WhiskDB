@@ -25,10 +25,6 @@ const getSavedRecipes = (request, response) => {
       )
       .then(res => {
         client.release();
-        // response if user has 0 saved recipes
-        if (res.rowCount === 0) {
-          response.status(200).json(savedRecipes);
-        }
         response.status(200).json(res.rows);
       })
       .catch(err => {
