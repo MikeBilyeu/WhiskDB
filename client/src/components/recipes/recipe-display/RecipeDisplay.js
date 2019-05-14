@@ -5,7 +5,7 @@ import Rating from "./rating/Rating";
 
 const RecipeDisplay = props => {
   const { title, likes, dislikes, total_time_mins } = props.recipe;
-  let totalVotes = likes + dislikes;
+  let totalVotes = parseInt(likes) + parseInt(dislikes);
   let rating = totalVotes === 0 ? 5 : (likes / totalVotes) * 5;
   let hours =
     Math.floor(total_time_mins / 60) !== 0
