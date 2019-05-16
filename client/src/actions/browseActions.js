@@ -4,10 +4,11 @@ import {
   GET_ERRORS,
   GET_BROWSE_RECIPES,
   GET_BROWSE_REQUEST,
-  SET_BROWSE_DATA
+  SET_BROWSE_DATA,
+  TOGGLE_FILTER_BUTTON
 } from "./types";
 
-// dispatch an action witha type of get browse request
+// dispatch an action with a type of get browse request
 export const getBrowseRecipes = browseData => dispatch => {
   // this need a check so it doesn't dispatch undefined data
   if (browseData !== undefined) {
@@ -23,4 +24,8 @@ export const getBrowseRecipes = browseData => dispatch => {
       dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+};
+
+export const toggleDiet = buttonName => {
+  return { type: "TOGGLE_FILTER_BUTTON", payload: buttonName };
 };

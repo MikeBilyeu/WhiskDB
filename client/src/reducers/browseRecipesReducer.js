@@ -1,13 +1,16 @@
 import {
   GET_BROWSE_RECIPES,
   GET_BROWSE_REQUEST,
-  SET_BROWSE_DATA
+  SET_BROWSE_DATA,
+  TOGGLE_FILTER_BUTTON
 } from "../actions/types";
 
 const initialState = {
   recipes: [],
   isFetching: true,
-  browseData: { search: "", meal: "Breakfast", diet: [], cuisine: [] }
+  browseData: { search: "", meal: "Breakfast", diet: [], cuisine: [] },
+  toggleDiet: false,
+  toggleCuisine: false
 };
 
 export default function(state = initialState, action) {
@@ -18,6 +21,20 @@ export default function(state = initialState, action) {
       return { ...state, recipes: action.payload, isFetching: false };
     case SET_BROWSE_DATA:
       return { ...state, browseData: action.payload };
+    case TOGGLE_FILTER_BUTTON:
+      if (action.payload === "Diet")
+        return {
+          ...state,
+          toggleDiet: !state.toggleDiet,
+          toggleCuisine: false
+        };
+      else if (action.payload === "Cuisine") {
+        return {
+          ...state,
+          toggleDiet: false,
+          toggleCuisine: !state.toggleCuisine
+        };
+      }
     default:
       return state;
   }

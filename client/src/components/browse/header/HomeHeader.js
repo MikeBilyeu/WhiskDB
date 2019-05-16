@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import LayoutToggle from "./LayoutToggle";
 import SearchBar from "./SearchBar";
@@ -9,7 +10,7 @@ const mealOptions = [
   "Breakfast",
   "Lunch",
   "Dinner",
-  "Appitizer",
+  "Appetizer",
   "Dessert",
   "Drink"
 ];
@@ -25,7 +26,22 @@ const cuisineOptions = [
   "Other"
 ];
 
-const HomeHeader = () => {
+const HomeHeader = props => {
+  let options = mealOptions;
+  let type = "meal";
+  let filter = () => {
+    if (props.toggleDiet) {
+      options = dietOptions;
+      type = "diet";
+    } else if (props.toggleCuisine) {
+      options = cuisineOptions;
+      type = "cuisine";
+    } else {
+      options = mealOptions;
+      type = "meal";
+    }
+  };
+  filter();
   return (
     <div>
       <div
@@ -41,12 +57,23 @@ const HomeHeader = () => {
         <SearchBar />
       </div>
       <HeaderOption />
+      {/*if diet is toggle is false*/}
 
-      <Filter filterType={"meal"} filterOptions={mealOptions} />
+      <Filter filterType={type} filterOptions={options} />
+
+      {/* if diet toggle is true*/}
+      {/* display diet options on diet button click*/}
       {/*<Filter filterType={"diet"} filterOptions={dietOptions} />
       <Filter filterType={"cuisine"} filterOptions={cuisineOptions} />*/}
     </div>
   );
 };
 
-export default HomeHeader;
+const mapSateToProps = state => {
+  return {
+    toggleDiet: state.browseRecipes.toggleDiet,
+    toggleCuisine: state.browseRecipes.toggleCuisine
+  };
+};
+
+export default connect(mapSateToProps)(HomeHeader);

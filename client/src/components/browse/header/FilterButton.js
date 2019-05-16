@@ -1,8 +1,13 @@
 import React from "react";
 
+import { connect } from "react-redux";
+
+// diet action creator
+import { toggleDiet } from "../../../actions/browseActions";
+
 const FilterButton = props => {
   const handleClick = () => {
-    console.log(props.buttonName, "clicked");
+    props.toggleDiet(props.buttonName);
   };
   return (
     <div
@@ -24,4 +29,7 @@ const FilterButton = props => {
   );
 };
 
-export default FilterButton;
+export default connect(
+  null,
+  { toggleDiet }
+)(FilterButton);

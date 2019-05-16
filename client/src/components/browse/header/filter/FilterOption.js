@@ -24,7 +24,9 @@ let FilterOption = props => {
       style={{
         color: "#464646",
         cursor: "pointer",
-        margin: "0 1rem"
+        margin: "0 1rem",
+        width: "8rem",
+        textAlign: "center"
       }}
       onClick={() => {
         handleClick(props.option);
@@ -36,7 +38,9 @@ let FilterOption = props => {
 };
 
 const mapSateToProps = state => {
-  return { browseData: state.browseRecipes.browseData };
+  return {
+    browseData: state.browseRecipes.browseData
+  };
 };
 
 export default connect(
