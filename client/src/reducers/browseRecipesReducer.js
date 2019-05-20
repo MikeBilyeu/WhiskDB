@@ -8,7 +8,7 @@ import {
 const initialState = {
   recipes: [],
   isFetching: true,
-  browseData: { search: "", meal: "Breakfast", diet: [], cuisine: [] },
+  browseData: { search: "", meal: "Breakfast", diet: "", cuisine: "" },
   toggleDiet: false,
   toggleCuisine: false
 };

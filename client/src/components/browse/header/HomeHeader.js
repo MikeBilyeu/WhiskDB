@@ -29,19 +29,18 @@ const cuisineOptions = [
 const HomeHeader = props => {
   let options = mealOptions;
   let type = "meal";
-  let filter = () => {
-    if (props.toggleDiet) {
-      options = dietOptions;
-      type = "diet";
-    } else if (props.toggleCuisine) {
-      options = cuisineOptions;
-      type = "cuisine";
-    } else {
-      options = mealOptions;
-      type = "meal";
-    }
-  };
-  filter();
+
+  if (props.toggleDiet) {
+    options = dietOptions;
+    type = "diet";
+  } else if (props.toggleCuisine) {
+    options = cuisineOptions;
+    type = "cuisine";
+  } else {
+    options = mealOptions;
+    type = "meal";
+  }
+
   return (
     <div>
       <div

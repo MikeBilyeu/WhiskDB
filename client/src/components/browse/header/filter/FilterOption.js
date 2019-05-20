@@ -18,16 +18,22 @@ let FilterOption = props => {
     }
   };
 
+  let style = {
+    color: "#464646",
+    cursor: "pointer",
+    margin: "0 1rem",
+    width: "8rem",
+    textAlign: "center"
+  };
+  if (props.option === props.browseData.meal) {
+    style.color = "#0172C4";
+    style.fontWeight = "bold";
+  }
+
   return (
     <div
       key={props.option}
-      style={{
-        color: "#464646",
-        cursor: "pointer",
-        margin: "0 1rem",
-        width: "8rem",
-        textAlign: "center"
-      }}
+      style={style}
       onClick={() => {
         handleClick(props.option);
       }}
