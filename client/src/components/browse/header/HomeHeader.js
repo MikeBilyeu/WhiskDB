@@ -15,9 +15,16 @@ const mealOptions = [
   "Drink"
 ];
 
-const dietOptions = ["Vegetarian", "Non-Vegetarian", "Vegan", "Ketogenic"];
+const dietOptions = [
+  "None",
+  "Vegetarian",
+  "Non-Vegetarian",
+  "Vegan",
+  "Ketogenic"
+];
 
 const cuisineOptions = [
+  "All",
   "Chinese",
   "Indian",
   "Italian",
@@ -56,14 +63,7 @@ const HomeHeader = props => {
         <SearchBar />
       </div>
       <HeaderOption />
-      {/*if diet is toggle is false*/}
-
       <Filter filterType={type} filterOptions={options} />
-
-      {/* if diet toggle is true*/}
-      {/* display diet options on diet button click*/}
-      {/*<Filter filterType={"diet"} filterOptions={dietOptions} />
-      <Filter filterType={"cuisine"} filterOptions={cuisineOptions} />*/}
     </div>
   );
 };

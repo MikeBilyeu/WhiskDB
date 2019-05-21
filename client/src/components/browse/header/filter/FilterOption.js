@@ -25,7 +25,9 @@ let FilterOption = props => {
     width: "8rem",
     textAlign: "center"
   };
-  if (props.option === props.browseData.meal) {
+
+  // check if option is in the browseData values to apply styles
+  if (Object.values(props.browseData).indexOf(props.option) > 0) {
     style.color = "#0172C4";
     style.fontWeight = "bold";
   }
