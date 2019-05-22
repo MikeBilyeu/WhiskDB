@@ -19,7 +19,8 @@ const FilterButton = props => {
     textAlign: "center",
     fontSize: "1.2rem",
     margin: "1rem .2rem",
-    padding: ".6rem"
+    padding: ".6rem",
+    userSelect: "none"
   };
 
   if (props.buttonName === "Diet" && props.toggleDietState) {

@@ -23,7 +23,8 @@ let FilterOption = props => {
     cursor: "pointer",
     margin: "0 1rem",
     width: "8rem",
-    textAlign: "center"
+    textAlign: "center",
+    userSelect: "none"
   };
 
   // check if option is in the browseData values to apply styles
