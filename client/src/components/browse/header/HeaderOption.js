@@ -10,7 +10,11 @@ const HeaderOption = props => {
         height: "2.5rem",
         display: "grid",
         gridAutoFlow: "column",
-        placeItems: "center"
+        placeItems: "center",
+        userSelect: "none",
+        MozUserSelect: "none",
+        WebkitUserSelect: "none",
+        MsUserSelect: "none"
       }}
     >
       <FilterButton buttonName="Diet" />
