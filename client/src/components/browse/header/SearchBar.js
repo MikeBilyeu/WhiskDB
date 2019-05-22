@@ -26,7 +26,7 @@ class SearchBar extends React.Component {
 
   handleKeyPress = e => {
     if (e.key === "Enter") {
-      let browse = { ...this.props.browseData, search: e.target.value };
+      let browse = { ...this.props.browseData, search: e.target.value.trim() };
       this.props.getBrowseRecipes(browse);
     }
   };

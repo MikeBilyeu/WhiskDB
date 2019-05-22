@@ -3,11 +3,11 @@ import React from "react";
 import { connect } from "react-redux";
 
 // diet action creator
-import { toggleDiet } from "../../../actions/browseActions";
+import { toggleFilterButton } from "../../../actions/browseActions";
 
 const FilterButton = props => {
   const handleClick = () => {
-    props.toggleDiet(props.buttonName);
+    props.toggleFilterButton(props.buttonName);
   };
   // if button name and toggle name match set style
   let style = {
@@ -43,5 +43,5 @@ const mapSateToProps = state => {
 
 export default connect(
   mapSateToProps,
-  { toggleDiet }
+  { toggleFilterButton }
 )(FilterButton);

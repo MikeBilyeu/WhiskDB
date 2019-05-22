@@ -26,6 +26,6 @@ export const getBrowseRecipes = browseData => dispatch => {
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
 
-export const toggleDiet = buttonName => {
+export const toggleFilterButton = buttonName => {
   return { type: "TOGGLE_FILTER_BUTTON", payload: buttonName };
 };
