@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-// impor the actions
+// import the actions
 import { getBrowseRecipes } from "../../../../actions/browseActions";
 
 let FilterOption = props => {
