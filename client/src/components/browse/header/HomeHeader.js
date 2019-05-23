@@ -39,18 +39,25 @@ const HomeHeader = props => {
   let options = mealOptions;
   let type = "meal";
 
-  if (props.toggleDiet) {
-    options = dietOptions;
-    type = "diet";
-  } else if (props.toggleCuisine) {
-    options = cuisineOptions;
-    type = "cuisine";
-  } else if (props.toggleSort) {
-    options = sortOptions;
-    type = "sort";
-  } else {
-    options = mealOptions;
-    type = "meal";
+  switch (props.buttonToggled) {
+    case "Meal":
+      options = mealOptions;
+      type = "meal";
+      break;
+    case "Diet":
+      options = dietOptions;
+      type = "diet";
+      break;
+    case "Cuisine":
+      options = cuisineOptions;
+      type = "cuisine";
+      break;
+    case "Sort":
+      options = sortOptions;
+      type = "sort";
+      break;
+    default:
+      break;
   }
 
   return (
@@ -75,9 +82,7 @@ const HomeHeader = props => {
 
 const mapSateToProps = state => {
   return {
-    toggleDiet: state.browseRecipes.toggleDiet,
-    toggleCuisine: state.browseRecipes.toggleCuisine,
-    toggleSort: state.browseRecipes.toggleSort
+    buttonToggled: state.browseRecipes.toggleFilterButton
   };
 };
 

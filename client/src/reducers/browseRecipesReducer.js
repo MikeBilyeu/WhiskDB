@@ -15,8 +15,7 @@ const initialState = {
     cuisine: "All",
     sort: "Top Rated"
   },
-  toggleDiet: false,
-  toggleCuisine: false
+  toggleFilterButton: "Meal"
 };
 
 export default function(state = initialState, action) {
@@ -28,26 +27,15 @@ export default function(state = initialState, action) {
     case SET_BROWSE_DATA:
       return { ...state, browseData: action.payload };
     case TOGGLE_FILTER_BUTTON:
-      if (action.payload === "Diet")
+      if (action.payload === state.toggleFilterButton)
         return {
           ...state,
-          toggleDiet: !state.toggleDiet,
-          toggleCuisine: false,
-          toggleSort: false
+          toggleFilterButton: "Meal"
         };
-      else if (action.payload === "Cuisine") {
+      else {
         return {
           ...state,
-          toggleDiet: false,
-          toggleCuisine: !state.toggleCuisine,
-          toggleSort: false
-        };
-      } else if (action.payload === "Sort") {
-        return {
-          ...state,
-          toggleDiet: false,
-          toggleCuisine: false,
-          toggleSort: !state.toggleSort
+          toggleFilterButton: action.payload
         };
       }
     default:
