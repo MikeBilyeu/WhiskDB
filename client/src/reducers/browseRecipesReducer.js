@@ -13,7 +13,7 @@ const initialState = {
     meal: "Breakfast",
     diet: "None",
     cuisine: "All",
-    sort: "A-Z"
+    sort: "Top Rated"
   },
   toggleDiet: false,
   toggleCuisine: false
