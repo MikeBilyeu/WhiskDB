@@ -22,7 +22,8 @@ let FilterOption = props => {
     color: "#464646",
     cursor: "pointer",
     margin: "0 1rem",
-    width: "8rem",
+    width: "100%",
+    whiteSpace: "nowrap",
     textAlign: "center",
     userSelect: "none",
     transition: "all .1s ease-out"

@@ -18,7 +18,7 @@ const mealOptions = [
 const dietOptions = [
   "None",
   "Vegetarian",
-  "Non-Vegetarian",
+  "Non Vegetarian",
   "Vegan",
   "Ketogenic"
 ];
@@ -33,6 +33,8 @@ const cuisineOptions = [
   "Other"
 ];
 
+const sortOptions = ["A-Z", "Top Rated", "Most Rated", "Shortest"];
+
 const HomeHeader = props => {
   let options = mealOptions;
   let type = "meal";
@@ -43,6 +45,9 @@ const HomeHeader = props => {
   } else if (props.toggleCuisine) {
     options = cuisineOptions;
     type = "cuisine";
+  } else if (props.toggleSort) {
+    options = sortOptions;
+    type = "sort";
   } else {
     options = mealOptions;
     type = "meal";
@@ -71,7 +76,8 @@ const HomeHeader = props => {
 const mapSateToProps = state => {
   return {
     toggleDiet: state.browseRecipes.toggleDiet,
-    toggleCuisine: state.browseRecipes.toggleCuisine
+    toggleCuisine: state.browseRecipes.toggleCuisine,
+    toggleSort: state.browseRecipes.toggleSort
   };
 };
 

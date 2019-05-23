@@ -36,6 +36,9 @@ const FilterButton = props => {
   } else if (props.buttonName === "Cuisine" && props.toggleCuisineState) {
     style.backgroundColor = "#0172C4";
     arrowStyle.transform = "rotate(90deg)";
+  } else if (props.buttonName === "Sort" && props.toggleSortState) {
+    style.backgroundColor = "#0172C4";
+    arrowStyle.transform = "rotate(90deg)";
   }
   return (
     <div style={style} onClick={handleClick}>
@@ -48,7 +51,8 @@ const FilterButton = props => {
 const mapSateToProps = state => {
   return {
     toggleDietState: state.browseRecipes.toggleDiet,
-    toggleCuisineState: state.browseRecipes.toggleCuisine
+    toggleCuisineState: state.browseRecipes.toggleCuisine,
+    toggleSortState: state.browseRecipes.toggleSort
   };
 };
 

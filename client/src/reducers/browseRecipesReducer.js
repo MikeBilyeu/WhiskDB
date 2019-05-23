@@ -8,7 +8,13 @@ import {
 const initialState = {
   recipes: [],
   isFetching: true,
-  browseData: { search: "", meal: "Breakfast", diet: "None", cuisine: "All" },
+  browseData: {
+    search: "",
+    meal: "Breakfast",
+    diet: "None",
+    cuisine: "All",
+    sort: "A-Z"
+  },
   toggleDiet: false,
   toggleCuisine: false
 };
@@ -26,13 +32,22 @@ export default function(state = initialState, action) {
         return {
           ...state,
           toggleDiet: !state.toggleDiet,
-          toggleCuisine: false
+          toggleCuisine: false,
+          toggleSort: false
         };
       else if (action.payload === "Cuisine") {
         return {
           ...state,
           toggleDiet: false,
-          toggleCuisine: !state.toggleCuisine
+          toggleCuisine: !state.toggleCuisine,
+          toggleSort: false
+        };
+      } else if (action.payload === "Sort") {
+        return {
+          ...state,
+          toggleDiet: false,
+          toggleCuisine: false,
+          toggleSort: !state.toggleSort
         };
       }
     default:
