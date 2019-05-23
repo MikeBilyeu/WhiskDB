@@ -12,61 +12,23 @@ const pool = new Pool({
 
 const getBrowseRecipes = (request, response) => {
   console.log("Browse", request.query);
-  let browseRecipes = [];
-  let recipe_ids = [];
 
   //connect pool
   pool.connect().then(client => {
     // query the recipe table
     return client
-      .query("SELECT recipe_id, title, image_url, total_time_mins FROM recipes")
+      .query(
+        `SELECT r.recipe_id, r.title, r.total_time_mins, r.image_url,
+        count(lr.*) AS likes, count(dr.*) AS dislikes FROM recipes r LEFT JOIN
+        liked_recipes lr ON r.recipe_id = lr.recipe_liked LEFT JOIN
+        disliked_recipes dr ON r.recipe_id = dr.recipe_disliked GROUP BY
+        r.recipe_id`
+      )
       .then(res => {
         client.release();
-        if (res.rows.length === 0) {
-          response.status(200).json(browseRecipes);
-        }
-        browseRecipes = [...res.rows];
+        response.status(200).json(res.rows);
+      })
 
-        recipe_ids = res.rows.map(recipe => recipe.recipe_id);
-      })
-      .then(() => {
-        for (let id of recipe_ids) {
-          // search like table with recipe id to get number of likes
-          client
-            .query(
-              "SELECT recipe_liked FROM liked_recipes WHERE recipe_liked = $1",
-              [id]
-            )
-            .then(res => {
-              let likes = res.rowCount;
-              //store likes in browseRecipes
-              browseRecipes.map(recipe => {
-                if (recipe.recipe_id === id) {
-                  return (recipe.likes = likes);
-                }
-              });
-            });
-          // search dislike table with recipe id to get number of dislikes
-          client
-            .query(
-              "SELECT recipe_disliked FROM disliked_recipes WHERE recipe_disliked = $1",
-              [id]
-            )
-            .then(res => {
-              let dislikes = res.rowCount;
-              //store dislikes in browseRecipes
-              browseRecipes.map(recipe => {
-                if (recipe.recipe_id === id) {
-                  return (recipe.dislikes = dislikes);
-                }
-              });
-              // This will run when the last recipe has finished
-              if (id === recipe_ids[recipe_ids.length - 1]) {
-                response.status(200).json(browseRecipes);
-              }
-            });
-        }
-      })
       .catch(err => {
         client.release();
         console.log(err.stack);
