@@ -24,7 +24,8 @@ let FilterOption = props => {
     margin: "0 1rem",
     width: "8rem",
     textAlign: "center",
-    userSelect: "none"
+    userSelect: "none",
+    transition: "all .1s ease-out"
   };
 
   // check if option is in the browseData values to apply styles

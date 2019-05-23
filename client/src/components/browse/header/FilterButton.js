@@ -2,6 +2,8 @@ import React from "react";
 
 import { connect } from "react-redux";
 
+import { ReactComponent as Arrow } from "./filterArrow.svg";
+
 // diet action creator
 import { toggleFilterButton } from "../../../actions/browseActions";
 
@@ -19,17 +21,26 @@ const FilterButton = props => {
     textAlign: "center",
     fontSize: "1.2rem",
     margin: "1rem .2rem",
-    padding: ".6rem"
+    padding: ".6rem",
+    transition: "all .1s ease-out"
+  };
+  let arrowStyle = {
+    width: ".8rem",
+    transition: "all .1s ease-out",
+    marginLeft: ".4rem"
   };
 
   if (props.buttonName === "Diet" && props.toggleDietState) {
     style.backgroundColor = "#0172C4";
+    arrowStyle.transform = "rotate(90deg)";
   } else if (props.buttonName === "Cuisine" && props.toggleCuisineState) {
     style.backgroundColor = "#0172C4";
+    arrowStyle.transform = "rotate(90deg)";
   }
   return (
     <div style={style} onClick={handleClick}>
       {props.buttonName}
+      <Arrow style={arrowStyle} />
     </div>
   );
 };

@@ -19,7 +19,7 @@ const HeaderOption = props => {
     >
       <FilterButton buttonName="Diet" />
       <FilterButton buttonName="Cuisine" />
-      <SortButton buttonName="Sort" />
+      <FilterButton buttonName="Sort" />
     </div>
   );
 };

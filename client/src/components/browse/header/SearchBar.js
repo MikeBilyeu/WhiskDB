@@ -33,13 +33,14 @@ class SearchBar extends React.Component {
 
   render() {
     let style = {
-      width: "100%",
+      width: "90%",
       height: "2.9rem",
       fontSize: "1.3rem",
       border: ".1rem solid #BFBFBF",
       borderRadius: "50rem",
       padding: "1rem",
-      outline: "none"
+      outline: "none",
+      transition: "all .1s ease-out"
     };
 
     if (this.state.focus) {
