@@ -10,7 +10,7 @@ import RecipeDisplay from "../recipes/recipe-display/RecipeDisplay";
 import HomeHeader from "./header/HomeHeader";
 class Results extends React.Component {
   componentDidMount() {
-    this.props.getBrowseRecipes();
+    this.props.getBrowseRecipes(this.props.browseData);
   }
 
   render() {
@@ -38,7 +38,8 @@ class Results extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  recipes: state.browseRecipes
+  recipes: state.browseRecipes,
+  browseData: state.browseRecipes.browseData
 });
 
 export default connect(

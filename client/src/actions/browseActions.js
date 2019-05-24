@@ -10,13 +10,11 @@ import {
 
 // dispatch an action with a type of get browse request
 export const getBrowseRecipes = browseData => dispatch => {
-  // this need a check so it doesn't dispatch undefined data
-  if (browseData !== undefined) {
-    dispatch({ type: SET_BROWSE_DATA, payload: browseData });
-  }
-
   // dispatch a browse request
   dispatch({ type: GET_BROWSE_REQUEST });
+
+  dispatch({ type: SET_BROWSE_DATA, payload: browseData });
+
   // make axios request
   axios
     .get("/browse-recipe", { params: { browseData } })

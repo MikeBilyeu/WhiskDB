@@ -12,6 +12,7 @@ const pool = new Pool({
 
 const getSavedRecipes = (request, response) => {
   const { user_id } = request.query;
+  console.log(request.query);
   //connect pool
   pool.connect().then(client => {
     return client

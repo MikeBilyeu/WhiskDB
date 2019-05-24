@@ -11,7 +11,10 @@ const pool = new Pool({
 });
 
 const getBrowseRecipes = (request, response) => {
-  console.log("Browse", request.query);
+  console.log(request.query);
+  let { search, meal, diet, cuisine, sort } = JSON.parse(
+    request.query.browseData.toLowerCase()
+  );
 
   //connect pool
   pool.connect().then(client => {
@@ -21,8 +24,13 @@ const getBrowseRecipes = (request, response) => {
         `SELECT r.recipe_id, r.title, r.total_time_mins, r.image_url,
         count(lr.*) AS likes, count(dr.*) AS dislikes FROM recipes r LEFT JOIN
         liked_recipes lr ON r.recipe_id = lr.recipe_liked LEFT JOIN
-        disliked_recipes dr ON r.recipe_id = dr.recipe_disliked GROUP BY
-        r.recipe_id`
+        disliked_recipes dr ON r.recipe_id = dr.recipe_disliked WHERE
+        r.recipe_id IN
+        ( SELECT recipe FROM recipes_join_categories WHERE
+          category in (SELECT category_id from categories
+            WHERE category_name = $1))
+        GROUP BY r.recipe_id`,
+        [meal]
       )
       .then(res => {
         client.release();

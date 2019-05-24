@@ -18,7 +18,7 @@ const mealOptions = [
 const dietOptions = [
   "None",
   "Vegetarian",
-  "Non Vegetarian",
+  "NonVegetarian",
   "Vegan",
   "Ketogenic"
 ];
