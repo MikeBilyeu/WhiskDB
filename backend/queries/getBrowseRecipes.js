@@ -60,8 +60,12 @@ const getBrowseRecipes = (request, response) => {
           END
           GROUP BY recipe HAVING COUNT(*) = $4 )
         GROUP BY r.recipe_id
+        ORDER BY
+          CASE WHEN $5 = 'a-z' THEN LOWER(title) END ASC,
+          CASE WHEN $5 = 'shortest' THEN total_time_mins END ASC,
+        likes DESC ;
 `,
-        [meal, diet, cuisine, numOfCats]
+        [meal, diet, cuisine, numOfCats, sort]
       )
       .then(res => {
         client.release();
