@@ -22,7 +22,7 @@ const FilterButton = props => {
     fontSize: "1.2rem",
     margin: "1rem .2rem",
     padding: ".6rem",
-    transition: "all .1s ease-out"
+    transition: "all .2s ease-out"
   };
   let arrowStyle = {
     width: ".8rem",

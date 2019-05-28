@@ -7,11 +7,8 @@ import { getBrowseRecipes } from "../../../../actions/browseActions";
 let FilterOption = props => {
   const { option, browseData, filterType } = props;
   const handleClick = option => {
-    // if filter type == diet or cuisine
-
     // make filterType an array of options
     let browse = { ...browseData, [filterType]: option };
-
     // don't run aciton if data obj is the same
     if (JSON.stringify(browse) !== JSON.stringify(browseData)) {
       props.getBrowseRecipes(browse);

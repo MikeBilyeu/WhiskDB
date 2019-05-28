@@ -12,7 +12,7 @@ import {
 export const getBrowseRecipes = browseData => dispatch => {
   // dispatch a browse request
   dispatch({ type: GET_BROWSE_REQUEST });
-
+  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: "Meal" });
   dispatch({ type: SET_BROWSE_DATA, payload: browseData });
 
   // make axios request
@@ -25,5 +25,5 @@ export const getBrowseRecipes = browseData => dispatch => {
 };
 
 export const toggleFilterButton = buttonName => {
-  return { type: "TOGGLE_FILTER_BUTTON", payload: buttonName };
+  return { type: TOGGLE_FILTER_BUTTON, payload: buttonName };
 };
