@@ -26,7 +26,6 @@ const getBrowseRecipes = (request, response) => {
     return client
       .query(
         `SELECT r.recipe_id, r.title, r.total_time_mins, r.image_url,
-        count(lr.*) AS likes, count(dr.*) AS dislikes,
         CASE WHEN count(lr.*) + count(dr.*) = 0 THEN 0
         ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
         END
