@@ -15,13 +15,7 @@ const mealOptions = [
   "Drink"
 ];
 
-const dietOptions = [
-  "None",
-  "Vegetarian",
-  "NonVegetarian",
-  "Vegan",
-  "Ketogenic"
-];
+const dietOptions = ["None", "Vegetarian", "Vegan"];
 
 const cuisineOptions = [
   "All",
