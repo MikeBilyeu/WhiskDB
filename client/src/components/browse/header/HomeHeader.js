@@ -27,7 +27,7 @@ const cuisineOptions = [
   "Other"
 ];
 
-const sortOptions = ["Top Rated", "A-Z", "Most Rated", "Shortest"];
+const sortOptions = ["Top Rated", "A-Z", "Time"];
 
 const HomeHeader = props => {
   let options = mealOptions;
