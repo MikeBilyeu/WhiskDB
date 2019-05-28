@@ -2,15 +2,15 @@ import React from "react";
 
 import { ReactComponent as Star } from "./star.svg";
 
-const Rating = props => {
+const Rating = ({ votes, rating }) => {
   const renderRating = () => {
     let starColor = [];
     // push color of star to arr
     for (let i = 0; i < 5; i++) {
-      if (i < props.rating) {
-        starColor.push("#FFBB5F");
+      if (i < rating || rating < 1) {
+        starColor = [...starColor, "#FFBB5F"];
       } else {
-        starColor.push("#E2E2E2");
+        starColor = [...starColor, "#E2E2E2"];
       }
     }
     return starColor.map((color, i) => {
@@ -20,9 +20,7 @@ const Rating = props => {
   return (
     <div style={{ display: "grid", gridTemplateColumns: "7rem 1fr" }}>
       <div>{renderRating()}</div>
-      <div>{`${props.totalVotes} vote${
-        props.totalVotes !== 1 ? "s" : ""
-      }`}</div>
+      <div>{`${votes} vote${votes !== 1 ? "s" : ""}`}</div>
     </div>
   );
 };

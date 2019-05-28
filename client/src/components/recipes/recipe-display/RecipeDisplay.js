@@ -4,14 +4,9 @@ import { ReactComponent as Arrow } from "./arrow.svg";
 import Rating from "./rating/Rating";
 
 const RecipeDisplay = props => {
-  const { title, likes, dislikes, total_time_mins } = props.recipe;
-  let totalVotes = parseInt(likes) + parseInt(dislikes);
-  let rating = totalVotes === 0 ? 5 : (likes / totalVotes) * 5;
-  let hours =
-    Math.floor(total_time_mins / 60) !== 0
-      ? `${Math.floor(total_time_mins / 60)}h`
-      : ``;
-  let minutes = total_time_mins % 60 !== 0 ? `${total_time_mins % 60}m` : ``;
+  const { title, total_time_mins: time, votes, rating } = props.recipe;
+  const hours = Math.floor(time / 60) !== 0 ? `${Math.floor(time / 60)}h` : ``;
+  const minutes = time % 60 !== 0 ? `${time % 60}m` : ``;
 
   return (
     <li
@@ -46,7 +41,7 @@ const RecipeDisplay = props => {
           }}
         >{`${title}`}</div>
 
-        <Rating rating={rating} totalVotes={totalVotes} />
+        <Rating rating={rating} votes={votes} />
         <div style={{ color: "#464646" }}>{` Time: ${hours} ${minutes}`}</div>
       </div>
 
