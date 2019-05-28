@@ -26,7 +26,7 @@ const getBrowseRecipes = (request, response) => {
     return client
       .query(
         `SELECT r.recipe_id, r.title, r.total_time_mins, r.image_url,
-        CASE WHEN count(lr.*) + count(dr.*) = 0 THEN 0
+        r.created_at, CASE WHEN count(lr.*) + count(dr.*) = 0 THEN 0
         ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
         END
         AS rating,
@@ -67,6 +67,7 @@ const getBrowseRecipes = (request, response) => {
         ORDER BY
           CASE WHEN $5 = 'a-z' THEN LOWER(r.title) END ASC,
           CASE WHEN $5 = 'time' THEN r.total_time_mins END ASC,
+          CASE WHEN $5 = 'newest' THEN r.created_at END DESC,
         rating DESC, votes DESC ;
 `,
         [meal, diet, cuisine, numOfCats, sort]

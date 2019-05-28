@@ -15,7 +15,7 @@ class Results extends React.Component {
 
   render() {
     const { recipes, isFetching } = this.props.recipes;
-
+    console.log(recipes);
     const renderRecipeList =
       recipes &&
       recipes.map((recipe, i) => {
