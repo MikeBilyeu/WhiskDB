@@ -11,7 +11,7 @@ const FilterButton = props => {
   const handleClick = () => {
     props.toggleFilterButton(props.buttonName);
   };
-  // if button name and toggle name match set style
+
   let style = {
     width: "7rem",
     borderRadius: ".2rem",
@@ -31,8 +31,13 @@ const FilterButton = props => {
   };
 
   if (props.buttonName === props.buttonToggled) {
-    style = { ...style, backgroundColor: "#E2E2E2" };
     arrowStyle = { ...arrowStyle, transform: "rotate(90deg)" };
+  }
+  if (
+    props.buttonToggled != "Meal" &&
+    props.buttonName != props.buttonToggled
+  ) {
+    style = { ...style, backgroundColor: "#E2E2E2" };
   }
 
   return (

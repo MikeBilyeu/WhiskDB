@@ -68,7 +68,7 @@ const getBrowseRecipes = (request, response) => {
           CASE WHEN $5 = 'a-z' THEN LOWER(r.title) END ASC,
           CASE WHEN $5 = 'time' THEN r.total_time_mins END ASC,
           CASE WHEN $5 = 'newest' THEN r.created_at END DESC,
-        rating DESC, votes DESC ;
+        rating DESC, votes DESC;
 `,
         [meal, diet, cuisine, numOfCats, sort]
       )

@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 //action creator
 import { getBrowseRecipes } from "../../../actions/browseActions";
 
+import { ReactComponent as SearchIcon } from "./searchIcon.svg";
+
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -23,39 +25,53 @@ class SearchBar extends React.Component {
   handleChange = e => {
     this.setState({ search: e.target.value });
   };
+  handleClick = () => {
+    this.props.getBrowseRecipes({
+      ...this.props.browseData,
+      search: this.state.search.trim()
+    });
+  };
 
   handleKeyPress = e => {
     if (e.key === "Enter") {
-      let browse = { ...this.props.browseData, search: e.target.value.trim() };
-      this.props.getBrowseRecipes(browse);
+      this.props.getBrowseRecipes({
+        ...this.props.browseData,
+        search: this.state.search.trim()
+      });
     }
   };
 
   render() {
     let style = {
       width: "90%",
-      height: "2.9rem",
+      height: "3rem",
       fontSize: "1.3rem",
       border: ".1rem solid #BFBFBF",
       borderRadius: "50rem",
-      padding: "1rem",
-      outline: "none",
-      transition: "all .1s ease-out"
+      padding: "0 0 0 1.5rem",
+      transition: "all .1s ease-out",
+      display: "grid",
+      gridTemplateColumns: "10fr 1fr",
+      placeItems: "center"
     };
 
     if (this.state.focus) {
       style.border = "solid #0172C4 .1rem";
     }
     return (
-      <input
-        style={style}
-        onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
-        onChange={this.handleChange}
-        onKeyPress={this.handleKeyPress}
-        autoComplete="off"
-        placeholder="Search..."
-      />
+      <div style={style} onFocus={this.handleFocus} onBlur={this.handleBlur}>
+        <input
+          style={{ all: "unset", width: "100%", height: "2.5rem" }}
+          onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
+          autoComplete="off"
+          placeholder="Search..."
+        />
+        <SearchIcon
+          onClick={this.handleClick}
+          style={{ width: "5rem", cursor: "pointer", padding: "0.5rem 1.5rem" }}
+        />
+      </div>
     );
   }
 }
