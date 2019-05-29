@@ -46,18 +46,19 @@ class SearchBar extends React.Component {
       width: "90%",
       height: "3rem",
       fontSize: "1.3rem",
-      border: ".1rem solid #BFBFBF",
-      borderRadius: "50rem",
+      // border: ".1rem solid #BFBFBF",,
+      backgroundColor: "#EAEAEA",
+      borderRadius: ".5rem",
       padding: "0 0 0 1.5rem",
       transition: "all .1s ease-out",
       display: "grid",
-      gridTemplateColumns: "10fr 1fr",
+      gridTemplateColumns: "15fr 1fr",
       placeItems: "center"
     };
 
-    if (this.state.focus) {
-      style.border = "solid #0172C4 .1rem";
-    }
+    // if (this.state.focus) {
+    //   style.border = "solid #0172C4 .1rem";
+    // }
     return (
       <div style={style} onFocus={this.handleFocus} onBlur={this.handleBlur}>
         <input
@@ -69,7 +70,7 @@ class SearchBar extends React.Component {
         />
         <SearchIcon
           onClick={this.handleClick}
-          style={{ width: "5rem", cursor: "pointer", padding: "0.5rem 1.5rem" }}
+          style={{ width: "4rem", cursor: "pointer", padding: "0.5rem 1rem" }}
         />
       </div>
     );

@@ -15,7 +15,7 @@ const RecipeDisplay = props => {
         padding: ".5rem",
         margin: ".5rem 0",
         display: "grid",
-        gridTemplateColumns: "1fr 4fr .5fr",
+        gridTemplateColumns: "6rem minmax(10rem,4fr) .5fr",
         gridGap: ".5rem"
       }}
     >
@@ -24,7 +24,7 @@ const RecipeDisplay = props => {
         height="80rem"
         style={{
           borderRadius: "50%",
-          border: "solid #0172C4",
+          border: "solid #D3D3D3",
           padding: ".2rem"
         }}
       />

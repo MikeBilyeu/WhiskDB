@@ -25,7 +25,13 @@ class Rating extends React.Component {
   render() {
     const { votes } = this.props;
     return (
-      <div style={{ display: "grid", gridTemplateColumns: "7rem 1fr" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "7rem 1fr",
+          color: "#313131"
+        }}
+      >
         <div>{this.renderRating()}</div>
         <div>{`${votes} vote${votes !== 1 ? "s" : ""}`}</div>
       </div>
