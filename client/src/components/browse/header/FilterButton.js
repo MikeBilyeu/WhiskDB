@@ -26,12 +26,12 @@ const FilterButton = props => {
   };
   let arrowStyle = {
     width: ".8rem",
-    transition: "all .1s ease-out",
+    transition: "all .2s ease-out",
     marginLeft: ".4rem"
   };
 
   if (props.buttonName === props.buttonToggled) {
-    style = { ...style, backgroundColor: "#0172C4" };
+    style = { ...style, backgroundColor: "#E2E2E2" };
     arrowStyle = { ...arrowStyle, transform: "rotate(90deg)" };
   }
 

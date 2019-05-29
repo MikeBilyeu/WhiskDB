@@ -2,19 +2,21 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { getBrowseRecipes } from "../../actions/browseActions";
+import { getBrowseRecipes } from "../../../actions/browseActions";
 
-import { Loading } from "../loading/Loading";
-import RecipeDisplay from "../recipes/recipe-display/RecipeDisplay";
-
-import HomeHeader from "./header/HomeHeader";
+import { Loading } from "../../loading/Loading";
+import RecipeDisplay from "../../recipes/recipe-display/RecipeDisplay";
+import NoResults from "./NoResults";
 class Results extends React.Component {
   componentDidMount() {
     this.props.getBrowseRecipes(this.props.browseData);
   }
 
   renderRecipeList = () => {
-    return this.props.recipes.recipes.map((recipe, i) => {
+    if (this.props.recipes.recipes.length < 1) {
+      return <NoResults />;
+    }
+    return this.props.recipes.recipes.map((recipe, i, { length }) => {
       return (
         <Link key={`recipe${i}`} to={`/recipe/${recipe.recipe_id}`}>
           <RecipeDisplay recipe={recipe} />
@@ -30,7 +32,13 @@ class Results extends React.Component {
       return <Loading />;
     }
     return (
-      <ul style={{ listStyleType: "none", marginLeft: ".8rem", padding: "0" }}>
+      <ul
+        style={{
+          listStyleType: "none",
+          marginLeft: recipes.length > 1 ? "1rem" : "0",
+          padding: "0"
+        }}
+      >
         {this.renderRecipeList()}
       </ul>
     );
