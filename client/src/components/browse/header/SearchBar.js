@@ -62,7 +62,12 @@ class SearchBar extends React.Component {
     return (
       <div style={style} onFocus={this.handleFocus} onBlur={this.handleBlur}>
         <input
-          style={{ all: "unset", width: "100%", height: "2.5rem" }}
+          style={{
+            all: "unset",
+            width: "100%",
+            height: "2.5rem",
+            color: "#484848"
+          }}
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
           autoComplete="off"
@@ -70,7 +75,7 @@ class SearchBar extends React.Component {
         />
         <SearchIcon
           onClick={this.handleClick}
-          style={{ width: "4rem", cursor: "pointer", padding: "0.5rem 1rem" }}
+          style={{ width: "3.4rem", cursor: "pointer", padding: "0.5rem 1rem" }}
         />
       </div>
     );
