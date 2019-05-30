@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 //action creator
-import { getBrowseRecipes } from "../../../actions/browseActions";
-import { getSearchRecipes } from "../../../actions/browseActions";
-import { toggleFilterButton } from "../../../actions/browseActions";
+import { getBrowseRecipes } from "../../../../actions/browseActions";
+import { getSearchRecipes } from "../../../../actions/browseActions";
+import { toggleFilterButton } from "../../../../actions/browseActions";
+
+//styles
+import "./search-bar-styles.css";
 
 import { ReactComponent as SearchIcon } from "./searchIcon.svg";
 
@@ -57,27 +60,18 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    let style = {
-      width: "85%",
-      height: "3rem",
-      fontSize: "1.3rem",
-      backgroundColor: "#EAEAEA",
-      borderRadius: ".5rem",
-      padding: "0 0 0 1.5rem",
-      transition: "all .1s ease-out",
-      display: "grid",
-      gridTemplateColumns: "15fr 1fr",
-      placeItems: "center"
-    };
-
     return (
-      <div style={style} onFocus={this.handleFocus} onBlur={this.handleBlur}>
+      <div
+        className="searchBar"
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+      >
         <input
           style={{
             all: "unset",
             width: "100%",
-            height: "2.5rem",
-            color: "#484848"
+            color: "#484848",
+            justifySelf: "start"
           }}
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
@@ -85,10 +79,7 @@ class SearchBar extends React.Component {
           placeholder="Search..."
           value={this.props.searchTerm}
         />
-        <SearchIcon
-          onClick={this.handleClick}
-          style={{ width: "3.4rem", cursor: "pointer", padding: "0.5rem 1rem" }}
-        />
+        <SearchIcon onClick={this.handleClick} className="searchIcon" />
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import LayoutToggle from "./LayoutToggle";
-import SearchBar from "./SearchBar";
+import SearchBar from "./search-bar/SearchBar";
 import HeaderOption from "./HeaderOption";
 import Filter from "./filter/Filter";
 
