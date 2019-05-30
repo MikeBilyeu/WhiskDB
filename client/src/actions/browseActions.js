@@ -26,11 +26,12 @@ export const getBrowseRecipes = browseData => dispatch => {
 
 // dispatch an action with a type of get search request
 export const getSearchRecipes = browseData => dispatch => {
+  // close filter buttons
+  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: "Meal" });
+  //if string is not whitespace
+
   // dispatch a browse request
   dispatch({ type: GET_BROWSE_REQUEST });
-  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: "Meal" });
-  dispatch({ type: SET_BROWSE_DATA, payload: browseData });
-
   // make axios request
   axios
     .get("/search-recipe", { params: { browseData } })
@@ -38,6 +39,11 @@ export const getSearchRecipes = browseData => dispatch => {
       dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+};
+
+export const setSearchTerm = browseData => dispatch => {
+  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: "Meal" });
+  dispatch({ type: SET_BROWSE_DATA, payload: browseData });
 };
 
 export const toggleFilterButton = buttonName => {

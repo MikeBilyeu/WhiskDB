@@ -7,10 +7,13 @@ import { getBrowseRecipes } from "../../../../actions/browseActions";
 let FilterOption = props => {
   const { option, browseData, filterType } = props;
   const handleClick = option => {
-    // make filterType an array of options
-    let browse = { ...browseData, [filterType]: option };
-    // don't run aciton if data obj is the same
-    if (JSON.stringify(browse) !== JSON.stringify(browseData)) {
+    // make filterType an array of options, clear search
+    let browse = { ...browseData, [filterType]: option, search: "" };
+    // call action if browse != browse or if search != ''
+    if (
+      JSON.stringify(browse) !== JSON.stringify(browseData) ||
+      /\S/.test(props.browseData.search)
+    ) {
       props.getBrowseRecipes(browse);
     }
   };
@@ -27,7 +30,10 @@ let FilterOption = props => {
   };
 
   // check if option is in the browseData values to apply styles
-  if (Object.values(props.browseData).indexOf(props.option) > 0) {
+  if (
+    Object.values(props.browseData).indexOf(props.option) > 0 &&
+    !/\S/.test(props.browseData.search)
+  ) {
     style.color = "#0172C4";
     style.fontWeight = "bold";
   }

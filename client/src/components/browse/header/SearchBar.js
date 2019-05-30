@@ -4,103 +4,85 @@ import { connect } from "react-redux";
 //action creator
 import { getBrowseRecipes } from "../../../actions/browseActions";
 import { getSearchRecipes } from "../../../actions/browseActions";
+import { setSearchTerm } from "../../../actions/browseActions";
 
 import { ReactComponent as SearchIcon } from "./searchIcon.svg";
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      focus: false,
-      search: ""
-    };
-  }
-
-  handleFocus = () => {
-    this.setState({ focus: true });
-  };
-  handleBlur = () => {
-    this.setState({ focus: false });
+const SearchBar = props => {
+  const handleChange = e => {
+    // change search input
+    props.setSearchTerm({ ...props.browseData, search: e.target.value });
+    if (!/\S/.test(e.target.value)) {
+      props.getBrowseRecipes({ ...props.browseData, search: e.target.value });
+    } else {
+      props.getSearchRecipes({ ...props.browseData, search: e.target.value });
+    }
   };
 
-  handleChange = e => {
-    this.setState({ search: e.target.value }, () => {
-      if (/\S/.test(this.state.search)) {
-        this.props.getSearchRecipes({
-          ...this.props.browseData,
-          search: this.state.search.trim()
-        });
-      }
-    });
-  };
-  handleClick = () => {
-    if (/\S/.test(this.state.search)) {
-      this.props.getSearchRecipes({
-        ...this.props.browseData,
-        search: this.state.search.trim()
+  const handleClick = () => {
+    if (/\S/.test(props.searchTerm)) {
+      props.getSearchRecipes({
+        ...props.browseData,
+        search: props.searchTerm
       });
     }
   };
 
-  handleKeyPress = e => {
+  const handleKeyPress = e => {
     if (e.key === "Enter") {
-      if (/\S/.test(this.state.search)) {
-        this.props.getSearchRecipes({
-          ...this.props.browseData,
-          search: this.state.search.trim()
+      if (/\S/.test(props.searchTerm)) {
+        props.getSearchRecipes({
+          ...props.browseData,
+          search: props.searchTerm
         });
       }
     }
   };
 
-  render() {
-    let style = {
-      width: "90%",
-      height: "3rem",
-      fontSize: "1.3rem",
-      // border: ".1rem solid #BFBFBF",,
-      backgroundColor: "#EAEAEA",
-      borderRadius: ".5rem",
-      padding: "0 0 0 1.5rem",
-      transition: "all .1s ease-out",
-      display: "grid",
-      gridTemplateColumns: "15fr 1fr",
-      placeItems: "center"
-    };
+  let style = {
+    width: "90%",
+    height: "3rem",
+    fontSize: "1.3rem",
+    backgroundColor: "#EAEAEA",
+    borderRadius: ".5rem",
+    padding: "0 0 0 1.5rem",
+    transition: "all .1s ease-out",
+    display: "grid",
+    gridTemplateColumns: "15fr 1fr",
+    placeItems: "center"
+  };
 
-    // if (this.state.focus) {
-    //   style.border = "solid #0172C4 .1rem";
-    // }
-    return (
-      <div style={style} onFocus={this.handleFocus} onBlur={this.handleBlur}>
-        <input
-          style={{
-            all: "unset",
-            width: "100%",
-            height: "2.5rem",
-            color: "#484848"
-          }}
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}
-          autoComplete="off"
-          placeholder="Search..."
-        />
-        <SearchIcon
-          onClick={this.handleClick}
-          style={{ width: "3.4rem", cursor: "pointer", padding: "0.5rem 1rem" }}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div style={style}>
+      <input
+        style={{
+          all: "unset",
+          width: "100%",
+          height: "2.5rem",
+          color: "#484848"
+        }}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        autoComplete="off"
+        placeholder="Search..."
+        value={props.searchTerm}
+      />
+      <SearchIcon
+        onClick={handleClick}
+        style={{ width: "3.4rem", cursor: "pointer", padding: "0.5rem 1rem" }}
+      />
+    </div>
+  );
+};
 
 const mapSateToProps = state => {
   return {
-    browseData: state.browseRecipes.browseData
+    browseData: state.browseRecipes.browseData,
+    searchTerm: state.browseRecipes.browseData.search
   };
 };
 
 export default connect(
   mapSateToProps,
-  { getBrowseRecipes, getSearchRecipes }
+  { getBrowseRecipes, getSearchRecipes, setSearchTerm }
 )(SearchBar);
