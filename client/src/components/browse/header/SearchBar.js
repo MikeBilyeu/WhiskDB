@@ -4,14 +4,12 @@ import { connect } from "react-redux";
 //action creator
 import { getBrowseRecipes } from "../../../actions/browseActions";
 import { getSearchRecipes } from "../../../actions/browseActions";
-import { setSearchTerm } from "../../../actions/browseActions";
 
 import { ReactComponent as SearchIcon } from "./searchIcon.svg";
 
 const SearchBar = props => {
   const handleChange = e => {
-    // change search input
-    props.setSearchTerm({ ...props.browseData, search: e.target.value });
+    //if search is whitespace
     if (!/\S/.test(e.target.value)) {
       props.getBrowseRecipes({ ...props.browseData, search: e.target.value });
     } else {
@@ -84,5 +82,5 @@ const mapSateToProps = state => {
 
 export default connect(
   mapSateToProps,
-  { getBrowseRecipes, getSearchRecipes, setSearchTerm }
+  { getBrowseRecipes, getSearchRecipes }
 )(SearchBar);
