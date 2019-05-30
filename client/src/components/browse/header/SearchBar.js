@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 //action creator
 import { getBrowseRecipes } from "../../../actions/browseActions";
+import { getSearchRecipes } from "../../../actions/browseActions";
 
 import { ReactComponent as SearchIcon } from "./searchIcon.svg";
 
@@ -23,21 +24,32 @@ class SearchBar extends React.Component {
   };
 
   handleChange = e => {
-    this.setState({ search: e.target.value });
+    this.setState({ search: e.target.value }, () => {
+      if (/\S/.test(this.state.search)) {
+        this.props.getSearchRecipes({
+          ...this.props.browseData,
+          search: this.state.search.trim()
+        });
+      }
+    });
   };
   handleClick = () => {
-    this.props.getBrowseRecipes({
-      ...this.props.browseData,
-      search: this.state.search.trim()
-    });
+    if (/\S/.test(this.state.search)) {
+      this.props.getSearchRecipes({
+        ...this.props.browseData,
+        search: this.state.search.trim()
+      });
+    }
   };
 
   handleKeyPress = e => {
     if (e.key === "Enter") {
-      this.props.getBrowseRecipes({
-        ...this.props.browseData,
-        search: this.state.search.trim()
-      });
+      if (/\S/.test(this.state.search)) {
+        this.props.getSearchRecipes({
+          ...this.props.browseData,
+          search: this.state.search.trim()
+        });
+      }
     }
   };
 
@@ -90,5 +102,5 @@ const mapSateToProps = state => {
 
 export default connect(
   mapSateToProps,
-  { getBrowseRecipes }
+  { getBrowseRecipes, getSearchRecipes }
 )(SearchBar);

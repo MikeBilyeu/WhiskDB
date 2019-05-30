@@ -12,9 +12,10 @@ const pool = new Pool({
 
 const getBrowseRecipes = (request, response) => {
   console.log(request.query);
-  let { search, meal, diet, cuisine, sort } = JSON.parse(
+  let { meal, diet, cuisine, sort } = JSON.parse(
     request.query.browseData.toLowerCase()
   );
+
   diet = diet === "none" ? null : diet;
   cuisine = cuisine === "all" ? null : cuisine;
 

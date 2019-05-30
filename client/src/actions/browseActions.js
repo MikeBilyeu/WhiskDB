@@ -24,6 +24,22 @@ export const getBrowseRecipes = browseData => dispatch => {
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
 
+// dispatch an action with a type of get search request
+export const getSearchRecipes = browseData => dispatch => {
+  // dispatch a browse request
+  dispatch({ type: GET_BROWSE_REQUEST });
+  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: "Meal" });
+  dispatch({ type: SET_BROWSE_DATA, payload: browseData });
+
+  // make axios request
+  axios
+    .get("/search-recipe", { params: { browseData } })
+    .then(res => {
+      dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
+    })
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+};
+
 export const toggleFilterButton = buttonName => {
   return { type: TOGGLE_FILTER_BUTTON, payload: buttonName };
 };
