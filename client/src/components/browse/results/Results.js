@@ -35,7 +35,7 @@ class Results extends React.Component {
       <ul
         style={{
           listStyleType: "none",
-          marginLeft: recipes.length > 1 ? "1rem" : "0",
+          marginLeft: recipes.length > 1 ? ".3rem" : "0",
           padding: "0"
         }}
       >

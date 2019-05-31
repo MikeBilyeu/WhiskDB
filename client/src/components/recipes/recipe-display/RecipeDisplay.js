@@ -11,38 +11,47 @@ const RecipeDisplay = props => {
   return (
     <li
       style={{
-        borderBottom: "solid .1rem #BFBFBF",
-        padding: ".5rem",
-        margin: ".5rem 0",
+        borderBottom: "solid .1rem #F2F2F2",
+        padding: ".5rem .5rem .5rem 0",
+        margin: "0",
         display: "grid",
-        gridTemplateColumns: "6rem minmax(10rem,4fr) .5fr",
+        gridTemplateColumns: "4.5rem minmax(11rem,4fr) .2fr",
         gridGap: ".5rem"
       }}
     >
       <img
         src="https://via.placeholder.com/300"
-        height="80rem"
+        height="65rem"
         style={{
           borderRadius: "50%",
-          border: "solid #D3D3D3",
-          padding: ".2rem"
+          border: "solid #D3D3D3 .12rem",
+          padding: ".15rem"
         }}
       />
       <div
         style={{
           display: "grid",
-          alignItems: "center"
+          alignItems: "center",
+          gridTemplateRows: "1fr 1fr .7fr"
         }}
       >
         <div
           style={{
             color: "#0172C4",
-            fontSize: "1.4rem"
+            fontSize: "1.1rem",
+            wordSpacing: ".12rem",
+            letterSpacing: ".02rem"
           }}
         >{`${title}`}</div>
 
         <Rating rating={rating} votes={votes} />
-        <div style={{ color: "#464646" }}>{` Time: ${hours} ${minutes}`}</div>
+        <div
+          style={{
+            color: "#464646",
+            wordSpacing: ".12rem",
+            letterSpacing: ".02rem"
+          }}
+        >{` Time: ${hours} ${minutes}`}</div>
       </div>
 
       <Arrow style={{ width: "1rem", placeSelf: "center" }} />

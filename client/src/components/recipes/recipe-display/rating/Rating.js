@@ -28,6 +28,7 @@ class Rating extends React.Component {
       <div
         style={{
           display: "grid",
+          alignItems: "center",
           gridTemplateColumns: "7rem 1fr",
           color: "#313131"
         }}
