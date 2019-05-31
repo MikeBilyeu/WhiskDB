@@ -55,19 +55,16 @@ const HomeHeader = props => {
   }
 
   return (
-    <div>
-      <div
-        style={{
-          height: "2.5rem",
-          display: "grid",
-          gridAutoFlow: "column",
-          placeItems: "center",
-          gridGap: "1rem",
-          margin: ".5rem"
-        }}
-      >
-        <SearchBar />
-      </div>
+    <div
+      style={{
+        // position: "fixed",
+        width: "100%",
+        top: "0",
+        left: "0",
+        backgroundColor: "#fff"
+      }}
+    >
+      <SearchBar />
       <HeaderOption />
       <Filter filterType={type} filterOptions={options} />
     </div>

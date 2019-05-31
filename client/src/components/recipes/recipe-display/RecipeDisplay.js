@@ -20,11 +20,12 @@ const RecipeDisplay = props => {
       }}
     >
       <img
-        src="https://via.placeholder.com/300"
+        src="https://images.unsplash.com/photo-1432139509613-5c4255815697?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=664&q=80"
         height="65rem"
+        width="65rem"
         style={{
           borderRadius: "50%",
-          border: "solid #D3D3D3 .12rem",
+          border: "solid #D3D3D3 .15rem",
           padding: ".15rem"
         }}
       />
@@ -39,8 +40,7 @@ const RecipeDisplay = props => {
           style={{
             color: "#0172C4",
             fontSize: "1.1rem",
-            wordSpacing: ".12rem",
-            letterSpacing: ".02rem"
+            wordSpacing: ".12rem"
           }}
         >{`${title}`}</div>
 
@@ -48,8 +48,7 @@ const RecipeDisplay = props => {
         <div
           style={{
             color: "#464646",
-            wordSpacing: ".12rem",
-            letterSpacing: ".02rem"
+            wordSpacing: ".12rem"
           }}
         >{` Time: ${hours} ${minutes}`}</div>
       </div>

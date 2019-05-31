@@ -1,5 +1,5 @@
 .searchBar {
-  width: 100%;
+  width: 90%;
   height: 2.4rem;
   font-size: 1.3rem;
   background-color: #eaeaea;
@@ -10,6 +10,7 @@
   grid-template-columns: 15fr 1fr;
   place-items: center;
   align-self: end;
+  margin: 0.5rem auto;
 }
 
 .searchIcon {
@@ -24,4 +25,10 @@
   color: #484848;
   font-size: 1rem;
   justify-self: start;
+}
+
+.input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #000;
+  opacity: 0.5; /* Firefox */
 }
