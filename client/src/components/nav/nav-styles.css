@@ -1,0 +1,27 @@
+.navBar {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 3rem;
+  display: grid;
+  grid-auto-flow: column;
+  place-items: center;
+  user-select: none;
+  border-top: solid 0.1rem #bfbfbf;
+  background-color: rgba(256, 256, 256, 0.93);
+}
+
+.navButton {
+  width: 90%;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 0.2rem;
+  padding: 0rem 0 0rem 0;
+}
+
+.navIcon {
+  width: 2rem;
+  height: 2rem;
+}

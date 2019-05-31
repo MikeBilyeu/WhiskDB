@@ -7,6 +7,7 @@ import { getBrowseRecipes } from "../../../actions/browseActions";
 import { Loading } from "../../loading/Loading";
 import RecipeDisplay from "../../recipes/recipe-display/RecipeDisplay";
 import NoResults from "./NoResults";
+
 class Results extends React.Component {
   componentDidMount() {
     this.props.getBrowseRecipes(this.props.browseData);
