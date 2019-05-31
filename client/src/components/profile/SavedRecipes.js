@@ -88,7 +88,14 @@ class SavedRecipes extends React.Component {
             <Arrow style={arrowStyle} />
           </div>
         </div>
-        <ul style={{ listStyleType: "none" }}>{this.renderRecipeList()}</ul>
+        <ul
+          style={{
+            marginLeft: recipes.length > 1 ? ".3rem" : "0",
+            padding: "0"
+          }}
+        >
+          {this.renderRecipeList()}
+        </ul>
       </div>
     );
   }

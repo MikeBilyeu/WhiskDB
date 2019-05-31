@@ -23,7 +23,7 @@ const Filter = props => {
         display: "grid",
         gridAutoFlow: "column",
         placeItems: "center",
-        margin: "1.5rem 0",
+        margin: ".5rem 0",
         padding: ".9rem",
         overflow: "hidden"
       }}

@@ -63,7 +63,7 @@ const HomeHeader = props => {
           gridAutoFlow: "column",
           placeItems: "center",
           gridGap: "1rem",
-          margin: "1rem"
+          margin: ".5rem"
         }}
       >
         <SearchBar />

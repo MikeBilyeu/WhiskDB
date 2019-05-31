@@ -34,7 +34,6 @@ class Results extends React.Component {
     return (
       <ul
         style={{
-          listStyleType: "none",
           marginLeft: recipes.length > 1 ? ".3rem" : "0",
           padding: "0"
         }}

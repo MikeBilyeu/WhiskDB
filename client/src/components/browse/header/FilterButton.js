@@ -13,15 +13,15 @@ const FilterButton = props => {
   };
 
   let style = {
-    width: "7rem",
+    width: "6.5rem",
     borderRadius: ".2rem",
     cursor: "pointer",
     backgroundColor: "#313131",
     color: "#FFFFFF",
     textAlign: "center",
     fontSize: "1.2rem",
-    margin: "1rem .2rem",
-    padding: ".6rem",
+    margin: ".2rem",
+    padding: ".4rem 0",
     transition: "all .2s ease-out"
   };
   let arrowStyle = {

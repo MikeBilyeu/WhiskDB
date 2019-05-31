@@ -67,12 +67,7 @@ class SearchBar extends React.Component {
         onBlur={this.handleBlur}
       >
         <input
-          style={{
-            all: "unset",
-            width: "100%",
-            color: "#484848",
-            justifySelf: "start"
-          }}
+          className="input"
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
           autoComplete="off"
