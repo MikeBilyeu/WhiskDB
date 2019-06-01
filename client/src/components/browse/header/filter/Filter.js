@@ -18,8 +18,8 @@ const Filter = props => {
     <div
       style={{
         backgroundColor: "#F7F7F7",
-        borderTop: ".1rem solid #BFBFBF",
-        borderBottom: ".1rem solid #BFBFBF",
+        borderTop: ".05rem solid #BFBFBF",
+        borderBottom: ".05rem solid #BFBFBF",
         display: "grid",
         gridAutoFlow: "column",
         placeItems: "center",

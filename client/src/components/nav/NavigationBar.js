@@ -10,13 +10,13 @@ const NavigationBar = props => {
   return (
     <div className="navBar">
       <div className="navButton">
-        <Link to="/">
-          <Home className="navIcon" />
+        <Link to="/profile/saved-recipes">
+          <Saved className="navIcon" />
         </Link>
       </div>
       <div className="navButton">
-        <Link to="/profile/saved-recipes">
-          <Saved className="navIcon" />
+        <Link to="/">
+          <Home className="navIcon" />
         </Link>
       </div>
       <div className="navButton">

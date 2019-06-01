@@ -7,8 +7,8 @@
   grid-auto-flow: column;
   place-items: center;
   user-select: none;
-  border-top: solid 0.1rem #bfbfbf;
-  background-color: rgba(256, 256, 256, 0.93);
+  border-top: solid 0.05rem #bfbfbf;
+  background-color: rgba(256, 256, 256, 0.96);
 }
 
 .navButton {
@@ -24,4 +24,8 @@
 .navIcon {
   width: 2rem;
   height: 2rem;
+}
+
+.navIconActive {
+  transform: scale(1.2);
 }
