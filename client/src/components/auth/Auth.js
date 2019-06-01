@@ -18,7 +18,7 @@ class Auth extends React.Component {
     this.setState({ login: false });
   };
   render() {
-    console.log(this.state);
+    console.log(this.props);
     return (
       <div>
         <div className="authHeader">
