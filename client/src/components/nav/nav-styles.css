@@ -1,6 +1,7 @@
 .navBar {
   position: fixed;
   width: 100%;
+  min-width: 23rem;
   bottom: 0;
   height: 3rem;
   display: grid;
