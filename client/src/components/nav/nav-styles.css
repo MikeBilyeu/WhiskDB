@@ -11,16 +11,13 @@
   background-color: rgba(256, 256, 256, 0.96);
 }
 
-.navButton {
+.navBar a {
+  display: block;
   width: 90%;
-  cursor: pointer;
-  color: rgb(255, 255, 255);
   text-align: center;
-  font-size: 1.2rem;
-  margin: 0.2rem;
-  padding: 0rem 0 0rem 0;
+  font-size: 0rem;
+  margin: 0.35rem;
 }
-
 .navIcon {
   width: 2rem;
   height: 2rem;
