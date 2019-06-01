@@ -34,8 +34,8 @@ const FilterButton = props => {
     arrowStyle = { ...arrowStyle, transform: "rotate(90deg)" };
   }
   if (
-    props.buttonToggled != "Meal" &&
-    props.buttonName != props.buttonToggled
+    props.buttonToggled !== "Meal" &&
+    props.buttonName !== props.buttonToggled
   ) {
     style = { ...style, backgroundColor: "#E2E2E2" };
   }
