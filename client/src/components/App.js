@@ -12,8 +12,7 @@ import store from "../store/store";
 import NavigationBar from "./nav/NavigationBar";
 import Home from "./browse/Home";
 import Profile from "./profile/Profile";
-import SignUp from "./auth/SignUp";
-import Login from "./auth/Login";
+import Auth from "./auth/Auth";
 import Recipe from "./recipes/Recipe";
 import ScrollToTop from "./ScrollToTop";
 
@@ -45,8 +44,7 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Switch>
               <PrivateRoute path="/profile/:page?" component={Profile} />
-              <Route path="/sign-up" component={SignUp} />
-              <Route path="/login" component={Login} />
+              <Route path="/auth" component={Auth} />
               <Route path="/recipe/:recipe_id" component={Recipe} />
             </Switch>
             <NavigationBar />

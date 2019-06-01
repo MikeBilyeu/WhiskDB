@@ -56,49 +56,28 @@ class Login extends Component {
   render() {
     const lower = value => value && value.toLowerCase();
     return (
-      <div className="ui grid" style={{ margin: "1.5rem 0rem" }}>
-        <div
-          className="fluid column centered"
-          style={{
-            maxWidth: "31rem"
-          }}
-        >
-          <div className="ui attached message">
-            <div className="ui center aligned header">Log into WhiskDB </div>
-          </div>
-          <form
-            onSubmit={this.props.handleSubmit(this.onFormSubmit)}
-            className="ui form error attached segment"
-          >
-            <div className="ui center aligned icon header">
-              <i className="user circle icon" />
-            </div>
-            <Field
-              name="email"
-              component={this.renderInput}
-              label="Email"
-              labelFor="email"
-              inputId="email"
-              placeholder="Email Address"
-              normalize={lower}
-            />
-            <Field
-              name="password"
-              component={this.renderInput}
-              label="Password"
-              labelFor="password"
-              inputId="password"
-              type="password"
-              placeholder="Password"
-            />
-            <button className="ui button blue fluid" type="submit">
-              Log in
-            </button>
-          </form>
-          <div className="ui bottom attached warning message">
-            Don't have an account? <Link to="/sign-up">Sign up</Link>
-          </div>
-        </div>
+      <div style={{ margin: "5rem 0rem" }}>
+        <form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
+          <Field
+            name="email"
+            component={this.renderInput}
+            label="Email"
+            labelFor="email"
+            inputId="email"
+            placeholder="Email Address"
+            normalize={lower}
+          />
+          <Field
+            name="password"
+            component={this.renderInput}
+            label="Password"
+            labelFor="password"
+            inputId="password"
+            type="password"
+            placeholder="Password"
+          />
+          <button type="submit">Log in</button>
+        </form>
       </div>
     );
   }
