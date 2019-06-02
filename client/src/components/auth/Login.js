@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 
+import "./auth-styles.css";
+
 class Login extends Component {
   componentDidMount() {
     // If logged in and user navigates to Login page, navigate back to profile
@@ -19,27 +21,16 @@ class Login extends Component {
     }
   }
 
-  renderInput = ({
-    input,
-    label,
-    labelFor,
-    meta,
-    placeholder,
-    inputId,
-    type = "text"
-  }) => {
+  renderInput = ({ input, meta, placeholder, inputId, type = "text" }) => {
     const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
     return (
-      <div className={className}>
-        <label htmlFor={labelFor}>{label}</label>
-        <input
-          {...input}
-          id={inputId}
-          autoComplete="off"
-          type={type}
-          placeholder={placeholder}
-        />
-      </div>
+      <input
+        {...input}
+        id={inputId}
+        autoComplete="off"
+        type={type}
+        placeholder={placeholder}
+      />
     );
   };
 
@@ -56,29 +47,33 @@ class Login extends Component {
   render() {
     const lower = value => value && value.toLowerCase();
     return (
-      <div style={{ margin: "5rem 0rem" }}>
-        <form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
+      <form
+        className="authForm"
+        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+      >
+        <label>
+          Email
           <Field
             name="email"
             component={this.renderInput}
-            label="Email"
-            labelFor="email"
             inputId="email"
             placeholder="Email Address"
             normalize={lower}
           />
+        </label>
+        <label>
+          Password
           <Field
             name="password"
             component={this.renderInput}
-            label="Password"
-            labelFor="password"
             inputId="password"
             type="password"
             placeholder="Password"
           />
-          <button type="submit">Log in</button>
-        </form>
-      </div>
+        </label>
+
+        <button type="submit">Log in</button>
+      </form>
     );
   }
 }

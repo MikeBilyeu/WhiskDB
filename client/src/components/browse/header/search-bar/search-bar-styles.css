@@ -2,7 +2,6 @@
   width: 90%;
   height: 2.4rem;
   font-size: 1.3rem;
-  background-color: #eaeaea;
   border-radius: 0.5rem;
   padding: 0 0 0 1.5rem;
   transition: all 0.1s ease-out;
@@ -11,6 +10,7 @@
   place-items: center;
   align-self: end;
   margin: 0.5rem auto;
+  background-color: #ededed;
 }
 
 .searchIcon {

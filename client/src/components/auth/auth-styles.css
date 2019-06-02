@@ -10,7 +10,7 @@
 
 .authButton {
   display: block;
-  width: 35%;
+  width: 45%;
   text-align: center;
   cursor: pointer;
   color: #0172c4;
@@ -23,4 +23,64 @@
   color: inherit;
   cursor: inherit;
   border-bottom: solid #707070 0.1rem;
+}
+
+.authForm {
+  display: grid;
+  grid-gap: 3rem;
+  padding: 1rem;
+  color: #313131;
+  margin-top: 3rem;
+}
+
+.signup {
+  margin: 0;
+  grid-gap: 1rem;
+}
+
+.authForm h1 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0;
+}
+
+.authForm label {
+  font-weight: bold;
+}
+
+.authForm input {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 0.3rem;
+  border: solid #bfbfbf 0.05rem;
+  background-color: #fff;
+  padding: 0.6rem 0.5rem;
+  color: #484848;
+  font-size: 1.3rem;
+  font-weight: normal;
+  margin-top: 0.5rem;
+  cursor: text;
+}
+
+.authForm input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #000;
+  opacity: 0.2; /* Firefox */
+}
+
+.authForm button {
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #0172c4;
+  height: 3.5rem;
+  margin-top: 2rem;
+}
+
+.signup button {
+  margin-top: 1rem;
 }

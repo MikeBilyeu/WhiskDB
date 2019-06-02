@@ -13,27 +13,16 @@ class Signup extends Component {
     }
   }
 
-  renderInput = ({
-    input,
-    label,
-    labelFor,
-    meta,
-    placeholder,
-    inputId,
-    type = "text"
-  }) => {
+  renderInput = ({ input, meta, placeholder, inputId, type = "text" }) => {
     const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
     return (
-      <div className={className}>
-        <label htmlFor={labelFor}>{label}</label>
-        <input
-          {...input}
-          autoComplete="off"
-          type={type}
-          id={inputId}
-          placeholder={placeholder}
-        />
-      </div>
+      <input
+        {...input}
+        autoComplete="off"
+        type={type}
+        id={inputId}
+        placeholder={placeholder}
+      />
     );
   };
 
@@ -51,48 +40,55 @@ class Signup extends Component {
   render() {
     const lower = value => value && value.toLowerCase();
     return (
-      <div style={{ margin: "5rem 0rem" }}>
-        <form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
-          <div>Make an Account. It's Easy!</div>
+      <form
+        className="authForm signup"
+        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+      >
+        <h1>Make an Account. It's Easy!</h1>
+        <label>
+          Username
           <Field
             name="username"
             component={this.renderInput}
-            label="Username"
             inputId="username"
-            labelFor="username"
-            placeholder="Enter a Username"
+            placeholder="Username"
           />
+        </label>
+
+        <label>
+          Email
           <Field
             name="email"
             component={this.renderInput}
-            label="Email"
             inputId="email"
-            labelFor="email"
-            placeholder="Enter an Eamil Address"
+            placeholder="Email Address"
             normalize={lower}
           />
+        </label>
+
+        <label>
+          Password
           <Field
             type="password"
             name="password"
             component={this.renderInput}
-            label="Password"
             inputId="password"
-            labelFor="password"
-            placeholder="Enter a Password"
+            placeholder="Password"
           />
+        </label>
 
+        <label>
+          Verify Password
           <Field
             type="password"
             name="password2"
             component={this.renderInput}
-            label="Verify Password"
             inputId="password2"
-            labelFor="password2"
             placeholder="Verify Password"
           />
-          <button type="submit">Sign up</button>
-        </form>
-      </div>
+        </label>
+        <button type="submit">Sign up</button>
+      </form>
     );
   }
 }
