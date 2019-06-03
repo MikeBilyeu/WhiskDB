@@ -21,14 +21,14 @@ class NavigationBar extends React.Component {
   // set state depending on url location
   componentWillReceiveProps(nextProps) {
     // prevent multi clicks
-    if (this.props.location.pathname !== nextProps.location.pathname) {
-      this.setNavState();
-    }
+
+    this.setNavState();
   }
 
   setNavState = () => {
     this.setState((prevState, props) => {
       const pathname = props.location.pathname;
+
       if (/saved-recipes/.test(pathname)) {
         return { nav: "saved" };
       } else if (/profile|auth/.test(pathname)) {
