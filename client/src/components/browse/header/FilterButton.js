@@ -13,7 +13,6 @@ const FilterButton = props => {
   };
 
   let style = {
-    width: "6.5rem",
     borderRadius: ".2rem",
     cursor: "pointer",
     backgroundColor: "#313131",
@@ -21,7 +20,7 @@ const FilterButton = props => {
     textAlign: "center",
     fontSize: "1.2rem",
     margin: ".2rem",
-    padding: ".4rem 0",
+    padding: ".4rem 1rem",
     transition: "all .2s ease-out"
   };
   let arrowStyle = {

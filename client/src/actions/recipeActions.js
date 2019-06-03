@@ -7,7 +7,8 @@ import {
   GET_SAVED_RECIPES,
   GET_SAVED_RECIPES_REQUEST,
   TOGGLE_UNIT,
-  CONVERT_SERVINGS
+  CONVERT_SERVINGS,
+  SORT_SAVED_RECIPES
 } from "./types";
 
 import { reset } from "redux-form";
@@ -51,6 +52,10 @@ export const getSavedRecipes = user_id => dispatch => {
       dispatch({ type: GET_SAVED_RECIPES, payload: res.data });
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+};
+
+export const sortSavedRecipes = sortBy => {
+  return { type: SORT_SAVED_RECIPES, payload: sortBy };
 };
 
 // Save Recipe Action Creator

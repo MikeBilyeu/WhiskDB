@@ -20,8 +20,6 @@ class NavigationBar extends React.Component {
   }
   // set state depending on url location
   componentWillReceiveProps(nextProps) {
-    // prevent multi clicks
-
     this.setNavState();
   }
 

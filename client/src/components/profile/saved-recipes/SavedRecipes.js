@@ -2,12 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { Loading } from "../loading/Loading";
-import RecipeDisplay from "../recipes/recipe-display/RecipeDisplay";
+import SortBy from "./SortBy";
+import { Loading } from "../../loading/Loading";
+import RecipeDisplay from "../../recipes/recipe-display/RecipeDisplay";
 import { ReactComponent as Arrow } from "./filterArrow.svg";
 
+import "./sr-styles.css";
 // action Creator
-import { getSavedRecipes } from "../../actions/recipeActions";
+import { getSavedRecipes } from "../../../actions/recipeActions";
 
 class SavedRecipes extends React.Component {
   constructor(props) {
@@ -40,53 +42,26 @@ class SavedRecipes extends React.Component {
 
   render() {
     const { recipes, isFetching } = this.props.recipes;
-    let style = {
-      width: "7rem",
-      borderRadius: ".2rem",
-      cursor: "pointer",
-      backgroundColor: "#313131",
-      color: "#FFFFFF",
-      textAlign: "center",
-      fontSize: "1.2rem",
-      margin: "1rem",
-      padding: ".6rem",
-      transition: "all .2s ease-out",
-      justifySelf: "end"
-    };
-    let arrowStyle = {
-      width: ".8rem",
-      transition: "all .2s ease-out",
-      marginLeft: ".4rem"
-    };
+
+    let arrowStyle = {};
 
     if (isFetching) {
       return <Loading />;
     }
 
-    if (this.state.sortActive) {
-      arrowStyle = { ...arrowStyle, transform: "rotate(90deg)" };
-    }
-
     return (
       <div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            placeItems: "center",
-            borderBottom: "solid #BFBFBF .01rem",
-            marginLeft: "1rem",
-            userSelect: "none",
-            MozUserSelect: "none",
-            WebkitUserSelect: "none",
-            MsUserSelect: "none"
-          }}
-        >
+        <div className="sr-header">
           <h1>Saved Recipes</h1>
-          <div style={style} onClick={this.handleClick}>
+          <div className="header-btn" onClick={this.handleClick}>
             Sort
-            <Arrow style={arrowStyle} />
+            <Arrow
+              className={
+                "arrowStyle" + (this.state.sortActive ? " sortActive" : "")
+              }
+            />
           </div>
+          {this.state.sortActive ? <SortBy /> : null}
         </div>
         <ul
           style={{

@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import SavedRecipes from "./SavedRecipes";
+import SavedRecipes from "./saved-recipes/SavedRecipes";
 import MyRecipes from "./MyRecipes";
 import Contact from "./Contact";
 import EditProfile from "./EditProfile";
