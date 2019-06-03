@@ -1,7 +1,7 @@
 import React from "react";
 import "./auth-styles.css";
 import Login from "./Login";
-import Signup from "./Signup";
+import SignUp from "./SignUp";
 
 class Auth extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class Auth extends React.Component {
             Signup
           </div>
         </div>
-        {this.state.login ? <Login /> : <Signup />}
+        {this.state.login ? <Login /> : <SignUp />}
       </div>
     );
   }
