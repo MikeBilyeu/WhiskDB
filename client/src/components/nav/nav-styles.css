@@ -20,10 +20,10 @@
   margin: 0.35rem;
 }
 .navIcon {
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
-.navIconActive {
-  transform: scale(1.2);
+.navActive path {
+  stroke-width: 1.5;
 }
