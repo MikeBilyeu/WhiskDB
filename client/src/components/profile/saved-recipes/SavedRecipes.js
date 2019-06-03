@@ -51,7 +51,11 @@ class SavedRecipes extends React.Component {
 
     return (
       <div>
-        <div className="sr-header">
+        <div
+          className={
+            "sr-header" + (this.state.sortActive ? " remove-btm-border" : "")
+          }
+        >
           <h1>Saved Recipes</h1>
           <div className="header-btn" onClick={this.handleClick}>
             Sort

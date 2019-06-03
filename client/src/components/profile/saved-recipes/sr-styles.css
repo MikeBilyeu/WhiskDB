@@ -10,6 +10,10 @@
   -ms-user-select: none;
 }
 
+.remove-btm-border {
+  border-bottom: none;
+}
+
 .sr-header h1 {
   white-space: nowrap;
   margin: 0;
