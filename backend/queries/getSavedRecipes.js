@@ -21,12 +21,13 @@ const getSavedRecipes = (request, response) => {
         CASE WHEN count(lr.*) + count(dr.*) = 0 THEN 0
         ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
         END
-        AS rating, CAST(count(lr.*) + count(dr.*) AS INTEGER) AS votes
+        AS rating, CAST(count(lr.*) + count(dr.*) AS INTEGER) AS votes, sr.saved_at AS saved_date
         FROM recipes r LEFT JOIN
+        saved_recipes sr ON sr.recipe_saved = r.recipe_id LEFT JOIN
         liked_recipes lr ON r.recipe_id = lr.recipe_liked LEFT JOIN
         disliked_recipes dr ON r.recipe_id = dr.recipe_disliked WHERE
         r.recipe_id IN ( SELECT recipe_saved FROM saved_recipes WHERE
-        saved_by = $1 ) GROUP BY r.recipe_id`,
+        saved_by = $1 ) GROUP BY r.recipe_id, sr.saved_at;`,
         [user_id]
       )
       .then(res => {
