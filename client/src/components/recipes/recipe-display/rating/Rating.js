@@ -5,15 +5,30 @@ import { ReactComponent as Star } from "./star.svg";
 class Rating extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { starColor: [] };
+    this.state = {
+      starColor: ["#FFBB5F", "#FFBB5F", "#FFBB5F", "#FFBB5F", "#FFBB5F"]
+    };
   }
+
+  setStarColors = () => {
+    this.setState(({ starColor }, { rating }) => {
+      let colors = [];
+      for (let i = 0; i < 5; i++) {
+        colors = [...colors, rating > i ? "#FFBB5F" : "#E2E2E2"];
+      }
+      return {
+        starColor: colors
+      };
+    });
+  };
+
   componentDidMount() {
-    for (let i = 0; i < 5; i++) {
-      this.setState(({ starColor }, { rating }) => {
-        return {
-          starColor: [...starColor, rating > i ? "#FFBB5F" : "#E2E2E2"]
-        };
-      });
+    this.setStarColors();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.rating !== this.props.rating) {
+      this.setStarColors();
     }
   }
 
