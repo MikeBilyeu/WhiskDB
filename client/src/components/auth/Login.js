@@ -8,12 +8,6 @@ import { loginUser } from "../../actions/authActions";
 import "./auth-styles.css";
 
 class Login extends Component {
-  componentDidMount() {
-    // If logged in and user navigates to Login page, navigate back to profile
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/profile");
-    }
-  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       // push user to profile when they login

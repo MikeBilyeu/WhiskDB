@@ -7,7 +7,7 @@ import { registerUser } from "../../actions/authActions";
 
 class Signup extends Component {
   componentDidMount() {
-    // If logged in and user navigates to Register page, should redirect them to dashboard
+    // If logged in and user auth redirect to profile
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/profile");
     }
