@@ -16,6 +16,7 @@ class Rating extends React.Component {
       });
     }
   }
+
   renderRating = () => {
     return this.state.starColor.map((color, i) => {
       return <Star key={"star" + i} style={{ width: "1.3rem", fill: color }} />;

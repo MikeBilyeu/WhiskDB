@@ -26,7 +26,7 @@ class SavedRecipes extends React.Component {
   }
 
   renderRecipeList = () => {
-    return this.props.recipes.recipes.map((recipe, i) => {
+    return this.props.savedRecipes.recipes.map((recipe, i) => {
       return (
         <Link key={`recipe${i}`} to={`/recipe/${recipe.recipe_id}`}>
           <RecipeDisplay recipe={recipe} />
@@ -34,6 +34,7 @@ class SavedRecipes extends React.Component {
       );
     });
   };
+
   handleClick = () => {
     this.setState(prevState => {
       return { sortActive: !prevState.sortActive };
@@ -41,7 +42,7 @@ class SavedRecipes extends React.Component {
   };
 
   render() {
-    const { recipes, isFetching } = this.props.recipes;
+    const { recipes, isFetching } = this.props.savedRecipes;
 
     let arrowStyle = {};
 
@@ -82,7 +83,7 @@ class SavedRecipes extends React.Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  recipes: state.savedRecipes
+  savedRecipes: state.savedRecipes
 });
 
 export default connect(
