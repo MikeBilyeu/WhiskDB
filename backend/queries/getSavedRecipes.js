@@ -27,7 +27,7 @@ const getSavedRecipes = (request, response) => {
         liked_recipes lr ON r.recipe_id = lr.recipe_liked LEFT JOIN
         disliked_recipes dr ON r.recipe_id = dr.recipe_disliked WHERE
         r.recipe_id IN ( SELECT recipe_saved FROM saved_recipes WHERE
-        saved_by = $1 ) GROUP BY r.recipe_id, sr.saved_at ORDER BY saved_date DESC;`,
+        saved_by = $1 ) GROUP BY r.recipe_id, sr.saved_at;`,
         [user_id]
       )
       .then(res => {
