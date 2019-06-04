@@ -42,7 +42,11 @@ export default function(state = initialState, action) {
     case GET_SAVED_RECIPES_REQUEST:
       return { ...state, isFetching: true };
     case GET_SAVED_RECIPES:
-      return { ...state, recipes: action.payload, isFetching: false };
+      return {
+        ...state,
+        recipes: action.payload.sort(sortRecipes(state.sortBy)),
+        isFetching: false
+      };
     case SORT_SAVED_RECIPES:
       return {
         ...state,
