@@ -25,7 +25,6 @@ class Recipe extends React.Component {
   render() {
     const {
       title,
-      created_at,
       total_time_mins,
       image_url,
       directions,
@@ -95,7 +94,7 @@ class Recipe extends React.Component {
         <div>{date_created}</div>
         <Rating rating={rating} votes={votes} />
         <div>Time:{renderTime(total_time_mins)}</div>
-        <div>-{username}</div>
+        <div>{username}</div>
         <img href="recipe photo" alt="" src={image_url} />
         <ServingsAndUnit />
         <IngredientList />

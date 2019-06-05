@@ -14,7 +14,7 @@ class ServingsAndUnit extends React.Component {
       <div
         style={{
           border: "solid black .1rem",
-          width: "25rem",
+          width: "100%",
           height: "4rem",
           margin: "0 auto",
           display: "grid",
