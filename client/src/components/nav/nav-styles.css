@@ -8,7 +8,7 @@
   grid-auto-flow: column;
   place-items: center;
   user-select: none;
-  border-top: solid 0.05rem #bfbfbf;
+  border-top: solid 0.1rem #e3e3e3;
   background-color: rgba(256, 256, 256, 0.96);
 }
 
