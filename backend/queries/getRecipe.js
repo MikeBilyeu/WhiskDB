@@ -16,102 +16,33 @@ const getRecipe = (request, response) => {
 
   // promise - checkout a client
   pool.connect().then(client => {
-    let recipeData = {};
-    let created_by = "";
     //Getting recipe data
-    return (
-      client
-        .query("SELECT * FROM recipes WHERE recipe_id = $1", [recipe_id])
-        .then(res => {
-          recipeData = res.rows[0];
-          created_by = res.rows[0].created_by;
-        })
-        //getting the username from the users table
-        .then(() => {
-          client
-            .query("SELECT username FROM users WHERE user_id = $1", [
-              created_by
-            ])
-            .then(res => {
-              recipeData = { ...recipeData, username: res.rows[0].username };
-            });
-        })
-        .then(() => {
-          //get number of likes
-          client
-            .query("SELECT * FROM liked_recipes WHERE recipe_liked = $1", [
-              recipe_id
-            ])
-            .then(res => {
-              recipeData = { ...recipeData, likes: res.rowCount };
-            });
-        })
-        .then(() => {
-          // get number of dislikes
-          client
-            .query(
-              "SELECT * FROM disliked_recipes WHERE recipe_disliked = $1",
-              [recipe_id]
-            )
-            .then(res => {
-              recipeData = { ...recipeData, dislikes: res.rowCount };
-            });
-        })
-        .then(() => {
-          // checking if user is auth
-          client.release();
-          if (user_id !== null) {
-            // check if user saved recipe
-            client
-              .query(
-                "SELECT * FROM saved_recipes WHERE saved_by = $1 AND recipe_saved = $2",
-                [user_id, recipe_id]
-              )
-              .then(res => {
-                if (res.rowCount > 0) {
-                  recipeData = { ...recipeData, saved: true };
-                } else if (res.rowCount === 0) {
-                  recipeData = { ...recipeData, saved: false };
-                }
-              });
-
-            client
-              .query(
-                "SELECT * FROM liked_recipes WHERE liked_by = $1 AND recipe_liked = $2",
-                [user_id, recipe_id]
-              )
-              .then(res => {
-                // checking liked table
-                if (res.rowCount > 0) {
-                  recipeData = { ...recipeData, vote: "liked" };
-                  response.status(200).json(recipeData);
-                } else {
-                  // chekcing disliked table if not found in liked table
-                  client
-                    .query(
-                      "SELECT * FROM disliked_recipes WHERE disliked_by = $1 AND recipe_disliked = $2",
-                      [user_id, recipe_id]
-                    )
-                    .then(res => {
-                      if (res.rowCount > 0) {
-                        recipeData = { ...recipeData, vote: "disliked" };
-                        response.status(200).json(recipeData);
-                      } else {
-                        response.status(200).json(recipeData);
-                      }
-                    });
-                }
-              });
-          } else {
-            // response if user is not auth
-            response.status(200).json(recipeData);
-          }
-        })
-        .catch(err => {
-          client.release();
-          console.log(err.stack);
-        })
-    );
+    return client
+      .query(
+        `SELECT r.*, u.username AS username, CASE WHEN count(lr.*) +
+         count(dr.*) = 0 THEN 0 ELSE (count(lr.*) / CAST (count(lr.*) +
+         count(dr.*) AS FLOAT)) * 5 END AS rating, CAST(count(lr.*) +
+         count(dr.*) AS INTEGER) AS votes, CASE WHEN EXISTS ( SELECT * FROM
+           saved_recipes WHERE saved_by = $2 AND recipe_saved = $1) THEN
+           CAST(1 AS BIT) ELSE CAST(0 AS BIT) END AS saved, CASE WHEN EXISTS
+           ( SELECT * FROM liked_recipes WHERE liked_by = $2 AND recipe_liked
+             = $1) THEN 'liked' WHEN EXISTS ( SELECT * FROM disliked_recipes
+               WHERE disliked_by = $2 AND recipe_disliked = $1) THEN
+               'disliked' ELSE null END AS vote FROM recipes r LEFT JOIN
+               users u ON u.user_id = r.created_by LEFT JOIN liked_recipes
+               lr ON r.recipe_id = lr.recipe_liked LEFT JOIN disliked_recipes
+               dr ON r.recipe_id = dr.recipe_disliked WHERE recipe_id = $1
+               GROUP BY r.recipe_id, u.user_id`,
+        [recipe_id, user_id]
+      )
+      .then(res => {
+        client.release();
+        response.status(200).json(res.rows[0]);
+      })
+      .catch(err => {
+        client.release();
+        console.log(err.stack);
+      });
   });
 };
 
