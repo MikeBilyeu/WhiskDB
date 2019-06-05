@@ -22,28 +22,6 @@ class Recipe extends React.Component {
     this.props.getRecipe(recipe_id, user_id);
   }
 
-  formatDate(dateTime) {
-    const date = new Date(dateTime);
-    const allMonths = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-    const month = allMonths[date.getMonth()];
-    const day = date.getDate();
-    const year = date.getFullYear();
-    return `${month} ${day}, ${year}`;
-  }
-
   render() {
     const {
       title,
@@ -54,7 +32,8 @@ class Recipe extends React.Component {
       footnote,
       username,
       rating,
-      votes
+      votes,
+      date_created
     } = this.props.recipeData.recipe;
     const { isFetching } = this.props.recipeData;
     const recipe_id = this.props.match.params.recipe_id;
@@ -113,7 +92,7 @@ class Recipe extends React.Component {
       <div>
         <RecipeHeader recipe_id={recipe_id} user_id={user_id} />
         <h1>{title}</h1>
-        <div>{this.formatDate(created_at)}</div>
+        <div>{date_created}</div>
         <Rating rating={rating} votes={votes} />
         <div>Time:{renderTime(total_time_mins)}</div>
         <div>-{username}</div>

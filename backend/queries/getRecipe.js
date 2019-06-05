@@ -19,12 +19,12 @@ const getRecipe = (request, response) => {
     //Getting recipe data
     return client
       .query(
-        `SELECT r.*, u.username AS username, CASE WHEN count(lr.*) +
+        `SELECT r.*, TO_CHAR(r.created_at, 'Month fmDD, YYYY') AS date_created, u.username AS username, CASE WHEN count(lr.*) +
          count(dr.*) = 0 THEN 0 ELSE (count(lr.*) / CAST (count(lr.*) +
          count(dr.*) AS FLOAT)) * 5 END AS rating, CAST(count(lr.*) +
          count(dr.*) AS INTEGER) AS votes, CASE WHEN EXISTS ( SELECT * FROM
            saved_recipes WHERE saved_by = $2 AND recipe_saved = $1) THEN
-           CAST(1 AS BIT) ELSE CAST(0 AS BIT) END AS saved, CASE WHEN EXISTS
+           1::INTEGER ELSE 0::INTEGER END AS saved, CASE WHEN EXISTS
            ( SELECT * FROM liked_recipes WHERE liked_by = $2 AND recipe_liked
              = $1) THEN 'liked' WHEN EXISTS ( SELECT * FROM disliked_recipes
                WHERE disliked_by = $2 AND recipe_disliked = $1) THEN
