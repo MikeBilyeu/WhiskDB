@@ -5,9 +5,7 @@ import { connect } from "react-redux";
 import convertIngredients from "../../selectors/ingredientsSelector";
 
 const renderIngredientList = props => {
-  return props.ingredients.map((ingredientObj, i) => {
-    let { amount, unit, ingredient, prep } = ingredientObj;
-    unit = unit ? unit : "";
+  return props.ingredients.map(({ amount, unit = "", ingredient, prep }, i) => {
     prep = prep ? `(${prep})` : "";
     if (typeof amount === "object") {
       let amounts = amount.map(amount => {
@@ -29,7 +27,7 @@ const renderIngredientList = props => {
 
 const IngredientList = props => {
   return (
-    <div>
+    <div className="recipe-list">
       <h2>Ingredients</h2>
       <ul>{renderIngredientList(props)}</ul>
     </div>

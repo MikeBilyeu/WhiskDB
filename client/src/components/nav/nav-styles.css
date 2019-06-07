@@ -1,7 +1,6 @@
 .navBar {
   position: fixed;
   width: 100%;
-  min-width: 23rem;
   bottom: 0;
   height: 3rem;
   display: grid;
@@ -19,6 +18,7 @@
   font-size: 0rem;
   margin: 0.35rem;
 }
+
 .navIcon {
   width: 2rem;
 }

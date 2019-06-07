@@ -11,17 +11,7 @@ class ServingsAndUnit extends React.Component {
   }
   render() {
     return (
-      <div
-        style={{
-          border: "solid black .1rem",
-          width: "100%",
-          height: "4rem",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 4fr",
-          placeItems: "center"
-        }}
-      >
+      <div className="servings">
         <Unit unitName="US" />
         <Unit unitName="Metric" />
         <Servings />

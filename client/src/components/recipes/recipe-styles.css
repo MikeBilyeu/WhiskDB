@@ -1,4 +1,7 @@
 .recipe-header {
+  width: 100%;
+  padding: 0;
+  background-color: #fff;
   border-bottom: solid 0.1rem #e3e3e3;
   display: grid;
   grid-auto-flow: column;
@@ -8,6 +11,7 @@
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  z-index: 1;
 }
 
 .back-btn {
@@ -27,8 +31,8 @@
   color: #ffffff;
   text-align: center;
   font-size: 1.2rem;
-  margin: 1rem;
-  margin-bottom: 0.8rem;
+  margin: 0.8rem;
+
   width: 7rem;
   padding: 0.4rem 0;
   transition: all 0.2s ease-out;
@@ -43,4 +47,108 @@
   padding: 0.5rem 1rem;
   width: 4.5rem;
   justify-self: end;
+}
+
+.recipe {
+  display: grid;
+  place-items: center;
+  grid-gap: 0.5rem;
+}
+.recipe-details {
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+    "title title"
+    "rating rating"
+    "date username ";
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  grid-gap: 1rem;
+  margin: 1.5rem 0 0 0;
+  padding: 0 1rem;
+}
+.recipe-details > .title {
+  grid-area: title;
+  font-size: 1.5rem;
+}
+.recipe-details > .date {
+  grid-area: date;
+  justify-self: start;
+}
+.recipe-details > .rating {
+  grid-area: rating;
+}
+
+.recipe-details > .username {
+  grid-area: username;
+  justify-self: end;
+}
+
+.recipe > img {
+  height: 12rem;
+  width: 95%;
+  object-fit: cover;
+
+  object-position: 50% 60%;
+}
+
+.servings {
+  background-color: grey;
+  width: 90%;
+  border-radius: 0.5rem;
+  height: 3.5rem;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  place-items: center;
+}
+
+.recipe-list {
+  width: 100%;
+  padding: 0 0.7rem;
+  margin: 2rem 0;
+  display: grid;
+}
+.recipe h2 {
+  margin: auto;
+  font-size: 2.5rem;
+  text-align: center;
+  border-bottom: solid #ededed 0.05rem;
+  padding-bottom: 1rem;
+}
+.recipe-list ul {
+  padding-left: 0.5rem;
+  list-style-type: none;
+}
+.recipe-list ol {
+  padding: 0;
+  list-style-type: none;
+}
+.recipe-list ol li {
+  line-height: 2rem;
+}
+
+.recipe-list ol li h4 {
+  text-align: left;
+  font-size: 2.2rem;
+}
+
+.recipe-list li {
+  margin: 2.5rem 0;
+  font-size: 1.2rem;
+  word-spacing: 0.1rem;
+}
+
+.directions .time {
+  text-align: center;
+  padding: 1rem;
+}
+
+.directions h4 {
+  margin: 1rem;
+}
+
+.directions li {
+  text-align: justify;
+  font-size: 1.2rem;
 }

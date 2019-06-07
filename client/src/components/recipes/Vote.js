@@ -17,7 +17,7 @@ const Vote = props => {
   } = props;
   return (
     <div>
-      <h3>How was it?</h3>
+      <h2>How was it?</h2>
       {voteClicked && user_id === null ? (
         <h1>You must {<Link to="/login">Login</Link>} to vote</h1>
       ) : null}
