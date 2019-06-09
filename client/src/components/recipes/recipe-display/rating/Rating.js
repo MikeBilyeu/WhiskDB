@@ -2,6 +2,8 @@ import React from "react";
 
 import { ReactComponent as Star } from "./star.svg";
 
+import "../rating-styles.css";
+
 class Rating extends React.Component {
   constructor(props) {
     super(props);
@@ -41,14 +43,7 @@ class Rating extends React.Component {
   render() {
     const { votes, classStyes = "" } = this.props;
     return (
-      <div
-        className={classStyes}
-        style={{
-          display: "grid",
-          gridTemplateColumns: "7rem 1fr",
-          color: "#313131"
-        }}
-      >
+      <div className="rating">
         <div>{this.renderRating()}</div>
         <div>{`${votes} vote${votes !== 1 ? "s" : ""}`}</div>
       </div>

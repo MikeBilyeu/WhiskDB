@@ -7,7 +7,7 @@
   grid-auto-flow: column;
   place-items: center;
   user-select: none;
-  border-top: solid 0.1rem #e3e3e3;
+  border-top: solid 0.01rem #e3e3e3;
   background-color: rgba(256, 256, 256, 0.96);
 }
 
@@ -20,7 +20,7 @@
 }
 
 .navIcon {
-  width: 2rem;
+  width: 1.5rem;
 }
 
 .navActive path {

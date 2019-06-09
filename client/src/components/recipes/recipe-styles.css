@@ -2,7 +2,7 @@
   width: 100%;
   padding: 0;
   background-color: #fff;
-  border-bottom: solid 0.1rem #e3e3e3;
+  /* border-bottom: solid 0.1rem #e3e3e3; */
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr 1fr;
@@ -18,10 +18,10 @@
   display: grid;
   grid-auto-flow: column;
   justify-self: start;
-  font-size: 1.2rem;
+
   cursor: pointer;
   padding: 0.5rem 1rem;
-  width: 4rem;
+  width: 3.5rem;
 }
 
 .save-btn {
@@ -31,10 +31,10 @@
   color: #ffffff;
   text-align: center;
   font-size: 1.2rem;
-  margin: 0.8rem;
+  margin: 0.5rem;
 
-  width: 7rem;
-  padding: 0.4rem 0;
+  width: 6.5rem;
+  padding: 0.2rem 0;
   transition: all 0.2s ease-out;
 }
 
@@ -45,7 +45,7 @@
 .share-btn {
   cursor: pointer;
   padding: 0.5rem 1rem;
-  width: 4.5rem;
+  width: 4rem;
   justify-self: end;
 }
 
@@ -59,24 +59,35 @@
   display: grid;
   grid-template-areas:
     "title title"
+    "time time"
     "rating rating"
     "date username ";
   grid-template-columns: 1fr 1fr;
   place-items: center;
-  grid-gap: 1rem;
-  margin: 1.5rem 0 0 0;
+  grid-gap: 0.5rem;
+  margin: 0;
   padding: 0 1rem;
 }
 .recipe-details > .title {
   grid-area: title;
   font-size: 1.5rem;
+  text-align: center;
 }
 .recipe-details > .date {
   grid-area: date;
   justify-self: start;
 }
+
+.recipe-details > .time {
+  grid-area: time;
+}
 .recipe-details > .rating {
   grid-area: rating;
+  grid-template-columns: 1fr;
+  place-items: center;
+  border-top: solid #e3e3e3 0.01rem;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .recipe-details > .username {
@@ -86,9 +97,9 @@
 
 .recipe > img {
   height: 12rem;
-  width: 95%;
+  width: 100%;
+  padding: 0 0.5rem;
   object-fit: cover;
-
   object-position: 50% 60%;
 }
 
@@ -112,6 +123,8 @@
 .recipe h2 {
   margin: auto;
   font-size: 2.5rem;
+
+  padding: 0 1.5rem;
   text-align: center;
   border-bottom: solid #ededed 0.05rem;
   padding-bottom: 1rem;
@@ -125,18 +138,18 @@
   list-style-type: none;
 }
 .recipe-list ol li {
-  line-height: 2rem;
+  line-height: 1.8rem;
 }
 
 .recipe-list ol li h4 {
   text-align: left;
-  font-size: 2.2rem;
+  font-size: 1.6rem;
 }
 
 .recipe-list li {
-  margin: 2.5rem 0;
-  font-size: 1.2rem;
-  word-spacing: 0.1rem;
+  margin: 1.5rem 0;
+  font-size: 1.15rem;
+  word-spacing: 0.05rem;
 }
 
 .directions .time {
@@ -145,10 +158,14 @@
 }
 
 .directions h4 {
-  margin: 1rem;
+  margin: 0.5rem 0;
+}
+
+.directions p {
+  margin: 0 0.5rem 0 0.8rem;
 }
 
 .directions li {
   text-align: justify;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
 }

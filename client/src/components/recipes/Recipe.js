@@ -22,6 +22,14 @@ class Recipe extends React.Component {
       : null;
     this.props.getRecipe(recipe_id, user_id);
   }
+  formatMinsToHours = totalMinutes => {
+    const hours =
+      Math.floor(totalMinutes / 60) !== 0
+        ? `${Math.floor(totalMinutes / 60)}h`
+        : ``;
+    const minutes = totalMinutes % 60 !== 0 ? `${totalMinutes % 60}m` : ``;
+    return `${hours} ${minutes}`;
+  };
 
   render() {
     const {
@@ -56,7 +64,7 @@ class Recipe extends React.Component {
     return (
       <div className="recipe">
         <RecipeHeader recipe_id={recipe_id} user_id={user_id} />
-        <RecipeDetails />
+        <RecipeDetails time={this.formatMinsToHours(total_time_mins)} />
         <img
           href="recipe photo"
           alt=""
@@ -64,7 +72,10 @@ class Recipe extends React.Component {
         />
         <ServingsAndUnit />
         <IngredientList />
-        <Directions directions={directions} time={total_time_mins} />
+        <Directions
+          directions={directions}
+          time={this.formatMinsToHours(total_time_mins)}
+        />
         {renderFootnote(footnote)}
         <Vote user_id={user_id} recipe_id={recipe_id} />
       </div>
