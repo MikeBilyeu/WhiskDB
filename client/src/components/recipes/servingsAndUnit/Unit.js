@@ -16,17 +16,11 @@ class Unit extends React.Component {
   render() {
     return (
       <div
+        className="unit-option"
         style={{
-          width: "100%",
-          height: "100%",
-          lineHeight: "3.5rem",
-          display: "inline-block",
-          textAlign: "center",
-          color: "#fff",
-          cursor: "pointer",
           fontWeight:
             this.props.unitName === this.props.unitSelect ? "bold" : "normal",
-          opacity: this.props.unitName === this.props.unitSelect ? "1" : ".7"
+          opacity: this.props.unitName === this.props.unitSelect ? "1" : ".2"
         }}
         onClick={this.handleClick}
       >

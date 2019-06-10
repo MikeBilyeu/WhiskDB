@@ -19,15 +19,17 @@ class Servings extends React.Component {
   };
   render() {
     return (
-      <input
-        style={{
-          width: "25%",
-          textAlign: "center"
-        }}
-        value={this.props.convertedServings}
-        type="text"
-        onChange={this.handleChange}
-      />
+      <div className="servings">
+        Yield:
+        <input
+          style={{
+            textAlign: "center"
+          }}
+          value={this.props.convertedServings}
+          type="text"
+          onChange={this.handleChange}
+        />
+      </div>
     );
   }
 }

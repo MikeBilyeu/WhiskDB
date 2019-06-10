@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import RecipeHeader from "./RecipeHeader";
 import RecipeDetails from "./RecipeDetails";
-import ServingsAndUnit from "./servingsAndUnit/ServingsAndUnit";
 import IngredientList from "./IngredientList";
 import Directions from "./Directions";
 import Vote from "./Vote";
@@ -47,8 +46,8 @@ class Recipe extends React.Component {
     const renderFootnote = footnote => {
       if (footnote !== null) {
         return (
-          <div>
-            <h3>Footnote:</h3>
+          <div className="footnote">
+            <h3>Footnote</h3>
             <p>{footnote}</p>
           </div>
         );
@@ -70,7 +69,6 @@ class Recipe extends React.Component {
           alt=""
           src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
         />
-        <ServingsAndUnit />
         <IngredientList />
         <Directions
           directions={directions}

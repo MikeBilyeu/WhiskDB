@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import Servings from "./Servings";
 import Unit from "./Unit";
 
+import "./su-styles.css";
+
 class ServingsAndUnit extends React.Component {
   constructor(props) {
     super(props);
@@ -11,9 +13,14 @@ class ServingsAndUnit extends React.Component {
   }
   render() {
     return (
-      <div className="servings">
-        <Unit unitName="US" />
-        <Unit unitName="Metric" />
+      <div className="servings-units">
+        <div className="units">
+          <p>Unit:</p>
+          <Unit unitName="US" />
+          <Unit unitName="Metric" />
+        </div>
+        <div className="split" />
+
         <Servings />
       </div>
     );

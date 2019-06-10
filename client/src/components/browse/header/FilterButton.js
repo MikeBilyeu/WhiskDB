@@ -21,6 +21,7 @@ const FilterButton = props => {
     fontSize: "1.2rem",
     margin: ".2rem",
     padding: ".2rem 1rem",
+    maxHeight: "1.8rem",
     transition: "all .2s ease-out"
   };
   let arrowStyle = {

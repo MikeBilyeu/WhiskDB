@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import ServingsAndUnit from "./servingsAndUnit/ServingsAndUnit";
 //selector
 import convertIngredients from "../../selectors/ingredientsSelector";
 
@@ -29,6 +30,7 @@ const IngredientList = props => {
   return (
     <div className="recipe-list">
       <h2>Ingredients</h2>
+      <ServingsAndUnit />
       <ul>{renderIngredientList(props)}</ul>
     </div>
   );
