@@ -9,7 +9,6 @@ const RecipeDetails = ({
   recipe: { title, date_created, rating, votes, username },
   time
 }) => {
-  console.log(time);
   return (
     <div className="recipe-details">
       <h1 className="title">{title}</h1>

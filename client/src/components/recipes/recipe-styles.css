@@ -72,6 +72,7 @@
   grid-area: title;
   font-size: 1.5rem;
   text-align: center;
+  margin-top: 0.8rem;
 }
 .recipe-details > .date {
   grid-area: date;
