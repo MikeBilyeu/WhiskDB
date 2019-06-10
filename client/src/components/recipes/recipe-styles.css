@@ -12,6 +12,7 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   z-index: 1;
+  font-family: Helvetica, Arial, Times;
 }
 
 .back-btn {
@@ -53,6 +54,7 @@
   display: grid;
   place-items: center;
   grid-gap: 0.5rem;
+  font-family: Times, Helvetica, Arial;
 }
 .recipe-details {
   width: 100%;

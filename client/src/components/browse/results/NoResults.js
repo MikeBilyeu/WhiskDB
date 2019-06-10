@@ -33,11 +33,11 @@ const NoResults = props => {
           fontSize: "1.3rem",
           color: "white",
           borderRadius: ".5rem",
-          padding: "1rem",
+          padding: ".7rem 1rem",
           backgroundColor: "#0172C4"
         }}
       >
-        Help Create Delicious Recipes
+        Create Delicious Recipes
       </Link>
     </div>
   );

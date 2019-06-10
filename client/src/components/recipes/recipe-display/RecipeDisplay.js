@@ -15,8 +15,10 @@ const RecipeDisplay = props => {
         padding: ".5rem .5rem .5rem 0",
         margin: "0",
         display: "grid",
+        placeItems: "center",
         gridTemplateColumns: "4.5rem minmax(11rem,4fr) .2fr",
-        gridGap: ".5rem"
+        gridGap: ".5rem",
+        fontFamily: "Times, Helvetica, Arial"
       }}
     >
       <img
@@ -33,7 +35,9 @@ const RecipeDisplay = props => {
         style={{
           display: "grid",
           alignItems: "center",
-          gridTemplateRows: "1fr 1fr .7fr"
+          gridTemplateRows: "1fr 1.2rem 1.2rem",
+          gridGap: ".5rem",
+          justifySelf: "start"
         }}
       >
         <div

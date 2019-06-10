@@ -2,7 +2,7 @@ import React from "react";
 
 import { ReactComponent as Star } from "./star.svg";
 
-import "../rating-styles.css";
+import "./rating-styles.css";
 
 class Rating extends React.Component {
   constructor(props) {
@@ -44,8 +44,8 @@ class Rating extends React.Component {
     const { votes, classStyes = "" } = this.props;
     return (
       <div className="rating">
-        <div>{this.renderRating()}</div>
-        <div>{`${votes} vote${votes !== 1 ? "s" : ""}`}</div>
+        <div className="stars">{this.renderRating()}</div>
+        <div className="votes">{`${votes} vote${votes !== 1 ? "s" : ""}`}</div>
       </div>
     );
   }
