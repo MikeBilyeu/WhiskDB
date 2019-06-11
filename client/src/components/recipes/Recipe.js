@@ -6,7 +6,7 @@ import RecipeHeader from "./RecipeHeader";
 import RecipeDetails from "./RecipeDetails";
 import IngredientList from "./IngredientList";
 import Directions from "./Directions";
-import Vote from "./Vote";
+import Vote from "./vote/Vote";
 
 // Action Creator
 import { getRecipe } from "../../actions/recipeActions";
