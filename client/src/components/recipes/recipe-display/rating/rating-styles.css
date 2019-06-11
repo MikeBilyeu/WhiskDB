@@ -1,7 +1,6 @@
 .rating {
   display: grid;
   grid-template-columns: 7rem 1fr;
-  color: #313131;
   align-items: center;
   grid-template-rows: 1.5rem;
   justify-items: start;

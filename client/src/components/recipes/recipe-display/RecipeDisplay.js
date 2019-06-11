@@ -18,17 +18,16 @@ const RecipeDisplay = props => {
         placeItems: "center",
         gridTemplateColumns: "4.5rem minmax(11rem,4fr) .2fr",
         gridGap: ".5rem",
-        fontFamily: "Helvetica, Arial, Times"
+
+        color: "#313131"
       }}
     >
       <img
         src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-        height="65rem"
-        width="65rem"
+        height="70rem"
+        width="70rem"
         style={{
-          borderRadius: "50%",
-          border: "solid #D3D3D3 .15rem",
-          padding: ".15rem"
+          borderRadius: "50%"
         }}
       />
       <div
@@ -42,23 +41,19 @@ const RecipeDisplay = props => {
       >
         <div
           style={{
-            color: "black",
-            fontSize: "1.1rem",
-            wordSpacing: ".12rem",
-            fontFamily: "Times, Helvetica, Arial"
+            fontSize: "1.1rem"
           }}
         >{`${title}`}</div>
 
         <Rating rating={rating} votes={votes} />
         <div
           style={{
-            color: "#464646",
             wordSpacing: ".12rem"
           }}
         >{` Time: ${hours} ${minutes}`}</div>
       </div>
 
-      <Arrow style={{ width: "1rem", placeSelf: "center" }} />
+      <Arrow style={{ width: ".6rem", placeSelf: "center" }} />
     </li>
   );
 };

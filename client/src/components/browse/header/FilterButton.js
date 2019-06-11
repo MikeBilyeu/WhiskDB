@@ -20,8 +20,7 @@ const FilterButton = props => {
     textAlign: "center",
     fontSize: "1.2rem",
     margin: ".2rem",
-    padding: ".2rem 1rem",
-    maxHeight: "1.8rem",
+    padding: "0.2rem 0.8rem 0.1rem 0.8rem",
     transition: "all .2s ease-out"
   };
   let arrowStyle = {

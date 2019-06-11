@@ -14,7 +14,7 @@ const NoResults = props => {
         marginTop: "1.5rem"
       }}
     >
-      <div style={{ fontSize: "1.3rem" }}>
+      <div style={{ fontSize: "1.2rem" }}>
         Sorry we couldn't find any matches
       </div>
       <div
