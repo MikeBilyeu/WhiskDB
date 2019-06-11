@@ -4,7 +4,7 @@
   border-radius: 0.3rem;
   margin: 1.5rem auto;
   display: grid;
-  grid-template-columns: 4fr 0.5rem 3fr;
+  grid-template-columns: 1fr 0.5rem 1fr;
   place-items: center;
   color: #fff;
   font-family: Helvetica, Arial, Times;
@@ -13,7 +13,6 @@
 .units {
   display: grid;
   grid-auto-flow: column;
-
   place-items: center;
   width: 100%;
 }
@@ -24,14 +23,6 @@
   color: #fff;
   cursor: pointer;
   padding: 0.7rem 0.1rem;
-}
-
-.unit-selected {
-  border: solid red;
-}
-
-.units > p {
-  margin: 0;
 }
 
 .split {

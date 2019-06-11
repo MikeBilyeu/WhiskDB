@@ -15,7 +15,6 @@ class ServingsAndUnit extends React.Component {
     return (
       <div className="servings-units">
         <div className="units">
-          <p>Unit:</p>
           <Unit unitName="US" />
           <Unit unitName="Metric" />
         </div>

@@ -18,7 +18,7 @@ const RecipeDisplay = props => {
         placeItems: "center",
         gridTemplateColumns: "4.5rem minmax(11rem,4fr) .2fr",
         gridGap: ".5rem",
-        fontFamily: "Times, Helvetica, Arial"
+        fontFamily: "Helvetica, Arial, Times"
       }}
     >
       <img
@@ -42,9 +42,10 @@ const RecipeDisplay = props => {
       >
         <div
           style={{
-            color: "#0172C4",
+            color: "black",
             fontSize: "1.1rem",
-            wordSpacing: ".12rem"
+            wordSpacing: ".12rem",
+            fontFamily: "Times, Helvetica, Arial"
           }}
         >{`${title}`}</div>
 
