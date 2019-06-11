@@ -13,7 +13,6 @@ const pool = new Pool({
 const getSearchRecipes = (request, response) => {
   let { search } = JSON.parse(request.query.browseData.toLowerCase());
   search = search.trim();
-  console.log(search.length);
   //connect pool
   pool.connect().then(client => {
     // query the recipe table

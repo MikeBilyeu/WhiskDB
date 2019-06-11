@@ -73,7 +73,7 @@
 
 .recipe-details > .title {
   grid-area: title;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   text-align: center;
   margin: 1rem 0 0.5rem 0;
   font-family: times, arial, sans-serif;
@@ -81,6 +81,7 @@
 
 .recipe-details > .time {
   grid-area: time;
+  font-size: 0.8rem;
 }
 
 .recipe-details > .rating {
@@ -89,16 +90,19 @@
   place-items: center;
   border-top: solid #e3e3e3 0.01rem;
   padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
 }
 
 .recipe-details > .username {
   grid-area: username;
   justify-self: start;
+  font-size: 0.8rem;
 }
 
 .recipe-details > .date {
   grid-area: date;
   justify-self: end;
+  font-size: 0.8rem;
 }
 
 .recipe > img {

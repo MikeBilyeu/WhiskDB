@@ -8,7 +8,7 @@ const Button = props => {
     <Link to={props.linkTo} className="profile-btn">
       <div className="profile-link">
         <div>{props.text}</div>
-        <Arrow style={{ width: "1rem", justifySelf: "end" }} />
+        <Arrow style={{ width: ".6rem", justifySelf: "end" }} />
       </div>
     </Link>
   );

@@ -11,7 +11,6 @@ const pool = new Pool({
 });
 
 const getBrowseRecipes = (request, response) => {
-  console.log(request.query);
   let { meal, diet, cuisine, sort } = JSON.parse(
     request.query.browseData.toLowerCase()
   );

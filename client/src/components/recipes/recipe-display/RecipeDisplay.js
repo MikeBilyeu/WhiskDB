@@ -17,7 +17,7 @@ const RecipeDisplay = props => {
         display: "grid",
         placeItems: "center",
         gridTemplateColumns: "4.5rem minmax(11rem,4fr) .2fr",
-        gridGap: ".5rem",
+        gridGap: ".1rem",
         color: "#313131"
       }}
     >
@@ -35,18 +35,20 @@ const RecipeDisplay = props => {
           alignItems: "center",
           gridTemplateRows: "1fr 1.1rem 1.1rem",
           gridGap: ".3rem",
-          justifySelf: "start"
+          justifySelf: "start",
+          paddingLeft: ".3rem"
         }}
       >
         <div
           style={{
-            fontSize: "1rem",
-            lineHeight: "1.2rem"
+            fontSize: "1.25rem",
+            letterSpacing: "-.5px",
+            lineHeight: "1.4rem"
           }}
         >{`${title}`}</div>
 
         <Rating rating={rating} votes={votes} />
-        <div>{` Time: ${hours} ${minutes}`}</div>
+        <div style={{ fontSize: ".9rem" }}>{`Time: ${hours} ${minutes}`}</div>
       </div>
 
       <Arrow style={{ width: ".6rem", placeSelf: "center" }} />

@@ -45,7 +45,7 @@ class Rating extends React.Component {
     return (
       <div className="rating">
         <div className="stars">{this.renderRating()}</div>
-        <div className="votes">{`${votes} vote${votes !== 1 ? "s" : ""}`}</div>
+        <div className="votes">{`(${votes})`}</div>
       </div>
     );
   }
