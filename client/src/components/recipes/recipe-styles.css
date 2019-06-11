@@ -55,6 +55,7 @@
   place-items: center;
   grid-gap: 0.5rem;
   font-family: Times, Helvetica, Arial;
+  color: #313131;
 }
 
 .recipe-details {
@@ -120,9 +121,10 @@
 
 .recipe-list {
   width: 100%;
-  padding: 0 0.7rem;
+  padding: 0 0.5rem;
   margin: 2rem 0;
   display: grid;
+  color: #313131;
 }
 
 .recipe-list ul {
@@ -157,18 +159,30 @@
   padding-top: 1rem;
 }
 
+.directions {
+  padding: 0 0.8rem;
+}
+
 .directions h4 {
-  margin: 0.5rem 0;
+  margin: 0 0.5rem 0 0;
+  font-size: 2.2rem !important;
+  text-align: center;
+  display: inline;
 }
 
 .directions p {
-  margin: 0 0.5rem 0 0.8rem;
+  /* margin: 0 0.5rem 0 0.8rem; */
+  margin: 1.5rem 0;
   line-height: 1.5rem;
 }
 
 .directions li {
   text-align: justify;
   font-size: 1.15rem;
+
+  display: grid;
+  /* grid-template-columns: 0.7rem 1fr; */
+  align-items: start;
 }
 
 .footnote {

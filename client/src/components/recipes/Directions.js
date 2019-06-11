@@ -5,9 +5,11 @@ const Directions = props => {
     props.directions &&
     props.directions.map((step, i) => {
       return (
-        <li key={`step${i}`} style={{ listStyleType: "none" }}>
-          <h4>{i + 1}</h4>
-          <p>{step.step}</p>
+        <li key={`step${i}`}>
+          <p>
+            <h4>{i + 1}</h4>
+            {step.step}
+          </p>
         </li>
       );
     });
