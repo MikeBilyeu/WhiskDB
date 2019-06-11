@@ -1,13 +1,15 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+
+import "./profile-styles.css";
 
 import SavedRecipes from "./saved-recipes/SavedRecipes";
 import MyRecipes from "./MyRecipes";
 import Contact from "./Contact";
 import EditProfile from "./EditProfile";
-import Button from "../Button";
+import Button from "./Button";
 import EditNewRecipe from "./createRecipe/editRecipe/EditNewRecipe";
 
 class Profile extends React.Component {
@@ -22,18 +24,15 @@ class Profile extends React.Component {
         <Route
           component={() => {
             return (
-              <div
-                style={{
-                  display: "grid",
-                  placeItems: "center",
-                  gridGap: "2rem"
-                }}
-              >
-                <h1>Profile</h1>
-                <Button text="Edit Profile" linkTo="/profile/edit" />
-                <Button text="My Recipes" linkTo="/profile/my-recipes" />
+              <div className="profile">
+                <div className="profile-header">
+                  <h1>{this.props.username}</h1>
+                  <Link to="/profile/edit" className="profile-edit">
+                    Edit Profile
+                  </Link>
+                </div>
                 <Button text="Create Recipe" linkTo="/profile/create-recipe" />
-                <Button text="Saved Recipes" linkTo="/profile/saved-recipes" />
+                <Button text="My Recipes" linkTo="/profile/my-recipes" />
                 <Button text="Contact Us" linkTo="/profile/contact" />
               </div>
             );
@@ -44,10 +43,10 @@ class Profile extends React.Component {
   }
 }
 
-Profile.propTypes = {
-  auth: PropTypes.object.isRequired
-};
+// Profile.propTypes = {
+//   auth: PropTypes.object.isRequired
+// };
 const mapStateToProps = state => ({
-  auth: state.auth
+  username: state.auth.user.username
 });
 export default connect(mapStateToProps)(Profile);

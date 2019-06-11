@@ -9,18 +9,10 @@ class EditProfile extends React.Component {
   };
   render() {
     const { user } = this.props.auth;
-    console.log(user);
     return (
       <div>
-        <h2>Username: {user.name}</h2>
-        <h3>Edit Profile</h3>
-        <button
-          onClick={this.onLogoutClick}
-          className="yellow ui button labeled icon "
-        >
-          <i className="user times icon" />
-          Logout
-        </button>
+        <h2>{user.username}</h2>
+        <div onClick={this.onLogoutClick}>Logout</div>
       </div>
     );
   }
