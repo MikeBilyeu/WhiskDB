@@ -26,14 +26,17 @@ const NoResults = props => {
       >
         please try searching for another recipe
       </div>
+      <div style={{ fontSize: "1.5rem", color: "#707070", alignSelf: "start" }}>
+        or
+      </div>
 
       <Link
         to={`/profile/create-recipe`}
         style={{
-          fontSize: "1.3rem",
+          fontSize: "1.2rem",
           color: "white",
-          borderRadius: ".5rem",
-          padding: ".7rem 1rem",
+          borderRadius: ".3rem",
+          padding: ".5rem 1rem",
           backgroundColor: "#0172C4"
         }}
       >
