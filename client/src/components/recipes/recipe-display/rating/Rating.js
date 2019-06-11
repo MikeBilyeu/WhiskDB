@@ -8,7 +8,7 @@ class Rating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      starColor: ["#FFBB5F", "#FFBB5F", "#FFBB5F", "#FFBB5F", "#FFBB5F"]
+      starColor: ["#FFBA00", "#FFBA00", "#FFBA00", "#FFBA00", "#FFBA00"]
     };
   }
 
@@ -16,7 +16,7 @@ class Rating extends React.Component {
     this.setState(({ starColor }, { rating }) => {
       let colors = [];
       for (let i = 0; i < 5; i++) {
-        colors = [...colors, rating > i ? "#FFBB5F" : "#E2E2E2"];
+        colors = [...colors, rating > i ? "#FFBA00" : "#E2E2E2"];
       }
       return {
         starColor: colors
