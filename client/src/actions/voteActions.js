@@ -12,7 +12,7 @@ export const likeRecipe = (recipe_id, user_id) => dispatch => {
   dispatch({ type: VOTE_CLICKED });
   if (user_id !== null) {
     dispatch({ type: LIKED_RECIPE });
-    console.log(recipe_id, user_id, vote);
+
     axios
       .post("/recipe/vote", { user_id, recipe_id, vote })
       .then(res => {
@@ -27,7 +27,7 @@ export const dislikeRecipe = (recipe_id, user_id) => dispatch => {
   dispatch({ type: VOTE_CLICKED });
   if (user_id !== null) {
     dispatch({ type: DISLIKED_RECIPE });
-    console.log(recipe_id, user_id, vote);
+
     axios
       .post("/recipe/vote", { user_id, recipe_id, vote })
       .then(res => {

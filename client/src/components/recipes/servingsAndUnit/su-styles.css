@@ -4,7 +4,7 @@
   border-radius: 0.3rem;
   margin: 1.5rem auto;
   display: grid;
-  grid-template-columns: 1fr 0.5rem 1fr;
+  grid-template-columns: 3fr 0.3rem 4fr;
   place-items: center;
   color: #fff;
   font-family: Helvetica, Arial, Times;
