@@ -59,7 +59,7 @@ class SavedRecipes extends React.Component {
         >
           <h1>Saved Recipes</h1>
           <div className="header-btn" onClick={this.handleClick}>
-            Sort
+            <div>Sort</div>
             <Arrow
               className={
                 "arrowStyle" + (this.state.sortActive ? " sortActive" : "")

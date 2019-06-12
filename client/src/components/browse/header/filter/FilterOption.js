@@ -19,16 +19,17 @@ let FilterOption = props => {
   };
 
   let style = {
-    color: "#969696",
+    color: "#464646",
     cursor: "pointer",
-    margin: "0 ",
+    margin: "0",
     padding: "0 1rem",
     fontWeight: "bold",
     whiteSpace: "nowrap",
     textAlign: "center",
     userSelect: "none",
     transition: "all .1s ease-out",
-    borderRight: "solid #E2E2E2 1px"
+    borderRight: "solid #E2E2E2 .01rem",
+    width: "100%"
   };
 
   // check if option is in the browseData values to apply styles

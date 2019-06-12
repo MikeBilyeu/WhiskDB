@@ -57,10 +57,7 @@ const HomeHeader = props => {
   return (
     <div
       style={{
-        // position: "fixed",
         width: "100%",
-        top: "0",
-        left: "0",
         backgroundColor: "#fff"
       }}
     >
