@@ -41,7 +41,7 @@ const RecipeDisplay = props => {
       >
         <div
           style={{
-            fontSize: "1.25rem",
+            fontSize: "1.2rem",
             letterSpacing: "-.5px",
             lineHeight: "1.4rem"
           }}

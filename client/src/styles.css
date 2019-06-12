@@ -13,7 +13,6 @@ body {
   font-family: Arial, sans-serif, times;
   height: 100%;
   width: 100%;
-  overflow: auto;
   -webkit-overflow-scrolling: touch;
   -webkit-text-size-adjust: 100%;
 }

@@ -19,14 +19,16 @@ let FilterOption = props => {
   };
 
   let style = {
-    color: "#464646",
+    color: "#969696",
     cursor: "pointer",
-    margin: "0 1rem",
-    width: "100%",
+    margin: "0 ",
+    padding: "0 1rem",
+    fontWeight: "bold",
     whiteSpace: "nowrap",
     textAlign: "center",
     userSelect: "none",
-    transition: "all .1s ease-out"
+    transition: "all .1s ease-out",
+    borderRight: "solid #E2E2E2 1px"
   };
 
   // check if option is in the browseData values to apply styles
@@ -35,7 +37,6 @@ let FilterOption = props => {
     !/\S/.test(browseData.search)
   ) {
     style.color = "#0172C4";
-    style.fontWeight = "bold";
   }
 
   return (

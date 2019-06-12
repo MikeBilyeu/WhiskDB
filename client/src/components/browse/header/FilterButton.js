@@ -16,17 +16,21 @@ const FilterButton = props => {
     borderRadius: ".2rem",
     cursor: "pointer",
     backgroundColor: "#313131",
-    color: "#FFFFFF",
+    color: "#FFF",
+    display: "grid",
+    placeItems: "center",
+    gridGap: ".5rem",
+    gridAutoFlow: "column",
     textAlign: "center",
-    fontSize: "1.2rem",
+    fontSize: "1rem",
     margin: ".2rem",
-    padding: "0.2rem 0.8rem 0.1rem 0.8rem",
-    transition: "all .2s ease-out"
+    padding: ".3rem 0.8rem",
+    transition: "all .2s ease-out",
+    fontWeight: "bold"
   };
   let arrowStyle = {
     width: ".8rem",
-    transition: "all .2s ease-out",
-    marginLeft: ".4rem"
+    transition: "all .2s ease-out"
   };
 
   if (props.buttonName === props.buttonToggled) {
@@ -41,7 +45,7 @@ const FilterButton = props => {
 
   return (
     <div style={style} onClick={handleClick}>
-      {props.buttonName}
+      <div>{props.buttonName}</div>
       <Arrow style={arrowStyle} />
     </div>
   );
