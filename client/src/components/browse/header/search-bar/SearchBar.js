@@ -71,7 +71,7 @@ class SearchBar extends React.Component {
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
           autoComplete="off"
-          placeholder="Search..."
+          placeholder="Search"
           value={this.props.searchTerm}
         />
         <SearchIcon onClick={this.handleClick} className="searchIcon" />

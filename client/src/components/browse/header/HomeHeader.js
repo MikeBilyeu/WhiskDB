@@ -58,7 +58,8 @@ const HomeHeader = props => {
     <div
       style={{
         width: "100%",
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
+        overflow: "hidden"
       }}
     >
       <SearchBar />

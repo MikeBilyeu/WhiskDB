@@ -1,0 +1,39 @@
+.outer-bar {
+  background-color: #fdfdfd;
+  border-top: solid 0.01rem #e3e3e3;
+  border-bottom: solid 0.01rem #e3e3e3;
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  display: grid;
+  place-items: center;
+}
+
+.filter-bar {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(auto-fit, 8rem);
+  place-items: center;
+  position: relative;
+}
+
+.filter-option:nth-child(odd) {
+  border: none;
+}
+.filter-option:last-child {
+  border-right: none;
+}
+.filter-option {
+  color: #464646;
+  cursor: pointer;
+  margin: 0;
+  padding: 0 1rem;
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+  user-select: none;
+  transition: all 0.1s ease-out;
+  border-right: solid #e2e2e2 0.01rem;
+  border-left: solid #e2e2e2 0.01rem;
+  width: 8rem;
+  position: relative;
+}

@@ -18,32 +18,17 @@ let FilterOption = props => {
     }
   };
 
-  let style = {
-    color: "#464646",
-    cursor: "pointer",
-    margin: "0",
-    padding: "0 1rem",
-    fontWeight: "bold",
-    whiteSpace: "nowrap",
-    textAlign: "center",
-    userSelect: "none",
-    transition: "all .1s ease-out",
-    borderRight: "solid #E2E2E2 .01rem",
-    width: "100%"
-  };
-
-  // check if option is in the browseData values to apply styles
-  if (
-    Object.values(browseData).indexOf(option) > 0 &&
-    !/\S/.test(browseData.search)
-  ) {
-    style.color = "#0172C4";
-  }
-
   return (
     <div
       key={option}
-      style={style}
+      style={{
+        color:
+          Object.values(browseData).indexOf(option) > 0 &&
+          !/\S/.test(browseData.search)
+            ? "#0172C4"
+            : "#464646"
+      }}
+      className="filter-option"
       onClick={() => {
         handleClick(option);
       }}

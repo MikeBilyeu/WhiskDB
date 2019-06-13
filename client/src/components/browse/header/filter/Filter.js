@@ -2,34 +2,87 @@ import React from "react";
 
 import FilterOption from "./FilterOption";
 
-const Filter = props => {
-  const renderFilterOptions = () => {
-    return props.filterOptions.map((option, i) => {
+import "./filter-styles.css";
+
+class Filter extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      xAxis: 0,
+      touchStart: 0,
+      touchMove: 0,
+      startMoveDiff: 0
+    };
+  }
+  renderFilterOptions = () => {
+    return this.props.filterOptions.map((option, i) => {
       return (
         <FilterOption
           key={option + i}
           option={option}
-          filterType={props.filterType}
+          filterType={this.props.filterType}
         />
       );
     });
   };
-  return (
-    <div
-      style={{
-        backgroundColor: "#F7F7F7",
-        borderTop: "solid 0.01rem #e3e3e3",
-        borderBottom: "solid 0.01rem #e3e3e3",
-        display: "grid",
-        gridAutoFlow: "column",
-        placeItems: "center",
-        margin: ".5rem 0 0 0",
-        padding: ".6rem",
-        overflow: "hidden"
-      }}
-    >
-      {renderFilterOptions()}
-    </div>
-  );
-};
+  handleTouchStart = e => {
+    e.persist();
+    this.setState({
+      touchStart: e.touches[0].clientX,
+      touchMove: e.touches[0].clientX
+    });
+  };
+
+  handleTouchMove = e => {
+    e.persist();
+    this.setState(prevState => {
+      const diff = e.touches[0].clientX - prevState.touchMove;
+      return {
+        startMoveDiff: e.touches[0].clientX - prevState.touchStart,
+        touchMove: e.touches[0].clientX,
+        xAxis:
+          prevState.xAxis + diff > 0
+            ? 0
+            : prevState.xAxis + diff < -this.barDiff
+            ? -this.barDiff
+            : prevState.xAxis + diff
+      };
+    });
+  };
+  barWidth = 0;
+  outerBarWidth = 0;
+  barDiff = 0;
+  render() {
+    this.barDiff = Math.abs(this.barWidth - this.outerBarWidth);
+
+    return (
+      <div
+        className="outer-bar"
+        onTouchStart={this.handleTouchStart}
+        onTouchMove={this.handleTouchMove}
+        onTouchEnd={this.handleTouchEnd}
+        ref={el => {
+          if (el) {
+            this.outerBarWidth = el.offsetWidth;
+          }
+        }}
+      >
+        <div
+          className="filter-bar"
+          style={{
+            left: this.state.xAxis
+          }}
+          ref={el => {
+            if (el) {
+              this.barWidth = el.offsetWidth;
+            }
+          }}
+        >
+          {this.renderFilterOptions()}
+        </div>
+      </div>
+    );
+  }
+}
 export default Filter;
