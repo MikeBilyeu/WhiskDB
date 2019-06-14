@@ -1,11 +1,17 @@
 .outer-bar {
   background-color: #fdfdfd;
-  border-top: solid 0.01rem #e3e3e3;
-  border-bottom: solid 0.01rem #e3e3e3;
+  border-top: solid 0.05rem #e3e3e3;
+  border-bottom: solid 0.05rem #e3e3e3;
   padding: 0.6rem;
   margin: 0.5rem 0;
   display: grid;
   place-items: center;
+  -ms-overflow-style: none;
+  overflow-x: scroll;
+}
+
+.outer-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .filter-bar {
@@ -13,15 +19,16 @@
   grid-auto-flow: column;
   grid-template-columns: repeat(auto-fit, 8rem);
   place-items: center;
-  position: relative;
 }
 
 .filter-option:nth-child(odd) {
   border: none;
 }
+
 .filter-option:last-child {
   border-right: none;
 }
+
 .filter-option {
   color: #464646;
   cursor: pointer;
