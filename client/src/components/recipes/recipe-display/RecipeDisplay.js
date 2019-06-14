@@ -25,9 +25,7 @@ const RecipeDisplay = props => {
         src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
         height="70rem"
         width="70rem"
-        style={{
-          borderRadius: "50%"
-        }}
+        style={{}}
       />
       <div
         style={{
@@ -41,7 +39,8 @@ const RecipeDisplay = props => {
       >
         <div
           style={{
-            fontSize: "1.2rem",
+            fontSize: "1rem",
+            fontWeight: "bold",
             letterSpacing: "-.5px",
             lineHeight: "1.4rem"
           }}

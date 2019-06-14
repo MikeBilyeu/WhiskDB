@@ -6,10 +6,8 @@ const Directions = props => {
     props.directions.map((step, i) => {
       return (
         <li key={`step${i}`}>
-          <p>
-            <h4>{i + 1}</h4>
-            {step.step}
-          </p>
+          <h4>{i + 1}</h4>
+          <p>{step.step}</p>
         </li>
       );
     });

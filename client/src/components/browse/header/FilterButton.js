@@ -45,7 +45,7 @@ const FilterButton = props => {
 
   return (
     <div style={style} onClick={handleClick}>
-      <div>{props.buttonName}</div>
+      <div style={{ lineHeight: "1rem" }}>{props.buttonName}</div>
       <Arrow style={arrowStyle} />
     </div>
   );

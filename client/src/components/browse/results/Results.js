@@ -14,9 +14,6 @@ class Results extends React.Component {
   }
 
   renderRecipeList = () => {
-    if (this.props.recipes.recipes.length < 1) {
-      return <NoResults />;
-    }
     return this.props.recipes.recipes.map((recipe, i, { length }) => {
       return (
         <Link key={`recipe${i}`} to={`/recipe/${recipe.recipe_id}`}>
@@ -32,15 +29,24 @@ class Results extends React.Component {
     if (isFetching) {
       return <Loading />;
     }
+    if (this.props.recipes.recipes.length < 1) {
+      return <NoResults />;
+    }
     return (
-      <ul
-        style={{
-          marginLeft: recipes.length > 1 ? ".3rem" : "0",
-          padding: "0"
-        }}
-      >
-        {this.renderRecipeList()}
-      </ul>
+      <div>
+        <div style={{ marginLeft: "1rem" }}>
+          ({this.props.recipes.recipes.length}) Result
+          {this.props.recipes.recipes.length == 1 ? "" : "s"}
+        </div>
+        <ul
+          style={{
+            marginLeft: recipes.length > 0 ? ".3rem" : "0",
+            padding: "0"
+          }}
+        >
+          {this.renderRecipeList()}
+        </ul>
+      </div>
     );
   }
 }

@@ -25,4 +25,6 @@
 
 .navActive path {
   stroke-width: 1.5;
+  fill: #0172c4;
+  stroke: #0172c4;
 }
