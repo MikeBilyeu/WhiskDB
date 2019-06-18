@@ -5,18 +5,30 @@
   background-color: #fff;
   display: grid;
   place-items: center;
+  grid-gap: 0.5rem;
   text-align: center;
   padding: 1rem;
-  margin: 1rem;
+  margin: 1rem auto;
+  left: 0;
+  right: 0;
   border-radius: 0.5rem;
-  height: 60vh;
-  box-shadow: 5px 10px 8px 10px rgba(0, 0, 0, 0.2);
+  min-height: 60%;
+  box-shadow: 2px 3px 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-title {
+  color: #464646;
+  font-weight: medium;
+  border-bottom: solid #e2e2e2 0.01rem;
+  padding: 0.5rem 3rem;
+  margin: 0 0 0.5rem 0;
+  text-transform: capitalize;
 }
 
 .filter-option {
   padding: 0.4rem 1rem;
-  borderradius: 10rem;
-  width: 10rem;
+  border-radius: 10rem;
+  width: 8rem;
   cursor: pointer;
   color: #464646;
 }

@@ -21,7 +21,12 @@ class Filter extends React.Component {
   };
 
   render() {
-    return <div className="filter-box">{this.renderFilterOptions()}</div>;
+    return (
+      <div className="filter-box">
+        <h2 className="filter-title">{this.props.filterType}</h2>
+        {this.renderFilterOptions()}
+      </div>
+    );
   }
 }
 export default Filter;

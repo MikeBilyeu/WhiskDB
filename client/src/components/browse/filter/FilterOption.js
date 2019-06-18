@@ -26,10 +26,7 @@ let FilterOption = props => {
         !/\S/.test(browseData.search)
           ? {
               color: "#0172C4",
-              border: "solid #0172C4 1px",
-              padding: ".3rem 1rem",
-              borderRadius: "10rem",
-              width: "10rem"
+              border: "solid #0172C4 1px"
             }
           : {}
       }
