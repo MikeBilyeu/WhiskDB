@@ -12,7 +12,7 @@ import {
 export const getBrowseRecipes = browseData => dispatch => {
   // dispatch a browse request
   dispatch({ type: GET_BROWSE_REQUEST });
-  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: "Meal" });
+  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
   dispatch({ type: SET_BROWSE_DATA, payload: browseData });
 
   // make axios request
@@ -31,7 +31,7 @@ export const getSearchRecipes = browseData => dispatch => {
 
   dispatch({ type: SET_BROWSE_DATA, payload: browseData });
   // close filter buttons
-  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: "Meal" });
+  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
 
   // make axios request
   axios

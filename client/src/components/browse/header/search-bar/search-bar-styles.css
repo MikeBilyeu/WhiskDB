@@ -1,16 +1,7 @@
 .searchBar {
-  width: 90%;
   height: 2.4rem;
-  font-size: 1.3rem;
-  border-radius: 0.5rem;
-  padding: 0 0 0 1.5rem;
-  transition: all 0.1s ease-out;
-  display: grid;
-  grid-template-columns: 15fr 1fr;
-  place-items: center;
-  align-self: end;
-  margin: 0.5rem auto;
-  background-color: #ededed;
+
+  border: solid red;
 }
 
 .searchIcon {
@@ -26,6 +17,7 @@
   color: #484848;
   font-size: 1rem;
   justify-self: start;
+  display: none;
 }
 
 .input::placeholder {

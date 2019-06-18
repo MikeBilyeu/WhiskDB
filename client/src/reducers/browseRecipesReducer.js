@@ -15,7 +15,7 @@ const initialState = {
     cuisine: "All",
     sort: "Top Rated"
   },
-  toggleFilterButton: "Meal"
+  toggleFilterButton: null
 };
 
 export default function(state = initialState, action) {
@@ -30,7 +30,7 @@ export default function(state = initialState, action) {
       if (action.payload === state.toggleFilterButton)
         return {
           ...state,
-          toggleFilterButton: "Meal"
+          toggleFilterButton: null
         };
       else {
         return {

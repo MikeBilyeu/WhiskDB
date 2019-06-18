@@ -39,7 +39,7 @@ const FilterButton = props => {
     style = { ...style, backgroundColor: "#0172C4" };
   }
   if (
-    props.buttonToggled !== "Meal" &&
+    props.buttonToggled !== null &&
     props.buttonName !== props.buttonToggled
   ) {
     style = { ...style, opacity: ".2" };

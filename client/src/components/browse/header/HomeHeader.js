@@ -59,12 +59,12 @@ const HomeHeader = props => {
       style={{
         width: "100%",
         backgroundColor: "#fff",
-        overflow: "hidden"
+        overflow: "hidden",
+        border: "solid red 1px"
       }}
     >
       <SearchBar />
       <HeaderOption />
-      <Filter filterType={type} filterOptions={options} />
     </div>
   );
 };
