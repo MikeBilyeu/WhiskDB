@@ -17,7 +17,7 @@ const getBrowseRecipes = (request, response) => {
 
   diet = diet === "none" ? null : diet;
   cuisine = cuisine === "all cuisines" ? null : cuisine;
-  meal = meal === "all meals" ? "lunch" : meals;
+  meal = meal === "all meals" ? "lunch" : meal;
 
   const numOfCats = !diet && !cuisine ? 1 : !diet || !cuisine ? 2 : 3;
 

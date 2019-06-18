@@ -1,5 +1,6 @@
 .filter-box {
-  position: absolute;
+  position: fixed;
+  top: 6rem;
   width: 90%;
   z-index: 1;
   background-color: #fff;

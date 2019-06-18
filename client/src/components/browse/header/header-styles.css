@@ -6,8 +6,11 @@
   align-items: center;
   grid-template-areas:
     "search whisk sort"
-    "cuisine diet meal";
+    "diet cuisine meal";
   border-bottom: solid #c7c7c7 1px;
+  padding: 0 0.1rem;
+  position: fixed;
+  top: 0;
 }
 
 .whisk-title {
@@ -31,12 +34,17 @@
   color: #707070;
   display: grid;
   place-items: center;
-  grid-gap: 0.2rem;
+  grid-gap: 0.02rem;
   grid-template-columns: 1fr 0.8rem;
   text-align: center;
+  font-size: 0.9rem;
   margin: 1rem 0.2rem;
-  padding: 0.4rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   opacity: 1;
+  width: 95%;
+  min-width: 6rem;
+  max-width: 15rem;
+  place-self: center;
 }
 
 .filter-arrow {
