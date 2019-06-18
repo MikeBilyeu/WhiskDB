@@ -1,0 +1,26 @@
+.filter-box {
+  position: absolute;
+  width: 90%;
+  z-index: 1;
+  background-color: #fff;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  height: 60vh;
+  box-shadow: 5px 10px 8px 10px rgba(0, 0, 0, 0.2);
+}
+
+.filter-option {
+  padding: 0.4rem 1rem;
+  borderradius: 10rem;
+  width: 10rem;
+  cursor: pointer;
+  color: #464646;
+}
+
+.filter-option:hover {
+  color: #0172c4;
+}

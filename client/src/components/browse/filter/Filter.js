@@ -21,16 +21,7 @@ class Filter extends React.Component {
   };
 
   render() {
-    return (
-      <div
-        className="outer-bar"
-        onTouchStart={this.handleTouchStart}
-        onTouchMove={this.handleTouchMove}
-        onTouchEnd={this.handleTouchEnd}
-      >
-        <div className="filter-bar">{this.renderFilterOptions()}</div>
-      </div>
-    );
+    return <div className="filter-box">{this.renderFilterOptions()}</div>;
   }
 }
 export default Filter;

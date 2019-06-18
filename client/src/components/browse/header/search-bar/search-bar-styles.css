@@ -1,7 +1,6 @@
 .searchBar {
   height: 2.4rem;
-
-  border: solid red;
+  grid-area: search;
 }
 
 .searchIcon {
@@ -9,6 +8,7 @@
   cursor: pointer;
   /* padding: 0.5rem 1rem; */
   padding: 0.5rem;
+  fill: #676767;
 }
 
 .input {

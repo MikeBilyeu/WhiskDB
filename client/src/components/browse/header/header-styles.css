@@ -1,0 +1,51 @@
+.header {
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+  grid-template-areas:
+    "search whisk sort"
+    "cuisine diet meal";
+  border-bottom: solid #c7c7c7 1px;
+}
+
+.whisk-title {
+  width: 5rem;
+  grid-area: whisk;
+  justify-self: center;
+}
+
+.sort-icon {
+  width: 2.2rem;
+  cursor: pointer;
+  grid-area: sort;
+  justify-self: end;
+  padding: 0.5rem;
+}
+
+.filter-btn {
+  border-radius: 50rem;
+  cursor: pointer;
+  border: solid #e2e2e2 1px;
+  color: #707070;
+  display: grid;
+  place-items: center;
+  grid-gap: 0.2rem;
+  grid-template-columns: 1fr 0.8rem;
+  text-align: center;
+  margin: 1rem 0.2rem;
+  padding: 0.4rem 0.5rem;
+  opacity: 1;
+}
+
+.filter-arrow {
+  width: 0.8rem;
+  transition: all 0.2s ease-out;
+  fill: #e2e2e2;
+}
+
+/* not working ios safari... color staying on after click */
+/* .filter-btn:hover {
+  color: #0172c4;
+} */

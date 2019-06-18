@@ -12,43 +12,24 @@ const FilterButton = props => {
     props.toggleFilterButton(props.buttonName);
   };
 
-  let style = {
-    borderRadius: ".3rem",
-    cursor: "pointer",
-    backgroundColor: "#3B3B3B",
-    color: "#FFF",
-    display: "grid",
-    placeItems: "center",
-    gridGap: ".3rem",
-    gridAutoFlow: "column",
-    textAlign: "center",
-    fontSize: "1rem",
-    margin: ".2rem 0",
-    padding: ".4rem 1rem",
-    transition: "all .2s ease-out",
-    fontWeight: "bold",
-    opacity: 1
-  };
-  let arrowStyle = {
-    width: ".8rem",
-    transition: "all .2s ease-out"
-  };
+  let style = {};
+  let arrowStyle = {};
 
   if (props.buttonName === props.buttonToggled) {
-    arrowStyle = { ...arrowStyle, transform: "rotate(90deg)" };
-    style = { ...style, backgroundColor: "#0172C4" };
+    arrowStyle = { ...arrowStyle, transform: "rotate(90deg)", fill: "#0172C4" };
+    style = { ...style, border: "solid #0172C4 1px", color: "#0172C4" };
   }
-  if (
-    props.buttonToggled !== null &&
-    props.buttonName !== props.buttonToggled
-  ) {
-    style = { ...style, opacity: ".2" };
-  }
+  // if (
+  //   props.buttonToggled !== null &&
+  //   props.buttonName !== props.buttonToggled
+  // ) {
+  //   style = { ...style, opacity: ".3" };
+  // }
 
   return (
-    <div style={style} onClick={handleClick}>
+    <div className="filter-btn" style={style} onClick={handleClick}>
       <div>{props.buttonName}</div>
-      <Arrow style={arrowStyle} />
+      <Arrow className="filter-arrow" style={arrowStyle} />
     </div>
   );
 };

@@ -2,9 +2,10 @@ import React from "react";
 
 import FilterButton from "./filter-buttons/FilterButton";
 
-const HeaderOption = () => {
+const FilterButtons = () => {
   return (
     <div
+      className="filter-buttons"
       style={{
         height: "2.5rem",
         display: "grid",
@@ -16,16 +17,15 @@ const HeaderOption = () => {
         MozUserSelect: "none",
         WebkitUserSelect: "none",
         MsUserSelect: "none",
-        margin: ".5rem 0"
+        margin: ".5rem 0",
+        gridArea: "fb"
       }}
     >
-      <FilterButton buttonName="Diet" />
-
-      <FilterButton buttonName="Cuisine" />
-
-      <FilterButton buttonName="Meal" />
+      <FilterButton style={{ gridArea: "cuisine" }} buttonName="Cuisine" />
+      <FilterButton style={{ gridArea: "diet" }} buttonName="Diet" />
+      <FilterButton style={{ gridArea: "meal" }} buttonName="Meal" />
     </div>
   );
 };
 
-export default HeaderOption;
+export default FilterButtons;

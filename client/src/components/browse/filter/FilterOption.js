@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 // import the actions
-import { getBrowseRecipes } from "../../../../actions/browseActions";
+import { getBrowseRecipes } from "../../../actions/browseActions";
 
 let FilterOption = props => {
   const { option, browseData, filterType } = props;
@@ -21,13 +21,18 @@ let FilterOption = props => {
   return (
     <div
       key={option}
-      style={{
-        color:
-          Object.values(browseData).indexOf(option) > 0 &&
-          !/\S/.test(browseData.search)
-            ? "#0172C4"
-            : "#464646"
-      }}
+      style={
+        Object.values(browseData).indexOf(option) > 0 &&
+        !/\S/.test(browseData.search)
+          ? {
+              color: "#0172C4",
+              border: "solid #0172C4 1px",
+              padding: ".3rem 1rem",
+              borderRadius: "10rem",
+              width: "10rem"
+            }
+          : {}
+      }
       className="filter-option"
       onClick={() => {
         handleClick(option);

@@ -1,78 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import LayoutToggle from "./LayoutToggle";
+//components
 import SearchBar from "./search-bar/SearchBar";
-import HeaderOption from "./HeaderOption";
-import Filter from "./filter/Filter";
+import { ReactComponent as WhiskIcon } from "./WhiskIcon.svg";
+import SortButton from "./sort-button/SortButton";
+import FilterButton from "./filter-buttons/FilterButton";
 
-const mealOptions = [
-  "Breakfast",
-  "Lunch",
-  "Dinner",
-  "Appetizer",
-  "Dessert",
-  "Drink"
-];
+//styles
+import "./header-styles.css";
 
-const dietOptions = ["None", "Vegetarian", "Vegan"];
-
-const cuisineOptions = [
-  "All",
-  "Chinese",
-  "Indian",
-  "Italian",
-  "Mexican",
-  "Thai",
-  "Other"
-];
-
-const sortOptions = ["Top Rated", "A-Z", "Time", "Newest"];
-
-const HomeHeader = props => {
-  let options = mealOptions;
-  let type = "meal";
-
-  switch (props.buttonToggled) {
-    case "Meal":
-      options = mealOptions;
-      type = "meal";
-      break;
-    case "Diet":
-      options = dietOptions;
-      type = "diet";
-      break;
-    case "Cuisine":
-      options = cuisineOptions;
-      type = "cuisine";
-      break;
-    case "Sort":
-      options = sortOptions;
-      type = "sort";
-      break;
-    default:
-      break;
-  }
-
+const HomeHeader = () => {
   return (
-    <div
-      style={{
-        width: "100%",
-        backgroundColor: "#fff",
-        overflow: "hidden",
-        border: "solid red 1px"
-      }}
-    >
+    <div className="header">
       <SearchBar />
-      <HeaderOption />
+      <WhiskIcon className="whisk-title" />
+      <SortButton />
+      <FilterButton buttonName="Diet" />
+      <FilterButton buttonName="Cuisine" />
+      <FilterButton buttonName="Meal" />
     </div>
   );
 };
 
-const mapSateToProps = state => {
-  return {
-    buttonToggled: state.browseRecipes.toggleFilterButton
-  };
-};
-
-export default connect(mapSateToProps)(HomeHeader);
+export default HomeHeader;
