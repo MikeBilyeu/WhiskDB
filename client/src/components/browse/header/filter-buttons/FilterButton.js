@@ -19,12 +19,6 @@ const FilterButton = props => {
     arrowStyle = { ...arrowStyle, transform: "rotate(90deg)", fill: "#0172C4" };
     style = { ...style, border: "solid #0172C4 1px", color: "#0172C4" };
   }
-  // if (
-  //   props.buttonToggled !== null &&
-  //   props.buttonName !== props.buttonToggled
-  // ) {
-  //   style = { ...style, opacity: ".3" };
-  // }
 
   return (
     <div className="filter-btn" style={style} onClick={handleClick}>

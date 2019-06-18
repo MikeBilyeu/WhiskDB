@@ -10,9 +10,9 @@ const initialState = {
   isFetching: true,
   browseData: {
     search: "",
-    meal: "Breakfast",
+    meal: "All Meals",
     diet: "None",
-    cuisine: "All",
+    cuisine: "All Cuisines",
     sort: "Top Rated"
   },
   toggleFilterButton: null

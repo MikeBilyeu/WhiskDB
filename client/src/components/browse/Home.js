@@ -6,6 +6,7 @@ import Filter from "./filter/Filter";
 import Results from "./results/Results";
 
 const mealOptions = [
+  "All Meals",
   "Breakfast",
   "Lunch",
   "Dinner",
@@ -17,7 +18,7 @@ const mealOptions = [
 const dietOptions = ["None", "Vegetarian", "Vegan"];
 
 const cuisineOptions = [
-  "All",
+  "All Cuisines",
   "Chinese",
   "Indian",
   "Italian",
