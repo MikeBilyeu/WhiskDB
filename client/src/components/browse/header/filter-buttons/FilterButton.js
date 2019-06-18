@@ -19,6 +19,7 @@ const FilterButton = props => {
     arrowStyle = { ...arrowStyle, transform: "rotate(90deg)", fill: "#0172C4" };
     style = { ...style, border: "solid #0172C4 1px", color: "#0172C4" };
   }
+  console.log(props.browseData);
 
   return (
     <div className="filter-btn" style={style} onClick={handleClick}>
@@ -30,7 +31,8 @@ const FilterButton = props => {
 
 const mapSateToProps = state => {
   return {
-    buttonToggled: state.browseRecipes.toggleFilterButton
+    buttonToggled: state.browseRecipes.toggleFilterButton,
+    browseData: state.browseRecipes.browseData
   };
 };
 
