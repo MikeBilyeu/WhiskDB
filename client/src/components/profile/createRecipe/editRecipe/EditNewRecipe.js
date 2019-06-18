@@ -93,91 +93,79 @@ class EditNewRecipe extends React.Component {
       return value && strArr[0];
     };
     return (
-      <div className="fluid column">
-        <div className="ui form error">
-          <div className="ui hidden divider" />
-          <h1 className="ui dividing header centered">Create Recipe</h1>
-          <div className="ui hidden divider" />
-          <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
-            <Field
-              name="title"
-              component={TextInput}
-              label="Recipe Title"
-              placeholder="The Best Homemade Pizza"
-              normalize={capitalize}
-              parse={titleParse}
-            />
-            <div className="ui hidden divider" />
-            <Field name="image" component={ImageUpload} />
-            <div className="ui hidden divider" />
-            <h4 className="ui dividing header">Time Required</h4>
-            <div className="fields">
-              <Field
-                name="time.hours"
-                component={TextInput}
-                label="Hours"
-                placeholder="1"
-                normalize={numberParse}
-              />
-              <Field
-                name="time.minutes"
-                component={TextInput}
-                label="Minutes"
-                placeholder="15"
-                parse={minuteParse}
-              />
-            </div>
-            <div className="ui divider" />
-            <div className="ui hidden divider" />
-            <h4 className="ui dividing header">Servings</h4>
-            <Field
-              name="servings"
-              component={TextInput}
-              label="Number of servings"
-              placeholder="2"
-              addClass="four wide"
-              parse={numberParse}
-            />
+      <div>
+        <h1 className="ui dividing header centered">Create Recipe</h1>
 
-            <div className="ui hidden divider" />
-            <h4 className="ui dividing header">Ingredients</h4>
-            <div className="ui hidden divider" />
-            <FieldArray name="ingredients" component={IngredientInput} />
-            <div className="ui hidden divider" />
+        <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+          <Field
+            name="title"
+            component={TextInput}
+            label="Recipe Title"
+            placeholder="The Best Homemade Pizza"
+            normalize={capitalize}
+            parse={titleParse}
+          />
 
-            <h4 className="ui dividing header">Directions</h4>
-            <div className="ui hidden divider" />
-            <FieldArray name="directions" component={DirectionInput} />
-            <div className="ui hidden divider" />
-            <h4 className="ui dividing header">Footnotes/Tips</h4>
-            <div className="field">
-              <Field
-                name="footnote"
-                component={TextAreaInput}
-                label="Note"
-                placeholder="Add lemon juice for more flavor"
-                parse={footnoteParse}
-              />
-              <div className="ui hidden divider" />
-              <Field
-                name="privateRecipe"
-                label="Private Recipe"
-                component={ToggleSwitch}
-              />
-            </div>
-            <div className="ui hidden divider" />
-            <h4 className="ui dividing header">Categories</h4>
-            <Fields names={categoryNames} component={CategoryInput} />
-            <div className="ui hidden divider" />
+          <Field name="image" component={ImageUpload} />
 
-            <button type="submit" className="ui button big blue fluid">
-              Submit Recipe
-            </button>
+          <h4 className="ui dividing header">Time Required</h4>
 
-            <div className="ui hidden divider" />
-            <div className="ui hidden divider" />
-          </form>
-        </div>
+          <Field
+            name="time.hours"
+            component={TextInput}
+            label="Hours"
+            placeholder="1"
+            normalize={numberParse}
+          />
+          <Field
+            name="time.minutes"
+            component={TextInput}
+            label="Minutes"
+            placeholder="15"
+            parse={minuteParse}
+          />
+
+          <h4 className="ui dividing header">Servings</h4>
+          <Field
+            name="servings"
+            component={TextInput}
+            label="Number of servings"
+            placeholder="2"
+            addClass="four wide"
+            parse={numberParse}
+          />
+
+          <h4 className="ui dividing header">Ingredients</h4>
+
+          <FieldArray name="ingredients" component={IngredientInput} />
+
+          <h4 className="ui dividing header">Directions</h4>
+
+          <FieldArray name="directions" component={DirectionInput} />
+
+          <h4>Footnotes/Tips</h4>
+
+          <Field
+            name="footnote"
+            component={TextAreaInput}
+            label="Note"
+            placeholder="Add lemon juice for more flavor"
+            parse={footnoteParse}
+          />
+
+          <Field
+            name="privateRecipe"
+            label="Private Recipe"
+            component={ToggleSwitch}
+          />
+
+          <h4>Categories</h4>
+          <Fields names={categoryNames} component={CategoryInput} />
+
+          <button type="submit" className="ui button big blue fluid">
+            Submit Recipe
+          </button>
+        </form>
       </div>
     );
   }
