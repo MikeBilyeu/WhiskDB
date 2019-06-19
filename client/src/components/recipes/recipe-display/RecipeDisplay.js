@@ -8,11 +8,11 @@ import Rating from "./rating/Rating";
 import "./rd-styles.css";
 
 const RecipeDisplay = props => {
-  const { title, votes, rating, recipe_id } = props.recipe;
+  const { title, votes, rating, username, recipe_id } = props.recipe;
 
   return (
     <li className="recipe-card">
-      <h3 className="recipe-username">MikeBilyeu</h3>
+      <h3 className="recipe-username">{username}</h3>
       <SaveIcon className="SaveIcon" />
       <img
         className="thumbnail"
