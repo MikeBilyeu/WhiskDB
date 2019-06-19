@@ -33,7 +33,7 @@ class Results extends React.Component {
       return <NoResults />;
     }
     return (
-      <div style={{ marginTop: "8rem" }}>
+      <div>
         <div style={{ marginLeft: "1rem" }}>
           ({this.props.recipes.recipes.length}) Result
           {this.props.recipes.recipes.length == 1 ? "" : "s"}
