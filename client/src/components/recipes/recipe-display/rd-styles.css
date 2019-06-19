@@ -1,0 +1,64 @@
+.recipe-card {
+  border-radius: 0.5rem;
+  box-shadow: 2px 3px 8px 5px rgba(100, 100, 100, 0.2);
+  display: grid;
+  grid-template-areas:
+    "username save"
+    "thumbnail thumbnail"
+    "title title"
+    "rating view";
+  align-items: center;
+  padding-bottom: 1.5rem;
+  max-width: 25rem;
+  width: 95%;
+  margin: auto;
+}
+
+.recipe-username {
+  margin: 0.5rem;
+  grid-area: username;
+  font-size: 0.9rem;
+  color: #464646;
+}
+
+.SaveIcon {
+  fill: #b7b7b7;
+  width: 3rem;
+  grid-area: save;
+  justify-self: end;
+  padding: 1rem;
+}
+
+.thumbnail {
+  grid-area: thumbnail;
+  height: 13rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  line-height: 1.4rem;
+  color: #464646;
+  margin: 1rem 0.5rem 0.5rem 0.5rem;
+  grid-area: title;
+}
+
+.rating {
+  color: #464646;
+  grid-area: rating;
+  margin: 0 0.5rem;
+}
+
+.view {
+  grid-area: view;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 10rem;
+  background-color: #0172c4;
+  color: #fff;
+  text-align: center;
+  font-weight: medium;
+}

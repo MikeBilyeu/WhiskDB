@@ -40,8 +40,10 @@ class Results extends React.Component {
         </div>
         <ul
           style={{
-            marginLeft: recipes.length > 0 ? ".3rem" : "0",
-            padding: "0"
+            padding: "0",
+            display: "grid",
+            gridGap: "2rem",
+            padding: ".5rem"
           }}
         >
           {this.renderRecipeList()}
