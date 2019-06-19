@@ -7,10 +7,12 @@
     "thumbnail thumbnail"
     "title title"
     "rating view";
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   padding-bottom: 1.5rem;
-  max-width: 25rem;
-
+  max-width: 20rem;
+  min-width: 18rem;
+  background-color: #fff;
   margin: auto;
 }
 
@@ -61,4 +63,13 @@
   color: #fff;
   text-align: center;
   font-weight: medium;
+  cursor: pointer;
+}
+
+.view:hover {
+  opacity: 0.8;
+}
+
+.view:active {
+  opacity: 1;
 }

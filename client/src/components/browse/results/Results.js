@@ -1,12 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { getBrowseRecipes } from "../../../actions/browseActions";
 
 import { Loading } from "../../loading/Loading";
 import RecipeDisplay from "../../recipes/recipe-display/RecipeDisplay";
 import NoResults from "./NoResults";
+import ClearFilters from "./ClearFilters";
+
+//styles
+import "./results-styles.css";
 
 class Results extends React.Component {
   componentDidMount() {
@@ -15,11 +18,7 @@ class Results extends React.Component {
 
   renderRecipeList = () => {
     return this.props.recipes.recipes.map((recipe, i, { length }) => {
-      return (
-        <Link key={`recipe${i}`} to={`/recipe/${recipe.recipe_id}`}>
-          <RecipeDisplay recipe={recipe} />
-        </Link>
-      );
+      return <RecipeDisplay recipe={recipe} />;
     });
   };
 
@@ -33,16 +32,14 @@ class Results extends React.Component {
       return <NoResults />;
     }
     return (
-      <div>
-        <div style={{ marginLeft: "1rem" }}>
-          ({this.props.recipes.recipes.length}) Result
-          {this.props.recipes.recipes.length == 1 ? "" : "s"}
-        </div>
+      <div results>
+        <ClearFilters numOfResults={this.props.recipes.recipes.length} />
         <ul
           style={{
             padding: "0",
             display: "grid",
             gridGap: "2rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))",
             padding: ".5rem"
           }}
         >
