@@ -11,9 +11,10 @@ const pool = new Pool({
 });
 
 const getBrowseRecipes = (request, response) => {
-  let { meal, diet, cuisine, sort, user_id } = JSON.parse(
+  let { meal, diet, cuisine, sort } = JSON.parse(
     request.query.browseData.toLowerCase()
   );
+  const { user_id } = request.query;
 
   diet = diet === "none" ? null : diet;
   cuisine = cuisine === "all cuisines" ? null : cuisine;

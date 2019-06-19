@@ -17,15 +17,18 @@ class RecipeDisplay extends React.Component {
       saved: 0
     };
   }
+
   componentDidMount() {
-    console.log(this.props.recipe.saved);
     this.setState({ saved: this.props.recipe.saved });
   }
+
   handleClick = () => {
     this.setState(prevState => {
       return { saved: !prevState.saved };
     });
-    this.props.saveRecipe(this.props.recipe.recipe_id, this.props.user_id);
+    if (this.props.user_id) {
+      this.props.saveRecipe(this.props.recipe.recipe_id, this.props.user_id);
+    }
   };
   render() {
     const {
@@ -39,13 +42,23 @@ class RecipeDisplay extends React.Component {
     return (
       <li className="recipe-card">
         <h3 className="recipe-username">{username}</h3>
-        <SaveIcon
-          onClick={() => {
-            this.handleClick();
-          }}
-          className="SaveIcon"
-          style={{ fill: this.state.saved ? "#0172C4" : "" }}
-        />
+        {this.state.saved && this.props.user_id == null ? (
+          <Link className="login-to-save" to="/auth">
+            Login
+          </Link>
+        ) : (
+          <SaveIcon
+            onClick={() => {
+              this.handleClick();
+            }}
+            className="SaveIcon"
+            style={{
+              fill:
+                this.state.saved && this.props.user_id != null ? "#0172C4" : ""
+            }}
+          />
+        )}
+
         <img
           className="thumbnail"
           src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"

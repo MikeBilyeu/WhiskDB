@@ -9,7 +9,14 @@ import {
 } from "./types";
 
 // dispatch an action with a type of get browse request
-export const getBrowseRecipes = browseData => dispatch => {
+export const getBrowseRecipes = browseData => (dispatch, getState) => {
+  // Get the user_id from state to check if user saved the recipe
+  const {
+    auth: {
+      user: { user_id }
+    }
+  } = getState();
+
   // dispatch a browse request
   dispatch({ type: GET_BROWSE_REQUEST });
   dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
@@ -17,7 +24,7 @@ export const getBrowseRecipes = browseData => dispatch => {
 
   // make axios request
   axios
-    .get("/browse-recipe", { params: { browseData } })
+    .get("/browse-recipe", { params: { browseData, user_id } })
     .then(res => {
       dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
     })
