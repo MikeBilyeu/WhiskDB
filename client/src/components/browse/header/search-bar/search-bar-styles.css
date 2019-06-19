@@ -1,6 +1,7 @@
 .searchBar {
   height: 2.4rem;
   grid-area: search;
+  justify-self: end;
 }
 
 .searchIcon {

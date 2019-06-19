@@ -5,7 +5,7 @@
   display: grid;
   align-items: center;
   grid-template-areas:
-    "search whisk sort"
+    "sort whisk search"
     "diet cuisine meal";
   border-bottom: solid #c7c7c7 1px;
   padding: 0 0.1rem;
@@ -21,7 +21,7 @@
   width: 2.2rem;
   cursor: pointer;
   grid-area: sort;
-  justify-self: end;
+  justify-self: start;
   padding: 0.5rem;
 }
 
