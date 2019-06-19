@@ -23,6 +23,7 @@
   grid-area: sort;
   justify-self: start;
   padding: 0.5rem;
+  margin-left: 0.2rem;
 }
 
 .filter-btn {

@@ -2,6 +2,7 @@
   height: 2.4rem;
   grid-area: search;
   justify-self: end;
+  margin-right: 0.2rem;
 }
 
 .searchIcon {
