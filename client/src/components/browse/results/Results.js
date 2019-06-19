@@ -13,12 +13,12 @@ import "./results-styles.css";
 
 class Results extends React.Component {
   componentDidMount() {
-    this.props.getBrowseRecipes(this.props.browseData);
+    this.props.getBrowseRecipes(this.props.browseData, this.props.user_id);
   }
 
   renderRecipeList = () => {
-    return this.props.recipes.recipes.map((recipe, i, { length }) => {
-      return <RecipeDisplay recipe={recipe} />;
+    return this.props.recipes.recipes.map((recipe, i) => {
+      return <RecipeDisplay key={i} recipe={recipe} />;
     });
   };
 
@@ -52,7 +52,8 @@ class Results extends React.Component {
 
 const mapStateToProps = state => ({
   recipes: state.browseRecipes,
-  browseData: state.browseRecipes.browseData
+  browseData: state.browseRecipes.browseData,
+  user_id: state.auth.user.user_id
 });
 
 export default connect(

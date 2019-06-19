@@ -2,13 +2,15 @@ import {
   GET_BROWSE_RECIPES,
   GET_BROWSE_REQUEST,
   SET_BROWSE_DATA,
-  TOGGLE_FILTER_BUTTON
+  TOGGLE_FILTER_BUTTON,
+  SET_CURRENT_USER
 } from "../actions/types";
 
 const initialState = {
   recipes: [],
   isFetching: true,
   browseData: {
+    user_id: null,
     search: "",
     meal: "All Meals",
     diet: "None",
@@ -20,6 +22,11 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case SET_CURRENT_USER:
+      return {
+        ...state,
+        browseData: { ...state.browseData, user_id: action.payload.user_id }
+      };
     case GET_BROWSE_REQUEST:
       return { ...state, isFetching: true };
     case GET_BROWSE_RECIPES:

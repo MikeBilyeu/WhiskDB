@@ -60,14 +60,11 @@ export const sortSavedRecipes = sortBy => {
 
 // Save Recipe Action Creator
 export const saveRecipe = (recipe_id, user_id) => dispatch => {
-  console.log("Saved");
   if (user_id !== null) {
     dispatch({ type: SAVE_RECIPE });
     axios
       .post("/save-recipe", { user_id, recipe_id })
-      .then(res => {
-        console.log("User saved the recipe");
-      })
+      .then(res => {})
       .catch(err => console.log(err));
   }
 };

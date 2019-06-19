@@ -11,7 +11,7 @@ const pool = new Pool({
 });
 
 const getBrowseRecipes = (request, response) => {
-  let { meal, diet, cuisine, sort } = JSON.parse(
+  let { meal, diet, cuisine, sort, user_id } = JSON.parse(
     request.query.browseData.toLowerCase()
   );
 
@@ -31,7 +31,10 @@ const getBrowseRecipes = (request, response) => {
         ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
         END
         AS rating,
-        CAST(count(lr.*) + count(dr.*) AS INTEGER) AS votes, u.username AS username FROM recipes r
+        CAST(count(lr.*) + count(dr.*) AS INTEGER) AS votes, u.username AS username,
+        CASE WHEN EXISTS ( SELECT * FROM saved_recipes WHERE saved_by = $6 AND
+          recipe_saved = r.recipe_id)
+        THEN 1::INTEGER ELSE 0::INTEGER END AS saved FROM recipes r
         LEFT JOIN users u ON r.created_by = u.user_id
         LEFT JOIN liked_recipes lr ON r.recipe_id = lr.recipe_liked
         LEFT JOIN disliked_recipes dr ON r.recipe_id = dr.recipe_disliked
@@ -72,7 +75,7 @@ const getBrowseRecipes = (request, response) => {
           CASE WHEN $5 = 'newest' THEN r.created_at END DESC,
         rating DESC, votes DESC;
 `,
-        [meal, diet, cuisine, numOfCats, sort]
+        [meal, diet, cuisine, numOfCats, sort, user_id]
       )
       .then(res => {
         client.release();
