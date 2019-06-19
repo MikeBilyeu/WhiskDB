@@ -19,16 +19,18 @@
 .recipe-username {
   margin: 0.5rem;
   grid-area: username;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #464646;
 }
 
 .SaveIcon {
   fill: #b7b7b7;
-  width: 3rem;
+  width: 2.2rem;
+  margin: 0.3rem 0;
   grid-area: save;
   justify-self: end;
-  padding: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
 }
 
 .thumbnail {
