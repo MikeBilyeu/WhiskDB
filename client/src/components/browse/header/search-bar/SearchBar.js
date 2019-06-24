@@ -14,8 +14,10 @@ import { ReactComponent as SearchIcon } from "./searchIcon.svg";
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
+    this.textInput = React.createRef();
     this.state = { focus: false };
   }
+
   handleChange = e => {
     //if search is whitespace
     if (!/\S/.test(e.target.value)) {
@@ -31,15 +33,6 @@ class SearchBar extends React.Component {
     }
   };
 
-  handleClick = () => {
-    if (/\S/.test(this.props.searchTerm)) {
-      this.props.getSearchRecipes({
-        ...this.props.browseData,
-        search: this.props.searchTerm
-      });
-    }
-  };
-
   handleKeyPress = e => {
     if (e.key === "Enter") {
       if (/\S/.test(this.props.searchTerm)) {
@@ -50,9 +43,11 @@ class SearchBar extends React.Component {
       }
     }
   };
+
   handleFocus = () => {
     this.setState({ focus: true });
-    this.props.toggleFilterButton("Meal");
+    this.props.toggleFilterButton(null);
+    this.textInput.current.focus();
   };
 
   handleBlur = () => {
@@ -62,19 +57,25 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div
-        className="searchBar"
-        onFocus={this.handleFocus}
+        className={"searchBar " + (this.state.focus ? "search-active" : "")}
         onBlur={this.handleBlur}
       >
+        <SearchIcon
+          style={{ fill: this.state.focus ? "#0172C4" : "#676767" }}
+          onClick={this.handleFocus}
+          className="searchIcon"
+        />
         <input
+          ref={this.textInput}
+          style={{ width: this.state.focus ? "90%" : "0" }}
           className="input"
           onChange={this.handleChange}
+          onFocus={this.handleFocus}
           onKeyPress={this.handleKeyPress}
           autoComplete="off"
           placeholder="Search"
           value={this.props.searchTerm}
         />
-        <SearchIcon onClick={this.handleClick} className="searchIcon" />
       </div>
     );
   }

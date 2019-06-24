@@ -3,23 +3,64 @@
   grid-area: search;
   justify-self: end;
   margin-right: 0.2rem;
+  border-radius: 5rem;
+  z-index: 1;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+}
+
+.searchBar.search-active {
+  width: calc(100% - 3rem);
+  border: solid #e2e2e2 1px;
+  grid-column: 1 / 4;
+  animation: expand 0.1s ease-in;
+}
+
+/* @-webkit-keyframes expand {
+  0% {
+    width: 2.2rem;
+  }
+  100% {
+    width: 90%;
+  }
+}
+@-moz-keyframes expand {
+  0% {
+    width: 2.2rem;
+  }
+  100% {
+    width: 90%;
+  }
+}
+@-o-keyframes expand {
+  0% {
+    width: 2.2rem;
+  }
+  100% {
+    width: 90%;
+  }
+} */
+@keyframes expand {
+  0% {
+    width: 2.2rem;
+  }
+
+  100% {
+    width: 90%;
+  }
 }
 
 .searchIcon {
   width: 2.2rem;
   cursor: pointer;
-  /* padding: 0.5rem 1rem; */
   padding: 0.5rem;
-  fill: #676767;
 }
 
 .input {
   all: unset;
-  width: 100%;
   color: #484848;
   font-size: 1rem;
-  justify-self: start;
-  display: none;
 }
 
 .input::placeholder {
