@@ -1,6 +1,5 @@
 .header {
   width: 100%;
-  background-color: #fff;
   overflow: hidden;
   display: grid;
   align-items: center;
@@ -8,7 +7,7 @@
     "sort whisk search"
     "diet cuisine meal";
   border-bottom: solid #c7c7c7 1px;
-  padding: 0 0.1rem;
+  padding: 0.3rem 0.1rem 0 0.1rem;
 }
 
 .whisk-title {
