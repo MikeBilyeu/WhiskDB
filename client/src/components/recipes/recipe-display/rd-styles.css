@@ -81,6 +81,7 @@
 
 .view:hover {
   opacity: 0.8;
+  color: #0172c4;
 }
 
 .view:active {
