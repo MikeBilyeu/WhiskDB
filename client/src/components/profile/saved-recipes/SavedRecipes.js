@@ -27,11 +27,7 @@ class SavedRecipes extends React.Component {
 
   renderRecipeList = () => {
     return this.props.savedRecipes.recipes.map((recipe, i) => {
-      return (
-        <Link key={`recipe${i}`} to={`/recipe/${recipe.recipe_id}`}>
-          <RecipeDisplay recipe={recipe} />
-        </Link>
-      );
+      return <RecipeDisplay key={i} recipe={recipe} />;
     });
   };
 
@@ -68,14 +64,7 @@ class SavedRecipes extends React.Component {
           </div>
           {this.state.sortActive ? <SortBy /> : null}
         </div>
-        <ul
-          style={{
-            marginLeft: recipes.length > 1 ? ".3rem" : "0",
-            padding: "0"
-          }}
-        >
-          {this.renderRecipeList()}
-        </ul>
+        <ul className="saved-recipes">{this.renderRecipeList()}</ul>
       </div>
     );
   }

@@ -31,6 +31,7 @@ class RecipeDisplay extends React.Component {
     }
   };
   render() {
+    console.log(this.props.recipe);
     const {
       title,
       votes,
