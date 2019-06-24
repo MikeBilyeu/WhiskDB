@@ -72,8 +72,8 @@
   padding: 0.5rem 1rem;
   margin: 0 0.5rem;
   border-radius: 10rem;
-  background-color: #0172c4;
-  color: #fff;
+  border: solid #e2e2e2 1px;
+  color: #676767;
   text-align: center;
   font-weight: medium;
   cursor: pointer;
