@@ -15,7 +15,7 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
-    this.state = { focus: true };
+    this.state = { focus: false };
   }
 
   handleChange = e => {
