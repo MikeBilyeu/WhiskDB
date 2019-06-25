@@ -15,7 +15,7 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
-    this.state = { focus: false };
+    this.state = { focus: true };
   }
 
   handleChange = e => {
@@ -67,7 +67,7 @@ class SearchBar extends React.Component {
         />
         <input
           ref={this.textInput}
-          style={{ width: this.state.focus ? "90%" : "0" }}
+          style={{ width: this.state.focus ? "calc(100% - 1rem)" : "0" }}
           className="input"
           onChange={this.handleChange}
           onFocus={this.handleFocus}
@@ -75,6 +75,8 @@ class SearchBar extends React.Component {
           autoComplete="off"
           placeholder="Search"
           value={this.props.searchTerm}
+          type="search"
+          aria-label="Search"
         />
       </div>
     );
