@@ -26,6 +26,7 @@ class Servings extends React.Component {
             textAlign: "center"
           }}
           value={this.props.convertedServings}
+          pattern="[0-9]*"
           type="text"
           onChange={this.handleChange}
         />
