@@ -17,16 +17,6 @@ const mealOptions = [
 
 const dietOptions = ["None", "Vegetarian", "Vegan"];
 
-const cuisineOptions = [
-  "All Cuisines",
-  "Chinese",
-  "Indian",
-  "Italian",
-  "Mexican",
-  "Thai",
-  "Other"
-];
-
 const sortOptions = ["Top Rated", "A-Z", "Time", "Newest"];
 
 const Home = props => {
@@ -41,10 +31,6 @@ const Home = props => {
     case "Diet":
       options = dietOptions;
       type = "diet";
-      break;
-    case "Cuisine":
-      options = cuisineOptions;
-      type = "cuisine";
       break;
     case "Sort":
       options = sortOptions;

@@ -5,7 +5,7 @@
   align-items: center;
   grid-template-areas:
     "sort whisk search"
-    "diet cuisine meal";
+    "Diet . Meal";
   border-bottom: solid #c7c7c7 1px;
   padding: 0.3rem 0.1rem 0 0.1rem;
   box-sizing: border-box;
@@ -40,8 +40,8 @@
   padding: 0.5rem 0.5rem;
   opacity: 1;
   width: 95%;
-  min-width: 6rem;
-  max-width: 15rem;
+  min-width: 7rem;
+  max-width: 20rem;
   place-self: center;
 }
 

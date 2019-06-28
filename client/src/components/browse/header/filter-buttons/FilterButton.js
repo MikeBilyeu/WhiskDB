@@ -11,8 +11,7 @@ const FilterButton = props => {
   const handleClick = () => {
     props.toggleFilterButton(props.buttonName);
   };
-
-  let style = {};
+  let style = { gridArea: props.buttonName };
   let arrowStyle = {};
 
   if (props.buttonName === props.buttonToggled) {
@@ -23,12 +22,6 @@ const FilterButton = props => {
 
   if (props.buttonName === "Diet" && props.diet !== "None") {
     nameOfButton = props.diet;
-    style = { ...style, color: "#0172C4" };
-  } else if (
-    props.buttonName === "Cuisine" &&
-    props.cuisine !== "All Cuisines"
-  ) {
-    nameOfButton = props.cuisine;
     style = { ...style, color: "#0172C4" };
   } else if (props.buttonName === "Meal" && props.meal !== "All Meals") {
     nameOfButton = props.meal;

@@ -61,7 +61,7 @@ class SearchBar extends React.Component {
         onBlur={this.handleBlur}
       >
         <SearchIcon
-          style={{ fill: this.state.focus ? "#0172C4" : "#676767" }}
+          style={{ fill: "#0172C4" }}
           onClick={this.handleFocus}
           className="searchIcon"
         />

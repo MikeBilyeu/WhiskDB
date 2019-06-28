@@ -16,7 +16,6 @@ const HomeHeader = () => {
       <SearchBar />
       <WhiskIcon className="whisk-title" />
       <SortButton />
-      <FilterButton buttonName="Cuisine" />
       <FilterButton buttonName="Diet" />
       <FilterButton buttonName="Meal" />
     </div>

@@ -13,8 +13,8 @@
 
 .searchBar.search-active {
   margin-right: 0.1rem;
-  /* border: solid #e2e2e2 1px; */
-  border: solid #0172c4 1px;
+  border: solid #e2e2e2 1px;
+  /* border: solid #0172c4 1px; */
   grid-column: 1 / 4;
   animation: expand 0.2s linear forwards;
 }
