@@ -19,7 +19,7 @@ const getRecipe = (request, response) => {
     //Getting recipe data
     return client
       .query(
-        `SELECT r.*, TO_CHAR(r.created_at, 'Month fmDD, YYYY') AS date_created, u.username AS username, CASE WHEN count(lr.*) +
+        `SELECT r.*, TO_CHAR(r.created_at, 'Mon fmDD, YYYY') AS date_created, u.username AS username, CASE WHEN count(lr.*) +
          count(dr.*) = 0 THEN 0 ELSE (count(lr.*) / CAST (count(lr.*) +
          count(dr.*) AS FLOAT)) * 5 END AS rating, CAST(count(lr.*) +
          count(dr.*) AS INTEGER) AS votes, CASE WHEN EXISTS ( SELECT * FROM
