@@ -22,7 +22,8 @@ class RecipeDisplay extends React.Component {
     this.setState({ saved: this.props.recipe.saved });
   }
 
-  handleClick = () => {
+  handleClick = e => {
+    e.preventDefault();
     this.setState(prevState => {
       return { saved: !prevState.saved };
     });
@@ -40,35 +41,36 @@ class RecipeDisplay extends React.Component {
       saved
     } = this.props.recipe;
     return (
-      <li className="recipe-card">
-        <h3 className="recipe-username">{username}</h3>
-        {this.state.saved && this.props.user_id == null ? (
-          <Link className="login-to-save" to="/auth">
-            Login
-          </Link>
-        ) : (
-          <SaveIcon
-            onClick={() => {
-              this.handleClick();
-            }}
-            className="SaveIcon"
-            style={{
-              fill:
-                this.state.saved && this.props.user_id != null ? "#0172C4" : ""
-            }}
+      <li className="">
+        <Link className="recipe-card" to={`/recipe/${recipe_id}`}>
+          <h3 className="recipe-username">{username}</h3>
+          {this.state.saved && this.props.user_id == null ? (
+            <Link className="login-to-save" to="/auth">
+              Login
+            </Link>
+          ) : (
+            <SaveIcon
+              onClick={e => {
+                this.handleClick(e);
+              }}
+              className="SaveIcon"
+              style={{
+                fill:
+                  this.state.saved && this.props.user_id != null
+                    ? "#0172C4"
+                    : ""
+              }}
+            />
+          )}
+
+          <img
+            className="thumbnail"
+            src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
           />
-        )}
 
-        <img
-          className="thumbnail"
-          src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-        />
+          <div className="title">{title}</div>
 
-        <div className="title">{title}</div>
-
-        <Rating className="rating" rating={rating} votes={votes} />
-        <Link className="view" to={`/recipe/${recipe_id}`}>
-          View Recipe
+          <Rating className="rating" rating={rating} votes={votes} />
         </Link>
       </li>
     );

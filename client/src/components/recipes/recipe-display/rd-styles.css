@@ -6,7 +6,7 @@
     "username save"
     "thumbnail thumbnail"
     "title title"
-    "rating view";
+    "rating rating";
   grid-template-columns: 1fr 1fr;
   align-items: center;
   padding-bottom: 1.5rem;
@@ -65,25 +65,4 @@
   color: #464646;
   grid-area: rating;
   margin: 0 0.5rem;
-}
-
-.view {
-  grid-area: view;
-  padding: 0.5rem 1rem;
-  margin: 0 0.5rem;
-  border-radius: 10rem;
-  border: solid #e2e2e2 1px;
-  color: #676767;
-  text-align: center;
-  font-weight: medium;
-  cursor: pointer;
-}
-
-.view:hover {
-  opacity: 0.8;
-  color: #0172c4;
-}
-
-.view:active {
-  opacity: 1;
 }
