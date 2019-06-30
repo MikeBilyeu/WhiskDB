@@ -36,11 +36,12 @@ class Results extends React.Component {
         <ClearFilters numOfResults={this.props.recipes.recipes.length} />
         <ul
           style={{
-            padding: "0",
             display: "grid",
             gridGap: "2rem",
             gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))",
-            padding: ".5rem"
+            padding: ".5rem",
+            listStyleType: "none",
+            listStyle: "none"
           }}
         >
           {this.renderRecipeList()}

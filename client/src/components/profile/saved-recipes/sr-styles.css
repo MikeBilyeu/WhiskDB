@@ -81,9 +81,10 @@
 }
 
 .saved-recipes {
-  padding: 0;
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit; minmax(18rem; 1fr));
   padding: 0.5rem;
+  list-style-type: none;
+  list-style: none;
 }
