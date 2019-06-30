@@ -22,6 +22,15 @@ class RecipeDisplay extends React.Component {
     this.setState({ saved: this.props.recipe.saved });
   }
 
+  formatMinsToHours = totalMinutes => {
+    const hours =
+      Math.floor(totalMinutes / 60) !== 0
+        ? `${Math.floor(totalMinutes / 60)}hr`
+        : ``;
+    const minutes = totalMinutes % 60 !== 0 ? `${totalMinutes % 60}min` : ``;
+    return `${hours} ${minutes}`;
+  };
+
   handleClick = e => {
     e.preventDefault();
     this.setState(prevState => {
@@ -38,7 +47,8 @@ class RecipeDisplay extends React.Component {
       rating,
       username,
       recipe_id,
-      saved
+      saved,
+      total_time_mins
     } = this.props.recipe;
     return (
       <li className="">
@@ -69,8 +79,11 @@ class RecipeDisplay extends React.Component {
           />
 
           <div className="title">{title}</div>
-
-          <Rating className="rating" rating={rating} votes={votes} />
+          <div className="rating-time">
+            <Rating className="rating" rating={rating} votes={votes} />
+            <div>•</div>
+            {this.formatMinsToHours(total_time_mins)}
+          </div>
         </Link>
       </li>
     );

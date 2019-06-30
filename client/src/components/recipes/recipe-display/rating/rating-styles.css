@@ -1,9 +1,8 @@
 .rating {
   display: grid;
-  grid-template-columns: 6.8rem 0.5rem;
-  align-items: center;
+  grid-template-columns: 5.9rem fit-content(5rem);
+  place-items: center;
   grid-template-rows: 1.5rem;
-  justify-items: start;
 }
 
 .stars {
@@ -14,6 +13,5 @@
 }
 
 .votes {
-  align-self: end;
   font-size: 0.9rem;
 }

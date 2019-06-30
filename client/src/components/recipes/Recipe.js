@@ -24,9 +24,9 @@ class Recipe extends React.Component {
   formatMinsToHours = totalMinutes => {
     const hours =
       Math.floor(totalMinutes / 60) !== 0
-        ? `${Math.floor(totalMinutes / 60)}h`
+        ? `${Math.floor(totalMinutes / 60)}hr`
         : ``;
-    const minutes = totalMinutes % 60 !== 0 ? `${totalMinutes % 60}m` : ``;
+    const minutes = totalMinutes % 60 !== 0 ? `${totalMinutes % 60}min` : ``;
     return `${hours} ${minutes}`;
   };
 
