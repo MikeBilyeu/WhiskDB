@@ -17,10 +17,10 @@ const getSavedRecipes = (request, response) => {
   pool.connect().then(client => {
     return client
       .query(
-        `SELECT r.recipe_id, r.title, r.image_url,
+        `SELECT r.recipe_id, r.title, r.image_url, r.total_time_mins,
         CASE WHEN count(lr.*) + count(dr.*) = 0 THEN 0
-        ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
-        END
+          ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
+          END
         AS rating, CAST(count(lr.*) + count(dr.*) AS INTEGER) AS votes,
         sr.saved_at AS saved_date, u.username AS username,
         CASE WHEN EXISTS ( SELECT * FROM saved_recipes WHERE saved_by = $1 AND
