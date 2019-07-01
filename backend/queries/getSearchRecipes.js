@@ -25,8 +25,7 @@ const getSearchRecipes = (request, response) => {
         AS rating,
         CAST(COUNT(lr.*) + COUNT(dr.*) AS INTEGER) AS votes FROM recipes r LEFT JOIN
         liked_recipes lr ON r.recipe_id = lr.recipe_liked LEFT JOIN
-        disliked_recipes dr ON r.recipe_id = dr.recipe_disliked WHERE
-        r.title ILIKE '%' || $1 || '%'
+        disliked_recipes dr ON r.recipe_id = dr.recipe_disliked WHERE document_vectors @@ to_tsquery($1)
         GROUP BY r.recipe_id
         ORDER BY rating DESC, votes DESC;
 `,
