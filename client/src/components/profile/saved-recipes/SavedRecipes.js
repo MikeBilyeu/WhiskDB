@@ -9,7 +9,10 @@ import { ReactComponent as Arrow } from "./filterArrow.svg";
 
 import "./sr-styles.css";
 // action Creator
-import { getSavedRecipes } from "../../../actions/recipeActions";
+import {
+  getSavedRecipes,
+  toggleSortButton
+} from "../../../actions/recipeActions";
 
 class SavedRecipes extends React.Component {
   constructor(props) {
@@ -32,9 +35,7 @@ class SavedRecipes extends React.Component {
   };
 
   handleClick = () => {
-    this.setState(prevState => {
-      return { sortActive: !prevState.sortActive };
-    });
+    this.props.toggleSortButton();
   };
 
   render() {
@@ -50,7 +51,10 @@ class SavedRecipes extends React.Component {
       <div>
         <div
           className={
-            "sr-header" + (this.state.sortActive ? " remove-btm-border" : "")
+            "sr-header" +
+            (this.props.savedRecipes.toggleSortButton
+              ? " remove-btm-border"
+              : "")
           }
         >
           <h1>Saved Recipes</h1>
@@ -58,12 +62,13 @@ class SavedRecipes extends React.Component {
             <div>Sort</div>
             <Arrow
               className={
-                "arrowStyle" + (this.state.sortActive ? " sortActive" : "")
+                "arrowStyle" +
+                (this.props.savedRecipes.toggleSortButton ? " sortActive" : "")
               }
             />
           </div>
         </div>
-        {this.state.sortActive ? <SortBy /> : null}
+        {this.props.savedRecipes.toggleSortButton ? <SortBy /> : null}
         <ul className="saved-recipes">{this.renderRecipeList()}</ul>
       </div>
     );
@@ -77,5 +82,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSavedRecipes }
+  { getSavedRecipes, toggleSortButton }
 )(SavedRecipes);

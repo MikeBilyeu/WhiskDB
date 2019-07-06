@@ -55,8 +55,9 @@ export const getSavedRecipes = user_id => dispatch => {
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
 
-export const sortSavedRecipes = sortBy => {
-  return { type: SORT_SAVED_RECIPES, payload: sortBy };
+export const sortSavedRecipes = sortBy => dispatch => {
+  dispatch({ type: SORT_SAVED_RECIPES, payload: sortBy });
+  dispatch({ type: TOGGLE_SORT_BUTTON });
 };
 
 export const toggleSortButton = () => {
