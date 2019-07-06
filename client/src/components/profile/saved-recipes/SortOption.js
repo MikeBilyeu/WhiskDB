@@ -11,7 +11,9 @@ const SortOption = props => {
 
   return (
     <div
-      className={"option" + (props.sortBy === props.sort ? " so-active" : "")}
+      className={
+        "filter-option" + (props.sortBy === props.sort ? " so-active" : "")
+      }
       onClick={handleClick}
     >
       {props.option}

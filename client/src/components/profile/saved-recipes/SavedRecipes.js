@@ -62,8 +62,8 @@ class SavedRecipes extends React.Component {
               }
             />
           </div>
-          {this.state.sortActive ? <SortBy /> : null}
         </div>
+        {this.state.sortActive ? <SortBy /> : null}
         <ul className="saved-recipes">{this.renderRecipeList()}</ul>
       </div>
     );
