@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
@@ -16,7 +16,6 @@ class Login extends Component {
   }
 
   renderInput = ({ input, meta, placeholder, inputId, type = "text" }) => {
-    const className = `field ${meta.error && meta.submitFailed ? "error" : ""}`;
     return (
       <input
         {...input}

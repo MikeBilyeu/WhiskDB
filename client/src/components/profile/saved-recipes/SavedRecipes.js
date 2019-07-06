@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import SortBy from "./SortBy";
 import { Loading } from "../../loading/Loading";
@@ -40,9 +39,7 @@ class SavedRecipes extends React.Component {
   };
 
   render() {
-    const { recipes, isFetching, toggleSortButton } = this.props.savedRecipes;
-
-    let arrowStyle = {};
+    const { isFetching, toggleSortButton } = this.props.savedRecipes;
 
     if (isFetching) {
       return <Loading />;

@@ -9,7 +9,6 @@ class SortBy extends React.Component {
     this.setState({ sortBy: sort });
   };
   render() {
-    const { sortBy } = this.state;
     return (
       <div style={{ borderTop: "solid #c7c7c7 1px" }} className="filter-box">
         <SortOption sort="date saved" option="Date Saved" />

@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 //components
 import SearchBar from "./search-bar/SearchBar";

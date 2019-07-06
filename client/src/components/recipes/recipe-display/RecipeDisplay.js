@@ -47,7 +47,6 @@ class RecipeDisplay extends React.Component {
       rating,
       username,
       recipe_id,
-      saved,
       total_time_mins
     } = this.props.recipe;
     return (
@@ -76,6 +75,7 @@ class RecipeDisplay extends React.Component {
           <img
             className="thumbnail"
             src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+            alt=""
           />
 
           <div className="title">{title}</div>

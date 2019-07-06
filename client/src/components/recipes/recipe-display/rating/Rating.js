@@ -41,7 +41,7 @@ class Rating extends React.Component {
   };
 
   render() {
-    const { votes, classStyes = "" } = this.props;
+    const { votes } = this.props;
     return (
       <div className="rating">
         <div className="stars">{this.renderRating()}</div>

@@ -18,7 +18,7 @@ const ClearFilters = ({ numOfResults, getBrowseRecipes }) => {
     <div className="results_clear">
       <div className="numOfResults">
         ({numOfResults}) Result
-        {numOfResults == 1 ? "" : "s"}
+        {numOfResults === 1 ? "" : "s"}
       </div>
       <div onClick={handleClick} className="clear-filters">
         Clear Filters

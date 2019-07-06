@@ -5,9 +5,6 @@ import FilterOption from "./FilterOption";
 import "./filter-styles.css";
 
 class Filter extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   renderFilterOptions = () => {
     return this.props.filterOptions.map((option, i) => {
       return (

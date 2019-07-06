@@ -1,10 +1,5 @@
 import axios from "axios";
-import {
-  GET_ERRORS,
-  LIKED_RECIPE,
-  DISLIKED_RECIPE,
-  VOTE_CLICKED
-} from "./types";
+import { LIKED_RECIPE, DISLIKED_RECIPE, VOTE_CLICKED } from "./types";
 
 // This is an action creator for when a user likes a recipe
 export const likeRecipe = (recipe_id, user_id) => dispatch => {

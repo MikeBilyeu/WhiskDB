@@ -23,7 +23,7 @@ class Results extends React.Component {
   };
 
   render() {
-    const { recipes, isFetching } = this.props.recipes;
+    const { isFetching } = this.props.recipes;
 
     if (isFetching) {
       return <Loading />;
