@@ -28,6 +28,11 @@
   margin: 0.5rem 0;
 }
 
+.so-active {
+  color: #0172c4;
+  border: solid #0172c4 1px;
+}
+
 .saved-recipes {
   display: grid;
   grid-gap: 2rem;
