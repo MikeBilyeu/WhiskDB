@@ -11,16 +11,13 @@ const pool = new Pool({
 });
 
 const getBrowseRecipes = (request, response) => {
-  let { meal, diet, cuisine, sort } = JSON.parse(
-    request.query.browseData.toLowerCase()
-  );
+  let { meal, diet, sort } = JSON.parse(request.query.browseData.toLowerCase());
   const { user_id } = request.query;
 
   diet = diet === "none" ? null : diet;
-  cuisine = cuisine === "all cuisines" ? null : cuisine;
   meal = meal === "all meals" ? "lunch" : meal;
 
-  const numOfCats = !diet && !cuisine ? 1 : !diet || !cuisine ? 2 : 3;
+  const numOfCats = !diet ? 1 : 2;
 
   //connect pool
   pool.connect().then(client => {
@@ -33,7 +30,7 @@ const getBrowseRecipes = (request, response) => {
         END
         AS rating,
         CAST(count(lr.*) + count(dr.*) AS INTEGER) AS votes, u.username AS username,
-        CASE WHEN EXISTS ( SELECT * FROM saved_recipes WHERE saved_by = $6 AND
+        CASE WHEN EXISTS ( SELECT * FROM saved_recipes WHERE saved_by = $5 AND
           recipe_saved = r.recipe_id)
         THEN 1::INTEGER ELSE 0::INTEGER END AS saved FROM recipes r
         LEFT JOIN users u ON r.created_by = u.user_id
@@ -43,40 +40,25 @@ const getBrowseRecipes = (request, response) => {
         ( SELECT recipe FROM recipes_join_categories
           WHERE
           CASE
-          WHEN $2 != '' AND $3 != '' THEN
-            category = (SELECT category_id FROM categories
-            WHERE category_name = $1)
-            OR
-            category = (SELECT category_id
-            FROM categories WHERE category_name = $2)
-            OR
-            category = (SELECT category_id
-            FROM categories WHERE category_name = $3)
           WHEN $2 != '' THEN
             category = (SELECT category_id FROM categories
             WHERE category_name = $1)
             OR
             category = (SELECT category_id
             FROM categories WHERE category_name = $2)
-          WHEN $3 != '' THEN
-            category = (SELECT category_id FROM categories
-            WHERE category_name = $1)
-            OR
-            category = (SELECT category_id
-            FROM categories WHERE category_name = $3)
           ELSE
             category = (SELECT category_id FROM categories
             WHERE category_name = $1)
           END
-          GROUP BY recipe HAVING COUNT(*) = $4 )
+          GROUP BY recipe HAVING COUNT(*) = $3 )
         GROUP BY r.recipe_id, u.user_id
         ORDER BY
-          CASE WHEN $5 = 'a-z' THEN LOWER(r.title) END ASC,
-          CASE WHEN $5 = 'time' THEN r.total_time_mins END ASC,
-          CASE WHEN $5 = 'newest' THEN r.created_at END DESC,
+          CASE WHEN $4 = 'a-z' THEN LOWER(r.title) END ASC,
+          CASE WHEN $4 = 'time' THEN r.total_time_mins END ASC,
+          CASE WHEN $4 = 'newest' THEN r.created_at END DESC,
         rating DESC, votes DESC;
 `,
-        [meal, diet, cuisine, numOfCats, sort, user_id]
+        [meal, diet, numOfCats, sort, user_id]
       )
       .then(res => {
         client.release();

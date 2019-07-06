@@ -12,7 +12,6 @@ const initialState = {
     search: "",
     meal: "All Meals",
     diet: "None",
-    cuisine: "All Cuisines",
     sort: "Top Rated"
   },
   toggleFilterButton: null
