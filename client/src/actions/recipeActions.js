@@ -8,7 +8,8 @@ import {
   GET_SAVED_RECIPES_REQUEST,
   TOGGLE_UNIT,
   CONVERT_SERVINGS,
-  SORT_SAVED_RECIPES
+  SORT_SAVED_RECIPES,
+  TOGGLE_SORT_BUTTON
 } from "./types";
 
 import { reset } from "redux-form";
@@ -56,6 +57,10 @@ export const getSavedRecipes = user_id => dispatch => {
 
 export const sortSavedRecipes = sortBy => {
   return { type: SORT_SAVED_RECIPES, payload: sortBy };
+};
+
+export const toggleSortButton = () => {
+  return { type: TOGGLE_SORT_BUTTON };
 };
 
 // Save Recipe Action Creator

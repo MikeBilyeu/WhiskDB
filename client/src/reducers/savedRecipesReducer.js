@@ -1,10 +1,16 @@
 import {
   GET_SAVED_RECIPES,
   GET_SAVED_RECIPES_REQUEST,
-  SORT_SAVED_RECIPES
+  SORT_SAVED_RECIPES,
+  TOGGLE_SORT_BUTTON
 } from "../actions/types";
 
-const initialState = { recipes: [], isFetching: true, sortBy: "date saved" };
+const initialState = {
+  recipes: [],
+  isFetching: true,
+  sortBy: "date saved",
+  toggleSortButton: false
+};
 
 // return a sort function
 const sortRecipes = sortBy => {
@@ -53,6 +59,12 @@ export default function(state = initialState, action) {
         sortBy: action.payload,
         recipes: state.recipes.sort(sortRecipes(action.payload))
       };
+    case TOGGLE_SORT_BUTTON:
+      return {
+        ...state,
+        toggleSortButton: !state.toggleSortButton
+      };
+
     default:
       return state;
   }
