@@ -11,7 +11,7 @@ class SortBy extends React.Component {
   render() {
     const { sortBy } = this.state;
     return (
-      <div className="filter-box">
+      <div style={{ borderTop: "solid #c7c7c7 1px" }} className="filter-box">
         <SortOption sort="date saved" option="Date Saved" />
         <SortOption sort="top rated" option="Top Rated" />
         <SortOption sort="a-z" option="A-Z" />

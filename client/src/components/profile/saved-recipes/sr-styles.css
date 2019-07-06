@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   place-items: center;
-  border-bottom: solid 0.01rem #e3e3e3;
+  border-bottom: solid #c7c7c7 1px;
   margin-left: 1rem;
   user-select: none;
   -moz-user-select: none;
@@ -16,40 +16,16 @@
 
 .sr-header h1 {
   white-space: nowrap;
-  margin: 0;
+  margin: 1rem 0;
   font-size: 1.5rem;
 }
 
-.sr-header .header-btn {
-  border-radius: 0.2rem;
-  cursor: pointer;
-  background-color: #313131;
-  color: #ffffff;
-  text-align: center;
-  display: grid;
-  place-items: center;
-  grid-gap: 0.5rem;
-  grid-auto-flow: column;
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 0.5rem;
-  padding: 0.3rem 0.8rem;
-  transition: all 0.2s ease-out;
-  justify-self: end;
-}
-
-.header-btn .sortActive {
-  transform: rotate(90deg);
-}
-
 .sr-header .arrowStyle {
-  width: 0.8rem;
-  transition: all 0.2s ease-out;
-}
-
-.so-active {
-  color: #0172c4;
-  border: solid #0172c4 1px;
+  width: 2.2rem;
+  cursor: pointer;
+  justify-self: end;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
 }
 
 .saved-recipes {

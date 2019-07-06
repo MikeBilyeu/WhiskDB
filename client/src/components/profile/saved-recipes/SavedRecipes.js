@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import SortBy from "./SortBy";
 import { Loading } from "../../loading/Loading";
 import RecipeDisplay from "../../recipes/recipe-display/RecipeDisplay";
-import { ReactComponent as Arrow } from "./filterArrow.svg";
+import { ReactComponent as Sort } from "../../browse/header/sort-button/SortIcon.svg";
 
 import "./sr-styles.css";
 // action Creator
@@ -21,6 +21,7 @@ class SavedRecipes extends React.Component {
       sortActive: false
     };
   }
+
   componentDidMount() {
     const user_id = this.props.auth.isAuthenticated
       ? this.props.auth.user.user_id
@@ -39,7 +40,7 @@ class SavedRecipes extends React.Component {
   };
 
   render() {
-    const { recipes, isFetching } = this.props.savedRecipes;
+    const { recipes, isFetching, toggleSortButton } = this.props.savedRecipes;
 
     let arrowStyle = {};
 
@@ -51,24 +52,17 @@ class SavedRecipes extends React.Component {
       <div>
         <div
           className={
-            "sr-header" +
-            (this.props.savedRecipes.toggleSortButton
-              ? " remove-btm-border"
-              : "")
+            "sr-header" + (toggleSortButton ? " remove-btm-border" : "")
           }
         >
           <h1>Saved Recipes</h1>
-          <div className="header-btn" onClick={this.handleClick}>
-            <div>Sort</div>
-            <Arrow
-              className={
-                "arrowStyle" +
-                (this.props.savedRecipes.toggleSortButton ? " sortActive" : "")
-              }
-            />
-          </div>
+          <Sort
+            style={{ fill: toggleSortButton ? "#0172C4" : "#676767" }}
+            onClick={this.handleClick}
+            className={"arrowStyle" + (toggleSortButton ? " sortActive" : "")}
+          />
         </div>
-        {this.props.savedRecipes.toggleSortButton ? <SortBy /> : null}
+        {toggleSortButton ? <SortBy /> : null}
         <ul className="saved-recipes">{this.renderRecipeList()}</ul>
       </div>
     );
