@@ -3,6 +3,8 @@ import { Field, FieldArray, Fields, reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { ReactComponent as Arrow } from "../../recipes/arrowLeft.svg";
+
 // Action Creator
 import { createRecipe } from "../../../actions/recipeActions";
 
@@ -19,6 +21,8 @@ import CategoryInput from "./renderFields/CategoryInput";
 
 // import validation
 import { Validate } from "./RecipeValidation";
+
+import "./create-recipe-styles.css";
 
 class EditNewRecipe extends React.Component {
   renderError({ error, touched }) {
@@ -45,9 +49,9 @@ class EditNewRecipe extends React.Component {
 
   render() {
     const categoryNames = [
+      "categories.diet.none",
       "categories.diet.vegetarian",
       "categories.diet.vegan",
-      "categories.diet.nonvegetarian",
       "categories.meal.breakfast",
       "categories.meal.lunch",
       "categories.meal.dinner",
@@ -83,10 +87,20 @@ class EditNewRecipe extends React.Component {
     };
     return (
       <div>
-        <h1>Create Recipe</h1>
+        <div className="cr-header">
+          <Arrow
+            className="back-btn"
+            onClick={() => this.props.history.goBack()}
+          />
+          <h1>Create Recipe</h1>
+        </div>
 
-        <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+        <form
+          className="recipe-form"
+          onSubmit={this.props.handleSubmit(this.handleSubmit)}
+        >
           <Field
+            addClass="full-input"
             name="title"
             component={TextInput}
             label="Recipe Title"
@@ -102,7 +116,7 @@ class EditNewRecipe extends React.Component {
             component={TextInput}
             label="Number of servings"
             placeholder="2"
-            addClass="four wide"
+            addClass="cr-servings"
             parse={numberParse}
           />
 
@@ -144,7 +158,6 @@ class EditNewRecipe extends React.Component {
             component={ToggleSwitch}
           />
 
-          <h4>Categories</h4>
           <Fields names={categoryNames} component={CategoryInput} />
 
           <button type="submit">Submit Recipe</button>

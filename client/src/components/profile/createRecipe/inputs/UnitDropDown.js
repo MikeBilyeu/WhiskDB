@@ -2,11 +2,10 @@ import React from "react";
 
 const RenderDropDown = ({ input }) => {
   //Drop down select
-
   return (
-    <div className="field four wide">
+    <div className="cr-dropdown">
       <label>Unit</label>
-      <select className="ui fluid dropdown" {...input}>
+      <select {...input}>
         <option value="">None</option>
         <option disabled>————Weight————</option>
         <option value="gram">Gram</option>

@@ -6,18 +6,18 @@ const CategoryInput = fields => {
   return (
     <div className="ui form">
       <div className="grouped fields">
-        <label>Diet Type:</label>
+        <label>Diet Type</label>
+        <CheckboxInput
+          fields={fields}
+          label="None"
+          categoryType="diet"
+          name="none"
+        />
         <CheckboxInput
           fields={fields}
           label="Vegetarian"
           categoryType="diet"
           name="vegetarian"
-        />
-        <CheckboxInput
-          fields={fields}
-          label="Non-Vegetarian"
-          categoryType="diet"
-          name="nonvegetarian"
         />
         <CheckboxInput
           fields={fields}
@@ -27,7 +27,7 @@ const CategoryInput = fields => {
         />
       </div>
       <div className="grouped fields">
-        <label>Meal type:</label>
+        <label>Meal type</label>
         <CheckboxInput
           fields={fields}
           label="Breakfast"

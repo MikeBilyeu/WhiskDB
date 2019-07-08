@@ -21,9 +21,9 @@ const DirectionInput = ({ fields, meta: { touched, error } }) => {
           <div className="ui divider" />
         </div>
       ))}
-      <div className="ui large buttons">
-        <button
-          className="ui button negative"
+      <div className="add-remove-button">
+        <div
+          className="button remove"
           type="button"
           onClick={() => {
             if (fields.length > 1) {
@@ -32,10 +32,9 @@ const DirectionInput = ({ fields, meta: { touched, error } }) => {
           }}
         >
           Remove
-        </button>
-        <div className="or" />
-        <button
-          className="ui positive button"
+        </div>
+        <div
+          className="button add"
           type="button"
           onClick={() => {
             if (fields.length < 10) {
@@ -43,8 +42,8 @@ const DirectionInput = ({ fields, meta: { touched, error } }) => {
             }
           }}
         >
-          Add Step
-        </button>
+          Add
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,89 @@
+.cr-header {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  place-items: center;
+}
+
+.cr-header h1 {
+  white-space: nowrap;
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  margin-right: 4rem;
+}
+
+.recipe-form {
+  padding: 0.2rem;
+  color: #707070;
+  display: grid;
+  grid-gap: 3rem;
+}
+
+.recipe-form input {
+  background-clip: padding-box;
+  outline: none;
+}
+
+.field {
+  display: grid;
+}
+
+.field input {
+  border: solid #bfbfbf 1px;
+  border-radius: 10rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.full-input label {
+  margin-left: 0.5rem;
+}
+
+.full-input input {
+  border: solid #bfbfbf 1px;
+  border-radius: 10rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.cr-servings {
+  place-items: center;
+}
+
+.cr-servings input {
+  border: solid #bfbfbf 1px;
+  border-radius: 10rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.recipe-form h4 {
+  border-bottom: solid #e3e3e3 1px;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.add-remove-button {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 1rem;
+}
+
+.add-remove-button .button {
+  border: solid #bfbfbf 1px;
+  border-radius: 10rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.add:hover {
+  color: #0172c4;
+}
+
+.remove:hover {
+  color: #c40801;
+}

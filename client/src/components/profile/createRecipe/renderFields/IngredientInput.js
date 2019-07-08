@@ -34,28 +34,27 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
           <div className="ui hidden divider" />
           <div className="fields">
             <Field
-              name={`${ingredient}.amount`}
-              component={TextInput}
-              label="Amount"
-              addClass="three wide"
-              placeholder="1 1/2"
-              parse={/*amountParse*/ null}
-            />
-            <Field name={`${ingredient}.unit`} component={UnitDropDown} />
-            <Field
               name={`${ingredient}.ingredient`}
               component={TextInput}
               label={`Ingredient ${index + 1}`}
-              addClass="seven wide"
+              addClass="full-input"
               placeholder="E.g. Red Bell Pepper"
               normalize={capitalize}
               parse={textParse}
             />
             <Field
+              name={`${ingredient}.amount`}
+              component={TextInput}
+              label="Amount"
+              placeholder="1 1/2"
+              parse={/*amountParse*/ null}
+            />
+            <Field name={`${ingredient}.unit`} component={UnitDropDown} />
+            <Field
               name={`${ingredient}.prep`}
               component={TextInput}
               label="Cut/Prep"
-              addClass="four wide"
+              addClass="full-input"
               placeholder="Diced"
               parse={textParse}
             />
@@ -64,21 +63,20 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
         </div>
       ))}
 
-      <div className="ui large buttons">
-        <button
-          className="ui button negative"
+      <div className="add-remove-button">
+        <div
+          className="button remove"
           type="button"
           onClick={() => {
-            if (fields.length > 2) {
+            if (fields.length > 1) {
               fields.remove(fields.length - 1);
             }
           }}
         >
           Remove
-        </button>
-        <div className="or" />
-        <button
-          className="ui positive button"
+        </div>
+        <div
+          className="button add"
           type="button"
           onClick={() => {
             if (fields.length < 20) {
@@ -86,8 +84,8 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
             }
           }}
         >
-          Add Ingredient
-        </button>
+          Add
+        </div>
       </div>
     </div>
   );
