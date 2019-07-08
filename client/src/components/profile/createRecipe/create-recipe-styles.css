@@ -20,7 +20,6 @@
 
 .recipe-form input {
   background-clip: padding-box;
-  outline: none;
 }
 
 .field {
@@ -79,11 +78,25 @@
   text-align: center;
   cursor: pointer;
 }
-
-.add:hover {
+.recipe-form select {
+  outline: none;
+  margin: 50px;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(https://cdn0.iconfinder.com/data/icons/arrow-glyph-2/32/updown-512.png)
+    96% / 15% no-repeat #fff;
+  cursor: pointer;
+}
+/* .add:hover {
   color: #0172c4;
 }
 
 .remove:hover {
   color: #c40801;
-}
+} */
