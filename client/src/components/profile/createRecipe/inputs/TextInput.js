@@ -6,6 +6,7 @@ const TextInput = ({
   meta,
   placeholder,
   type = "text",
+  pattern = null,
   addClass
 }) => {
   const className = `field ${addClass} ${
@@ -19,6 +20,7 @@ const TextInput = ({
         autoComplete="off"
         type={type}
         placeholder={placeholder}
+        pattern={pattern}
       />
     </div>
   );

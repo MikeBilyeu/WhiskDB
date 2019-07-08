@@ -118,6 +118,7 @@ class EditNewRecipe extends React.Component {
             placeholder="2"
             addClass="cr-servings"
             parse={numberParse}
+            pattern="[0-9]*"
           />
 
           <h4>Ingredients</h4>
@@ -131,6 +132,7 @@ class EditNewRecipe extends React.Component {
             label="Hours"
             placeholder="1"
             normalize={numberParse}
+            pattern="[0-9]*"
           />
           <Field
             name="time.minutes"
@@ -138,6 +140,7 @@ class EditNewRecipe extends React.Component {
             label="Minutes"
             placeholder="15"
             parse={minuteParse}
+            pattern="[0-9]*"
           />
 
           <h4>Directions</h4>
