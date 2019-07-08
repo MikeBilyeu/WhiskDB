@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 // Action Creator
-import { createRecipe } from "../../../../actions/recipeActions";
+import { createRecipe } from "../../../actions/recipeActions";
 
 // Single Inputs
 import TextInput from "./inputs/TextInput";
@@ -23,11 +23,7 @@ import { Validate } from "./RecipeValidation";
 class EditNewRecipe extends React.Component {
   renderError({ error, touched }) {
     if (touched && error) {
-      return (
-        <div className="ui error message">
-          <div className="header">{error}</div>
-        </div>
-      );
+      return <div>{error}</div>;
     }
   }
 
@@ -57,14 +53,7 @@ class EditNewRecipe extends React.Component {
       "categories.meal.dinner",
       "categories.meal.appetizer",
       "categories.meal.dessert",
-      "categories.meal.drink",
-      "categories.cuisine.chinese",
-      "categories.cuisine.indian",
-      "categories.cuisine.italian",
-      "categories.cuisine.mexican",
-      "categories.cuiisine.southern",
-      "categories.cuisine.thai",
-      "categories.cuisine.other"
+      "categories.meal.drink"
     ];
     const capitalize = value => {
       return (
@@ -94,7 +83,7 @@ class EditNewRecipe extends React.Component {
     };
     return (
       <div>
-        <h1 className="ui dividing header centered">Create Recipe</h1>
+        <h1>Create Recipe</h1>
 
         <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
           <Field
@@ -108,8 +97,20 @@ class EditNewRecipe extends React.Component {
 
           <Field name="image" component={ImageUpload} />
 
-          <h4 className="ui dividing header">Time Required</h4>
+          <Field
+            name="servings"
+            component={TextInput}
+            label="Number of servings"
+            placeholder="2"
+            addClass="four wide"
+            parse={numberParse}
+          />
 
+          <h4>Ingredients</h4>
+
+          <FieldArray name="ingredients" component={IngredientInput} />
+
+          <h4>Time Required</h4>
           <Field
             name="time.hours"
             component={TextInput}
@@ -125,30 +126,14 @@ class EditNewRecipe extends React.Component {
             parse={minuteParse}
           />
 
-          <h4 className="ui dividing header">Servings</h4>
-          <Field
-            name="servings"
-            component={TextInput}
-            label="Number of servings"
-            placeholder="2"
-            addClass="four wide"
-            parse={numberParse}
-          />
-
-          <h4 className="ui dividing header">Ingredients</h4>
-
-          <FieldArray name="ingredients" component={IngredientInput} />
-
-          <h4 className="ui dividing header">Directions</h4>
+          <h4>Directions</h4>
 
           <FieldArray name="directions" component={DirectionInput} />
-
-          <h4>Footnotes/Tips</h4>
 
           <Field
             name="footnote"
             component={TextAreaInput}
-            label="Note"
+            label="Footnote"
             placeholder="Add lemon juice for more flavor"
             parse={footnoteParse}
           />
@@ -162,9 +147,7 @@ class EditNewRecipe extends React.Component {
           <h4>Categories</h4>
           <Fields names={categoryNames} component={CategoryInput} />
 
-          <button type="submit" className="ui button big blue fluid">
-            Submit Recipe
-          </button>
+          <button type="submit">Submit Recipe</button>
         </form>
       </div>
     );
@@ -186,10 +169,10 @@ export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
   initialValues: {
-    ingredients: [{}, {}],
+    ingredients: [{}],
     directions: [{}],
     privateRecipe: false,
-    categories: { diet: {}, meal: {}, cuisine: {} }
+    categories: { diet: {}, meal: {} }
   },
   validate: Validate
 })(withRouter(EditNewRecipe));
