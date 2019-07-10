@@ -103,7 +103,7 @@ class EditNewRecipe extends React.Component {
             addClass="full-input"
             name="title"
             component={TextInput}
-            label="Recipe Title"
+            label="Title"
             placeholder="The Best Homemade Pizza"
             normalize={capitalize}
             parse={titleParse}
@@ -114,10 +114,11 @@ class EditNewRecipe extends React.Component {
           <Field
             name="servings"
             component={TextInput}
-            label="Number of servings"
+            label="Servings"
             placeholder="2"
             addClass="cr-servings"
             parse={numberParse}
+            type="number"
             pattern="[0-9]*"
           />
 

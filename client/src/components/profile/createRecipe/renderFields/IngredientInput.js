@@ -31,13 +31,12 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
     <div>
       {fields.map((ingredient, index) => (
         <div key={index}>
-          <div className="ui hidden divider" />
-          <div className="fields">
+          <div className="fields ingredients">
             <Field
               name={`${ingredient}.ingredient`}
               component={TextInput}
-              label={`Ingredient ${index + 1}`}
-              addClass="full-input"
+              label={`Ingredient`}
+              addClass="full-input ingredient"
               placeholder="E.g. Red Bell Pepper"
               normalize={capitalize}
               parse={textParse}
@@ -48,13 +47,18 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               label="Amount"
               placeholder="1 1/2"
               parse={/*amountParse*/ null}
+              addClass="amount"
             />
-            <Field name={`${ingredient}.unit`} component={UnitDropDown} />
+            <Field
+              addClass="unit"
+              name={`${ingredient}.unit`}
+              component={UnitDropDown}
+            />
             <Field
               name={`${ingredient}.prep`}
               component={TextInput}
-              label="Cut/Prep"
-              addClass="full-input"
+              label="Prep"
+              addClass="full-input prep"
               placeholder="Diced"
               parse={textParse}
             />

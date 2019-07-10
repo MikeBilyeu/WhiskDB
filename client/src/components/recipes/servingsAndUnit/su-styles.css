@@ -2,7 +2,7 @@
   background-color: #313131;
   width: 100%;
   border-radius: 0.3rem;
-  margin: 1.5rem auto;
+  margin: 1rem auto 0.5rem auto;
   display: grid;
   grid-template-columns: 3fr 0.3rem 4fr;
   place-items: center;

@@ -22,6 +22,10 @@
   background-clip: padding-box;
 }
 
+.recipe-form label {
+  margin-left: 0.5rem;
+}
+
 .field {
   display: grid;
 }
@@ -33,10 +37,6 @@
   padding: 0.5rem;
 }
 
-.full-input label {
-  margin-left: 0.5rem;
-}
-
 .full-input input {
   border: solid #bfbfbf 1px;
   border-radius: 10rem;
@@ -46,6 +46,9 @@
 
 .cr-servings {
   place-items: center;
+}
+.cr-servings label {
+  margin: 0;
 }
 
 .cr-servings input {
@@ -68,6 +71,7 @@
   display: grid;
   grid-auto-flow: column;
   grid-gap: 1rem;
+  margin: 2rem 0;
 }
 
 .add-remove-button .button {
@@ -78,20 +82,51 @@
   text-align: center;
   cursor: pointer;
 }
+
+.ingredients {
+  border: solid #bfbfbf 1px;
+  border-radius: 0.5rem;
+  padding: 3rem 0.5rem;
+  display: grid;
+  grid-template-areas:
+    "ing ing"
+    "amt unit"
+    "prep prep";
+  grid-gap: 2rem;
+}
+
+.ingredient {
+  grid-area: ing;
+}
+
+.amount {
+  grid-area: amt;
+}
+
+.unit {
+  grid-area: unit;
+}
+
+.prep {
+  grid-area: prep;
+}
 .recipe-form select {
   outline: none;
-  margin: 50px;
-  width: 150px;
-  padding: 5px 35px 5px 5px;
+  padding: 5px 35px 5px 10px;
   font-size: 16px;
   border: 1px solid #ccc;
-  height: 34px;
+  border-radius: 10rem;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background: url(https://cdn0.iconfinder.com/data/icons/arrow-glyph-2/32/updown-512.png)
-    96% / 15% no-repeat #fff;
+    96% / 1.5rem no-repeat #fff;
   cursor: pointer;
+  color: #464646;
+}
+
+.cr-dropdown {
+  display: grid;
 }
 /* .add:hover {
   color: #0172c4;
