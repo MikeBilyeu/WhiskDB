@@ -9,17 +9,17 @@ import { ReactComponent as Arrow } from "../../recipes/arrowLeft.svg";
 import { createRecipe } from "../../../actions/recipeActions";
 
 // Single Inputs
-import TextInput from "./inputs/TextInput";
-import TextAreaInput from "./inputs/TextAreaInput";
+
 import ToggleSwitch from "./inputs/ToggleSwitch";
 
 // Field Components
-import ImageUpload from "./renderFields/ImageUpload";
-import IngredientInput from "./renderFields/IngredientInput";
-import DirectionInput from "./renderFields/DirectionInput";
+
 import CategoryInput from "./renderFields/CategoryInput";
 
 import TitleAndImage from "./TitleAndImage";
+import Ingredients from "./Ingredients";
+import Directions from "./Directions";
+import TimeServingsFootnote from "./TimeServingsFootnote";
 
 // import validation
 import { Validate } from "./RecipeValidation";
@@ -30,7 +30,7 @@ class EditNewRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1
+      page: 3
     };
   }
   renderError({ error, touched }) {
@@ -67,97 +67,20 @@ class EditNewRecipe extends React.Component {
       "categories.meal.dessert",
       "categories.meal.drink"
     ];
-    const capitalize = value => {
-      return (
-        value &&
-        value
-          .toLowerCase()
-          .split(" ")
-          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-          .join(" ")
-      );
-    };
-    const titleParse = value => {
-      let strArr = value.match(/[\w -]{0,55}/) || [""];
-      return value && strArr[0];
-    };
-    const minuteParse = value => {
-      let strArr = value.match(/^[1-5][\d]?/) || [""];
-      return value && strArr[0];
-    };
-    const numberParse = value => {
-      let strArr = value.match(/^[1-9][\d]?/) || [""];
-      return value && strArr[0];
-    };
-    const footnoteParse = value => {
-      let strArr = value.match(/[\w -]{0,455}/) || [""];
-      return value && strArr[0];
-    };
 
     let formPage = null;
     switch (this.state.page) {
       case 1:
-        formPage = <TitleAndImage normalize={capitalize} parse={titleParse} />;
+        formPage = <TitleAndImage />;
         break;
       case 2:
-        formPage = (
-          <div>
-            <h4>Ingredients</h4>
-
-            <FieldArray name="ingredients" component={IngredientInput} />
-          </div>
-        );
+        formPage = <Ingredients />;
         break;
       case 3:
-        formPage = (
-          <div>
-            {" "}
-            <h4>Directions</h4>
-            <FieldArray name="directions" component={DirectionInput} />
-          </div>
-        );
+        formPage = <Directions />;
         break;
       case 4:
-        formPage = (
-          <div>
-            <Field
-              name="servings"
-              component={TextInput}
-              label="Servings"
-              placeholder="2"
-              addClass="cr-servings"
-              parse={numberParse}
-              type="number"
-              pattern="[0-9]*"
-            />
-
-            <h4>Time Required</h4>
-            <Field
-              name="time.hours"
-              component={TextInput}
-              label="Hours"
-              placeholder="1"
-              normalize={numberParse}
-              pattern="[0-9]*"
-            />
-            <Field
-              name="time.minutes"
-              component={TextInput}
-              label="Minutes"
-              placeholder="15"
-              parse={minuteParse}
-              pattern="[0-9]*"
-            />
-
-            <Field
-              name="footnote"
-              component={TextAreaInput}
-              label="Footnote"
-              placeholder="Add lemon juice for more flavor"
-              parse={footnoteParse}
-            />
-          </div>
-        );
+        formPage = <TimeServingsFootnote />;
         break;
       case 5:
         formPage = <Fields names={categoryNames} component={CategoryInput} />;
