@@ -20,6 +20,7 @@ import TitleAndImage from "./TitleAndImage";
 import Ingredients from "./Ingredients";
 import Directions from "./Directions";
 import TimeServingsFootnote from "./TimeServingsFootnote";
+import TagAndSubmit from "./TagAndSubmit";
 
 // import validation
 import { Validate } from "./RecipeValidation";
@@ -30,7 +31,7 @@ class EditNewRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 3
+      page: 1
     };
   }
   renderError({ error, touched }) {
@@ -86,7 +87,7 @@ class EditNewRecipe extends React.Component {
         formPage = <Fields names={categoryNames} component={CategoryInput} />;
         break;
       case 6:
-        formPage = <button type="submit">Submit Recipe</button>;
+        formPage = <TagAndSubmit />;
         break;
       default:
         formPage = null;
