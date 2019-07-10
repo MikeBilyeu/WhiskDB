@@ -25,6 +25,12 @@ import { Validate } from "./RecipeValidation";
 import "./create-recipe-styles.css";
 
 class EditNewRecipe extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 2
+    };
+  }
   renderError({ error, touched }) {
     if (touched && error) {
       return <div>{error}</div>;
@@ -85,6 +91,95 @@ class EditNewRecipe extends React.Component {
       let strArr = value.match(/[\w -]{0,455}/) || [""];
       return value && strArr[0];
     };
+
+    let formPage = null;
+    switch (this.state.page) {
+      case 1:
+        formPage = (
+          <div>
+            <Field
+              addClass="full-input"
+              name="title"
+              component={TextInput}
+              label="Title"
+              placeholder="The Best Homemade Pizza"
+              normalize={capitalize}
+              parse={titleParse}
+            />
+
+            <Field name="image" component={ImageUpload} />
+          </div>
+        );
+        break;
+      case 2:
+        formPage = (
+          <div>
+            <h4>Ingredients</h4>
+
+            <FieldArray name="ingredients" component={IngredientInput} />
+          </div>
+        );
+        break;
+      case 3:
+        formPage = (
+          <div>
+            {" "}
+            <h4>Directions</h4>
+            <FieldArray name="directions" component={DirectionInput} />
+          </div>
+        );
+        break;
+      case 4:
+        formPage = (
+          <div>
+            <Field
+              name="servings"
+              component={TextInput}
+              label="Servings"
+              placeholder="2"
+              addClass="cr-servings"
+              parse={numberParse}
+              type="number"
+              pattern="[0-9]*"
+            />
+
+            <h4>Time Required</h4>
+            <Field
+              name="time.hours"
+              component={TextInput}
+              label="Hours"
+              placeholder="1"
+              normalize={numberParse}
+              pattern="[0-9]*"
+            />
+            <Field
+              name="time.minutes"
+              component={TextInput}
+              label="Minutes"
+              placeholder="15"
+              parse={minuteParse}
+              pattern="[0-9]*"
+            />
+
+            <Field
+              name="footnote"
+              component={TextAreaInput}
+              label="Footnote"
+              placeholder="Add lemon juice for more flavor"
+              parse={footnoteParse}
+            />
+          </div>
+        );
+        break;
+      case 5:
+        formPage = <Fields names={categoryNames} component={CategoryInput} />;
+        break;
+      case 6:
+        formPage = <button type="submit">Submit Recipe</button>;
+        break;
+      default:
+        formPage = null;
+    }
     return (
       <div>
         <div className="cr-header">
@@ -99,72 +194,7 @@ class EditNewRecipe extends React.Component {
           className="recipe-form"
           onSubmit={this.props.handleSubmit(this.handleSubmit)}
         >
-          <Field
-            addClass="full-input"
-            name="title"
-            component={TextInput}
-            label="Title"
-            placeholder="The Best Homemade Pizza"
-            normalize={capitalize}
-            parse={titleParse}
-          />
-
-          <Field name="image" component={ImageUpload} />
-
-          <Field
-            name="servings"
-            component={TextInput}
-            label="Servings"
-            placeholder="2"
-            addClass="cr-servings"
-            parse={numberParse}
-            type="number"
-            pattern="[0-9]*"
-          />
-
-          <h4>Ingredients</h4>
-
-          <FieldArray name="ingredients" component={IngredientInput} />
-
-          <h4>Time Required</h4>
-          <Field
-            name="time.hours"
-            component={TextInput}
-            label="Hours"
-            placeholder="1"
-            normalize={numberParse}
-            pattern="[0-9]*"
-          />
-          <Field
-            name="time.minutes"
-            component={TextInput}
-            label="Minutes"
-            placeholder="15"
-            parse={minuteParse}
-            pattern="[0-9]*"
-          />
-
-          <h4>Directions</h4>
-
-          <FieldArray name="directions" component={DirectionInput} />
-
-          <Field
-            name="footnote"
-            component={TextAreaInput}
-            label="Footnote"
-            placeholder="Add lemon juice for more flavor"
-            parse={footnoteParse}
-          />
-
-          <Field
-            name="privateRecipe"
-            label="Private Recipe"
-            component={ToggleSwitch}
-          />
-
-          <Fields names={categoryNames} component={CategoryInput} />
-
-          <button type="submit">Submit Recipe</button>
+          {formPage}
         </form>
       </div>
     );
