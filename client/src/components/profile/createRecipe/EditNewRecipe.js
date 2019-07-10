@@ -19,6 +19,8 @@ import IngredientInput from "./renderFields/IngredientInput";
 import DirectionInput from "./renderFields/DirectionInput";
 import CategoryInput from "./renderFields/CategoryInput";
 
+import TitleAndImage from "./TitleAndImage";
+
 // import validation
 import { Validate } from "./RecipeValidation";
 
@@ -28,7 +30,7 @@ class EditNewRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 2
+      page: 1
     };
   }
   renderError({ error, touched }) {
@@ -95,21 +97,7 @@ class EditNewRecipe extends React.Component {
     let formPage = null;
     switch (this.state.page) {
       case 1:
-        formPage = (
-          <div>
-            <Field
-              addClass="full-input"
-              name="title"
-              component={TextInput}
-              label="Title"
-              placeholder="The Best Homemade Pizza"
-              normalize={capitalize}
-              parse={titleParse}
-            />
-
-            <Field name="image" component={ImageUpload} />
-          </div>
-        );
+        formPage = <TitleAndImage normalize={capitalize} parse={titleParse} />;
         break;
       case 2:
         formPage = (
