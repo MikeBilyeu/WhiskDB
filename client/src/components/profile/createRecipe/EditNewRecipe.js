@@ -16,6 +16,7 @@ import ToggleSwitch from "./inputs/ToggleSwitch";
 
 import CategoryInput from "./renderFields/CategoryInput";
 
+import FormStatus from "./FormStatus";
 import TitleAndImage from "./TitleAndImage";
 import Ingredients from "./Ingredients";
 import Directions from "./Directions";
@@ -46,6 +47,12 @@ class EditNewRecipe extends React.Component {
       created_by: this.props.auth.user.user_id
     };
     this.props.createRecipe(newRecipe, this.props.history);
+  };
+
+  handleClick = click => {
+    this.setState(prevState => {
+      return { page: prevState.page + click };
+    });
   };
 
   // onImageChange(event) {
@@ -101,6 +108,7 @@ class EditNewRecipe extends React.Component {
           />
           <h1>Create Recipe</h1>
         </div>
+        <FormStatus handleClick={this.handleClick} page={this.state.page} />
 
         <form
           className="recipe-form"
