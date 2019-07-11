@@ -101,7 +101,16 @@ class EditNewRecipe extends React.Component {
     }
     return (
       <div>
-        <div className="cr-header">
+        <div
+          style={{
+            position: "fixed",
+            backgroundColor: "#FFF",
+            width: "100%",
+            height: "3rem",
+            zIndex: "1"
+          }}
+          className="cr-header"
+        >
           <Arrow
             className="back-btn"
             onClick={() => this.props.history.goBack()}
