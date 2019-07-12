@@ -23,9 +23,6 @@ import Directions from "./Directions";
 import TimeServingsFootnote from "./TimeServingsFootnote";
 import TagAndSubmit from "./TagAndSubmit";
 
-// import validation
-import { Validate } from "./RecipeValidation";
-
 import "./create-recipe-styles.css";
 
 class EditNewRecipe extends React.Component {
@@ -101,16 +98,7 @@ class EditNewRecipe extends React.Component {
     }
     return (
       <div>
-        <div
-          style={{
-            position: "fixed",
-            backgroundColor: "#FFF",
-            width: "100%",
-            height: "3rem",
-            zIndex: "1"
-          }}
-          className="cr-header"
-        >
+        <div className="cr-header">
           <Arrow
             className="back-btn"
             onClick={() => this.props.history.goBack()}
@@ -149,6 +137,5 @@ export default reduxForm({
     directions: [{}],
     privateRecipe: false,
     categories: { diet: {}, meal: {} }
-  },
-  validate: Validate
+  }
 })(withRouter(EditNewRecipe));

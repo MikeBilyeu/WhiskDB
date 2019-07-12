@@ -1,8 +1,12 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 
+// import validation
+import { ValidateTitle } from "./RecipeValidation";
+
 import ImageUpload from "./renderFields/ImageUpload";
 import TextInput from "./inputs/TextInput";
+import RenderImage from "./renderFields/RenderImage";
 
 const TitleAndImage = props => {
   const capitalize = value => {
@@ -23,7 +27,7 @@ const TitleAndImage = props => {
   return (
     <div>
       <Field
-        addClass="full-input"
+        addClass={"full-input"}
         name="title"
         component={TextInput}
         label="Title"
@@ -31,13 +35,17 @@ const TitleAndImage = props => {
         normalize={capitalize}
         parse={titleParse}
       />
-
+      <div style={{ textAlign: "center", marginTop: "3rem" }}>
+        Include a photo for the recipe
+      </div>
       <Field name="image" component={ImageUpload} />
+      <RenderImage />
     </div>
   );
 };
 
 export default reduxForm({
   form: "newRecipe",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  validate: ValidateTitle
 })(TitleAndImage);

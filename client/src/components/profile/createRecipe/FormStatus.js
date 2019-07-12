@@ -9,12 +9,7 @@ const FormStatus = props => {
         placeItems: "center",
         borderBottom: "solid 1px #B7B7B7",
         color: "#464646",
-        marginBottom: "1rem",
-        position: "fixed",
-        top: "3rem",
-        width: "100%",
-        backgroundColor: "#FFF",
-        zIndex: "1"
+        marginBottom: "1rem"
       }}
     >
       <div

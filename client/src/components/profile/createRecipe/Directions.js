@@ -1,6 +1,9 @@
 import React from "react";
 import { FieldArray, reduxForm } from "redux-form";
 
+// import validation
+import { ValidateDirections } from "./RecipeValidation";
+
 import DirectionInput from "./renderFields/DirectionInput";
 
 const Directions = () => {
@@ -14,5 +17,6 @@ const Directions = () => {
 
 export default reduxForm({
   form: "newRecipe",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  validate: ValidateDirections
 })(Directions);

@@ -12,7 +12,7 @@
 }
 
 .recipe-form {
-  padding: 0.2rem;
+  padding: 0.4rem;
   color: #707070;
   display: grid;
   grid-gap: 3rem;
@@ -20,10 +20,25 @@
 
 .recipe-form input {
   background-clip: padding-box;
+  outline: none;
+  margin: calc(2px - 1px);
+}
+
+.recipe-form input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #000;
+  opacity: 0.2; /* Firefox */
+}
+
+.recipe-form .input-active input {
+  margin: calc(2px - 1.5px);
+  border: solid 1.5px #0172c4;
+  box-shadow: 0.1rem 0.2rem 0.5rem #e2e2e2;
 }
 
 .recipe-form label {
-  margin-left: 0.5rem;
+  margin-left: 0.8rem;
+  color: #464646;
 }
 
 .field {
@@ -41,7 +56,7 @@
   border: solid #bfbfbf 1px;
   border-radius: 10rem;
   font-size: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0.8rem;
 }
 
 .cr-servings {

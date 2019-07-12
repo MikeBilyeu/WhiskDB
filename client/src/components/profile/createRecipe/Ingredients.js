@@ -1,6 +1,9 @@
 import React from "react";
 import { FieldArray, reduxForm } from "redux-form";
 
+// import validation
+import { ValidateIngredients } from "./RecipeValidation";
+
 import IngredientInput from "./renderFields/IngredientInput";
 
 const ingredients = () => {
@@ -14,5 +17,6 @@ const ingredients = () => {
 
 export default reduxForm({
   form: "newRecipe",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  validate: ValidateIngredients
 })(ingredients);

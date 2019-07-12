@@ -3,14 +3,14 @@ import React from "react";
 const TextInput = ({
   input,
   label,
-  meta,
+  meta: { touched, error, warning, active },
   placeholder,
   type = "text",
   pattern = null,
   addClass
 }) => {
-  const className = `field ${addClass} ${
-    meta.error && meta.touched ? "error" : ""
+  const className = `field ${addClass} ${error && touched ? "error" : ""} ${
+    active ? "input-active" : ""
   }`;
   return (
     <div className={className}>
@@ -22,6 +22,7 @@ const TextInput = ({
         placeholder={placeholder}
         pattern={pattern}
       />
+      {touched && error ? <span>*{error}</span> : null}
     </div>
   );
 };

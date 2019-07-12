@@ -71,5 +71,5 @@
 .input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #000;
-  opacity: 0.5; /* Firefox */
+  opacity: 0.2; /* Firefox */
 }
