@@ -1,4 +1,6 @@
 import React from "react";
+import { getFormSyncErrors } from "redux-form";
+import { connect } from "react-redux";
 
 const FormStatus = props => {
   return (
@@ -31,10 +33,15 @@ const FormStatus = props => {
           visibility: props.page <= 5 ? "visible" : "hidden",
           cursor: "pointer",
           padding: " 1rem 1rem .5rem 1rem",
-          justifySelf: "end"
+          justifySelf: "end",
+          color:
+            Object.keys(props.syncErrors).length < 1 ? "#0172C4" : "#E2E2E2"
         }}
         onClick={() => {
-          props.handleClick(+1);
+          console.log(props.syncErrors);
+          if (Object.keys(props.syncErrors).length < 1) {
+            props.handleClick(+1);
+          }
         }}
       >
         Next
@@ -43,4 +50,8 @@ const FormStatus = props => {
   );
 };
 
-export default FormStatus;
+const mapSateToProps = state => {
+  return { syncErrors: getFormSyncErrors("newRecipe")(state) };
+};
+
+export default connect(mapSateToProps)(FormStatus);

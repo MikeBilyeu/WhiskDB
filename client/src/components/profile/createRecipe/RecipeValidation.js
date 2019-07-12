@@ -5,7 +5,6 @@ const ingredientNameRegEx = /^[A-Z0-9][\w ]{2,255}$/;
 let errors = {};
 
 function validateTitle(title) {
-  console.log(!titleRegEx.test(title));
   if (!title) {
     return (errors.title = "Title field is required");
   } else if (!titleRegEx.test(title)) {
