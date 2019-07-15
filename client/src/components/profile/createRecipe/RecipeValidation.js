@@ -63,14 +63,16 @@ function validateIngredients(ingredients) {
 function validateDirections(directions) {
   // set errors to an empty array beacuse directions input is a FieldArray
   errors.directions = [];
-  let numOfDirections = directions ? directions.length : 0;
+  const numOfDirections = directions.length || 0;
   for (let i = 0; i < numOfDirections; i++) {
-    errors.directions.push({});
-    if (!/.{15,150}/.test(directions[i].step)) {
-      errors.directions[i] = {
-        step: `step ${i + 1} must be 15 - 150 characters`
-      };
+    if (!/.{15,200}/.test(directions[i].step)) {
+      errors.directions.push({
+        step: `step ${i + 1} must be 15 - 200 characters`
+      });
     }
+  }
+  if (!errors.directions.length) {
+    delete errors.directions;
   }
 }
 

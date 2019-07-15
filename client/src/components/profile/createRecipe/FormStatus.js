@@ -38,7 +38,6 @@ const FormStatus = props => {
             Object.keys(props.syncErrors).length < 1 ? "#0172C4" : "#E2E2E2"
         }}
         onClick={() => {
-          console.log(props.syncErrors);
           if (Object.keys(props.syncErrors).length < 1) {
             props.handleClick(+1);
           }

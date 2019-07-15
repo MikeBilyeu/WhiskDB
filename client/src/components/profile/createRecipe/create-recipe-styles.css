@@ -102,6 +102,7 @@
   border: solid #bfbfbf 1px;
   border-radius: 0.5rem;
   padding: 3rem 0.5rem;
+  margin-bottom: 5rem;
   display: grid;
   grid-template-areas:
     "ing ing"
