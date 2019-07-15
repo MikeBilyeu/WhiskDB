@@ -2,7 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 
 // import validation
-import { ValidateCategories } from "./RecipeValidation";
+import { ValidateTimeServingsFootnote } from "./RecipeValidation";
 
 import TextInput from "./inputs/TextInput";
 import TextAreaInput from "./inputs/TextAreaInput";
@@ -65,5 +65,5 @@ const TimeServingsFootnote = () => {
 export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
-  validate: ValidateCategories
+  validate: ValidateTimeServingsFootnote
 })(TimeServingsFootnote);

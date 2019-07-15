@@ -62,7 +62,6 @@ class EditNewRecipe extends React.Component {
 
   render() {
     const categoryNames = [
-      "categories.diet.none",
       "categories.diet.vegetarian",
       "categories.diet.vegan",
       "categories.meal.breakfast",

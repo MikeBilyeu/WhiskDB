@@ -1,17 +1,15 @@
 import React from "react";
+import { reduxForm } from "redux-form";
 
 import CheckboxInput from "../inputs/CheckboxInput";
+
+// import validation
+import { ValidateCategories } from "../RecipeValidation";
 
 const CategoryInput = fields => {
   return (
     <div>
       <label>categories</label>
-      <CheckboxInput
-        fields={fields}
-        label="None"
-        categoryType="diet"
-        name="none"
-      />
       <CheckboxInput
         fields={fields}
         label="Vegetarian"
@@ -64,4 +62,8 @@ const CategoryInput = fields => {
   );
 };
 
-export default CategoryInput;
+export default reduxForm({
+  form: "newRecipe",
+  destroyOnUnmount: false,
+  validate: ValidateCategories
+})(CategoryInput);
