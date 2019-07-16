@@ -17,6 +17,6 @@ const ingredients = () => {
 
 export default reduxForm({
   form: "newRecipe",
-  destroyOnUnmount: false
-  // validate: ValidateIngredients
+  destroyOnUnmount: false,
+  validate: ValidateIngredients
 })(ingredients);

@@ -58,6 +58,12 @@ function validateIngredients(ingredients) {
       };
     }
   }
+  const noErrors =
+    errors.ingredients.findIndex(obj => JSON.stringify(obj) !== "{}") < 0;
+
+  if (noErrors) {
+    delete errors.ingredients;
+  }
 }
 
 function validateDirections(directions) {
@@ -83,16 +89,18 @@ function validateDirections(directions) {
 
 function validateCategories(categories) {
   if (categories) {
+    let numOfTrueValues = 0;
     //get the values of the sub-categories
     for (let subCategory in categories) {
-      let numOfTrueValues = Object.values(categories[subCategory]).filter(
+      numOfTrueValues += Object.values(categories[subCategory]).filter(
         value => value
       ).length;
-      if (numOfTrueValues < 1 || numOfTrueValues > 3) {
-        errors.categories = {
-          diet: { vegetarian: "categories must be 1 - 3 selected" }
-        };
-      }
+    }
+
+    if (numOfTrueValues < 1) {
+      errors.categories = {
+        diet: { vegetarian: "categories must be 1 - 3 selected" }
+      };
     }
   }
 }
