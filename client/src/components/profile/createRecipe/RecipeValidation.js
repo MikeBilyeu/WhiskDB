@@ -32,7 +32,7 @@ function validateIngredients(ingredients) {
   // set errors to an empty array beacuse ingredients input is a FieldArray
   errors.ingredients = [];
 
-  const numOfIngredients = ingredients ? ingredients.length : 0;
+  const numOfIngredients = ingredients.length || 0;
 
   for (let i = 0; i < numOfIngredients; i++) {
     errors.ingredients.push({});
@@ -65,13 +65,18 @@ function validateDirections(directions) {
   errors.directions = [];
   const numOfDirections = directions.length || 0;
   for (let i = 0; i < numOfDirections; i++) {
+    errors.directions.push({});
     if (!/.{15,200}/.test(directions[i].step)) {
-      errors.directions.push({
+      errors.directions[i] = {
         step: `step ${i + 1} must be 15 - 200 characters`
-      });
+      };
     }
   }
-  if (!errors.directions.length) {
+
+  const noErrors =
+    errors.directions.findIndex(obj => JSON.stringify(obj) !== "{}") < 0;
+
+  if (noErrors) {
     delete errors.directions;
   }
 }

@@ -1,9 +1,13 @@
 import React from "react";
 
-const TextAreaInput = ({ input, label, placeholder, addClass, meta }) => {
-  const className = `field ${addClass} ${
-    meta.error && meta.touched ? "error" : ""
-  }`;
+const TextAreaInput = ({
+  input,
+  label,
+  placeholder,
+  addClass,
+  meta: { touched, error, warning, active }
+}) => {
+  const className = `field ${addClass} ${error && touched ? "error" : ""}`;
   return (
     <div className={className}>
       <label>{label}</label>
@@ -12,6 +16,7 @@ const TextAreaInput = ({ input, label, placeholder, addClass, meta }) => {
         placeholder={placeholder}
         style={{ marginTop: "0px", marginBottom: "0px", height: "115px" }}
       />
+      {touched && error ? <span>*{error}</span> : null}
     </div>
   );
 };
