@@ -80,6 +80,7 @@
   padding: 1rem;
   font-size: 1.5rem;
   font-weight: normal;
+  color: #464646;
 }
 
 .add-remove-button {
@@ -143,6 +144,10 @@
 
 .cr-dropdown {
   display: grid;
+}
+
+span.error {
+  color: #ff5353;
 }
 /* .add:hover {
   color: #0172c4;

@@ -22,7 +22,7 @@ const TextInput = ({
         placeholder={placeholder}
         pattern={pattern}
       />
-      {touched && error ? <span>*{error}</span> : null}
+      {touched && error ? <span className="error">*{error}</span> : null}
     </div>
   );
 };
