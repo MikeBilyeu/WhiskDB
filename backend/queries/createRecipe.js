@@ -94,7 +94,7 @@ const createRecipe = (request, response) => {
     let recipe_id = null;
     return client
       .query(
-        "INSERT INTO recipes (created_by, title, servings, total_time_mins, footnote, private, directions, ingredients, document_vectors) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, to_tsvector($2 || coalesce($5, ''))) RETURNING recipe_id",
+        "INSERT INTO recipes (created_by, title, servings, total_time_mins, footnote, private, directions, ingredients, document_vectors) VALUES ($1, CAST($2 AS VARCHAR), $3, $4, $5, $6, $7, $8, to_tsvector($2)) RETURNING recipe_id",
         [
           created_by,
           title,
