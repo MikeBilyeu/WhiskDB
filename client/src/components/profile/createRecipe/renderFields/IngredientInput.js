@@ -31,6 +31,7 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
     <div>
       {fields.map((ingredient, index) => (
         <div key={index}>
+          <h5 className="ingredient-num">Ingredient {index + 1}</h5>
           <div className="fields ingredients">
             <Field
               name={`${ingredient}.ingredient`}
