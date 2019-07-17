@@ -29,7 +29,7 @@ module.exports = function validateRecipeInput(data) {
   }
 
   // Making sure user enters two or more ingredients for the recipe
-  if (data.ingredients && data.ingredients.length <= 0) {
+  if (data.ingredients && data.ingredients.length < 1) {
     errors.ingredients = "Must add more ingredients";
   } else if (data.ingredients) {
     // Loop through ingredients array to validate each ingredient object
