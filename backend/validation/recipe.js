@@ -10,7 +10,8 @@ module.exports = function validateRecipeInput(data) {
   // Title validation
   if (!data.title) {
     errors.title = "Title field is required";
-  // } else if (!titleRegEx.test(data.title)) {
+  }
+  //  else if (!titleRegEx.test(data.title)) {
   //   errors.title = "Title is not valid";
   // }
   // Time validation
@@ -40,7 +41,8 @@ module.exports = function validateRecipeInput(data) {
           "Ingredients must contain an amount and ingredient name";
       } else if (!amountRegEx.test(data.ingredients[i].amount)) {
         errors.ingredients = "Ingredient amount is not valid";
-      // } else if (!ingredientNameRegEx.test(data.ingredients[i].ingredient)) {
+      }
+      // else if (!ingredientNameRegEx.test(data.ingredients[i].ingredient)) {
       //   errors.ingredients = "Ingredient name is not valid";
       // }
     }
