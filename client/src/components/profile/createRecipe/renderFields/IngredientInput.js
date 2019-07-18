@@ -7,14 +7,7 @@ import TextInput from "../inputs/TextInput";
 // Renders all of the ingredient fields i.e. ingredient, unit, amount
 const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
   const capitalize = value => {
-    return (
-      value &&
-      value
-        .toLowerCase()
-        .split(" ")
-        .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-        .join(" ")
-    );
+    return value && value.charAt(0).toUpperCase() + value.substring(1);
   };
   const textParse = value => {
     let strArr = value.match(/.{0,55}/) || [""];

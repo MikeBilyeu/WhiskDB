@@ -72,9 +72,9 @@ function validateDirections(directions) {
   const numOfDirections = directions.length || 0;
   for (let i = 0; i < numOfDirections; i++) {
     errors.directions.push({});
-    if (!/.{15,200}/.test(directions[i].step)) {
+    if (!/.{15,400}/.test(directions[i].step)) {
       errors.directions[i] = {
-        step: `step ${i + 1} must be 15 - 200 characters`
+        step: `step ${i + 1} must be 15 - 400 characters`
       };
     }
   }

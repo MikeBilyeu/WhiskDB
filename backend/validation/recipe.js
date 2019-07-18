@@ -10,9 +10,9 @@ module.exports = function validateRecipeInput(data) {
   // Title validation
   if (!data.title) {
     errors.title = "Title field is required";
-  } else if (!titleRegEx.test(data.title)) {
-    errors.title = "Title is not valid";
-  }
+  // } else if (!titleRegEx.test(data.title)) {
+  //   errors.title = "Title is not valid";
+  // }
   // Time validation
   if (!data.time) {
     errors.time = "Time field is required";
@@ -40,9 +40,9 @@ module.exports = function validateRecipeInput(data) {
           "Ingredients must contain an amount and ingredient name";
       } else if (!amountRegEx.test(data.ingredients[i].amount)) {
         errors.ingredients = "Ingredient amount is not valid";
-      } else if (!ingredientNameRegEx.test(data.ingredients[i].ingredient)) {
-        errors.ingredients = "Ingredient name is not valid";
-      }
+      // } else if (!ingredientNameRegEx.test(data.ingredients[i].ingredient)) {
+      //   errors.ingredients = "Ingredient name is not valid";
+      // }
     }
   }
 
@@ -64,12 +64,12 @@ module.exports = function validateRecipeInput(data) {
   }
 
   // Make sure user enters valid footnote
-  if (
-    data.footnote &&
-    (data.footnote.length <= 3 || data.footnote.length > 455)
-  ) {
-    errors.footnote = "Footnote must be 3 - 255 characters";
-  }
+  // if (
+  //   data.footnote &&
+  //   (data.footnote.length <= 3 || data.footnote.length > 455)
+  // ) {
+  //   errors.footnote = "Footnote must be 3 - 255 characters";
+  // }
 
   return errors;
 };

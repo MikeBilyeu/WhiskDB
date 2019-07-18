@@ -10,17 +10,10 @@ import RenderImage from "./renderFields/RenderImage";
 
 const TitleAndImage = props => {
   const capitalize = value => {
-    return (
-      value &&
-      value
-        .toLowerCase()
-        .split(" ")
-        .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-        .join(" ")
-    );
+    return value && value.charAt(0).toUpperCase() + value.substring(1);
   };
   const titleParse = value => {
-    let strArr = value.match(/[\w -]{0,55}/) || [""];
+    let strArr = value.match(/.{0,55}/) || [""];
     return value && strArr[0];
   };
 
