@@ -58,9 +58,9 @@ module.exports = function validateRecipeInput(data) {
         errors.directions = `Directions are required`;
       } else if (
         data.directions[i].step.length < 15 ||
-        data.directions[i].step.length > 400
+        data.directions[i].step.length > 640
       ) {
-        errors.directions = "Directions must be 15 - 400 characters";
+        errors.directions = "Directions must be 15 - 640 characters";
       }
     }
   }

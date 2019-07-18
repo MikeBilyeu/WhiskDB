@@ -36,6 +36,10 @@
   box-shadow: 0.1rem 0.2rem 0.5rem #e2e2e2;
 }
 
+span.error {
+  color: #ff5353;
+}
+
 .recipe-form label {
   margin-left: 0.8rem;
   color: #464646;
@@ -150,9 +154,6 @@
   display: grid;
 }
 
-span.error {
-  color: #ff5353;
-}
 /* .add:hover {
   color: #0172c4;
 }
