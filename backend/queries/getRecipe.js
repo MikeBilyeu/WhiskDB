@@ -37,11 +37,12 @@ const getRecipe = (request, response) => {
       )
       .then(res => {
         client.release();
-        response.status(200).json(res.rows[0]);
+        if (res.rows[0]) {
+          response.status(200).json(res.rows[0]);
+        }
       })
       .catch(err => {
-        client.release();
-        console.log(err.stack);
+        console.log(err);
       });
   });
 };
