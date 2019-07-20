@@ -9,7 +9,7 @@ import TextAreaInput from "./inputs/TextAreaInput";
 
 const TimeServingsFootnote = () => {
   const footnoteParse = value => {
-    let strArr = value.match(/[\w -]{0,455}/) || [""];
+    let strArr = value.match(/.{0,455}/) || [""];
     return value && strArr[0];
   };
   const minuteParse = value => {
