@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, FieldArray, Fields, reduxForm } from "redux-form";
+import { Fields, reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -8,14 +8,8 @@ import { ReactComponent as Arrow } from "../../recipes/arrowLeft.svg";
 // Action Creator
 import { createRecipe } from "../../../actions/recipeActions";
 
-// Single Inputs
-
-import ToggleSwitch from "./inputs/ToggleSwitch";
-
 // Field Components
-
 import CategoryInput from "./renderFields/CategoryInput";
-
 import FormStatus from "./FormStatus";
 import TitleAndImage from "./TitleAndImage";
 import Ingredients from "./Ingredients";
