@@ -1,9 +1,8 @@
 // // store regex to check validation
 const titleRegEx = /^[A-Z]{1}((\s)?[a-zA-Z0-9])+/;
 
-//!! Invalid Regular Expression does not work is safari or Firefox!!!
-//Doesn't support lookbehind
-// const amountRegEx = /^\d{0,3}(\.\d{1,2}|(?<=\d)\/\d{1,2}|(?<=\d) \d{0,2}((?<! )\/)(?<!\d)\d{1,2})?$/;
+// Alternative RegEx with no lookbehinds
+const amountRegEx = /^\d{0,3}(\.(?=\d)\d{1,2})$|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?$|^\d{1,3} [1-9]\d?\/[1-9]\d?$|^\d{1,3}$/;
 
 const ingredientNameRegEx = /^[A-Z0-9][\w ]{2,255}$/;
 let errors = {};
@@ -45,14 +44,11 @@ function validateIngredients(ingredients) {
       errors.ingredients[i] = {
         amount: `Ingredient ${i + 1} must contain an amount`
       };
+    } else if (!amountRegEx.test(ingredients[i].amount)) {
+      errors.ingredients[i] = {
+        amount: "Ingredient amount is not valid"
+      };
     }
-    //!! Invalid Regular Expression does not work is safari or Firefox!!!
-    ////Doesn't support lookbehind
-    // else if (!amountRegEx.test(ingredients[i].amount)) {
-    //   errors.ingredients[i] = {
-    //     amount: "Ingredient amount is not valid"
-    //   };
-    //}
     if (!ingredients[i].ingredient) {
       errors.ingredients[i] = {
         ...errors.ingredients[i],
