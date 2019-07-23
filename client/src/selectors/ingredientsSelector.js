@@ -61,8 +61,8 @@ const convertIngredients = (
       }
       return { ...ingredientObj, amount: roundedAmount };
     } else if (ingredientObj.unit === "gram") {
-      let roundedAmount =
-        amount <= 0.4 ? Math.ceil(amount) : Math.round(amount);
+      // round grams to nearest gram
+      let roundedAmount = amount <= 1 ? 1 : Math.round(amount);
       return { ...ingredientObj, amount: roundedAmount };
     }
     // round amount to nearest 1/4 or 1/2
@@ -123,7 +123,10 @@ const convertIngredients = (
     }
     if (ingredientObj.unit === "gram") {
       let pounds = Math.floor(ingredientObj.amount / 454);
-      let ounces = ((ingredientObj.amount % 454) / 28.35).toFixed(1);
+      // sets the decimal precision depending on amount
+      let fixedTo = ingredientObj.amount <= 1 ? 3 : 1;
+      let ounces = ((ingredientObj.amount % 454) / 28.35).toFixed(fixedTo);
+
       if (pounds > 0) {
         amounts.push({
           amount: pounds,
