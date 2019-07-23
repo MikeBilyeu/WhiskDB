@@ -32,7 +32,14 @@ export const getBrowseRecipes = browseData => (dispatch, getState) => {
 };
 
 // dispatch an action with a type of get search request
-export const getSearchRecipes = browseData => dispatch => {
+export const getSearchRecipes = browseData => (dispatch, getState) => {
+  // Get the user_id from state to check if user saved the recipe
+  const {
+    auth: {
+      user: { user_id }
+    }
+  } = getState();
+
   // dispatch a browse request
   dispatch({ type: GET_BROWSE_REQUEST });
 
@@ -42,7 +49,7 @@ export const getSearchRecipes = browseData => dispatch => {
 
   // make axios request
   axios
-    .get("/search-recipe", { params: { browseData } })
+    .get("/search-recipe", { params: { browseData, user_id } })
     .then(res => {
       dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
     })

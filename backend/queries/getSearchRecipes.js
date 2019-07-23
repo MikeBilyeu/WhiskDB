@@ -12,6 +12,7 @@ const pool = new Pool({
 
 const getSearchRecipes = (request, response) => {
   let { search } = JSON.parse(request.query.browseData.toLowerCase());
+  const { user_id } = request.query;
   search = search.trim();
   //connect pool
   pool.connect().then(client => {
@@ -23,7 +24,10 @@ const getSearchRecipes = (request, response) => {
         ELSE (count(lr.*) / CAST (COUNT(lr.*) + COUNT(dr.*) AS FLOAT)) * 5
         END
         AS rating,
-        CAST(COUNT(lr.*) + COUNT(dr.*) AS INTEGER) AS votes FROM recipes r
+        CAST(COUNT(lr.*) + COUNT(dr.*) AS INTEGER) AS votes,
+        CASE WHEN EXISTS ( SELECT * FROM saved_recipes WHERE saved_by = $2 AND
+          recipe_saved = r.recipe_id)
+        THEN 1::INTEGER ELSE 0::INTEGER END AS saved FROM recipes r
         LEFT JOIN users u ON r.created_by = u.user_id
         LEFT JOIN liked_recipes lr ON r.recipe_id = lr.recipe_liked
         LEFT JOIN disliked_recipes dr ON r.recipe_id = dr.recipe_disliked
@@ -31,7 +35,7 @@ const getSearchRecipes = (request, response) => {
         GROUP BY r.recipe_id, u.user_id
         ORDER BY rating DESC, votes DESC;
 `,
-        [search]
+        [search, user_id]
       )
       .then(res => {
         client.release();
