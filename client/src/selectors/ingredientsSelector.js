@@ -5,21 +5,21 @@ const ingredientListSelector = state => state.recipe.recipe.ingredients;
 const convertedServingsSelector = state => state.recipe.convertedServings;
 const servingsSelector = state => state.recipe.recipe.servings;
 
-const measuringIncrements = [
-  237,
-  177,
-  158,
-  118,
-  79,
-  59,
-  45,
-  30,
-  15,
-  10,
-  5,
-  2.5,
-  1.25,
-  0.63
+const metricIncrements = [
+  237, // 1 cup
+  177, // 3/4 cup
+  158, // 2/3 cup
+  118, // 1/2 cup
+  79, // 1/3 cup
+  59, // 1/4 cup
+  45, // 3 Tbsp
+  30, // 2 Tbsp
+  15, // 1 Tbsp
+  10, // 2 tsp
+  5, // 1 tsp
+  2.5, // 1/2 tsp
+  1.25, // 1/4 tsp
+  0.63 // 1/8 tsp
 ];
 
 const convertIngredients = (
@@ -29,6 +29,7 @@ const convertIngredients = (
   ingredientList
 ) => {
   const roundedMetricAmounts = ingredientList.map(ingredientObj => {
+    // Adjust the amount if the servings is adjusted
     const amount = ingredientObj.amount * (convertedServings / servings);
 
     if (ingredientObj.unit === "milliliter") {
@@ -42,15 +43,19 @@ const convertIngredients = (
           break;
         }
 
-        for (let i = 0; i < measuringIncrements.length; i++) {
+        // this rounds the amounts to nearest measuring utensil (US)
+        // e.g. 239ml -> 237ml (1 cup US)
+        for (let i = 0; i < metricIncrements.length; i++) {
+          // end loop if the remainder is trivial
           if (remainder < threshold) {
-            i = measuringIncrements.length;
-          } else if (remainder >= measuringIncrements[i] - threshold) {
-            remainder -= measuringIncrements[i];
+            i = metricIncrements.length;
+          } else if (remainder >= metricIncrements[i] - threshold) {
+            // remove the largest increment from the remainder
+            remainder -= metricIncrements[i];
+            // add the largest increment to the rounded amount
+            roundedAmount += metricIncrements[i];
 
-            roundedAmount += measuringIncrements[i];
-
-            i = measuringIncrements.length;
+            i = metricIncrements.length;
           }
         }
       }
@@ -70,7 +75,7 @@ const convertIngredients = (
   });
 
   const USIngredientList = roundedMetricAmounts.map(ingredientObj => {
-    const USMeasuringIncrements = [
+    const UsIncrements = [
       ["1", "cup"],
       ["3/4", "cup"],
       ["2/3", "cup"],
@@ -92,21 +97,21 @@ const convertIngredients = (
 
     if (ingredientObj.unit === "milliliter") {
       while (remainder >= 0.63) {
-        for (let i = 0; i < measuringIncrements.length; i++) {
-          if (remainder >= measuringIncrements[i]) {
-            if (remainder >= measuringIncrements[0]) {
+        for (let i = 0; i < metricIncrements.length; i++) {
+          if (remainder >= metricIncrements[i]) {
+            if (remainder >= metricIncrements[0]) {
               amounts.push({
-                amount: Math.floor(remainder / measuringIncrements[0]),
-                unit: USMeasuringIncrements[0][1]
+                amount: Math.floor(remainder / metricIncrements[0]),
+                unit: UsIncrements[0][1]
               });
               remainder -=
-                Math.floor(remainder / measuringIncrements[0]) *
-                measuringIncrements[0];
+                Math.floor(remainder / metricIncrements[0]) *
+                metricIncrements[0];
             } else {
-              remainder -= measuringIncrements[i];
+              remainder -= metricIncrements[i];
               amounts.push({
-                amount: USMeasuringIncrements[i][0],
-                unit: USMeasuringIncrements[i][1]
+                amount: UsIncrements[i][0],
+                unit: UsIncrements[i][1]
               });
             }
           } else if (remainder < 0.63) {
