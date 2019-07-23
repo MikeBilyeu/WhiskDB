@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { getBrowseRecipes } from "../../../actions/browseActions";
+import {
+  getBrowseRecipes,
+  getSearchRecipes
+} from "../../../actions/browseActions";
 
 import { Loading } from "../../loading/Loading";
 import RecipeDisplay from "../../recipes/recipe-display/RecipeDisplay";
@@ -13,7 +16,11 @@ import "./results-styles.css";
 
 class Results extends React.Component {
   componentDidMount() {
-    this.props.getBrowseRecipes(this.props.browseData, this.props.user_id);
+    if (this.props.browseData.search === "") {
+      this.props.getBrowseRecipes(this.props.browseData);
+    } else {
+      this.props.getSearchRecipes(this.props.browseData);
+    }
   }
 
   renderRecipeList = () => {
@@ -59,5 +66,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getBrowseRecipes }
+  { getBrowseRecipes, getSearchRecipes }
 )(Results);
