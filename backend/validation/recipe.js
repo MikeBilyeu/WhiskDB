@@ -1,9 +1,9 @@
 module.exports = function validateRecipeInput(data) {
   let errors = {};
   // store regex to check validation
-  const titleRegEx = /^[A-Z]{1}((\s)?[a-zA-Z0-9\(\)])+$/;
+  const titleRegEx = /^[A-Z0-9](( )?[a-zA-Z0-9()-\/]){2,55}$/;
   const amountRegEx = /^\d{0,3}(\.(?=\d)\d{1,2})$|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?$|^\d{1,3} [1-9]\d?\/[1-9]\d?$|^\d{1,3}$/;
-  const ingredientNameRegEx = /^[A-Z0-9][\w ]{2,55}$/;
+  const ingredientNameRegEx = /^[A-Z0-9](( )?[a-zA-Z0-9-\/]){2,55}$/;
 
   // Keep Recipe form inputs consistant w/ validation
 
@@ -57,10 +57,10 @@ module.exports = function validateRecipeInput(data) {
       if (!data.directions[i].step) {
         errors.directions = `Directions are required`;
       } else if (
-        data.directions[i].step.length < 15 ||
+        data.directions[i].step.length < 3 ||
         data.directions[i].step.length > 640
       ) {
-        errors.directions = "Directions must be 15 - 640 characters";
+        errors.directions = "Directions must be 3 - 640 characters";
       }
     }
   }
