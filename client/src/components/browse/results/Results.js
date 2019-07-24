@@ -46,7 +46,7 @@ class Results extends React.Component {
             display: "grid",
             gridGap: "2rem",
             gridTemplateColumns: "repeat(auto-fit, minmax(18rem, 1fr))",
-            padding: ".5rem",
+            padding: ".3rem",
             listStyleType: "none",
             listStyle: "none"
           }}
