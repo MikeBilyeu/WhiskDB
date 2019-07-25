@@ -39,7 +39,7 @@ class Results extends React.Component {
       return <NoResults />;
     }
     return (
-      <div results>
+      <div>
         <ClearFilters numOfResults={this.props.recipes.recipes.length} />
         <ul
           style={{
