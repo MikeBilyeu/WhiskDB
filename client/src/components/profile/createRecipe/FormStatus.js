@@ -3,11 +3,13 @@ import { getFormSyncErrors } from "redux-form";
 import { connect } from "react-redux";
 
 const FormStatus = props => {
+  // render the visual status of the page number
+
   return (
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+        gridTemplateColumns: "2fr 3fr 2fr",
         placeItems: "center",
         borderBottom: "solid 1px #B7B7B7",
         color: "#464646",
@@ -27,7 +29,27 @@ const FormStatus = props => {
       >
         Previous
       </div>
-
+      <div
+        style={{
+          backgroundColor: "#E3E3E3",
+          width: "100%",
+          height: ".5rem",
+          overflow: "hidden",
+          borderRadius: "1rem",
+          marginTop: ".5rem"
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "#0172C4",
+            width: `${(props.page / 6) * 100}%`,
+            height: ".5rem",
+            transition: "width 1s",
+            borderTopRightRadius: "5rem",
+            borderBottomRightRadius: "5rem"
+          }}
+        ></div>
+      </div>
       <div
         style={{
           visibility: props.page <= 5 ? "visible" : "hidden",
