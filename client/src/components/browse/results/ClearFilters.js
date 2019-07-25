@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { getBrowseRecipes } from "../../../actions/browseActions";
 
-const ClearFilters = ({ numOfResults, getBrowseRecipes }) => {
+const ClearFilters = ({ recipes, getBrowseRecipes }) => {
   const handleClick = () => {
     getBrowseRecipes({
       search: "",
@@ -17,8 +17,8 @@ const ClearFilters = ({ numOfResults, getBrowseRecipes }) => {
   return (
     <div className="results_clear">
       <div className="numOfResults">
-        ({numOfResults}) Result
-        {numOfResults === 1 ? "" : "s"}
+        ({recipes.length}) Result
+        {recipes.length === 1 ? "" : "s"}
       </div>
       <div onClick={handleClick} className="clear-filters">
         Clear Filters
@@ -27,7 +27,11 @@ const ClearFilters = ({ numOfResults, getBrowseRecipes }) => {
   );
 };
 
+const mapSateToProps = state => {
+  return { recipes: state.browseRecipes.recipes };
+};
+
 export default connect(
-  null,
+  mapSateToProps,
   { getBrowseRecipes }
 )(ClearFilters);

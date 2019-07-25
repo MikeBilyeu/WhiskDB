@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import HomeHeader from "./header/HomeHeader";
 import Filter from "./filter/Filter";
+import ClearFilters from "./results/ClearFilters";
 import Results from "./results/Results";
 
 const mealOptions = [
@@ -46,6 +47,7 @@ const Home = props => {
       {props.buttonToggled ? (
         <Filter filterOptions={options} filterType={type} />
       ) : null}
+      <ClearFilters />
       <Results />
     </div>
   );

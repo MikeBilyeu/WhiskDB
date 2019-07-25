@@ -9,7 +9,6 @@ import {
 import { Loading } from "../../loading/Loading";
 import RecipeDisplay from "../../recipes/recipe-display/RecipeDisplay";
 import NoResults from "./NoResults";
-import ClearFilters from "./ClearFilters";
 
 //styles
 import "./results-styles.css";
@@ -40,7 +39,6 @@ class Results extends React.Component {
     }
     return (
       <div>
-        <ClearFilters numOfResults={this.props.recipes.recipes.length} />
         <ul
           style={{
             display: "grid",
