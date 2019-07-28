@@ -2,6 +2,8 @@ import React from "react";
 import "./auth-styles.css";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class Auth extends React.Component {
   constructor(props) {
@@ -9,6 +11,18 @@ class Auth extends React.Component {
     this.state = {
       login: true
     };
+  }
+  componentDidMount() {
+    // If logged in and user auth redirect to profile
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/profile");
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      // push user to profile when they login
+      this.props.history.push("/profile");
+    }
   }
 
   handleLoginClick = () => {
@@ -40,6 +54,10 @@ class Auth extends React.Component {
   }
 }
 
-export default Auth;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(withRouter(Auth));
 
 // single component that renders auth or login by setAuthToken

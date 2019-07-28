@@ -1,18 +1,10 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 
 class Signup extends Component {
-  componentDidMount() {
-    // If logged in and user auth redirect to profile
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/profile");
-    }
-  }
-
   renderInput = ({ input, meta, placeholder, inputId, type = "text" }) => {
     return (
       <input
@@ -26,14 +18,15 @@ class Signup extends Component {
   };
 
   onFormSubmit = formValues => {
-    console.log(formValues);
     const newUser = {
       username: formValues.username,
       email: formValues.email,
       password: formValues.password,
       password2: formValues.password2
     };
-    this.props.registerUser(newUser, this.props.history);
+    this.props.registerUser(newUser);
+    // since we handle the redirect within our component,
+    // we don't need to pass in this.props.history as a parameter
   };
 
   render() {
@@ -122,19 +115,13 @@ const validate = formValues => {
 };
 
 Signup.propTypes = {
-  registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  registerUser: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
-  // errors: state.errors
-});
-
 Signup = connect(
-  mapStateToProps,
+  null,
   { registerUser }
-)(withRouter(Signup));
+)(Signup);
 
 export default reduxForm({
   form: "Signup",

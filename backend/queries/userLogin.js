@@ -25,6 +25,8 @@ const userLogin = (request, response) => {
   }
   const email = request.body.email;
   const password = request.body.password;
+  console.log(email);
+  console.log(password);
 
   // Swap out mongodb for postgresql
 

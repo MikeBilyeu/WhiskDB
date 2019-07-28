@@ -3,10 +3,17 @@ import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 // Register User
-export const registerUser = (userData, history) => dispatch => {
+export const registerUser = userData => dispatch => {
+  // first register the user if the user successfully register
+  // dispatch a login action signup component will watch for user auth and
+  // redirect to /profile page if authenticated
   axios
     .post("/register", userData)
-    .then(res => history.push("/login")) // re-direct to login on successful register
+    .then(res => {
+      dispatch(
+        loginUser({ email: userData.email, password: userData.password })
+      );
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -14,6 +21,7 @@ export const registerUser = (userData, history) => dispatch => {
       })
     );
 };
+
 // Login - get user token
 export const loginUser = userData => dispatch => {
   axios

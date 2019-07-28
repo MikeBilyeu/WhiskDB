@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
@@ -8,13 +7,6 @@ import { loginUser } from "../../actions/authActions";
 import "./auth-styles.css";
 
 class Login extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      // push user to profile when they login
-      this.props.history.push("/profile");
-    }
-  }
-
   renderInput = ({ input, meta, placeholder, inputId, type = "text" }) => {
     return (
       <input
@@ -84,19 +76,13 @@ const validate = formValues => {
 };
 
 Login.propTypes = {
-  loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  loginUser: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
-  // errors: state.errors
-});
-
 Login = connect(
-  mapStateToProps,
+  null,
   { loginUser }
-)(withRouter(Login));
+)(Login);
 
 export default reduxForm({
   form: "login",
