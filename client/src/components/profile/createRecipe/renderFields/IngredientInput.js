@@ -18,7 +18,6 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
     <div>
       {fields.map((ingredient, index) => (
         <div key={index}>
-          <h5 className="ingredient-num">Ingredient {index + 1}</h5>
           <div className="fields ingredients">
             <Field
               name={`${ingredient}.ingredient`}
@@ -50,22 +49,10 @@ const IngredientInput = ({ fields = {}, meta: { touched, error } }) => {
               parse={textParse}
             />
           </div>
-          <div className="ui divider" />
         </div>
       ))}
 
       <div className="add-remove-button">
-        <div
-          className="button remove"
-          type="button"
-          onClick={() => {
-            if (fields.length > 1) {
-              fields.remove(fields.length - 1);
-            }
-          }}
-        >
-          Remove
-        </div>
         <div
           className="button add"
           type="button"
