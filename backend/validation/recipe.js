@@ -29,12 +29,15 @@ module.exports = function validateRecipeInput(data) {
     errors.servings = "Servings is not valid";
   }
 
-  // Making sure user enters two or more ingredients for the recipe
-  if (data.ingredients && data.ingredients.length < 1) {
+  // Making sure user enters one or more ingredients for the recipe
+  if (data.ingredients && data.ingredients.length < 2) {
     errors.ingredients = "Must add more ingredients";
   } else if (data.ingredients) {
-    // Loop through ingredients array to validate each ingredient object
-    for (let i = 0; i < data.ingredients.length; i++) {
+    // Loop through ingredients array to validate each ingredient
+    // don't check last ingredient it will be removed
+    const numOfIngredients =
+      data.ingredients.length - 1 || data.ingredients.length || 0;
+    for (let i = 0; i < numOfIngredients; i++) {
       // validate user enters an amount and ingredient name
       if (!data.ingredients[i].amount && !data.ingredients[i].ingredient) {
         errors.ingredients =

@@ -87,7 +87,8 @@ const createRecipe = (request, response) => {
   const timeHours = time.hours > 0 ? time.hours : 0;
   const timeMinutes = time.minutes > 0 ? parseInt(time.minutes) : 0;
   const total_time_mins = timeHours * 60 + timeMinutes;
-
+  // remove the empty ingredient before formating
+  ingredients.pop();
   let metricIngredients = formatIngredientList(ingredients);
 
   pool.connect().then(client => {

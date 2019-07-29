@@ -61,6 +61,11 @@ function validateIngredients(ingredients) {
         ...errors.ingredients[i],
         ingredient: `Ingredient ${i + 1} ingredient name is not valid`
       };
+    } else if (numOfIngredients < 2) {
+      errors.ingredients[i] = {
+        ...errors.ingredients[i],
+        ingredient: `Click add button to add ingredient`
+      };
     }
   }
   const noErrors =
