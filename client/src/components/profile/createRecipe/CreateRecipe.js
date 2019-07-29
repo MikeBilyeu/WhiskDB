@@ -19,7 +19,7 @@ import TagAndSubmit from "./TagAndSubmit";
 
 import "./create-recipe-styles.css";
 
-class EditNewRecipe extends React.Component {
+class CreateRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -117,10 +117,10 @@ const mapSateToProps = state => {
   };
 };
 
-EditNewRecipe = connect(
+CreateRecipe = connect(
   mapSateToProps,
   { createRecipe }
-)(EditNewRecipe);
+)(CreateRecipe);
 
 export default reduxForm({
   form: "newRecipe",
@@ -131,4 +131,4 @@ export default reduxForm({
     privateRecipe: false,
     categories: { diet: {}, meal: {} }
   }
-})(withRouter(EditNewRecipe));
+})(withRouter(CreateRecipe));

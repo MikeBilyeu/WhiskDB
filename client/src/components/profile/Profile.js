@@ -9,13 +9,13 @@ import MyRecipes from "./MyRecipes";
 import Contact from "./Contact";
 import EditProfile from "./EditProfile";
 import Button from "./Button";
-import EditNewRecipe from "./createRecipe/EditNewRecipe";
+import CreateRecipe from "./createRecipe/CreateRecipe";
 
 class Profile extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path="/profile/create-recipe" component={EditNewRecipe} />
+        <Route path="/profile/create-recipe" component={CreateRecipe} />
         <Route path="/profile/edit" component={EditProfile} />
         <Route path="/profile/my-recipes" component={MyRecipes} />
         <Route path="/profile/saved-recipes" component={SavedRecipes} />
