@@ -85,13 +85,15 @@ span.error {
   font-size: 1.5rem;
   font-weight: normal;
   color: #464646;
+  margin: 0;
+  margin-bottom: 1rem;
 }
 
 .add-remove-button {
   display: grid;
   grid-auto-flow: column;
   grid-gap: 1rem;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 .add-remove-button .button {
@@ -106,15 +108,14 @@ span.error {
 .ingredients {
   border: solid #bfbfbf 1px;
   border-radius: 0.5rem;
-  padding: 2rem 0.5rem;
-  margin-bottom: 5rem;
+  padding: 1rem 0.5rem;
   display: grid;
   grid-template-areas:
     "amt"
     "unit"
     "ing"
     "prep";
-  grid-gap: 2rem;
+  grid-gap: 0.5rem;
 }
 
 .ingredient-num {
