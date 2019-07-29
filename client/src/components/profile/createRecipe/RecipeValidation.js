@@ -35,7 +35,9 @@ function validateIngredients(ingredients) {
   // set errors to an empty array beacuse ingredients input is a FieldArray
   errors.ingredients = [];
 
-  const numOfIngredients = ingredients.length || 0;
+  // don't validate last ingredient, it should be empty but must be
+  // at least 1 valid ingredient
+  const numOfIngredients = ingredients.length - 1 || ingredients.length || 0;
 
   for (let i = 0; i < numOfIngredients; i++) {
     errors.ingredients.push({});
