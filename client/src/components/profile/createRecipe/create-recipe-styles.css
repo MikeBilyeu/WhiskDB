@@ -106,10 +106,6 @@ span.error {
 }
 
 .ingredients {
-  display: grid;
-  grid-template-areas:
-    "amt unit"
-    "ing prep";
   grid-column-gap: 1rem;
 }
 
@@ -117,27 +113,9 @@ span.error {
   border: none;
   border-bottom: solid #bfbfbf 1px;
   border-radius: 0;
+  width: 100%;
 }
 
-.ingredient-num {
-  margin: 0.5rem 0 !important;
-}
-
-.ingredient {
-  grid-area: ing;
-}
-
-.amount {
-  grid-area: amt;
-}
-
-.unit {
-  grid-area: unit;
-}
-
-.prep {
-  grid-area: prep;
-}
 .recipe-form select {
   outline: none;
   padding: 10px 35px 10px 10px;

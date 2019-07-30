@@ -37,8 +37,13 @@ const TitleAndImage = props => {
   );
 };
 
+// export default reduxForm({
+//   form: "newRecipe",
+//   destroyOnUnmount: false,
+//   validate: ValidateTitle
+// })(TitleAndImage);
+
 export default reduxForm({
   form: "newRecipe",
-  destroyOnUnmount: false,
-  validate: ValidateTitle
+  destroyOnUnmount: false
 })(TitleAndImage);
