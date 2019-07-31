@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, change } from "redux-form";
+import { Field } from "redux-form";
 import { getFormSyncErrors } from "redux-form";
 import { connect } from "react-redux";
 import { formValueSelector } from "redux-form";
@@ -42,14 +42,8 @@ class IngredientInput extends React.Component {
     //when user clickes the add button run validation on that value
     //if it is valid change form state
     this.state = {
-      ingredientNum: props.ingredients.length - 1,
       ingredientValue: ""
     };
-  }
-  componentDidMount() {
-    this.setState((state, props) => {
-      return { ingredientNum: state.ingredientNum + 1 };
-    });
   }
 
   // capitalize = value => {
@@ -75,17 +69,8 @@ class IngredientInput extends React.Component {
             className="ingredient"
             onChange={this.handleChange}
             value={this.state.ingredientValue}
-            placeholder="E.g. Red Bell Pepper"
+            placeholder="e.g. 1 1/2 Cup Bread Crumbs (Dry)"
           />
-          {/*<Field
-            name={`ingredients.${this.state.ingredientNum}`}
-            component={TextInput}
-            label="Ingredient"
-            addClass="full-input ingredient"
-            placeholder="E.g. Red Bell Pepper"
-            normalize={this.capitalize}
-            parse}={this.textParse}
-          />*/}
         </div>
 
         <div className="add-remove-button">
@@ -96,14 +81,12 @@ class IngredientInput extends React.Component {
               // run validion
               //if valid
               this.props.change(
-                `ingredients[${this.state.ingredientNum}]`,
+                `ingredients[${this.props.ingredients.length}]`,
                 this.state.ingredientValue
               );
+
               this.setState((state, props) => {
-                return {
-                  ingredientNum: state.ingredientNum + 1,
-                  ingredientValue: ""
-                };
+                return { ingredientValue: "" };
               });
               //else display warning
             }}

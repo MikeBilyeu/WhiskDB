@@ -23,7 +23,7 @@ const ingredients = props => {
     <div>
       <h4>Ingredients</h4>
       <IngredientInput change={props.change} />
-      <IngredientOutput />
+      <IngredientOutput change={props.change} />
     </div>
   );
 };
