@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { formValueSelector } from "redux-form";
+import { formValueSelector, Field } from "redux-form";
+
+import TextInput from "../inputs/TextInput";
 const selector = formValueSelector("newRecipe");
 
 //convert to class component
@@ -11,15 +13,12 @@ const selector = formValueSelector("newRecipe");
 class IngredientOutput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      toggleRemove: false,
-      toggleEdit: false
-    };
+    this.state = { toggleEdit: false };
   }
 
-  handleRemoveClick = () => {
+  handleEditClick = () => {
     this.setState(prevState => {
-      return { toggleRemove: !prevState.toggleRemove };
+      return { toggleEdit: !prevState.toggleEdit };
     });
   };
 
@@ -32,22 +31,32 @@ class IngredientOutput extends React.Component {
   render() {
     return (
       <div>
-        <div onClick={this.handleRemoveClick}>Remove</div>
+        <div onClick={this.handleEditClick}>Edit</div>
         <div>
           {this.props.ingredients.map((ingredient, i, arr) => {
             return (
-              <div key={ingredient + i}>
-                {this.state.toggleRemove ? (
-                  <div
-                    style={{ color: "red" }}
-                    onClick={() => {
-                      this.handleDeleteClick(i);
-                    }}
-                  >
-                    -
+              <div key={i} draggable>
+                {this.state.toggleEdit ? (
+                  <div>
+                    <div
+                      style={{ color: "red" }}
+                      onClick={() => {
+                        this.handleDeleteClick(i);
+                      }}
+                    >
+                      -
+                    </div>
+                    <Field
+                      addClass={"full-input"}
+                      name={`ingredients[${i}]`}
+                      component={TextInput}
+                      placeholder="e.g. 1 1/2 Cup Bread Crumbs (Dry)"
+                    />
                   </div>
-                ) : null}
-                <div key={"ingredient " + i}>{ingredient}</div>
+                ) : (
+                  <div key={i}>{ingredient}</div>
+                )}
+                <div>drag icon</div>
               </div>
             );
           })}

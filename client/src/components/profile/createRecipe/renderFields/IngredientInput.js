@@ -58,6 +58,18 @@ class IngredientInput extends React.Component {
     this.setState({ ingredientValue: e.target.value });
   };
 
+  handleKeyDown = e => {
+    if (e.key == "Enter") {
+      this.props.change(
+        `ingredients[${this.props.ingredients.length}]`,
+        this.state.ingredientValue
+      );
+      this.setState((state, props) => {
+        return { ingredientValue: "" };
+      });
+    }
+  };
+
   render() {
     return (
       <div>
@@ -68,6 +80,7 @@ class IngredientInput extends React.Component {
           <input
             className="ingredient"
             onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
             value={this.state.ingredientValue}
             placeholder="e.g. 1 1/2 Cup Bread Crumbs (Dry)"
           />
