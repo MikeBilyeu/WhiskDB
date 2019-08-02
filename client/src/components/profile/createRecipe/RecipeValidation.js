@@ -4,6 +4,8 @@ const titleRegEx = /^[A-Z0-9](( )?[a-zA-Z0-9()-\/]){2,55}$/;
 // Alternative RegEx with no lookbehinds
 const amountRegEx = /^\d{0,3}(\.(?=\d)\d{1,2})$|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?$|^\d{1,3} [1-9]\d?\/[1-9]\d?$|^\d{1,3}$/;
 
+const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) [a-z\d-,\/ ]{3,50}( \([a-z0-9-,\/ ]{1,45}\))?$/;
+
 const ingredientNameRegEx = /^[A-Z0-9](( )?[a-zA-Z0-9-\/]){2,55}$/;
 let errors = {};
 
@@ -34,42 +36,22 @@ function validateServings(servings) {
 function validateIngredients(ingredients) {
   // set errors to an empty array beacuse ingredients input is a FieldArray
   errors.ingredients = [];
+  // check if ingredietns array is empty
+  if (!ingredients.length) {
+    errors.ingredients.push("Add at least one ingredient");
+  } else {
+    for (let i = 0; i < ingredients.length; i++) {
+      errors.ingredients.push(null);
 
-  // don't validate last ingredient, it should be empty but must be
-  // at least 1 valid ingredient
-  const numOfIngredients = ingredients.length - 1 || ingredients.length || 0;
-
-  for (let i = 0; i < numOfIngredients; i++) {
-    errors.ingredients.push({});
-    // validate user enters an amount and ingredient name for each ingredient
-    if (!ingredients[i].amount) {
-      errors.ingredients[i] = {
-        amount: `Ingredient ${i + 1} must contain an amount`
-      };
-    } else if (!amountRegEx.test(ingredients[i].amount)) {
-      errors.ingredients[i] = {
-        amount: "Ingredient amount is not valid"
-      };
-    }
-    if (!ingredients[i].ingredient) {
-      errors.ingredients[i] = {
-        ...errors.ingredients[i],
-        ingredient: `Ingredient ${i + 1} must contain an ingredient name`
-      };
-    } else if (!ingredientNameRegEx.test(ingredients[i].ingredient)) {
-      errors.ingredients[i] = {
-        ...errors.ingredients[i],
-        ingredient: `Ingredient ${i + 1} ingredient name is not valid`
-      };
-    } else if (numOfIngredients < 2) {
-      errors.ingredients[i] = {
-        ...errors.ingredients[i],
-        ingredient: `Click add button to add ingredient`
-      };
+      if (!ingredientRegEx.test(ingredients[i])) {
+        errors.ingredients[i] = "Ingredient is not valid";
+      }
     }
   }
+
   const noErrors =
-    errors.ingredients.findIndex(obj => JSON.stringify(obj) !== "{}") < 0;
+    // check if array contains !null vlaue
+    errors.ingredients.findIndex(str => str !== null) === -1;
 
   if (noErrors) {
     delete errors.ingredients;
@@ -95,7 +77,8 @@ function validateDirections(directions) {
   }
 
   const noErrors =
-    errors.directions.findIndex(obj => JSON.stringify(obj) !== "{}") < 0;
+    // find index of !empty object or not found return -1 check if -1
+    errors.directions.findIndex(obj => JSON.stringify(obj) !== "{}") === -1;
 
   if (noErrors) {
     delete errors.directions;

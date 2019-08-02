@@ -54,6 +54,11 @@ class CreateRecipe extends React.Component {
   //   e.preventDefault();
   // };
 
+  handleKeyDown = e => {
+    if (e.key == "Enter") {
+      e.preventDefault();
+    }
+  };
   render() {
     const categoryNames = [
       "categories.diet.vegetarian",
@@ -103,6 +108,7 @@ class CreateRecipe extends React.Component {
         <form
           className="recipe-form"
           onSubmit={this.props.handleSubmit(this.handleSubmit)}
+          onKeyDown={this.handleKeyDown}
         >
           {formPage}
         </form>
