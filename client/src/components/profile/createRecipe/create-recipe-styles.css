@@ -56,11 +56,15 @@ span.error {
   padding: 0.5rem;
 }
 
+.full-input {
+  width: 100%;
+}
 .full-input input {
   border: solid #bfbfbf 1px;
   border-radius: 10rem;
   font-size: 1rem;
   padding: 0.5rem 0.8rem;
+  width: 100%;
 }
 
 .cr-servings {
@@ -79,14 +83,13 @@ span.error {
 }
 
 .recipe-form h4 {
-  border-bottom: solid #e3e3e3 1px;
   text-align: center;
   padding: 1rem;
+  padding-bottom: 0;
   font-size: 1.5rem;
   font-weight: normal;
   color: #464646;
   margin: 0;
-  margin-bottom: 1rem;
 }
 
 .add-remove-button {

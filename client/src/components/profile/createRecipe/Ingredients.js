@@ -22,8 +22,8 @@ const ingredients = props => {
   return (
     <div>
       <h4>Ingredients</h4>
-      <IngredientInput change={props.change} />
       <IngredientOutput change={props.change} />
+      <IngredientInput change={props.change} />
     </div>
   );
 };

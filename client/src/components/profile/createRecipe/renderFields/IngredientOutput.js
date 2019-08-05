@@ -45,6 +45,9 @@ class IngredientOutput extends React.Component {
 
   handleEditClick = () => {
     this.setState(prevState => {
+      if (!this.props.ingredients.length) {
+        return { toggleEdit: false };
+      }
       if (this.props.syncErrors.ingredients) {
         return { toggleEdit: true };
       }
@@ -56,25 +59,62 @@ class IngredientOutput extends React.Component {
     let modIngredients = [...this.props.ingredients];
     modIngredients.splice(i, 1);
     this.props.change(`ingredients`, modIngredients);
+    if (!modIngredients.length) {
+      this.setState({ toggleEdit: false });
+    }
   };
 
   render() {
     return (
-      <div>
-        <div onClick={this.handleEditClick}>Edit</div>
-        <div>
+      <div style={{ display: "grid", alignItems: "center" }}>
+        <div
+          style={{
+            justifySelf: "end",
+            cursor: "pointer",
+            padding: ".3rem .5rem",
+            color: this.state.toggleEdit ? "#0172C4" : "inherit"
+          }}
+          onClick={this.handleEditClick}
+        >
+          Edit
+        </div>
+        <div
+          style={{
+            borderTop: "solid #E3E3E3 .01rem",
+            marginBottom: "2rem",
+            padding: "1rem 0",
+            width: "100%",
+            justifySelf: "center"
+          }}
+        >
           {this.props.ingredients.map((ingredient, i, arr) => {
             return (
               <div key={i}>
                 {this.state.toggleEdit ? (
-                  <div>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "2.5rem 1fr",
+                      placeItems: "center",
+                      gridGap: ".1rem"
+                    }}
+                  >
                     <div
-                      style={{ color: "red" }}
+                      style={{
+                        color: "red",
+                        border: "solid #BFBFBF .08rem",
+                        borderRadius: "100%",
+                        width: "2.5rem",
+                        height: "2.5rem",
+                        lineHeight: "2.3rem",
+                        textAlign: "center",
+                        cursor: "pointer"
+                      }}
                       onClick={() => {
                         this.handleDeleteClick(i);
                       }}
                     >
-                      Delete
+                      -
                     </div>
                     <Field
                       addClass={"full-input"}

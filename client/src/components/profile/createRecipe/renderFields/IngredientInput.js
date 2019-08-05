@@ -34,7 +34,7 @@ Field compnent and update ++ the ingredient number
 
  */
 
-const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) [a-z\d-,\/ ]{3,50}( \([a-z0-9-,\/ ]{1,45}\))?$/;
+const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) ([a-z\d-,\/+] *){3,40}( \( *([a-z0-9-,\/+] *){1,40}\) *)?$/i;
 // Renders all of the ingredient fields i.e. ingredient, unit, amount
 class IngredientInput extends React.Component {
   constructor(props) {
@@ -65,7 +65,10 @@ class IngredientInput extends React.Component {
 
   handleAddClick = () => {
     if (!ingredientRegEx.test(this.state.ingredientValue)) {
-      this.setState({ error: "Ingredient is not valid" });
+      this.setState({
+        error:
+          "Ingredient is not in a valid format: Amount, Unit, Ingredient, (prep)"
+      });
     } else {
       // run validion
       //if valid
@@ -84,7 +87,10 @@ class IngredientInput extends React.Component {
   handleKeyDown = e => {
     if (e.key == "Enter") {
       if (!ingredientRegEx.test(this.state.ingredientValue)) {
-        this.setState({ error: "Ingredient is not valid" });
+        this.setState({
+          error:
+            "Ingredient is not in a valid format: Amount, Unit, Ingredient, (prep)"
+        });
       } else {
         this.props.change(
           `ingredients[${this.props.ingredients.length}]`,
@@ -100,31 +106,55 @@ class IngredientInput extends React.Component {
   render() {
     return (
       <div>
-        <div className="fields ingredients">
-          {/*insert label
-        // insert input
-          */}
+        <label for="ingredientInput">Ingredient</label>
+        <div
+          style={{
+            width: "100%",
+            display: "grid",
+            gridTemplateColumns: "1fr 2.5rem",
+            placeItems: "center",
+            gridGap: ".2rem"
+          }}
+        >
           <input
-            className="ingredient"
+            id="ingredientInput"
+            style={{
+              width: "100%",
+              borderRadius: "5rem",
+              fontSize: "1rem",
+              border: "solid #BFBFBF .08rem",
+              padding: ".5rem .8rem"
+            }}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             value={this.state.ingredientValue}
-            placeholder="e.g. 1 1/2 Cup Bread Crumbs (Dry)"
+            placeholder="e.g. 1 1/2 tsp Sea salt (to taste)"
           />
-        </div>
-        {this.state.error ? (
-          <span className="error">{this.state.error}</span>
-        ) : null}
-
-        <div className="add-remove-button">
           <div
-            className="button add"
+            style={{
+              color: "#0172C4",
+              border: "solid #BFBFBF .08rem",
+              borderRadius: "100%",
+              width: "2.5rem",
+              height: "2.5rem",
+              lineHeight: "2.5rem",
+              textAlign: "center",
+              cursor: "pointer"
+            }}
             type="button"
             onClick={this.handleAddClick}
           >
-            Add
+            +
           </div>
         </div>
+
+        <div style={{ marginLeft: ".8rem", fontSize: ".8rem" }}>
+          Format: Amount, Unit, Ingredient, (prep)
+        </div>
+
+        {this.state.error ? (
+          <span className="error">{this.state.error}</span>
+        ) : null}
       </div>
     );
   }
