@@ -24,15 +24,15 @@
     width: 2.2rem;
   }
   100% {
-    width: calc(100% - 2.4rem);
+    width: calc(100% - 2.5rem);
   }
 }
 @-moz-keyframes expand {
   0% {
-    width: 2.4rem;
+    width: 2.2rem;
   }
   100% {
-    width: calc(100% - 2.4rem);
+    width: calc(100% - 2.5rem);
   }
 }
 @-o-keyframes expand {
@@ -40,7 +40,7 @@
     width: 2.2rem;
   }
   100% {
-    width: calc(100% - 2.4rem);
+    width: calc(100% - 2.5rem);
   }
 }
 @keyframes expand {
@@ -49,12 +49,12 @@
   }
 
   100% {
-    width: calc(100% - 2.4rem);
+    width: calc(100% - 2.5rem);
   }
 }
 
 .searchIcon {
-  width: 2.2rem;
+  width: 2.4rem;
   cursor: pointer;
   padding: 0.5rem;
 }

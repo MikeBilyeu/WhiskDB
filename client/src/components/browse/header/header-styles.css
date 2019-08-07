@@ -13,16 +13,14 @@
 
 .whisk-title {
   width: 5rem;
+  padding-bottom: 0.8rem;
   grid-area: whisk;
   justify-self: center;
 }
 
 .sort-icon {
-  width: 2.2rem;
-  cursor: pointer;
-  grid-area: sort;
-  justify-self: start;
-  padding: 0.5rem;
+  width: 1.2rem;
+  padding-bottom: 0.1rem;
 }
 
 .filter-btn {
