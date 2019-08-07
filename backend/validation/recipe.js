@@ -29,27 +29,27 @@ module.exports = function validateRecipeInput(data) {
     errors.servings = "Servings is not valid";
   }
 
-  // Making sure user enters one or more ingredients for the recipe
-  if (data.ingredients && data.ingredients.length < 2) {
-    errors.ingredients = "Must add more ingredients";
-  } else if (data.ingredients) {
-    // Loop through ingredients array to validate each ingredient
-    // don't check last ingredient it will be removed
-    const numOfIngredients =
-      data.ingredients.length - 1 || data.ingredients.length || 0;
-    for (let i = 0; i < numOfIngredients; i++) {
-      // validate user enters an amount and ingredient name
-      if (!data.ingredients[i].amount && !data.ingredients[i].ingredient) {
-        errors.ingredients =
-          "Ingredients must contain an amount and ingredient name";
-      } else if (!amountRegEx.test(data.ingredients[i].amount)) {
-        errors.ingredients = "Ingredient amount is not valid";
-      }
-      // else if (!ingredientNameRegEx.test(data.ingredients[i].ingredient)) {
-      //   errors.ingredients = "Ingredient name is not valid";
-      // }
-    }
-  }
+  // // Making sure user enters one or more ingredients for the recipe
+  // if (data.ingredients && data.ingredients.length < 2) {
+  //   errors.ingredients = "Must add more ingredients";
+  // } else if (data.ingredients) {
+  //   // Loop through ingredients array to validate each ingredient
+  //   // don't check last ingredient it will be removed
+  //   const numOfIngredients =
+  //     data.ingredients.length - 1 || data.ingredients.length || 0;
+  //   for (let i = 0; i < numOfIngredients; i++) {
+  //     // validate user enters an amount and ingredient name
+  //     if (!data.ingredients[i].amount && !data.ingredients[i].ingredient) {
+  //       errors.ingredients =
+  //         "Ingredients must contain an amount and ingredient name";
+  //     } else if (!amountRegEx.test(data.ingredients[i].amount)) {
+  //       errors.ingredients = "Ingredient amount is not valid";
+  //     }
+  //     // else if (!ingredientNameRegEx.test(data.ingredients[i].ingredient)) {
+  //     //   errors.ingredients = "Ingredient name is not valid";
+  //     // }
+  //   }
+  // }
 
   // Making sure user enters directions
   if (data.directions && data.directions.length === 0) {
