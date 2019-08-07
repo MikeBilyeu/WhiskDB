@@ -2,8 +2,7 @@ module.exports = function validateRecipeInput(data) {
   let errors = {};
   // store regex to check validation
   const titleRegEx = /^[A-Z0-9](( )?[a-zA-Z0-9()-\/]){2,55}$/;
-  const amountRegEx = /^\d{0,3}(\.(?=\d)\d{1,2})$|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?$|^\d{1,3} [1-9]\d?\/[1-9]\d?$|^\d{1,3}$/;
-  const ingredientNameRegEx = /^[A-Z0-9](( )?[a-zA-Z0-9-\/]){2,55}$/;
+  const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) ([a-z\d-,\/+] *){3,40}( \( *([a-z0-9-,\/+] *){1,40}\) *)?$/i;
 
   // Keep Recipe form inputs consistant w/ validation
 
@@ -29,27 +28,19 @@ module.exports = function validateRecipeInput(data) {
     errors.servings = "Servings is not valid";
   }
 
-  // // Making sure user enters one or more ingredients for the recipe
-  // if (data.ingredients && data.ingredients.length < 2) {
-  //   errors.ingredients = "Must add more ingredients";
-  // } else if (data.ingredients) {
-  //   // Loop through ingredients array to validate each ingredient
-  //   // don't check last ingredient it will be removed
-  //   const numOfIngredients =
-  //     data.ingredients.length - 1 || data.ingredients.length || 0;
-  //   for (let i = 0; i < numOfIngredients; i++) {
-  //     // validate user enters an amount and ingredient name
-  //     if (!data.ingredients[i].amount && !data.ingredients[i].ingredient) {
-  //       errors.ingredients =
-  //         "Ingredients must contain an amount and ingredient name";
-  //     } else if (!amountRegEx.test(data.ingredients[i].amount)) {
-  //       errors.ingredients = "Ingredient amount is not valid";
-  //     }
-  //     // else if (!ingredientNameRegEx.test(data.ingredients[i].ingredient)) {
-  //     //   errors.ingredients = "Ingredient name is not valid";
-  //     // }
-  //   }
-  // }
+  // Making sure user enters one or more ingredients for the recipe
+  if (!data.ingredients) {
+    errors.ingredients = "Add an ingredient";
+  } else {
+    // Loop through ingredients array to validate each ingredient
+    const numOfIngredients = data.ingredients.length;
+    for (let i = 0; i < numOfIngredients; i++) {
+      // validate user enters an amount and ingredient name
+      if (!ingredientRegEx.test(data.ingredients[i])) {
+        errors.ingredients = "Ingredient amount is not valid";
+      }
+    }
+  }
 
   // Making sure user enters directions
   if (data.directions && data.directions.length === 0) {
