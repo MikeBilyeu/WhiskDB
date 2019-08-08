@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { formValueSelector, Field, getFormSyncErrors } from "redux-form";
 
 import TextInput from "../inputs/TextInput";
-const selector = formValueSelector("newRecipe");
 
 //convert to class component
 //track state for remove and edit toggle
@@ -142,6 +141,8 @@ class IngredientOutput extends React.Component {
     );
   }
 }
+
+const selector = formValueSelector("newRecipe");
 
 const mapSateToProps = state => {
   return {

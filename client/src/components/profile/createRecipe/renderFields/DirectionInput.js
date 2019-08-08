@@ -36,16 +36,38 @@ class DirectionInput extends React.Component {
       //else display warning
     }
   };
+  handleKeyDown = e => {
+    if (e.key == "Enter") {
+      if (!/.{3,640}/.test(this.state.directionValue)) {
+        this.setState({
+          error: "Directions must be 3 - 640 characters"
+        });
+      } else {
+        this.props.change(
+          `directions[${this.props.directions.length}].step`,
+          this.state.directionValue
+        );
+        this.setState((state, props) => {
+          return { directionValue: "" };
+        });
+      }
+    }
+  };
 
   render() {
     return (
       <div style={{ display: "grid" }}>
         <label htmlFor="directionInput">Directions</label>
         <textarea
+          style={{
+            maxWidth: "18rem",
+            minWidth: "18rem",
+            minHeight: "7rem",
+            maxHeight: "10rem"
+          }}
           id="directionInput"
-          rows="10"
-          cols="50"
           onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
           value={this.state.directionValue}
           placeholder="e.g. 1 1/2 tsp Sea salt (to taste)"
         ></textarea>
@@ -66,6 +88,10 @@ class DirectionInput extends React.Component {
         >
           Add +
         </div>
+
+        {this.state.error ? (
+          <span className="error">{this.state.error}</span>
+        ) : null}
       </div>
     );
   }

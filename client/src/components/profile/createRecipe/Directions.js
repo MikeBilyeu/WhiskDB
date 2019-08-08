@@ -5,11 +5,13 @@ import { FieldArray, reduxForm } from "redux-form";
 import { ValidateDirections } from "./RecipeValidation";
 
 import DirectionInput from "./renderFields/DirectionInput";
+import DirectionOutput from "./renderFields/DirectionOutput";
 
 const Directions = props => {
   return (
     <div>
       <h4>Directions</h4>
+      <DirectionOutput change={props.change} />
       <DirectionInput change={props.change} />
     </div>
   );
