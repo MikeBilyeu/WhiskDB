@@ -6,11 +6,11 @@ import { ValidateDirections } from "./RecipeValidation";
 
 import DirectionInput from "./renderFields/DirectionInput";
 
-const Directions = () => {
+const Directions = props => {
   return (
     <div>
       <h4>Directions</h4>
-      <FieldArray name="directions" component={DirectionInput} />
+      <DirectionInput change={props.change} />
     </div>
   );
 };

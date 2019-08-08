@@ -1,6 +1,5 @@
 import React from "react";
 import { Field } from "redux-form";
-import { getFormSyncErrors } from "redux-form";
 import { connect } from "react-redux";
 import { formValueSelector } from "redux-form";
 
@@ -70,8 +69,6 @@ class IngredientInput extends React.Component {
           "Ingredient is not in a valid format: Amount, Unit, Ingredient, (prep)"
       });
     } else {
-      // run validion
-      //if valid
       this.props.change(
         `ingredients[${this.props.ingredients.length}]`,
         this.state.ingredientValue
@@ -106,7 +103,7 @@ class IngredientInput extends React.Component {
   render() {
     return (
       <div>
-        <label for="ingredientInput">Ingredient</label>
+        <label htmlFor="ingredientInput">Ingredient</label>
         <div
           style={{
             width: "100%",
@@ -164,7 +161,6 @@ const selector = formValueSelector("newRecipe");
 
 const mapSateToProps = state => {
   return {
-    syncErrors: getFormSyncErrors("newRecipe")(state),
     ingredients: selector(state, "ingredients")
   };
 };

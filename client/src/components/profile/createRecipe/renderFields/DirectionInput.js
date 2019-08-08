@@ -1,54 +1,117 @@
 import React from "react";
 import { Field } from "redux-form";
+import { connect } from "react-redux";
+import { formValueSelector } from "redux-form";
 
-import TextAreaInput from "../inputs/TextAreaInput";
-// Renders all steps of directions
-const DirectionInput = ({ fields, meta: { touched, error } }) => {
-  const textParse = value => {
-    let strArr = value.match(/.{0,640}/) || [""];
-    return value && strArr[0];
+class DirectionInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      directionValue: "",
+      error: null
+    };
+  }
+
+  handleChange = e => {
+    if (/.{3,640}/.test(this.state.directionValue)) {
+      this.setState({ error: null });
+    }
+    this.setState({ directionValue: e.target.value });
   };
-  return (
-    <div>
-      {fields.map((step, index) => (
-        <div key={index}>
-          <div className="field">
-            <Field
-              name={`${step}.step`}
-              component={TextAreaInput}
-              label={`Step ${index + 1}`}
-              parse={textParse}
-              placeholder="Set oven to 375(f)..."
-            />
-          </div>
-        </div>
-      ))}
-      <div className="add-remove-button">
+
+  handleAddClick = () => {
+    if (!/.{3,640}/.test(this.state.directionValue)) {
+      this.setState({
+        error: "Directions must be 3 - 640 characters"
+      });
+    } else {
+      this.props.change(
+        `directions[${this.props.directions.length}].step`,
+        this.state.directionValue
+      );
+
+      this.setState((state, props) => {
+        return { directionValue: "" };
+      });
+      //else display warning
+    }
+  };
+
+  render() {
+    return (
+      <div style={{ display: "grid" }}>
+        <label htmlFor="directionInput">Directions</label>
+        <textarea
+          id="directionInput"
+          rows="10"
+          cols="50"
+          onChange={this.handleChange}
+          value={this.state.directionValue}
+          placeholder="e.g. 1 1/2 tsp Sea salt (to taste)"
+        ></textarea>
         <div
-          className="button remove"
-          type="button"
-          onClick={() => {
-            if (fields.length > 1) {
-              fields.remove(fields.length - 1);
-            }
+          style={{
+            color: "#0172C4",
+            border: "solid #BFBFBF .08rem",
+            borderRadius: "5rem",
+            width: "8rem",
+            height: "2.5rem",
+            lineHeight: "2.5rem",
+            textAlign: "center",
+            cursor: "pointer",
+            margin: ".5rem 0"
           }}
-        >
-          Remove
-        </div>
-        <div
-          className="button add"
           type="button"
-          onClick={() => {
-            if (fields.length < 10) {
-              fields.push({});
-            }
-          }}
+          onClick={this.handleAddClick}
         >
-          Add
+          Add +
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
+// import TextAreaInput from "../inputs/TextAreaInput";
+// // Renders all steps of directions
+// const DirectionInput = ({ fields, meta: { touched, error } }) => {
+//   const textParse = value => {
+//     let strArr = value.match(/.{0,640}/) || [""];
+//     return value && strArr[0];
+//   };
+//   return (
+//     <div>
+//       {fields.map((step, index) => (
+//         <div key={index}>
+//           <div className="field">
+//             <Field
+//               name={`${step}.step`}
+//               component={TextAreaInput}
+//               label={`Step ${index + 1}`}
+//               parse={textParse}
+//               placeholder="Set oven to 375(f)..."
+//             />
+//           </div>
+//         </div>
+//       ))}
+//
+//       <div
+//         className="button add"
+//         type="button"
+//         onClick={() => {
+//           if (fields.length < 10) {
+//             fields.push({});
+//           }
+//         }}
+//       >
+//         Add
+//       </div>
+//     </div>
+//   );
+// };
+
+const selector = formValueSelector("newRecipe");
+
+const mapSateToProps = state => {
+  return { directions: selector(state, "directions") };
 };
 
-export default DirectionInput;
+export default connect(mapSateToProps)(DirectionInput);

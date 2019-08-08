@@ -8,16 +8,6 @@ import TextInput from "./inputs/TextInput";
 import IngredientInput from "./renderFields/IngredientInput";
 import IngredientOutput from "./renderFields/IngredientOutput";
 
-// const ingredients = () => {
-//   return (
-//     <div>
-//       <h4>Ingredients</h4>
-//       <Field name="ingredients" component={TextInput} />
-//       <IngredientOutput />
-//     </div>
-//   );
-// };
-
 const ingredients = props => {
   return (
     <div>
@@ -28,13 +18,13 @@ const ingredients = props => {
   );
 };
 
-export default reduxForm({
-  form: "newRecipe",
-  destroyOnUnmount: false,
-  validate: ValidateIngredients
-})(ingredients);
-
 // export default reduxForm({
 //   form: "newRecipe",
-//   destroyOnUnmount: false
+//   destroyOnUnmount: false,
+//   validate: ValidateIngredients
 // })(ingredients);
+
+export default reduxForm({
+  form: "newRecipe",
+  destroyOnUnmount: false
+})(ingredients);

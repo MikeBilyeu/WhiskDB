@@ -80,7 +80,7 @@ class CreateRecipe extends React.Component {
         formPage = <Ingredients change={this.props.change} />;
         break;
       case 3:
-        formPage = <Directions />;
+        formPage = <Directions change={this.props.change} />;
         break;
       case 4:
         formPage = <TimeServingsFootnote />;
@@ -133,7 +133,7 @@ export default reduxForm({
   destroyOnUnmount: false,
   initialValues: {
     ingredients: [],
-    directions: [{}],
+    directions: [],
     privateRecipe: false,
     categories: { diet: {}, meal: {} }
   }
