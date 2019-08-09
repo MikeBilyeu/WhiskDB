@@ -62,18 +62,21 @@ function validateIngredients(ingredients) {
 function validateDirections(directions) {
   // set errors to an empty array beacuse directions input is a FieldArray
   errors.directions = [];
-  const numOfDirections = directions.length || 0;
-  for (let i = 0; i < numOfDirections; i++) {
-    errors.directions.push({});
+  if (!directions.length) {
+    errors.directions.push("Add at least one ingredient");
+  } else {
+    for (let i = 0; i < directions.length; i++) {
+      errors.directions.push({});
 
-    if (!directions[i].step) {
-      errors.directions[i] = {
-        step: `step ${i + 1} must be 3 - 640 characters`
-      };
-    } else if (!/.{3,640}/.test(directions[i].step)) {
-      errors.directions[i] = {
-        step: `step ${i + 1} must be 3 - 640 characters`
-      };
+      if (!directions[i].step) {
+        errors.directions[i] = {
+          step: `step ${i + 1} must be 3 - 640 characters`
+        };
+      } else if (!/.{3,640}/.test(directions[i].step)) {
+        errors.directions[i] = {
+          step: `step ${i + 1} must be 3 - 640 characters`
+        };
+      }
     }
   }
 
