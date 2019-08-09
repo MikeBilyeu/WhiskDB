@@ -105,6 +105,20 @@ class DirectionOutput extends React.Component {
                     >
                       -
                     </div>
+                    <div
+                      style={{
+                        width: "2.3rem",
+                        height: "2.3rem",
+                        borderRadius: "100%",
+                        textAlign: "center",
+                        lineHeight: "2.3rem",
+                        backgroundColor: "#464646",
+                        color: "#fff",
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {i + 1}
+                    </div>
                     <Field
                       addClass={""}
                       name={`directions[${i}].step`}
@@ -114,7 +128,23 @@ class DirectionOutput extends React.Component {
                   </div>
                 ) : (
                   <div>
-                    <div key={i}>{step.step}</div>
+                    <div key={i} style={{ margin: "2rem 0" }}>
+                      <div
+                        style={{
+                          width: "2.3rem",
+                          height: "2.3rem",
+                          borderRadius: "100%",
+                          textAlign: "center",
+                          lineHeight: "2.3rem",
+                          backgroundColor: "#464646",
+                          color: "#fff",
+                          fontWeight: "bold"
+                        }}
+                      >
+                        {i + 1}
+                      </div>
+                      {step.step}
+                    </div>
                     {this.props.syncErrors.directions &&
                     this.props.syncErrors.directions[i].step ? (
                       <span className="error">
