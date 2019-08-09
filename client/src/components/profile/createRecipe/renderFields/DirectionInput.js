@@ -13,7 +13,7 @@ class DirectionInput extends React.Component {
   }
 
   handleChange = e => {
-    if (/.{3,640}/.test(this.state.directionValue)) {
+    if (/.{3,640}/.test(e.target.value)) {
       this.setState({ error: null });
     }
     this.setState({ directionValue: e.target.value });
