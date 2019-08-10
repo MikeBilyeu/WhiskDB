@@ -6,6 +6,7 @@ import { ValidateTimeServingsFootnote } from "./RecipeValidation";
 
 import TextInput from "./inputs/TextInput";
 import TextAreaInput from "./inputs/TextAreaInput";
+import TimeInput from "./renderFields/TimeInput";
 
 const TimeServingsFootnote = () => {
   const footnoteParse = value => {
@@ -33,23 +34,7 @@ const TimeServingsFootnote = () => {
         pattern="[0-9]*"
       />
 
-      <h4>Time Required</h4>
-      <Field
-        name="time.hours"
-        component={TextInput}
-        label="Hours"
-        placeholder="1"
-        normalize={numberParse}
-        pattern="[0-9]*"
-      />
-      <Field
-        name="time.minutes"
-        component={TextInput}
-        label="Minutes"
-        placeholder="15"
-        parse={minuteParse}
-        pattern="[0-9]*"
-      />
+      <TimeInput />
 
       <Field
         name="footnote"
