@@ -105,20 +105,7 @@ class DirectionOutput extends React.Component {
                     >
                       -
                     </div>
-                    <div
-                      style={{
-                        width: "2.3rem",
-                        height: "2.3rem",
-                        borderRadius: "100%",
-                        textAlign: "center",
-                        lineHeight: "2.3rem",
-                        backgroundColor: "#464646",
-                        color: "#fff",
-                        fontWeight: "bold"
-                      }}
-                    >
-                      {i + 1}
-                    </div>
+                    <div>step {i + 1}</div>
                     <Field
                       addClass={""}
                       name={`directions[${i}].step`}
