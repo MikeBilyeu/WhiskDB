@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import { ReactComponent as Arrow } from "./arrowLeft.svg";
-import { ReactComponent as Check } from "./check.svg";
+import { ReactComponent as Check } from "../../images/check.svg";
 import { ReactComponent as Share } from "./share.svg";
 
 //styles

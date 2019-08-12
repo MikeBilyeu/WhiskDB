@@ -9,12 +9,12 @@ import { ReactComponent as Arrow } from "../../recipes/arrowLeft.svg";
 import { createRecipe } from "../../../actions/recipeActions";
 
 // Field Components
-import CategoryInput from "./renderFields/CategoryInput";
 import FormStatus from "./FormStatus";
 import TitleAndImage from "./TitleAndImage";
 import Ingredients from "./Ingredients";
 import Directions from "./Directions";
 import TimeServingsFootnote from "./TimeServingsFootnote";
+import Categories from "./Categories";
 import TagAndSubmit from "./TagAndSubmit";
 
 import "./create-recipe-styles.css";
@@ -23,7 +23,7 @@ class CreateRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1
+      page: 5
     };
   }
   renderError({ error, touched }) {
@@ -60,17 +60,6 @@ class CreateRecipe extends React.Component {
     }
   };
   render() {
-    const categoryNames = [
-      "categories.diet.vegetarian",
-      "categories.diet.vegan",
-      "categories.meal.breakfast",
-      "categories.meal.lunch",
-      "categories.meal.dinner",
-      "categories.meal.appetizer",
-      "categories.meal.dessert",
-      "categories.meal.drink"
-    ];
-
     let formPage = null;
     switch (this.state.page) {
       case 1:
@@ -86,7 +75,7 @@ class CreateRecipe extends React.Component {
         formPage = <TimeServingsFootnote />;
         break;
       case 5:
-        formPage = <Fields names={categoryNames} component={CategoryInput} />;
+        formPage = <Categories />;
         break;
       case 6:
         formPage = <TagAndSubmit />;
