@@ -10,20 +10,17 @@ const NumberInput = ({
   pattern = null,
   addClass
 }) => {
-  const className = `${addClass} ${error && touched ? "error" : ""} ${
-    active ? "input-active" : ""
-  }`;
-  console.log(active);
+  const className = `${addClass} ${error && touched ? "error" : ""}`;
   return (
     <div className={className} style={{ width: "5rem" }}>
       <input
         style={{
-          width: "3rem",
-          fontSize: "2rem",
-          textAlign: "center",
+          width: "2.5rem",
+          fontSize: "1.5rem",
+          textAlign: "right",
           border: "none",
           WebkitAppearance: "none",
-          appearance: "none"
+          color: "#454852"
         }}
         {...input}
         autoComplete="off"
@@ -31,7 +28,13 @@ const NumberInput = ({
         placeholder={placeholder}
         pattern={pattern}
       />
-      <label style={{ margin: "0", color: active ? "#0172C4" : "inherit" }}>
+      <label
+        style={{
+          margin: "0",
+          marginLeft: ".2rem",
+          color: active ? "#0172C4" : "inherit"
+        }}
+      >
         {label}
       </label>
     </div>
@@ -48,15 +51,23 @@ const TimeInput = () => {
     return value && strArr[0];
   };
   return (
-    <div>
-      <h4>Time Required</h4>
+    <div style={{ display: "grid", margin: "4rem auto" }}>
+      <h4
+        style={{
+          borderBottom: "solid .05rem #EFEFF1",
+          display: "inline",
+          margin: "0 auto .7rem auto",
+          padding: ".5rem 1rem"
+        }}
+      >
+        Time Required
+      </h4>
       <div
         style={{
           borderBottom: "solid #464646 .1rem",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: "1fr 1.1fr",
           placeItems: "center",
-          width: "15rem",
           margin: "auto",
           padding: "0 2rem"
         }}
