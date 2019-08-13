@@ -23,7 +23,7 @@ const Categories = () => {
       component={fields => {
         return (
           <div>
-            <h4 style={{ marginBottom: "2rem" }}>categories</h4>
+            <h4 style={{ marginBottom: "2rem" }}>Categories</h4>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
               <CheckboxInput
                 fields={fields}
