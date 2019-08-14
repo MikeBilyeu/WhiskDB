@@ -64,6 +64,7 @@ class IngredientOutput extends React.Component {
   };
 
   render() {
+    console.log(this.props.ingredients);
     return (
       <div style={{ display: "grid", alignItems: "center" }}>
         <div
