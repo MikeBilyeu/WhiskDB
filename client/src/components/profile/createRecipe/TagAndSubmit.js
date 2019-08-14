@@ -6,7 +6,19 @@ const TagAndSubmit = props => {
     <div>
       <KeywordInput change={props.change} />
       <KeywordOutput change={props.change} />
-      <button type="submit">Submit Recipe</button>
+      <button
+        type="submit"
+        style={{
+          padding: ".5rem 3rem",
+          backgroundColor: "#0172C4",
+          border: "none",
+          borderRadius: ".5rem",
+          margin: "auto",
+          color: "#fff"
+        }}
+      >
+        Submit Recipe
+      </button>
     </div>
   );
 };

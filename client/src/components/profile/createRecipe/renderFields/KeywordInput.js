@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { formValueSelector } from "redux-form";
 
+const keywordRegEx = /.{3,25}/;
+
 class KeywordInput extends React.Component {
   constructor(props) {
     super(props);
@@ -13,16 +15,16 @@ class KeywordInput extends React.Component {
   }
 
   handleChange = e => {
-    if (/.*/.test(e.target.value)) {
+    if (keywordRegEx.test(e.target.value)) {
       this.setState({ error: null });
     }
     this.setState({ keywordValue: e.target.value });
   };
 
   handleAddClick = () => {
-    if (!/.*/.test(this.state.keywordValue)) {
+    if (!keywordRegEx.test(this.state.keywordValue)) {
       this.setState({
-        error: "Keyword is not valid"
+        error: "Keyword is not valid: must be 3 - 25 characters"
       });
     } else {
       this.props.change(
@@ -39,9 +41,9 @@ class KeywordInput extends React.Component {
 
   handleKeyDown = e => {
     if (e.key == "Enter") {
-      if (!/.*/.test(this.state.keywordValue)) {
+      if (!keywordRegEx.test(this.state.keywordValue)) {
         this.setState({
-          error: "Keyword is not valid"
+          error: "Keyword is not valid: must be 3 - 25 characters"
         });
       } else {
         this.props.change(

@@ -25,7 +25,6 @@ class IngredientInput extends React.Component {
   // };
 
   handleChange = e => {
-    console.log(e.target.value);
     if (ingredientRegEx.test(e.target.value)) {
       this.setState({ error: null });
     }
