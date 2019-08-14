@@ -103,7 +103,7 @@ class KeywordInput extends React.Component {
         </div>
 
         <div style={{ marginLeft: ".8rem", fontSize: ".8rem" }}>
-          Enter 1 - 5 keywords
+          Enter 1 - 10 keywords
         </div>
 
         {this.state.error ? (

@@ -1,6 +1,12 @@
 import React from "react";
+import { reduxForm } from "redux-form";
+
 import KeywordInput from "./renderFields/KeywordInput";
 import KeywordOutput from "./renderFields/KeywordOutput";
+
+// import validation
+import { ValidateKeywords } from "./RecipeValidation";
+
 const TagAndSubmit = props => {
   return (
     <div>
@@ -23,4 +29,8 @@ const TagAndSubmit = props => {
   );
 };
 
-export default TagAndSubmit;
+export default reduxForm({
+  form: "newRecipe",
+  destroyOnUnmount: false,
+  validate: ValidateKeywords
+})(TagAndSubmit);

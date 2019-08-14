@@ -107,6 +107,33 @@ function validateCategories(categories) {
   }
 }
 
+function validateKeywords(keywords) {
+  // set errors to an empty array beacuse ingredients input is a FieldArray
+  errors.keywords = [];
+  // check if ingredietns array is empty
+  if (!keywords.length) {
+    errors.keywords.push("Add at least one keyword");
+  } else if (keywords.length > 10) {
+    errors.keywords.push("Only inlcude 1 - 10 keywords");
+  } else {
+    for (let i = 0; i < keywords.length; i++) {
+      errors.keywords.push(null);
+
+      if (!/.{3,25}/.test(keywords[i])) {
+        errors.keywords[i] = "Keyword is not valid: must be 3 - 25 characters";
+      }
+    }
+  }
+
+  const noErrors =
+    // check if array contains !null vlaue
+    errors.keywords.findIndex(str => str !== null) === -1;
+
+  if (noErrors) {
+    delete errors.keywords;
+  }
+}
+
 export const ValidateTitle = ({ title }) => {
   errors = {};
   validateTitle(title);
@@ -135,5 +162,11 @@ export const ValidateDirections = ({ directions }) => {
 export const ValidateCategories = ({ categories }) => {
   errors = {};
   validateCategories(categories);
+  return errors;
+};
+
+export const ValidateKeywords = ({ keywords }) => {
+  errors = {};
+  validateKeywords(keywords);
   return errors;
 };
