@@ -23,7 +23,7 @@ class CreateRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 5
+      page: 6
     };
   }
   renderError({ error, touched }) {
@@ -78,7 +78,7 @@ class CreateRecipe extends React.Component {
         formPage = <Categories />;
         break;
       case 6:
-        formPage = <TagAndSubmit />;
+        formPage = <TagAndSubmit change={this.props.change} />;
         break;
       default:
         formPage = null;
@@ -124,6 +124,7 @@ export default reduxForm({
     ingredients: [],
     directions: [],
     privateRecipe: false,
-    categories: { diet: {}, meal: {} }
+    categories: { diet: {}, meal: {} },
+    keywords: []
   }
 })(withRouter(CreateRecipe));

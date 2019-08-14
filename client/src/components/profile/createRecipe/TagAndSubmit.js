@@ -1,7 +1,12 @@
 import React from "react";
-
-const TagAndSubmit = fields => {
-  return <button type="submit">Submit Recipe</button>;
+import KeywordInput from "./renderFields/KeywordInput";
+const TagAndSubmit = props => {
+  return (
+    <div>
+      <KeywordInput change={props.change} />
+      <button type="submit">Submit Recipe</button>
+    </div>
+  );
 };
 
 export default TagAndSubmit;

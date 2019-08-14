@@ -81,8 +81,12 @@ const Categories = () => {
   );
 };
 
+// export default reduxForm({
+//   form: "newRecipe",
+//   destroyOnUnmount: false,
+//   validate: ValidateCategories
+// })(Categories);
 export default reduxForm({
   form: "newRecipe",
-  destroyOnUnmount: false,
-  validate: ValidateCategories
+  destroyOnUnmount: false
 })(Categories);
