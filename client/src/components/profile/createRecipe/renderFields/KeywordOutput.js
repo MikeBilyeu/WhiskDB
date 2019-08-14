@@ -12,7 +12,7 @@ const KeywordOutput = props => {
     props.change(`keywords`, modKeywords);
   };
   return (
-    <div style={{ width: "75%", margin: "auto" }}>
+    <div>
       {props.keywords.map((keyword, i) => {
         return (
           <div
@@ -25,7 +25,7 @@ const KeywordOutput = props => {
               display: "inline-grid",
               gridAutoFlow: "column",
               placeItems: "center",
-              margin: "1rem",
+              margin: ".5rem 1rem",
               borderRadius: "5rem"
             }}
             onClick={() => {
