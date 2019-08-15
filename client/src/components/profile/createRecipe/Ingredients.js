@@ -18,13 +18,8 @@ const ingredients = props => {
   );
 };
 
-// export default reduxForm({
-//   form: "newRecipe",
-//   destroyOnUnmount: false,
-//   validate: ValidateIngredients
-// })(ingredients);
-
 export default reduxForm({
   form: "newRecipe",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  validate: ValidateIngredients
 })(ingredients);

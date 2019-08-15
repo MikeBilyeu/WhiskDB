@@ -42,12 +42,6 @@ const mapSateToProps = state => {
   return { syncErrors: getFormSyncErrors("newRecipe")(state) };
 };
 
-// export default reduxForm({
-//   form: "newRecipe",
-//   destroyOnUnmount: false,
-//   validate: ValidateKeywords
-// })(connect(mapSateToProps)(TagAndSubmit));
-
 export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,

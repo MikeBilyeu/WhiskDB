@@ -126,7 +126,8 @@ const createRecipe = (request, response) => {
     footnote,
     privateRecipe,
     created_by,
-    categories
+    categories,
+    keywords
   } = request.body;
 
   // Form validation
@@ -141,7 +142,7 @@ const createRecipe = (request, response) => {
   const total_time_mins = timeHours * 60 + timeMinutes;
 
   let metricIngredients = formatIngredientList(ingredients);
-  console.log(metricIngredients);
+
   console.log(
     "input",
     created_by,
@@ -159,7 +160,7 @@ const createRecipe = (request, response) => {
     return (
       client
         .query(
-          "INSERT INTO recipes (created_by, title, servings, total_time_mins, footnote, private, directions, ingredients, document_vectors) VALUES ($1, CAST($2 AS VARCHAR), $3, $4, $5, $6, $7, $8, to_tsvector($2)) RETURNING recipe_id",
+          "INSERT INTO recipes (created_by, title, servings, total_time_mins, footnote, private, directions, ingredients, keywords, document_vectors) VALUES ($1, CAST($2 AS VARCHAR), $3, $4, $5, $6, $7, $8, $9, to_tsvector($2)) RETURNING recipe_id",
           [
             created_by,
             title,
@@ -168,7 +169,8 @@ const createRecipe = (request, response) => {
             footnote,
             privateRecipe,
             directions,
-            metricIngredients
+            metricIngredients,
+            keywords
           ]
         )
         // .then(res => {

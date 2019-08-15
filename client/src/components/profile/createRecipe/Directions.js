@@ -17,13 +17,8 @@ const Directions = props => {
   );
 };
 
-// export default reduxForm({
-//   form: "newRecipe",
-//   destroyOnUnmount: false,
-//   validate: ValidateDirections
-// })(Directions);
-
 export default reduxForm({
   form: "newRecipe",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  validate: ValidateDirections
 })(Directions);

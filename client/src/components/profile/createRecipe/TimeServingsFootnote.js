@@ -47,13 +47,8 @@ const TimeServingsFootnote = () => {
   );
 };
 
-// export default reduxForm({
-//   form: "newRecipe",
-//   destroyOnUnmount: false,
-//   validate: ValidateTimeServingsFootnote
-// })(TimeServingsFootnote);
-
 export default reduxForm({
   form: "newRecipe",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  validate: ValidateTimeServingsFootnote
 })(TimeServingsFootnote);
