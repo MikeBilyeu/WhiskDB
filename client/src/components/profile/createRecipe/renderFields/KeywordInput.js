@@ -22,7 +22,11 @@ class KeywordInput extends React.Component {
   };
 
   handleAddClick = () => {
-    if (!keywordRegEx.test(this.state.keywordValue)) {
+    if (this.props.keywords.length >= 10) {
+      this.setState({
+        error: "Only 1 - 10 keywords allowed"
+      });
+    } else if (!keywordRegEx.test(this.state.keywordValue)) {
       this.setState({
         error: "Keyword is not valid: must be 3 - 25 characters"
       });
@@ -41,7 +45,11 @@ class KeywordInput extends React.Component {
 
   handleKeyDown = e => {
     if (e.key == "Enter") {
-      if (!keywordRegEx.test(this.state.keywordValue)) {
+      if (this.props.keywords.length >= 10) {
+        this.setState({
+          error: "Only 1 - 10 keywords allowed"
+        });
+      } else if (!keywordRegEx.test(this.state.keywordValue)) {
         this.setState({
           error: "Keyword is not valid: must be 3 - 25 characters"
         });
