@@ -4,6 +4,8 @@ import { formValueSelector, Field, getFormSyncErrors } from "redux-form";
 
 import TextInput from "../inputs/TextInput";
 
+import { ReactComponent as Remove } from "../../../../images/removeDark.svg";
+
 //convert to class component
 //track state for remove and edit toggle
 //if remove state true render a button next to the ingredietns
@@ -84,7 +86,9 @@ class IngredientOutput extends React.Component {
             marginBottom: "2rem",
             padding: "1rem 0",
             width: "100%",
-            justifySelf: "center"
+            justifySelf: "center",
+            display: "grid",
+            gridGap: ".5rem"
           }}
         >
           {this.props.ingredients.map((ingredient, i, arr) => {
@@ -99,23 +103,17 @@ class IngredientOutput extends React.Component {
                       gridGap: ".1rem"
                     }}
                   >
-                    <div
+                    <Remove
                       style={{
-                        color: "red",
-                        border: "solid #BFBFBF .08rem",
-                        borderRadius: "100%",
-                        width: "2.5rem",
-                        height: "2.5rem",
-                        lineHeight: "2.3rem",
-                        textAlign: "center",
+                        width: "1rem",
+                        height: "1rem",
                         cursor: "pointer"
                       }}
                       onClick={() => {
                         this.handleDeleteClick(i);
                       }}
-                    >
-                      -
-                    </div>
+                    />
+
                     <Field
                       addClass={"full-input"}
                       name={`ingredients[${i}]`}
