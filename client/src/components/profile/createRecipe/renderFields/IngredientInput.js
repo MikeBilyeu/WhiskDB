@@ -4,7 +4,7 @@ import { formValueSelector } from "redux-form";
 
 import { ReactComponent as Add } from "../../../../images/plus.svg";
 
-const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) ([a-z\d-,\/+] *){3,40}( \( *([a-z0-9-,\/+] *){1,40}\) *)?$/i;
+const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) ([a-z\d-,\/+.%&*!] *){3,40}( \( *([a-z\d-,\/+.%&*!] *){1,40}\) *)?$/i;
 // Renders all of the ingredient fields i.e. ingredient, unit, amount
 class IngredientInput extends React.Component {
   constructor(props) {
