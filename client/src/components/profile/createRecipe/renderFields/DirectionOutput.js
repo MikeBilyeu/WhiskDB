@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { formValueSelector, Field, getFormSyncErrors } from "redux-form";
 
+import { ReactComponent as Remove } from "../../../../images/removeDark.svg";
+
 const DirectionEditInput = ({
   input,
   label,
@@ -87,24 +89,23 @@ class DirectionOutput extends React.Component {
             return (
               <div key={i}>
                 {this.state.toggleEdit ? (
-                  <div>
-                    <div
+                  <div
+                    style={{
+                      display: "grid",
+                      placeItems: "center start",
+                      gridGap: ".1rem"
+                    }}
+                  >
+                    <Remove
                       style={{
-                        color: "red",
-                        border: "solid #BFBFBF .08rem",
-                        borderRadius: "100%",
-                        width: "2.5rem",
-                        height: "2.5rem",
-                        lineHeight: "2.3rem",
-                        textAlign: "center",
+                        width: "1rem",
+                        height: "1rem",
                         cursor: "pointer"
                       }}
                       onClick={() => {
                         this.handleDeleteClick(i);
                       }}
-                    >
-                      -
-                    </div>
+                    />
                     <div>step {i + 1}</div>
                     <Field
                       addClass={""}
@@ -114,24 +115,22 @@ class DirectionOutput extends React.Component {
                     />
                   </div>
                 ) : (
-                  <div>
-                    <div key={i} style={{ margin: "2rem 0" }}>
-                      <div
-                        style={{
-                          width: "2.3rem",
-                          height: "2.3rem",
-                          borderRadius: "100%",
-                          textAlign: "center",
-                          lineHeight: "2.3rem",
-                          backgroundColor: "#464646",
-                          color: "#fff",
-                          fontWeight: "bold"
-                        }}
-                      >
-                        {i + 1}
-                      </div>
-                      {step.step}
+                  <div key={i} style={{ margin: "2rem 0" }}>
+                    <div
+                      style={{
+                        width: "2.3rem",
+                        height: "2.3rem",
+                        borderRadius: "100%",
+                        textAlign: "center",
+                        lineHeight: "2.3rem",
+                        backgroundColor: "#464646",
+                        color: "#fff",
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {i + 1}
                     </div>
+                    {step.step}
                     {this.props.syncErrors.directions &&
                     this.props.syncErrors.directions[i].step ? (
                       <span className="error">

@@ -99,6 +99,7 @@ class IngredientOutput extends React.Component {
                     style={{
                       display: "grid",
                       gridTemplateColumns: "2.5rem 1fr",
+                      gridTemplateRows: "2.5rem 1fr",
                       placeItems: "center",
                       gridGap: ".1rem"
                     }}
@@ -107,7 +108,8 @@ class IngredientOutput extends React.Component {
                       style={{
                         width: "1rem",
                         height: "1rem",
-                        cursor: "pointer"
+                        cursor: "pointer",
+                        gridRow: "1 / 3"
                       }}
                       onClick={() => {
                         this.handleDeleteClick(i);
