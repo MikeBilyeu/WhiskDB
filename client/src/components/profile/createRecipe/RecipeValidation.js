@@ -1,5 +1,5 @@
 // // store regex to check validation
-const titleRegEx = /^[A-Z0-9](( )?[a-zA-Z0-9()-\/]){2,55}$/;
+const titleRegEx = /^[A-Z0-9]([a-zA-Z0-9()-\/ ]){2,55}$/;
 
 // Alternative RegEx with no lookbehinds
 const amountRegEx = /^\d{0,3}(\.(?=\d)\d{1,2})$|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?$|^\d{1,3} [1-9]\d?\/[1-9]\d?$|^\d{1,3}$/;

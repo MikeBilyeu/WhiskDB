@@ -118,7 +118,6 @@ const formatIngredientList = ingredients => {
 
 const createRecipe = (request, response) => {
   const {
-    title,
     time,
     servings,
     ingredients,
@@ -129,6 +128,8 @@ const createRecipe = (request, response) => {
     categories,
     keywords
   } = request.body;
+
+  const title = request.body.title.trim();
 
   // Form validation
   const errors = validateRecipeInput(request.body);
