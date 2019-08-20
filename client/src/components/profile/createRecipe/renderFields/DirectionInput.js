@@ -38,19 +38,7 @@ class DirectionInput extends React.Component {
   };
   handleKeyDown = e => {
     if (e.key == "Enter") {
-      if (!/.{3,640}/.test(this.state.directionValue)) {
-        this.setState({
-          error: "Directions must be 3 - 640 characters"
-        });
-      } else {
-        this.props.change(
-          `directions[${this.props.directions.length}].step`,
-          this.state.directionValue
-        );
-        this.setState((state, props) => {
-          return { directionValue: "" };
-        });
-      }
+      this.handleAddClick();
     }
   };
 

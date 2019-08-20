@@ -33,35 +33,18 @@ class KeywordInput extends React.Component {
     } else {
       this.props.change(
         `keywords[${this.props.keywords.length}]`,
-        this.state.keywordValue
+        this.state.keywordValue.toLowerCase().trim()
       );
 
       this.setState((state, props) => {
         return { keywordValue: "" };
       });
-      //else display warning
     }
   };
 
   handleKeyDown = e => {
     if (e.key == "Enter") {
-      if (this.props.keywords.length >= 10) {
-        this.setState({
-          error: "Only 1 - 10 keywords allowed"
-        });
-      } else if (!keywordRegEx.test(this.state.keywordValue)) {
-        this.setState({
-          error: "Keyword is not valid: must be 3 - 25 characters"
-        });
-      } else {
-        this.props.change(
-          `keywords[${this.props.keywords.length}]`,
-          this.state.keywordValue
-        );
-        this.setState((state, props) => {
-          return { keywordValue: "" };
-        });
-      }
+      this.handleAddClick();
     }
   };
 

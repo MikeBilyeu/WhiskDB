@@ -26,7 +26,8 @@ const KeywordOutput = props => {
               gridAutoFlow: "column",
               placeItems: "center",
               margin: ".5rem 1rem",
-              borderRadius: "5rem"
+              borderRadius: "5rem",
+              cursor: "pointer"
             }}
             onClick={() => {
               handleClick(i);

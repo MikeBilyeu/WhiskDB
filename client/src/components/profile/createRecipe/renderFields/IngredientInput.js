@@ -48,26 +48,12 @@ class IngredientInput extends React.Component {
       this.setState((state, props) => {
         return { ingredientValue: "" };
       });
-      //else display warning
     }
   };
 
   handleKeyDown = e => {
     if (e.key == "Enter") {
-      if (!ingredientRegEx.test(this.state.ingredientValue)) {
-        this.setState({
-          error:
-            "Ingredient is not in a valid format: Amount, Unit, Ingredient, (prep)"
-        });
-      } else {
-        this.props.change(
-          `ingredients[${this.props.ingredients.length}]`,
-          this.state.ingredientValue
-        );
-        this.setState((state, props) => {
-          return { ingredientValue: "" };
-        });
-      }
+      this.handleAddClick();
     }
   };
 
