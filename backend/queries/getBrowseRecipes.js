@@ -15,9 +15,9 @@ const getBrowseRecipes = (request, response) => {
   const { user_id } = request.query;
 
   diet = diet === "none" ? null : diet;
-  meal = meal === "all meals" ? "lunch" : meal;
+  // meal = meal === "all meals" ? "lunch" : meal;
 
-  const numOfCats = !diet ? 1 : 2;
+  const numOfCats = diet ? (meal == "all meals" ? 1 : 2) : 1;
 
   //connect pool
   pool.connect().then(client => {
@@ -37,26 +37,35 @@ const getBrowseRecipes = (request, response) => {
         LEFT JOIN liked_recipes lr ON r.recipe_id = lr.recipe_liked
         LEFT JOIN disliked_recipes dr ON r.recipe_id = dr.recipe_disliked
         WHERE r.recipe_id in
-        ( SELECT recipe FROM recipes_join_categories
+        (SELECT recipe FROM recipes_join_categories
           WHERE
-          CASE
-          WHEN $2 != '' THEN
-            category = (SELECT category_id FROM categories
-            WHERE category_name = $1)
-            OR
-            category = (SELECT category_id
-            FROM categories WHERE category_name = $2)
-          ELSE
-            category = (SELECT category_id FROM categories
-            WHERE category_name = $1)
+            CASE
+            WHEN $2 != '' AND $1 != 'all meals' THEN
+            category IN (SELECT category_id
+            FROM categories WHERE category_name IN ($2, $1)
+            )
+
+            WHEN $2 != '' AND $1 = 'all meals' THEN
+            category IN (SELECT category_id
+            FROM categories WHERE category_name IN ($2))
+
+            WHEN $1 != 'all meals' THEN
+            category IN (SELECT category_id
+            FROM categories WHERE category_name IN ($1))
+
+            ELSE
+            category IN (SELECT category_id FROM categories)
+
           END
-          GROUP BY recipe HAVING COUNT(*) = $3 )
+
+          GROUP BY recipe HAVING COUNT(*) >= $3
+        )
         GROUP BY r.recipe_id, u.user_id
         ORDER BY
           CASE WHEN $4 = 'a-z' THEN LOWER(r.title) END ASC,
           CASE WHEN $4 = 'time' THEN r.total_time_mins END ASC,
           CASE WHEN $4 = 'newest' THEN r.created_at END DESC,
-        rating DESC, votes DESC;
+        rating DESC, votes DESC, r.created_at DESC;
 `,
         [meal, diet, numOfCats, sort, user_id]
       )
