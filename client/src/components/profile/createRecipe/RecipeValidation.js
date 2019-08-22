@@ -9,31 +9,31 @@ const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]
 const ingredientNameRegEx = /^[A-Z0-9](( )?[a-zA-Z0-9-\/]){2,55}$/;
 let errors = {};
 
-function validateTitle(title) {
+const validateTitle = title => {
   if (!title) {
     return (errors.title = "Title field is required");
   } else if (!titleRegEx.test(title)) {
     // The field parse doesn't prevent invalid title, must check title here
     return (errors.title = "Title is not valid");
   }
-}
+};
 
-function validateTime(time) {
+const validateTime = time => {
   if (!time) {
     errors.time = {
       hours: "Time field is required",
       minutes: "Time field is required"
     };
   }
-}
+};
 
-function validateServings(servings) {
+const validateServings = servings => {
   if (!servings) {
     errors.servings = "Servings field is required";
   }
-}
+};
 
-function validateIngredients(ingredients) {
+const validateIngredients = ingredients => {
   // set errors to an empty array beacuse ingredients input is a FieldArray
   errors.ingredients = [];
   // check if ingredietns array is empty
@@ -57,9 +57,9 @@ function validateIngredients(ingredients) {
   if (noErrors) {
     delete errors.ingredients;
   }
-}
+};
 
-function validateDirections(directions) {
+const validateDirections = directions => {
   // set errors to an empty array beacuse directions input is a FieldArray
   errors.directions = [];
   if (!directions.length) {
@@ -87,9 +87,9 @@ function validateDirections(directions) {
   if (noErrors) {
     delete errors.directions;
   }
-}
+};
 
-function validateCategories(categories) {
+const validateCategories = categories => {
   if (categories) {
     let numOfTrueValues = 0;
     //get the values of the sub-categories
@@ -105,9 +105,9 @@ function validateCategories(categories) {
       };
     }
   }
-}
+};
 
-function validateKeywords(keywords) {
+const validateKeywords = keywords => {
   // set errors to an empty array beacuse ingredients input is a FieldArray
   errors.keywords = [];
   // check if ingredietns array is empty
@@ -132,7 +132,7 @@ function validateKeywords(keywords) {
   if (noErrors) {
     delete errors.keywords;
   }
-}
+};
 
 export const ValidateTitle = ({ title }) => {
   errors = {};
