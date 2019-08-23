@@ -3,6 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import { ValidateSignup } from "./AuthValidation";
+import { asyncValidate } from "./AsyncValidation";
 
 import PasswordInput from "./PasswordInput";
 
@@ -44,6 +45,8 @@ class Signup extends Component {
 
   render() {
     const lower = value => value && value.toLowerCase();
+    const { asyncValidating } = this.props;
+    console.log(this.props);
     return (
       <form
         className="authForm signup"
@@ -58,6 +61,7 @@ class Signup extends Component {
           placeholder="Username"
           label="Username"
         />
+        <div>{asyncValidating === "username" ? "validating..." : ""}</div>
 
         <Field
           name="email"
@@ -89,5 +93,7 @@ Signup = connect(
 
 export default reduxForm({
   form: "Signup",
-  validate: ValidateSignup
+  validate: ValidateSignup,
+  asyncValidate,
+  asyncBlurFields: ["username"]
 })(Signup);
