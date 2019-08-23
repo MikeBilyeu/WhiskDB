@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 
+import PasswordInput from "./PasswordInput";
+
 import "./auth-styles.css";
 
 class Login extends Component {
@@ -46,16 +48,14 @@ class Login extends Component {
             normalize={lower}
           />
         </label>
-        <label>
-          Password
-          <Field
-            name="password"
-            component={this.renderInput}
-            inputId="password"
-            type="password"
-            placeholder="Password"
-          />
-        </label>
+
+        <Field
+          name="password"
+          component={PasswordInput}
+          inputId="password"
+          placeholder="Password"
+          label="Password"
+        />
 
         <button type="submit">Log in</button>
       </form>
