@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import { ValidateSignup } from "./AuthValidation";
 
+import PasswordInput from "./PasswordInput";
+
 class Signup extends Component {
   renderInput = ({
     input,
@@ -18,7 +20,7 @@ class Signup extends Component {
         <label>{label}</label>
         <input
           {...input}
-          autocomplete="off"
+          autoComplete="off"
           type={type}
           id={inputId}
           placeholder={placeholder}
@@ -61,17 +63,16 @@ class Signup extends Component {
           name="email"
           component={this.renderInput}
           inputId="email"
-          placeholder="Email Address"
+          placeholder="Enter your email"
           normalize={lower}
           label="Email"
         />
 
         <Field
-          type="password"
           name="password"
-          component={this.renderInput}
+          component={PasswordInput}
           inputId="password"
-          placeholder="Password"
+          placeholder="Enter a password"
           label="Password"
         />
 
