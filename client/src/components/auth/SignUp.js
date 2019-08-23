@@ -18,7 +18,7 @@ class Signup extends Component {
         <label>{label}</label>
         <input
           {...input}
-          autoComplete="off"
+          autocomplete="off"
           type={type}
           id={inputId}
           placeholder={placeholder}

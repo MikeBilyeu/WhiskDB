@@ -4,7 +4,7 @@ module.exports = function validateRegisterInput(data) {
   if (!data.email) {
     errors.email = "Email field is required";
     // check if the email is a valid email address so error res is correct
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)) {
+  } else if (!/^.+@.+\.(.)+$/i.test(data.email)) {
     errors.email = "Email is invalid";
   }
 
