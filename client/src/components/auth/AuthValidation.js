@@ -16,17 +16,19 @@ const validateUsername = username => {
 
 const validateEmail = email => {
   if (!email) {
-    errors.email = "You must enter an email address";
+    errors.email = "You must enter your email address";
   } else if (!emailRegEx.test(email)) {
     errors.email = "Invalid email address";
   }
   return errors;
 };
 
-const validatePassword = password => {
+const validatePassword = (password, page) => {
   if (!password) {
-    errors.password = "You must enter a password";
-  } else if (!passwordRegEx.test(password)) {
+    errors.password = `You must enter ${
+      page === "login" ? "your" : "a"
+    } password`;
+  } else if (!passwordRegEx.test(password) && page !== "login") {
     errors.password =
       "Password must be 8 - 30 characters, no whitespaces allowed";
   }
@@ -38,5 +40,12 @@ export const ValidateSignup = ({ username, email, password }) => {
   validateUsername(username);
   validateEmail(email);
   validatePassword(password);
+  return errors;
+};
+
+export const ValidateLogin = ({ email, password }) => {
+  errors = {};
+  validateEmail(email);
+  validatePassword(password, "login");
   return errors;
 };

@@ -5,32 +5,10 @@ import { registerUser } from "../../actions/authActions";
 import { ValidateSignup } from "./AuthValidation";
 import { asyncValidate } from "./AsyncValidation";
 
-import PasswordInput from "./PasswordInput";
+import { PasswordInput } from "./PasswordInput";
+import { Input } from "./Input";
 
 class Signup extends Component {
-  renderInput = ({
-    input,
-    meta: { touched, error, warning, active },
-    placeholder,
-    inputId,
-    type = "text",
-    label
-  }) => {
-    return (
-      <div>
-        <label>{label}</label>
-        <input
-          {...input}
-          autoComplete="off"
-          type={type}
-          id={inputId}
-          placeholder={placeholder}
-        />
-        {touched && error ? <span className="error">*{error}</span> : null}
-      </div>
-    );
-  };
-
   onFormSubmit = formValues => {
     const newUser = {
       username: formValues.username,
@@ -56,16 +34,15 @@ class Signup extends Component {
 
         <Field
           name="username"
-          component={this.renderInput}
+          component={Input}
           inputId="username"
           placeholder="Username"
           label="Username"
         />
-        <div>{asyncValidating === "username" ? "validating..." : ""}</div>
 
         <Field
           name="email"
-          component={this.renderInput}
+          component={Input}
           inputId="email"
           placeholder="Enter your email"
           normalize={lower}

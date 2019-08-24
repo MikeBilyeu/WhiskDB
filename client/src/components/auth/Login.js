@@ -1,26 +1,15 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import { ValidateLogin } from "./AuthValidation";
 
-import PasswordInput from "./PasswordInput";
+import { PasswordInput } from "./PasswordInput";
+import { Input } from "./Input";
 
 import "./auth-styles.css";
 
 class Login extends Component {
-  renderInput = ({ input, meta, placeholder, inputId, type = "text" }) => {
-    return (
-      <input
-        {...input}
-        id={inputId}
-        autoComplete="off"
-        type={type}
-        placeholder={placeholder}
-      />
-    );
-  };
-
   onFormSubmit = formValues => {
     const userData = {
       email: formValues.email,
@@ -38,22 +27,25 @@ class Login extends Component {
         className="authForm"
         onSubmit={this.props.handleSubmit(this.onFormSubmit)}
       >
-        <label>
-          Email
-          <Field
-            name="email"
-            component={this.renderInput}
-            inputId="email"
-            placeholder="Email Address"
-            normalize={lower}
-          />
-        </label>
+        <h1>
+          Already Have an Account?
+          <br />
+          Just Login!
+        </h1>
+        <Field
+          name="email"
+          component={Input}
+          inputId="email"
+          placeholder="Enter your email"
+          normalize={lower}
+          label="Email"
+        />
 
         <Field
           name="password"
           component={PasswordInput}
           inputId="password"
-          placeholder="Password"
+          placeholder="Enter your password"
           label="Password"
         />
 
@@ -63,22 +55,6 @@ class Login extends Component {
   }
 }
 
-const validate = formValues => {
-  const errors = {};
-
-  if (!formValues.email) {
-    errors.email = "Please Enter Email Address";
-  }
-  if (!formValues.password) {
-    errors.password = "Please Enter Password";
-  }
-  return errors;
-};
-
-Login.propTypes = {
-  loginUser: PropTypes.func.isRequired
-};
-
 Login = connect(
   null,
   { loginUser }
@@ -86,5 +62,5 @@ Login = connect(
 
 export default reduxForm({
   form: "login",
-  validate: validate
+  validate: ValidateLogin
 })(Login);
