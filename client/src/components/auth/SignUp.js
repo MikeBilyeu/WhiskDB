@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import { ValidateSignup } from "./AuthValidation";
-import { asyncValidate } from "./AsyncValidation";
+import asyncValidate from "./AsyncValidation";
 
 import { PasswordInput } from "./PasswordInput";
 import { Input } from "./Input";
@@ -72,5 +72,5 @@ export default reduxForm({
   form: "Signup",
   validate: ValidateSignup,
   asyncValidate,
-  asyncBlurFields: ["username"]
+  asyncBlurFields: ["username", "email"]
 })(Signup);

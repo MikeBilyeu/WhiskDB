@@ -11,6 +11,7 @@ const getSavedRecipes = require("./queries/getSavedRecipes").getSavedRecipes;
 const getBrowseRecipes = require("./queries/getBrowseRecipes").getBrowseRecipes;
 const getSearchRecipes = require("./queries/getSearchRecipes").getSearchRecipes;
 const getUsernames = require("./queries/getUsernames").getUsernames;
+const getEmails = require("./queries/getEmails").getEmails;
 const passport = require("passport");
 
 // Parse middleware
@@ -51,6 +52,9 @@ app.get("/search-recipe", getSearchRecipes);
 
 // Check if username is available
 app.get("/usernames", getUsernames);
+
+// Check if email is in use
+app.get("/emails", getEmails);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);

@@ -67,7 +67,3 @@ export const logoutUser = () => dispatch => {
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };
-
-export const checkUsernames = username => {
-  axios.get("/usernames", { params: { username } }).then(res => {});
-};

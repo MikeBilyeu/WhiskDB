@@ -11,24 +11,18 @@ const pool = new Pool({
   port: keys.port
 });
 
-const getUsernames = (request, response) => {
-  const { username } = request.query;
+const getEmails = (request, response) => {
+  const { email } = request.query;
 
   pool.connect().then(client => {
     return client
-      .query("SELECT * FROM users WHERE LOWER(username) = LOWER($1)", [
-        username
-      ])
+      .query("SELECT * FROM users WHERE LOWER(email) = LOWER($1)", [email])
       .then(res => {
         client.release();
         if (res.rowCount > 0) {
-          return response
-            .status(409)
-            .json({ usernmae: "Username is unavailable" });
+          return response.status(409).json({ usernmae: "Email is in use" });
         } else {
-          return response
-            .status(200)
-            .json({ usernmae: "Username is available" });
+          return response.status(200).json({ usernmae: "Email is not in use" });
         }
       })
       .catch(e => {
@@ -39,5 +33,5 @@ const getUsernames = (request, response) => {
 };
 
 module.exports = {
-  getUsernames
+  getEmails
 };
