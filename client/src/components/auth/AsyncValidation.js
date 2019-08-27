@@ -2,11 +2,16 @@ import axios from "axios";
 
 //credit -- https://codesandbox.io/s/6R4xMwXOQ
 
+let errors = {};
+
 //combine validator function
 const combineAsyncValidation = validator => {
   return async (values, dispatch, props, field) => {
     const validatorFn = validator[field];
-    await validatorFn(values, dispatch, props, field);
+    // check if field is undefined error occuring on form submit
+    if (field) {
+      await validatorFn(values, dispatch, props, field);
+    }
   };
 };
 
@@ -16,12 +21,12 @@ const usernameValidate = (values, dispatch) => {
     axios
       .get("/usernames", { params: { username } })
       .then(() => {
-        resolve();
+        delete errors.username;
+        Object.keys(errors).length ? reject(errors) : resolve();
       })
       .catch(err => {
-        if (err.response.status === 409) {
-          reject({ username: "This username is already taken" });
-        }
+        errors = { ...errors, username: "This username is taken" };
+        reject(errors);
       });
   });
 };
@@ -32,12 +37,12 @@ const emailValidate = (values, dispatch) => {
     axios
       .get("/emails", { params: { email } })
       .then(() => {
-        resolve();
+        delete errors.email;
+        Object.keys(errors).length ? reject(errors) : resolve();
       })
       .catch(err => {
-        if (err.response.status === 409) {
-          reject({ email: "This email is already in use" });
-        }
+        errors = { ...errors, email: "This email is already in use" };
+        reject(errors);
       });
   });
 };

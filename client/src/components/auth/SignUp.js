@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-import { ValidateSignup } from "./AuthValidation";
-import asyncValidate from "./AsyncValidation";
+import { ValidateSignup } from "./authValidation";
+import asyncValidate from "./asyncValidation";
 
 import { PasswordInput } from "./PasswordInput";
 import { Input } from "./Input";
@@ -23,8 +23,7 @@ class Signup extends Component {
 
   render() {
     const lower = value => value && value.toLowerCase();
-    const { asyncValidating } = this.props;
-    console.log(this.props);
+
     return (
       <form
         className="authForm signup"
@@ -71,6 +70,6 @@ Signup = connect(
 export default reduxForm({
   form: "Signup",
   validate: ValidateSignup,
-  asyncValidate,
+  asyncValidate: asyncValidate,
   asyncBlurFields: ["username", "email"]
 })(Signup);

@@ -24,11 +24,11 @@ const getUsernames = (request, response) => {
         if (res.rowCount > 0) {
           return response
             .status(409)
-            .json({ usernmae: "Username is unavailable" });
+            .json({ username: "This username is already taken" });
         } else {
           return response
             .status(200)
-            .json({ usernmae: "Username is available" });
+            .json({ username: "Username is available" });
         }
       })
       .catch(e => {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import { ValidateLogin } from "./AuthValidation";
+import { ValidateLogin } from "./authValidation";
 
 import { PasswordInput } from "./PasswordInput";
 import { Input } from "./Input";
@@ -62,5 +62,6 @@ Login = connect(
 
 export default reduxForm({
   form: "login",
-  validate: ValidateLogin
+  validate: ValidateLogin,
+  destroyOnUnmount: false
 })(Login);

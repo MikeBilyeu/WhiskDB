@@ -20,7 +20,7 @@ export class PasswordInput extends Component {
       inputId,
       label
     } = this.props;
-    console.log(active);
+
     return (
       <div style={{ position: "relative" }}>
         <label
