@@ -9,25 +9,13 @@ import { PasswordInput } from "./PasswordInput";
 import { Input } from "./Input";
 
 class Signup extends Component {
-  onFormSubmit = formValues => {
-    const newUser = {
-      username: formValues.username,
-      email: formValues.email,
-      password: formValues.password,
-      password2: formValues.password2
-    };
-    this.props.registerUser(newUser);
-    // since we handle the redirect within our component,
-    // we don't need to pass in this.props.history as a parameter
-  };
-
   render() {
     const lower = value => value && value.toLowerCase();
 
     return (
       <form
         className="authForm signup"
-        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+        onSubmit={this.props.handleSubmit(this.props.registerUser)}
       >
         <h1>Make an Account. It's Easy!</h1>
 

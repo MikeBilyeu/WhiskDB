@@ -10,22 +10,12 @@ import { Input } from "./Input";
 import "./auth-styles.css";
 
 class Login extends Component {
-  onFormSubmit = formValues => {
-    const userData = {
-      email: formValues.email,
-      password: formValues.password
-    };
-    this.props.loginUser(userData);
-    // since we handle the redirect within our component,
-    // we don't need to pass in this.props.history as a parameter
-  };
-
   render() {
     const lower = value => value && value.toLowerCase();
     return (
       <form
         className="authForm"
-        onSubmit={this.props.handleSubmit(this.onFormSubmit)}
+        onSubmit={this.props.handleSubmit(this.props.loginUser)}
       >
         <h1>
           Already Have an Account?

@@ -1,6 +1,7 @@
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
+import { SubmissionError } from "redux-form";
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 // Register User
 export const registerUser = userData => dispatch => {
@@ -24,7 +25,7 @@ export const registerUser = userData => dispatch => {
 
 // Login - get user token
 export const loginUser = userData => dispatch => {
-  axios
+  return axios
     .post("/login", userData)
     .then(res => {
       // Save to localStorage
@@ -38,12 +39,9 @@ export const loginUser = userData => dispatch => {
       // Set current user
       dispatch(setCurrentUser(decoded));
     })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .catch(err => {
+      throw new SubmissionError(err.response.data);
+    });
 };
 // Set logged in user
 export const setCurrentUser = decoded => {

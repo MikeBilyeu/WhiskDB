@@ -25,10 +25,6 @@ const userLogin = (request, response) => {
   }
   const email = request.body.email;
   const password = request.body.password;
-  console.log(email);
-  console.log(password);
-
-  // Swap out mongodb for postgresql
 
   pool.connect().then(client => {
     return client
@@ -37,11 +33,13 @@ const userLogin = (request, response) => {
         client.release();
         if (res.rowCount === 0) {
           return response
-            .status(404)
-            .json({ emailnotfound: "Email not found" });
+            .status(401)
+            .json({
+              email: "We can't find an account with that email address"
+            });
         }
         const user = res.rows[0];
-        console.log(user);
+
         // Check password
         bcrypt.compare(password, user.password_encrypted).then(isMatch => {
           if (isMatch) {
@@ -69,8 +67,8 @@ const userLogin = (request, response) => {
             );
           } else {
             return response
-              .status(400)
-              .json({ passwordincorrect: "Password incorrect" });
+              .status(401)
+              .json({ password: "Password incorrect" });
           }
         });
       })
