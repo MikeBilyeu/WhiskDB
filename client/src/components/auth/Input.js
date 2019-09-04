@@ -15,7 +15,7 @@ export const Input = ({
           padding: "0 .5rem",
           backgroundColor: "#FFF",
           position: "absolute",
-          left: ".8rem",
+          left: "1.5rem",
           bottom: "2.4rem",
           color: active ? "#0172C4" : "#535662",
           fontWeight: "normal"

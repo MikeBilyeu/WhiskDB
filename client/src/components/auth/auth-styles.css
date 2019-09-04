@@ -52,10 +52,10 @@
   all: unset;
   box-sizing: border-box;
   width: 100%;
-  border-radius: 0.3rem;
+  border-radius: 10rem;
   border: solid #bfbfbf 0.05rem;
   background-color: #fff;
-  padding: 0.6rem 0.5rem;
+  padding: 0.6rem 1rem;
   color: #484848;
   font-size: 1.3rem;
   font-weight: normal;
@@ -75,10 +75,12 @@
   font-size: 1.3rem;
   font-weight: bold;
   color: #fff;
-  border-radius: 0.2rem;
+  border-radius: 10rem;
   background-color: #0172c4;
   height: 3rem;
   margin-top: 2rem;
+  width: 80%;
+  place-self: center;
 }
 
 .signup button {
