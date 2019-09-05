@@ -6,7 +6,7 @@
 .s-mr-toggle {
   display: grid;
   grid-auto-flow: column;
-  place-items: center;
+  place-items: end center;
   height: 3rem;
   border-bottom: solid #e3e3e3 0.01rem;
   width: 100%;

@@ -8,6 +8,7 @@ import SavedRecipes from "./saved-recipes/SavedRecipes";
 import MyRecipes from "./MyRecipes";
 import EditProfile from "./EditProfile";
 import Button from "./Button";
+import { ReactComponent as UserIcon } from "../../images/userProfile.svg";
 
 class Profile extends React.Component {
   //add state to toggle saved / my recipes
@@ -27,17 +28,45 @@ class Profile extends React.Component {
             return (
               <div className="profile">
                 <div className="profile-header">
-                  <Link to="/profile/edit" className="profile-edit">
-                    Edit Profile
+                  <Link
+                    style={{
+                      padding: ".5rem",
+                      display: "grid",
+                      placeItems: "center"
+                    }}
+                    to="/profile/edit"
+                    className="profile-edit"
+                  >
+                    <UserIcon style={{ width: "3.5rem" }} />
+                    <div style={{ color: "#0172C4", fontSize: "1rem" }}>
+                      Profile
+                    </div>
                   </Link>
-                  <h2>First Last</h2>
-                  <h2>@{this.props.username}</h2>
+                  <h2
+                    style={{ fontSize: "1.5rem", fontWeight: "100", margin: 0 }}
+                  >
+                    Michael Bilyeu
+                  </h2>
+                  <h2
+                    style={{
+                      fontSize: "1rem",
+                      fontWeight: "100",
+                      margin: 0,
+                      marginBottom: "1rem"
+                    }}
+                  >
+                    @{this.props.username.toLowerCase()}
+                  </h2>
                 </div>
                 <div className="s-mr-toggle">
                   <div
                     onClick={() => {
                       this.setState({ savedComponent: true });
                     }}
+                    className={
+                      "authButton " +
+                      (this.state.savedComponent ? "active" : "")
+                    }
                   >
                     Saved
                   </div>
@@ -45,6 +74,10 @@ class Profile extends React.Component {
                     onClick={() => {
                       this.setState({ savedComponent: false });
                     }}
+                    className={
+                      "authButton " +
+                      (!this.state.savedComponent ? "active" : "")
+                    }
                   >
                     My Recipes
                   </div>

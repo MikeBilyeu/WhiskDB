@@ -11,7 +11,6 @@ class EditProfile extends React.Component {
     const { user } = this.props.auth;
     return (
       <div>
-        <h2>{user.username}</h2>
         <div onClick={this.onLogoutClick}>Logout</div>
       </div>
     );

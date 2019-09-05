@@ -47,6 +47,7 @@ class SavedRecipes extends React.Component {
 
     return (
       <div>
+        {toggleSortButton ? <SortBy /> : null}
         <div
           className={
             "sr-header" + (toggleSortButton ? " remove-btm-border" : "")
@@ -58,7 +59,7 @@ class SavedRecipes extends React.Component {
             className={"arrowStyle" + (toggleSortButton ? " sortActive" : "")}
           />
         </div>
-        {toggleSortButton ? <SortBy /> : null}
+
         <ul className="saved-recipes">{this.renderRecipeList()}</ul>
       </div>
     );
