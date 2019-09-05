@@ -40,14 +40,6 @@ class NavigationBar extends React.Component {
   render() {
     return (
       <div className="navBar">
-        <Link to="/profile/saved-recipes">
-          <Saved
-            className={
-              "navIcon" + (this.state.nav === "saved" ? " navActive" : "")
-            }
-          />
-        </Link>
-
         <Link to="/">
           <Home
             className={

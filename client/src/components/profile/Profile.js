@@ -6,33 +6,52 @@ import "./profile-styles.css";
 
 import SavedRecipes from "./saved-recipes/SavedRecipes";
 import MyRecipes from "./MyRecipes";
-import Contact from "./Contact";
 import EditProfile from "./EditProfile";
 import Button from "./Button";
-import CreateRecipe from "./createRecipe/CreateRecipe";
 
 class Profile extends React.Component {
+  //add state to toggle saved / my recipes
+  constructor(props) {
+    super(props);
+    this.state = {
+      savedComponent: true
+    };
+  }
+
   render() {
     return (
       <Switch>
-        <Route path="/profile/create-recipe" component={CreateRecipe} />
         <Route path="/profile/edit" component={EditProfile} />
-        <Route path="/profile/my-recipes" component={MyRecipes} />
-        <Route path="/profile/saved-recipes" component={SavedRecipes} />
-        <Route path="/profile/contact" component={Contact} />
         <Route
           component={() => {
             return (
               <div className="profile">
                 <div className="profile-header">
-                  <h1>{this.props.username}</h1>
                   <Link to="/profile/edit" className="profile-edit">
                     Edit Profile
                   </Link>
+                  <h2>First Last</h2>
+                  <h2>@{this.props.username}</h2>
                 </div>
-                <Button text="Create Recipe" linkTo="/profile/create-recipe" />
-                <Button text="My Recipes" linkTo="/profile/my-recipes" />
-                <Button text="Contact Us" linkTo="/profile/contact" />
+                <div className="s-mr-toggle">
+                  <div
+                    onClick={() => {
+                      this.setState({ savedComponent: true });
+                    }}
+                  >
+                    Saved
+                  </div>
+                  <div
+                    onClick={() => {
+                      this.setState({ savedComponent: false });
+                    }}
+                  >
+                    My Recipes
+                  </div>
+                </div>
+                <div>
+                  {this.state.savedComponent ? <SavedRecipes /> : <MyRecipes />}
+                </div>
               </div>
             );
           }}

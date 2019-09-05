@@ -52,7 +52,6 @@ class SavedRecipes extends React.Component {
             "sr-header" + (toggleSortButton ? " remove-btm-border" : "")
           }
         >
-          <h1>Saved Recipes</h1>
           <Sort
             style={{ fill: toggleSortButton ? "#0172C4" : "#676767" }}
             onClick={this.handleClick}
