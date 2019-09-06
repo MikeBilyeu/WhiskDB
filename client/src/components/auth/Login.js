@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import { ValidateLogin } from "./authValidation";
+import { ValidateLogin } from "./AuthValidation";
 
 import { PasswordInput } from "./PasswordInput";
 import { Input } from "./Input";

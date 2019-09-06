@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-import { ValidateSignup } from "./authValidation";
-import asyncValidate from "./asyncValidation";
+import { ValidateSignup } from "./AuthValidation";
+import asyncValidate from "./AsyncValidation";
 
 import { PasswordInput } from "./PasswordInput";
 import { Input } from "./Input";
