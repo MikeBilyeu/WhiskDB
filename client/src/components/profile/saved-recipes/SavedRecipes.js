@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import SortBy from "./SortBy";
 import { Loading } from "../../loading/Loading";
-import RecipeDisplay from "../../recipes/recipe-display/RecipeDisplay";
+import RecipeDisplayMini from "../../recipes/recipe-display/RecipeDisplayMini";
 import { ReactComponent as Sort } from "../../browse/header/sort-button/SortIcon.svg";
 
 import "./sr-styles.css";
@@ -30,7 +30,7 @@ class SavedRecipes extends React.Component {
 
   renderRecipeList = () => {
     return this.props.savedRecipes.recipes.map((recipe, i) => {
-      return <RecipeDisplay key={i} recipe={recipe} />;
+      return <RecipeDisplayMini key={i} recipe={recipe} />;
     });
   };
 
@@ -40,7 +40,7 @@ class SavedRecipes extends React.Component {
 
   render() {
     const { isFetching, toggleSortButton } = this.props.savedRecipes;
-
+    console.log(this.props.savedRecipes.recipes);
     if (isFetching) {
       return <Loading />;
     }

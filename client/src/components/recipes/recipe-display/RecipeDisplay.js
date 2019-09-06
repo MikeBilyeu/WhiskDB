@@ -50,7 +50,7 @@ class RecipeDisplay extends React.Component {
       total_time_mins
     } = this.props.recipe;
     return (
-      <li className="">
+      <li>
         <Link className="recipe-card" to={`/recipe/${recipe_id}`}>
           <h3 className="recipe-username">{username}</h3>
           {this.state.saved && this.props.user_id == null ? (

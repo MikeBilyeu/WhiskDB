@@ -7,13 +7,21 @@
     "thumbnail thumbnail"
     "title title"
     "rt rt";
-  grid-template-columns: 1fr 1fr;
   align-items: center;
   padding-bottom: 1.5rem;
   max-width: 25rem;
   min-width: 18rem;
   background-color: #fff;
   margin: auto;
+}
+
+.recipe-card.mini {
+  grid-template-areas:
+    "thumbnail"
+    "title"
+    "rt";
+  max-width: 15rem;
+  min-width: 5rem;
 }
 
 .recipe-username {
@@ -51,6 +59,12 @@
   object-fit: cover;
 }
 
+.thumbnail.mini {
+  border-radius: 0.5rem 0.5rem 0 0;
+  max-height: 10rem;
+  min-height: 5rem;
+}
+
 .title {
   font-size: 1.2rem;
   font-weight: bold;
@@ -59,6 +73,10 @@
   color: #464646;
   margin: 1rem 0.5rem 0.5rem 0.5rem;
   grid-area: title;
+}
+
+.title.mini {
+  text-align: center;
 }
 
 .rating-time {
@@ -70,4 +88,7 @@
   grid-template-columns: fit-content(20rem) 0.5rem fit-content(15rem);
   grid-gap: 0.3rem;
   place-items: center;
+}
+.rating-time.mini {
+  grid-template-columns: 1fr;
 }
