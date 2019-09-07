@@ -2,7 +2,7 @@ import React from "react";
 
 //components
 import SearchBar from "./search-bar/SearchBar";
-import { ReactComponent as WhiskIcon } from "./WhiskIcon.svg";
+import { ReactComponent as WhiskIcon } from "../../../images/WhiskIcon.svg";
 import SortButton from "./sort-button/SortButton";
 import FilterButton from "./filter-buttons/FilterButton";
 

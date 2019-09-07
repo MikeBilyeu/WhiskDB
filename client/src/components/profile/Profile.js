@@ -10,6 +10,7 @@ import EditProfile from "./EditProfile";
 import CreateRecipe from "./createRecipe/CreateRecipe";
 import Button from "./Button";
 import { ReactComponent as UserIcon } from "../../images/userProfile.svg";
+import { ReactComponent as WhiskIcon } from "../../images/WhiskIcon.svg";
 
 class Profile extends React.Component {
   //add state to toggle saved / my recipes
@@ -29,6 +30,23 @@ class Profile extends React.Component {
           component={() => {
             return (
               <div className="profile">
+                <div
+                  style={{
+                    display: "grid",
+                    placeItems: "cetner",
+                    backgroundColor: "#FFF",
+                    position: "fixed",
+                    width: "100%",
+                    height: "2.1rem"
+                  }}
+                >
+                  <WhiskIcon
+                    style={{
+                      width: "5rem",
+                      margin: ".2rem auto"
+                    }}
+                  />
+                </div>
                 <div className="profile-header">
                   <Link
                     style={{
@@ -40,21 +58,23 @@ class Profile extends React.Component {
                     className="profile-edit"
                   >
                     <UserIcon style={{ width: "3.5rem" }} />
-                    <div style={{ color: "#0172C4", fontSize: "1rem" }}>
-                      Profile
+                    <div
+                      style={{
+                        color: "#0172C4",
+                        fontSize: "1rem",
+                        margin: ".3rem"
+                      }}
+                    >
+                      Edit
                     </div>
                   </Link>
                   <h2
-                    style={{ fontSize: "1.5rem", fontWeight: "100", margin: 0 }}
-                  >
-                    Michael Bilyeu
-                  </h2>
-                  <h2
                     style={{
-                      fontSize: "1rem",
+                      fontSize: "1.5rem",
                       fontWeight: "100",
                       margin: 0,
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
+                      color: "#FFF"
                     }}
                   >
                     @{this.props.username.toLowerCase()}
