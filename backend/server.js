@@ -8,6 +8,7 @@ const getRecipe = require("./queries/getRecipe").getRecipe;
 const voteRecipe = require("./queries/voteRecipe").voteRecipe;
 const saveRecipe = require("./queries/saveRecipe").saveRecipe;
 const getSavedRecipes = require("./queries/getSavedRecipes").getSavedRecipes;
+const getMyRecipes = require("./queries/getMyRecipes").getMyRecipes;
 const getBrowseRecipes = require("./queries/getBrowseRecipes").getBrowseRecipes;
 const getSearchRecipes = require("./queries/getSearchRecipes").getSearchRecipes;
 const getUsernames = require("./queries/getUsernames").getUsernames;
@@ -43,6 +44,9 @@ app.post("/save-recipe", saveRecipe);
 
 // get saved recipes
 app.get("/save-recipe", getSavedRecipes);
+
+// get my recipes
+app.get("/my-recipe", getMyRecipes);
 
 // get Browse recipes
 app.get("/browse-recipe", getBrowseRecipes);

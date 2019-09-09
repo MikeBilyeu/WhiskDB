@@ -6,6 +6,8 @@ import {
   SAVE_RECIPE,
   GET_SAVED_RECIPES,
   GET_SAVED_RECIPES_REQUEST,
+  GET_MY_RECIPES,
+  GET_MY_RECIPES_REQUEST,
   TOGGLE_UNIT,
   CONVERT_SERVINGS,
   SORT_SAVED_RECIPES,
@@ -51,6 +53,17 @@ export const getSavedRecipes = user_id => dispatch => {
     .get("/save-recipe", { params: { user_id } })
     .then(res => {
       dispatch({ type: GET_SAVED_RECIPES, payload: res.data });
+    })
+    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+};
+
+export const getMyRecipes = user_id => dispatch => {
+  dispatch({ type: GET_MY_RECIPES_REQUEST });
+
+  axios
+    .get("/my-recipe", { params: { user_id } })
+    .then(res => {
+      dispatch({ type: GET_MY_RECIPES, payload: res.data });
     })
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };

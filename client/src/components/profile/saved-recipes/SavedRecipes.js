@@ -59,6 +59,7 @@ class SavedRecipes extends React.Component {
             className={"arrowStyle" + (toggleSortButton ? " sortActive" : "")}
           />
         </div>
+        <h3 style={{ textAlign: "center" }}>Saved Recipes</h3>
 
         <ul className="saved-recipes">{this.renderRecipeList()}</ul>
       </div>
