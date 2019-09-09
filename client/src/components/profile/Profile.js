@@ -11,6 +11,8 @@ import CreateRecipe from "./createRecipe/CreateRecipe";
 import Button from "./Button";
 import { ReactComponent as UserIcon } from "../../images/userProfile.svg";
 import { ReactComponent as WhiskIcon } from "../../images/WhiskIcon.svg";
+import { ReactComponent as SavedIcon } from "../../images/savedRecipes.svg";
+import { ReactComponent as MyRecipesIcon } from "../../images/myRecipes.svg";
 
 class Profile extends React.Component {
   //add state to toggle saved / my recipes
@@ -50,7 +52,6 @@ class Profile extends React.Component {
                 <div className="profile-header">
                   <Link
                     style={{
-                      padding: ".5rem",
                       display: "grid",
                       placeItems: "center"
                     }}
@@ -71,13 +72,13 @@ class Profile extends React.Component {
                   <h2
                     style={{
                       fontSize: "1.5rem",
-                      fontWeight: "100",
+                      fontWeight: "900",
                       margin: 0,
                       marginBottom: "1rem",
-                      color: "#FFF"
+                      color: "#313131"
                     }}
                   >
-                    @{this.props.username.toLowerCase()}
+                    {this.props.username.toLowerCase()}
                   </h2>
                 </div>
                 <div className="s-mr-toggle">
@@ -90,7 +91,7 @@ class Profile extends React.Component {
                       (this.state.savedComponent ? "active" : "")
                     }
                   >
-                    Saved
+                    <SavedIcon style={{ width: "1.5rem" }} />
                   </div>
                   <div
                     onClick={() => {
@@ -101,7 +102,7 @@ class Profile extends React.Component {
                       (!this.state.savedComponent ? "active" : "")
                     }
                   >
-                    My Recipes
+                    <MyRecipesIcon style={{ width: "1.5rem" }} />
                   </div>
                 </div>
                 <div>

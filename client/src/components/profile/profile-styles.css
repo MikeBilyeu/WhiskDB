@@ -6,8 +6,6 @@
 .profile-header {
   display: grid;
   place-items: center;
-  background-color: #171717;
-  padding: 0.5rem 0.1rem;
   margin-top: 2.1rem;
 }
 
