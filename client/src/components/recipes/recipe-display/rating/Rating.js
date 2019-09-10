@@ -45,7 +45,9 @@ class Rating extends React.Component {
     return (
       <div className="rating">
         <div className="stars">{this.renderRating()}</div>
-        <div className="votes">{`(${votes})`}</div>
+        <div className="votes">{`(${
+          votes > 1000 ? parseFloat((votes / 1000).toFixed(1)) + "k" : votes
+        })`}</div>
       </div>
     );
   }

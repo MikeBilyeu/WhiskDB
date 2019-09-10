@@ -6,7 +6,7 @@ import "./profile-styles.css";
 
 import SavedRecipes from "./saved-recipes/SavedRecipes";
 import MyRecipes from "./MyRecipes";
-import EditProfile from "./EditProfile";
+import EditProfile from "./edit-profile/EditProfile";
 import CreateRecipe from "./createRecipe/CreateRecipe";
 import Button from "./Button";
 import { ReactComponent as UserIcon } from "../../images/userProfile.svg";

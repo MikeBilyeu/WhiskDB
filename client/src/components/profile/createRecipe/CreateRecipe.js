@@ -3,7 +3,7 @@ import { Fields, reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { ReactComponent as Arrow } from "../../recipes/arrowLeft.svg";
+import { ReactComponent as Arrow } from "../../../images/arrowLeft.svg";
 
 // Action Creator
 import { createRecipe } from "../../../actions/recipeActions";
