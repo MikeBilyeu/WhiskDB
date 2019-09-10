@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { ReactComponent as SaveIcon } from "./SaveIcon.svg";
+import { ReactComponent as SaveIcon } from "../../../images/saveIcon.svg";
 
 import Rating from "./rating/Rating";
 

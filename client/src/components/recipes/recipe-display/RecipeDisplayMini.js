@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { ReactComponent as SaveIcon } from "./SaveIcon.svg";
-
 import Rating from "./rating/Rating";
 
 import "./rd-styles.css";

@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 
 import { ReactComponent as Arrow } from "./arrowLeft.svg";
 import { ReactComponent as Check } from "../../images/check.svg";
+import { ReactComponent as SaveIcon } from "../../images/saveIcon.svg";
 import { ReactComponent as Share } from "./share.svg";
 
 //styles
@@ -23,10 +24,15 @@ const RecipeHeader = props => {
         }
         onClick={() => saveRecipe(recipe_id, user_id)}
       >
-        {recipeSaved && user_id !== null ? "Saved" : "Save"}
-        {recipeSaved && user_id !== null ? (
-          <Check style={{ width: "1rem", marginLeft: ".2rem" }} />
-        ) : null}
+        <span style={{ margin: "0 1rem" }}>
+          {recipeSaved && user_id !== null ? "Saved" : "Save"}
+        </span>
+        <SaveIcon
+          style={{
+            fill: recipeSaved && user_id !== null ? "#0172C4" : "#E2E2E2",
+            width: "1rem"
+          }}
+        />
       </div>
 
       <Share className="share-btn" />
