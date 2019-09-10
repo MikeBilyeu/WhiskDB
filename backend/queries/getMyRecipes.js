@@ -24,7 +24,7 @@ const getMyRecipes = (request, response) => {
         FROM recipes r
         LEFT JOIN liked_recipes lr ON r.recipe_id = lr.recipe_liked
         LEFT JOIN disliked_recipes dr ON r.recipe_id = dr.recipe_disliked
-        WHERE created_by = $1 GROUP BY r.recipe_id;`,
+        WHERE created_by = $1 GROUP BY r.recipe_id ORDER BY r.created_at DESC;`,
         [user_id]
       )
       .then(res => {
