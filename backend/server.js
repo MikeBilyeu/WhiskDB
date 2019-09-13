@@ -32,21 +32,41 @@ app.post("/register", createUser);
 
 app.post("/login", userLogin);
 
-app.post("/profile/create-recipe", createRecipe);
+app.post(
+  "/profile/create-recipe",
+  passport.authenticate("jwt", { session: false }),
+  createRecipe
+);
 
 app.get("/recipe", getRecipe);
 
 //post route for Liked_recips
-app.post("/recipe/vote", voteRecipe);
+app.post(
+  "/recipe/vote",
+  passport.authenticate("jwt", { session: false }),
+  voteRecipe
+);
 
 // post route for saved recipes
-app.post("/save-recipe", saveRecipe);
+app.post(
+  "/save-recipe",
+  passport.authenticate("jwt", { session: false }),
+  saveRecipe
+);
 
 // get saved recipes
-app.get("/save-recipe", getSavedRecipes);
+app.get(
+  "/save-recipe",
+  passport.authenticate("jwt", { session: false }),
+  getSavedRecipes
+);
 
 // get my recipes
-app.get("/my-recipe", getMyRecipes);
+app.get(
+  "/my-recipe",
+  passport.authenticate("jwt", { session: false }),
+  getMyRecipes
+);
 
 // get Browse recipes
 app.get("/browse-recipe", getBrowseRecipes);

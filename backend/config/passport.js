@@ -1,8 +1,7 @@
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
-// const mongoose = require("mongoose");
+
 const Pool = require("pg").Pool;
-// const User = mongoose.model("users");
 
 const keys = require("../config/keys");
 // Connect to pool
@@ -14,31 +13,20 @@ const pool = new Pool({
   port: keys.port
 });
 
-const opts = {};
-
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-
-opts.secretOrKey = keys.secretOrKey;
-
 module.exports = passport => {
   passport.use(
-    new JwtStrategy(opts, (jwt_payload, done) => {
-      // Swap out mongodb for postgresql
-      pool.connect().then(client => {
-        return client
-          .query("SELECT * FROM users WHERE id = $1", [jwt_payload.id])
-          .then(res => {
-            client.release();
-            if (res.rowCount > 0) {
-              return done(null, res.rows[0]);
-            }
-            return done(null, false);
-          })
-          .catch(e => {
-            client.release();
-            console.log(e);
-          });
-      });
-    })
+    new JwtStrategy(
+      {
+        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+        secretOrKey: keys.secretOrKey
+      },
+      (jwtPayload, done) => {
+        if (Date.now() > jwtPayload.expires) {
+          return done("jwt expired");
+        }
+
+        return done(null, jwtPayload);
+      }
+    )
   );
 };

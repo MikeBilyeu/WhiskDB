@@ -32,11 +32,9 @@ const userLogin = (request, response) => {
       .then(res => {
         client.release();
         if (res.rowCount === 0) {
-          return response
-            .status(401)
-            .json({
-              email: "We can't find an account with that email address"
-            });
+          return response.status(401).json({
+            email: "We can't find an account with that email address"
+          });
         }
         const user = res.rows[0];
 
@@ -55,7 +53,7 @@ const userLogin = (request, response) => {
               payload,
               keys.secretOrKey,
               {
-                expiresIn: 31556926 // 1 year in seconds
+                expires: 31556926 // 1 year in seconds
               },
               (err, token) => {
                 if (err) throw err;
