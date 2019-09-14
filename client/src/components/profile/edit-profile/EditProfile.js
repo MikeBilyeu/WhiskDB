@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 
-import { logoutUser } from "../../../actions/authActions";
+import { logoutUser, editProfile } from "../../../actions/authActions";
 
 import { Input } from "../../auth/Input";
 
@@ -11,13 +11,16 @@ import EditHeader from "./EditHeader";
 class EditProfile extends React.Component {
   render() {
     const lower = value => value && value.toLowerCase();
-    const { user } = this.props.auth;
+    console.log(this.props.initialValues);
     return (
       <div>
         <EditHeader />
-        <form className="authForm">
+        <form
+          className="authForm"
+          onSubmit={this.props.handleSubmit(this.props.editProfile)}
+        >
           <Field
-            name="fullname"
+            name="full_name"
             component={Input}
             inputId="fullname"
             placeholder="Enter full name"
@@ -30,14 +33,7 @@ class EditProfile extends React.Component {
             placeholder="Enter new username"
             label="Username"
           />
-          <Field
-            name="email"
-            component={Input}
-            inputId="email"
-            placeholder="Enter new email"
-            normalize={lower}
-            label="Email"
-          />
+          <button type="submit">Save changes</button>
         </form>
         <div
           style={{
@@ -60,14 +56,15 @@ class EditProfile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  initialValues: state.auth.user
 });
 
-export default reduxForm({
-  form: "edit-profile"
-})(
-  connect(
-    mapStateToProps,
-    { logoutUser }
-  )(EditProfile)
+export default connect(
+  mapStateToProps,
+  { logoutUser, editProfile }
+)(
+  reduxForm({
+    form: "edit-profile",
+    enableReinitialize: true
+  })(EditProfile)
 );

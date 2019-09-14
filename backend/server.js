@@ -13,6 +13,7 @@ const getBrowseRecipes = require("./queries/getBrowseRecipes").getBrowseRecipes;
 const getSearchRecipes = require("./queries/getSearchRecipes").getSearchRecipes;
 const getUsernames = require("./queries/getUsernames").getUsernames;
 const getEmails = require("./queries/getEmails").getEmails;
+const editProfile = require("./queries/editProfile").editProfile;
 const passport = require("passport");
 
 // Parse middleware
@@ -28,6 +29,7 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
+// routes
 app.post("/register", createUser);
 
 app.post("/login", userLogin);
@@ -79,6 +81,13 @@ app.get("/usernames", getUsernames);
 
 // Check if email is in use
 app.get("/emails", getEmails);
+
+// Check if email is in use
+app.post(
+  "/edit-profile",
+  passport.authenticate("jwt", { session: false }),
+  editProfile
+);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);

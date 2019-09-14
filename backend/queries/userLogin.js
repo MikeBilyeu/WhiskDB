@@ -46,14 +46,15 @@ const userLogin = (request, response) => {
             // Create JWT Payload
             const payload = {
               user_id: user.user_id,
-              username: user.username
+              username: user.username,
+              full_name: user.full_name
             };
             // Sign token
             jwt.sign(
               payload,
               keys.secretOrKey,
               {
-                expires: 31556926 // 1 year in seconds
+                expiresIn: 31556926 // 1 year in seconds
               },
               (err, token) => {
                 if (err) throw err;

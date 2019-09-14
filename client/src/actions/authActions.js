@@ -3,7 +3,7 @@ import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { SubmissionError } from "redux-form";
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
-// Register User
+
 export const registerUser = userData => dispatch => {
   // first register the user if the user successfully register
   // dispatch a login action signup component will watch for user auth and
@@ -28,7 +28,6 @@ export const loginUser = userData => dispatch => {
   return axios
     .post("/login", userData)
     .then(res => {
-      // Save to localStorage
       // Set token to localStorage
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
@@ -37,12 +36,35 @@ export const loginUser = userData => dispatch => {
       // Decode token to get user data
       const decoded = jwt_decode(token);
       // Set current user
+      console.log(decoded);
       dispatch(setCurrentUser(decoded));
     })
     .catch(err => {
       throw new SubmissionError(err.response.data);
     });
 };
+
+//edit profile
+export const editProfile = userData => dispatch => {
+  return axios
+    .post("/edit-profile", userData)
+    .then(res => {
+      // Set token to localStorage
+      const { token } = res.data;
+      localStorage.setItem("jwtToken", token);
+      // Set token to Auth header
+      setAuthToken(token);
+      // Decode token to get user data
+      const decoded = jwt_decode(token);
+      // Set current user
+
+      dispatch(setCurrentUser(decoded));
+    })
+    .catch(err => {
+      throw new SubmissionError(err.response.data);
+    });
+};
+
 // Set logged in user
 export const setCurrentUser = decoded => {
   return {
@@ -50,12 +72,14 @@ export const setCurrentUser = decoded => {
     payload: decoded
   };
 };
+
 // User loading
 export const setUserLoading = () => {
   return {
     type: USER_LOADING
   };
 };
+
 // Log user out
 export const logoutUser = () => dispatch => {
   // Remove token from local storage
