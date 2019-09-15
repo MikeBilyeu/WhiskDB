@@ -45,7 +45,7 @@ export const loginUser = userData => dispatch => {
 };
 
 //edit profile
-export const editProfile = userData => dispatch => {
+export const editProfile = (userData, history) => dispatch => {
   return axios
     .post("/edit-profile", userData)
     .then(res => {
@@ -59,6 +59,8 @@ export const editProfile = userData => dispatch => {
       // Set current user
 
       dispatch(setCurrentUser(decoded));
+      console.log(history);
+      return history.push(`/profile/`);
     })
     .catch(err => {
       throw new SubmissionError(err.response.data);

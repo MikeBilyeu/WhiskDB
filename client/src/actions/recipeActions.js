@@ -18,7 +18,6 @@ import { reset } from "redux-form";
 
 // Create Recipe
 export const createRecipe = (recipeData, history) => dispatch => {
-  console.log(recipeData, history);
   axios
     .post("/profile/create-recipe", recipeData)
     .then(res => {

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
+import { withRouter } from "react-router-dom";
 
 import { logoutUser, editProfile } from "../../../actions/authActions";
 
@@ -9,15 +10,17 @@ import { Input } from "../../auth/Input";
 import EditHeader from "./EditHeader";
 
 class EditProfile extends React.Component {
+  handleSubmit = values => {
+    this.props.editProfile(values, this.props.history);
+  };
   render() {
     const lower = value => value && value.toLowerCase();
-    console.log(this.props.initialValues);
     return (
       <div>
         <EditHeader />
         <form
           className="authForm"
-          onSubmit={this.props.handleSubmit(this.props.editProfile)}
+          onSubmit={this.props.handleSubmit(this.handleSubmit)}
         >
           <Field
             name="full_name"
