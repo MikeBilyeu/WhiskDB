@@ -45,9 +45,7 @@ const userLogin = (request, response) => {
             // User matched
             // Create JWT Payload
             const payload = {
-              user_id: user.user_id,
-              username: user.username,
-              full_name: user.full_name
+              user_id: user.user_id
             };
             // Sign token
             jwt.sign(

@@ -14,6 +14,7 @@ const getSearchRecipes = require("./queries/getSearchRecipes").getSearchRecipes;
 const getUsernames = require("./queries/getUsernames").getUsernames;
 const getEmails = require("./queries/getEmails").getEmails;
 const editProfile = require("./queries/editProfile").editProfile;
+const getUser = require("./queries/getUser").getUser;
 const passport = require("passport");
 
 // Parse middleware
@@ -81,6 +82,9 @@ app.get("/usernames", getUsernames);
 
 // Check if email is in use
 app.get("/emails", getEmails);
+
+// get user
+app.get("/user", passport.authenticate("jwt", { session: false }), getUser);
 
 // Check if email is in use
 app.post(

@@ -2,7 +2,7 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { SubmissionError } from "redux-form";
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING, GET_USER } from "./types";
 
 export const registerUser = userData => dispatch => {
   // first register the user if the user successfully register
@@ -22,7 +22,20 @@ export const registerUser = userData => dispatch => {
       })
     );
 };
-
+//get user data
+export const getUser = () => dispatch => {
+  return axios
+    .get("/user")
+    .then(user => {
+      dispatch({ type: GET_USER, payload: user.data });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 // Login - get user token
 export const loginUser = userData => dispatch => {
   return axios
@@ -36,7 +49,6 @@ export const loginUser = userData => dispatch => {
       // Decode token to get user data
       const decoded = jwt_decode(token);
       // Set current user
-      console.log(decoded);
       dispatch(setCurrentUser(decoded));
     })
     .catch(err => {
@@ -59,7 +71,8 @@ export const editProfile = (userData, history) => dispatch => {
       // Set current user
 
       dispatch(setCurrentUser(decoded));
-      console.log(history);
+      dispatch(getUser());
+
       return history.push(`/profile/`);
     })
     .catch(err => {

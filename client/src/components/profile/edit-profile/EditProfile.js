@@ -59,7 +59,7 @@ class EditProfile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  initialValues: state.auth.user
+  initialValues: state.userData.user
 });
 
 export default connect(

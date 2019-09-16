@@ -14,6 +14,8 @@ import { ReactComponent as WhiskIcon } from "../../images/WhiskIcon.svg";
 import { ReactComponent as SavedIcon } from "../../images/savedRecipes.svg";
 import { ReactComponent as MyRecipesIcon } from "../../images/myRecipes.svg";
 
+import { getUser } from "../../actions/authActions";
+
 class Profile extends React.Component {
   //add state to toggle saved / my recipes
   constructor(props) {
@@ -21,6 +23,10 @@ class Profile extends React.Component {
     this.state = {
       savedComponent: true
     };
+  }
+
+  componentDidMount() {
+    this.props.getUser();
   }
 
   render() {
@@ -121,6 +127,9 @@ class Profile extends React.Component {
 //   auth: PropTypes.object.isRequired
 // };
 const mapStateToProps = state => ({
-  username: state.auth.user.username
+  username: state.userData.user.username
 });
-export default connect(mapStateToProps)(Profile);
+export default connect(
+  mapStateToProps,
+  { getUser }
+)(Profile);
