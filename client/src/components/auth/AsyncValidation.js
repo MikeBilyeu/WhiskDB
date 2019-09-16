@@ -15,19 +15,25 @@ const combineAsyncValidation = validator => {
   };
 };
 
-const usernameValidate = (values, dispatch) => {
+export const usernameValidate = (values, dispatch) => {
   return new Promise((resolve, reject) => {
-    const { username } = values;
-    axios
-      .get("/usernames", { params: { username } })
-      .then(() => {
-        delete errors.username;
-        Object.keys(errors).length ? reject(errors) : resolve();
-      })
-      .catch(err => {
-        errors = { ...errors, username: "This username is taken" };
-        reject(errors);
-      });
+    const { username, currentUsername } = values;
+    //bypass if no change made to usename
+    if (username.toLowerCase() === currentUsername.toLowerCase()) {
+      delete errors.username;
+      Object.keys(errors).length ? reject(errors) : resolve();
+    } else {
+      axios
+        .get("/usernames", { params: { username } })
+        .then(() => {
+          delete errors.username;
+          Object.keys(errors).length ? reject(errors) : resolve();
+        })
+        .catch(err => {
+          errors = { ...errors, username: "This username is taken" };
+          reject(errors);
+        });
+    }
   });
 };
 

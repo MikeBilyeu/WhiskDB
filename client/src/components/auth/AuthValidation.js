@@ -49,3 +49,9 @@ export const ValidateLogin = ({ email, password }) => {
   validatePassword(password, "login");
   return errors;
 };
+
+export const ValidateUsername = ({ username }) => {
+  errors = {};
+  validateUsername(username);
+  return errors;
+};

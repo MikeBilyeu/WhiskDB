@@ -1,20 +1,24 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, isDirty } from "redux-form";
 import { withRouter } from "react-router-dom";
 
 import { logoutUser, editProfile } from "../../../actions/authActions";
 
-import { Input } from "../../auth/Input";
+import { ValidateUsername } from "../../auth/AuthValidation";
+import { usernameValidate } from "../../auth/AsyncValidation";
 
+import { Input } from "../../auth/Input";
 import EditHeader from "./EditHeader";
 
 class EditProfile extends React.Component {
   handleSubmit = values => {
     this.props.editProfile(values, this.props.history);
   };
+
   render() {
     const lower = value => value && value.toLowerCase();
+    console.log(this.props);
     return (
       <div>
         <EditHeader />
@@ -36,7 +40,9 @@ class EditProfile extends React.Component {
             placeholder="Enter new username"
             label="Username"
           />
-          <button type="submit">Save changes</button>
+          {this.props.dirty ? (
+            <button type="submit">Save changes</button>
+          ) : null}
         </form>
         <div
           style={{
@@ -59,7 +65,11 @@ class EditProfile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  initialValues: state.userData.user
+  initialValues: {
+    ...state.userData.user,
+    currentUsername: state.userData.user.username //pass currentUsername to bypass if no change made to usename
+  },
+  dirty: isDirty("edit-profile")
 });
 
 export default connect(
@@ -68,6 +78,9 @@ export default connect(
 )(
   reduxForm({
     form: "edit-profile",
+    validate: ValidateUsername,
+    asyncValidate: usernameValidate,
+    asyncBlurFields: ["username"],
     enableReinitialize: true
   })(EditProfile)
 );
