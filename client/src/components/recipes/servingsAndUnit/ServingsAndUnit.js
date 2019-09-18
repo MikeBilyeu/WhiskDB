@@ -14,12 +14,7 @@ class ServingsAndUnit extends React.Component {
   render() {
     return (
       <div className="servings-units">
-        <div className="units">
-          <Unit unitName="US" />
-          <Unit unitName="Metric" />
-        </div>
-        <div className="split" />
-
+        <Unit />
         <Servings />
       </div>
     );

@@ -6,25 +6,16 @@ import { connect } from "react-redux";
 import { toggleUnit } from "../../../actions/recipeActions";
 
 class Unit extends React.Component {
-  componentDidMount() {
-    // Sets the Unit to US on mount
-    this.props.toggleUnit("US");
-  }
   handleClick = () => {
-    this.props.toggleUnit(this.props.unitName);
+    this.props.toggleUnit();
   };
   render() {
     return (
-      <div
-        className="unit-option"
-        style={{
-          fontWeight:
-            this.props.unitName === this.props.unitSelect ? "bold" : "normal",
-          opacity: this.props.unitName === this.props.unitSelect ? "1" : ".2"
-        }}
-        onClick={this.handleClick}
-      >
-        {this.props.unitName}
+      <div className="units">
+        Unit:
+        <div className="unit-option" onClick={this.handleClick}>
+          {this.props.unitSelect}
+        </div>
       </div>
     );
   }

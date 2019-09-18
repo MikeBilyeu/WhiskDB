@@ -34,7 +34,7 @@ export default function(state = initialState, action) {
     case VOTE_CLICKED:
       return { ...state, voteClicked: true };
     case TOGGLE_UNIT:
-      return { ...state, unit: action.payload };
+      return { ...state, unit: state.unit === "US" ? "Metric" : "US" };
     case CONVERT_SERVINGS:
       return { ...state, convertedServings: action.payload };
 

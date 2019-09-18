@@ -88,7 +88,7 @@ export const saveRecipe = (recipe_id, user_id) => dispatch => {
 };
 
 export const toggleUnit = unit => {
-  return { type: TOGGLE_UNIT, payload: unit };
+  return { type: TOGGLE_UNIT };
 };
 
 export const convertServings = number => {
