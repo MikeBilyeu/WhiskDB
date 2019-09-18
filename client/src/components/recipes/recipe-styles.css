@@ -143,6 +143,10 @@
   word-spacing: 0.05rem;
 }
 
+.ingredients li {
+  font-weight: 900;
+}
+
 .directions .time {
   text-align: center;
   padding-top: 1rem;

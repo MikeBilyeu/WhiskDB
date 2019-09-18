@@ -28,7 +28,7 @@ const renderIngredientList = props => {
 
 const IngredientList = props => {
   return (
-    <div className="recipe-list">
+    <div className="recipe-list ingredients">
       <h2>Ingredients</h2>
       <ServingsAndUnit />
       <ul>{renderIngredientList(props)}</ul>
