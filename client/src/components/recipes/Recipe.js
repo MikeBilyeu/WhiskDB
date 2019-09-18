@@ -64,11 +64,7 @@ class Recipe extends React.Component {
       <div className="recipe">
         <RecipeHeader recipe_id={recipe_id} user_id={user_id} />
         <RecipeDetails time={this.formatMinsToHours(total_time_mins)} />
-        <img
-          href="recipe photo"
-          alt=""
-          src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-        />
+
         <IngredientList />
         <Directions
           directions={directions}
