@@ -43,18 +43,6 @@ class Recipe extends React.Component {
       ? this.props.auth.user.user_id
       : null;
 
-    const renderFootnote = footnote => {
-      if (footnote !== null) {
-        return (
-          <div className="footnote">
-            <h3>Footnote</h3>
-            <p>{footnote}</p>
-          </div>
-        );
-      }
-      return null;
-    };
-
     // display loading if isFetching
     if (isFetching) {
       return <Loading />;
@@ -69,9 +57,8 @@ class Recipe extends React.Component {
         <Directions
           directions={directions}
           time={this.formatMinsToHours(total_time_mins)}
+          footnote={footnote}
         />
-        {renderFootnote(footnote)}
-        <Vote user_id={user_id} recipe_id={recipe_id} />
       </div>
     );
   }

@@ -38,7 +38,7 @@ if (localStorage.jwtToken) {
 class App extends React.Component {
   render() {
     return (
-      <div style={{ paddingBottom: "8rem" }}>
+      <div style={{ paddingBottom: "4rem" }}>
         <Router>
           <ScrollToTop>
             <Route exact path="/" component={Home} />

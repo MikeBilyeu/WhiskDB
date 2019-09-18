@@ -4,15 +4,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   place-items: center;
-  font-family: Helvetica, Arial, Times;
-}
-
-.units {
 }
 
 .unit-option {
   display: inline-block;
-  width: 4rem;
+  width: 3rem;
   text-align: center;
   color: #0172c4;
   cursor: pointer;

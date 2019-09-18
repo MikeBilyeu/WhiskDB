@@ -6,17 +6,33 @@ const Directions = props => {
     props.directions.map((step, i) => {
       return (
         <li key={`step${i}`}>
-          <h4>{i + 1}</h4>
           <p>{step.step}</p>
         </li>
       );
     });
+
+  const renderFootnote = () => {
+    if (props.footnote !== null) {
+      return (
+        <div className="footnote">
+          <p>
+            <span style={{ fontWeight: "900", fontStyle: "normal" }}>
+              Footnote:
+            </span>
+            {props.footnote}
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
     <div className="recipe-list directions">
       <h2>Directions</h2>
       <div className="time">Time: {props.time}</div>
       <ol>{renderDirections}</ol>
+      {renderFootnote()}
     </div>
   );
 };

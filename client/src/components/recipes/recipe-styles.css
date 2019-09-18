@@ -65,10 +65,10 @@
 }
 
 .recipe-details > .title {
-  font-size: 1.6rem;
+  font-size: 2rem;
+  line-height: 2rem;
   text-align: center;
-  margin: 1rem 0;
-  font-family: times, arial, sans-serif;
+  margin: 0;
 }
 
 .recipe-details > .rating {
@@ -111,11 +111,11 @@
 
 .recipe h2 {
   margin: auto;
-  font-size: 2rem;
+  font-size: 1.9rem;
   padding: 0 1.5rem;
   text-align: center;
   border-bottom: solid #ededed 0.05rem;
-  padding-bottom: 1rem;
+  padding-bottom: 0.7rem;
 }
 
 .recipe-list {
@@ -150,10 +150,11 @@
 .directions .time {
   text-align: center;
   padding-top: 1rem;
+  color: #a3a3a3;
 }
 
 .directions {
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 }
 
 .directions h4 {
@@ -169,29 +170,27 @@
 }
 
 .directions p {
-  margin: 0 0 1.5rem 0.3rem;
+  margin: 0 0 0 0.3rem;
   font-size: 1.1rem;
   line-height: 1.5rem;
 }
 
+.directions li:first-child p::first-letter {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 1rem 0 0 0;
+  float: left;
+  margin: -0.2rem 0 0 0;
+}
+
 .directions li {
   text-align: left;
-  display: grid;
-  grid-gap: 0.3rem;
 }
 
 .footnote {
   width: 100%;
-  padding: 0 0.7rem;
-  margin: 2rem 0;
-  display: grid;
-  text-align: center;
-}
-
-.footnote h3 {
-  margin: auto;
-  padding: 0 3.5rem 0.5rem 3.5rem;
-  border-bottom: solid #ededed 0.05rem;
+  margin: 3rem 0;
+  font-style: italic;
 }
 
 .vote h2 {
