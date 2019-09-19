@@ -81,6 +81,7 @@
   padding: 0.5rem 1.5rem;
   font-size: 0.9rem;
 }
+
 .recipe-details > .rating > .votes {
   color: #0172c4;
 }
@@ -191,31 +192,4 @@
   width: 100%;
   margin: 3rem 0;
   font-style: italic;
-}
-
-.vote h2 {
-  text-align: center;
-  padding: 0 3.5rem 0.5rem 3.5rem;
-  margin-bottom: 1rem;
-  font-size: 1.7rem;
-  border-bottom: solid #ededed 0.05rem;
-}
-
-.vote h3 {
-  text-align: center;
-}
-
-.vote-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  place-items: center;
-}
-
-.vote-btn {
-  background-color: #0172c4;
-  padding: 0.5rem;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  cursor: pointer;
 }

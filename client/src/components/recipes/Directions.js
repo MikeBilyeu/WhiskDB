@@ -17,7 +17,7 @@ const Directions = props => {
         <div className="footnote">
           <p>
             <span style={{ fontWeight: "900", fontStyle: "normal" }}>
-              Footnote:
+              {"Footnote: "}
             </span>
             {props.footnote}
           </p>

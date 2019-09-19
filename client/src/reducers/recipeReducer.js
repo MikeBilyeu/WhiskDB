@@ -1,15 +1,19 @@
 import {
   GET_RECIPE,
   GET_RECIPE_REQUEST,
-  LIKED_RECIPE,
-  DISLIKED_RECIPE,
-  VOTE_CLICKED,
+  STAR_CLICKED,
+  TOGGLE_REVIEW,
   SAVE_RECIPE,
   TOGGLE_UNIT,
   CONVERT_SERVINGS
 } from "../actions/types";
 
-const initialState = { recipe: {}, isFetching: true, unit: "US" };
+const initialState = {
+  recipe: {},
+  isFetching: true,
+  unit: "US",
+  reviewOpen: false
+};
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -21,18 +25,12 @@ export default function(state = initialState, action) {
         recipe: action.payload,
         isFetching: false,
         saved: action.payload.saved,
-        liked: action.payload.vote === "liked" ? true : false,
-        disliked: action.payload.vote === "disliked" ? true : false,
         convertedServings: action.payload.servings
       };
     case SAVE_RECIPE:
       return { ...state, saved: !state.saved };
-    case LIKED_RECIPE:
-      return { ...state, liked: !state.liked, disliked: false };
-    case DISLIKED_RECIPE:
-      return { ...state, disliked: !state.disliked, liked: false };
-    case VOTE_CLICKED:
-      return { ...state, voteClicked: true };
+    case TOGGLE_REVIEW:
+      return { ...state, reviewOpen: !state.reviewOpen };
     case TOGGLE_UNIT:
       return { ...state, unit: state.unit === "US" ? "Metric" : "US" };
     case CONVERT_SERVINGS:

@@ -1,13 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { toggleReview } from "../../actions/rateActions";
+
 import Rating from "./recipe-display/rating/Rating";
 
 import "./recipe-styles.css";
 
 const RecipeDetails = ({
   recipe: { title, date_created, rating, votes, username },
-  time
+  time,
+  toggleReview
 }) => {
   return (
     <div className="recipe-details">
@@ -18,7 +21,8 @@ const RecipeDetails = ({
         src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
       />
       <div className="username">-{username.toLowerCase()}</div>
-      <Rating rating={rating} votes={votes} />
+
+      <Rating onClick={toggleReview} rating={rating} votes={votes} />
     </div>
   );
 };
@@ -27,4 +31,7 @@ const mapStateToProps = state => {
   return { recipe: state.recipe.recipe };
 };
 
-export default connect(mapStateToProps)(RecipeDetails);
+export default connect(
+  mapStateToProps,
+  { toggleReview }
+)(RecipeDetails);

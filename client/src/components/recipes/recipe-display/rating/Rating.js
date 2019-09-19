@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ReactComponent as Star } from "./star.svg";
+import { ReactComponent as Star } from "../../../../images/star.svg";
 
 import "./rating-styles.css";
 
@@ -43,7 +43,7 @@ class Rating extends React.Component {
   render() {
     const { votes } = this.props;
     return (
-      <div className="rating">
+      <div className="rating" onClick={this.props.onClick}>
         <div className="stars">{this.renderRating()}</div>
         <div className="votes">{`(${
           votes > 1000 ? parseFloat((votes / 1000).toFixed(1)) + "k" : votes

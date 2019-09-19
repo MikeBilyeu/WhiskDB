@@ -1,0 +1,21 @@
+.rate {
+  border: solid #c6c6c6 0.1rem;
+  border-radius: 0.5rem;
+  width: 99%;
+  height: 99vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #fff;
+  z-index: 2;
+}
+
+.rate h2 {
+  text-align: center;
+  margin: 2rem auto 0.5rem auto;
+  font-size: 1.7rem;
+  padding: 0.2rem 0;
+  width: 90%;
+  border-bottom: solid #ededed 0.05rem;
+}

@@ -6,7 +6,7 @@ import RecipeHeader from "./RecipeHeader";
 import RecipeDetails from "./RecipeDetails";
 import IngredientList from "./IngredientList";
 import Directions from "./Directions";
-import Vote from "./vote/Vote";
+import Rate from "./rate/Rate";
 
 // Action Creator
 import { getRecipe } from "../../actions/recipeActions";
@@ -43,6 +43,8 @@ class Recipe extends React.Component {
       ? this.props.auth.user.user_id
       : null;
 
+    const { reviewOpen } = this.props.recipeData;
+
     // display loading if isFetching
     if (isFetching) {
       return <Loading />;
@@ -52,13 +54,13 @@ class Recipe extends React.Component {
       <div className="recipe">
         <RecipeHeader recipe_id={recipe_id} user_id={user_id} />
         <RecipeDetails time={this.formatMinsToHours(total_time_mins)} />
-
         <IngredientList />
         <Directions
           directions={directions}
           time={this.formatMinsToHours(total_time_mins)}
           footnote={footnote}
         />
+        {reviewOpen ? <Rate recipe_id={recipe_id} /> : null}
       </div>
     );
   }
