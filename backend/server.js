@@ -15,6 +15,7 @@ const getUsernames = require("./queries/getUsernames").getUsernames;
 const getEmails = require("./queries/getEmails").getEmails;
 const editProfile = require("./queries/editProfile").editProfile;
 const getUser = require("./queries/getUser").getUser;
+const postReview = require("./queries/postReview").postReview;
 const passport = require("passport");
 
 // Parse middleware
@@ -91,6 +92,13 @@ app.post(
   "/edit-profile",
   passport.authenticate("jwt", { session: false }),
   editProfile
+);
+
+// post review
+app.post(
+  "/recipe-review",
+  passport.authenticate("jwt", { session: false }),
+  postReview
 );
 
 app.listen(PORT, () => {

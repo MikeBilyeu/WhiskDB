@@ -17,7 +17,7 @@ class Rate extends React.Component {
     this.state = {
       starColor: ["#E2E2E2", "#E2E2E2", "#E2E2E2", "#E2E2E2", "#E2E2E2"],
       rating: 0,
-      review: ""
+      comment: ""
     };
   }
   renderRating = () => {
@@ -30,7 +30,7 @@ class Rate extends React.Component {
             fill: color,
             cursor: "pointer"
           }}
-          onMouseEnter={() => this.handleMouseEnter(i)}
+          onMouseEnter={() => this.handleMouseEnter(i + 1)}
           onClick={() => {
             this.setState({ rating: i + 1 });
           }}
@@ -39,28 +39,22 @@ class Rate extends React.Component {
     });
   };
 
-  handleMouseEnter = rating => {
-    this.setState(({ starColor }) => {
+  setStarColor = rating => {
+    this.setState(() => {
       let colors = [];
       for (let i = 0; i < 5; i++) {
-        colors = [...colors, rating + 1 > i ? "#FFA805" : "#E2E2E2"];
+        colors = [...colors, rating > i ? "#FFA805" : "#E2E2E2"];
       }
-      return {
-        starColor: colors
-      };
+      return { starColor: colors };
     });
   };
 
+  handleMouseEnter = rating => {
+    this.setStarColor(rating);
+  };
+
   handleMouseLeave = () => {
-    this.setState(({ starColor }) => {
-      let colors = [];
-      for (let i = 0; i < 5; i++) {
-        colors = [...colors, this.state.rating > i ? "#FFA805" : "#E2E2E2"];
-      }
-      return {
-        starColor: colors
-      };
-    });
+    this.setStarColor(this.state.rating);
   };
 
   componentDidMount() {
@@ -71,21 +65,25 @@ class Rate extends React.Component {
     });
   }
 
-  handleChage = e => {
-    this.setState({ review: e.target.value });
+  handleChange = e => {
+    this.setState({ comment: e.target.value });
   };
 
   handleSubmit = () => {
     const review = {
       recipe_id: this.props.recipe_id,
-      user_id: this.props.user_id,
       rating: this.state.rating,
-      review: this.state.review
+      comment: this.state.comment
     };
     this.props.submitReview(review);
   };
   render() {
-    const { recipe_id, user_id, starClicked, submitReview } = this.props;
+    const {
+      recipe_id,
+      starClicked,
+      submitReview,
+      isAuthenticated
+    } = this.props;
     return (
       <div className="rate">
         <Close
@@ -97,15 +95,13 @@ class Rate extends React.Component {
           onClick={this.props.toggleReview}
         />
         <h2>How was it?</h2>
-        {this.state.rating && user_id == undefined ? (
+        {this.state.rating && !isAuthenticated ? (
           <h3>
-            You must{" "}
-            {
-              <Link to="/auth" style={{ color: "#0172c4" }}>
-                Login
-              </Link>
-            }{" "}
-            to rate recipe
+            {"You must "}
+            <Link to="/auth" style={{ color: "#0172c4" }}>
+              login
+            </Link>
+            {" to rate a recipe."}
           </h3>
         ) : null}
         <div
@@ -124,40 +120,19 @@ class Rate extends React.Component {
           Review
           <span style={{ position: "ablsolute" }}>(optional)</span>
           <textarea
-            style={{
-              border: "solid #A3A3A3 .08rem",
-              borderRadius: ".3rem",
-              maxWidth: "98%",
-              minWidth: "98%",
-              minHeight: "7rem",
-              maxHeight: "10rem",
-              padding: ".5rem",
-              fontSize: "1.1rem"
-            }}
             placeholder="Write a review…"
-            value={this.state.review}
-            onChange={this.handleChage}
+            value={this.state.comment}
+            onChange={this.handleChange}
           />
         </label>
         <div
+          className="submit-review"
           style={{
-            backgroundColor: "#0172C4",
-            color: "#FFF",
-            textAlign: "center",
-            padding: ".8rem",
-            width: "90%",
-            margin: "1rem auto",
-            fontSize: "1.3rem",
-            borderRadius: ".3rem",
-            fontWeight: "600",
-            opacity: this.state.rating && user_id !== undefined ? "1" : ".1",
-            cursor:
-              this.state.rating && user_id !== undefined ? "pointer" : "auto"
+            opacity: this.state.rating && isAuthenticated ? "1" : ".5",
+            cursor: this.state.rating && isAuthenticated ? "pointer" : "auto"
           }}
           onClick={
-            this.state.rating && user_id !== undefined
-              ? this.handleSubmit
-              : null
+            this.state.rating && isAuthenticated ? this.handleSubmit : null
           }
         >
           Submit
@@ -168,7 +143,7 @@ class Rate extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user_id: state.auth.user.user_id,
+  isAuthenticated: state.auth.isAuthenticated,
   rating: state.recipe.rating
 });
 

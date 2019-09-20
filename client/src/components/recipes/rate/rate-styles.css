@@ -19,3 +19,26 @@
   width: 90%;
   border-bottom: solid #ededed 0.05rem;
 }
+
+.rate textarea {
+  border: solid #a3a3a3 0.08rem;
+  border-radius: 0.3rem;
+  max-width: 98%;
+  min-width: 98%;
+  min-height: 7rem;
+  max-height: 10rem;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.submit-review {
+  background-color: #0172c4;
+  color: #fff;
+  text-align: center;
+  padding: 0.8rem;
+  width: 90%;
+  margin: 1rem auto;
+  font-size: 1.3rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+}
