@@ -8,7 +8,7 @@ import Rating from "./recipe-display/rating/Rating";
 import "./recipe-styles.css";
 
 const RecipeDetails = ({
-  recipe: { title, date_created, rating, votes, username },
+  recipe: { title, date_created, rating, num_reviews, username },
   time,
   toggleReview
 }) => {
@@ -22,7 +22,7 @@ const RecipeDetails = ({
       />
       <div className="username">-{username.toLowerCase()}</div>
 
-      <Rating onClick={toggleReview} rating={rating} votes={votes} />
+      <Rating onClick={toggleReview} rating={rating} votes={num_reviews} />
     </div>
   );
 };

@@ -43,7 +43,7 @@ class RecipeDisplay extends React.Component {
   render() {
     const {
       title,
-      votes,
+      num_reviews,
       rating,
       username,
       recipe_id,
@@ -80,7 +80,7 @@ class RecipeDisplay extends React.Component {
 
           <div className="title">{title}</div>
           <div className="rating-time">
-            <Rating className="rating" rating={rating} votes={votes} />
+            <Rating className="rating" rating={rating} votes={num_reviews} />
             <div>•</div>
             {this.formatMinsToHours(total_time_mins)}
           </div>

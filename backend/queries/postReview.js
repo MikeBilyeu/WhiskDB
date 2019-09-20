@@ -26,7 +26,8 @@ const postReview = (request, response) => {
         [recipe_id, rating, comment, user_id]
       )
       .then(res => {
-        return response.status(200);
+        console.log(res);
+        return response.status(200).json("Review sent");
       })
       .catch(e => {
         client.release();

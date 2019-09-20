@@ -19,20 +19,16 @@ const getRecipe = (request, response) => {
     //Getting recipe data
     return client
       .query(
-        `SELECT r.*, TO_CHAR(r.created_at, 'Mon fmDD, YYYY') AS date_created, u.username AS username, CASE WHEN count(lr.*) +
-         count(dr.*) = 0 THEN 0 ELSE (count(lr.*) / CAST (count(lr.*) +
-         count(dr.*) AS FLOAT)) * 5 END AS rating, CAST(count(lr.*) +
-         count(dr.*) AS INTEGER) AS votes, CASE WHEN EXISTS ( SELECT * FROM
+        `SELECT r.*, AVG(rw.rating) AS rating,
+        CAST(count(rw.*) AS INTEGER) AS num_reviews,
+        TO_CHAR(r.created_at, 'Mon fmDD, YYYY') AS date_created,
+        u.username AS username, CASE WHEN EXISTS ( SELECT * FROM
            saved_recipes WHERE saved_by = $2 AND recipe_saved = $1) THEN
-           1::INTEGER ELSE 0::INTEGER END AS saved, CASE WHEN EXISTS
-           ( SELECT * FROM liked_recipes WHERE liked_by = $2 AND recipe_liked
-             = $1) THEN 'liked' WHEN EXISTS ( SELECT * FROM disliked_recipes
-               WHERE disliked_by = $2 AND recipe_disliked = $1) THEN
-               'disliked' ELSE null END AS vote FROM recipes r LEFT JOIN
-               users u ON u.user_id = r.created_by LEFT JOIN liked_recipes
-               lr ON r.recipe_id = lr.recipe_liked LEFT JOIN disliked_recipes
-               dr ON r.recipe_id = dr.recipe_disliked WHERE recipe_id = $1
-               GROUP BY r.recipe_id, u.user_id`,
+           1::INTEGER ELSE 0::INTEGER END AS saved FROM recipes r
+            LEFT JOIN users u ON u.user_id = r.created_by
+            LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
+               WHERE r.recipe_id = $1
+               GROUP BY r.recipe_id, u.user_id, rw.recipe_id`,
         [recipe_id, user_id]
       )
       .then(res => {

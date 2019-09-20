@@ -9,6 +9,7 @@ export const toggleReview = () => {
 export const submitReview = review => dispatch => {
   // dispatch(toggleReview());
   //get the user_id from the auth on backend form 'req.user'
+  console.log(review);
   axios
     .post("/recipe-review", review)
     .then(() => {

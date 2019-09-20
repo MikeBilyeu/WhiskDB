@@ -19,23 +19,24 @@ const getBrowseRecipes = (request, response) => {
 
   const numOfCats = diet ? (meal == "all meals" ? 1 : 2) : 1;
 
+  // CASE WHEN count(lr.*) + count(dr.*) = 0 THEN 0
+  // ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
+  // END
+  // AS rating
+
   //connect pool
   pool.connect().then(client => {
     // query the recipe table
     return client
       .query(
         `SELECT r.recipe_id, r.created_by, r.title, r.total_time_mins, r.image_url,
-        r.created_at, CASE WHEN count(lr.*) + count(dr.*) = 0 THEN 0
-        ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
-        END
-        AS rating,
-        CAST(count(lr.*) + count(dr.*) AS INTEGER) AS votes, u.username AS username,
+        r.created_at, AVG(rw.rating) AS rating,
+        CAST(count(rw.*) AS INTEGER) AS num_reviews, u.username AS username,
         CASE WHEN EXISTS ( SELECT * FROM saved_recipes WHERE saved_by = $5 AND
           recipe_saved = r.recipe_id)
         THEN 1::INTEGER ELSE 0::INTEGER END AS saved FROM recipes r
         LEFT JOIN users u ON r.created_by = u.user_id
-        LEFT JOIN liked_recipes lr ON r.recipe_id = lr.recipe_liked
-        LEFT JOIN disliked_recipes dr ON r.recipe_id = dr.recipe_disliked
+        LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
         WHERE r.recipe_id in
         (SELECT recipe FROM recipes_join_categories
           WHERE
@@ -60,17 +61,18 @@ const getBrowseRecipes = (request, response) => {
 
           GROUP BY recipe HAVING COUNT(*) >= $3
         )
-        GROUP BY r.recipe_id, u.user_id
+        GROUP BY r.recipe_id, u.user_id, rw.recipe_id
         ORDER BY
           CASE WHEN $4 = 'a-z' THEN LOWER(r.title) END ASC,
           CASE WHEN $4 = 'time' THEN r.total_time_mins END ASC,
           CASE WHEN $4 = 'newest' THEN r.created_at END DESC,
-        rating DESC, votes DESC, r.created_at DESC;
+         rating DESC, num_reviews DESC, r.created_at DESC;
 `,
         [meal, diet, numOfCats, sort, user_id]
       )
       .then(res => {
         client.release();
+        console.log(res.rows[0]);
         response.status(200).json(res.rows);
       })
 
