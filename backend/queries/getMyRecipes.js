@@ -17,14 +17,11 @@ const getMyRecipes = (request, response) => {
     return client
       .query(
         `SELECT r.recipe_id, r.title, r.image_url,
-        CASE WHEN count(lr.*) + count(dr.*) = 0 THEN 0
-          ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
-          END
-        AS rating, CAST(count(lr.*) + count(dr.*) AS INTEGER) AS votes
+        r.created_at, COALESCE(AVG(rw.rating), 0) AS rating,
+        CAST(count(rw.*) AS INTEGER) AS num_reviews
         FROM recipes r
-        LEFT JOIN liked_recipes lr ON r.recipe_id = lr.recipe_liked
-        LEFT JOIN disliked_recipes dr ON r.recipe_id = dr.recipe_disliked
-        WHERE created_by = $1 GROUP BY r.recipe_id ORDER BY r.created_at DESC;`,
+        LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
+        WHERE created_by = $1 GROUP BY r.recipe_id, rw.recipe_id ORDER BY created_at DESC;`,
         [user_id]
       )
       .then(res => {

@@ -7,7 +7,7 @@ import Rating from "./rating/Rating";
 import "./rd-styles.css";
 
 const RecipeDisplay = ({
-  recipe: { title, votes, rating, username, recipe_id, total_time_mins }
+  recipe: { title, num_reviews, rating, username, recipe_id, total_time_mins }
 }) => {
   return (
     <li>
@@ -19,7 +19,7 @@ const RecipeDisplay = ({
         />
         <div className="title mini">{title}</div>
         <div className="rating-time mini">
-          <Rating className="rating" rating={rating} votes={votes} />
+          <Rating className="rating" rating={rating} votes={num_reviews} />
         </div>
       </Link>
     </li>

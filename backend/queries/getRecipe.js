@@ -19,7 +19,7 @@ const getRecipe = (request, response) => {
     //Getting recipe data
     return client
       .query(
-        `SELECT r.*, AVG(rw.rating) AS rating,
+        `SELECT r.*, COALESCE(AVG(rw.rating), 0) AS rating,
         CAST(count(rw.*) AS INTEGER) AS num_reviews,
         TO_CHAR(r.created_at, 'Mon fmDD, YYYY') AS date_created,
         u.username AS username, CASE WHEN EXISTS ( SELECT * FROM

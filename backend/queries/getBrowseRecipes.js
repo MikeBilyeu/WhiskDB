@@ -30,7 +30,7 @@ const getBrowseRecipes = (request, response) => {
     return client
       .query(
         `SELECT r.recipe_id, r.created_by, r.title, r.total_time_mins, r.image_url,
-        r.created_at, AVG(rw.rating) AS rating,
+        r.created_at, COALESCE(AVG(rw.rating), 0) AS rating,
         CAST(count(rw.*) AS INTEGER) AS num_reviews, u.username AS username,
         CASE WHEN EXISTS ( SELECT * FROM saved_recipes WHERE saved_by = $5 AND
           recipe_saved = r.recipe_id)
@@ -66,13 +66,13 @@ const getBrowseRecipes = (request, response) => {
           CASE WHEN $4 = 'a-z' THEN LOWER(r.title) END ASC,
           CASE WHEN $4 = 'time' THEN r.total_time_mins END ASC,
           CASE WHEN $4 = 'newest' THEN r.created_at END DESC,
-         rating DESC, num_reviews DESC, r.created_at DESC;
+         rating DESC, num_reviews DESC, created_at DESC ;
 `,
         [meal, diet, numOfCats, sort, user_id]
       )
       .then(res => {
         client.release();
-        console.log(res.rows[0]);
+        console.log(res.rows);
         response.status(200).json(res.rows);
       })
 

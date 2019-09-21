@@ -17,17 +17,13 @@ const getSavedRecipes = (request, response) => {
   pool.connect().then(client => {
     return client
       .query(
-        `SELECT r.recipe_id, r.title, r.image_url,
-        CASE WHEN count(lr.*) + count(dr.*) = 0 THEN 0
-          ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
-          END
-        AS rating, CAST(count(lr.*) + count(dr.*) AS INTEGER) AS votes
+        `SELECT r.recipe_id, r.title, r.image_url, COALESCE(AVG(rw.rating), 0) AS rating,
+        CAST(count(rw.*) AS INTEGER) AS num_reviews
         FROM recipes r
-        LEFT JOIN liked_recipes lr ON r.recipe_id = lr.recipe_liked
-        LEFT JOIN disliked_recipes dr ON r.recipe_id = dr.recipe_disliked
+        LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
         WHERE
         r.recipe_id IN ( SELECT recipe_saved FROM saved_recipes WHERE
-        saved_by = $1 ) GROUP BY r.recipe_id;`,
+        saved_by = $1 ) GROUP BY r.recipe_id, rw.recipe_id;`,
         [user_id]
       )
       .then(res => {
