@@ -16,7 +16,7 @@ class Rating extends React.Component {
     this.setState(({ starColor }, { rating }) => {
       let colors = [];
       for (let i = 0; i < 5; i++) {
-        colors = [...colors, rating > i ? "#FFA805" : "#E2E2E2"];
+        colors = [...colors, Math.round(rating) > i ? "#FFA805" : "#E2E2E2"];
       }
       return {
         starColor: colors

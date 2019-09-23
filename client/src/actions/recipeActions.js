@@ -82,7 +82,6 @@ export const saveRecipe = (recipe_id, user_id) => dispatch => {
     dispatch({ type: SAVE_RECIPE });
     axios
       .post("/save-recipe", { user_id, recipe_id })
-      .then(res => {})
       .catch(err => console.log(err));
   }
 };

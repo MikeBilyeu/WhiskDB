@@ -8,10 +8,14 @@ import Rating from "./recipe-display/rating/Rating";
 import "./recipe-styles.css";
 
 const RecipeDetails = ({
-  recipe: { title, date_created, rating, num_reviews, username },
+  recipe: {
+    recipe: { title, date_created, username },
+    ratingDetails: { rating, num_reviews }
+  },
   time,
   toggleReview
 }) => {
+  console.log();
   return (
     <div className="recipe-details">
       <h1 className="title">{title}</h1>
@@ -28,7 +32,7 @@ const RecipeDetails = ({
 };
 
 const mapStateToProps = state => {
-  return { recipe: state.recipe.recipe };
+  return { recipe: state.recipe };
 };
 
 export default connect(

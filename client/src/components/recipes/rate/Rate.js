@@ -2,11 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import ReviewDetails from "./ReviewDetails";
+
 import { ReactComponent as Star } from "../../../images/star.svg";
 import { ReactComponent as Close } from "../../../images/removeDark.svg";
 
 // Action Creator
-import { toggleReview, submitReview } from "../../../actions/rateActions";
+import {
+  toggleReview,
+  submitReview,
+  getRatingDetails
+} from "../../../actions/rateActions";
 
 // styles
 import "./rate-styles.css";
@@ -26,7 +32,7 @@ class Rate extends React.Component {
         <Star
           key={"star" + i}
           style={{
-            width: "2.3rem",
+            width: "2rem",
             fill: color,
             cursor: "pointer"
           }}
@@ -80,6 +86,7 @@ class Rate extends React.Component {
   render() {
     const {
       recipe_id,
+      num_reviews,
       starClicked,
       submitReview,
       isAuthenticated
@@ -88,8 +95,8 @@ class Rate extends React.Component {
       <div className="rate">
         <Close
           style={{
-            width: "1.5rem",
-            margin: "1rem",
+            width: "2rem",
+            padding: ".5rem",
             cursor: "pointer"
           }}
           onClick={this.props.toggleReview}
@@ -118,7 +125,6 @@ class Rate extends React.Component {
         </div>
         <label>
           Review
-          <span style={{ position: "ablsolute" }}>(optional)</span>
           <textarea
             placeholder="Write a review…"
             value={this.state.comment}
@@ -137,6 +143,7 @@ class Rate extends React.Component {
         >
           Submit
         </div>
+        <ReviewDetails recipe_id={recipe_id} />
       </div>
     );
   }
@@ -149,5 +156,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { toggleReview, submitReview }
+  { toggleReview, submitReview, getRatingDetails }
 )(Rate);

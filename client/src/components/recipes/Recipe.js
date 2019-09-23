@@ -35,7 +35,8 @@ class Recipe extends React.Component {
       image_url,
       directions,
       footnote,
-      total_time_mins
+      total_time_mins,
+      num_reviews
     } = this.props.recipeData.recipe;
     const { isFetching } = this.props.recipeData;
     const recipe_id = this.props.match.params.recipe_id;
@@ -53,14 +54,16 @@ class Recipe extends React.Component {
     return (
       <div className="recipe">
         <RecipeHeader recipe_id={recipe_id} user_id={user_id} />
-        <RecipeDetails time={this.formatMinsToHours(total_time_mins)} />
+        <RecipeDetails />
         <IngredientList />
         <Directions
           directions={directions}
           time={this.formatMinsToHours(total_time_mins)}
           footnote={footnote}
         />
-        {reviewOpen ? <Rate recipe_id={recipe_id} /> : null}
+        {reviewOpen ? (
+          <Rate recipe_id={recipe_id} num_reviews={num_reviews} />
+        ) : null}
       </div>
     );
   }

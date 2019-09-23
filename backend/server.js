@@ -16,6 +16,8 @@ const getEmails = require("./queries/getEmails").getEmails;
 const editProfile = require("./queries/editProfile").editProfile;
 const getUser = require("./queries/getUser").getUser;
 const postReview = require("./queries/postReview").postReview;
+const getRatingDetails = require("./queries/getRatingDetails").getRatingDetails;
+
 const passport = require("passport");
 
 // Parse middleware
@@ -100,6 +102,8 @@ app.post(
   passport.authenticate("jwt", { session: false }),
   postReview
 );
+
+app.get("/rating-details", getRatingDetails);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);

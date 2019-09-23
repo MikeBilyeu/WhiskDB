@@ -5,14 +5,24 @@ import {
   TOGGLE_REVIEW,
   SAVE_RECIPE,
   TOGGLE_UNIT,
-  CONVERT_SERVINGS
+  CONVERT_SERVINGS,
+  GET_RATING_DETAILS
 } from "../actions/types";
 
 const initialState = {
   recipe: {},
   isFetching: true,
   unit: "US",
-  reviewOpen: false
+  reviewOpen: false,
+  ratingDetails: {
+    star5: 0,
+    star4: 0,
+    star3: 0,
+    star2: 0,
+    star1: 0,
+    num_reviews: 0,
+    rating: 0
+  }
 };
 
 export default function(state = initialState, action) {
@@ -25,8 +35,19 @@ export default function(state = initialState, action) {
         recipe: action.payload,
         isFetching: false,
         saved: action.payload.saved,
-        convertedServings: action.payload.servings
+        convertedServings: action.payload.servings,
+        ratingDetails: {
+          star5: 0,
+          star4: 0,
+          star3: 0,
+          star2: 0,
+          star1: 0,
+          rating: action.payload.rating,
+          num_reviews: action.payload.num_reviews
+        }
       };
+    case GET_RATING_DETAILS:
+      return { ...state, ratingDetails: action.payload };
     case SAVE_RECIPE:
       return { ...state, saved: !state.saved };
     case TOGGLE_REVIEW:
