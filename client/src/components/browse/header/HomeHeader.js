@@ -1,8 +1,7 @@
 import React from "react";
 
-//components
 import SearchBar from "./search-bar/SearchBar";
-import { ReactComponent as WhiskIcon } from "../../../images/WhiskIcon.svg";
+import Whiskdb from "../../../images/whiskdb.png";
 import SortButton from "./sort-button/SortButton";
 import FilterButton from "./filter-buttons/FilterButton";
 
@@ -13,7 +12,7 @@ const HomeHeader = () => {
   return (
     <div className="header">
       <SearchBar />
-      <WhiskIcon className="whisk-title" />
+      <img className="whisk-title" src={Whiskdb} alt="Whiskdb logo" />
       <SortButton />
       <FilterButton buttonName="Diet" />
       <FilterButton buttonName="Meal" />

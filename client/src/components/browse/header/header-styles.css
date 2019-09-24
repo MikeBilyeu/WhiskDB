@@ -13,7 +13,6 @@
 
 .whisk-title {
   width: 5rem;
-  padding-bottom: 0.8rem;
   grid-area: whisk;
   justify-self: center;
 }
