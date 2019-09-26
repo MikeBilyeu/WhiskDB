@@ -57,7 +57,7 @@ const IngredientList = props => {
     <div className="recipe-list ingredients">
       <h2>Ingredients</h2>
       <ServingsAndUnit />
-      <ul>
+      <ul className="ingredient-list">
         {props.ingredients.map(({ amount, unit = "", ingredient, prep }, i) => {
           prep = prep ? `(${prep})` : "";
           return (

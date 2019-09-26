@@ -2,6 +2,8 @@ import React from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 
+import Whiskdb from "../../images/whiskdb.png";
+
 import RecipeHeader from "./RecipeHeader";
 import RecipeDetails from "./RecipeDetails";
 import IngredientList from "./IngredientList";
@@ -53,6 +55,7 @@ class Recipe extends React.Component {
 
     return (
       <div className="recipe">
+        <img className="whiskdb-logo" src={Whiskdb} alt="Whiskdb logo" />
         <RecipeHeader recipe_id={recipe_id} user_id={user_id} />
         <RecipeDetails />
         <IngredientList />

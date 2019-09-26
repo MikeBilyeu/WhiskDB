@@ -26,3 +26,7 @@ textarea {
 a {
   text-decoration: none;
 }
+
+.paddingBottom {
+  padding-bottom: 4rem;
+}

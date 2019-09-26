@@ -1,3 +1,7 @@
+.whiskdb-logo {
+  display: none;
+}
+
 .recipe-header {
   width: 100%;
   padding: 0;
@@ -193,4 +197,78 @@
   width: 100%;
   margin: 3rem 0;
   font-style: italic;
+}
+
+@media print {
+  .whiskdb-logo {
+    display: block !important;
+    width: 65pt !important;
+  }
+  .paddingBottom {
+    padding: 0 !important;
+  }
+  body {
+    color: black !important;
+    font-size: 16pt !important;
+    line-height: 18pt;
+    font-family: Goergia, serif;
+    overflow-y: visible !important;
+    display: block !important;
+  }
+  .recipe {
+    grid-gap: 1.5rem;
+  }
+  .username {
+    font-size: 16pt !important;
+    color: black !important;
+    margin: 0.5rem !important;
+  }
+
+  /* Remove unwanted elements */
+  .recipe-header,
+  .rating,
+  .units,
+  .navBar,
+  img {
+    display: none !important;
+  }
+
+  .servings-units {
+    display: grid !important;
+    place-items: center !important;
+    grid-template-columns: 1fr !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .servings input {
+    border: none !important;
+    color: black !important;
+    margin: 0 !important;
+  }
+
+  .ingredients {
+    margin: 0 !important;
+  }
+
+  .ingredient-list li {
+    text-decoration: none !important;
+    opacity: 1 !important;
+    margin: 0 !important;
+  }
+
+  .ingredient-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2rem;
+  }
+
+  .time {
+    color: black !important;
+    margin-bottom: 1.5rem;
+  }
+
+  ol li {
+    color: black !important;
+    margin: 0.75rem 0 !important;
+  }
 }
