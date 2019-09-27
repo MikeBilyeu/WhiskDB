@@ -20,20 +20,16 @@ const getSearchRecipes = (request, response) => {
     return client
       .query(
         `SELECT r.recipe_id, u.username AS username, r.title, r.total_time_mins, r.image_url,
-        r.created_at, CASE WHEN COUNT(lr.*) + COUNT(dr.*) = 0 THEN 0
-        ELSE (count(lr.*) / CAST (COUNT(lr.*) + COUNT(dr.*) AS FLOAT)) * 5
-        END
-        AS rating,
-        CAST(COUNT(lr.*) + COUNT(dr.*) AS INTEGER) AS votes,
+        r.created_at, COALESCE(AVG(rw.rating), 0) AS rating,
+        CAST(count(rw.*) AS INTEGER) AS num_reviews,
         CASE WHEN EXISTS ( SELECT * FROM saved_recipes WHERE saved_by = $2 AND
           recipe_saved = r.recipe_id)
         THEN 1::INTEGER ELSE 0::INTEGER END AS saved FROM recipes r
         LEFT JOIN users u ON r.created_by = u.user_id
-        LEFT JOIN liked_recipes lr ON r.recipe_id = lr.recipe_liked
-        LEFT JOIN disliked_recipes dr ON r.recipe_id = dr.recipe_disliked
+        LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
         WHERE document_vectors @@ to_tsquery($1)
         GROUP BY r.recipe_id, u.user_id
-        ORDER BY rating DESC, votes DESC;
+        ORDER BY rating DESC, num_reviews DESC;
 `,
         [search, user_id]
       )
