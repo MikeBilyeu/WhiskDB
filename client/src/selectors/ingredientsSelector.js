@@ -16,6 +16,7 @@ const metricIncrements = [
   30, // 2 Tbsp
   15, // 1 Tbsp
   10, // 2 tsp
+  7.5, // 1/2 Tbsp
   5, // 1 tsp
   2.5, // 1/2 tsp
   1.25, // 1/4 tsp
@@ -86,6 +87,7 @@ const convertIngredients = (
       ["2", "Tbsp"],
       ["1", "Tbsp"],
       ["2", "tsp"],
+      ["1/2", "Tbsp"],
       ["1", "tsp"],
       ["1/2", "tsp"],
       ["1/4", "tsp"],
