@@ -6,7 +6,6 @@ import {
   GET_ERRORS
 } from "./types";
 
-// This is an action creator for when a user likes a recipe
 export const toggleReview = () => {
   return { type: TOGGLE_REVIEW };
 };

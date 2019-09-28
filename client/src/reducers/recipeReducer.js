@@ -6,7 +6,8 @@ import {
   SAVE_RECIPE,
   TOGGLE_UNIT,
   CONVERT_SERVINGS,
-  GET_RATING_DETAILS
+  GET_RATING_DETAILS,
+  TOGGLE_SHARE
 } from "../actions/types";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   isFetching: true,
   unit: "US",
   reviewOpen: false,
+  shareOpen: false,
   ratingDetails: {
     star5: 0,
     star4: 0,
@@ -52,6 +54,8 @@ export default function(state = initialState, action) {
       return { ...state, saved: !state.saved };
     case TOGGLE_REVIEW:
       return { ...state, reviewOpen: !state.reviewOpen };
+    case TOGGLE_SHARE:
+      return { ...state, shareOpen: !state.shareOpen };
     case TOGGLE_UNIT:
       return { ...state, unit: state.unit === "US" ? "Metric" : "US" };
     case CONVERT_SERVINGS:

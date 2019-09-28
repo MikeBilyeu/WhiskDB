@@ -9,6 +9,7 @@ import RecipeDetails from "./RecipeDetails";
 import IngredientList from "./IngredientList";
 import Directions from "./Directions";
 import Rate from "./rate/Rate";
+import Share from "./share/Share";
 
 // Action Creator
 import { getRecipe } from "../../actions/recipeActions";
@@ -46,7 +47,7 @@ class Recipe extends React.Component {
       ? this.props.auth.user.user_id
       : null;
 
-    const { reviewOpen } = this.props.recipeData;
+    const { reviewOpen, shareOpen } = this.props.recipeData;
 
     // display loading if isFetching
     if (isFetching) {
@@ -57,6 +58,7 @@ class Recipe extends React.Component {
       <div className="recipe">
         <img className="whiskdb-logo" src={Whiskdb} alt="Whiskdb logo" />
         <RecipeHeader recipe_id={recipe_id} user_id={user_id} />
+        {shareOpen ? <Share /> : null}
         <RecipeDetails />
         <IngredientList />
         <Directions

@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
+import { toggleShare } from "../../actions/recipeActions";
+
 import { ReactComponent as Arrow } from "../../images/arrowLeft.svg";
 import { ReactComponent as Check } from "../../images/check.svg";
 import { ReactComponent as SaveIcon } from "../../images/saveIcon.svg";
@@ -13,7 +15,14 @@ import "./recipe-styles.css";
 import { saveRecipe } from "../../actions/recipeActions";
 
 const RecipeHeader = props => {
-  const { recipe_id, user_id, saveRecipe, recipeSaved, history } = props;
+  const {
+    recipe_id,
+    user_id,
+    saveRecipe,
+    toggleShare,
+    recipeSaved,
+    history
+  } = props;
   return (
     <div className="recipe-header">
       <Arrow className="back-btn" onClick={() => history.goBack()} />
@@ -35,7 +44,7 @@ const RecipeHeader = props => {
         />
       </div>
 
-      <Share className="share-btn" />
+      <Share onClick={toggleShare} className="share-btn" />
     </div>
   );
 };
@@ -47,6 +56,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { saveRecipe }
+    { saveRecipe, toggleShare }
   )(RecipeHeader)
 );

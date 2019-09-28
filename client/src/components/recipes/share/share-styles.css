@@ -1,0 +1,24 @@
+.share {
+  border: solid #c6c6c6 0.1rem;
+  border-radius: 0.5rem;
+  width: 99%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #fff;
+  z-index: 2;
+  padding: 0.5rem;
+}
+
+.share-option,
+.print-option {
+  border: solid #0172c4 0.1rem;
+  border-radius: 5rem;
+  text-align: center;
+  margin: 1rem auto;
+  padding: 0.8rem;
+  color: #0172c4;
+  background-color: #fff;
+  cursor: pointer;
+}

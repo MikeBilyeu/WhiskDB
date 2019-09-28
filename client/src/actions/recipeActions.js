@@ -11,7 +11,8 @@ import {
   TOGGLE_UNIT,
   CONVERT_SERVINGS,
   SORT_SAVED_RECIPES,
-  TOGGLE_SORT_BUTTON
+  TOGGLE_SORT_BUTTON,
+  TOGGLE_SHARE
 } from "./types";
 
 import { reset } from "redux-form";
@@ -92,4 +93,8 @@ export const toggleUnit = unit => {
 
 export const convertServings = number => {
   return { type: CONVERT_SERVINGS, payload: number };
+};
+
+export const toggleShare = () => {
+  return { type: TOGGLE_SHARE };
 };

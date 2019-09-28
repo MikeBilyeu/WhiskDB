@@ -204,6 +204,7 @@
     display: block !important;
     width: 65pt !important;
   }
+
   .paddingBottom {
     padding: 0 !important;
   }
@@ -229,6 +230,8 @@
   .rating,
   .units,
   .navBar,
+  .rate,
+  .share,
   img {
     display: none !important;
   }
