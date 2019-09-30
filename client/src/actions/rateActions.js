@@ -22,7 +22,6 @@ export const submitReview = review => dispatch => {
 };
 
 export const getRatingDetails = recipe_id => dispatch => {
-  console.log("getRatingDetails");
   axios
     .get("/rating-details", { params: { recipe_id } })
     .then(res => {

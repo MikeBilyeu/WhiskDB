@@ -32,11 +32,10 @@ const getBrowseRecipes = (request, response) => {
         `SELECT r.recipe_id, r.created_by, r.title, r.total_time_mins, r.image_url,
         r.created_at, COALESCE(AVG(rw.rating), 0) AS rating,
         CAST(count(rw.*) AS INTEGER) AS num_reviews, u.username AS username,
-        CASE WHEN EXISTS ( SELECT * FROM saved_recipes WHERE saved_by = $5 AND
-          recipe_saved = r.recipe_id)
-        THEN 1::INTEGER ELSE 0::INTEGER END AS saved FROM recipes r
+        sr.saved_by = $5 saved FROM recipes r
         LEFT JOIN users u ON r.created_by = u.user_id
         LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
+        LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
         WHERE r.recipe_id in
         (SELECT recipe FROM recipes_join_categories
           WHERE
@@ -61,7 +60,7 @@ const getBrowseRecipes = (request, response) => {
 
           GROUP BY recipe HAVING COUNT(*) >= $3
         )
-        GROUP BY r.recipe_id, u.user_id, rw.recipe_id
+        GROUP BY r.recipe_id, u.user_id, rw.recipe_id, sr.saved_by
         ORDER BY
           CASE WHEN $4 = 'a-z' THEN LOWER(r.title) END ASC,
           CASE WHEN $4 = 'time' THEN r.total_time_mins END ASC,

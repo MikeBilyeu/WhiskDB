@@ -2,7 +2,6 @@
   border: solid #c6c6c6 0.1rem;
   border-radius: 0.5rem;
   width: 99%;
-  height: 99vh;
   position: fixed;
   left: 0;
   right: 0;
@@ -14,7 +13,7 @@
 
 .rate h2 {
   text-align: center;
-  margin: 00 auto 0.5rem auto;
+  margin: 0 auto 0.5rem auto;
   font-size: 1.3rem;
   padding: 0.2rem 0;
   width: 90%;
@@ -42,4 +41,8 @@
   font-size: 1.3rem;
   border-radius: 5rem;
   font-weight: 600;
+}
+
+.review-details {
+  margin: 2rem 0;
 }

@@ -5,7 +5,6 @@ const createUser = require("./queries/createUser").createUser;
 const userLogin = require("./queries/userLogin").userLogin;
 const createRecipe = require("./queries/createRecipe").createRecipe;
 const getRecipe = require("./queries/getRecipe").getRecipe;
-const voteRecipe = require("./queries/voteRecipe").voteRecipe;
 const saveRecipe = require("./queries/saveRecipe").saveRecipe;
 const getSavedRecipes = require("./queries/getSavedRecipes").getSavedRecipes;
 const getMyRecipes = require("./queries/getMyRecipes").getMyRecipes;
@@ -45,13 +44,6 @@ app.post(
 );
 
 app.get("/recipe", getRecipe);
-
-//post route for Liked_recips
-app.post(
-  "/recipe/vote",
-  passport.authenticate("jwt", { session: false }),
-  voteRecipe
-);
 
 // post route for saved recipes
 app.post(

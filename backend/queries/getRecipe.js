@@ -22,13 +22,12 @@ const getRecipe = (request, response) => {
         `SELECT r.*, COALESCE(AVG(rw.rating), 0) AS rating,
         CAST(count(rw.*) AS INTEGER) AS num_reviews,
         TO_CHAR(r.created_at, 'Mon fmDD, YYYY') AS date_created,
-        u.username AS username, CASE WHEN EXISTS ( SELECT * FROM
-           saved_recipes WHERE saved_by = $2 AND recipe_saved = $1) THEN
-           1::INTEGER ELSE 0::INTEGER END AS saved FROM recipes r
+        u.username AS username, sr.saved_by = $2 AS saved FROM recipes r
             LEFT JOIN users u ON u.user_id = r.created_by
             LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
+            LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
                WHERE r.recipe_id = $1
-               GROUP BY r.recipe_id, u.user_id, rw.recipe_id`,
+               GROUP BY r.recipe_id, u.user_id, rw.recipe_id, sr.saved_by`,
         [recipe_id, user_id]
       )
       .then(res => {

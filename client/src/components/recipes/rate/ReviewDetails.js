@@ -5,8 +5,6 @@ import { getRatingDetails } from "../../../actions/rateActions";
 
 const RatingDetail = ({ star, num_reviews, votes }) => {
   num_reviews = num_reviews || 1;
-  console.log(num_reviews);
-  console.log("star", votes);
   return (
     <div
       style={{
@@ -51,7 +49,7 @@ class ReviewDetails extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <div className="review-details">
         <h2>{num_reviews + " "} votes</h2>
         <RatingDetail star="5" votes={star5} num_reviews={num_reviews} />
         <RatingDetail star="4" votes={star4} num_reviews={num_reviews} />

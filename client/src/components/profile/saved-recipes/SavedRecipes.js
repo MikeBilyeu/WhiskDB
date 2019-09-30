@@ -40,7 +40,6 @@ class SavedRecipes extends React.Component {
 
   render() {
     const { isFetching, toggleSortButton } = this.props.savedRecipes;
-    console.log(this.props.savedRecipes.recipes);
     if (isFetching) {
       return <Loading />;
     }
