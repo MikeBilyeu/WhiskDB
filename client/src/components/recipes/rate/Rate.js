@@ -8,11 +8,7 @@ import { ReactComponent as Star } from "../../../images/star.svg";
 import { ReactComponent as Close } from "../../../images/removeDark.svg";
 
 // Action Creator
-import {
-  toggleReview,
-  submitReview,
-  getRatingDetails
-} from "../../../actions/rateActions";
+import { toggleReview, submitReview } from "../../../actions/rateActions";
 
 // styles
 import "./rate-styles.css";
@@ -101,48 +97,54 @@ class Rate extends React.Component {
           }}
           onClick={this.props.toggleReview}
         />
-        <h2>How was it?</h2>
-        {this.state.rating && !isAuthenticated ? (
-          <h3>
-            {"You must "}
-            <Link to="/auth" style={{ color: "#0172c4" }}>
-              login
-            </Link>
-            {" to rate a recipe."}
-          </h3>
-        ) : null}
-        <div
-          onMouseLeave={this.handleMouseLeave}
-          style={{
-            display: "grid",
-            gridAutoFlow: "column",
-            placeItems: "center",
-            width: "12rem",
-            margin: "auto"
-          }}
-        >
-          {this.renderRating()}
-        </div>
-        <label>
-          Review
-          <textarea
-            placeholder="Write a review…"
-            value={this.state.comment}
-            onChange={this.handleChange}
-          />
-        </label>
-        <div
-          className="submit-review"
-          style={{
-            opacity: this.state.rating && isAuthenticated ? "1" : ".5",
-            cursor: this.state.rating && isAuthenticated ? "pointer" : "auto"
-          }}
-          onClick={
-            this.state.rating && isAuthenticated ? this.handleSubmit : null
-          }
-        >
-          Submit
-        </div>
+        {this.props.rated ? null : (
+          <div>
+            <h2>How was it?</h2>
+            {this.state.rating && !isAuthenticated ? (
+              <h3>
+                {"You must "}
+                <Link to="/auth" style={{ color: "#0172c4" }}>
+                  login
+                </Link>
+                {" to rate a recipe."}
+              </h3>
+            ) : null}
+            <div
+              onMouseLeave={this.handleMouseLeave}
+              style={{
+                display: "grid",
+                gridAutoFlow: "column",
+                placeItems: "center",
+                width: "12rem",
+                margin: "auto"
+              }}
+            >
+              {this.renderRating()}
+            </div>
+            <label>
+              Review
+              <textarea
+                placeholder="Write a review…"
+                value={this.state.comment}
+                onChange={this.handleChange}
+              />
+            </label>
+            <div
+              className="submit-review"
+              style={{
+                opacity: this.state.rating && isAuthenticated ? "1" : ".5",
+                cursor:
+                  this.state.rating && isAuthenticated ? "pointer" : "auto"
+              }}
+              onClick={
+                this.state.rating && isAuthenticated ? this.handleSubmit : null
+              }
+            >
+              Submit
+            </div>
+          </div>
+        )}
+
         <ReviewDetails recipe_id={recipe_id} />
       </div>
     );
@@ -151,10 +153,11 @@ class Rate extends React.Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  rating: state.recipe.rating
+  rating: state.recipe.rating,
+  rated: state.recipe.recipe.user_rated
 });
 
 export default connect(
   mapStateToProps,
-  { toggleReview, submitReview, getRatingDetails }
+  { toggleReview, submitReview }
 )(Rate);

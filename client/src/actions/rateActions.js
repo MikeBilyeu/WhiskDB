@@ -3,7 +3,8 @@ import {
   STAR_CLICKED,
   TOGGLE_REVIEW,
   GET_RATING_DETAILS,
-  GET_ERRORS
+  GET_ERRORS,
+  SUBMIT_REVIEW
 } from "./types";
 
 export const toggleReview = () => {
@@ -15,6 +16,7 @@ export const submitReview = review => dispatch => {
   axios
     .post("/recipe-review", review)
     .then(() => {
+      dispatch({ type: SUBMIT_REVIEW });
       dispatch(toggleReview());
       dispatch(getRatingDetails(review.recipe_id));
     })

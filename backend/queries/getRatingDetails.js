@@ -22,7 +22,7 @@ const getRatingDetails = (request, response) => {
         `SELECT
         COALESCE(CAST(SUM(CASE WHEN rating = 5 THEN 1 ELSE 0 END) AS INTEGER), 0) AS star5,
         COALESCE(CAST(SUM(CASE WHEN rating = 4 THEN 1 ELSE 0 END) AS INTEGER), 0) AS star4,
-        COALESCE(CAST(SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS INTEGER), 0) star3,
+        COALESCE(CAST(SUM(CASE WHEN rating = 3 THEN 1 ELSE 0 END) AS INTEGER), 0) AS star3,
         COALESCE(CAST(SUM(CASE WHEN rating = 2 THEN 1 ELSE 0 END) AS INTEGER), 0) AS star2,
         COALESCE(CAST(SUM(CASE WHEN rating = 1 THEN 1 ELSE 0 END) AS INTEGER), 0) AS star1,
         CAST(count(rw.*) AS INTEGER) AS num_reviews,

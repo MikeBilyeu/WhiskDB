@@ -7,7 +7,8 @@ import {
   TOGGLE_UNIT,
   CONVERT_SERVINGS,
   GET_RATING_DETAILS,
-  TOGGLE_SHARE
+  TOGGLE_SHARE,
+  SUBMIT_REVIEW
 } from "../actions/types";
 
 const initialState = {
@@ -50,6 +51,8 @@ export default function(state = initialState, action) {
       };
     case GET_RATING_DETAILS:
       return { ...state, ratingDetails: action.payload };
+    case SUBMIT_REVIEW:
+      return { ...state, recipe: { ...state.recipe, user_rated: true } };
     case SAVE_RECIPE:
       return { ...state, saved: !state.saved };
     case TOGGLE_REVIEW:
