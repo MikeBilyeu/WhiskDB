@@ -19,11 +19,6 @@ const getBrowseRecipes = (request, response) => {
 
   const numOfCats = diet ? (meal == "all meals" ? 1 : 2) : 1;
 
-  // CASE WHEN count(lr.*) + count(dr.*) = 0 THEN 0
-  // ELSE (count(lr.*) / CAST (count(lr.*) + count(dr.*) AS FLOAT)) * 5
-  // END
-  // AS rating
-
   //connect pool
   pool.connect().then(client => {
     // query the recipe table
@@ -71,7 +66,6 @@ const getBrowseRecipes = (request, response) => {
       )
       .then(res => {
         client.release();
-        console.log(res.rows);
         response.status(200).json(res.rows);
       })
 
