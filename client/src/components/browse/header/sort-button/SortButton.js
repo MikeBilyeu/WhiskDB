@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 // diet action creator
 import { toggleFilterButton } from "../../../../actions/browseActions";
 
-import { ReactComponent as SortIcon } from "./SortIcon.svg";
+import { ReactComponent as SortIcon } from "../../../../images/SortIcon.svg";
 
 const SortButton = props => {
   const handleClick = () => {
