@@ -18,16 +18,20 @@ const RatingDetail = ({ star, num_reviews, votes }) => {
       <div
         style={{
           overflow: "hidden",
-          height: "1.4rem",
+          height: "1.6rem",
           width: "100%",
           border: "solid #E3E3E3 .1rem",
-          backgroundColor: "#F5F5F5"
+          backgroundColor: "#F5F5F5",
+          display: "grid",
+          AlignItems: "center",
+          borderRadius: ".2rem"
         }}
       >
         <div
           style={{
             backgroundColor: "#FFB652",
-            height: "1.25rem",
+            height: "100%",
+            minHeight: "100%",
             width: `${(votes / num_reviews) * 100}%`
           }}
         ></div>
@@ -50,7 +54,9 @@ class ReviewDetails extends React.Component {
 
     return (
       <div className="review-details">
-        <h2>{num_reviews + " "} votes</h2>
+        <h2>
+          {num_reviews + " "} vote{num_reviews == 1 ? "" : "s"}
+        </h2>
         <RatingDetail star="5" votes={star5} num_reviews={num_reviews} />
         <RatingDetail star="4" votes={star4} num_reviews={num_reviews} />
         <RatingDetail star="3" votes={star3} num_reviews={num_reviews} />

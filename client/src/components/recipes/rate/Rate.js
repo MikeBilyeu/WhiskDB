@@ -98,7 +98,7 @@ class Rate extends React.Component {
           onClick={this.props.toggleReview}
         />
 
-        <div>
+        <div style={{ display: "grid", placeItems: "center" }}>
           <h2>How was it?</h2>
           {this.state.rating && !isAuthenticated ? (
             <h3>
@@ -121,14 +121,28 @@ class Rate extends React.Component {
           >
             {this.renderRating()}
           </div>
-          <label>
+          <label
+            htmlFor="review-msg"
+            style={{
+              justifySelf: "start",
+              width: "100%",
+              display: "grid",
+              gridAutoFlow: "column",
+              padding: ".1rem .5rem"
+            }}
+          >
             Review
-            <textarea
-              placeholder="Write a review…"
-              value={this.state.comment}
-              onChange={this.handleChange}
-            />
+            <span style={{ justifySelf: "end", color: "#B7B7B7" }}>
+              (optional)
+            </span>
           </label>
+
+          <textarea
+            id="review-msg"
+            placeholder="Write a review…"
+            value={this.state.comment}
+            onChange={this.handleChange}
+          />
           <div
             className="submit-review"
             style={{
