@@ -6,7 +6,7 @@
   grid-template-areas:
     "sort whisk search"
     "Diet . Meal";
-  border-bottom: solid #c7c7c7 1px;
+  border-bottom: solid 0.01rem #e3e3e3;
   padding: 0.3rem 0.1rem 0 0.1rem;
   box-sizing: border-box;
 }
