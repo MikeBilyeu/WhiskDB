@@ -52,7 +52,7 @@ export default function(state = initialState, action) {
     case GET_RATING_DETAILS:
       return { ...state, ratingDetails: action.payload };
     case SUBMIT_REVIEW:
-      return { ...state, recipe: { ...state.recipe, user_rated: true } };
+      return { ...state, recipe: { ...state.recipe } };
     case SAVE_RECIPE:
       return { ...state, saved: !state.saved };
     case TOGGLE_REVIEW:
