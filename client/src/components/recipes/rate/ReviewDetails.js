@@ -18,7 +18,7 @@ const RatingDetail = ({ star, num_reviews, votes }) => {
       <div
         style={{
           overflow: "hidden",
-          height: "1.6rem",
+          height: "1.3rem",
           width: "100%",
           border: "solid #E3E3E3 .1rem",
           backgroundColor: "#F5F5F5",
