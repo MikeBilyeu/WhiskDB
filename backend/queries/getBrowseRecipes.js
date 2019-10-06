@@ -30,7 +30,7 @@ const getBrowseRecipes = (request, response) => {
         sr.saved_by = $5 saved FROM recipes r
         LEFT JOIN users u ON r.created_by = u.user_id
         LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
-        LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
+        LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved AND sr.saved_by = $5
         WHERE r.recipe_id in
         (SELECT recipe FROM recipes_join_categories
           WHERE

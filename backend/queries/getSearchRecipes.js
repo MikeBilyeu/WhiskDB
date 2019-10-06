@@ -25,7 +25,7 @@ const getSearchRecipes = (request, response) => {
         sr.saved_by = $2 AS saved FROM recipes r
         LEFT JOIN users u ON r.created_by = u.user_id
         LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
-        LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
+        LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved AND sr.saved_by = $2
         WHERE document_vectors @@ to_tsquery($1)
         GROUP BY r.recipe_id, u.user_id, sr.saved_by
         ORDER BY rating DESC, num_reviews DESC;
