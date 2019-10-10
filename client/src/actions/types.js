@@ -22,3 +22,4 @@ export const GET_USER = "GET_USER";
 export const GET_RATING_DETAILS = "GET_RATING_DETAILS";
 export const TOGGLE_SHARE = "TOGGLE_SHARE";
 export const SUBMIT_REVIEW = "SUBMIT_REVIEW";
+export const TOGGLE_DELETE = "TOGGLE_DELETE";

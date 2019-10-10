@@ -2,7 +2,13 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { SubmissionError } from "redux-form";
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING, GET_USER } from "./types";
+import {
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  USER_LOADING,
+  GET_USER,
+  TOGGLE_DELETE
+} from "./types";
 
 export const registerUser = userData => dispatch => {
   // first register the user if the user successfully register
@@ -92,6 +98,13 @@ export const setCurrentUser = decoded => {
 export const setUserLoading = () => {
   return {
     type: USER_LOADING
+  };
+};
+
+// Toggle delete component
+export const toggleDelete = () => {
+  return {
+    type: TOGGLE_DELETE
   };
 };
 

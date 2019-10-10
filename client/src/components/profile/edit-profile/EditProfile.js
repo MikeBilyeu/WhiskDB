@@ -3,13 +3,18 @@ import { connect } from "react-redux";
 import { Field, reduxForm, isDirty } from "redux-form";
 import { withRouter } from "react-router-dom";
 
-import { logoutUser, editProfile } from "../../../actions/authActions";
+import {
+  logoutUser,
+  editProfile,
+  toggleDelete
+} from "../../../actions/authActions";
 
 import { ValidateUsername } from "../../auth/AuthValidation";
 import { usernameValidate } from "../../auth/AsyncValidation";
 
 import { Input } from "../../auth/Input";
 import EditHeader from "./EditHeader";
+import Delete from "./Delete";
 
 class EditProfile extends React.Component {
   handleSubmit = values => {
@@ -18,7 +23,9 @@ class EditProfile extends React.Component {
 
   render() {
     const lower = value => value && value.toLowerCase();
-    console.log(this.props);
+    if (this.props.openDelete) {
+      return <Delete />;
+    }
     return (
       <div>
         <EditHeader />
@@ -56,6 +63,7 @@ class EditProfile extends React.Component {
             cursor: "pointer",
             borderRadius: "10rem"
           }}
+          onClick={this.props.toggleDelete}
         >
           Delete Account
         </div>
@@ -69,12 +77,13 @@ const mapStateToProps = state => ({
     ...state.userData.user,
     currentUsername: state.userData.user.username //pass currentUsername to bypass if no change made to usename
   },
-  dirty: isDirty("edit-profile")
+  dirty: isDirty("edit-profile"),
+  openDelete: state.auth.openDelete
 });
 
 export default connect(
   mapStateToProps,
-  { logoutUser, editProfile }
+  { logoutUser, editProfile, toggleDelete }
 )(
   reduxForm({
     form: "edit-profile",
