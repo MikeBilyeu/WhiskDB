@@ -16,6 +16,7 @@ const editProfile = require("./queries/editProfile").editProfile;
 const getUser = require("./queries/getUser").getUser;
 const postReview = require("./queries/postReview").postReview;
 const getRatingDetails = require("./queries/getRatingDetails").getRatingDetails;
+const deleteUser = require("./queries/deleteUser").deleteUser;
 
 const passport = require("passport");
 
@@ -93,6 +94,12 @@ app.post(
   "/recipe-review",
   passport.authenticate("jwt", { session: false }),
   postReview
+);
+
+app.post(
+  "/delete-user",
+  passport.authenticate("jwt", { session: false }),
+  deleteUser
 );
 
 app.get("/rating-details", getRatingDetails);
