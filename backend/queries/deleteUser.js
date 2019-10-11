@@ -17,7 +17,9 @@ const deleteUser = (request, response) => {
   pool.connect().then(client => {
     return client
       .query(`DELETE FROM users WHERE user_id = $1`, [user_id])
-      .then(res => {})
+      .then(res => {
+        return response.status(200).json("User removed");
+      })
       .catch(e => {
         client.release();
         console.log(e);

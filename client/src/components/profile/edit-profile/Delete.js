@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 //action creator
-import { toggleDelete } from "../../../actions/authActions";
+import { toggleDelete, deleteUser } from "../../../actions/authActions";
 
 class Delete extends React.Component {
   constructor(props) {
@@ -60,6 +60,7 @@ class Delete extends React.Component {
             cursor: "pointer",
             borderRadius: "10rem"
           }}
+          onClick={this.props.deleteUser}
         >
           Delete Account
         </div>
@@ -70,5 +71,5 @@ class Delete extends React.Component {
 
 export default connect(
   null,
-  { toggleDelete }
+  { toggleDelete, deleteUser }
 )(Delete);

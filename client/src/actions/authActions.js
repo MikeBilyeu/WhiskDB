@@ -28,6 +28,21 @@ export const registerUser = userData => dispatch => {
       })
     );
 };
+
+export const deleteUser = () => dispatch => {
+  axios
+    .post("/delete-user")
+    .then(res => {
+      dispatch(logoutUser());
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 //get user data
 export const getUser = () => dispatch => {
   return axios
