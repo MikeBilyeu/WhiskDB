@@ -43,7 +43,7 @@ const NumberInput = ({
 
 const TimeInput = () => {
   const minuteParse = value => {
-    let strArr = value.match(/^[1-5][\d]?/) || [""];
+    let strArr = value.match(/^[\d]{0,2}/) || [""];
     return value && strArr[0];
   };
   const numberParse = value => {
