@@ -55,6 +55,14 @@ class Share extends React.Component {
         >
           Print
         </div>
+        <div
+          className="print-option"
+          onClick={() => {
+            // redirect to /recipe/edit/?recipe_id
+          }}
+        >
+          Edit Recipe
+        </div>
       </div>
     );
   }
