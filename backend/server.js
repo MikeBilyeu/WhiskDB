@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3001;
 const createUser = require("./queries/createUser").createUser;
 const userLogin = require("./queries/userLogin").userLogin;
 const createRecipe = require("./queries/createRecipe").createRecipe;
+const editRecipe = require("./queries/editRecipe").editRecipe;
 const getRecipe = require("./queries/getRecipe").getRecipe;
 const saveRecipe = require("./queries/saveRecipe").saveRecipe;
 const getSavedRecipes = require("./queries/getSavedRecipes").getSavedRecipes;
@@ -42,6 +43,12 @@ app.post(
   "/profile/create-recipe",
   passport.authenticate("jwt", { session: false }),
   createRecipe
+);
+
+app.put(
+  "/profile/edit-recipe",
+  passport.authenticate("jwt", { session: false }),
+  editRecipe
 );
 
 app.get("/recipe", getRecipe);
@@ -96,7 +103,7 @@ app.post(
   postReview
 );
 
-app.post(
+app.delete(
   "/delete-user",
   passport.authenticate("jwt", { session: false }),
   deleteUser

@@ -31,7 +31,7 @@ export const registerUser = userData => dispatch => {
 
 export const deleteUser = () => dispatch => {
   axios
-    .post("/delete-user")
+    .delete("/delete-user")
     .then(res => {
       dispatch(logoutUser());
     })

@@ -36,6 +36,23 @@ export const createRecipe = (recipeData, history) => dispatch => {
     );
 };
 
+// Edit Recipe
+export const editRecipe = (recipeData, history) => dispatch => {
+  axios
+    .put("/profile/edit-recipe", recipeData)
+    .then(res => {
+      const recipe_id = recipeData.recipe_id;
+      // redirect to recipe after successful submit
+      // return history.push(`/recipe/${recipe_id}`);
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 export const getRecipe = (recipe_id, user_id) => dispatch => {
   dispatch({ type: GET_RECIPE_REQUEST });
   axios

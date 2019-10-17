@@ -2,11 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
+// Action Creator
 import { ReactComponent as Arrow } from "../../../images/arrowLeft.svg";
 
 class EditHeader extends React.Component {
   onSaveClick = () => {
-    console.log("save changes");
+    this.props.handleSave();
   };
   render() {
     const { history } = this.props;

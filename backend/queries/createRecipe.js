@@ -144,18 +144,6 @@ const createRecipe = (request, response) => {
 
   let metricIngredients = formatIngredientList(ingredients);
 
-  console.log(
-    "input",
-    created_by,
-    title,
-    servings,
-    total_time_mins,
-    footnote,
-    privateRecipe,
-    directions,
-    metricIngredients
-  );
-
   pool.connect().then(client => {
     let recipe_id = null;
     return (

@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, isDirty } from "redux-form";
 import { Redirect } from "react-router-dom";
 
 import EditHeader from "./EditHeader";
 import TextInput from "../createRecipe/inputs/TextInput";
 
 // Action Creator
-import { getRecipe } from "../../../actions/recipeActions";
+import { getRecipe, editRecipe } from "../../../actions/recipeActions";
 
 import { Loading } from "../../loading/Loading";
 
@@ -32,6 +32,10 @@ class EditRecipe extends React.Component {
     let strArr = value.match(/.{0,55}/) || [""];
     return value && strArr[0];
   };
+
+  handleSubmit = values => {
+    this.props.editRecipe(values);
+  };
   render() {
     const { isFetching } = this.props.recipeData;
     if (isFetching) {
@@ -44,7 +48,7 @@ class EditRecipe extends React.Component {
     return (
       <div>
         <EditHeader />
-        <form>
+        <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
           <Field
             addClass={"full-input"}
             name="title"
@@ -54,6 +58,7 @@ class EditRecipe extends React.Component {
             normalize={this.capitalize}
             parse={this.titleParse}
           />
+          <button type="submit">Save Changes</button>
         </form>
       </div>
     );
@@ -61,15 +66,21 @@ class EditRecipe extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  initialValues: {
+    ...state.recipe.recipe,
+    title: state.recipe.recipe.title
+  },
+  dirty: isDirty("edit-profile"),
   recipeData: state.recipe,
   auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { getRecipe }
+  { getRecipe, editRecipe }
 )(
   reduxForm({
-    form: "edit-recipe" // a unique identifier for this form
+    form: "edit-recipe",
+    enableReinitialize: true
   })(EditRecipe)
 );
