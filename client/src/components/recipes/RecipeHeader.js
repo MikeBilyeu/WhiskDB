@@ -50,7 +50,9 @@ const RecipeHeader = props => {
 };
 
 const mapStateToProps = state => {
-  return { recipeSaved: state.recipe.saved };
+  return {
+    recipeSaved: state.recipe.saved
+  };
 };
 
 export default withRouter(

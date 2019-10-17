@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toggleShare } from "../../../actions/recipeActions";
+import { Link } from "react-router-dom";
 
 import "./share-styles.css";
 
@@ -55,20 +56,30 @@ class Share extends React.Component {
         >
           Print
         </div>
-        <div
-          className="print-option"
-          onClick={() => {
-            // redirect to /recipe/edit/?recipe_id
-          }}
-        >
-          Edit Recipe
-        </div>
+
+        {this.props.user_id === this.props.created_by ? (
+          <Link
+            to={`/profile/edit-recipe/${this.props.recipe_id}`}
+            className="print-option"
+            style={{ display: "block" }}
+          >
+            Edit Recipe
+          </Link>
+        ) : null}
       </div>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    created_by: state.recipe.recipe.created_by,
+    user_id: state.auth.user.user_id,
+    recipe_id: state.recipe.recipe.recipe_id
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { toggleShare }
 )(Share);
