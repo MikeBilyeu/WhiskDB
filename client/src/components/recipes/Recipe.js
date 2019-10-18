@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import Whiskdb from "../../images/whiskdb.png";
 
+import EditRecipe from "./edit-recipe/EditRecipe";
 import RecipeHeader from "./RecipeHeader";
 import RecipeDetails from "./RecipeDetails";
 import IngredientList from "./IngredientList";
@@ -52,6 +53,11 @@ class Recipe extends React.Component {
     // display loading if isFetching
     if (isFetching) {
       return <Loading />;
+    }
+
+    // make edit recipe state
+    if (true) {
+      return <EditRecipe />;
     }
 
     return (

@@ -4,7 +4,7 @@ import { Field, reduxForm, isDirty } from "redux-form";
 import { Redirect } from "react-router-dom";
 
 import EditHeader from "./EditHeader";
-import TextInput from "../createRecipe/inputs/TextInput";
+import TextInput from "../../profile/createRecipe/inputs/TextInput";
 
 // Action Creator
 import { getRecipe, editRecipe } from "../../../actions/recipeActions";
@@ -12,13 +12,13 @@ import { getRecipe, editRecipe } from "../../../actions/recipeActions";
 import { Loading } from "../../loading/Loading";
 
 class EditRecipe extends React.Component {
-  componentDidMount() {
-    const recipe_id = this.props.match.params.recipe_id;
-    const user_id = this.props.auth.isAuthenticated
-      ? this.props.auth.user.user_id
-      : null;
-    this.props.getRecipe(recipe_id, user_id);
-  }
+  // componentDidMount() {
+  //   const recipe_id = this.props.match.params.recipe_id;
+  //   const user_id = this.props.auth.isAuthenticated
+  //     ? this.props.auth.user.user_id
+  //     : null;
+  //   this.props.getRecipe(recipe_id, user_id);
+  // }
   capitalize = value => {
     return (
       value &&

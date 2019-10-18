@@ -7,7 +7,6 @@ import "./profile-styles.css";
 import SavedRecipes from "./saved-recipes/SavedRecipes";
 import MyRecipes from "./MyRecipes";
 import EditProfile from "./edit-profile/EditProfile";
-import EditRecipe from "./edit-recipe/EditRecipe";
 import CreateRecipe from "./createRecipe/CreateRecipe";
 import Button from "./Button";
 import { ReactComponent as UserIcon } from "../../images/userProfile.svg";
@@ -34,7 +33,6 @@ class Profile extends React.Component {
     return (
       <Switch>
         <Route path="/profile/edit" component={EditProfile} />
-        <Route path="/profile/edit-recipe/:recipe_id" component={EditRecipe} />
         <Route path="/profile/create-recipe" component={CreateRecipe} />
         <Route
           component={() => {

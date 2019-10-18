@@ -15,7 +15,14 @@ const EditHeader = ({ history, dispatch }) => {
         placeItems: "center"
       }}
     >
-      <Arrow className="back-btn" onClick={() => history.goBack()} />
+      <div
+        style={{ cursor: "pointer", color: "#0172C4" }}
+        onClick={() => {
+          console.log("Cancel Edit");
+        }}
+      >
+        Cancel
+      </div>
       <h2>Edit Recipe</h2>
       <div
         style={{ cursor: "pointer", color: "#0172C4" }}
