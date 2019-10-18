@@ -22,7 +22,8 @@ class Share extends React.Component {
           style={{
             width: "2rem",
             padding: ".5rem",
-            cursor: "pointer"
+            cursor: "pointer",
+            justifySelf: "start"
           }}
           onClick={this.props.toggleShare}
         />
@@ -30,9 +31,8 @@ class Share extends React.Component {
           <div
             style={{
               textAlign: "center",
-              fontSize: "1.8rem",
-              color: "#313131",
-              margin: "2rem 0"
+              fontSize: "1.5rem",
+              color: "#313131"
             }}
           >
             Link copied!
@@ -59,9 +59,17 @@ class Share extends React.Component {
 
         {this.props.user_id === this.props.created_by ? (
           <Link
+            onClick={this.props.toggleShare}
             to={`/profile/edit-recipe/${this.props.recipe_id}`}
-            className="print-option"
-            style={{ display: "block" }}
+            style={{
+              display: "inline-block",
+              borderTop: "solid #E3E3E3 .05rem",
+              padding: "1rem 2rem",
+              width: "50%",
+              textAlign: "center",
+              color: "#0172C4",
+              fontSize: ".9rem"
+            }}
           >
             Edit Recipe
           </Link>

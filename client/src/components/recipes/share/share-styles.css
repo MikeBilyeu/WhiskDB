@@ -9,16 +9,19 @@
   background-color: #fff;
   z-index: 2;
   padding: 0.5rem;
+  display: grid;
+  place-items: center;
+  grid-gap: 1.3rem;
 }
 
 .share-option,
 .print-option {
-  border: solid #0172c4 0.1rem;
+  border: solid #0172c4 0.08rem;
   border-radius: 5rem;
   text-align: center;
-  margin: 1rem auto;
-  padding: 0.8rem;
+  padding: 0.6rem;
   color: #0172c4;
   background-color: #fff;
   cursor: pointer;
+  width: 100%;
 }
