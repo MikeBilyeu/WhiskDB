@@ -75,12 +75,18 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
+// submit function used for remote submit
+function submit(values, dispatch, props) {
+  return props.editRecipe(values);
+}
+
 export default connect(
   mapStateToProps,
   { getRecipe, editRecipe }
 )(
   reduxForm({
     form: "edit-recipe",
-    enableReinitialize: true
+    enableReinitialize: true,
+    onSubmit: submit
   })(EditRecipe)
 );

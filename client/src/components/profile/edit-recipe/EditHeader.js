@@ -1,40 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { submit } from "redux-form";
 
 // Action Creator
 import { ReactComponent as Arrow } from "../../../images/arrowLeft.svg";
 
-class EditHeader extends React.Component {
-  onSaveClick = () => {
-    this.props.handleSave();
-  };
-  render() {
-    const { history } = this.props;
-    return (
+const EditHeader = ({ history, dispatch }) => {
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 2fr 1fr",
+        placeItems: "center"
+      }}
+    >
+      <Arrow className="back-btn" onClick={() => history.goBack()} />
+      <h2>Edit Recipe</h2>
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 2fr 1fr",
-          placeItems: "center"
-        }}
+        style={{ cursor: "pointer", color: "#0172C4" }}
+        onClick={() => dispatch(submit("edit-recipe"))}
       >
-        <Arrow className="back-btn" onClick={() => history.goBack()} />
-        <h2>Edit Recipe</h2>
-        <div
-          style={{ cursor: "pointer", color: "#0172C4" }}
-          onClick={this.onSaveClick}
-        >
-          Save
-        </div>
+        Save
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default withRouter(
-  connect(
-    null,
-    {}
-  )(EditHeader)
-);
+export default withRouter(connect()(EditHeader));

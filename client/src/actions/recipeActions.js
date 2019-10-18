@@ -37,7 +37,8 @@ export const createRecipe = (recipeData, history) => dispatch => {
 };
 
 // Edit Recipe
-export const editRecipe = (recipeData, history) => dispatch => {
+export const editRecipe = recipeData => dispatch => {
+  console.log(recipeData);
   axios
     .put("/profile/edit-recipe", recipeData)
     .then(res => {
