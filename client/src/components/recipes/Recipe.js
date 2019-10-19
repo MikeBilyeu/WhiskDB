@@ -42,7 +42,7 @@ class Recipe extends React.Component {
       total_time_mins,
       num_reviews
     } = this.props.recipeData.recipe;
-    const { isFetching } = this.props.recipeData;
+    const { isFetching, editRecipe } = this.props.recipeData;
     const recipe_id = this.props.match.params.recipe_id;
     const user_id = this.props.auth.isAuthenticated
       ? this.props.auth.user.user_id
@@ -56,7 +56,7 @@ class Recipe extends React.Component {
     }
 
     // make edit recipe state
-    if (true) {
+    if (editRecipe) {
       return <EditRecipe />;
     }
 

@@ -4,9 +4,11 @@ import { withRouter } from "react-router-dom";
 import { submit } from "redux-form";
 
 // Action Creator
+import { toggleEditRecipe } from "../../../actions/recipeActions";
+
 import { ReactComponent as Arrow } from "../../../images/arrowLeft.svg";
 
-const EditHeader = ({ history, dispatch }) => {
+const EditHeader = ({ history, submit, toggleEditRecipe }) => {
   return (
     <div
       style={{
@@ -18,7 +20,7 @@ const EditHeader = ({ history, dispatch }) => {
       <div
         style={{ cursor: "pointer", color: "#0172C4" }}
         onClick={() => {
-          console.log("Cancel Edit");
+          toggleEditRecipe();
         }}
       >
         Cancel
@@ -26,7 +28,9 @@ const EditHeader = ({ history, dispatch }) => {
       <h2>Edit Recipe</h2>
       <div
         style={{ cursor: "pointer", color: "#0172C4" }}
-        onClick={() => dispatch(submit("edit-recipe"))}
+        onClick={() => {
+          submit("edit-recipe");
+        }}
       >
         Save
       </div>
@@ -34,4 +38,9 @@ const EditHeader = ({ history, dispatch }) => {
   );
 };
 
-export default withRouter(connect()(EditHeader));
+export default withRouter(
+  connect(
+    null,
+    { toggleEditRecipe, submit }
+  )(EditHeader)
+);

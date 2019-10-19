@@ -8,7 +8,8 @@ import {
   CONVERT_SERVINGS,
   GET_RATING_DETAILS,
   TOGGLE_SHARE,
-  SUBMIT_REVIEW
+  SUBMIT_REVIEW,
+  TOGGLE_EDIT_RECIPE
 } from "../actions/types";
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   unit: "US",
   reviewOpen: false,
   shareOpen: false,
+  editRecipe: false,
   ratingDetails: {
     star5: 0,
     star4: 0,
@@ -63,7 +65,8 @@ export default function(state = initialState, action) {
       return { ...state, unit: state.unit === "US" ? "Metric" : "US" };
     case CONVERT_SERVINGS:
       return { ...state, convertedServings: action.payload };
-
+    case TOGGLE_EDIT_RECIPE:
+      return { ...state, editRecipe: !state.editRecipe };
     default:
       return state;
   }

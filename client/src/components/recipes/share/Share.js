@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 import "./share-styles.css";
 
+import { toggleEditRecipe } from "../../../actions/recipeActions";
 import { ReactComponent as Close } from "../../../images/removeDark.svg";
 
 class Share extends React.Component {
@@ -58,9 +59,11 @@ class Share extends React.Component {
         </div>
 
         {this.props.user_id === this.props.created_by ? (
-          <Link
-            onClick={this.props.toggleShare}
-            to={`/profile/edit-recipe/${this.props.recipe_id}`}
+          <div
+            onClick={() => {
+              this.props.toggleEditRecipe();
+              this.props.toggleShare();
+            }}
             style={{
               display: "inline-block",
               borderTop: "solid #E3E3E3 .05rem",
@@ -68,11 +71,12 @@ class Share extends React.Component {
               width: "50%",
               textAlign: "center",
               color: "#0172C4",
-              fontSize: ".9rem"
+              fontSize: ".9rem",
+              cursor: "pointer"
             }}
           >
             Edit Recipe
-          </Link>
+          </div>
         ) : null}
       </div>
     );
@@ -89,5 +93,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { toggleShare }
+  { toggleShare, toggleEditRecipe }
 )(Share);

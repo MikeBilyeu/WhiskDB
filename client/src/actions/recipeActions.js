@@ -12,7 +12,8 @@ import {
   CONVERT_SERVINGS,
   SORT_SAVED_RECIPES,
   TOGGLE_SORT_BUTTON,
-  TOGGLE_SHARE
+  TOGGLE_SHARE,
+  TOGGLE_EDIT_RECIPE
 } from "./types";
 
 import { reset } from "redux-form";
@@ -36,15 +37,16 @@ export const createRecipe = (recipeData, history) => dispatch => {
     );
 };
 
+export const toggleEditRecipe = () => {
+  return { type: TOGGLE_EDIT_RECIPE };
+};
+
 // Edit Recipe
-export const editRecipe = recipeData => dispatch => {
-  console.log(recipeData);
+export const submitEditRecipe = recipeData => dispatch => {
   axios
     .put("/profile/edit-recipe", recipeData)
     .then(res => {
-      const recipe_id = recipeData.recipe_id;
-      // redirect to recipe after successful submit
-      // return history.push(`/recipe/${recipe_id}`);
+      dispatch(toggleEditRecipe());
     })
     .catch(err =>
       dispatch({

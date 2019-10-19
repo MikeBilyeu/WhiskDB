@@ -7,7 +7,7 @@ import EditHeader from "./EditHeader";
 import TextInput from "../../profile/createRecipe/inputs/TextInput";
 
 // Action Creator
-import { getRecipe, editRecipe } from "../../../actions/recipeActions";
+import { getRecipe, submitEditRecipe } from "../../../actions/recipeActions";
 
 import { Loading } from "../../loading/Loading";
 
@@ -34,7 +34,7 @@ class EditRecipe extends React.Component {
   };
 
   handleSubmit = values => {
-    this.props.editRecipe(values);
+    this.props.submitEditRecipe(values);
   };
   render() {
     const { isFetching } = this.props.recipeData;
@@ -77,12 +77,12 @@ const mapStateToProps = state => ({
 
 // submit function used for remote submit
 function submit(values, dispatch, props) {
-  return props.editRecipe(values);
+  return props.submitEditRecipe(values);
 }
 
 export default connect(
   mapStateToProps,
-  { getRecipe, editRecipe }
+  { getRecipe, submitEditRecipe }
 )(
   reduxForm({
     form: "edit-recipe",
