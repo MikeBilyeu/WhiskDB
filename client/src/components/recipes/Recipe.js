@@ -20,9 +20,7 @@ import { Loading } from "../loading/Loading";
 class Recipe extends React.Component {
   componentDidMount() {
     const recipe_id = this.props.match.params.recipe_id;
-    const user_id = this.props.auth.isAuthenticated
-      ? this.props.auth.user.user_id
-      : null;
+    const user_id = this.props.auth.user.user_id || null;
     this.props.getRecipe(recipe_id, user_id);
   }
   formatMinsToHours = totalMinutes => {
@@ -36,26 +34,20 @@ class Recipe extends React.Component {
 
   render() {
     const {
-      image_url,
-      directions,
-      footnote,
-      total_time_mins,
-      num_reviews
-    } = this.props.recipeData.recipe;
-    const { isFetching, editRecipe } = this.props.recipeData;
+      reviewOpen,
+      shareOpen,
+      isFetching,
+      editRecipe,
+      recipe: { image_url, directions, footnote, total_time_mins, num_reviews }
+    } = this.props.recipeData;
     const recipe_id = this.props.match.params.recipe_id;
-    const user_id = this.props.auth.isAuthenticated
-      ? this.props.auth.user.user_id
-      : null;
-
-    const { reviewOpen, shareOpen } = this.props.recipeData;
+    const user_id = this.props.auth.user.user_id || null;
 
     // display loading if isFetching
     if (isFetching) {
       return <Loading />;
     }
 
-    // make edit recipe state
     if (editRecipe) {
       return <EditRecipe />;
     }
