@@ -47,6 +47,7 @@ export const submitEditRecipe = recipeData => dispatch => {
     .put("/profile/edit-recipe", recipeData)
     .then(res => {
       dispatch(toggleEditRecipe());
+      dispatch(getRecipe(recipeData.recipe_id, recipeData.created_by));
     })
     .catch(err =>
       dispatch({

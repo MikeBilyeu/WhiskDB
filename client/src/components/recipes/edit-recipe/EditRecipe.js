@@ -12,13 +12,6 @@ import { getRecipe, submitEditRecipe } from "../../../actions/recipeActions";
 import { Loading } from "../../loading/Loading";
 
 class EditRecipe extends React.Component {
-  // componentDidMount() {
-  //   const recipe_id = this.props.match.params.recipe_id;
-  //   const user_id = this.props.auth.isAuthenticated
-  //     ? this.props.auth.user.user_id
-  //     : null;
-  //   this.props.getRecipe(recipe_id, user_id);
-  // }
   capitalize = value => {
     return (
       value &&
