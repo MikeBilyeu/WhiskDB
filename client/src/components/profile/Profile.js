@@ -8,7 +8,6 @@ import SavedRecipes from "./saved-recipes/SavedRecipes";
 import MyRecipes from "./MyRecipes";
 import EditProfile from "./edit-profile/EditProfile";
 import CreateRecipe from "./createRecipe/CreateRecipe";
-import Button from "./Button";
 import { ReactComponent as UserIcon } from "../../images/userProfile.svg";
 import { ReactComponent as WhiskIcon } from "../../images/WhiskIcon.svg";
 import { ReactComponent as SavedIcon } from "../../images/savedRecipes.svg";
@@ -123,9 +122,6 @@ class Profile extends React.Component {
   }
 }
 
-// Profile.propTypes = {
-//   auth: PropTypes.object.isRequired
-// };
 const mapStateToProps = state => ({
   username: state.userData.user.username
 });

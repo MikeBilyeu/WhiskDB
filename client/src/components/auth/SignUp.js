@@ -5,10 +5,22 @@ import { registerUser } from "../../actions/authActions";
 import { ValidateSignup } from "./AuthValidation";
 import asyncValidate from "./AsyncValidation";
 
-import { PasswordInput } from "./PasswordInput";
-import { Input } from "./Input";
+import { Input } from "../form-inputs/Input";
+import { TogglePasswordButton } from "../form-inputs/TogglePasswordButton";
 
 class Signup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPassword: false
+    };
+  }
+
+  handleClick = () => {
+    this.setState(prevState => {
+      return { showPassword: !prevState.showPassword };
+    });
+  };
   render() {
     const lower = value => value && value.toLowerCase();
 
@@ -18,7 +30,6 @@ class Signup extends Component {
         onSubmit={this.props.handleSubmit(this.props.registerUser)}
       >
         <h1>Make an Account. It's Easy!</h1>
-
         <Field
           name="username"
           component={Input}
@@ -26,7 +37,6 @@ class Signup extends Component {
           placeholder="Username"
           label="Username"
         />
-
         <Field
           name="email"
           component={Input}
@@ -35,15 +45,18 @@ class Signup extends Component {
           normalize={lower}
           label="Email"
         />
-
+        <TogglePasswordButton
+          handleClick={this.handleClick}
+          showPassword={this.state.showPassword}
+        />
         <Field
           name="password"
-          component={PasswordInput}
+          component={Input}
           inputId="password"
           placeholder="Enter a password"
           label="Password"
+          type={this.state.showPassword ? "text" : "password"}
         />
-
         <button type="submit">Sign up</button>
       </form>
     );

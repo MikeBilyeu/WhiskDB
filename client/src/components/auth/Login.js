@@ -4,12 +4,24 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import { ValidateLogin } from "./AuthValidation";
 
-import { PasswordInput } from "./PasswordInput";
-import { Input } from "./Input";
+import { Input } from "../form-inputs/Input";
+import { TogglePasswordButton } from "../form-inputs/TogglePasswordButton";
 
 import "./auth-styles.css";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showPassword: false
+    };
+  }
+
+  handleClick = () => {
+    this.setState(prevState => {
+      return { showPassword: !prevState.showPassword };
+    });
+  };
   render() {
     const lower = value => value && value.toLowerCase();
     return (
@@ -30,13 +42,17 @@ class Login extends Component {
           normalize={lower}
           label="Email"
         />
-
+        <TogglePasswordButton
+          handleClick={this.handleClick}
+          showPassword={this.state.showPassword}
+        />
         <Field
           name="password"
-          component={PasswordInput}
+          component={Input}
           inputId="password"
           placeholder="Enter your password"
           label="Password"
+          type={this.state.showPassword ? "text" : "password"}
         />
 
         <button type="submit">Log in</button>

@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm, isDirty } from "redux-form";
-import { withRouter } from "react-router-dom";
 
 import {
   logoutUser,
@@ -12,7 +11,7 @@ import {
 import { ValidateUsername } from "../../auth/AuthValidation";
 import { usernameValidate } from "../../auth/AsyncValidation";
 
-import { Input } from "../../auth/Input";
+import { Input } from "../../form-inputs/Input";
 import EditHeader from "./EditHeader";
 import Delete from "./Delete";
 
@@ -22,7 +21,6 @@ class EditProfile extends React.Component {
   };
 
   render() {
-    const lower = value => value && value.toLowerCase();
     if (this.props.openDelete) {
       return <Delete />;
     }
