@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import SortBy from "./SortBy";
 import { Loading } from "../../loading/Loading";
+import { Button } from "../../Button";
 import RecipeDisplayMini from "../../recipes/recipe-display/RecipeDisplayMini";
 import { ReactComponent as SortIcon } from "../../../images/SortIcon.svg";
 
@@ -38,8 +39,24 @@ class SavedRecipes extends React.Component {
     this.props.toggleSortButton();
   };
 
+  abbreviateSortBy = sortBy => {
+    switch (sortBy) {
+      case "date saved":
+        return "Saved";
+      case "top rated":
+        return "Rated";
+      case "time":
+        return "Time";
+      default:
+        return sortBy.toUpperCase();
+    }
+  };
+
   render() {
     const { isFetching, toggleSortButton, sortBy } = this.props.savedRecipes;
+
+    const abbreviatedSortBy = this.abbreviateSortBy(sortBy);
+
     if (isFetching) {
       return <Loading />;
     }
@@ -52,7 +69,7 @@ class SavedRecipes extends React.Component {
             "sr-header" + (toggleSortButton ? " remove-btm-border" : "")
           }
         >
-          <div
+          <Button
             onClick={this.handleClick}
             className={"arrowStyle" + (toggleSortButton ? " sortActive" : "")}
           >
@@ -63,15 +80,9 @@ class SavedRecipes extends React.Component {
               className="sort-icon"
             />
             <div style={{ fontSize: ".7rem", color: "#B7B7B7" }}>
-              {sortBy === "date saved"
-                ? "Saved"
-                : sortBy === "top rated"
-                ? "Rated"
-                : sortBy === "time"
-                ? "Time"
-                : sortBy.toUpperCase()}
+              {abbreviatedSortBy}
             </div>
-          </div>
+          </Button>
         </div>
         <h3 style={{ textAlign: "center" }}>Saved Recipes</h3>
 
