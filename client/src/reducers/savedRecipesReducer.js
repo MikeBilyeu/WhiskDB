@@ -9,7 +9,7 @@ const initialState = {
   recipes: [],
   isFetching: true,
   sortBy: "date saved",
-  toggleSortButton: false
+  sortActive: false
 };
 
 // return a sort function
@@ -62,7 +62,7 @@ export default function(state = initialState, action) {
     case TOGGLE_SORT_BUTTON:
       return {
         ...state,
-        toggleSortButton: !state.toggleSortButton
+        sortActive: !state.sortActive
       };
 
     default:

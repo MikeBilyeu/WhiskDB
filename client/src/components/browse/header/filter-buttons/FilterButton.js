@@ -40,7 +40,6 @@ const mapSateToProps = state => {
   return {
     buttonToggled: state.browseRecipes.toggleFilterButton,
     diet: state.browseRecipes.browseData.diet,
-    cuisine: state.browseRecipes.browseData.cuisine,
     meal: state.browseRecipes.browseData.meal
   };
 };

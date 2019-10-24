@@ -11,10 +11,10 @@ class SortBy extends React.Component {
   render() {
     return (
       <div className="filter-box">
-        <SortOption sort="date saved" option="Date Saved" />
-        <SortOption sort="top rated" option="Top Rated" />
-        <SortOption sort="a-z" option="A-Z" />
-        <SortOption sort="time" option="Time" />
+        <SortOption sort="Date Saved" option="Date Saved" />
+        <SortOption sort="Top Rated" option="Top Rated" />
+        <SortOption sort="A-Z" option="A-Z" />
+        <SortOption sort="Time" option="Time" />
       </div>
     );
   }

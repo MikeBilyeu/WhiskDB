@@ -18,24 +18,6 @@
   font-size: 1.5rem;
 }
 
-.sr-header .arrowStyle {
-  width: 2.5rem;
-  cursor: pointer;
-  justify-self: start;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  display: grid;
-  place-items: center;
-  padding-left: 0.5rem;
-  font-size: 0.7rem;
-  color: #b7b7b7;
-}
-
-.so-active {
-  color: #0172c4;
-  border: solid #0172c4 1px;
-}
-
 .saved-recipes {
   display: grid;
   grid-gap: 0.7rem;

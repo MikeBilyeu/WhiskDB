@@ -3,9 +3,8 @@ import { connect } from "react-redux";
 
 import SortBy from "./SortBy";
 import { Loading } from "../../loading/Loading";
-import { Button } from "../../Button";
+import { SortButton } from "../../sort-button/SortButton";
 import RecipeDisplayMini from "../../recipes/recipe-display/RecipeDisplayMini";
-import { ReactComponent as SortIcon } from "../../../images/SortIcon.svg";
 
 import "./sr-styles.css";
 // action Creator
@@ -15,13 +14,6 @@ import {
 } from "../../../actions/recipeActions";
 
 class SavedRecipes extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sortActive: false
-    };
-  }
-
   componentDidMount() {
     const user_id = this.props.auth.isAuthenticated
       ? this.props.auth.user.user_id
@@ -35,28 +27,8 @@ class SavedRecipes extends React.Component {
     });
   };
 
-  handleClick = () => {
-    this.props.toggleSortButton();
-  };
-
-  abbreviateSortBy = sortBy => {
-    // return shorter text for disply under the sortIcon button
-    switch (sortBy) {
-      case "date saved":
-        return "Saved";
-      case "top rated":
-        return "Rated";
-      case "time":
-        return "Time";
-      default:
-        return sortBy.toUpperCase();
-    }
-  };
-
   render() {
-    const { isFetching, toggleSortButton, sortBy } = this.props.savedRecipes;
-
-    const abbreviatedSortBy = this.abbreviateSortBy(sortBy);
+    const { isFetching, sortActive, sortBy } = this.props.savedRecipes;
 
     if (isFetching) {
       return <Loading />;
@@ -64,24 +36,13 @@ class SavedRecipes extends React.Component {
 
     return (
       <div>
-        {toggleSortButton ? <SortBy /> : null}
-        <div
-          className={
-            "sr-header" + (toggleSortButton ? " remove-btm-border" : "")
-          }
-        >
-          <Button
-            onClick={this.handleClick}
-            className={"arrowStyle" + (toggleSortButton ? " sortActive" : "")}
-          >
-            <SortIcon
-              style={{
-                fill: toggleSortButton === "Sort" ? "#0172C4" : "#676767"
-              }}
-              className="sort-icon"
-            />
-            {abbreviatedSortBy}
-          </Button>
+        {sortActive ? <SortBy /> : null}
+        <div className={"sr-header" + (sortActive ? " remove-btm-border" : "")}>
+          <SortButton
+            onClick={this.props.toggleSortButton}
+            sortActive={sortActive}
+            sortBy={sortBy}
+          />
         </div>
         <h3 style={{ textAlign: "center" }}>Saved Recipes</h3>
 
@@ -93,8 +54,7 @@ class SavedRecipes extends React.Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  savedRecipes: state.savedRecipes,
-  sort: state.savedRecipes.sortBy
+  savedRecipes: state.savedRecipes
 });
 
 export default connect(
