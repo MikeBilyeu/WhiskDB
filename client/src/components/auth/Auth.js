@@ -1,15 +1,18 @@
 import React from "react";
-import "./auth-styles.css";
-import Login from "./Login";
-import SignUp from "./SignUp";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+
+import Login from "./Login";
+import Signup from "./Signup";
+import { Button } from "../Button";
+
+import "./auth-styles.css";
 
 class Auth extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: true
+      page: "Login"
     };
   }
   componentDidMount() {
@@ -25,30 +28,30 @@ class Auth extends React.Component {
     }
   }
 
-  handleLoginClick = () => {
-    this.setState({ login: true });
+  handleClick = page => {
+    this.setState({ page });
   };
-  handleSignUpClick = () => {
-    this.setState({ login: false });
-  };
+
   render() {
+    const page = this.state.page;
     return (
       <div>
         <div className="authHeader">
-          <div
-            className={"authButton " + (this.state.login ? "active" : "")}
-            onClick={this.handleLoginClick}
+          <Button
+            className={"authButton " + (page === "Login" ? "active" : "")}
+            handleClick={() => this.handleClick("Login")}
           >
             Login
-          </div>
-          <div
-            className={"authButton " + (!this.state.login ? "active" : "")}
-            onClick={this.handleSignUpClick}
+          </Button>
+
+          <Button
+            className={"authButton " + (page === "Signup" ? "active" : "")}
+            handleClick={() => this.handleClick("Signup")}
           >
             Signup
-          </div>
+          </Button>
         </div>
-        {this.state.login ? <Login /> : <SignUp />}
+        {this.state.page === "Login" ? <Login /> : <Signup />}
       </div>
     );
   }
@@ -59,5 +62,19 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(withRouter(Auth));
+
+// <div
+//   className={"authButton " + (this.state.login ? "active" : "")}
+//   onClick={this.handleLoginClick}
+// >
+//   Login
+// </div>
+
+// <div
+//   className={"authButton " + (!this.state.login ? "active" : "")}
+//   onClick={this.handleSignUpClick}
+// >
+//   Signup
+// </div>
 
 // single component that renders auth or login by setAuthToken

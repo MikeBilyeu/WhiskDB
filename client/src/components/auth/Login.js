@@ -54,7 +54,6 @@ class Login extends Component {
           label="Password"
           type={this.state.showPassword ? "text" : "password"}
         />
-
         <button type="submit">Log in</button>
       </form>
     );
