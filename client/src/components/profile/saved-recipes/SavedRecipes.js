@@ -40,6 +40,7 @@ class SavedRecipes extends React.Component {
   };
 
   abbreviateSortBy = sortBy => {
+    // return shorter text for disply under the sortIcon button
     switch (sortBy) {
       case "date saved":
         return "Saved";
@@ -79,9 +80,7 @@ class SavedRecipes extends React.Component {
               }}
               className="sort-icon"
             />
-            <div style={{ fontSize: ".7rem", color: "#B7B7B7" }}>
-              {abbreviatedSortBy}
-            </div>
+            {abbreviatedSortBy}
           </Button>
         </div>
         <h3 style={{ textAlign: "center" }}>Saved Recipes</h3>

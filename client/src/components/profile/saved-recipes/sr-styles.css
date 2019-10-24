@@ -27,6 +27,8 @@
   display: grid;
   place-items: center;
   padding-left: 0.5rem;
+  font-size: 0.7rem;
+  color: #b7b7b7;
 }
 
 .so-active {
