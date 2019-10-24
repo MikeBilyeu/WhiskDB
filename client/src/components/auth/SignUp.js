@@ -45,7 +45,7 @@ class Signup extends Component {
           normalize={lower}
           label="Email"
         />
-        <Button handleClick={this.handleClick}>
+        <Button onClick={this.handleClick}>
           {this.state.showPassword ? "hide" : "show"}
         </Button>
         <Field

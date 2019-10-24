@@ -39,14 +39,14 @@ class Auth extends React.Component {
         <div className="authHeader">
           <Button
             className={"authButton " + (page === "Login" ? "active" : "")}
-            handleClick={() => this.handleClick("Login")}
+            onClick={() => this.handleClick("Login")}
           >
             Login
           </Button>
 
           <Button
             className={"authButton " + (page === "Signup" ? "active" : "")}
-            handleClick={() => this.handleClick("Signup")}
+            onClick={() => this.handleClick("Signup")}
           >
             Signup
           </Button>

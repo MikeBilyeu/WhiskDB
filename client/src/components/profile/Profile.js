@@ -8,6 +8,7 @@ import SavedRecipes from "./saved-recipes/SavedRecipes";
 import MyRecipes from "./MyRecipes";
 import EditProfile from "./edit-profile/EditProfile";
 import CreateRecipe from "./createRecipe/CreateRecipe";
+import { Button } from "../Button";
 import { ReactComponent as UserIcon } from "../../images/userProfile.svg";
 import { ReactComponent as WhiskIcon } from "../../images/WhiskIcon.svg";
 import { ReactComponent as SavedIcon } from "../../images/savedRecipes.svg";
@@ -20,7 +21,7 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      savedComponent: true
+      page: "saved"
     };
   }
 
@@ -28,7 +29,12 @@ class Profile extends React.Component {
     this.props.getUser();
   }
 
+  handleClick = page => {
+    this.setState({ page });
+  };
+
   render() {
+    const page = this.state.page;
     return (
       <Switch>
         <Route path="/profile/edit" component={EditProfile} />
@@ -86,33 +92,27 @@ class Profile extends React.Component {
                     {this.props.username.toLowerCase()}
                   </h2>
                 </div>
+
                 <div className="s-mr-toggle">
-                  <div
-                    onClick={() => {
-                      this.setState({ savedComponent: true });
-                    }}
+                  <Button
                     className={
-                      "authButton " +
-                      (this.state.savedComponent ? "active" : "")
+                      "authButton " + (page === "saved" ? "active" : "")
                     }
+                    onClick={() => this.handleClick("saved")}
                   >
                     <SavedIcon style={{ width: "1.5rem" }} />
-                  </div>
-                  <div
-                    onClick={() => {
-                      this.setState({ savedComponent: false });
-                    }}
+                  </Button>
+
+                  <Button
                     className={
-                      "authButton " +
-                      (!this.state.savedComponent ? "active" : "")
+                      "authButton " + (page === "myRecipes" ? "active" : "")
                     }
+                    onClick={() => this.handleClick("myRecipes")}
                   >
                     <MyRecipesIcon style={{ width: "1.5rem" }} />
-                  </div>
+                  </Button>
                 </div>
-                <div>
-                  {this.state.savedComponent ? <SavedRecipes /> : <MyRecipes />}
-                </div>
+                <div>{page === "saved" ? <SavedRecipes /> : <MyRecipes />}</div>
               </div>
             );
           }}
