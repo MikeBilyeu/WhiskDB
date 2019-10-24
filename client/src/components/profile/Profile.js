@@ -35,6 +35,8 @@ class Profile extends React.Component {
 
   render() {
     const page = this.state.page;
+    const savedActive = page === "saved" ? "active" : "";
+    const myRecipesActive = page === "myRecipes" ? "active" : "";
     return (
       <Switch>
         <Route path="/profile/edit" component={EditProfile} />
@@ -95,18 +97,14 @@ class Profile extends React.Component {
 
                 <div className="s-mr-toggle">
                   <Button
-                    className={
-                      "authButton " + (page === "saved" ? "active" : "")
-                    }
+                    className={`authButton ${savedActive}`}
                     onClick={() => this.handleClick("saved")}
                   >
                     <SavedIcon style={{ width: "1.5rem" }} />
                   </Button>
 
                   <Button
-                    className={
-                      "authButton " + (page === "myRecipes" ? "active" : "")
-                    }
+                    className={`authButton ${myRecipesActive}`}
                     onClick={() => this.handleClick("myRecipes")}
                   >
                     <MyRecipesIcon style={{ width: "1.5rem" }} />
