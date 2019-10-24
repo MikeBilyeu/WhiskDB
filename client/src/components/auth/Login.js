@@ -5,7 +5,7 @@ import { loginUser } from "../../actions/authActions";
 import { ValidateLogin } from "./AuthValidation";
 
 import { Input } from "../form-inputs/Input";
-import { TogglePasswordButton } from "../form-inputs/TogglePasswordButton";
+import { Button } from "../Button";
 
 import "./auth-styles.css";
 
@@ -42,10 +42,9 @@ class Login extends Component {
           normalize={lower}
           label="Email"
         />
-        <TogglePasswordButton
-          handleClick={this.handleClick}
-          showPassword={this.state.showPassword}
-        />
+        <Button handleClick={this.handleClick}>
+          {this.state.showPassword ? "hide" : "show"}
+        </Button>
         <Field
           name="password"
           component={Input}

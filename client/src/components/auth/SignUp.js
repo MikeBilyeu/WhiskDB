@@ -6,7 +6,7 @@ import { ValidateSignup } from "./AuthValidation";
 import asyncValidate from "./AsyncValidation";
 
 import { Input } from "../form-inputs/Input";
-import { TogglePasswordButton } from "../form-inputs/TogglePasswordButton";
+import { Button } from "../Button";
 
 class Signup extends Component {
   constructor(props) {
@@ -45,10 +45,9 @@ class Signup extends Component {
           normalize={lower}
           label="Email"
         />
-        <TogglePasswordButton
-          handleClick={this.handleClick}
-          showPassword={this.state.showPassword}
-        />
+        <Button handleClick={this.handleClick}>
+          {this.state.showPassword ? "hide" : "show"}
+        </Button>
         <Field
           name="password"
           component={Input}
