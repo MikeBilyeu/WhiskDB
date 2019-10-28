@@ -25,7 +25,7 @@
 .filter-btn {
   border-radius: 50rem;
   cursor: pointer;
-  border: solid #e2e2e2 1px;
+  border: solid #e2e2e2 0.05rem;
   color: #707070;
   display: grid;
   place-items: center;
@@ -42,10 +42,32 @@
   place-self: center;
 }
 
+.filter-btn.filter-active {
+  border: solid #0172c4 0.05rem;
+  color: #0172c4;
+}
+
+.filter-btn.filter-select {
+  color: #0172c4;
+}
+
+.filter-btn.diet {
+  grid-area: Diet;
+}
+
+.filter-btn.meal {
+  grid-area: Meal;
+}
+
 .filter-arrow {
   width: 0.8rem;
   transition: all 0.2s ease-out;
   fill: #e2e2e2;
+}
+
+.filter-arrow.filter-active {
+  transform: rotate(90deg);
+  fill: #0172c4;
 }
 
 /* not working ios safari... color staying on after click */
