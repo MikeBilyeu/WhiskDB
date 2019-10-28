@@ -3,7 +3,6 @@ import { Link, withRouter } from "react-router-dom";
 import "./nav-styles.css";
 
 import { ReactComponent as Home } from "./search.svg";
-import { ReactComponent as Saved } from "./saved.svg";
 import { ReactComponent as Profile } from "./profile.svg";
 
 //change to class based ReactComponent
@@ -27,9 +26,7 @@ class NavigationBar extends React.Component {
     this.setState((prevState, props) => {
       const pathname = props.location.pathname;
 
-      if (/saved-recipes/.test(pathname)) {
-        return { nav: "saved" };
-      } else if (/profile|auth/.test(pathname)) {
+      if (/profile|auth/.test(pathname)) {
         return { nav: "profile" };
       } else {
         return { nav: "home" };
