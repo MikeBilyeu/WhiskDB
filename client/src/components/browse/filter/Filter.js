@@ -1,29 +1,60 @@
 import React from "react";
+import { connect } from "react-redux";
 
-import FilterOption from "./FilterOption";
+// actions
+import { getBrowseRecipes } from "../../../actions/browseActions";
 
+// components
+import { Button } from "../../Button";
+
+// stylesd
 import "./filter-styles.css";
 
-class Filter extends React.Component {
-  renderFilterOptions = () => {
-    return this.props.filterOptions.map((option, i) => {
+const Filter = ({
+  filterOptions,
+  filterType,
+  browseData,
+  getBrowseRecipes
+}) => {
+  const handleClick = option => {
+    // set the browseData to the option selected
+    getBrowseRecipes({ ...browseData, [filterType]: option, search: "" });
+  };
+
+  const renderFilterOptions = () => {
+    return filterOptions.map((option, i) => {
+      const buttonStyle = `filter-option ${Object.values(browseData).indexOf(
+        option
+      ) > 0 && "option-active"}`;
       return (
-        <FilterOption
-          key={option + i}
-          option={option}
-          filterType={this.props.filterType}
-        />
+        <Button
+          key={i + option}
+          className={buttonStyle}
+          onClick={() => {
+            handleClick(option);
+          }}
+        >
+          {option}
+        </Button>
       );
     });
   };
 
-  render() {
-    return (
-      <div className="filter-box">
-        <h2 className="filter-title">{this.props.filterType}</h2>
-        {this.renderFilterOptions()}
-      </div>
-    );
-  }
-}
-export default Filter;
+  return (
+    <div className="filter-box">
+      <h2 className="filter-title">{filterType}</h2>
+      {renderFilterOptions()}
+    </div>
+  );
+};
+
+const mapSateToProps = state => {
+  return {
+    browseData: state.browseRecipes.browseData
+  };
+};
+
+export default connect(
+  mapSateToProps,
+  { getBrowseRecipes }
+)(Filter);

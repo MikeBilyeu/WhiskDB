@@ -25,6 +25,11 @@
   color: #464646;
 }
 
+.filter-option.option-active {
+  color: #0172c4;
+  border: solid #0172c4 0.05rem;
+}
+
 .filter-option:hover {
   color: #0172c4;
 }
