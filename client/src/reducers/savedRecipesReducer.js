@@ -8,7 +8,7 @@ import {
 const initialState = {
   recipes: [],
   isFetching: true,
-  sortBy: "date saved",
+  sortBy: "Date Saved",
   sortActive: false
 };
 

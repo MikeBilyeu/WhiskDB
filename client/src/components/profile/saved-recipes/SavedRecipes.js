@@ -36,7 +36,7 @@ class SavedRecipes extends React.Component {
 
     return (
       <div>
-        {sortActive ? <SortBy /> : null}
+        {sortActive && <SortBy />}
         <div className={"sr-header" + (sortActive ? " remove-btm-border" : "")}>
           <SortButton
             onClick={this.props.toggleSortButton}
