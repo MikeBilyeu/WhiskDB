@@ -2,10 +2,18 @@ import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import "./profile-styles.css";
+// Actions
+import {
+  getMyRecipes,
+  getSavedRecipes,
+  toggleSortButton
+} from "../../actions/recipeActions";
+import { getUser } from "../../actions/authActions";
 
-import SavedRecipes from "./saved-recipes/SavedRecipes";
-import MyRecipes from "./MyRecipes";
+// Components
+import RecipeContainer from "./RecipeContainer";
+import SortBy from "./SortBy";
+import { SortButton } from "../sort-button/SortButton";
 import EditProfile from "./edit-profile/EditProfile";
 import CreateRecipe from "./createRecipe/CreateRecipe";
 import { Button } from "../Button";
@@ -14,7 +22,8 @@ import { ReactComponent as WhiskIcon } from "../../images/WhiskIcon.svg";
 import { ReactComponent as SavedIcon } from "../../images/savedRecipes.svg";
 import { ReactComponent as MyRecipesIcon } from "../../images/myRecipes.svg";
 
-import { getUser } from "../../actions/authActions";
+// Styles
+import "./profile-styles.css";
 
 class Profile extends React.Component {
   //add state to toggle saved / my recipes
@@ -27,6 +36,11 @@ class Profile extends React.Component {
 
   componentDidMount() {
     this.props.getUser();
+    const user_id = this.props.auth.isAuthenticated
+      ? this.props.auth.user.user_id
+      : null;
+    this.props.getMyRecipes(user_id);
+    this.props.getSavedRecipes(user_id);
   }
 
   handleClick = page => {
@@ -35,6 +49,8 @@ class Profile extends React.Component {
 
   render() {
     const page = this.state.page;
+    const { sortActive, sortBy } = this.props.savedRecipes;
+
     const savedActive = page === "saved" ? "active" : "";
     const myRecipesActive = page === "myRecipes" ? "active" : "";
     return (
@@ -110,7 +126,48 @@ class Profile extends React.Component {
                     <MyRecipesIcon style={{ width: "1.5rem" }} />
                   </Button>
                 </div>
-                <div>{page === "saved" ? <SavedRecipes /> : <MyRecipes />}</div>
+                <div>
+                  {page === "saved" ? (
+                    <RecipeContainer
+                      recipes={this.props.savedRecipes.recipes}
+                      containerName="Saved Recipes"
+                    >
+                      {sortActive && <SortBy />}
+                      <div
+                        className={
+                          "sr-header" + (sortActive ? " remove-btm-border" : "")
+                        }
+                      >
+                        <SortButton
+                          onClick={this.props.toggleSortButton}
+                          sortActive={sortActive}
+                          sortBy={sortBy}
+                        />
+                      </div>
+                    </RecipeContainer>
+                  ) : (
+                    <RecipeContainer
+                      recipes={this.props.myRecipes.recipes}
+                      containerName="My Recipes"
+                    >
+                      <Link to="/profile/create-recipe">
+                        <div
+                          style={{
+                            backgroundColor: "#0172C4",
+                            color: "#FFF",
+                            padding: ".7rem 5rem",
+                            margin: "1.5rem",
+                            fontWeight: "bold",
+                            borderRadius: "10rem",
+                            textAlign: "center"
+                          }}
+                        >
+                          Create Recipe
+                        </div>
+                      </Link>
+                    </RecipeContainer>
+                  )}
+                </div>
               </div>
             );
           }}
@@ -121,9 +178,12 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  username: state.userData.user.username
+  username: state.userData.user.username,
+  auth: state.auth,
+  savedRecipes: state.savedRecipes,
+  myRecipes: state.myRecipes
 });
 export default connect(
   mapStateToProps,
-  { getUser }
+  { getUser, getMyRecipes, getSavedRecipes, toggleSortButton }
 )(Profile);

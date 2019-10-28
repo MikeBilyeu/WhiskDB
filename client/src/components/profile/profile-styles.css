@@ -20,3 +20,33 @@
   top: 2rem;
   background-color: #fff;
 }
+
+.sr-header {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.remove-btm-border {
+  border-bottom: none;
+}
+
+.sr-header h1 {
+  white-space: nowrap;
+  margin: 1rem 0;
+  font-size: 1.5rem;
+}
+
+.profile-recipes {
+  display: grid;
+  grid-gap: 0.7rem;
+  /* grid-template-columns: repeat(auto-fit; minmax(5rem; 1fr)); */
+  grid-template-columns: 1fr 1fr;
+  padding: 0.5rem;
+  list-style-type: none;
+  list-style: none;
+}

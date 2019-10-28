@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 
 // Actions
-import { sortSavedRecipes } from "../../../actions/recipeActions";
+import { sortSavedRecipes } from "../../actions/recipeActions";
 
 // components
-import { Button } from "../../Button";
+import { Button } from "../Button";
 
 const SortBy = ({ sortBy, sortSavedRecipes }) => {
   const handleClick = sort => {
