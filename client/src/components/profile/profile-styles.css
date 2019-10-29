@@ -3,12 +3,37 @@
   placeitems: center;
 }
 
+.profile-whisk-icon {
+  display: grid;
+  place-items: center;
+  background-color: #fff;
+  position: fixed;
+  width: 100%;
+  height: 2.1rem;
+}
+
 .profile-header {
   display: grid;
   place-items: center;
   margin-top: 2.1rem;
 }
 
+.profile-header h2 {
+  fontsize: 1.5rem;
+  fontweight: 900;
+  margin: 0;
+  margin-bottom: 1rem;
+  color: #313131;
+}
+.profile-header .edit {
+  color: #0172c4;
+  fontsize: 1rem;
+  margin: 0.3rem;
+}
+.profile-header .edit-link {
+  display: grid;
+  place-items: center;
+}
 .s-mr-toggle {
   display: grid;
   grid-auto-flow: column;
@@ -49,4 +74,14 @@
   padding: 0.5rem;
   list-style-type: none;
   list-style: none;
+}
+
+.create-recipe-btn {
+  background-color: #0172c4;
+  color: #fff;
+  padding: 0.7rem 5rem;
+  margin: 1.5rem;
+  fontweight: bold;
+  border-radius: 10rem;
+  text-align: center;
 }
