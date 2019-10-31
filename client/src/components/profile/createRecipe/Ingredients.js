@@ -2,8 +2,9 @@ import React from "react";
 import { Field } from "redux-form";
 
 // Components
-import { Input } from "../../form-inputs/Input";
+import Input from "../../form-inputs/Input";
 import { Button } from "../../Button";
+import { ReactComponent as Remove } from "../../../images/removeDark.svg";
 
 class Ingredients extends React.Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class Ingredients extends React.Component {
           {this.props.fields.map((ingredient, index, arr) => (
             <li key={index}>
               <Button onClick={() => this.props.fields.remove(index)}>
-                Remove
+                <Remove style={{ width: ".8rem" }} />
               </Button>
               <Field
                 name={`ingredients[${index}]`}
