@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, FieldArray, reduxForm } from "redux-form";
+import { Field, FieldArray, reduxForm, formValueSelector } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -10,6 +10,7 @@ import { createRecipe } from "../../../actions/recipeActions";
 import Header from "./Header";
 import Ingredients from "./Ingredients";
 import Directions from "./Directions";
+import Keywords from "./Keywords";
 import Input from "../../form-inputs/Input";
 
 import "./create-recipe-styles.css";
@@ -77,15 +78,23 @@ class CreateRecipe extends React.Component {
           />
           <FieldArray name="ingredients" component={Ingredients} />
           <Directions />
+          <FieldArray
+            name="keywords"
+            component={Keywords}
+            keywords={this.props.keywords}
+          />
         </form>
       </div>
     );
   }
 }
 
+const selector = formValueSelector("newRecipe");
+
 const mapSateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    keywords: selector(state, "keywords")
   };
 };
 
@@ -98,10 +107,7 @@ export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
   initialValues: {
-    ingredients: [],
-    directions: [],
     privateRecipe: false,
-    categories: { diet: {}, meal: {} },
-    keywords: []
+    categories: { diet: {}, meal: {} }
   }
 })(withRouter(CreateRecipe));
