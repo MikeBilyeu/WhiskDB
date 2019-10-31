@@ -5,7 +5,7 @@ import { registerUser } from "../../actions/authActions";
 import { ValidateSignup } from "./AuthValidation";
 import asyncValidate from "./AsyncValidation";
 
-import { Input } from "../form-inputs/Input";
+import Input from "../form-inputs/Input";
 import { Button } from "../Button";
 
 class Signup extends Component {

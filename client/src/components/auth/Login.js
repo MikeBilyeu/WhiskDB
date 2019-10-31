@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import { ValidateLogin } from "./AuthValidation";
 
-import { Input } from "../form-inputs/Input";
+import Input from "../form-inputs/Input";
 import { Button } from "../Button";
 
 import "./auth-styles.css";

@@ -11,7 +11,7 @@ import {
 import { ValidateUsername } from "../../auth/AuthValidation";
 import { usernameValidate } from "../../auth/AsyncValidation";
 
-import { Input } from "../../form-inputs/Input";
+import Input from "../../form-inputs/Input";
 import EditHeader from "./EditHeader";
 import Delete from "./Delete";
 

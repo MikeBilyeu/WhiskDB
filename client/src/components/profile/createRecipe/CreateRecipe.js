@@ -9,7 +9,8 @@ import { createRecipe } from "../../../actions/recipeActions";
 // Components
 import Header from "./Header";
 import Ingredients from "./Ingredients";
-import { Input } from "../../form-inputs/Input";
+import Directions from "./Directions";
+import Input from "../../form-inputs/Input";
 
 import "./create-recipe-styles.css";
 
@@ -75,6 +76,7 @@ class CreateRecipe extends React.Component {
             accept="image/.jpg, image/.png, image/.jpeg"
           />
           <FieldArray name="ingredients" component={Ingredients} />
+          <Directions />
         </form>
       </div>
     );

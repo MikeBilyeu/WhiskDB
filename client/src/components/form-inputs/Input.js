@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Input = ({
+const Input = ({
   input,
   meta: { touched, error, warning, active },
   placeholder,
@@ -25,6 +25,8 @@ export const Input = ({
     </div>
   );
 };
+
+export default Input;
 
 // label styles
 // style={{
