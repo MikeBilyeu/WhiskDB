@@ -8,19 +8,32 @@ import { Button } from "../../Button";
 class Ingredients extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ingredient: "" };
+    this.state = {
+      ingredient: "",
+      error: null,
+      touched: false
+    };
   }
 
   handleChange = e => {
-    this.setState({ ingredient: e.target.value });
+    this.setState({ ingredient: e.target.value, error: null });
   };
 
   handleKeyDown = e => {
     if (e.key === "Enter") {
-      this.props.fields.push(this.state.ingredient);
-      this.setState({ ingredient: "" });
+      if (!this.validIngredientRegEx.test(this.state.ingredient)) {
+        this.setState({
+          error:
+            "Ingredient is not in a valid format: Amount, Unit, Ingredient, (prep)"
+        });
+      } else {
+        this.props.fields.push(this.state.ingredient);
+        this.setState({ ingredient: "" });
+      }
     }
   };
+
+  validIngredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) ([a-z\d-,/+.%&*!] *){3,40}( \( *([a-z\d-,/+.%&*!] *){1,40}\) *)?$/i;
 
   render() {
     return (
@@ -44,7 +57,6 @@ class Ingredients extends React.Component {
                 name={`ingredients[${index}]`}
                 type="text"
                 component={Input}
-                onChange={this.handleChange}
                 label=""
               />
             </li>
@@ -58,7 +70,7 @@ class Ingredients extends React.Component {
             onKeyDown: this.handleKeyDown
           }}
           placeholder="1 1/2 Tablespoon Onion (Chopped)"
-          meta
+          meta={{ error: this.state.error, touched: true }}
         />
       </div>
     );
