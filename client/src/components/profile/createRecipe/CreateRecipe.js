@@ -1,21 +1,15 @@
 import React from "react";
-import { Fields, reduxForm } from "redux-form";
+import { Field, FieldArray, reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-
-import { ReactComponent as Arrow } from "../../../images/arrowLeft.svg";
 
 // Action Creator
 import { createRecipe } from "../../../actions/recipeActions";
 
-// Field Components
-import FormStatus from "./FormStatus";
-import TitleAndImage from "./TitleAndImage";
+// Components
+import Header from "./Header";
 import Ingredients from "./Ingredients";
-import Directions from "./Directions";
-import TimeServingsFootnote from "./TimeServingsFootnote";
-import Categories from "./Categories";
-import TagAndSubmit from "./TagAndSubmit";
+import { Input } from "../../form-inputs/Input";
 
 import "./create-recipe-styles.css";
 
@@ -55,51 +49,32 @@ class CreateRecipe extends React.Component {
   // };
 
   handleKeyDown = e => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       e.preventDefault();
     }
   };
   render() {
-    let formPage = null;
-    switch (this.state.page) {
-      case 1:
-        formPage = <TitleAndImage />;
-        break;
-      case 2:
-        formPage = <Ingredients change={this.props.change} />;
-        break;
-      case 3:
-        formPage = <Directions change={this.props.change} />;
-        break;
-      case 4:
-        formPage = <TimeServingsFootnote />;
-        break;
-      case 5:
-        formPage = <Categories />;
-        break;
-      case 6:
-        formPage = <TagAndSubmit change={this.props.change} />;
-        break;
-      default:
-        formPage = null;
-    }
     return (
       <div>
-        <div className="cr-header">
-          <Arrow
-            className="back-btn"
-            onClick={() => this.props.history.goBack()}
-          />
-          <h1>Create Recipe</h1>
-        </div>
-        <FormStatus handleClick={this.handleClick} page={this.state.page} />
-
+        <Header onClick={this.props.history.goBack} />
         <form
           className="recipe-form"
           onSubmit={this.props.handleSubmit(this.handleSubmit)}
           onKeyDown={this.handleKeyDown}
         >
-          {formPage}
+          <Field
+            name="title"
+            component={Input}
+            label="Title"
+            placeholder="Juicy Roasted Chicken"
+          />
+          <Field
+            name="image"
+            component={Input}
+            type="file"
+            accept="image/.jpg, image/.png, image/.jpeg"
+          />
+          <FieldArray name="ingredients" component={Ingredients} />
         </form>
       </div>
     );

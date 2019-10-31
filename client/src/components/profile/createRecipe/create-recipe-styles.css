@@ -1,4 +1,4 @@
-.cr-header {
+/* .cr-header {
   display: grid;
   grid-template-columns: 4rem 1fr;
   place-items: center;
@@ -22,12 +22,6 @@
   background-clip: padding-box;
   outline: none;
   margin: calc(2px - 1px);
-}
-
-.recipe-form input::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #000;
-  opacity: 0.2; /* Firefox */
 }
 
 .recipe-form .input-active input {
@@ -137,7 +131,7 @@ span.error {
   display: grid;
 }
 
-/* .add:hover {
+.add:hover {
   color: #0172c4;
 }
 

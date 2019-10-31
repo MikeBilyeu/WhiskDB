@@ -52,7 +52,7 @@ class IngredientInput extends React.Component {
   };
 
   handleKeyDown = e => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       this.handleAddClick();
     }
   };

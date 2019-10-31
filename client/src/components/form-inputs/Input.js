@@ -6,27 +6,13 @@ export const Input = ({
   placeholder,
   inputId,
   type = "text",
-  label
+  label,
+  className
 }) => {
   return (
     <div style={{ position: "relative" }}>
-      <label
-        style={{
-          padding: "0 .5rem",
-          backgroundColor: "#FFF",
-          position: "absolute",
-          left: "1.5rem",
-          bottom: "2.4rem",
-          color: active ? "#0172C4" : "#535662",
-          fontWeight: "normal"
-        }}
-      >
-        {label}
-      </label>
+      <label>{label}</label>
       <input
-        style={{
-          border: active ? "solid #0172C4 .07rem " : "solid #AFAFAF .07rem"
-        }}
         {...input}
         autoComplete="off"
         type={type}
@@ -39,3 +25,19 @@ export const Input = ({
     </div>
   );
 };
+
+// label styles
+// style={{
+//   padding: "0 .5rem",
+//   backgroundColor: "#FFF",
+//   position: "absolute",
+//   left: "1.5rem",
+//   bottom: "2.4rem",
+//   color: active ? "#0172C4" : "#535662",
+//   fontWeight: "normal"
+// }}
+
+//input styles
+// style={{
+//   border: active ? "solid #0172C4 .07rem " : "solid #AFAFAF .07rem"
+// }}
