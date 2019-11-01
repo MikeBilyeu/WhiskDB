@@ -20,15 +20,12 @@ import Categories from "./Categories";
 import Keywords from "./Keywords";
 import Input from "../../form-inputs/Input";
 
+// Parse Functions
+import { capitalize, titleParse } from "./input-parse";
+
 import "./create-recipe-styles.css";
 
 class CreateRecipe extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: 1
-    };
-  }
   renderError({ error, touched }) {
     if (touched && error) {
       return <div>{error}</div>;
@@ -41,12 +38,6 @@ class CreateRecipe extends React.Component {
       created_by: this.props.auth.user.user_id
     };
     this.props.createRecipe(newRecipe, this.props.history);
-  };
-
-  handleClick = click => {
-    this.setState(prevState => {
-      return { page: prevState.page + click };
-    });
   };
 
   // onImageChange(event) {
@@ -76,6 +67,8 @@ class CreateRecipe extends React.Component {
             component={Input}
             label="Title"
             placeholder="Juicy Roasted Chicken"
+            normalize={capitalize}
+            parse={titleParse}
           />
           <Field
             name="image"
