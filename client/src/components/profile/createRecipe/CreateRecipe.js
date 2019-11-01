@@ -90,6 +90,7 @@ class CreateRecipe extends React.Component {
             change={this.props.change}
           />
           <Keywords keywords={this.props.keywords} change={this.props.change} />
+          <button type="submit">Save Recipe</button>
         </form>
       </div>
     );
