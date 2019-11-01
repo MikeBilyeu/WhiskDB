@@ -14,6 +14,15 @@ class Keywords extends Component {
     };
   }
 
+  handleClick = keyword => {
+    // Remove from redux state
+
+    this.props.change(
+      "keywords",
+      this.props.keywords.filter(el => el !== keyword)
+    );
+  };
+
   handleChange = e => {
     this.setState({ keyword: e.target.value, error: null });
   };
@@ -25,7 +34,11 @@ class Keywords extends Component {
           error: "Keyword is not valid: must be 3 - 25 characters"
         });
       } else {
-        this.props.fields.push(this.state.keyword);
+        // Add to redux state
+        this.props.change("keywords", [
+          ...this.props.keywords,
+          this.state.keyword
+        ]);
         this.setState({ keyword: "" });
       }
     }
@@ -49,16 +62,17 @@ class Keywords extends Component {
         />
         <label>Remove Keywords</label>
         <ul>
-          {this.props.fields.map((keyword, index, arr) => {
-            return (
-              <li key={index}>
-                <Button onClick={() => this.props.fields.remove(index)}>
-                  {this.props.keywords[index]}
-                  <Remove style={{ width: ".8rem" }} />
-                </Button>
-              </li>
-            );
-          })}
+          {this.props.keywords &&
+            this.props.keywords.map((keyword, index, arr) => {
+              return (
+                <li key={"keywords " + index}>
+                  <Button onClick={() => this.handleClick(keyword)}>
+                    {keyword}
+                    <Remove style={{ width: ".8rem" }} />
+                  </Button>
+                </li>
+              );
+            })}
         </ul>
       </div>
     );

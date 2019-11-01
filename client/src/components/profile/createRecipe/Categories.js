@@ -48,7 +48,7 @@ class Categories extends Component {
     return (
       <div>
         <h2>Categories</h2>
-        <label>Categories</label>
+        <label>Add Categories</label>
         <ul>
           {this.state.categories.map((category, index, arr) => {
             return (
