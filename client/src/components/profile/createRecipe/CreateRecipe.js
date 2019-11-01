@@ -25,19 +25,13 @@ import { capitalize, titleParse } from "./input-parse";
 
 import "./create-recipe-styles.css";
 
-class CreateRecipe extends React.Component {
-  renderError({ error, touched }) {
-    if (touched && error) {
-      return <div>{error}</div>;
-    }
-  }
-
-  handleSubmit = values => {
+const CreateRecipe = props => {
+  const handleSubmit = values => {
     const newRecipe = {
       ...values,
-      created_by: this.props.auth.user.user_id
+      created_by: props.auth.user.user_id
     };
-    this.props.createRecipe(newRecipe, this.props.history);
+    props.createRecipe(newRecipe, props.history);
   };
 
   // onImageChange(event) {
@@ -48,47 +42,43 @@ class CreateRecipe extends React.Component {
   //   e.preventDefault();
   // };
 
-  handleKeyDown = e => {
+  const handleKeyDown = e => {
     if (e.key === "Enter") {
       e.preventDefault();
     }
   };
-  render() {
-    return (
-      <div>
-        <Header onClick={this.props.history.goBack} />
-        <form
-          className="recipe-form"
-          onSubmit={this.props.handleSubmit(this.handleSubmit)}
-          onKeyDown={this.handleKeyDown}
-        >
-          <Field
-            name="title"
-            component={Input}
-            label="Title"
-            placeholder="Juicy Roasted Chicken"
-            normalize={capitalize}
-            parse={titleParse}
-          />
-          <Field
-            name="image"
-            component={Input}
-            type="file"
-            accept="image/.jpg, image/.png, image/.jpeg"
-          />
-          <FieldArray name="ingredients" component={Ingredients} />
-          <Directions />
-          <Categories
-            categories={this.props.categories}
-            change={this.props.change}
-          />
-          <Keywords keywords={this.props.keywords} change={this.props.change} />
-          <button type="submit">Save Recipe</button>
-        </form>
-      </div>
-    );
-  }
-}
+
+  return (
+    <div>
+      <Header onClick={props.history.goBack} />
+      <form
+        className="recipe-form"
+        onSubmit={props.handleSubmit(handleSubmit)}
+        onKeyDown={handleKeyDown}
+      >
+        <Field
+          name="title"
+          component={Input}
+          label="Title"
+          placeholder="Juicy Roasted Chicken"
+          normalize={capitalize}
+          parse={titleParse}
+        />
+        <Field
+          name="image"
+          component={Input}
+          type="file"
+          accept="image/.jpg, image/.png, image/.jpeg"
+        />
+        <FieldArray name="ingredients" component={Ingredients} />
+        <Directions />
+        <Categories categories={props.categories} change={props.change} />
+        <Keywords keywords={props.keywords} change={props.change} />
+        <button type="submit">Save Recipe</button>
+      </form>
+    </div>
+  );
+};
 
 const selector = formValueSelector("newRecipe");
 
@@ -100,17 +90,23 @@ const mapSateToProps = state => {
   };
 };
 
-CreateRecipe = connect(
-  mapSateToProps,
-  { createRecipe }
-)(CreateRecipe);
+// CreateRecipe = connect(
+//   mapSateToProps,
+//   { createRecipe }
+// )(CreateRecipe);
 
 export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
   initialValues: {
-    privateRecipe: false,
     categories: [],
     keywords: []
   }
-})(withRouter(CreateRecipe));
+})(
+  withRouter(
+    connect(
+      mapSateToProps,
+      { createRecipe }
+    )(CreateRecipe)
+  )
+);
