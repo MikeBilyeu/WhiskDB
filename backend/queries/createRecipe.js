@@ -124,19 +124,18 @@ const createRecipe = (request, response) => {
     directions,
     footnote,
     privateRecipe,
-    created_by,
     categories,
     keywords
   } = request.body;
-
+  const { user_id: created_by } = request.user;
   const title = request.body.title.trim();
 
   // Form validation
-  const errors = validateRecipeInput(request.body);
-  // Check validation
-  if (Object.keys(errors).length !== 0) {
-    return response.status(400).json(errors);
-  }
+  // const errors = validateRecipeInput(request.body);
+  // // Check validation
+  // if (Object.keys(errors).length !== 0) {
+  //   return response.status(400).json(errors);
+  // }
 
   const timeHours = time.hours > 0 ? time.hours : 0;
   const timeMinutes = time.minutes > 0 ? parseInt(time.minutes) : 0;
@@ -149,7 +148,12 @@ const createRecipe = (request, response) => {
     return (
       client
         .query(
-          "INSERT INTO recipes (created_by, title, servings, total_time_mins, footnote, private, directions, ingredients, keywords, document_vectors) VALUES ($1, CAST($2 AS VARCHAR), $3, $4, $5, $6, $7, $8, CAST($9 AS VARCHAR[]), (to_tsvector($2) || to_tsvector(array_to_string($9, ' ')))) RETURNING recipe_id",
+          `INSERT INTO recipes
+        (created_by, title, servings, total_time_mins, footnote,
+        private, directions, ingredients, keywords, document_vectors)
+        VALUES ($1, CAST($2 AS VARCHAR), $3, $4, $5, $6, $7, $8,
+        CAST($9 AS VARCHAR[]), (to_tsvector($2) ||
+        to_tsvector(array_to_string($9, ' ')))) RETURNING recipe_id`,
           [
             created_by,
             title,
@@ -164,79 +168,37 @@ const createRecipe = (request, response) => {
         )
         // .then(res => {
         //   recipe_id = res.rows[0].recipe_id;
-        //   // loop through the ingredients
-        //   for (let i = 0; i < ingredients.length; i++) {
-        //     let { ingredient } = ingredients[i];
-        //     /* check if ingredients table already contains the ingredient*/
-        //     client
-        //       .query("SELECT * FROM ingredients WHERE ingredient_name = $1", [
-        //         ingredient
-        //       ])
-        //       .then(res => {
-        //         // ingredients table already containes that ingredient_name
-        //         if (res.rowCount > 0) {
-        //           client.query(
-        //             "INSERT INTO recipes_join_ingredients (recipe, ingredient) VALUES ($1, $2)",
-        //             [recipe_id, res.rows[0].ingredient_id]
-        //           );
-        //         } else {
-        //           // ingredients table does not contain the ingredient
-        //           client
-        //             .query(
-        //               "INSERT INTO ingredients (ingredient_name) VALUES ($1) RETURNING ingredient_id",
-        //               [ingredient]
-        //             )
-        //             .then(res => {
-        //               client.query(
-        //                 "INSERT INTO recipes_join_ingredients (recipe, ingredient) VALUES ($1, $2)",
-        //                 [recipe_id, res.rows[0].ingredient_id]
-        //               );
-        //             });
-        //         }
-        //       })
-        //       .catch(e => {
-        //         client.release();
-        //         console.log(e);
-        //       });
+        //   // loop through the keys of the category object
+        //   for (let i = 0, keys = Object.keys(categories); i < keys.length; i++) {
+        //     // loop through sub categories
+        //     for (
+        //       let j = 0, subKeys = Object.keys(categories[keys[i]]);
+        //       j < subKeys.length;
+        //       j++
+        //     ) {
+        //       if (categories[keys[i]][subKeys[j]] === true) {
+        //         client
+        //           .query(
+        //             "SELECT category_id FROM categories WHERE category_name = $1",
+        //             [subKeys[j]]
+        //           )
+        //           .then(res => {
+        //             client.query(
+        //               "INSERT INTO recipes_join_categories (recipe, category) VALUES ($1, $2)",
+        //               [recipe_id, res.rows[0].category_id]
+        //             );
+        //           });
+        //       }
+        //     }
         //   }
-        //   //end of for loop
         // })
         .then(res => {
           recipe_id = res.rows[0].recipe_id;
-          // loop through the keys of the category object
-          for (
-            let i = 0, keys = Object.keys(categories);
-            i < keys.length;
-            i++
-          ) {
-            // loop through sub categories
-            for (
-              let j = 0, subKeys = Object.keys(categories[keys[i]]);
-              j < subKeys.length;
-              j++
-            ) {
-              if (categories[keys[i]][subKeys[j]] === true) {
-                client
-                  .query(
-                    "SELECT category_id FROM categories WHERE category_name = $1",
-                    [subKeys[j]]
-                  )
-                  .then(res => {
-                    client.query(
-                      "INSERT INTO recipes_join_categories (recipe, category) VALUES ($1, $2)",
-                      [recipe_id, res.rows[0].category_id]
-                    );
-                  });
-              }
-            }
-          }
-        })
-        .then(() => {
           return response.status(200).send({ recipe_id: recipe_id });
         })
         .catch(e => {
           client.release();
-          console.log(e);
+          console.error(e);
         })
     );
   });

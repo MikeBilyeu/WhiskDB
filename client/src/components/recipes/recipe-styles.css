@@ -180,7 +180,7 @@
   line-height: 1.5rem;
 }
 
-.directions li:first-child p::first-letter {
+#directions::first-letter {
   font-size: 3rem;
   font-weight: 600;
   margin: 1rem 0 0 0;

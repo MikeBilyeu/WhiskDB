@@ -1,16 +1,6 @@
 import React from "react";
 
 const Directions = props => {
-  const renderDirections =
-    props.directions &&
-    props.directions.map((step, i) => {
-      return (
-        <li key={`step${i}`}>
-          <p>{step.step}</p>
-        </li>
-      );
-    });
-
   const renderFootnote = () => {
     if (props.footnote !== null) {
       return (
@@ -31,7 +21,7 @@ const Directions = props => {
     <div className="recipe-list directions">
       <h2>Directions</h2>
       <div className="time">Time: {props.time}</div>
-      <ol>{renderDirections}</ol>
+      <p id="directions">{props.directions}</p>
       {renderFootnote()}
     </div>
   );

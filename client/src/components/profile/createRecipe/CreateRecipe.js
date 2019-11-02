@@ -94,6 +94,7 @@ export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
   initialValues: {
+    privateRecipe: false,
     categories: [],
     keywords: []
   }
