@@ -27,3 +27,5 @@ export const numberParse = value => {
   let strArr = value.match(/^[1-9][\d]?/) || [""];
   return value && strArr[0];
 };
+
+export const validIngredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) ([a-z\d-,/+.%&*!] *){3,40}( \( *([a-z\d-,/+.%&*!] *){1,40}\) *)?$/i;

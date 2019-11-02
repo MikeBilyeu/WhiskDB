@@ -6,6 +6,9 @@ import Input from "../../form-inputs/Input";
 import { Button } from "../../Button";
 import { ReactComponent as Remove } from "../../../images/removeDark.svg";
 
+// Parse Functions
+import { numberParse, validIngredientRegEx } from "./input-parse";
+
 class Ingredients extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +25,7 @@ class Ingredients extends React.Component {
 
   handleKeyDown = e => {
     if (e.key === "Enter") {
-      if (!this.validIngredientRegEx.test(this.state.ingredient)) {
+      if (!validIngredientRegEx.test(this.state.ingredient)) {
         this.setState({
           error:
             "Ingredient is not in a valid format: Amount, Unit, Ingredient, (prep)"
@@ -33,8 +36,6 @@ class Ingredients extends React.Component {
       }
     }
   };
-
-  validIngredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) ([a-z\d-,/+.%&*!] *){3,40}( \( *([a-z\d-,/+.%&*!] *){1,40}\) *)?$/i;
 
   render() {
     return (
@@ -47,6 +48,7 @@ class Ingredients extends React.Component {
           placeholder="2"
           type="number"
           pattern="[0-9]*"
+          normalize={numberParse}
         />
         <ul>
           {this.props.fields.map((ingredient, index, arr) => (

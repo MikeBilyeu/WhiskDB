@@ -6,7 +6,7 @@ import TextArea from "../../form-inputs/TextArea";
 import Input from "../../form-inputs/Input";
 
 // Parse Functions
-import { minuteParse, numberParse } from "./input-parse";
+import { minuteParse, numberParse, footnoteParse } from "./input-parse";
 
 const Directions = () => {
   return (
@@ -40,6 +40,7 @@ const Directions = () => {
         type="text"
         component={TextArea}
         label="Footnote"
+        normalize={footnoteParse}
       />
     </div>
   );

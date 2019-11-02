@@ -90,11 +90,6 @@ const mapSateToProps = state => {
   };
 };
 
-// CreateRecipe = connect(
-//   mapSateToProps,
-//   { createRecipe }
-// )(CreateRecipe);
-
 export default reduxForm({
   form: "newRecipe",
   destroyOnUnmount: false,
