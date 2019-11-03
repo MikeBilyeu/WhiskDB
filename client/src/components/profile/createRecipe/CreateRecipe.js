@@ -50,7 +50,10 @@ const CreateRecipe = props => {
 
   return (
     <div>
-      <Header onClick={props.history.goBack} />
+      <Header
+        onBackClick={props.history.goBack}
+        onSaveClick={props.handleSubmit(handleSubmit)}
+      />
       <form
         className="recipe-form"
         onSubmit={props.handleSubmit(handleSubmit)}

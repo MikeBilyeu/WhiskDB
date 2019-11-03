@@ -1,16 +1,25 @@
-/* .cr-header {
+.cr-header {
   display: grid;
-  grid-template-columns: 4rem 1fr;
+  grid-template-columns: 4.2rem 1fr 4.2rem;
   place-items: center;
 }
 
 .cr-header h1 {
   white-space: nowrap;
   margin: 1rem 0;
-  font-size: 1.5rem;
-  margin-right: 4rem;
+  font-size: 1.6rem;
+  color: #464646;
+  text-align: center;
 }
 
+.cr-header .save-recipe-btn {
+  color: #0172c4;
+  cursor: pointer;
+  justify-self: end;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+/*
 .recipe-form {
   padding: 0.4rem;
   color: #707070;
