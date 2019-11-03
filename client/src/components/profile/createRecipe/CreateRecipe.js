@@ -48,6 +48,14 @@ const CreateRecipe = props => {
     }
   };
 
+  function handleChange(e) {
+    console.log(e.target.files[0]);
+    // const {
+    //   input: { onChange }
+    // } = thisprops;
+    return e.target.files[0];
+  }
+
   return (
     <div>
       <Header
@@ -68,6 +76,7 @@ const CreateRecipe = props => {
           parse={titleParse}
         />
         <Field
+          input={{ onChange: handleChange }}
           name="image"
           component={Input}
           type="file"
