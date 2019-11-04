@@ -9,8 +9,13 @@ import Input from "../../form-inputs/Input";
 import { minuteParse, numberParse, footnoteParse } from "./input-parse";
 
 const Directions = () => {
+  const placeholder = {
+    directions:
+      "Sift the flour, sugar, baking powder, and salt into a large bowl.",
+    footnote: "Drop batter by large spoonfuls onto the griddle…"
+  };
   return (
-    <div>
+    <div className="cr-section">
       <h2>Directions</h2>
       <Field
         name="time.hours"
@@ -34,6 +39,7 @@ const Directions = () => {
         type="text"
         component={TextArea}
         label="Directions"
+        placeholder={placeholder.directions}
       />
       <Field
         name="footnote"
@@ -42,6 +48,7 @@ const Directions = () => {
         component={TextArea}
         label="Footnote"
         normalize={footnoteParse}
+        placeholder={placeholder.footnote}
       />
     </div>
   );

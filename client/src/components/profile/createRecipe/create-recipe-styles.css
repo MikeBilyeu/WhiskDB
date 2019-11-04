@@ -1,11 +1,8 @@
-.create-recipe-container {
-  padding: 0 0.3rem;
-}
-
 .cr-header {
   display: grid;
   grid-template-columns: 4.2rem 1fr 4.2rem;
   place-items: center;
+  border-bottom: solid #e2e2e2 0.01rem;
 }
 
 .cr-header h1 {
@@ -24,6 +21,17 @@
   font-size: 1rem;
 }
 
+.create-recipe {
+  padding: 0 0.3rem;
+  display: grid;
+  place-items: center;
+  grid-gap: 5rem;
+}
+
+.cr-section {
+  width: 100%;
+}
+
 .create-recipe input {
   -webkit-appearance: none;
   background: none;
@@ -32,6 +40,8 @@
   padding: 0.1rem 0;
   width: 100%;
   appearance: none;
+
+  font-size: 1.25rem;
   border-radius: 0;
   color: #313131;
   text-align: center;
@@ -46,9 +56,11 @@
   outline: 0;
   padding: 0.5rem;
   width: 100%;
+  max-width: 55rem;
   height: 25rem;
   appearance: none;
 
+  font-size: 1.25rem;
   color: #313131;
   border: solid #bfbfbf 0.08rem;
   border-radius: 0.1rem;
@@ -60,6 +72,7 @@
   font-size: 0.8rem;
   display: grid;
   place-items: center;
+  width: 100%;
 }
 
 .create-recipe .error {

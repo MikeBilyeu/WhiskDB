@@ -39,7 +39,7 @@ class Ingredients extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="cr-section">
         <h2>Ingredients</h2>
         <Field
           name="servings"

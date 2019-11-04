@@ -46,7 +46,7 @@ class Categories extends Component {
 
   render() {
     return (
-      <div>
+      <div className="cr-section">
         <h2>Categories</h2>
         <label>Add Categories</label>
         <ul>

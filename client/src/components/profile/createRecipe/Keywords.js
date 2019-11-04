@@ -48,7 +48,7 @@ class Keywords extends Component {
 
   render() {
     return (
-      <div>
+      <div className="cr-section">
         <h2>Keywords</h2>
         <Input
           label="Keyword"
