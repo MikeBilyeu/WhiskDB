@@ -51,19 +51,25 @@ class Ingredients extends React.Component {
           normalize={numberParse}
         />
         <ul>
-          {this.props.fields.map((ingredient, index, arr) => (
-            <li key={index}>
-              <Button onClick={() => this.props.fields.remove(index)}>
-                <Remove style={{ width: ".8rem" }} />
-              </Button>
-              <Field
-                name={`ingredients[${index}]`}
-                type="text"
-                component={Input}
-                label=""
-              />
-            </li>
-          ))}
+          {this.props.fields.map((ingredient, index, arr) => {
+            return (
+              <li key={index}>
+                {/*
+                  // display if field is selected
+                  <Button onClick={() => this.props.fields.remove(index)}>
+                    <Remove style={{ width: ".8rem" }} />
+                  </Button>
+                */}
+                <Field
+                  name={`ingredients[${index}]`}
+                  type="text"
+                  component={Input}
+                  label=""
+                  className={"ingredient-input"}
+                />
+              </li>
+            );
+          })}
         </ul>
         <Input
           label="Ingredient"

@@ -32,6 +32,14 @@
   width: 100%;
 }
 
+.create-recipe ul {
+  padding: 0;
+}
+
+.create-recipe li {
+  list-style-type: none;
+}
+
 .create-recipe input {
   -webkit-appearance: none;
   background: none;
@@ -47,6 +55,18 @@
   text-align: center;
   border-bottom: solid #464646 0.1rem;
   grid-row: 1;
+}
+
+.create-recipe .ingredient-input {
+  border: none;
+  text-align: left;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.create-recipe .ingredient-input.active {
+  cursor: default;
+  border-bottom: solid #464646 0.1rem;
 }
 
 .create-recipe textarea {

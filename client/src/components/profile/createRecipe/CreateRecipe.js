@@ -4,7 +4,8 @@ import {
   FieldArray,
   reduxForm,
   formValueSelector,
-  change
+  change,
+  getFormMeta
 } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -55,7 +56,6 @@ const CreateRecipe = props => {
     // } = thisprops;
     return e.target.files[0];
   }
-
   return (
     <div className="create-recipe-container">
       <Header
@@ -84,7 +84,11 @@ const CreateRecipe = props => {
           type="file"
           accept="image/.jpg, image/.png, image/.jpeg"
         />*/}
-        <FieldArray name="ingredients" component={Ingredients} />
+        <FieldArray
+          name="ingredients"
+          component={Ingredients}
+          formMeta={props.formMeta}
+        />
         <Directions />
         <Categories categories={props.categories} change={props.change} />
         <Keywords keywords={props.keywords} change={props.change} />
@@ -95,12 +99,14 @@ const CreateRecipe = props => {
 };
 
 const selector = formValueSelector("newRecipe");
+const metaSelector = getFormMeta("newRecipe");
 
 const mapSateToProps = state => {
   return {
     auth: state.auth,
     keywords: selector(state, "keywords"),
-    categories: selector(state, "categories")
+    categories: selector(state, "categories"),
+    formMeta: metaSelector(state, "ingredients")
   };
 };
 
