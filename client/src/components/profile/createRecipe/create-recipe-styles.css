@@ -1,3 +1,7 @@
+.create-recipe-container {
+  padding: 0 0.3rem;
+}
+
 .cr-header {
   display: grid;
   grid-template-columns: 4.2rem 1fr 4.2rem;
@@ -19,6 +23,71 @@
   padding: 0.5rem 1rem;
   font-size: 1rem;
 }
+
+.create-recipe input {
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  outline: 0;
+  padding: 0.1rem 0;
+  width: 100%;
+  appearance: none;
+  border-radius: 0;
+  color: #313131;
+  text-align: center;
+  border-bottom: solid #464646 0.1rem;
+  grid-row: 1;
+}
+
+.create-recipe textarea {
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  outline: 0;
+  padding: 0.5rem;
+  width: 100%;
+  height: 25rem;
+  appearance: none;
+
+  color: #313131;
+  border: solid #bfbfbf 0.08rem;
+  border-radius: 0.1rem;
+  resize: none;
+}
+
+.create-recipe label {
+  color: #b7b7b7;
+  font-size: 0.8rem;
+  display: grid;
+  place-items: center;
+}
+
+.create-recipe .error {
+  color: #c40801;
+}
+
+.create-recipe h2 {
+  text-align: center;
+  color: #313131;
+}
+
+.create-recipe .cr-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.create-recipe .cr-title::placeholder {
+  opacity: 0.1;
+}
+
+.create-recipe .cr-image {
+  border: none !important;
+}
+
+.create-recipe .cr-footnote {
+  height: 10rem;
+}
+
 /*
 .recipe-form {
   padding: 0.4rem;

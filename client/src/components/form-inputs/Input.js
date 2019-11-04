@@ -10,19 +10,18 @@ const Input = ({
   className
 }) => {
   return (
-    <div style={{ position: "relative" }}>
-      <label>{label}</label>
+    <label>
+      {label}
       <input
         {...input}
         autoComplete="off"
         type={type}
         id={inputId}
         placeholder={placeholder}
+        className={className}
       />
-      {touched && error ? (
-        <div style={{ position: "absolute", color: "red" }}>*{error}</div>
-      ) : null}
-    </div>
+      {touched && error && <div className="error">*{error}</div>}
+    </label>
   );
 };
 

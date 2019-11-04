@@ -57,7 +57,7 @@ class Keywords extends Component {
             onChange: this.handleChange,
             onKeyDown: this.handleKeyDown
           }}
-          placeholder=""
+          placeholder="Simple"
           meta={{ error: this.state.error, touched: true }}
         />
         <label>Remove Keywords</label>

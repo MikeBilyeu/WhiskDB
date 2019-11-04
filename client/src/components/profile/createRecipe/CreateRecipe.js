@@ -57,31 +57,33 @@ const CreateRecipe = props => {
   }
 
   return (
-    <div>
+    <div className="create-recipe-container">
       <Header
         onBackClick={props.history.goBack}
         onSaveClick={props.handleSubmit(handleSubmit)}
       />
       <form
-        className="recipe-form"
+        className="recipe-form create-recipe"
         onSubmit={props.handleSubmit(handleSubmit)}
         onKeyDown={handleKeyDown}
       >
         <Field
           name="title"
+          className="cr-title"
           component={Input}
           label="Title"
           placeholder="Juicy Roasted Chicken"
           normalize={capitalize}
           parse={titleParse}
         />
-        <Field
+        {/*<Field
           input={{ onChange: handleChange }}
           name="image"
+          className="cr-image"
           component={Input}
           type="file"
           accept="image/.jpg, image/.png, image/.jpeg"
-        />
+        />*/}
         <FieldArray name="ingredients" component={Ingredients} />
         <Directions />
         <Categories categories={props.categories} change={props.change} />

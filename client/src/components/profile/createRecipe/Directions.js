@@ -37,6 +37,7 @@ const Directions = () => {
       />
       <Field
         name="footnote"
+        className="cr-footnote"
         type="text"
         component={TextArea}
         label="Footnote"
