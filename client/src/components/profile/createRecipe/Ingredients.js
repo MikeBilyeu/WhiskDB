@@ -14,6 +14,7 @@ class Ingredients extends React.Component {
     super(props);
     this.state = {
       ingredient: "",
+      activeField: null,
       error: null,
       touched: false
     };
@@ -37,6 +38,16 @@ class Ingredients extends React.Component {
     }
   };
 
+  handleFocus = index => {
+    this.setState({ activeField: index });
+  };
+
+  handleRemoveClick = (index, event) => {
+    event.stopPropagation();
+    this.setState({ activeField: null });
+    this.props.fields.remove(index);
+  };
+
   render() {
     return (
       <div className="cr-section">
@@ -52,14 +63,19 @@ class Ingredients extends React.Component {
         />
         <ul>
           {this.props.fields.map((ingredient, index, arr) => {
+            const active = this.state.activeField === index;
+            console.log(this.state.activeField);
+            console.log(index);
             return (
-              <li key={index}>
-                {/*
-                  // display if field is selected
-                  <Button onClick={() => this.props.fields.remove(index)}>
+              <li key={index} onClick={() => this.handleFocus(index)}>
+                {// display if field is selected
+                active && (
+                  <Button
+                    onClick={event => this.handleRemoveClick(index, event)}
+                  >
                     <Remove style={{ width: ".8rem" }} />
                   </Button>
-                */}
+                )}
                 <Field
                   name={`ingredients[${index}]`}
                   type="text"
