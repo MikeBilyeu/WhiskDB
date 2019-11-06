@@ -8,6 +8,9 @@ import Input from "../../form-inputs/Input";
 // Parse Functions
 import { minuteParse, numberParse, footnoteParse } from "./input-parse";
 
+// Styles
+import styles from "./create-recipe-styles.module.scss";
+
 const Directions = () => {
   const placeholder = {
     directions:
@@ -15,7 +18,7 @@ const Directions = () => {
     footnote: "Drop batter by large spoonfuls onto the griddle…"
   };
   return (
-    <div className="cr-section">
+    <div className={styles.directionsContainer}>
       <h2>Directions</h2>
       <Field
         name="time.hours"
@@ -36,6 +39,7 @@ const Directions = () => {
       <label>Time</label>
       <Field
         name="directions"
+        className={styles.directions}
         type="text"
         component={TextArea}
         label="Directions"
@@ -43,7 +47,7 @@ const Directions = () => {
       />
       <Field
         name="footnote"
-        className="cr-footnote"
+        className={styles.footnote}
         type="text"
         component={TextArea}
         label="Footnote"

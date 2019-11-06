@@ -23,7 +23,8 @@ import Input from "../../form-inputs/Input";
 // Parse Functions
 import { capitalize, titleParse } from "./input-parse";
 
-import "./create-recipe-styles.css";
+// Styles
+import styles from "./create-recipe-styles.module.scss";
 
 const CreateRecipe = props => {
   const handleSubmit = values => {
@@ -56,19 +57,19 @@ const CreateRecipe = props => {
     return e.target.files[0];
   }
   return (
-    <div className="create-recipe-container">
+    <div>
       <Header
         onBackClick={props.history.goBack}
         onSaveClick={props.handleSubmit(handleSubmit)}
       />
       <form
-        className="recipe-form create-recipe"
+        className={styles.form}
         onSubmit={props.handleSubmit(handleSubmit)}
         onKeyDown={handleKeyDown}
       >
         <Field
           name="title"
-          className="cr-title"
+          className={styles.title}
           component={Input}
           label="Title"
           placeholder="Juicy Roasted Chicken"

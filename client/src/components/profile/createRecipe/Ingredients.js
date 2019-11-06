@@ -9,6 +9,9 @@ import { ReactComponent as Remove } from "../../../images/removeDark.svg";
 // Parse Functions
 import { numberParse, validIngredientRegEx } from "./input-parse";
 
+// Styles
+import styles from "./create-recipe-styles.module.scss";
+
 class Ingredients extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +53,7 @@ class Ingredients extends React.Component {
 
   render() {
     return (
-      <div className="cr-section">
+      <div className={styles.ingredientContainer}>
         <h2>Ingredients</h2>
         <Field
           name="servings"
@@ -81,7 +84,7 @@ class Ingredients extends React.Component {
                   type="text"
                   component={Input}
                   label=""
-                  className={"ingredient-input"}
+                  className={styles.ingredientInput}
                 />
               </li>
             );
