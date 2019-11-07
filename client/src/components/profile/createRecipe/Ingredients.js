@@ -53,7 +53,7 @@ class Ingredients extends React.Component {
 
   render() {
     return (
-      <div className={styles.ingredientContainer}>
+      <div className={styles.ingredientsContainer}>
         <h2>Ingredients</h2>
         <Field
           name="servings"
@@ -63,6 +63,7 @@ class Ingredients extends React.Component {
           type="number"
           pattern="[0-9]*"
           normalize={numberParse}
+          className={styles.yield}
         />
         <ul>
           {this.props.fields.map((ingredient, index, arr) => {

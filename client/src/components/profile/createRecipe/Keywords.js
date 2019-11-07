@@ -5,6 +5,9 @@ import Input from "../../form-inputs/Input";
 import { Button } from "../../Button";
 import { ReactComponent as Remove } from "../../../images/removeDark.svg";
 
+// Styles
+import styles from "./create-recipe-styles.module.scss";
+
 class Keywords extends Component {
   constructor(props) {
     super(props);
@@ -48,7 +51,7 @@ class Keywords extends Component {
 
   render() {
     return (
-      <div className="cr-section">
+      <div className={styles.keywordsContainer}>
         <h2>Keywords</h2>
         <Input
           label="Keyword"

@@ -1,1 +1,27 @@
+$dark-colors: (
+  "light": lighten(#3e3e3e, 45%),
+  "medium": #464646,
+  "dark": darken(#3e3e3e, 60%)
+);
+
+@function darkColor($color) {
+  @return map-get($dark-colors, $color);
+}
+
+$font-weights: (
+  "light": 100,
+  "normal": 800,
+  "bold": 900
+);
+
+@function fontWeight($weight) {
+  @return map-get($font-weights, $weight);
+}
+
 $primary-color: #0172c4;
+$error-color: #c40801;
+
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}

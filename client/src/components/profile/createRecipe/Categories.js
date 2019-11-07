@@ -4,6 +4,9 @@ import React, { Component } from "react";
 import { Button } from "../../Button";
 import { ReactComponent as Remove } from "../../../images/removeDark.svg";
 
+// Styles
+import styles from "./create-recipe-styles.module.scss";
+
 class Categories extends Component {
   constructor(props) {
     super(props);
@@ -46,7 +49,7 @@ class Categories extends Component {
 
   render() {
     return (
-      <div className="cr-section">
+      <div className={styles.categoriesContainer}>
         <h2>Categories</h2>
         <label>Add Categories</label>
         <ul>

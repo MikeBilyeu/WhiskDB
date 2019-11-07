@@ -1,16 +1,15 @@
 @import "../../../styles/variables";
 
 .header {
-  display: grid;
+  @include grid-center;
   grid-template-columns: 4.2rem 1fr 4.2rem;
-  place-items: center;
   border-bottom: solid #e2e2e2 0.01rem;
 
   h1 {
     white-space: nowrap;
     margin: 1rem 0;
     font-size: 1.6rem;
-    color: #464646;
+    color: darkColor(medium);
     text-align: center;
   }
 
@@ -24,21 +23,18 @@
 }
 
 .form {
-  padding: 0 0.3rem;
-  display: grid;
-  place-items: center;
-  grid-gap: 5rem;
+  padding: 2rem 0.3rem;
+  @include grid-center;
+  grid-gap: 3rem;
 
   .error {
-    color: #c40801;
+    color: $error-color;
   }
 
   label {
-    color: #b7b7b7;
+    color: darkColor(light);
     font-size: 0.8rem;
-    display: grid;
-    place-items: center;
-    width: 100%;
+    @include grid-center width: 100%;
   }
 
   textarea {
@@ -59,7 +55,6 @@
   }
 
   input {
-    -webkit-appearance: none;
     background: none;
     border: 0;
     outline: 0;
@@ -67,7 +62,7 @@
     width: 100%;
     appearance: none;
 
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     border-radius: 0;
     color: #313131;
     text-align: center;
@@ -85,33 +80,65 @@
 
   h2 {
     text-align: center;
-    color: #313131;
+    color: darkColor(dark);
+    border-bottom: solid #ededed 0.05rem;
+    padding: 0.5rem 0;
+    width: 15rem;
+    margin: auto;
+    font-size: 2rem;
   }
 }
 
 .title {
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-size: 1.5rem !important;
+  font-weight: fontWeight(normal);
+  &::placeholder {
+    opacity: 0.2;
+  }
 }
 
-.title::placeholder {
-  opacity: 0.2;
-}
-
-.ingredientContainer {
+.ingredientsContainer,
+.directionsContainer,
+.categoriesContainer,
+.keywordsContainer {
+  @include grid-center;
+  grid-gap: 1rem;
   width: 100%;
+}
+
+.ingredientsContainer {
+  .yield {
+    width: 10rem !important;
+  }
+
+  ul {
+    justify-self: start;
+    margin-left: 0.5rem;
+  }
 
   .ingredientInput {
     border: none;
     text-align: left;
-    font-weight: bold;
     cursor: pointer;
+  }
+
+  input {
+    font-weight: fontWeight(normal);
+    &::placeholder {
+      opacity: 0.2;
+    }
+  }
+
+  input[type="number"] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 }
 
 .directionsContainer {
-  width: 100%;
-
   .directions {
     height: 25rem;
   }
