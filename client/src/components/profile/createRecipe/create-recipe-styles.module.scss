@@ -48,9 +48,12 @@
     appearance: none;
 
     font-size: 1.25rem;
-    color: #313131;
-    border: solid #bfbfbf 0.08rem;
-    border-radius: 0.1rem;
+    color: darkColor(medium);
+    &::placeholder {
+      color: darkColor(light);
+    }
+    border: solid darkColor(light) 0.08rem;
+    border-radius: 0.2rem;
     resize: none;
   }
 
@@ -64,9 +67,9 @@
 
     font-size: 1.15rem;
     border-radius: 0;
-    color: #313131;
+    color: darkColor(medium);
     text-align: center;
-    border-bottom: solid #464646 0.1rem;
+    border-bottom: solid darkColor(dark) 0.1rem;
     grid-row: 1;
   }
 
@@ -172,9 +175,66 @@
 
   .footnote {
     height: 10rem;
+    font-style: italic;
   }
 }
 
+.categoriesContainer {
+  grid-gap: 1rem;
+
+  .list {
+    margin-top: -0.5rem;
+    @include grid-center;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 1rem;
+    width: 21rem;
+    .addBtn {
+      text-transform: capitalize;
+      border: solid red;
+      padding: 0.5rem 0;
+      width: 9rem;
+      text-align: center;
+      color: $primary-color;
+      border: solid darkColor(light) 0.05rem;
+      border-radius: 50rem;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+    .removeBtn {
+      @extend .addBtn;
+      border: none;
+      background-color: darkColor(medium);
+      color: white;
+    }
+  }
+}
+
+.keywordsContainer {
+  @extend .categoriesContainer;
+  .list {
+    grid-template-columns: auto-fill;
+    .removeBtn {
+      width: auto;
+      padding: 0.5rem 2rem;
+    }
+  }
+}
+
+.submitBtn {
+  width: 95%;
+  background-color: $primary-color;
+  border-radius: 50rem;
+  color: white;
+  padding: 0.5em 0;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
 /*
 .recipe-form {
   padding: 0.4rem;

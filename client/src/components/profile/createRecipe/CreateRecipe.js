@@ -88,7 +88,9 @@ const CreateRecipe = props => {
         <Directions />
         <Categories categories={props.categories} change={props.change} />
         <Keywords keywords={props.keywords} change={props.change} />
-        <button type="submit">Save Recipe</button>
+        <button className={styles.submitBtn} type="submit">
+          Save Recipe
+        </button>
       </form>
     </div>
   );

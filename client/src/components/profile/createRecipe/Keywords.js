@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // Compnents
 import Input from "../../form-inputs/Input";
 import { Button } from "../../Button";
-import { ReactComponent as Remove } from "../../../images/removeDark.svg";
+//import { ReactComponent as Remove } from "../../../images/removeDark.svg";
 
 // Styles
 import styles from "./create-recipe-styles.module.scss";
@@ -64,14 +64,16 @@ class Keywords extends Component {
           meta={{ error: this.state.error, touched: true }}
         />
         <label>Remove Keywords</label>
-        <ul>
+        <ul className={styles.list}>
           {this.props.keywords &&
             this.props.keywords.map((keyword, index, arr) => {
               return (
                 <li key={"keywords " + index}>
-                  <Button onClick={() => this.handleClick(keyword)}>
+                  <Button
+                    className={styles.removeBtn}
+                    onClick={() => this.handleClick(keyword)}
+                  >
                     {keyword}
-                    <Remove style={{ width: ".8rem" }} />
                   </Button>
                 </li>
               );

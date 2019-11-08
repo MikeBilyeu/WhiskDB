@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // Categories
 import { Button } from "../../Button";
-import { ReactComponent as Remove } from "../../../images/removeDark.svg";
+//import { ReactComponent as Remove } from "../../../images/removeDark.svg";
 
 // Styles
 import styles from "./create-recipe-styles.module.scss";
@@ -52,11 +52,14 @@ class Categories extends Component {
       <div className={styles.categoriesContainer}>
         <h2>Categories</h2>
         <label>Add Categories</label>
-        <ul>
+        <ul className={styles.list}>
           {this.state.categories.map((category, index, arr) => {
             return (
               <li key={"add " + index}>
-                <Button onClick={() => this.handleAddClick(category)}>
+                <Button
+                  className={styles.addBtn}
+                  onClick={() => this.handleAddClick(category)}
+                >
                   {category}
                 </Button>
               </li>
@@ -65,14 +68,16 @@ class Categories extends Component {
         </ul>
 
         <label>Remove Categories</label>
-        <ul>
+        <ul className={styles.list}>
           {this.props.categories &&
             this.props.categories.map((category, index, arr) => {
               return (
                 <li key={"remove " + index}>
-                  <Button onClick={() => this.handleRemoveClick(category)}>
+                  <Button
+                    className={styles.removeBtn}
+                    onClick={() => this.handleRemoveClick(category)}
+                  >
                     {category}
-                    <Remove style={{ width: ".8rem" }} />
                   </Button>
                 </li>
               );
