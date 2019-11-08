@@ -187,7 +187,7 @@
     @include grid-center;
     grid-template-columns: 1fr 1fr;
     grid-row-gap: 1rem;
-    width: 21rem;
+    width: 100%;
     .addBtn {
       text-transform: capitalize;
       border: solid red;
@@ -214,8 +214,11 @@
 .keywordsContainer {
   @extend .categoriesContainer;
   .list {
-    grid-template-columns: auto-fill;
+    grid-template-columns: 1fr;
     .removeBtn {
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
       width: auto;
       padding: 0.5rem 2rem;
     }

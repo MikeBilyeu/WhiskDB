@@ -47,7 +47,7 @@ class Keywords extends Component {
     }
   };
 
-  validKeywordRegEx = /.{3,25}/;
+  validKeywordRegEx = /^.{3,25}$/;
 
   render() {
     return (
