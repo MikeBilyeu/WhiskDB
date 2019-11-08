@@ -102,13 +102,13 @@
 .categoriesContainer,
 .keywordsContainer {
   @include grid-center;
-  grid-gap: 1rem;
+  grid-gap: 2rem;
   width: 100%;
 }
 
 .ingredientsContainer {
   .yield {
-    width: 10rem !important;
+    width: 10rem;
   }
 
   ul {
@@ -139,6 +139,33 @@
 }
 
 .directionsContainer {
+  .time {
+    @include grid-center;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: solid #464646 0.1rem;
+    grid-gap: 1rem;
+    label {
+      @include grid-center;
+      cursor: text;
+      align-items: baseline;
+      grid-template-columns: 2rem 2rem;
+      .hours,
+      .minutes {
+        text-align: right;
+        grid-column: 1;
+        border: none;
+        font-weight: fontWeight(normal);
+        &::placeholder {
+          opacity: 0.2;
+        }
+      }
+    }
+  }
+
+  .timeLabel {
+    margin-top: -2.5rem;
+  }
+
   .directions {
     height: 25rem;
   }
