@@ -142,6 +142,9 @@
   .active {
     border-bottom: solid darkColor(dark) 0.1rem;
   }
+  .unactive {
+    opacity: 0.2;
+  }
 
   input {
     font-weight: fontWeight(normal);
