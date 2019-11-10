@@ -83,7 +83,8 @@ class Ingredients extends React.Component {
                   type="text"
                   component={Input}
                   label=""
-                  className={styles.ingredientInput}
+                  className={`${styles.ingredientInput} ${active &&
+                    styles.active}`}
                 />
               </li>
             );
