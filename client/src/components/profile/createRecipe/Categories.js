@@ -51,7 +51,8 @@ class Categories extends Component {
     return (
       <div className={styles.categoriesContainer}>
         <h2>Categories</h2>
-        <label>Add Categories</label>
+        {this.state.categories.length ? <label>Add Categories</label> : null}
+
         <ul className={styles.list}>
           {this.state.categories.map((category, index, arr) => {
             return (
@@ -66,8 +67,9 @@ class Categories extends Component {
             );
           })}
         </ul>
-
-        <label>Remove Categories</label>
+        {this.props.categories && this.props.categories.length ? (
+          <label>Remove Categories</label>
+        ) : null}
         <ul className={styles.list}>
           {this.props.categories &&
             this.props.categories.map((category, index, arr) => {

@@ -68,8 +68,6 @@ class Ingredients extends React.Component {
         <ul>
           {this.props.fields.map((ingredient, index, arr) => {
             const active = this.state.activeField === index;
-            console.log(this.state.activeField);
-            console.log(index);
             return (
               <li key={index} onClick={() => this.handleFocus(index)}>
                 {// display if field is selected

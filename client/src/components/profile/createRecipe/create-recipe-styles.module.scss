@@ -33,7 +33,7 @@
 
   label {
     color: darkColor(light);
-    font-size: 0.8rem;
+    font-size: 1drem;
     @include grid-center width: 100%;
   }
 
@@ -47,7 +47,7 @@
     max-width: 55rem;
     appearance: none;
 
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: darkColor(medium);
     &::placeholder {
       color: darkColor(light);
@@ -116,7 +116,11 @@
 
   ul {
     justify-self: start;
+    width: calc(100% - 0.5rem);
     margin-left: 0.5rem;
+    li {
+      margin: 1.25rem 0;
+    }
   }
 
   .ingredientInput {

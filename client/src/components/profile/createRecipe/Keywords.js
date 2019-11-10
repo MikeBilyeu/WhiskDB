@@ -63,7 +63,10 @@ class Keywords extends Component {
           placeholder="Simple"
           meta={{ error: this.state.error, touched: true }}
         />
-        <label>Remove Keywords</label>
+        {this.props.keywords && this.props.keywords.length ? (
+          <label>Remove Keywords</label>
+        ) : null}
+
         <ul className={styles.list}>
           {this.props.keywords &&
             this.props.keywords.map((keyword, index, arr) => {
