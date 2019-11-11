@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 // Categories
 import { Button } from "../../Button";
@@ -89,5 +90,10 @@ class Categories extends Component {
     );
   }
 }
+
+Categories.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  change: PropTypes.func.isRequired
+};
 
 export default Categories;
