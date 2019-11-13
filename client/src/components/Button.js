@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 export const Button = ({ children, onClick, className, ...props }) => {
   return (
-    <div className={className} onClick={onClick}>
+    <button className={className} onClick={onClick}>
       {children}
-    </div>
+    </button>
   );
 };
 
