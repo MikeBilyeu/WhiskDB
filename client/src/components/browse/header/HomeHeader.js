@@ -43,10 +43,7 @@ const HomeHeader = ({
         sortBy={sortBy}
       />
 
-      <Button
-        className={dietBtnStyle}
-        onClick={() => toggleFilterButton("Diet")}
-      >
+      <Button className={dietBtnStyle}>
         {diet === "None" ? "Diet" : diet}
         <Arrow className={dietArrowStyle} />
       </Button>

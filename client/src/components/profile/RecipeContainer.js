@@ -24,7 +24,7 @@ const RecipeContainer = props => {
 RecipeContainer.propTypes = {
   containerName: PropTypes.string.isRequired,
   recipes: PropTypes.array.isRequired,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+  children: PropTypes.any.isRequired
 };
 
 export default RecipeContainer;
