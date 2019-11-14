@@ -2,23 +2,16 @@
 
 .header {
   @include grid-center;
-  grid-template-columns: 4.2rem 1fr 4.2rem;
+  grid-template-columns: 4.2rem 1fr;
   border-bottom: solid #e2e2e2 0.01rem;
 
   h1 {
     white-space: nowrap;
     margin: 1rem 0;
+    margin-right: 4.2rem;
     font-size: 1.6rem;
     color: darkColor(medium);
     text-align: center;
-  }
-
-  .saveBtn {
-    color: $primary-color;
-    cursor: pointer;
-    justify-self: end;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
   }
 }
 

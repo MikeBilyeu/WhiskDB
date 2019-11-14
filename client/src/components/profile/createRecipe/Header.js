@@ -1,7 +1,6 @@
 import React from "react";
 
 // Components
-import { Button } from "../../Button";
 import { ReactComponent as Arrow } from "../../../images/arrowLeft.svg";
 
 // Styles
@@ -12,9 +11,6 @@ const Header = props => {
     <div className={styles.header}>
       <Arrow className="back-btn" onClick={() => props.onBackClick()} />
       <h1>Create Recipe</h1>
-      <Button onClick={() => props.onSaveClick()} className={styles.saveBtn}>
-        Save
-      </Button>
     </div>
   );
 };
