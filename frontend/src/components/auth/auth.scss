@@ -1,0 +1,53 @@
+.auth-form {
+  display: grid;
+  grid-gap: 1.5rem;
+  padding: 0.5rem;
+  color: #313131;
+  margin: 0 auto;
+  max-width: 30rem;
+
+  h1 {
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 0;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input {
+    all: unset;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 10rem;
+    border: solid #bfbfbf 0.05rem;
+    background-color: #fff;
+    padding: 0.6rem 1rem;
+    color: #484848;
+    font-size: 1.3rem;
+    font-weight: normal;
+    margin-top: 0.5rem;
+    cursor: text;
+
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #000;
+      opacity: 0.2; /* Firefox */
+    }
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 10rem;
+    background-color: #0172c4;
+    height: 3rem;
+    margin-top: 2rem;
+    width: 80%;
+    place-self: center;
+  }
+}

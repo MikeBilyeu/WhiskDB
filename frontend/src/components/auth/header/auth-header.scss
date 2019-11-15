@@ -1,0 +1,26 @@
+.auth-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: end center;
+  height: 3rem;
+  border-bottom: solid #e3e3e3 0.01rem;
+  width: 100%;
+
+  .button {
+    display: block;
+    width: 8rem;
+    text-align: center;
+    cursor: pointer;
+    color: #0172c4;
+    border-bottom: solid #fff 2px;
+    padding: 0.2rem 0.7rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .active {
+    font-weight: bold;
+    color: inherit;
+    cursor: inherit;
+    border-bottom: solid #707070 0.1rem;
+  }
+}

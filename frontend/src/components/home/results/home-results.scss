@@ -1,0 +1,27 @@
+.recipe-results {
+  ul {
+    display: grid;
+    gridgap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    padding: 0.3rem;
+    list-style-type: none;
+    list-style: none;
+  }
+}
+
+.results_clear {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem 0.5rem;
+}
+
+.numOfResults {
+  justify-self: start;
+  color: #b7b7b7;
+}
+
+.clear-filters {
+  justify-self: end;
+  color: #676767;
+  cursor: pointer;
+}
