@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { registerUser } from "../../../actions/authActions";
 import { validateSignup } from "../utils/validation";
-import asyncValidate from ".utils/async-validation";
+import asyncValidate from "../utils/async-validation";
 import Input from "../../form-inputs/input";
 import Button from "../../button";
 import "./auth-signup.scss";

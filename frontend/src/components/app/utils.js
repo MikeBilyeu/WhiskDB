@@ -1,7 +1,7 @@
 import jwt_decode from "jwt-decode";
-import setAuthToken from "../utils/setAuthToken";
-import store from "../store/store";
-import { setCurrentUser, logoutUser } from "../actions/authActions";
+import setAuthToken from "../../utils/setAuthToken";
+import store from "../../store";
+import { setCurrentUser, logoutUser } from "../../actions/authActions";
 
 export const checkAuthToken = () => {
   // Check for token to keep user logged in

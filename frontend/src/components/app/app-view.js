@@ -1,14 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import PrivateRoute from "./private-route/PrivateRoute";
+import PrivateRoute from "../private-route";
 import { checkAuthToken } from "./utils";
-
-// Components
-import NavigationBar from "../nav/NavigationBar";
+import Nav from "../nav";
 import Home from "../home";
-import Profile from "../profile/Profile";
-import Auth from "../auth/Auth";
-import Recipe from "../recipes/Recipe";
+import Profile from "../profile";
+import Auth from "../auth";
+import Recipe from "../recipe";
 import ScrollUp from "./scroll-up";
 
 checkAuthToken();
@@ -24,7 +22,7 @@ const App = () => {
             <Route path="/auth" component={Auth} />
             <Route path="/recipe/:recipe_id" component={Recipe} />
           </Switch>
-          <NavigationBar />
+          <Nav />
         </ScrollUp>
       </Router>
     </div>

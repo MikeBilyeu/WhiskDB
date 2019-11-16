@@ -1,0 +1,74 @@
+.searchBar {
+  height: 2.3rem;
+  grid-area: search;
+  justify-self: end;
+  border-radius: 5rem;
+  z-index: 1;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  box-sizing: border-box;
+
+  .searchIcon {
+    width: 2.4rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .input {
+    all: unset;
+    font-size: 1rem;
+    caret-color: #676767;
+    color: #313131;
+    -webkit-text-fill-color: #313131;
+    opacity: 1; /* required on iOS */
+
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #000;
+      opacity: 0.2; /* Firefox */
+    }
+  }
+}
+
+.searchBar.search-active {
+  margin-right: 0.1rem;
+  border: solid #e2e2e2 1px;
+  /* border: solid #0172c4 1px; */
+  grid-column: 1 / 4;
+  animation: expand 0.2s linear forwards;
+}
+
+@-webkit-keyframes expand {
+  0% {
+    width: 2.2rem;
+  }
+  100% {
+    width: calc(100% - 2.5rem);
+  }
+}
+@-moz-keyframes expand {
+  0% {
+    width: 2.2rem;
+  }
+  100% {
+    width: calc(100% - 2.5rem);
+  }
+}
+@-o-keyframes expand {
+  0% {
+    width: 2.2rem;
+  }
+  100% {
+    width: calc(100% - 2.5rem);
+  }
+}
+@keyframes expand {
+  0% {
+    width: 2.2rem;
+  }
+
+  100% {
+    width: calc(100% - 2.5rem);
+  }
+}

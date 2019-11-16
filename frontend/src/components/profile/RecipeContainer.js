@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-// Components
-import RecipeDisplayMini from "../recipes/recipe-display/RecipeDisplayMini";
+import RecipeDisplayMini from "../recipe-display/RecipeDisplayMini";
 
 const RecipeContainer = props => {
   const renderRecipeList = () => {

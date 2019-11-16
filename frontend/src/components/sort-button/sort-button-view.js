@@ -1,13 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import { Button } from "../Button";
-import { ReactComponent as SortIcon } from "../../images/SortIcon.svg";
-
-// uitls
+import Button from "../button";
+import { ReactComponent as SortIcon } from "../../assets/images/SortIcon.svg";
 import { abbreviateSortBy } from "./utils";
-
-import "./sort-button.css";
+import "./sort-button.scss";
 
 const SortButton = ({ sortBy, onClick, sortActive, ...props }) => {
   return (

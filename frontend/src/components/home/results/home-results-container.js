@@ -4,9 +4,9 @@ import {
   getBrowseRecipes,
   getSearchRecipes
 } from "../../../actions/browseActions";
-import { Loading } from "../../loading/Loading";
-import RecipeDisplay from "../../recipes/recipe-display/RecipeDisplay";
-import NoResults from "./NoResults";
+import Loading from "../../loading";
+import RecipeDisplay from "../../recipe-display";
+import NoResults from "./no-results";
 
 import "./home-results.scss";
 
