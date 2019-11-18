@@ -47,22 +47,29 @@ class Recipe extends React.Component {
     if (editRecipe) {
       return <Edit />;
     }
-
+    //<img className="whiskdb-logo" src={Whiskdb} alt="Whiskdb logo" />
     return (
       <div className="recipe">
-        <img className="whiskdb-logo" src={Whiskdb} alt="Whiskdb logo" />
         <Header recipe_id={recipe_id} user_id={user_id} />
         {shareOpen ? <Share /> : null}
-        <RecipeDetails />
-        <Ingredients />
-        <Directions
-          directions={directions}
-          time={this.formatMinsToHours(total_time_mins)}
-          footnote={footnote}
+
+        <img
+          href="recipe photo"
+          alt=""
+          src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
         />
-        {reviewOpen ? (
-          <Rate recipe_id={recipe_id} num_reviews={num_reviews} />
-        ) : null}
+        <div className="card">
+          <RecipeDetails />
+          <Ingredients />
+          <Directions
+            directions={directions}
+            time={this.formatMinsToHours(total_time_mins)}
+            footnote={footnote}
+          />
+          {reviewOpen ? (
+            <Rate recipe_id={recipe_id} num_reviews={num_reviews} />
+          ) : null}
+        </div>
       </div>
     );
   }
