@@ -202,25 +202,35 @@
     grid-template-columns: 1fr 1fr;
     grid-row-gap: 1rem;
     width: 100%;
-    .addBtn {
+
+    .btn {
       text-transform: capitalize;
-      border: solid red;
+      font-size: 1rem;
       padding: 0.5rem 0;
       width: 9rem;
       text-align: center;
-      color: $primary-color;
-      border: solid darkColor(light) 0.05rem;
-      border-radius: 50rem;
+      color: darkColor(medium);
+      border: none;
       cursor: pointer;
+
       &:hover {
-        opacity: 0.5;
+        opacity: 0.8;
+        color: $primary-color;
+      }
+
+      &:focus {
+        outline: 0;
       }
     }
-    .removeBtn {
-      @extend .addBtn;
-      border: none;
-      background-color: darkColor(medium);
-      color: white;
+    .active {
+      @extend .btn;
+      color: $primary-color;
+      border-radius: 50rem;
+      border: solid $primary-color 0.05rem;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 }
@@ -230,11 +240,23 @@
   .list {
     grid-template-columns: 1fr;
     .removeBtn {
+      @extend .active;
+      color: darkColor(medium);
+      border: solid $error-color 0.05rem;
       white-space: nowrap;
       overflow: hidden;
       display: inline-block;
       width: auto;
       padding: 0.5rem 2rem;
+
+      &:focus {
+        outline: 0;
+      }
+
+      &:hover {
+        color: darkColor(medium);
+        opacity: 0.5;
+      }
     }
   }
 }

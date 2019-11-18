@@ -12,7 +12,8 @@ class Keywords extends Component {
     };
   }
 
-  handleClick = keyword => {
+  handleClick = (e, keyword) => {
+    e.preventDefault();
     // Remove from redux state
     this.props.change(
       "keywords",
@@ -68,7 +69,7 @@ class Keywords extends Component {
                 <li key={"keywords " + index}>
                   <Button
                     className={styles.removeBtn}
-                    onClick={() => this.handleClick(keyword)}
+                    onClick={e => this.handleClick(e, keyword)}
                   >
                     {keyword}
                   </Button>

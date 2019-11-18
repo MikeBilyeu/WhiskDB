@@ -36,7 +36,7 @@ const CreateRecipe = props => {
   // };
 
   const handleKeyDown = e => {
-    if (e.key === "Enter") {
+    if (e.target.type !== "textarea" && e.key === "Enter") {
       e.preventDefault();
     }
   };
@@ -56,8 +56,8 @@ const CreateRecipe = props => {
       />
       <form
         className={styles.form}
-        onSubmit={props.handleSubmit(handleSubmit)}
         onKeyDown={handleKeyDown}
+        onSubmit={props.handleSubmit(handleSubmit)}
       >
         <Field
           name="title"
