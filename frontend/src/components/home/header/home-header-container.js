@@ -30,7 +30,7 @@ const Header = ({
   return (
     <div className="header">
       <SearchBar />
-      <img className="whisk-title" src={Whiskdb} alt="Whiskdb logo" />
+      <img className="whisk" src={Whiskdb} alt="Whiskdb logo" />
       <SortButton
         onClick={() => toggleFilterButton("Sort")}
         sortActive={sortBtnActive}

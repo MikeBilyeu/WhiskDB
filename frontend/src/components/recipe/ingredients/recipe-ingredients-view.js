@@ -53,7 +53,7 @@ class Ingredient extends React.Component {
 
 const Ingredients = props => {
   return (
-    <div className="recipe-list ingredients">
+    <div className="ingredients">
       <h2>Ingredients</h2>
       <UnitsAndServings />
       <ul className="ingredient-list">

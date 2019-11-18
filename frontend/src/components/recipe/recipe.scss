@@ -15,16 +15,45 @@
     background-color: #fff;
     border-bottom: solid 0.01rem #e3e3e3;
     display: grid;
-    grid-auto-flow: column;
     grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
     user-select: none;
     z-index: 1;
+    .back-btn {
+      display: grid;
+      grid-auto-flow: column;
+      justify-self: start;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      width: 3rem;
+    }
+
+    .whisk {
+      width: 5rem;
+    }
+
+    .saveIcon {
+      position: absolute;
+      margin-left: 9rem;
+      width: 2.2rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .more-btn {
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      width: 3.1rem;
+      justify-self: end;
+    }
   }
 
-  img {
+  .recipe-img {
     position: fixed;
-    top: 2rem;
+    top: 0.5rem;
     width: 100vw;
     max-height: 55vh;
     margin: 0.5rem auto;
@@ -42,42 +71,6 @@
     padding: 3rem 0;
     border-radius: 1rem 1rem 0 0;
   }
-}
-
-.back-btn {
-  display: grid;
-  grid-auto-flow: column;
-  justify-self: start;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  width: 3rem;
-}
-
-.save-btn {
-  border-radius: 5rem;
-  cursor: pointer;
-  color: #676767;
-  border: solid 1px #e2e2e2;
-  text-align: center;
-  font-size: 1rem;
-  margin: 0.5rem;
-  width: 9rem;
-  padding: 0.3rem 0.8rem 0.3rem 0.8rem;
-  display: grid;
-  grid-template-columns: 1fr 1rem;
-  place-items: center;
-}
-
-.saved {
-  color: #0172c4;
-  border-color: #0172c4;
-}
-
-.share-btn {
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  width: 4rem;
-  justify-self: end;
 }
 
 .recipe-details {
@@ -118,80 +111,61 @@
   }
 }
 
-.recipe-list {
+.ingredients {
+  h2 {
+    text-align: center;
+  }
   width: 100%;
   padding: 0 0.5rem;
   margin: 2rem 0;
   display: grid;
   color: #313131;
-}
-
-.recipe-list ul {
-  padding-left: 0.5rem;
-  list-style-type: none;
-  margin: 0;
-}
-.recipe-list ol {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-
-.recipe-list li {
-  margin: 1.2rem 0;
-  font-size: 1.1rem;
-  word-spacing: 0.05rem;
-}
-
-.ingredients li {
-  font-weight: 900;
-  cursor: pointer;
-}
-
-.directions .time {
-  text-align: center;
-  padding-top: 1rem;
-  color: #a3a3a3;
+  ul {
+    padding-left: 0.5rem;
+    list-style-type: none;
+    margin: 0;
+    li {
+      margin: 1.2rem 0;
+      font-size: 1.1rem;
+      word-spacing: 0.05rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+  }
 }
 
 .directions {
   padding: 0 1rem;
-}
 
-.directions h4 {
-  margin: 0;
-  font-size: 1.2rem !important;
-  text-align: center;
-  background-color: #464646;
-  color: #fff;
-  border-radius: 100%;
-  height: 2.2rem;
-  width: 2.2rem;
-  line-height: 2.2rem;
-}
+  h2 {
+    text-align: center;
+  }
 
-.directions p {
-  margin: 0 0 0 0.3rem;
-  font-size: 1.1rem;
-  line-height: 1.5rem;
-}
+  .time {
+    text-align: center;
+    padding-top: 1rem;
+    color: #a3a3a3;
+  }
 
-#directions::first-letter {
-  font-size: 3rem;
-  font-weight: 600;
-  margin: 1rem 0 0 0;
-  float: left;
-  margin: -0.2rem 0 0 0;
-}
+  #directions {
+    margin: 0 0 0 0.3rem;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
 
-.directions li {
-  text-align: left;
-}
+    &::first-letter {
+      font-size: 3rem;
+      font-weight: 600;
+      margin: 1rem 0 0 0;
+      float: left;
+      margin: -0.2rem 0 0 0;
+    }
+  }
 
-.footnote {
-  width: 100%;
-  margin: 3rem 0;
-  font-style: italic;
+  .footnote {
+    width: 100%;
+    margin: 3rem 0;
+    font-style: italic;
+  }
 }
 
 @media print {
@@ -211,17 +185,22 @@
     overflow-y: visible !important;
     display: block !important;
   }
+
   .recipe {
     grid-gap: 1.5rem;
   }
-  .username {
-    font-size: 16pt !important;
-    color: black !important;
-    margin: 0.5rem !important;
+
+  .card {
+    .username {
+      font-size: 16pt !important;
+      color: black !important;
+      margin: 0.5rem !important;
+    }
+    margin: 0 !important;
   }
 
   /* Remove unwanted elements */
-  .header,
+  .recipe-header,
   .rating,
   .units,
   .navBar,
@@ -231,42 +210,36 @@
     display: none !important;
   }
 
-  .servings-units {
-    display: grid !important;
-    place-items: center !important;
-    grid-template-columns: 1fr !important;
-    margin-bottom: 1.5rem !important;
-  }
-
-  .servings input {
-    border: none !important;
-    color: black !important;
-    margin: 0 !important;
-  }
-
   .ingredients {
     margin: 0 !important;
-  }
 
-  .ingredient-list li {
-    text-decoration: none !important;
-    opacity: 1 !important;
-    margin: 0 !important;
-  }
+    .servings-units {
+      display: grid !important;
+      place-items: center !important;
+      grid-template-columns: 1fr !important;
+      margin-bottom: 1.5rem !important;
 
-  .ingredient-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 2rem;
+      .servings {
+        input {
+          border: none !important;
+          color: black !important;
+          margin: 0 !important;
+        }
+      }
+    }
+    ul {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    li {
+      text-decoration: none !important;
+      opacity: 1 !important;
+      margin: 0 !important;
+    }
   }
 
   .time {
     color: black !important;
     margin-bottom: 1.5rem;
-  }
-
-  ol li {
-    color: black !important;
-    margin: 0.75rem 0 !important;
   }
 }

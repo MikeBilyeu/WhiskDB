@@ -4,7 +4,8 @@ import { withRouter } from "react-router-dom";
 import { toggleShare, saveRecipe } from "../../../actions/recipeActions";
 import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
 import { ReactComponent as SaveIcon } from "../../../assets/images/saveIcon.svg";
-import { ReactComponent as Share } from "../../../assets/images/share.svg";
+import { ReactComponent as More } from "../../../assets/images/more.svg";
+import Whiskdb from "../../../assets/images/whiskdb.png";
 
 const Header = props => {
   const {
@@ -18,25 +19,16 @@ const Header = props => {
   return (
     <div className="recipe-header">
       <Arrow className="back-btn" onClick={() => history.goBack()} />
-
-      <div
-        className={
-          "save-btn" + (recipeSaved && user_id !== null ? " saved" : "")
-        }
+      <img className="whisk" src={Whiskdb} alt="Whiskdb logo" />
+      <SaveIcon
+        className="saveIcon"
         onClick={() => saveRecipe(recipe_id, user_id)}
-      >
-        <span style={{ margin: "0 1rem" }}>
-          {recipeSaved && user_id !== null ? "Saved" : "Save"}
-        </span>
-        <SaveIcon
-          style={{
-            fill: recipeSaved && user_id !== null ? "#0172C4" : "#E2E2E2",
-            width: "1rem"
-          }}
-        />
-      </div>
+        style={{
+          fill: recipeSaved && user_id !== null ? "#0172C4" : "#E2E2E2"
+        }}
+      />
 
-      <Share onClick={toggleShare} className="share-btn" />
+      <More onClick={toggleShare} className="more-btn" />
     </div>
   );
 };

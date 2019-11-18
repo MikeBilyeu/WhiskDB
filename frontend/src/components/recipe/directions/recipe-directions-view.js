@@ -18,7 +18,7 @@ const Directions = props => {
   };
 
   return (
-    <div className="recipe-list directions">
+    <div className="directions">
       <h2>Directions</h2>
       <div className="time">Time: {props.time}</div>
       <p id="directions">{props.directions}</p>
