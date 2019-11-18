@@ -112,31 +112,28 @@
     width: calc(100% - 0.5rem);
     margin-left: 0.5rem;
     li {
-      margin: 1.25rem 0;
+      margin: 1rem 0;
       display: flex;
       align-items: baseline;
-      div {
-        width: 0.95rem;
-        height: 1.05rem;
+
+      button {
+        border: none;
         margin-right: 0.5rem;
         cursor: pointer;
-        &:hover {
-          opacity: 0.5;
-        }
+      }
+
+      .ingredientInput {
+        border: none;
+        text-align: left;
+        cursor: text;
+      }
+      .active {
+        border-bottom: solid darkColor(dark) 0.1rem;
+      }
+      .unactive {
+        opacity: 0.2;
       }
     }
-  }
-
-  .ingredientInput {
-    border: none;
-    text-align: left;
-    cursor: pointer;
-  }
-  .active {
-    border-bottom: solid darkColor(dark) 0.1rem;
-  }
-  .unactive {
-    opacity: 0.2;
   }
 
   input {

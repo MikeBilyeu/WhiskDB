@@ -70,7 +70,7 @@ class Ingredients extends React.Component {
                   <Button
                     onClick={event => this.handleRemoveClick(index, event)}
                   >
-                    <Remove style={{ width: ".8rem" }} />
+                    <Remove style={{ width: "1rem" }} />
                   </Button>
                 )}
                 <Field

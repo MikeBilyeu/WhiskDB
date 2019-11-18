@@ -48,32 +48,11 @@ class RecipeDisplay extends React.Component {
     return (
       <li>
         <Link className="recipe-card" to={`/recipe/${recipe_id}`}>
-          <h3 className="recipe-username">{username}</h3>
-          {this.state.saved && this.props.user_id == null ? (
-            <Link className="login-to-save" to="/auth">
-              Login
-            </Link>
-          ) : (
-            <SaveIcon
-              onClick={e => {
-                this.handleClick(e);
-              }}
-              className="SaveIcon"
-              style={{
-                fill:
-                  this.state.saved && this.props.user_id != null
-                    ? "#0172C4"
-                    : ""
-              }}
-            />
-          )}
-
           <img
             className="thumbnail"
-            src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+            src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1510&q=80"
             alt=""
           />
-
           <div className="title">{title}</div>
           <div className="rating-time">
             <Rating className="rating" rating={rating} votes={num_reviews} />
@@ -92,3 +71,22 @@ export default connect(
   mapStateToProps,
   { saveRecipe }
 )(RecipeDisplay);
+
+/*{this.state.saved && this.props.user_id == null ? (
+  <Link className="login-to-save" to="/auth">
+    Login
+  </Link>
+) : (
+  <SaveIcon
+    onClick={e => {
+      this.handleClick(e);
+    }}
+    className="SaveIcon"
+    style={{
+      fill:
+        this.state.saved && this.props.user_id != null
+          ? "#0172C4"
+          : ""
+    }}
+  />
+)}*/

@@ -57,7 +57,7 @@ class Recipe extends React.Component {
           className="recipe-img"
           href="recipe photo"
           alt=""
-          src="https://images.unsplash.com/photo-1516684669134-de6f7c473a2a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+          src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1510&q=80"
         />
         <div className="card">
           <RecipeDetails />

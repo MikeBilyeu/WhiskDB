@@ -1,34 +1,34 @@
 .recipe-card {
-  border-radius: 0.5rem;
-  box-shadow: 2px 3px 8px 5px rgba(200, 200, 200, 0.2);
   display: grid;
-  grid-template-areas:
-    "username save"
-    "thumbnail thumbnail"
-    "title title"
-    "rt rt";
-  align-items: center;
-  padding-bottom: 1.5rem;
-  max-width: 25rem;
-  min-width: 18rem;
-  background-color: #fff;
-  margin: auto;
-}
-
-.recipe-card.mini {
   grid-template-areas:
     "thumbnail"
     "title"
     "rt";
-  max-width: 15rem;
-  min-width: 5rem;
-}
+  align-items: center;
+  max-width: 25rem;
+  min-width: 18rem;
+  background-color: #fff;
+  margin: auto;
 
-.recipe-username {
-  margin: 1rem 0.5rem;
-  grid-area: username;
-  font-size: 0.95rem;
-  color: #464646;
+  .title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    line-height: 1.4rem;
+    color: #464646;
+    margin: 0.3rem;
+    grid-area: title;
+  }
+  .rating-time {
+    grid-area: rt;
+    margin: 0 0.3rem;
+    color: #676767;
+    font-size: 0.9rem;
+    display: grid;
+    grid-template-columns: fit-content(20rem) 0.5rem fit-content(15rem);
+    grid-gap: 0.3rem;
+    place-items: center;
+  }
 }
 
 .login-to-save {
@@ -53,42 +53,9 @@
 
 .thumbnail {
   grid-area: thumbnail;
-  max-height: 20rem;
-  min-height: 15rem;
+  max-height: 75vh;
+  min-height: 75vh;
   width: 100%;
   object-fit: cover;
-}
-
-.thumbnail.mini {
-  border-radius: 0.5rem 0.5rem 0 0;
-  max-height: 8rem;
-  min-height: 5rem;
-}
-
-.title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  letter-spacing: -0.5px;
-  line-height: 1.4rem;
-  color: #464646;
-  margin: 1rem 0.5rem 0.5rem 0.5rem;
-  grid-area: title;
-}
-
-.title.mini {
-  text-align: center;
-}
-
-.rating-time {
-  grid-area: rt;
-  margin: 0 0.5rem;
-  color: #676767;
-  font-size: 0.9rem;
-  display: grid;
-  grid-template-columns: fit-content(20rem) 0.5rem fit-content(15rem);
-  grid-gap: 0.3rem;
-  place-items: center;
-}
-.rating-time.mini {
-  grid-template-columns: 1fr;
+  border-radius: 0.1rem;
 }
