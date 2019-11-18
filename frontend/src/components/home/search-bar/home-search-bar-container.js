@@ -4,9 +4,9 @@ import {
   getBrowseRecipes,
   getSearchRecipes,
   toggleFilterButton
-} from "../../../../actions/browseActions";
-import { ReactComponent as SearchIcon } from "../../../../assets/images/searchIcon.svg";
-import "./home-header-search-bar.scss";
+} from "../../../actions/browseActions";
+import { ReactComponent as SearchIcon } from "../../../assets/images/searchIcon.svg";
+import "./home-search-bar.scss";
 
 class SearchBar extends React.Component {
   constructor(props) {

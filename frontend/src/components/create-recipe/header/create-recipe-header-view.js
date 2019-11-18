@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as Arrow } from "../../../../assets/images/arrowLeft.svg";
+import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
 import styles from "../create-recipe.module.scss";
 
 const Header = props => {

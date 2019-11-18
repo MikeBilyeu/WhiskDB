@@ -1,8 +1,8 @@
 import React from "react";
 import { Field } from "redux-form";
-import Input from "../../../form-inputs/input";
-import Button from "../../../button";
-import { ReactComponent as Remove } from "../../../../assets/images/removeDark.svg";
+import Input from "../../form-inputs/input";
+import Button from "../../button";
+import { ReactComponent as Remove } from "../../../assets/images/removeDark.svg";
 import { numberParse, validIngredientRegEx } from "../utils/input-parse";
 import styles from "../create-recipe.module.scss";
 

@@ -12,7 +12,7 @@ import Input from "../../form-inputs/input";
 import Header from "./header";
 import Delete from "./delete";
 
-class EditProfile extends React.Component {
+class Edit extends React.Component {
   handleSubmit = values => {
     this.props.editProfile(values, this.props.history);
   };
@@ -86,5 +86,5 @@ export default connect(
     asyncValidate: usernameValidate,
     asyncBlurFields: ["username"],
     enableReinitialize: true
-  })(EditProfile)
+  })(Edit)
 );

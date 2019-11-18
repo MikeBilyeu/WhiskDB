@@ -11,8 +11,8 @@ import Header from "./header";
 import RecipeContainer from "./RecipeContainer";
 import SortBy from "./SortBy";
 import SortButton from "../sort-button";
-import EditProfile from "./edit-profile";
-import CreateRecipe from "./create-recipe";
+import Edit from "./edit";
+import CreateRecipe from "../create-recipe";
 import "./profile.scss";
 
 class Profile extends React.Component {
@@ -48,7 +48,7 @@ class Profile extends React.Component {
 
     return (
       <Switch>
-        <Route path="/profile/edit" component={EditProfile} />
+        <Route path="/profile/edit" component={Edit} />
         <Route path="/profile/create-recipe" component={CreateRecipe} />
         <Route
           component={() => {

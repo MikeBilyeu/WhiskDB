@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { toggleFilterButton } from "../../../actions/browseActions";
-import SearchBar from "./search-bar";
+import SearchBar from "../search-bar";
 import SortButton from "../../sort-button";
 import Button from "../../button";
 import { ReactComponent as Arrow } from "../../../assets/images/filterArrow.svg";

@@ -6,7 +6,7 @@ import {
 } from "../../../actions/browseActions";
 import Loading from "../../loading";
 import RecipeDisplay from "../../recipe-display";
-import NoResults from "./no-results";
+import NoResults from "../no-results";
 
 import "./home-results.scss";
 

@@ -8,13 +8,13 @@ import {
 } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { createRecipe } from "../../../actions/recipeActions";
+import { createRecipe } from "../../actions/recipeActions";
 import Header from "./header";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Categories from "./categories";
 import Keywords from "./keywords";
-import Input from "../../form-inputs/input";
+import Input from "../form-inputs/input";
 import { capitalize, titleParse } from "./utils/input-parse";
 import styles from "./create-recipe.module.scss";
 
