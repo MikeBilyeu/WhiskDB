@@ -11,7 +11,7 @@ import ScrollUp from "./scroll-up";
 
 checkAuthToken();
 
-const App = () => {
+const App = props => {
   return (
     <div className="paddingBottom">
       <Router>

@@ -32,6 +32,10 @@ class Nav extends React.Component {
   };
 
   render() {
+    const recipePageURL = RegExp("^/recipe*");
+    if (recipePageURL.test(this.props.location.pathname)) {
+      return null;
+    }
     return (
       <div className="navBar">
         <Link to="/">
