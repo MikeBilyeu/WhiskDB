@@ -3,7 +3,7 @@ import { Field } from "redux-form";
 import TextArea from "../../form-inputs/textarea";
 import Input from "../../form-inputs/input";
 import { minuteParse, numberParse, footnoteParse } from "../utils/input-parse";
-import styles from "../create-recipe.module.scss";
+import styles from "../recipe-upsert.module.scss";
 
 const Directions = () => {
   const placeholder = {

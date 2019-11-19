@@ -12,7 +12,7 @@ import RecipeContainer from "./RecipeContainer";
 import SortBy from "./SortBy";
 import SortButton from "../sort-button";
 import Edit from "./edit";
-import CreateRecipe from "../create-recipe";
+import RecipeUpsert from "../recipe-upsert";
 import "./profile.scss";
 
 class Profile extends React.Component {
@@ -49,7 +49,7 @@ class Profile extends React.Component {
     return (
       <Switch>
         <Route path="/profile/edit" component={Edit} />
-        <Route path="/profile/create-recipe" component={CreateRecipe} />
+        <Route path="/profile/create-recipe" component={RecipeUpsert} />
         <Route
           component={() => {
             return (

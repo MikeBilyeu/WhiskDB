@@ -4,6 +4,11 @@
   @include grid-center;
   grid-template-columns: 4.2rem 1fr;
   border-bottom: solid #e2e2e2 0.01rem;
+  .back-btn {
+    width: 3.5rem;
+    padding: 1rem;
+    cursor: pointer;
+  }
 
   h1 {
     white-space: nowrap;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Input from "../../form-inputs/input";
 import Button from "../../button";
-import styles from "../create-recipe.module.scss";
+import styles from "../recipe-upsert.module.scss";
 
 class Keywords extends Component {
   constructor(props) {

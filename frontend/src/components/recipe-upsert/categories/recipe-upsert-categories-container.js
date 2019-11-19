@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Button from "../../button";
-import styles from "../create-recipe.module.scss";
+import styles from "../recipe-upsert.module.scss";
 
 const recipeCategories = [
   "vegetarian",

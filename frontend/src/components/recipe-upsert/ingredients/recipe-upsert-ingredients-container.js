@@ -4,7 +4,7 @@ import Input from "../../form-inputs/input";
 import Button from "../../button";
 import { ReactComponent as Remove } from "../../../assets/images/removeDark.svg";
 import { numberParse, validIngredientRegEx } from "../utils/input-parse";
-import styles from "../create-recipe.module.scss";
+import styles from "../recipe-upsert.module.scss";
 
 class Ingredients extends React.Component {
   constructor(props) {

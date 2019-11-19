@@ -16,9 +16,9 @@ import Categories from "./categories";
 import Keywords from "./keywords";
 import Input from "../form-inputs/input";
 import { capitalize, titleParse } from "./utils/input-parse";
-import styles from "./create-recipe.module.scss";
+import styles from "./recipe-upsert.module.scss";
 
-const CreateRecipe = props => {
+const RecipeUpsert = props => {
   const handleSubmit = values => {
     const newRecipe = {
       ...values,
@@ -111,6 +111,6 @@ export default reduxForm({
     connect(
       mapSateToProps,
       { createRecipe }
-    )(CreateRecipe)
+    )(RecipeUpsert)
   )
 );
