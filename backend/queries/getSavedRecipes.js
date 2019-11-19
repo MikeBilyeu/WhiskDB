@@ -16,7 +16,7 @@ const getSavedRecipes = (request, response) => {
   pool.connect().then(client => {
     return client
       .query(
-        `SELECT r.recipe_id, r.title, r.image_url, COALESCE(AVG(rw.rating), 0) AS rating,
+        `SELECT r.recipe_id, r.title, r.image_url, r.total_time_mins, COALESCE(AVG(rw.rating), 0) AS rating,
         CAST(count(rw.*) AS INTEGER) AS num_reviews
         FROM recipes r
         LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id

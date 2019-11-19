@@ -54,8 +54,8 @@
 .thumbnail {
   grid-area: thumbnail;
   max-height: 75vh;
-  min-height: 75vh;
+  min-height: 65vh;
   width: 100%;
   object-fit: cover;
-  border-radius: 0.1rem;
+  transition: all 0.2s;
 }

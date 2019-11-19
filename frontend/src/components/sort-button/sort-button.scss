@@ -1,12 +1,14 @@
+@import "../../assets/styles/variables";
+
 .arrow-style {
-  width: 2.5rem;
+  @include grid-center;
+  border: none;
+  background-color: #fff;
+  outline: none;
+  width: 3rem;
   cursor: pointer;
   justify-self: start;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  display: grid;
-  place-items: center;
-  padding-left: 0.5rem;
   font-size: 0.7rem;
-  color: #b7b7b7;
+  color: darkColor(medium);
+  text-align: center;
 }

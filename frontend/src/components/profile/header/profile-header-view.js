@@ -1,54 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Button from "../../button";
 import { ReactComponent as WhiskIcon } from "../../../assets/images/WhiskIcon.svg";
-import { ReactComponent as UserIcon } from "../../../assets/images/userProfile.svg";
-import { ReactComponent as SavedIcon } from "../../../assets/images/savedRecipes.svg";
-import { ReactComponent as MyRecipesIcon } from "../../../assets/images/myRecipes.svg";
+import userPhoto from "../../../assets/images/user-photo.jpg";
+import "./profile-header.scss";
 
-const Header = ({ page, username, onClick, ...props }) => {
-  const savedActive = page === "saved" ? "active" : "";
-  const myRecipesActive = page === "myRecipes" ? "active" : "";
+const Header = ({ username, fullName, ...props }) => {
   return (
-    <div>
-      <div className="profile-whisk-icon">
-        <WhiskIcon
-          style={{
-            width: "5rem",
-            margin: ".2rem auto"
-          }}
-        />
-      </div>
-      <div className="profile-header">
+    <div className="profile-header">
+      <h2 className="username">{username}</h2>
+      <div className="user-info">
         <Link className="edit-link" to="/profile/edit">
-          <UserIcon style={{ width: "3.5rem" }} />
-          <div className="edit">Edit</div>
+          <img src={userPhoto} />
+          <div className="edit">Edit Profile</div>
         </Link>
-        <h2>{username}</h2>
-      </div>
-      <div className="s-mr-toggle">
-        <Button
-          className={`authButton ${savedActive}`}
-          onClick={() => onClick("saved")}
-        >
-          <SavedIcon style={{ width: "1.5rem" }} />
-        </Button>
-
-        <Button
-          className={`authButton ${myRecipesActive}`}
-          onClick={() => onClick("myRecipes")}
-        >
-          <MyRecipesIcon style={{ width: "1.5rem" }} />
-        </Button>
+        <h2>{fullName || null}</h2>
       </div>
     </div>
   );
 };
 
 Header.propTypes = {
-  page: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired
 };
 

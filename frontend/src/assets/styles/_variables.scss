@@ -1,11 +1,21 @@
 $dark-colors: (
-  "light": lighten(#3e3e3e, 45%),
+  "light": #707070,
   "medium": #464646,
-  "dark": darken(#3e3e3e, 60%)
+  "dark": #313131
 );
 
 @function darkColor($color) {
   @return map-get($dark-colors, $color);
+}
+
+$light-colors: (
+  "light": #f2f2f2,
+  "medium": #e2e2e2,
+  "dark": #b7b7b7
+);
+
+@function lightColor($color) {
+  @return map-get($light-colors, $color);
 }
 
 $font-weights: (
@@ -20,6 +30,7 @@ $font-weights: (
 
 $primary-color: #0172c4;
 $error-color: #c40801;
+$star-color: #ffa805;
 
 @mixin grid-center {
   display: grid;

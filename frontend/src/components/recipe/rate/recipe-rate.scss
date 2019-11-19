@@ -1,7 +1,10 @@
+@import "../../../assets/styles/variables";
+
 .rate {
-  border: solid #c6c6c6 0.1rem;
+  border: solid lightColor(medium) 0.05rem;
   border-radius: 0.5rem;
-  width: 99%;
+  width: 100%;
+  height: 100vh;
   position: fixed;
   left: 0;
   right: 0;
@@ -9,26 +12,26 @@
   background-color: #fff;
   z-index: 2;
   padding: 0.5rem;
-}
 
-.rate h2 {
-  text-align: center;
-  margin: 0 auto 0.5rem auto;
-  font-size: 1.3rem;
-  padding: 0.2rem 0;
-  width: 90%;
-  border-bottom: solid #ededed 0.05rem;
-}
+  h2 {
+    text-align: center;
+    margin: 0 auto 1rem auto;
+    font-size: 1.3rem;
+    padding: 0.2rem 0;
+    width: 90%;
+    // border-bottom: solid lightColor(medium) 0.05rem;
+  }
 
-.rate textarea {
-  border: solid #a3a3a3 0.08rem;
-  border-radius: 0.3rem;
-  width: 100%;
-  resize: vertical;
-  min-height: 7rem;
-  max-height: 9rem;
-  padding: 0.5rem;
-  font-size: 1.1rem;
+  textarea {
+    border: solid #a3a3a3 0.08rem;
+    border-radius: 0.3rem;
+    width: 100%;
+    resize: vertical;
+    min-height: 7rem;
+    max-height: 10rem;
+    padding: 0.5rem;
+    font-size: 1.1rem;
+  }
 }
 
 .submit-review {
@@ -44,5 +47,5 @@
 }
 
 .review-details {
-  margin: 0;
+  margin-top: 2rem;
 }

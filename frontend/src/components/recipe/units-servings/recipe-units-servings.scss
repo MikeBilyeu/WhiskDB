@@ -1,3 +1,5 @@
+@import "../../../assets/styles/variables";
+
 .servings-units {
   width: 100%;
   margin: 1rem auto 0.5rem auto;
@@ -10,17 +12,21 @@
   display: inline-block;
   width: 3rem;
   text-align: center;
-  color: #0172c4;
+  color: $primary-color;
   cursor: pointer;
-  padding: 0.2rem 0;
+  padding: 0.1rem 0;
   margin: 0 0.5rem;
+  font-weight: 900;
 }
 
-.servings > input {
-  all: unset;
-  width: 3rem;
-  padding: 0.2rem 0;
-  color: #0172c4;
-  margin: 0 0.5rem;
-  border-bottom: solid #313131 0.02rem;
+.servings {
+  input {
+    all: unset;
+    width: 3rem;
+    padding: 0.1rem 0;
+    font-weight: 900;
+    color: $primary-color;
+    margin: 0 0.5rem;
+    border-bottom: solid darkColor(medium) 0.1rem;
+  }
 }

@@ -8,7 +8,8 @@ import {
 } from "../../actions/recipeActions";
 import { getUser } from "../../actions/authActions";
 import Header from "./header";
-import RecipeContainer from "./RecipeContainer";
+import PageToggle from "./page-toggle";
+import RecipeContainer from "./recipes";
 import SortBy from "./SortBy";
 import SortButton from "../sort-button";
 import Edit from "./edit";
@@ -38,7 +39,8 @@ class Profile extends React.Component {
 
   render() {
     const page = this.state.page;
-    const username = this.props.username.toLowerCase();
+    const username = this.props.userData.username.toLowerCase();
+    const { full_name } = this.props.userData;
     const {
       sortActive,
       sortBy,
@@ -54,41 +56,24 @@ class Profile extends React.Component {
           component={() => {
             return (
               <div className="profile">
-                <Header
+                <Header username={username} fullName={full_name} />
+                <PageToggle
                   page={page}
                   onClick={this.handleClick}
-                  username={username}
+                  numRecipesSaved={savedRecipes.length}
+                  numRecipesPosted={myRecipes.length}
                 />
-                <div>
-                  {page === "saved" ? (
-                    <RecipeContainer
-                      recipes={savedRecipes}
-                      containerName="Saved Recipes"
-                    >
-                      {sortActive && <SortBy />}
-                      <div
-                        className={
-                          "sr-header" + (sortActive ? " remove-btm-border" : "")
-                        }
-                      >
-                        <SortButton
-                          onClick={this.props.toggleSortButton}
-                          sortActive={sortActive}
-                          sortBy={sortBy}
-                        />
-                      </div>
-                    </RecipeContainer>
-                  ) : (
-                    <RecipeContainer
-                      recipes={myRecipes}
-                      containerName="My Recipes"
-                    >
-                      <Link to="/profile/create-recipe">
-                        <div className="create-recipe-btn">Create Recipe</div>
-                      </Link>
-                    </RecipeContainer>
-                  )}
-                </div>
+                {page === "saved" ? (
+                  <RecipeContainer recipes={savedRecipes}>
+                    {sortActive && <SortBy />}
+                  </RecipeContainer>
+                ) : (
+                  <RecipeContainer recipes={myRecipes}>
+                    <Link to="/profile/create-recipe">
+                      <div className="create-recipe-btn">Create Recipe</div>
+                    </Link>
+                  </RecipeContainer>
+                )}
               </div>
             );
           }}
@@ -99,7 +84,7 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  username: state.userData.user.username,
+  userData: state.userData.user,
   auth: state.auth,
   savedRecipes: state.savedRecipes,
   myRecipes: state.myRecipes

@@ -1,0 +1,18 @@
+@import "../../../../assets/styles/variables";
+
+.edit-profile {
+  .header {
+    @include grid-center;
+    grid-template-columns: 4rem 1fr 4rem;
+    .back-btn {
+      width: 3.5rem;
+      padding: 1rem;
+      cursor: pointer;
+    }
+
+    h2 {
+      margin: 0;
+      color: darkColor(medium);
+    }
+  }
+}

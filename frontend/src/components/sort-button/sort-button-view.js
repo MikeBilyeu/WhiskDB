@@ -8,13 +8,15 @@ import "./sort-button.scss";
 const SortButton = ({ sortBy, onClick, sortActive, ...props }) => {
   return (
     <Button onClick={onClick} className="arrow-style">
-      <SortIcon
-        style={{
-          fill: sortActive === "Sort" ? "#0172C4" : "#676767"
-        }}
-        className="sort-icon"
-      />
-      {abbreviateSortBy(sortBy)}
+      <div>
+        <SortIcon
+          style={{
+            fill: sortActive === "Sort" ? "#0172C4" : "#464646"
+          }}
+          className="sort-icon"
+        />
+      </div>
+      <div>{abbreviateSortBy(sortBy)}</div>
     </Button>
   );
 };

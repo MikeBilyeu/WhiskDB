@@ -1,26 +1,27 @@
+@import "../../assets/styles/variables";
+
 .whiskdb-logo {
   display: none;
 }
 
 .recipe {
-  display: grid;
-  place-items: center;
+  @include grid-center;
   grid-gap: 1rem;
-  color: #313131;
+  color: darkColor(dark);
 
   .recipe-header {
     position: fixed;
     width: 100%;
     padding: 0;
     background-color: #fff;
-    border-bottom: solid 0.01rem #e3e3e3;
-    display: grid;
+    border-bottom: solid 0.01rem lightColor(light);
+    @include grid-center;
     grid-template-columns: 1fr 1fr 1fr;
-    place-items: center;
+
     user-select: none;
     z-index: 1;
     .back-btn {
-      display: grid;
+      @include grid-center;
       grid-auto-flow: column;
       justify-self: start;
       cursor: pointer;
@@ -55,8 +56,8 @@
     position: fixed;
     top: 0.5rem;
     width: 100vw;
-    max-height: 55vh;
-    min-height: 55vh;
+    max-height: 65vh;
+    min-height: 65vh;
     margin: 0.5rem auto;
     padding: 0;
     object-fit: cover;
@@ -67,66 +68,80 @@
   }
 
   .card {
-    margin-top: 55vh;
+    margin-top: 60vh;
     background-color: #fff;
-    padding: 3rem 0;
+    padding: 2.5rem 0;
     border-radius: 1rem 1rem 0 0;
+
+    h2 {
+      text-align: center;
+      border-bottom: solid lightColor(light) 0.05rem;
+      padding: 0.3rem 2rem;
+      width: 80%;
+      margin: 0 auto;
+    }
   }
 }
 
 .recipe-details {
   width: 100%;
-  margin: 0;
+  margin: 0 0 4rem 0;
+  @include grid-center;
+  grid-gap: 0.5rem;
 
   .title {
-    font-size: 2rem;
+    font-size: 1.7rem;
+    padding: 0 0.3rem;
     line-height: 2rem;
     text-align: center;
     margin: 0;
   }
 
   .username {
-    font-size: 0.8rem;
+    margin: 0.7rem 0 0 0;
+    font-size: 0.9rem;
     text-align: center;
-    color: #a3a3a3;
+    color: lightColor(dark);
   }
 
   .rating {
+    &:hover {
+      opacity: 0.8;
+    }
     cursor: pointer;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 0.5rem;
-    margin: auto;
+    grid-gap: 0.3rem;
+    margin: 0.3rem auto;
     width: 15rem;
-    padding: 0.5rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 0;
 
     .votes {
-      color: #0172c4;
+      color: $primary-color;
+      font-size: 0.9rem;
     }
   }
   .stars {
     svg {
-      width: 2rem !important;
+      width: 1.6rem !important;
     }
   }
 }
 
 .ingredients {
-  h2 {
-    text-align: center;
-  }
   width: 100%;
   padding: 0 0.5rem;
-  margin: 2rem 0;
-  display: grid;
-  color: #313131;
+  margin: 6rem 0;
+  @include grid-center;
+  grid-gap: 1rem;
+
   ul {
+    justify-self: start;
     padding-left: 0.5rem;
     list-style-type: none;
     margin: 0;
     li {
-      margin: 1.2rem 0;
+      margin: 1rem 0;
       font-size: 1.1rem;
       word-spacing: 0.05rem;
       font-weight: 900;
@@ -136,22 +151,19 @@
 }
 
 .directions {
+  @include grid-center;
+  grid-gap: 0.7rem;
   padding: 0 1rem;
-
-  h2 {
-    text-align: center;
-  }
 
   .time {
     text-align: center;
-    padding-top: 1rem;
-    color: #a3a3a3;
+    color: lightColor(dark);
   }
 
   #directions {
-    margin: 0 0 0 0.3rem;
+    margin: 2.5rem 0 0 0.3rem;
     font-size: 1.1rem;
-    line-height: 1.5rem;
+    line-height: 1.9rem;
 
     &::first-letter {
       font-size: 3rem;

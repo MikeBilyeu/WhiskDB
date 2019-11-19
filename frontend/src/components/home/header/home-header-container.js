@@ -29,17 +29,20 @@ const Header = ({
 
   return (
     <div className="header">
-      <SearchBar />
-      <img className="whisk" src={Whiskdb} alt="Whiskdb logo" />
       <SortButton
         onClick={() => toggleFilterButton("Sort")}
         sortActive={sortBtnActive}
         sortBy={sortBy}
       />
+      <img className="whisk" src={Whiskdb} alt="Whiskdb logo" />
+      <SearchBar />
 
       <Button className={dietBtnStyle}>
         {diet === "None" ? "Diet" : diet}
-        <Arrow className={dietArrowStyle} />
+
+        <span>
+          <Arrow className={dietArrowStyle} />
+        </span>
       </Button>
 
       <Button
@@ -47,7 +50,9 @@ const Header = ({
         onClick={() => toggleFilterButton("Meal")}
       >
         {meal === "All Meals" ? "Meal" : meal}
-        <Arrow className={mealArrowStyle} />
+        <span>
+          <Arrow className={mealArrowStyle} />
+        </span>
       </Button>
     </div>
   );

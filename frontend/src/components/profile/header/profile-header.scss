@@ -1,0 +1,52 @@
+@import "../../../assets/styles/variables";
+
+.profile-header {
+  color: darkColor(medium);
+  .username {
+    @include grid-center;
+    font-size: 1.1rem;
+    background-color: #fff;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2.9rem;
+    width: 100%;
+    z-index: 3;
+  }
+  .user-info {
+    @include grid-center;
+    left: 0;
+    width: 100%;
+    margin-top: 3rem;
+    position: fixed;
+    z-index: 0;
+
+    img {
+      width: 6rem;
+      height: 6rem;
+      object-fit: cover;
+      border-radius: 100%;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      fontweight: 900;
+      margin: 0;
+      margin-bottom: 1rem;
+    }
+
+    .edit {
+      color: $primary-color;
+      font-size: 0.9rem;
+      margin: 0.3rem;
+    }
+
+    .edit-link {
+      @include grid-center;
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}

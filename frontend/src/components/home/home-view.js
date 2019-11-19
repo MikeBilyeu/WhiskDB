@@ -10,7 +10,7 @@ const Home = props => {
   const { options, type } = filterOptions(props.buttonToggled);
 
   return (
-    <div>
+    <div className="home">
       <Header />
       {props.buttonToggled ? (
         <Filter filterOptions={options} filterType={type} />

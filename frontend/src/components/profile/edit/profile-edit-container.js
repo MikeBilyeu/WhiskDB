@@ -22,7 +22,7 @@ class Edit extends React.Component {
       return <Delete />;
     }
     return (
-      <div>
+      <div className="edit-profile">
         <Header />
         <form
           className="authForm"

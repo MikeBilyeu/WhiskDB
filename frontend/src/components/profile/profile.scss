@@ -1,87 +1,34 @@
+@import "../../assets/styles/variables";
+
 .profile {
-  display: grid;
-  placeitems: center;
-}
-
-.profile-whisk-icon {
-  display: grid;
-  place-items: center;
-  background-color: #fff;
-  position: fixed;
-  width: 100%;
-  height: 2.1rem;
-}
-
-.profile-header {
-  display: grid;
-  place-items: center;
-  margin-top: 2.1rem;
-}
-
-.profile-header h2 {
-  fontsize: 1.5rem;
-  fontweight: 900;
-  margin: 0;
-  margin-bottom: 1rem;
-  color: #313131;
-}
-.profile-header .edit {
-  color: #0172c4;
-  fontsize: 1rem;
-  margin: 0.3rem;
-}
-.profile-header .edit-link {
-  display: grid;
-  place-items: center;
-}
-.s-mr-toggle {
-  display: grid;
-  grid-auto-flow: column;
-  place-items: end center;
-  height: 2.5rem;
-  border-bottom: solid #e3e3e3 0.01rem;
-  width: 100%;
-  position: sticky;
-  top: 2rem;
-  background-color: #fff;
-}
-
-.sr-header {
-  display: grid;
-  grid-template-columns: 1fr;
-  place-items: center;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-.remove-btm-border {
-  border-bottom: none;
-}
-
-.sr-header h1 {
-  white-space: nowrap;
-  margin: 1rem 0;
-  font-size: 1.5rem;
+  @include grid-center;
 }
 
 .profile-recipes {
-  display: grid;
-  grid-gap: 0.7rem;
-  /* grid-template-columns: repeat(auto-fit; minmax(5rem; 1fr)); */
-  grid-template-columns: 1fr 1fr;
-  padding: 0.5rem;
-  list-style-type: none;
-  list-style: none;
+  background-color: #fff;
+  width: 100%;
+  z-index: 1;
+  ul {
+    @include grid-center;
+    grid-gap: 2.5rem;
+    padding: 0;
+    list-style-type: none;
+  }
 }
 
 .create-recipe-btn {
-  background-color: #0172c4;
-  color: #fff;
-  padding: 0.7rem 5rem;
-  margin: 1.5rem;
+  border: solid $primary-color 0.05rem;
+  cursor: pointer;
+  color: $primary-color;
+  width: 75%;
+  min-width: 18rem;
+  max-width: 25rem;
+  margin: 2rem auto;
+  padding: 0.6rem 5rem;
   fontweight: bold;
   border-radius: 10rem;
   text-align: center;
+  &:hover {
+    opacity: 0.8;
+  }
 }

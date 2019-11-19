@@ -52,6 +52,9 @@ class Recipe extends React.Component {
       <div className="recipe">
         <Header recipe_id={recipe_id} user_id={user_id} />
         {shareOpen ? <Share /> : null}
+        {reviewOpen ? (
+          <Rate recipe_id={recipe_id} num_reviews={num_reviews} />
+        ) : null}
 
         <img
           className="recipe-img"
@@ -67,9 +70,6 @@ class Recipe extends React.Component {
             time={this.formatMinsToHours(total_time_mins)}
             footnote={footnote}
           />
-          {reviewOpen ? (
-            <Rate recipe_id={recipe_id} num_reviews={num_reviews} />
-          ) : null}
         </div>
       </div>
     );

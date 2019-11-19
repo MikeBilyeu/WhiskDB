@@ -1,36 +1,36 @@
-.header {
-  width: 100%;
-  overflow: hidden;
-  display: grid;
-  align-items: center;
-  grid-template-areas:
-    "sort whisk search"
-    "Diet . Meal";
-  border-bottom: solid 0.01rem #e3e3e3;
-  padding: 0.3rem 0.1rem 0 0.1rem;
-  box-sizing: border-box;
-  .whisk {
-    width: 5rem;
-    grid-area: whisk;
-    justify-self: center;
+@import "../../../assets/styles/variables";
+
+.home {
+  .header {
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    align-items: center;
+    grid-template-areas:
+      "sort whisk search"
+      "Diet . Meal";
+    border-bottom: solid 0.01rem #e3e3e3;
+    padding: 0.3rem 0.1rem 0 0.1rem;
+    box-sizing: border-box;
+
+    .whisk {
+      width: 5rem;
+      grid-area: whisk;
+      justify-self: center;
+    }
+
+    .sort-icon {
+      width: 1.2rem;
+      padding-bottom: 0.1rem;
+    }
   }
 }
 
-.sort-icon {
-  width: 1.2rem;
-  padding-bottom: 0.1rem;
-}
-
 .filter-btn {
+  border: solid lightColor(medium) 0.05rem;
   border-radius: 50rem;
+  outline: none;
   cursor: pointer;
-  border: solid #e2e2e2 0.05rem;
-  color: #707070;
-  display: grid;
-  place-items: center;
-  grid-gap: 0.02rem;
-  grid-template-columns: 1fr 0.8rem;
-  text-align: center;
   font-size: 0.9rem;
   margin: 1rem 0.2rem;
   padding: 0.5rem;
@@ -42,7 +42,7 @@
 }
 
 .filter-btn.filter-active {
-  border: solid #0172c4 0.05rem;
+  border: solid $primary-color 0.05rem;
   color: #0172c4;
 }
 
@@ -60,6 +60,9 @@
 
 .filter-arrow {
   width: 0.8rem;
+  position: absolute;
+  margin-left: 1rem;
+  margin-top: 0.2rem;
   transition: all 0.2s ease-out;
   fill: #e2e2e2;
 }

@@ -17,7 +17,7 @@ const getMyRecipes = (request, response) => {
     return client
       .query(
         `SELECT r.recipe_id, r.title, r.image_url,
-        r.created_at, COALESCE(AVG(rw.rating), 0) AS rating,
+        r.created_at, r.total_time_mins, COALESCE(AVG(rw.rating), 0) AS rating,
         CAST(count(rw.*) AS INTEGER) AS num_reviews
         FROM recipes r
         LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id

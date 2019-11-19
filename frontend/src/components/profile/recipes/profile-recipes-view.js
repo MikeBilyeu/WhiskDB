@@ -1,20 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import RecipeDisplayMini from "../recipe-display/RecipeDisplayMini";
+import RecipeDisplay from "../../recipe-display";
 
 const RecipeContainer = props => {
   const renderRecipeList = () => {
     // pass this in as a prop an map over prop
     return props.recipes.map((recipe, i) => {
-      return <RecipeDisplayMini key={recipe.title + i} recipe={recipe} />;
+      return <RecipeDisplay key={recipe.title + i} recipe={recipe} />;
     });
   };
 
   return (
-    <div>
+    <div className="profile-recipes">
       {props.children}
-      <h3 style={{ textAlign: "center" }}>{props.containerName}</h3>
-      <ul className="profile-recipes">{renderRecipeList()}</ul>
+      <ul>{renderRecipeList()}</ul>
     </div>
   );
 };

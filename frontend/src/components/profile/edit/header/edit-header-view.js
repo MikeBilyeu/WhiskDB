@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { logoutUser } from "../../../../actions/authActions";
 import { ReactComponent as Arrow } from "../../../../assets/images/arrowLeft.svg";
+import "./edit-header.scss";
 
 class Header extends React.Component {
   onLogoutClick = e => {
@@ -13,13 +14,7 @@ class Header extends React.Component {
   render() {
     const { history } = this.props;
     return (
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 2fr 1fr",
-          placeItems: "center"
-        }}
-      >
+      <div className="header">
         <Arrow className="back-btn" onClick={() => history.goBack()} />
         <h2>Edit Profile</h2>
         <div
