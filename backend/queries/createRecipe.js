@@ -9,7 +9,7 @@ const pool = new Pool({
   port: keys.port
 });
 
-const formatIngredientList = require("./formatIngredientList");
+// const formatIngredientList = require("./formatIngredientList");
 
 // Load input validation
 const validateRecipeInput = require("../validation/recipe");
@@ -39,7 +39,7 @@ const createRecipe = (request, response) => {
   const timeMinutes = time.minutes > 0 ? parseInt(time.minutes) : 0;
   const total_time_mins = timeHours * 60 + timeMinutes;
 
-  let metricIngredients = formatIngredientList(ingredients);
+  // let metricIngredients = formatIngredientList(ingredients);
 
   pool.connect().then(client => {
     let recipe_id = null;
@@ -47,9 +47,9 @@ const createRecipe = (request, response) => {
       .query(
         `INSERT INTO recipes
         (created_by, title, servings, total_time_mins, footnote,
-        private, directions, ingredients, keywords, document_vectors)
+        private, directions, ingredients, keywords, categories, document_vectors)
         VALUES ($1, CAST($2 AS VARCHAR), $3, $4, $5, $6, $7, $8,
-        CAST($9 AS VARCHAR[]), (to_tsvector($2) ||
+        CAST($9 AS VARCHAR[]), $10, (to_tsvector($2) ||
         to_tsvector(array_to_string($9, ' ')))) RETURNING recipe_id`,
         [
           created_by,
@@ -59,8 +59,9 @@ const createRecipe = (request, response) => {
           footnote,
           privateRecipe,
           directions,
-          metricIngredients,
-          keywords
+          ingredients,
+          keywords,
+          categories
         ]
       )
       .then(res => {

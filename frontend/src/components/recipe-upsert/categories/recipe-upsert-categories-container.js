@@ -29,9 +29,6 @@ const Categories = props => {
       props.change("categories", [...props.categories, category]);
     }
   };
-  if (!props.categories) {
-    return null;
-  }
 
   return (
     <div className={styles.categoriesContainer}>
@@ -39,9 +36,11 @@ const Categories = props => {
       <label>Select Categories</label>
       <ul className={styles.list}>
         {recipeCategories.map((category, index, arr) => {
-          const className = props.categories.includes(category)
-            ? styles.active
-            : styles.btn;
+          const className =
+            props.categories && props.categories.includes(category)
+              ? styles.active
+              : styles.btn;
+
           return (
             <li key={"categories " + index}>
               <Button

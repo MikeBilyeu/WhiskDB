@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import formatIngredientList from "./formatIngredientList";
 
 const unitSelector = state => state.recipe.unit;
 const ingredientListSelector = state => state.recipe.recipe.ingredients;
@@ -29,6 +30,7 @@ const convertIngredients = (
   convertedServings,
   ingredientList
 ) => {
+  ingredientList = formatIngredientList(ingredientList);
   const roundedMetricAmounts = ingredientList.map(ingredientObj => {
     // Adjust the amount if the servings is adjusted
     const amount = ingredientObj.amount * (convertedServings / servings);

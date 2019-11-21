@@ -29,11 +29,12 @@ export const createRecipe = (recipeData, history) => dispatch => {
       // redirect to home after successful submit
       return history.push(`/recipe/${recipe_id}`);
     })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
+    .catch(
+      err => console.log(err)
+      // dispatch({
+      //   type: GET_ERRORS,
+      //   payload: err.response.data
+      // })
     );
 };
 

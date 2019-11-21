@@ -24,7 +24,7 @@ const kilogramRegEx = /\b(kilogram(s?)|kg(s?))\b/i;
 const gramRegEx = /\b(gram(s?)|g(s?))\b/i;
 
 //convert ingredient amount from us to metric
-module.exports = function formatIngredientList(ingredients) {
+const formatIngredientList = ingredients => {
   //map over the ingredietns array
   // create a formated list
   let formatedList = ingredients.map(ingredient => {
@@ -101,3 +101,5 @@ module.exports = function formatIngredientList(ingredients) {
 
   return formatedList;
 };
+
+export default formatIngredientList;

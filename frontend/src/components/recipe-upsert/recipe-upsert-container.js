@@ -6,34 +6,24 @@ import {
   formValueSelector,
   change
 } from "redux-form";
+import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { createRecipe } from "../../actions/recipeActions";
+import { createRecipe, toggleEditRecipe } from "../../actions/recipeActions";
 import Header from "./header";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Categories from "./categories";
 import Keywords from "./keywords";
 import Input from "../form-inputs/input";
+import Loading from "../loading";
 import { capitalize, titleParse } from "./utils/input-parse";
 import styles from "./recipe-upsert.module.scss";
 
 const RecipeUpsert = props => {
-  const handleSubmit = values => {
-    const newRecipe = {
-      ...values,
-      created_by: props.auth.user.user_id
-    };
-    props.createRecipe(newRecipe, props.history);
-  };
-
   // onImageChange(event) {
   //   console.log(event.target.files[0]);
   // }
-  // handleSubmit = e => {
-  //   // maybe get the created_by user id from the backend after it ahs been
-  //   e.preventDefault();
-  // };
 
   const handleKeyDown = e => {
     if (e.target.type !== "textarea" && e.key === "Enter") {
@@ -41,23 +31,20 @@ const RecipeUpsert = props => {
     }
   };
 
-  function handleChange(e) {
-    console.log(e.target.files[0]);
-    // const {
-    //   input: { onChange }
-    // } = thisprops;
-    return e.target.files[0];
-  }
+  // function handleChange(e) {
+  //   console.log(e.target.files[0]);
+  //   // const {
+  //   //   input: { onChange }
+  //   // } = thisprops;
+  //   return e.target.files[0];
+  // }
+
   return (
     <div>
-      <Header
-        onBackClick={props.history.goBack}
-        onSaveClick={props.handleSubmit(handleSubmit)}
-      />
       <form
         className={styles.form}
         onKeyDown={handleKeyDown}
-        onSubmit={props.handleSubmit(handleSubmit)}
+        onSubmit={props.handleSubmit(props.onSubmit)}
       >
         <Field
           name="title"
@@ -81,31 +68,31 @@ const RecipeUpsert = props => {
         <Categories categories={props.categories} change={props.change} />
         <Keywords keywords={props.keywords} change={props.change} />
         <button className={styles.submitBtn} type="submit">
-          Save Recipe
+          {props.submitText}
         </button>
       </form>
     </div>
   );
 };
 
+RecipeUpsert.propTypes = {
+  initialValues: PropTypes.object.isRequired,
+  destroyOnUnmount: PropTypes.bool,
+  submitText: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired
+};
+
 const selector = formValueSelector("newRecipe");
 
 const mapSateToProps = state => {
   return {
-    auth: state.auth,
     keywords: selector(state, "keywords"),
     categories: selector(state, "categories")
   };
 };
 
 export default reduxForm({
-  form: "newRecipe",
-  destroyOnUnmount: false,
-  initialValues: {
-    privateRecipe: false,
-    categories: [],
-    keywords: []
-  }
+  form: "newRecipe"
 })(
   withRouter(
     connect(

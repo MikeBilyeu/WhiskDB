@@ -2,15 +2,15 @@ import React from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import Whiskdb from "../../assets/images/whiskdb.png";
-import Edit from "./edit";
 import Header from "./header";
 import RecipeDetails from "./RecipeDetails";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Rate from "./rate";
 import Share from "./share";
-import { getRecipe } from "../../actions/recipeActions";
+import { getRecipe, submitEditRecipe } from "../../actions/recipeActions";
 import Loading from "../loading";
+import RecipeUpsert from "../recipe-upsert";
 import "./recipe.scss";
 
 class Recipe extends React.Component {
@@ -26,6 +26,10 @@ class Recipe extends React.Component {
         : ``;
     const minutes = totalMinutes % 60 !== 0 ? `${totalMinutes % 60}min` : ``;
     return `${hours} ${minutes}`;
+  };
+
+  handleSubmit = values => {
+    this.props.submitEditRecipe(values);
   };
 
   render() {
@@ -45,9 +49,37 @@ class Recipe extends React.Component {
     }
 
     if (editRecipe) {
-      return <Edit />;
+      const {
+        title,
+        servings,
+        ingredients,
+        directions,
+        footnote,
+        categories,
+        keywords
+      } = this.props.recipeData.recipe;
+
+      const initialValues = {
+        privateRecipe: false,
+        title,
+        servings,
+        ingredients,
+        directions,
+        footnote,
+        categories,
+        keywords
+      };
+      console.log(this.props.recipeData.recipe);
+
+      return (
+        <RecipeUpsert
+          initialValues={initialValues}
+          submitText="Save Changes"
+          onSubmit={this.handleSubmit}
+        />
+      );
     }
-    //<img className="whiskdb-logo" src={Whiskdb} alt="Whiskdb logo" />
+
     return (
       <div className="recipe">
         <Header recipe_id={recipe_id} user_id={user_id} />
@@ -82,7 +114,7 @@ const mapStateToProps = state => ({
 });
 Recipe = connect(
   mapStateToProps,
-  { getRecipe }
+  { getRecipe, submitEditRecipe }
 )(Recipe);
 
 export default withRouter(Recipe);

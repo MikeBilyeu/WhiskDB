@@ -4,6 +4,7 @@ import { reduxForm, isDirty } from "redux-form";
 import { Redirect } from "react-router-dom";
 import Header from "./header";
 import { getRecipe, submitEditRecipe } from "../../../actions/recipeActions";
+import RecipeUpsert from "../../recipe-upsert";
 import Loading from "../../loading";
 
 class Edit extends React.Component {
