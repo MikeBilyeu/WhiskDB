@@ -17,16 +17,18 @@
 }
 
 .create-recipe-btn {
-  border: solid $primary-color 0.05rem;
+  border: solid lightColor(medium) 0.09rem;
+  border-radius: 0.5rem;
   cursor: pointer;
-  color: $primary-color;
+  color: darkColor(medium);
+  font-weight: 900;
+  background-color: #fff;
   width: 75%;
   min-width: 18rem;
-  max-width: 25rem;
+  max-width: 20rem;
   margin: 2rem auto;
   padding: 0.6rem 5rem;
   fontweight: bold;
-  border-radius: 10rem;
   text-align: center;
   &:hover {
     opacity: 0.8;

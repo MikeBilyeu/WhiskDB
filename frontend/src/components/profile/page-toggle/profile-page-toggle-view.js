@@ -8,13 +8,16 @@ const PageToggle = ({ page, onClick, numRecipesSaved, numRecipesPosted }) => {
   const myRecipesActive = page === "myRecipes" ? "active" : "";
   return (
     <div className="page-toggle">
-      <Button className={`btn ${savedActive}`} onClick={() => onClick("saved")}>
+      <Button
+        className={`btn saved ${savedActive}`}
+        onClick={() => onClick("saved")}
+      >
         <div className="btn-num">{numRecipesSaved}</div>
         <div>Saved</div>
       </Button>
 
       <Button
-        className={`btn ${myRecipesActive}`}
+        className={`btn posted ${myRecipesActive}`}
         onClick={() => onClick("myRecipes")}
       >
         <div className="btn-num">{numRecipesPosted}</div>

@@ -36,7 +36,11 @@ class Profile extends React.Component {
   }
 
   handleClick = page => {
-    this.setState({ page });
+    this.setState(prevState => {
+      if (prevState.page !== page) {
+        return { page };
+      }
+    });
   };
 
   render() {

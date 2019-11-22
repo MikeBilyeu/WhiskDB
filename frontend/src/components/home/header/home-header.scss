@@ -20,17 +20,12 @@
       grid-area: whisk;
       justify-self: center;
     }
-
-    .sort-icon {
-      width: 1.2rem;
-      padding: 0;
-    }
   }
 }
 
 .filter-btn {
   border: solid lightColor(medium) 0.05rem;
-  border-radius: 50rem;
+  border-radius: 0.5rem;
   outline: none;
   cursor: pointer;
   font-size: 0.9rem;
@@ -42,6 +37,7 @@
   max-width: 20rem;
   place-self: center;
   color: darkColor(medium);
+  font-weight: bold;
 }
 
 .filter-btn.filter-active {

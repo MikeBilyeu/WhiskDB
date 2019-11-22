@@ -2,13 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { ReactComponent as WhiskIcon } from "../../../assets/images/WhiskIcon.svg";
+import SortButton from "../../sort-button";
 import userPhoto from "../../../assets/images/user-photo.jpg";
 import "./profile-header.scss";
 
 const Header = ({ username, fullName, ...props }) => {
   return (
     <div className="profile-header">
-      <h2 className="username">{username}</h2>
+      <div className="top">
+        <SortButton />
+        <h2 className="username">{username}</h2>
+      </div>
       <div className="user-info">
         <Link className="edit-link" to="/profile/edit">
           <img src={userPhoto} />

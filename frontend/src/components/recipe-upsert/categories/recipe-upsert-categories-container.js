@@ -33,7 +33,6 @@ const Categories = props => {
   return (
     <div className={styles.categoriesContainer}>
       <h2>Categories</h2>
-      <label>Select Categories</label>
       <ul className={styles.list}>
         {recipeCategories.map((category, index, arr) => {
           const className =

@@ -46,6 +46,7 @@ const RecipeUpsert = props => {
     <div>
       {props.header}
       <form
+        action="#"
         className={styles.form}
         onKeyDown={handleKeyDown}
         onSubmit={props.handleSubmit(props.onSubmit)}

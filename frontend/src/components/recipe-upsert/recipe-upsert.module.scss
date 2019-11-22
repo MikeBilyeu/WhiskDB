@@ -1,7 +1,7 @@
 @import "../../assets/styles/variables";
 
 .form {
-  padding: 2rem 0.3rem;
+  padding: 2rem 0.6rem;
   @include grid-center;
   grid-gap: 3rem;
 
@@ -58,7 +58,6 @@
   h2 {
     text-align: center;
     color: darkColor(dark);
-    border-bottom: solid #ededed 0.05rem;
     padding: 0.5rem 0;
     width: 15rem;
     margin: auto;
@@ -80,7 +79,7 @@
 .categoriesContainer,
 .keywordsContainer {
   @include grid-center;
-  grid-gap: 2rem;
+  grid-gap: 1rem;
   width: 100%;
 }
 
@@ -138,7 +137,7 @@
   .time {
     @include grid-center;
     grid-template-columns: 1fr 1fr;
-    border-bottom: solid #464646 0.1rem;
+    border-bottom: solid darkColor(medium) 0.1rem;
     grid-gap: 1rem;
     label {
       @include grid-center;
@@ -159,7 +158,8 @@
   }
 
   .timeLabel {
-    margin-top: -2.5rem;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
   }
 
   .directions {
@@ -205,7 +205,7 @@
       @extend .btn;
       color: $primary-color;
       border-radius: 50rem;
-      border: solid $primary-color 0.05rem;
+      font-weight: bold;
 
       &:hover {
         opacity: 0.8;

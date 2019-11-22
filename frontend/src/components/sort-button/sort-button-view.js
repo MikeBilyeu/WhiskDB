@@ -6,7 +6,6 @@ import { abbreviateSortBy } from "./utils";
 import "./sort-button.scss";
 
 const SortButton = ({ sortBy, onClick, sortActive, ...props }) => {
-  console.log(sortActive);
   return (
     <Button onClick={onClick} className="arrow-style">
       <div>
