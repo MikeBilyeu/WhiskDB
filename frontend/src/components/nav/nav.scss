@@ -1,33 +1,40 @@
+@import "../../assets/styles/variables";
+
 .navBar {
   position: fixed;
   width: 100%;
   bottom: 0;
-  height: 3rem;
-  display: grid;
+  @include grid-center;
   grid-auto-flow: column;
-  place-items: center;
   user-select: none;
-  border-top: solid 0.01rem #e3e3e3;
-  background-color: rgba(256, 256, 256, 0.94);
+  border-top: solid 0.01rem lightColor(light);
+  background-color: rgba(256, 256, 256, 0.9);
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   z-index: 2;
 
   a {
     display: block;
-    width: 90%;
+    width: 100%;
     text-align: center;
+    line-height: 4.5rem;
     font-size: 0rem;
-    margin: 0.35rem;
+    margin: 0rem;
+    height: 3rem;
   }
 }
 
 .navIcon {
   width: 1.5rem;
+  path {
+    stroke-width: 0.2;
+    fill: darkColor(medium);
+    stroke: darkColor(medium);
+  }
 }
 
 .navActive path {
-  stroke-width: 1.5;
-  fill: #0172c4;
-  stroke: #0172c4;
+  stroke-width: 2;
+  fill: $primary-color;
+  stroke: $primary-color;
 }

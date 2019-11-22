@@ -6,9 +6,11 @@
     overflow: hidden;
     display: grid;
     align-items: center;
+    position: relative;
     grid-template-areas:
       "sort whisk search"
       "Diet . Meal";
+    grid-template-columns: 1fr 1fr 1fr;
     border-bottom: solid 0.01rem #e3e3e3;
     padding: 0.3rem 0.1rem 0 0.1rem;
     box-sizing: border-box;
@@ -21,7 +23,7 @@
 
     .sort-icon {
       width: 1.2rem;
-      padding-bottom: 0.1rem;
+      padding: 0;
     }
   }
 }
@@ -32,22 +34,23 @@
   outline: none;
   cursor: pointer;
   font-size: 0.9rem;
-  margin: 1rem 0.2rem;
+  margin: 0.7rem 0.2rem;
   padding: 0.5rem;
   opacity: 1;
   width: 95%;
   min-width: 7rem;
   max-width: 20rem;
   place-self: center;
+  color: darkColor(medium);
 }
 
 .filter-btn.filter-active {
   border: solid $primary-color 0.05rem;
-  color: #0172c4;
+  color: $primary-color;
 }
 
 .filter-btn.filter-select {
-  color: #0172c4;
+  color: $primary-color;
 }
 
 .filter-btn.diet {
@@ -64,12 +67,12 @@
   margin-left: 1rem;
   margin-top: 0.2rem;
   transition: all 0.2s ease-out;
-  fill: #e2e2e2;
+  fill: lightColor(medium);
 }
 
 .filter-arrow.filter-active {
   transform: rotate(90deg);
-  fill: #0172c4;
+  fill: $primary-color;
 }
 
 /* not working ios safari... color staying on after click */

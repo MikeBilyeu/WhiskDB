@@ -16,7 +16,6 @@ class Login extends Component {
 
   handleClick = e => {
     e.preventDefault();
-    console.log(e);
     this.setState(prevState => {
       return { showPassword: !prevState.showPassword };
     });

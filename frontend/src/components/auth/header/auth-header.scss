@@ -1,26 +1,32 @@
+@import "../../../assets/styles/variables";
+
 .auth-header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   place-items: end center;
   height: 3rem;
-  border-bottom: solid #e3e3e3 0.01rem;
+  border-bottom: solid lightColor(light) 0.01rem;
   width: 100%;
+  margin-bottom: 2rem;
 
   .button {
     display: block;
     width: 8rem;
     text-align: center;
     cursor: pointer;
-    color: #0172c4;
-    border-bottom: solid #fff 2px;
+    color: $primary-color;
+    border: none;
+    outline: none;
+    border-bottom: none;
     padding: 0.2rem 0.7rem;
     margin-bottom: 0.1rem;
+    font-size: 1rem;
   }
 
   .active {
-    font-weight: bold;
-    color: inherit;
+    color: darkColor(dark);
     cursor: inherit;
-    border-bottom: solid #707070 0.1rem;
+    margin-bottom: 0rem;
+    border-bottom: solid darkColor(medium) 0.1rem;
   }
 }
