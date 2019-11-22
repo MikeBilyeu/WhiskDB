@@ -11,7 +11,7 @@ const getIngredientListMetric = (
     // Adjust the amount if the servings is adjusted
     const amount = ingredientObj.amount * (convertedServings / servings);
 
-    if (ingredientObj.unit === "milliliter") {
+    if (ingredientObj.unit === "ml") {
       let roundedAmount = amount <= 0.625 ? 0.63 : 0;
       let remainder = amount;
       // max and min threshold

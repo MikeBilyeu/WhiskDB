@@ -55,21 +55,21 @@ const formatIngredientList = ingredients => {
       switch (true) {
         case cupRegEx.test(unit):
           decimalAmount *= 237;
-          metricUnit = "milliliter";
+          metricUnit = "ml";
           break;
         case tablespoonRegEx.test(unit):
         case TRegEx.test(unit):
           decimalAmount *= 15;
-          metricUnit = "milliliter";
+          metricUnit = "ml";
           break;
         case teaspoonRegEx.test(unit):
         case TRegEx.test(unit):
           decimalAmount *= 5;
-          metricUnit = "milliliter";
+          metricUnit = "ml";
           break;
         case literRegEx.test(unit):
           decimalAmount *= 1000;
-          metricUnit = "milliliter";
+          metricUnit = "ml";
           break;
         case ounceRegEx.test(unit):
           decimalAmount *= 28;

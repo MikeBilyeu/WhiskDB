@@ -7,7 +7,7 @@ const getIngredientListUs = metricIngredients => {
     let remainder = ingredientObj.amount;
     let amounts = [];
 
-    if (ingredientObj.unit === "milliliter") {
+    if (ingredientObj.unit === "ml") {
       while (remainder >= 0.63) {
         for (let i = 0; i < metricIncrements.length; i++) {
           if (remainder >= metricIncrements[i]) {

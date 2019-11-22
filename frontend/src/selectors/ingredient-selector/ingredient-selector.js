@@ -1,8 +1,8 @@
 import { createSelector } from "reselect";
-import formatIngredientList from "./formatIngredientList";
 
-import getIngredientListUs from "./getIngredientListUs";
-import getIngredientListMetric from "./getIngredientListMetric";
+import formatIngredientList from "./utils/formatIngredientList";
+import getIngredientListUs from "./utils/getIngredientListUs";
+import getIngredientListMetric from "./utils/getIngredientListMetric";
 
 const unitSelector = state => state.recipe.unit;
 const ingredientListSelector = state => state.recipe.recipe.ingredients;
@@ -15,7 +15,7 @@ const convertIngredients = (
   convertedServings,
   ingredientList
 ) => {
-  // converts whatever format ingredients are into a metric format
+  // converts ingredients into a metric objects "amounts not rounded"
   ingredientList = formatIngredientList(ingredientList);
 
   const metricIngredientList = getIngredientListMetric(
