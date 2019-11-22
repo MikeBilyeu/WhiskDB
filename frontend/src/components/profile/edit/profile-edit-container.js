@@ -11,6 +11,7 @@ import { usernameValidate } from "../../auth/utils/async-validation";
 import Input from "../../form-inputs/input";
 import Header from "./header";
 import Delete from "./delete";
+import "./profile-edit.scss";
 
 class Edit extends React.Component {
   handleSubmit = values => {

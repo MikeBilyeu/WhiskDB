@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../button";
 import "./auth-header.scss";
 
-const Header = (page, onClick) => {
+const Header = ({ page, onClick }) => {
   return (
     <div className="auth-header">
       <Button

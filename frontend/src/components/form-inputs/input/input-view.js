@@ -6,7 +6,8 @@ const Input = ({
   placeholder,
   type = "text",
   label,
-  className
+  className,
+  ...props
 }) => {
   return (
     <label>
@@ -18,6 +19,7 @@ const Input = ({
         placeholder={placeholder}
         className={className}
       />
+      {props.children}
       {touched && error && <div className="error">*{error}</div>}
     </label>
   );

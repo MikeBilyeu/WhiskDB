@@ -1,33 +1,9 @@
 @import "../../assets/styles/variables";
 
-.header {
-  @include grid-center;
-  grid-template-columns: 4.2rem 1fr;
-  border-bottom: solid #e2e2e2 0.01rem;
-  .back-btn {
-    width: 3.5rem;
-    padding: 1rem;
-    cursor: pointer;
-  }
-
-  h1 {
-    white-space: nowrap;
-    margin: 1rem 0;
-    margin-right: 4.2rem;
-    font-size: 1.6rem;
-    color: darkColor(medium);
-    text-align: center;
-  }
-}
-
 .form {
   padding: 2rem 0.3rem;
   @include grid-center;
   grid-gap: 3rem;
-
-  .error {
-    color: $error-color;
-  }
 
   label {
     color: darkColor(light);
@@ -50,7 +26,7 @@
     &::placeholder {
       color: darkColor(light);
     }
-    border: solid darkColor(light) 0.08rem;
+    border: solid lightColor(light) 0.08rem;
     border-radius: 0.2rem;
     resize: none;
   }
@@ -92,6 +68,7 @@
 
 .title {
   font-size: 1.5rem !important;
+  margin-top: 3rem;
   font-weight: fontWeight(normal);
   &::placeholder {
     opacity: 0.2;

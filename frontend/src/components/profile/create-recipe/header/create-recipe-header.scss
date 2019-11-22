@@ -1,0 +1,26 @@
+@import "../../../../assets/styles/variables";
+
+.header {
+  @include grid-center;
+  grid-template-columns: 4.2rem 1fr;
+  border-bottom: solid lightColor(light) 0.01rem;
+  position: fixed;
+  background-color: #fff;
+  width: 100%;
+  z-index: 1;
+
+  .back-btn {
+    width: 3rem;
+    padding: 1rem;
+    cursor: pointer;
+  }
+
+  h1 {
+    white-space: nowrap;
+    margin: 0.7rem 0;
+    margin-right: 4.2rem;
+    font-size: 1.6rem;
+    color: darkColor(medium);
+    text-align: center;
+  }
+}

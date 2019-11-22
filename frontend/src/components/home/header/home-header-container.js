@@ -37,7 +37,10 @@ const Header = ({
       <img className="whisk" src={Whiskdb} alt="Whiskdb logo" />
       <SearchBar />
 
-      <Button className={dietBtnStyle}>
+      <Button
+        className={dietBtnStyle}
+        onClick={() => toggleFilterButton("Diet")}
+      >
         {diet === "None" ? "Diet" : diet}
 
         <span>

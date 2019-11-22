@@ -1,6 +1,7 @@
+@import "../../assets/styles/variables.scss";
 .auth-form {
   display: grid;
-  grid-gap: 1.5rem;
+  grid-gap: 2rem;
   padding: 0.5rem;
   color: #313131;
   margin: 0 auto;
@@ -14,40 +15,73 @@
 
   label {
     font-weight: bold;
-  }
+    position: relative;
+    // @include grid-center;
+    display: grid;
+    text-align: start;
+    input {
+      all: unset;
+      box-sizing: border-box;
+      width: 100%;
+      border-radius: 10rem;
+      border: solid lightColor(medium) 0.05rem;
+      background-color: #fff;
+      padding: 0.6rem 1rem;
+      color: #484848;
+      font-size: 1.3rem;
+      font-weight: normal;
+      margin-top: 0.3rem;
+      cursor: text;
+      &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #000;
+        opacity: 0.2; /* Firefox */
+      }
+    }
+    .password-input {
+      width: calc(100% - 4.5rem);
+      border-radius: 10rem 0 0 10rem;
+    }
 
-  input {
-    all: unset;
-    box-sizing: border-box;
-    width: 100%;
-    border-radius: 10rem;
-    border: solid #bfbfbf 0.05rem;
-    background-color: #fff;
-    padding: 0.6rem 1rem;
-    color: #484848;
-    font-size: 1.3rem;
-    font-weight: normal;
-    margin-top: 0.5rem;
-    cursor: text;
+    .show-hide {
+      margin: 0.2rem 0 0 0;
+      height: 2.8rem;
+      width: 5rem;
+      display: inline;
+      justify-self: end;
+      border: solid lightColor(medium) 0.05rem;
+      background-color: lightColor(light);
+      color: darkColor(medium);
+      font-weight: 400;
+      text-align: center;
+      font-size: 1rem;
+      border-radius: 5rem 50rem 50rem 5rem;
+      outline: none;
+      z-index: 1;
+      position: absolute;
+      top: 1.23rem;
+      right: 0rem;
+    }
 
-    &::placeholder {
-      /* Chrome, Firefox, Opera, Safari 10.1+ */
-      color: #000;
-      opacity: 0.2; /* Firefox */
+    .error {
+      color: $error-color;
+      justify-self: start;
     }
   }
 
   button {
     border: none;
+    outline: none;
     cursor: pointer;
     font-size: 1.3rem;
     font-weight: bold;
     color: #fff;
     border-radius: 10rem;
     background-color: #0172c4;
-    height: 3rem;
+    height: 2.7rem;
     margin-top: 2rem;
     width: 80%;
+    max-width: 20rem;
     place-self: center;
   }
 }

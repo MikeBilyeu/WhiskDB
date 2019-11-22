@@ -14,7 +14,9 @@ class Login extends Component {
     };
   }
 
-  handleClick = () => {
+  handleClick = e => {
+    e.preventDefault();
+    console.log(e);
     this.setState(prevState => {
       return { showPassword: !prevState.showPassword };
     });
@@ -40,17 +42,21 @@ class Login extends Component {
           normalize={lower}
           label="Email"
         />
-        <Button onClick={this.handleClick}>
-          {this.state.showPassword ? "hide" : "show"}
-        </Button>
+
         <Field
           name="password"
           component={Input}
           inputId="password"
           placeholder="Enter your password"
           label="Password"
+          className="password-input"
           type={this.state.showPassword ? "text" : "password"}
-        />
+        >
+          <Button className="show-hide" onClick={this.handleClick}>
+            {this.state.showPassword ? "hide" : "show"}
+          </Button>
+        </Field>
+
         <button type="submit">Log in</button>
       </form>
     );

@@ -6,7 +6,7 @@ import { validateSignup } from "../utils/validation";
 import asyncValidate from "../utils/async-validation";
 import Input from "../../form-inputs/input";
 import Button from "../../button";
-import "./auth-signup.scss";
+import "../auth.scss";
 
 class Signup extends Component {
   constructor(props) {
@@ -16,7 +16,8 @@ class Signup extends Component {
     };
   }
 
-  handleClick = () => {
+  handleClick = e => {
+    e.preventDefault();
     this.setState(prevState => {
       return { showPassword: !prevState.showPassword };
     });
@@ -27,7 +28,7 @@ class Signup extends Component {
 
     return (
       <form
-        className="auth-form signup"
+        className="auth-form"
         onSubmit={this.props.handleSubmit(this.props.registerUser)}
       >
         <h1>Make an Account. It's Easy!</h1>
@@ -46,9 +47,7 @@ class Signup extends Component {
           normalize={lower}
           label="Email"
         />
-        <Button onClick={this.handleClick}>
-          {this.state.showPassword ? "hide" : "show"}
-        </Button>
+
         <Field
           name="password"
           component={Input}
@@ -56,7 +55,11 @@ class Signup extends Component {
           placeholder="Enter a password"
           label="Password"
           type={this.state.showPassword ? "text" : "password"}
-        />
+        >
+          <Button className="show-hide" onClick={this.handleClick}>
+            {this.state.showPassword ? "hide" : "show"}
+          </Button>
+        </Field>
         <button type="submit">Sign up</button>
       </form>
     );
