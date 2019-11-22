@@ -9,6 +9,7 @@ import Directions from "./directions";
 import Rate from "./rate";
 import Share from "./share";
 import { getRecipe, submitEditRecipe } from "../../actions/recipeActions";
+import convertTime from "../../selectors/time-selector";
 import Loading from "../loading";
 import Edit from "./edit";
 import "./recipe.scss";
@@ -19,14 +20,6 @@ class Recipe extends React.Component {
     const user_id = this.props.auth.user.user_id || null;
     this.props.getRecipe(recipe_id, user_id);
   }
-  formatMinsToHours = totalMinutes => {
-    const hours =
-      Math.floor(totalMinutes / 60) !== 0
-        ? `${Math.floor(totalMinutes / 60)}hr`
-        : ``;
-    const minutes = totalMinutes % 60 !== 0 ? `${totalMinutes % 60}min` : ``;
-    return `${hours} ${minutes}`;
-  };
 
   handleSubmit = values => {
     this.props.submitEditRecipe(values);
@@ -38,7 +31,7 @@ class Recipe extends React.Component {
       shareOpen,
       isFetching,
       editRecipe,
-      recipe: { image_url, directions, footnote, total_time_mins, num_reviews }
+      recipe: { image_url, directions, footnote, time, num_reviews }
     } = this.props.recipeData;
     const recipe_id = this.props.match.params.recipe_id;
     const user_id = this.props.auth.user.user_id || null;
@@ -51,6 +44,7 @@ class Recipe extends React.Component {
     if (editRecipe) {
       return <Edit />;
     }
+    console.log(this.props.recipeData);
 
     return (
       <div className="recipe">
@@ -69,11 +63,7 @@ class Recipe extends React.Component {
         <div className="card">
           <RecipeDetails />
           <Ingredients />
-          <Directions
-            directions={directions}
-            time={this.formatMinsToHours(total_time_mins)}
-            footnote={footnote}
-          />
+          <Directions directions={directions} time={time} footnote={footnote} />
         </div>
       </div>
     );
@@ -81,7 +71,10 @@ class Recipe extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  recipeData: state.recipe,
+  recipeData: {
+    ...state.recipe,
+    recipe: { ...state.recipe.recipe, time: convertTime(state) }
+  },
   auth: state.auth
 });
 Recipe = connect(
