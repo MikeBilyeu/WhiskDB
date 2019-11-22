@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import UnitsAndServings from "../units-servings";
-import convertIngredients from "../../../selectors/ingredientsSelector";
+import convertIngredients from "../../../selectors/ingredient-selector";
 
 class Ingredient extends React.Component {
   constructor(props) {

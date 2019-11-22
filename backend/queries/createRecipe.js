@@ -9,8 +9,6 @@ const pool = new Pool({
   port: keys.port
 });
 
-// const formatIngredientList = require("./formatIngredientList");
-
 // Load input validation
 const validateRecipeInput = require("../validation/recipe");
 
@@ -21,7 +19,6 @@ const createRecipe = (request, response) => {
     ingredients,
     directions,
     footnote,
-    privateRecipe,
     categories,
     keywords
   } = request.body;
@@ -39,25 +36,28 @@ const createRecipe = (request, response) => {
   const timeMinutes = time.minutes > 0 ? parseInt(time.minutes) : 0;
   const total_time_mins = timeHours * 60 + timeMinutes;
 
-  // let metricIngredients = formatIngredientList(ingredients);
-
   pool.connect().then(client => {
     let recipe_id = null;
     return client
       .query(
         `INSERT INTO recipes
-        (created_by, title, servings, total_time_mins, footnote,
-        private, directions, ingredients, keywords, categories, document_vectors)
-        VALUES ($1, CAST($2 AS VARCHAR), $3, $4, $5, $6, $7, $8,
-        CAST($9 AS VARCHAR[]), $10, (to_tsvector($2) ||
-        to_tsvector(array_to_string($9, ' ')))) RETURNING recipe_id`,
+        (
+          created_by, title, servings, total_time_mins,
+          footnote, directions, ingredients, keywords,
+          categories, document_vectors
+        )
+        VALUES (
+          $1, CAST($2 AS VARCHAR), $3, $4, $5, $6, $7,
+          CAST($8 AS VARCHAR[]), $9, (to_tsvector($2) ||
+          to_tsvector(array_to_string($8, ' ')))
+        )
+        RETURNING recipe_id`,
         [
           created_by,
           title,
           servings,
           total_time_mins,
           footnote,
-          privateRecipe,
           directions,
           ingredients,
           keywords,
@@ -69,8 +69,8 @@ const createRecipe = (request, response) => {
         categories.forEach(category => {
           client.query(
             `INSERT INTO recipes_join_categories (recipe, category)
-               VALUES ($1, (SELECT category_id FROM categories
-               WHERE category_name = $2))`,
+            VALUES ($1, (SELECT category_id FROM categories
+              WHERE category_name = $2))`,
             [recipe_id, category]
           );
         });

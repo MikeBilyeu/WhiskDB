@@ -3,7 +3,6 @@ export const USER_LOADING = "USER_LOADING";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const GET_RECIPE = "GET_RECIPE";
 export const GET_RECIPE_REQUEST = "GET_RECIPE_REQUEST";
-export const STAR_CLICKED = "STAR_CLICKED";
 export const TOGGLE_REVIEW = "TOGGLE_REVIEW";
 export const SAVE_RECIPE = "SAVE_RECIPE";
 export const GET_SAVED_RECIPES = "GET_SAVED_RECIPES";

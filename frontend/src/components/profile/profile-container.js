@@ -9,14 +9,13 @@ import {
   createRecipe
 } from "../../actions/recipeActions";
 import { getUser } from "../../actions/authActions";
-import { ReactComponent as Arrow } from "../../assets/images/arrowLeft.svg";
 import Header from "./header";
 import PageToggle from "./page-toggle";
 import RecipeContainer from "./recipes";
 import SortBy from "./SortBy";
 import SortButton from "../sort-button";
 import Edit from "./edit";
-import RecipeUpsert from "../recipe-upsert";
+import CreateRecipe from "./create-recipe";
 import "./profile.scss";
 
 class Profile extends React.Component {
@@ -40,10 +39,6 @@ class Profile extends React.Component {
     this.setState({ page });
   };
 
-  handleSubmit = values => {
-    this.props.createRecipe(values, this.props.history);
-  };
-
   render() {
     const page = this.state.page;
     const username = this.props.userData.username.toLowerCase();
@@ -58,21 +53,7 @@ class Profile extends React.Component {
     return (
       <Switch>
         <Route path="/profile/edit" component={Edit} />
-        <Route
-          path="/profile/create-recipe"
-          component={() => (
-            <RecipeUpsert
-              initialValues={{
-                privateRecipe: false,
-                categories: [],
-                keywords: []
-              }}
-              destroyOnUnmount={false}
-              submitText="Save Recipe"
-              onSubmit={this.handleSubmit}
-            />
-          )}
-        />
+        <Route path="/profile/create-recipe" component={CreateRecipe} />
         <Route
           component={() => {
             return (

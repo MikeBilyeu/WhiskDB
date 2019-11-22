@@ -9,8 +9,6 @@ import {
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { createRecipe, toggleEditRecipe } from "../../actions/recipeActions";
-import Header from "./header";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Categories from "./categories";
@@ -24,6 +22,8 @@ const RecipeUpsert = props => {
   // onImageChange(event) {
   //   console.log(event.target.files[0]);
   // }
+
+  // const { isFetching } = props.recipeData;
 
   const handleKeyDown = e => {
     if (e.target.type !== "textarea" && e.key === "Enter") {
@@ -39,8 +39,12 @@ const RecipeUpsert = props => {
   //   return e.target.files[0];
   // }
 
+  // if (isFetching) {
+  //   return <Loading />;
+  // }
   return (
     <div>
+      {props.header}
       <form
         className={styles.form}
         onKeyDown={handleKeyDown}
@@ -86,6 +90,7 @@ const selector = formValueSelector("newRecipe");
 
 const mapSateToProps = state => {
   return {
+    recipeData: state.recipe,
     keywords: selector(state, "keywords"),
     categories: selector(state, "categories")
   };
@@ -93,11 +98,4 @@ const mapSateToProps = state => {
 
 export default reduxForm({
   form: "newRecipe"
-})(
-  withRouter(
-    connect(
-      mapSateToProps,
-      { createRecipe }
-    )(RecipeUpsert)
-  )
-);
+})(withRouter(connect(mapSateToProps)(RecipeUpsert)));

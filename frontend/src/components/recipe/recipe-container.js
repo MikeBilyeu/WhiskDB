@@ -10,7 +10,7 @@ import Rate from "./rate";
 import Share from "./share";
 import { getRecipe, submitEditRecipe } from "../../actions/recipeActions";
 import Loading from "../loading";
-import RecipeUpsert from "../recipe-upsert";
+import Edit from "./edit";
 import "./recipe.scss";
 
 class Recipe extends React.Component {
@@ -49,35 +49,7 @@ class Recipe extends React.Component {
     }
 
     if (editRecipe) {
-      const {
-        title,
-        servings,
-        ingredients,
-        directions,
-        footnote,
-        categories,
-        keywords
-      } = this.props.recipeData.recipe;
-
-      const initialValues = {
-        privateRecipe: false,
-        title,
-        servings,
-        ingredients,
-        directions,
-        footnote,
-        categories,
-        keywords
-      };
-      console.log(this.props.recipeData.recipe);
-
-      return (
-        <RecipeUpsert
-          initialValues={initialValues}
-          submitText="Save Changes"
-          onSubmit={this.handleSubmit}
-        />
-      );
+      return <Edit />;
     }
 
     return (
