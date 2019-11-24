@@ -38,6 +38,7 @@
   place-self: center;
   color: darkColor(medium);
   font-weight: bold;
+  position: relative;
 }
 
 .filter-btn.filter-active {
@@ -60,8 +61,8 @@
 .filter-arrow {
   width: 0.8rem;
   position: absolute;
-  margin-left: 1rem;
-  margin-top: 0.2rem;
+  top: 0.7rem;
+  right: 0.35rem;
   transition: all 0.2s ease-out;
   fill: lightColor(medium);
 }
