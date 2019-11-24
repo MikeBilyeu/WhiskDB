@@ -5,9 +5,9 @@ import { ReactComponent as SortIcon } from "../../assets/images/SortIcon.svg";
 import { abbreviateSortBy } from "./utils";
 import "./sort-button.scss";
 
-const SortButton = ({ sortBy, onClick, sortActive, ...props }) => {
+const SortButton = ({ sortBy, onClick, sortActive, className, ...props }) => {
   return (
-    <Button onClick={onClick} className="arrow-style">
+    <Button onClick={onClick} className={`arrow-style ${className}`}>
       <div>
         <SortIcon
           style={{

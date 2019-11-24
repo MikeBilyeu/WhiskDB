@@ -13,7 +13,7 @@ checkAuthToken();
 
 const App = props => {
   return (
-    <div className="paddingBottom">
+    <div id="mainContainer">
       <Router>
         <ScrollUp>
           <Route exact path="/" component={Home} />

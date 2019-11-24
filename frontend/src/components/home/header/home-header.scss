@@ -11,7 +11,7 @@
       "sort whisk search"
       ". Meal .";
     grid-template-columns: 1fr 1fr 1fr;
-    border-bottom: solid 0.01rem #e3e3e3;
+    border-bottom: solid 0.01rem lightColor(light);
     padding: 0.3rem 0.1rem 0 0.1rem;
     box-sizing: border-box;
 
@@ -22,6 +22,9 @@
     }
   }
 }
+.sort-btn {
+  grid-area: sort;
+}
 
 .filter-btn {
   border: solid lightColor(medium) 0.05rem;
@@ -29,12 +32,11 @@
   outline: none;
   cursor: pointer;
   font-size: 0.9rem;
-  margin: 0.7rem 0.2rem;
+  margin: 0.4rem;
   padding: 0.5rem;
-  opacity: 1;
-  width: 95%;
+  width: 100%;
   min-width: 7rem;
-  max-width: 20rem;
+  max-width: 12rem;
   place-self: center;
   color: darkColor(medium);
   font-weight: bold;

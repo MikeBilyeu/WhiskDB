@@ -21,8 +21,8 @@
     all: unset;
     font-size: 1rem;
     caret-color: #676767;
-    color: #313131;
-    -webkit-text-fill-color: #313131;
+    color: darkColor(dark);
+    -webkit-text-fill-color: darkColor(dark);
     opacity: 1; /* required on iOS */
 
     &::placeholder {
@@ -34,9 +34,6 @@
 }
 
 .searchBar.search-active {
-  margin-right: 0.1rem;
-  // border: solid #e2e2e2 1px;
-  /* border: solid #0172c4 1px; */
   background-color: lightColor(medium);
   grid-column: 1 / 4;
   animation: expand 0.2s linear forwards;
@@ -47,7 +44,7 @@
     width: 2.2rem;
   }
   100% {
-    width: calc(100% - 2.5rem);
+    width: 100%;
   }
 }
 @-moz-keyframes expand {
@@ -55,7 +52,7 @@
     width: 2.2rem;
   }
   100% {
-    width: calc(100% - 2.5rem);
+    width: 100%;
   }
 }
 @-o-keyframes expand {
@@ -63,7 +60,7 @@
     width: 2.2rem;
   }
   100% {
-    width: calc(100% - 2.5rem);
+    width: 100%;
   }
 }
 @keyframes expand {
@@ -72,6 +69,6 @@
   }
 
   100% {
-    width: calc(100% - 2.5rem);
+    width: 100%;
   }
 }

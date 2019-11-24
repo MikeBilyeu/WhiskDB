@@ -33,6 +33,7 @@ const Header = ({
         onClick={() => toggleFilterButton("Sort")}
         sortActive={sortBtnActive}
         sortBy={sortBy}
+        className="sort-btn"
       />
       <img className="whisk" src={Whiskdb} alt="Whiskdb logo" />
       <SearchBar />

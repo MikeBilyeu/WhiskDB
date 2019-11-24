@@ -13,6 +13,7 @@ body {
   font-family: Arial, sans-serif, times;
   height: 100%;
   width: 100%;
+  overscroll-behavior-y: none;
   -webkit-overflow-scrolling: touch;
   -webkit-text-size-adjust: 100%;
 }
@@ -27,6 +28,8 @@ a {
   text-decoration: none;
 }
 
-.paddingBottom {
+#mainContainer {
+  padding: 0;
+  width: 100%;
   padding-bottom: 4rem;
 }

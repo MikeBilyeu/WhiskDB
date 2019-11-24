@@ -28,13 +28,13 @@
   width: 1.5rem;
   path {
     stroke-width: 0.2;
-    fill: darkColor(medium);
-    stroke: darkColor(medium);
+    fill: darkColor(light);
+    stroke: darkColor(light);
   }
 }
 
 .navActive path {
   stroke-width: 2;
-  fill: $primary-color;
-  stroke: $primary-color;
+  fill: darkColor(dark);
+  stroke: darkColor(dark);
 }
