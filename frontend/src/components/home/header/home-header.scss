@@ -9,7 +9,7 @@
     position: relative;
     grid-template-areas:
       "sort whisk search"
-      "Diet . Meal";
+      ". Meal .";
     grid-template-columns: 1fr 1fr 1fr;
     border-bottom: solid 0.01rem #e3e3e3;
     padding: 0.3rem 0.1rem 0 0.1rem;
@@ -47,7 +47,7 @@
 }
 
 .filter-btn.filter-select {
-  color: $primary-color;
+  // color: $primary-color;
 }
 
 .filter-btn.diet {

@@ -38,17 +38,6 @@ const Header = ({
       <SearchBar />
 
       <Button
-        className={dietBtnStyle}
-        onClick={() => toggleFilterButton("Diet")}
-      >
-        {diet === "None" ? "Diet" : diet}
-
-        <span>
-          <Arrow className={dietArrowStyle} />
-        </span>
-      </Button>
-
-      <Button
         className={mealBtnStyle}
         onClick={() => toggleFilterButton("Meal")}
       >

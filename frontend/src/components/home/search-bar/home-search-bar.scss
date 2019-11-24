@@ -1,8 +1,10 @@
+@import "../../../assets/styles/variables";
+
 .searchBar {
   height: 2.3rem;
   grid-area: search;
   justify-self: end;
-  border-radius: 5rem;
+  border-radius: 0.5rem;
   z-index: 1;
   background-color: #fff;
   display: grid;
@@ -33,8 +35,9 @@
 
 .searchBar.search-active {
   margin-right: 0.1rem;
-  border: solid #e2e2e2 1px;
+  // border: solid #e2e2e2 1px;
   /* border: solid #0172c4 1px; */
+  background-color: lightColor(medium);
   grid-column: 1 / 4;
   animation: expand 0.2s linear forwards;
 }
