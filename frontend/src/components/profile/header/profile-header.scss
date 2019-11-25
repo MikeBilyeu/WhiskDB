@@ -2,37 +2,20 @@
 
 .profile-header {
   color: darkColor(medium);
-  .top {
-    padding-top: 0.5rem;
-    .arrow-style {
-      padding: 0.5rem;
-    }
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 2.5rem;
-    width: 100%;
-    z-index: 3;
-    @include grid-center;
-    grid-template-columns: 3rem 1fr 3rem;
-    background-color: #fff;
-    margin: 0;
-    .username {
-      margin: 0;
-      font-size: 1.1rem;
-    }
-  }
+  position: relative;
+  width: 100%;
 
   .user-info {
     @include grid-center;
+    grid-gap: 0.4rem;
     left: 0;
     width: 100%;
-    margin-top: 3rem;
+    top: 0;
     position: fixed;
     z-index: 0;
     padding: 0.5rem;
-
+    background-color: darkColor(dark);
+    padding-bottom: 3rem;
     img {
       width: 6rem;
       height: 6rem;
@@ -44,19 +27,39 @@
       font-size: 1.3rem;
       fontweight: 900;
       margin: 0;
-      margin-bottom: 1rem;
+      color: #fff;
     }
 
     .edit {
       color: $primary-color;
       font-size: 0.8rem;
-      margin: 0.3rem;
+      margin: 0;
     }
 
     .edit-link {
       @include grid-center;
       &:hover {
         opacity: 0.9;
+      }
+    }
+
+    .create-recipe-btn {
+      border: solid darkColor(light) 0.09rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.1rem;
+      background-color: darkColor(dark);
+      width: 75%;
+      min-width: 18rem;
+      max-width: 20rem;
+      margin: 0 auto;
+      padding: 0.6rem 5rem;
+      fontweight: bold;
+      text-align: center;
+      &:hover {
+        opacity: 0.8;
       }
     }
   }

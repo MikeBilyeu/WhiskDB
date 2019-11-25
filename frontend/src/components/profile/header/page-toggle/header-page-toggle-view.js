@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../../button";
-import "./profile-page-toggle.scss";
+import Button from "../../../button";
+import "./header-page-toggle.scss";
 
-const PageToggle = ({ page, onClick, numRecipesSaved, numRecipesPosted }) => {
+const PageToggle = ({ page, onClick }) => {
   const savedActive = page === "saved" ? "active" : "";
   const myRecipesActive = page === "myRecipes" ? "active" : "";
   return (
@@ -12,7 +12,6 @@ const PageToggle = ({ page, onClick, numRecipesSaved, numRecipesPosted }) => {
         className={`btn saved ${savedActive}`}
         onClick={() => onClick("saved")}
       >
-        <div className="btn-num">{numRecipesSaved}</div>
         <div>Saved</div>
       </Button>
 
@@ -20,7 +19,6 @@ const PageToggle = ({ page, onClick, numRecipesSaved, numRecipesPosted }) => {
         className={`btn posted ${myRecipesActive}`}
         onClick={() => onClick("myRecipes")}
       >
-        <div className="btn-num">{numRecipesPosted}</div>
         <div>Posted</div>
       </Button>
     </div>

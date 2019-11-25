@@ -1,0 +1,44 @@
+@import "../../../../assets/styles/variables";
+
+.page-toggle {
+  @include grid-center;
+  grid-auto-flow: column;
+  border-bottom: solid lightColor(light) 0.05rem;
+  position: relative;
+  top: 13.5rem;
+  background-color: #fff;
+  width: 100%;
+  z-index: 2;
+  padding: 0rem 0;
+  padding-bottom: 0;
+
+  .btn {
+    outline: none;
+    background-color: #fff;
+    position: relative;
+    border: none;
+    display: grid;
+    grid-auto-flow: row;
+    cursor: pointer;
+    padding: 3rem 2rem;
+    padding-bottom: 0.3rem;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  // .saved {
+  //   justify-self: start;
+  //   margin-left: 1.5rem;
+  // }
+  // .posted {
+  //   justify-self: end;
+  //   margin-right: 1.5rem;
+  // }
+  .active {
+    border-bottom: solid darkColor(dark) 0.1rem;
+    bottom: 0rem;
+    opacity: 1;
+  }
+}

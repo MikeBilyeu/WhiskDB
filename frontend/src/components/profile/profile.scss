@@ -8,29 +8,13 @@
   background-color: #fff;
   width: 100%;
   z-index: 1;
+  margin-top: 10rem;
+  padding-top: 4rem;
+
   ul {
     @include grid-center;
     grid-gap: 2.5rem;
     padding: 0;
     list-style-type: none;
-  }
-}
-
-.create-recipe-btn {
-  border: solid lightColor(medium) 0.09rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  color: darkColor(medium);
-  font-weight: 900;
-  background-color: #fff;
-  width: 75%;
-  min-width: 18rem;
-  max-width: 20rem;
-  margin: 2rem auto;
-  padding: 0.6rem 5rem;
-  fontweight: bold;
-  text-align: center;
-  &:hover {
-    opacity: 0.8;
   }
 }

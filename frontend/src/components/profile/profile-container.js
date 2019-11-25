@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import {
@@ -10,7 +10,6 @@ import {
 } from "../../actions/recipeActions";
 import { getUser } from "../../actions/authActions";
 import Header from "./header";
-import PageToggle from "./page-toggle";
 import RecipeContainer from "./recipes";
 import SortBy from "./SortBy";
 import SortButton from "../sort-button";
@@ -35,7 +34,7 @@ class Profile extends React.Component {
     this.props.getSavedRecipes(user_id);
   }
 
-  handleClick = page => {
+  handlePageClick = page => {
     this.setState(prevState => {
       if (prevState.page !== page) {
         return { page };
@@ -62,23 +61,18 @@ class Profile extends React.Component {
           component={() => {
             return (
               <div className="profile">
-                <Header username={username} fullName={full_name} />
-                <PageToggle
+                <Header
+                  username={username}
+                  fullName={full_name}
                   page={page}
-                  onClick={this.handleClick}
-                  numRecipesSaved={savedRecipes.length}
-                  numRecipesPosted={myRecipes.length}
+                  onPageClick={this.handlePageClick}
                 />
                 {page === "saved" ? (
                   <RecipeContainer recipes={savedRecipes}>
                     {sortActive && <SortBy />}
                   </RecipeContainer>
                 ) : (
-                  <RecipeContainer recipes={myRecipes}>
-                    <Link to="/profile/create-recipe">
-                      <div className="create-recipe-btn">Create Recipe</div>
-                    </Link>
-                  </RecipeContainer>
+                  <RecipeContainer recipes={myRecipes} />
                 )}
               </div>
             );
