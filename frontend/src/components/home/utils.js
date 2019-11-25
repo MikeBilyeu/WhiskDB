@@ -6,7 +6,7 @@ const filterBy = {
     "Dinner",
     "Appetizer",
     "Dessert",
-    "Drink"
+    "Beverage"
   ],
   dietOptions: ["None", "Vegetarian", "Vegan"],
   sortOptions: ["Top Rated", "A-Z", "Time", "Newest"]
