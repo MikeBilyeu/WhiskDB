@@ -6,7 +6,7 @@ import Header from "./header";
 import RecipeDetails from "./RecipeDetails";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
-import Rate from "./rate";
+import Review from "./review";
 import Share from "./share";
 import { getRecipe, submitEditRecipe } from "../../actions/recipeActions";
 import convertTime from "../../selectors/time-selector";
@@ -50,7 +50,7 @@ class Recipe extends React.Component {
         <Header recipe_id={recipe_id} user_id={user_id} />
         {shareOpen ? <Share /> : null}
         {reviewOpen ? (
-          <Rate recipe_id={recipe_id} num_reviews={num_reviews} />
+          <Review recipe_id={recipe_id} num_reviews={num_reviews} />
         ) : null}
 
         <img

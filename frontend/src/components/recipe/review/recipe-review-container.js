@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import ReviewDetails from "./ReviewDetails";
+import Details from "./details";
 import { ReactComponent as Star } from "../../../assets/images/star.svg";
 import { ReactComponent as Close } from "../../../assets/images/removeDark.svg";
 import { toggleReview, submitReview } from "../../../actions/rateActions";
-import "./recipe-rate.scss";
+import "./recipe-review.scss";
 
-class Rate extends React.Component {
+class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -83,75 +83,53 @@ class Rate extends React.Component {
     } = this.props;
     return (
       <div className="rate">
-        <Close
+        <Close className="close-btn" onClick={this.props.toggleReview} />
+
+        <h2>How was it?</h2>
+        {this.state.rating && !isAuthenticated ? (
+          <h3>
+            {"You must "}
+            <Link to="/auth" style={{ color: "#0172c4" }}>
+              login
+            </Link>
+            {" to rate a recipe."}
+          </h3>
+        ) : null}
+        <div
+          onMouseLeave={this.handleMouseLeave}
           style={{
-            width: "2rem",
-            padding: ".5rem",
-            cursor: "pointer"
+            display: "grid",
+            gridAutoFlow: "column",
+            placeItems: "center",
+            width: "12rem",
+            margin: "auto"
           }}
-          onClick={this.props.toggleReview}
-        />
-
-        <div style={{ display: "grid", placeItems: "center" }}>
-          <h2>How was it?</h2>
-          {this.state.rating && !isAuthenticated ? (
-            <h3>
-              {"You must "}
-              <Link to="/auth" style={{ color: "#0172c4" }}>
-                login
-              </Link>
-              {" to rate a recipe."}
-            </h3>
-          ) : null}
-          <div
-            onMouseLeave={this.handleMouseLeave}
-            style={{
-              display: "grid",
-              gridAutoFlow: "column",
-              placeItems: "center",
-              width: "12rem",
-              margin: "auto"
-            }}
-          >
-            {this.renderRating()}
-          </div>
-          <label
-            htmlFor="review-msg"
-            style={{
-              justifySelf: "start",
-              width: "100%",
-              display: "grid",
-              gridAutoFlow: "column",
-              padding: ".1rem .5rem"
-            }}
-          >
-            Review
-            <span style={{ justifySelf: "end", color: "#B7B7B7" }}>
-              (optional)
-            </span>
-          </label>
-
+        >
+          {this.renderRating()}
+        </div>
+        <label className="review">
+          Review
           <textarea
-            id="review-msg"
             placeholder="Write a review…"
             value={this.state.comment}
             onChange={this.handleChange}
           />
-          <div
-            className="submit-review"
-            style={{
-              opacity: this.state.rating && isAuthenticated ? "1" : ".5",
-              cursor: this.state.rating && isAuthenticated ? "pointer" : "auto"
-            }}
-            onClick={
-              this.state.rating && isAuthenticated ? this.handleSubmit : null
-            }
-          >
-            Submit
-          </div>
+        </label>
+
+        <div
+          className="submit-review"
+          style={{
+            opacity: this.state.rating && isAuthenticated ? "1" : ".5",
+            cursor: this.state.rating && isAuthenticated ? "pointer" : "auto"
+          }}
+          onClick={
+            this.state.rating && isAuthenticated ? this.handleSubmit : null
+          }
+        >
+          Submit
         </div>
 
-        <ReviewDetails recipe_id={recipe_id} />
+        <Details recipe_id={recipe_id} />
       </div>
     );
   }
@@ -165,4 +143,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { toggleReview, submitReview }
-)(Rate);
+)(Review);
