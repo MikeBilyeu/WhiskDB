@@ -44,7 +44,6 @@ class Recipe extends React.Component {
     if (editRecipe) {
       return <Edit />;
     }
-    console.log(this.props.recipeData);
 
     return (
       <div className="recipe">

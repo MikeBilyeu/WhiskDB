@@ -1,27 +1,50 @@
+@import "../../../assets/styles/variables";
+
 .share {
-  border: solid #c6c6c6 0.1rem;
-  border-radius: 0.5rem;
-  width: 99%;
+  border: solid lightColor(light) 0.09rem;
+  // border-radius: 0.5rem;
+
+  .close {
+    width: 3rem;
+    padding: 1rem;
+    cursor: pointer;
+    justify-self: end;
+  }
+  width: 100%;
   position: fixed;
   left: 0;
   right: 0;
   margin: auto;
   background-color: #fff;
   z-index: 2;
-  padding: 0.5rem;
+  font-weight: bold;
   display: grid;
   place-items: center;
   grid-gap: 1.3rem;
 }
 
+.edit-btn {
+  display: inline-block;
+  border-top: solid lightColor(light) 0.05rem;
+  padding: 1rem 2rem;
+  max-width: 20rem;
+  width: 60%;
+  text-align: center;
+  color: #0172c4;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
 .share-option,
 .print-option {
-  border: solid #0172c4 0.08rem;
-  border-radius: 5rem;
+  border: solid lightColor(dark) 0.09rem;
+  border-radius: 0.5rem;
   text-align: center;
   padding: 0.6rem;
+  margin: 0 1rem;
   color: #0172c4;
+  max-width: 20rem;
   background-color: #fff;
   cursor: pointer;
-  width: 100%;
+  width: 80%;
 }

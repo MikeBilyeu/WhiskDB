@@ -15,15 +15,7 @@ class Share extends React.Component {
   render() {
     return (
       <div className="share">
-        <Close
-          style={{
-            width: "2rem",
-            padding: ".5rem",
-            cursor: "pointer",
-            justifySelf: "start"
-          }}
-          onClick={this.props.toggleShare}
-        />
+        <Close className="close" onClick={this.props.toggleShare} />
         {this.state.copied ? (
           <div
             style={{
@@ -60,16 +52,7 @@ class Share extends React.Component {
               this.props.toggleEditRecipe();
               this.props.toggleShare();
             }}
-            style={{
-              display: "inline-block",
-              borderTop: "solid #E3E3E3 .05rem",
-              padding: "1rem 2rem",
-              width: "50%",
-              textAlign: "center",
-              color: "#0172C4",
-              fontSize: ".9rem",
-              cursor: "pointer"
-            }}
+            className="edit-btn"
           >
             Edit Recipe
           </div>
