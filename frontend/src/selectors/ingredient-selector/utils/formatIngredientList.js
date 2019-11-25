@@ -73,15 +73,15 @@ const formatIngredientList = ingredients => {
           break;
         case ounceRegEx.test(unit):
           decimalAmount *= 28;
-          metricUnit = "gram";
+          metricUnit = "g";
           break;
         case poundRegEx.test(unit):
           decimalAmount *= 454;
-          metricUnit = "gram";
+          metricUnit = "g";
           break;
         case kilogramRegEx.test(unit):
           decimalAmount *= 1000;
-          metricUnit = "gram";
+          metricUnit = "g";
           break;
         default:
           break;

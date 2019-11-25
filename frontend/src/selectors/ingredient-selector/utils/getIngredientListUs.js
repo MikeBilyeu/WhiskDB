@@ -42,13 +42,13 @@ const getIngredientListUs = metricIngredients => {
       if (pounds > 0) {
         amounts.push({
           amount: pounds,
-          unit: "pound"
+          unit: "lbs"
         });
       }
       if (ounces > 0.0) {
         amounts.push({
           amount: ounces,
-          unit: "ounce"
+          unit: "oz"
         });
       }
       return { ...ingredientObj, amount: amounts };
