@@ -1,85 +1,61 @@
-const amountRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2})/;
-const unitsRegex = /^\b(cup(s?)|c|cp|tablespoon(s?)|tb(sp|s|l|ls)?|teaspoon(s?)|tsp|ts|t|lit(er|re)(s?)|l|millilit(er|re)(s?)|ml|ounce(s?)|oz|pound(s?)|lb(s?)|kilogram(s?)|kg(s?)|gram(s?)|g(s?))\b/i;
-// getting the unit from the string
-const cupRegEx = /\b(cup(s?)|c|cp)\b/i;
-
-const tablespoonRegEx = /\b(tablespoon(s?)|tb(sp|s|l|ls)?)\b/i;
-//create a regex for capital T for tablespoon js regex doesn't allow partial case insensitivity
-const TRegEx = /\bT\b/;
-
-const teaspoonRegEx = /\b(teaspoon(s?)|tsp|ts)\b/i;
-//create a regex for lowercase t for teaspoon js regex doesn't allow partial case insensitivity
-const tRegEx = /\bt\b/;
-
-const literRegEx = /\b(lit(er|re)(s?)|l)\b/i;
-
-const milliliterRegEx = /\b(millilit(er|re)(s?)|ml)\b/i;
-
-const ounceRegEx = /\b(ounce(s?)|oz)\b/i;
-
-const poundRegEx = /\b(pound(s?)|lb(s?))\b/i;
-
-const kilogramRegEx = /\b(kilogram(s?)|kg(s?))\b/i;
-
-const gramRegEx = /\b(gram(s?)|g(s?))\b/i;
+import regEx from "./ingredientRegex";
 
 //convert ingredient amount from us to metric
 const formatIngredientList = ingredients => {
-  //map over the ingredietns array
-  // create a formated list
   let formatedList = ingredients.map(ingredient => {
     //remove Extra white space
-    // match the amount from the ingredient with regex
     let ingredientStr = ingredient.replace(/\s+/g, " ").trim();
 
-    let amount = amountRegEx.exec(ingredientStr)[0];
-    ingredientStr = ingredientStr.replace(amountRegEx, "").trim();
-    // pull off unit
-    let unit = unitsRegex.test(ingredientStr)
-      ? unitsRegex.exec(ingredientStr)[0]
-      : "";
-    ingredientStr = ingredientStr.replace(unitsRegex, "").trim();
-    // this can get fixed to prevent matching ending spaces
-    let ingredientName = /^[^\((\)]*/.exec(ingredientStr)[0].trim();
-    ingredientStr = ingredientStr.replace(/^[^\((\)]*/, "").trim();
+    // match the amount from the ingredient with regex
+    let amount = regEx.amount.exec(ingredientStr)[0];
 
-    let prep = ingredientStr.replace(/[{()}]/g, "") || "";
-
-    // // using eval to get the decimal of mixed fractions
+    // using eval to get the decimal of mixed fractions
     let decimalAmount = eval(amount.split(" ").join("+"));
     // may have to round decimal to nearest 1000th
+
+    ingredientStr = ingredientStr.replace(regEx.amount, "").trim();
+
+    // pull off unit
+    let unit = regEx.units.test(ingredientStr)
+      ? regEx.units.exec(ingredientStr)[0]
+      : "";
+
+    ingredientStr = ingredientStr.replace(regEx.units, "").trim();
+
+    // this can get fixed to prevent matching ending spaces
+    const ingredientName = ingredientStr;
 
     let metricUnit = unit;
 
     if (unit) {
       switch (true) {
-        case cupRegEx.test(unit):
+        case regEx.cup.test(unit):
           decimalAmount *= 237;
           metricUnit = "ml";
           break;
-        case tablespoonRegEx.test(unit):
-        case TRegEx.test(unit):
+        case regEx.tablespoon.test(unit):
+        case regEx.T.test(unit):
           decimalAmount *= 15;
           metricUnit = "ml";
           break;
-        case teaspoonRegEx.test(unit):
-        case TRegEx.test(unit):
+        case regEx.teaspoon.test(unit):
+        case regEx.T.test(unit):
           decimalAmount *= 5;
           metricUnit = "ml";
           break;
-        case literRegEx.test(unit):
+        case regEx.liter.test(unit):
           decimalAmount *= 1000;
           metricUnit = "ml";
           break;
-        case ounceRegEx.test(unit):
+        case regEx.ounce.test(unit):
           decimalAmount *= 28;
           metricUnit = "g";
           break;
-        case poundRegEx.test(unit):
+        case regEx.pound.test(unit):
           decimalAmount *= 454;
           metricUnit = "g";
           break;
-        case kilogramRegEx.test(unit):
+        case regEx.kilogram.test(unit):
           decimalAmount *= 1000;
           metricUnit = "g";
           break;
@@ -94,8 +70,7 @@ const formatIngredientList = ingredients => {
     return {
       amount: amount,
       unit: unit,
-      ingredient: ingredientName,
-      prep: prep
+      ingredient: ingredientName
     };
   });
 
