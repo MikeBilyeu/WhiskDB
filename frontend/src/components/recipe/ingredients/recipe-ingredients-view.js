@@ -18,7 +18,8 @@ class Ingredient extends React.Component {
   };
 
   render() {
-    const { amount, unit, ingredient, prep } = this.props;
+    const { amount, unit, ingredient } = this.props;
+
     // map over amounts if multiple amounts e.g. 1 cup + 1/2 cup
     if (typeof amount === "object") {
       let amounts = amount.map(amount => {
@@ -33,7 +34,7 @@ class Ingredient extends React.Component {
               : "none",
             opacity: this.state.isStrikeThrough ? ".2" : "1"
           }}
-        >{`${amounts.join(" + ")} ${ingredient} ${prep}`}</li>
+        >{`${amounts.join(" & ")} ${ingredient}`}</li>
       );
     }
 
@@ -45,7 +46,7 @@ class Ingredient extends React.Component {
           opacity: this.state.isStrikeThrough ? ".2" : "1"
         }}
       >
-        {`${amount} ${unit} ${ingredient} ${prep}`}
+        {`${amount} ${unit} ${ingredient}`}
       </li>
     );
   }
@@ -57,15 +58,13 @@ const Ingredients = props => {
       <h2>Ingredients</h2>
       <UnitsAndServings />
       <ul className="ingredient-list">
-        {props.ingredients.map(({ amount, unit = "", ingredient, prep }, i) => {
-          prep = prep ? `(${prep})` : "";
+        {props.ingredients.map(({ amount, unit = "", ingredient }, i) => {
           return (
             <Ingredient
               key={`ingredient${i}`}
               amount={amount}
               unit={unit}
               ingredient={ingredient}
-              prep={prep}
               i={i}
             />
           );
