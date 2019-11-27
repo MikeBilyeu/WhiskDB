@@ -11,7 +11,10 @@ const getIngredientListUs = metricIngredients => {
 
       let amounts = [];
 
-      if (unit === "ml") {
+      const unitType =
+        unit === "ml" ? "volume" : unit === "g" ? "mass" : undefined;
+
+      if (unitType === "volume") {
         while (remainder >= 0.63) {
           for (let i = 0; i < metricIncrements.length; i++) {
             if (remainder >= metricIncrements[i]) {
@@ -26,20 +29,34 @@ const getIngredientListUs = metricIngredients => {
                   metricIncrements[0];
               } else {
                 remainder -= metricIncrements[i];
-                amounts.push({
-                  amount: usIncrements[i][0],
-                  unit: usIncrements[i][1]
-                });
+                if (
+                  amounts[amounts.length - 1] &&
+                  amounts[amounts.length - 1].unit === usIncrements[i][1]
+                ) {
+                  let joinedAmount = `${amounts[amounts.length - 1].amount}${
+                    usIncrements[i][0]
+                  }`;
+                  // join the amounts
+                  amounts[amounts.length - 1] = {
+                    amount: joinedAmount,
+                    unit: usIncrements[i][1]
+                  };
+                } else {
+                  amounts.push({
+                    amount: usIncrements[i][0],
+                    unit: usIncrements[i][1]
+                  });
+                }
               }
             } else if (remainder < 0.63) {
               break;
             }
           }
         }
-        return { amount: amounts, unit, ingredient };
+        return { amount: amounts, ingredient };
       }
 
-      if (unit === "g") {
+      if (unitType === "mass") {
         let pounds = Math.floor(amount / 454);
         // sets the decimal precision depending on amount
         let fixedTo = amount <= 1 ? 3 : 1;
@@ -57,11 +74,13 @@ const getIngredientListUs = metricIngredients => {
             unit: "oz"
           });
         }
-        return { amount: amounts, unit, ingredient };
+
+        return { amount: amounts, ingredient };
       }
-      return { amount, unit, ingredient };
+      return { amount, ingredient };
     }
   );
+  console.log("usIngredients:", usIngredients);
   return usIngredients;
 };
 
