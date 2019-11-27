@@ -1,29 +1,29 @@
 import regEx from "./ingredientRegex";
 
-//convert ingredient amount from us to metric
-const formatIngredientList = ingredients => {
-  let formatedList = ingredients.map(ingredient => {
-    //remove Extra white space
-    let ingredientStr = ingredient.replace(/\s+/g, " ").trim();
+const splitIngredientStr = ingredientStr => {
+  //remove extra white space
+  ingredientStr = ingredientStr.replace(/\s+/g, " ").trim();
 
-    // match the amount from the ingredient with regex
-    let amount = regEx.amount.exec(ingredientStr)[0];
+  // match the amount from the ingredient with regex
+  const amount = regEx.amount.exec(ingredientStr)[0];
+
+  ingredientStr = ingredientStr.replace(regEx.amount, "").trim();
+
+  const unit = regEx.units.exec(ingredientStr)[0] || "";
+
+  const ingredient = ingredientStr.replace(regEx.units, "").trim();
+
+  return { amount, unit, ingredient };
+};
+
+//convert ingredient amount from us to metric
+const formatIngredientList = ingredientList => {
+  let formatedList = ingredientList.map(ingredientStr => {
+    let { amount, unit, ingredient } = splitIngredientStr(ingredientStr);
 
     // using eval to get the decimal of mixed fractions
     let decimalAmount = eval(amount.split(" ").join("+"));
     // may have to round decimal to nearest 1000th
-
-    ingredientStr = ingredientStr.replace(regEx.amount, "").trim();
-
-    // pull off unit
-    let unit = regEx.units.test(ingredientStr)
-      ? regEx.units.exec(ingredientStr)[0]
-      : "";
-
-    ingredientStr = ingredientStr.replace(regEx.units, "").trim();
-
-    // this can get fixed to prevent matching ending spaces
-    const ingredientName = ingredientStr;
 
     let metricUnit = unit;
 
@@ -70,9 +70,10 @@ const formatIngredientList = ingredients => {
     return {
       amount: amount,
       unit: unit,
-      ingredient: ingredientName
+      ingredient: ingredient
     };
   });
+  console.log(formatedList);
 
   return formatedList;
 };
