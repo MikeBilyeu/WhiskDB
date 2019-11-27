@@ -23,7 +23,7 @@ const RecipeUpsert = props => {
   //   console.log(event.target.files[0]);
   // }
 
-  // const { isFetching } = props.recipeData;
+  const { isFetching } = props.recipeData;
 
   const handleKeyDown = e => {
     if (e.target.type !== "textarea" && e.key === "Enter") {

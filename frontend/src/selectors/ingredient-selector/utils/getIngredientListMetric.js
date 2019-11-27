@@ -13,7 +13,7 @@ const getIngredientListMetric = (
       const amountAdjusted = amount * (convertedServings / servings);
 
       const unitType =
-        unit === "ml" ? "volume" : unit === "g" ? "mass" : undefined;
+        unit === "ml." ? "volume" : unit === "g." ? "mass" : undefined;
 
       if (unitType === "volume") {
         let roundedAmount = amountAdjusted <= 0.625 ? 0.63 : 0;
