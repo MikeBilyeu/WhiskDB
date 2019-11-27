@@ -18,7 +18,7 @@ class Servings extends React.Component {
   render() {
     return (
       <div className="servings">
-        Serves:
+        Yield:
         <input
           style={{
             textAlign: "center"

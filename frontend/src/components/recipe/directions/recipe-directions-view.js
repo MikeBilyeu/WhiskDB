@@ -3,8 +3,8 @@ import React from "react";
 const Directions = props => {
   const renderTime = () => {
     const { hours, minutes } = props.time;
-    const hr = hours ? `${hours}hr` : "";
-    const min = minutes ? `${minutes}min` : "";
+    const hr = hours ? `${hours}Hr` : "";
+    const min = minutes ? `${minutes}Min` : "";
     return `${hr} ${min}`;
   };
 
@@ -27,7 +27,7 @@ const Directions = props => {
   return (
     <div className="directions">
       <h2>Directions</h2>
-      <div className="time">Time: {renderTime()}</div>
+      <div className="time">{renderTime()}</div>
       <p id="directions">{props.directions}</p>
       {renderFootnote()}
     </div>

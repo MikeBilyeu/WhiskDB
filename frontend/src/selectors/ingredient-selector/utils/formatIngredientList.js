@@ -75,7 +75,6 @@ const formatIngredientList = ingredientList => {
       ingredient: ingredient
     };
   });
-  console.log(formatedList);
 
   return formatedList;
 };

@@ -3,8 +3,6 @@ import increments from "./increments";
 const { metricIncrements, usIncrements } = increments;
 
 const getIngredientListUs = metricIngredients => {
-  console.log("metricIngredients:", metricIngredients);
-
   const usIngredients = metricIngredients.map(
     ({ amount, unit, ingredient }) => {
       let remainder = amount;
@@ -80,7 +78,6 @@ const getIngredientListUs = metricIngredients => {
       return { amount, ingredient };
     }
   );
-  console.log("usIngredients:", usIngredients);
   return usIngredients;
 };
 
