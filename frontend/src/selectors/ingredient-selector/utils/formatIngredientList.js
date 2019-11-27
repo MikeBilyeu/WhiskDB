@@ -9,7 +9,9 @@ const splitIngredientStr = ingredientStr => {
 
   ingredientStr = ingredientStr.replace(regEx.amount, "").trim();
 
-  const unit = regEx.units.exec(ingredientStr)[0] || "";
+  const unit = regEx.units.exec(ingredientStr)
+    ? regEx.units.exec(ingredientStr)[0]
+    : "";
 
   const ingredient = ingredientStr.replace(regEx.units, "").trim();
 
@@ -30,17 +32,17 @@ const formatIngredientList = ingredientList => {
     if (unit) {
       switch (true) {
         case regEx.cup.test(unit):
-          decimalAmount *= 237;
+          decimalAmount *= 236.588;
           metricUnit = "ml";
           break;
         case regEx.tablespoon.test(unit):
         case regEx.T.test(unit):
-          decimalAmount *= 15;
+          decimalAmount *= 14.787;
           metricUnit = "ml";
           break;
         case regEx.teaspoon.test(unit):
         case regEx.T.test(unit):
-          decimalAmount *= 5;
+          decimalAmount *= 4.929;
           metricUnit = "ml";
           break;
         case regEx.liter.test(unit):
@@ -48,11 +50,11 @@ const formatIngredientList = ingredientList => {
           metricUnit = "ml";
           break;
         case regEx.ounce.test(unit):
-          decimalAmount *= 28;
+          decimalAmount *= 28.35;
           metricUnit = "g";
           break;
         case regEx.pound.test(unit):
-          decimalAmount *= 454;
+          decimalAmount *= 453.592;
           metricUnit = "g";
           break;
         case regEx.kilogram.test(unit):

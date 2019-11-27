@@ -12,6 +12,7 @@ const increments = {
     ["2", "tsp"],
     ["1/2", "Tbsp"],
     ["1", "tsp"],
+    ["3/4", "tsp"],
     ["1/2", "tsp"],
     ["1/4", "tsp"],
     ["1/8", "tsp"]
@@ -29,6 +30,7 @@ const increments = {
     10, // 2 tsp
     7.5, // 1/2 Tbsp
     5, // 1 tsp
+    3.75, // 3/4 tsp
     2.5, // 1/2 tsp
     1.25, // 1/4 tsp
     0.63 // 1/8 tsp
