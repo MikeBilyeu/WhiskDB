@@ -26,7 +26,8 @@ class Edit extends React.Component {
       <div className="edit-profile">
         <Header />
         <form
-          className="authForm"
+          className="auth-form"
+          style={{ marginTop: "4rem" }}
           onSubmit={this.props.handleSubmit(this.handleSubmit)}
         >
           <Field
@@ -57,7 +58,7 @@ class Edit extends React.Component {
             postion: "relative",
             margin: "3rem auto",
             cursor: "pointer",
-            borderRadius: "10rem"
+            borderRadius: ".5rem"
           }}
           onClick={this.props.toggleDelete}
         >

@@ -4,6 +4,8 @@
   .header {
     @include grid-center;
     grid-template-columns: 4rem 1fr 4rem;
+    position: fixed;
+    top: 0;
     .back-btn {
       width: 3.5rem;
       padding: 1rem;

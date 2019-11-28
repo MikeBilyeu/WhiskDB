@@ -18,6 +18,7 @@ const RecipeDetails = ({
       <div className="username">-{username.toLowerCase()}</div>
       <Rating onClick={toggleReview} rating={rating} votes={num_reviews} />
       <DownArrow
+        className="down-arrow"
         style={{
           width: "1.3rem",
           opacity: ".1",

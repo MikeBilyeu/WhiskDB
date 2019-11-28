@@ -47,6 +47,7 @@ class Recipe extends React.Component {
 
     return (
       <div className="recipe">
+        <img className="whiskdb-print-logo" src={Whiskdb} alt="Whiskdb logo" />
         <Header recipe_id={recipe_id} user_id={user_id} />
         {shareOpen ? <Share /> : null}
         {reviewOpen ? (
