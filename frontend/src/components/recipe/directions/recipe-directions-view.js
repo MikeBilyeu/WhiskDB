@@ -1,35 +1,14 @@
 import React from "react";
+import { renderTime } from "./utils";
+import Footnote from "./footnote";
 
-const Directions = props => {
-  const renderTime = () => {
-    const { hours, minutes } = props.time;
-    const hr = hours ? `${hours}Hr` : "";
-    const min = minutes ? `${minutes}Min` : "";
-    return `${hr} ${min}`;
-  };
-
-  const renderFootnote = () => {
-    if (props.footnote !== null) {
-      return (
-        <div className="footnote">
-          <p>
-            <span style={{ fontWeight: "900", fontStyle: "normal" }}>
-              {"Footnote: "}
-            </span>
-            {props.footnote}
-          </p>
-        </div>
-      );
-    }
-    return null;
-  };
-
+const Directions = ({ time, directions, footnote }) => {
   return (
     <div className="directions">
       <h2>Directions</h2>
-      <div className="time">{renderTime()}</div>
-      <p id="directions">{props.directions}</p>
-      {renderFootnote()}
+      <div className="time">{renderTime(time)}</div>
+      <p id="directions">{directions}</p>
+      <Footnote footnote={footnote} />
     </div>
   );
 };
