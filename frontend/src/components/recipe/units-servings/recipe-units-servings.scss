@@ -26,6 +26,8 @@
     padding: 0.1rem 0;
     font-weight: 900;
     color: $primary-color;
+    -webkit-text-fill-color: $primary-color;
+    opacity: 1;
     margin: 0 0.5rem;
     border-bottom: solid darkColor(medium) 0.1rem;
   }
