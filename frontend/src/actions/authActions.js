@@ -2,6 +2,7 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { SubmissionError } from "redux-form";
+
 import {
   GET_ERRORS,
   SET_CURRENT_USER,
@@ -9,6 +10,25 @@ import {
   GET_USER,
   TOGGLE_DELETE
 } from "./types";
+
+export const googleLogin = () => () => {
+  axios
+    .get("/auth/google")
+    .then(res => {
+      const URL = res.request.responseURL;
+      window.open(URL, "_self");
+    })
+    .catch(
+      err => {
+        console.log(err);
+      }
+
+      // dispatch({
+      //   type: GET_ERRORS,
+      //   payload: err.response.data
+      // })
+    );
+};
 
 export const registerUser = userData => dispatch => {
   // first register the user if the user successfully register

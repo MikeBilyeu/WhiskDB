@@ -1,9 +1,11 @@
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
+var GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 const Pool = require("pg").Pool;
 
-const keys = require("../config/keys");
+const { GOOGLE, ...keys } = require("./keys");
+
 // Connect to pool
 const pool = new Pool({
   user: keys.user,
@@ -26,6 +28,24 @@ module.exports = passport => {
         }
 
         return done(null, jwtPayload);
+      }
+    )
+  );
+
+  console.log("GOOGLE:", GOOGLE);
+
+  passport.use(
+    new GoogleStrategy(
+      {
+        clientID: GOOGLE.clientID,
+        clientSecret: GOOGLE.clientSecret,
+        callbackURL: "http://localhost:3000/auth/google/redirect"
+      },
+      (accessToken, refreshToken, profile, cb) => {
+        // User.findOrCreate({ googleId: profile.id }, (err, user) => {
+        //   return cb(err, user);
+        // });
+        console.log("profile:", profile);
       }
     )
   );
