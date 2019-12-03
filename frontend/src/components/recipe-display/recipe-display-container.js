@@ -42,17 +42,13 @@ class RecipeDisplay extends React.Component {
       num_reviews,
       rating,
       recipe_id,
-      total_time_mins
+      total_time_mins,
+      image_url
     } = this.props.recipe;
-    let randomNum = Math.floor(Math.random() * recipe_id);
     return (
       <li>
         <Link className="recipe-card" to={`/recipe/${recipe_id}`}>
-          <img
-            className="thumbnail"
-            src={`https://source.unsplash.com/collection/251966/500x500/?sig=${randomNum}`}
-            alt=""
-          />
+          <img className="thumbnail" src={image_url} alt="" />
           <div className="title">{title}</div>
           <div className="rating-time">
             <Rating className="rating" rating={rating} votes={num_reviews} />

@@ -4,33 +4,55 @@ import { withRouter } from "react-router-dom";
 import Header from "./header";
 import RecipeUpsert from "../../recipe-upsert";
 import { createRecipe } from "../../../actions/recipeActions";
+import axios from "axios";
 
-const CreateRecipe = props => {
-  const handleSubmit = values => {
-    props.createRecipe(values, props.history);
+class CreateRecipe extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      image_url: ""
+    };
+  }
+  componentDidMount() {
+    (async () => {
+      const res = await axios.get(
+        "https://source.unsplash.com/collection/251966/500x500"
+      );
+
+      this.setState({ image_url: res.request.responseURL });
+    })();
+  }
+
+  handleSubmit = values => {
+    this.props.createRecipe(values, this.props.history);
   };
 
-  const handleBackClick = () => {
-    props.history.goBack();
+  handleBackClick = () => {
+    this.props.history.goBack();
   };
 
-  const initialValues = {
-    categories: [],
-    keywords: []
-  };
-
-  return (
-    <div>
-      <Header onClick={handleBackClick} />
-      <RecipeUpsert
-        initialValues={initialValues}
-        destroyOnUnmount={false}
-        submitText="Save Recipe"
-        onSubmit={handleSubmit}
-      />
-    </div>
-  );
-};
+  render() {
+    const initialValues = {
+      image_url: this.state.image_url,
+      categories: [],
+      keywords: []
+    };
+    if (initialValues.image_url === "") {
+      return <div>Loading...</div>;
+    }
+    return (
+      <div>
+        <Header onClick={this.handleBackClick} />
+        <RecipeUpsert
+          initialValues={initialValues}
+          destroyOnUnmount={false}
+          submitText="Save Recipe"
+          onSubmit={this.handleSubmit}
+        />
+      </div>
+    );
+  }
+}
 
 export default withRouter(
   connect(

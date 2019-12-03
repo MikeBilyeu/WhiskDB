@@ -57,7 +57,7 @@ class Recipe extends React.Component {
           className="recipe-img"
           href="recipe photo"
           alt=""
-          src={`https://source.unsplash.com/collection/251966/1000x900/?sig=${randomNum}`}
+          src={image_url}
         />
         <div className="card">
           <RecipeDetails />

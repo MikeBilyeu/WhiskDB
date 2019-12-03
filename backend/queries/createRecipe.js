@@ -20,7 +20,8 @@ const createRecipe = (request, response) => {
     directions,
     footnote,
     categories,
-    keywords
+    keywords,
+    image_url
   } = request.body;
   const { user_id: created_by } = request.user;
   const title = request.body.title.trim();
@@ -44,11 +45,11 @@ const createRecipe = (request, response) => {
         (
           created_by, title, servings, total_time_mins,
           footnote, directions, ingredients, keywords,
-          categories, document_vectors
+          categories, image_url, document_vectors
         )
         VALUES (
           $1, CAST($2 AS VARCHAR), $3, $4, $5, $6, $7,
-          CAST($8 AS VARCHAR[]), $9, (to_tsvector($2) ||
+          CAST($8 AS VARCHAR[]), $9, $10, (to_tsvector($2) ||
           to_tsvector(array_to_string($8, ' ')))
         )
         RETURNING recipe_id`,
@@ -61,7 +62,8 @@ const createRecipe = (request, response) => {
           directions,
           ingredients,
           keywords,
-          categories
+          categories,
+          image_url
         ]
       )
       .then(res => {
