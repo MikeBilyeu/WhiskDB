@@ -44,8 +44,9 @@ class Profile extends React.Component {
 
   render() {
     const page = this.state.page;
-    const username = this.props.userData.username.toLowerCase();
-    const { full_name } = this.props.userData;
+    const username = this.props.auth.user.username.toLowerCase();
+    const { full_name } = this.props.auth.user;
+
     const {
       sortActive,
       sortBy,
@@ -84,7 +85,6 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  userData: state.userData.user,
   auth: state.auth,
   savedRecipes: state.savedRecipes,
   myRecipes: state.myRecipes

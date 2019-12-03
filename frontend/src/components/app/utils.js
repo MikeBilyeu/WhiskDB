@@ -1,7 +1,7 @@
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../../utils/setAuthToken";
 import store from "../../store";
-import { setCurrentUser, logoutUser } from "../../actions/authActions";
+import { setCurrentUser, logoutUser } from "../../actions/auth";
 
 export const checkAuthToken = () => {
   // Check for token to keep user logged in
@@ -9,13 +9,12 @@ export const checkAuthToken = () => {
     // Set auth token header auth
     const token = localStorage.jwtToken;
     setAuthToken(token);
-    // Decode token and get user info and exp
-    const decoded = jwt_decode(token);
+
     // Set user and isAuthenticated
-    store.dispatch(setCurrentUser(decoded));
+    store.dispatch(setCurrentUser(token));
     // Check for expired token
     const currentTime = Date.now() / 1000; // to get in milliseconds
-    if (decoded.exp < currentTime) {
+    if (jwt_decode(token).exp < currentTime) {
       // Logout user
       store.dispatch(logoutUser());
       // Redirect to login

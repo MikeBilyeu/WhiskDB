@@ -41,16 +41,16 @@ class RecipeDisplay extends React.Component {
       title,
       num_reviews,
       rating,
-      username,
       recipe_id,
       total_time_mins
     } = this.props.recipe;
+    let randomNum = Math.floor(Math.random() * recipe_id);
     return (
       <li>
         <Link className="recipe-card" to={`/recipe/${recipe_id}`}>
           <img
             className="thumbnail"
-            src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1510&q=80"
+            src={`https://source.unsplash.com/collection/251966/500x500/?sig=${randomNum}`}
             alt=""
           />
           <div className="title">{title}</div>
@@ -71,22 +71,3 @@ export default connect(
   mapStateToProps,
   { saveRecipe }
 )(RecipeDisplay);
-
-/*{this.state.saved && this.props.user_id == null ? (
-  <Link className="login-to-save" to="/auth">
-    Login
-  </Link>
-) : (
-  <SaveIcon
-    onClick={e => {
-      this.handleClick(e);
-    }}
-    className="SaveIcon"
-    style={{
-      fill:
-        this.state.saved && this.props.user_id != null
-          ? "#0172C4"
-          : ""
-    }}
-  />
-)}*/

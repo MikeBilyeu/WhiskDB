@@ -35,6 +35,7 @@ class Recipe extends React.Component {
     } = this.props.recipeData;
     const recipe_id = this.props.match.params.recipe_id;
     const user_id = this.props.auth.user.user_id || null;
+    let randomNum = Math.floor(Math.random() * recipe_id);
 
     // display loading if isFetching
     if (isFetching) {
@@ -58,7 +59,7 @@ class Recipe extends React.Component {
           className="recipe-img"
           href="recipe photo"
           alt=""
-          src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1510&q=80"
+          src={`https://source.unsplash.com/collection/251966/1000x900/?sig=${randomNum}`}
         />
         <div className="card">
           <RecipeDetails />

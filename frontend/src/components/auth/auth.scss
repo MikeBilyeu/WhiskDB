@@ -82,6 +82,22 @@
     }
   }
 
+  .google-login {
+    text-align: center;
+    line-height: 2.7rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    height: 2.7rem;
+    width: 80%;
+    max-width: 20rem;
+    place-self: center;
+    background: lightColor(light);
+    color: #444;
+  }
+
   button {
     border: none;
     outline: none;

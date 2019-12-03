@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { loginUser, googleLogin } from "../../../actions/authActions";
+import { loginUser, googleLogin } from "../../../actions/auth";
 import { validateLogin } from "../utils/validation";
 import Input from "../../form-inputs/input";
 import Button from "../../button";
@@ -56,9 +56,11 @@ class Login extends Component {
           </Button>
         </Field>
 
-        <button type="submit">Log in</button>
-        <div>OR</div>
-        <div onClick={() => this.props.googleLogin()}>Sign In with Google</div>
+        <button type="submit">Log In</button>
+        <div style={{ textAlign: "center" }}>Or</div>
+        <div className="google-login" onClick={() => this.props.googleLogin()}>
+          Log In with Google
+        </div>
       </form>
     );
   }

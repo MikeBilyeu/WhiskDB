@@ -16,7 +16,7 @@ const getUser = (request, response) => {
   pool.connect().then(client => {
     return client
       .query(
-        "SELECT username, full_name, email FROM users WHERE user_id = $1",
+        "SELECT user_id, username, full_name, email FROM users WHERE user_id = $1",
         [user_id]
       )
       .then(res => {

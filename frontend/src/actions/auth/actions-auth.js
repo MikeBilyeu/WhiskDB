@@ -1,5 +1,5 @@
 import { SET_CURRENT_USER, USER_LOADING, TOGGLE_DELETE } from "../types";
-import jwt_decode from "jwt-decode";
+
 import getUser from "./get-user";
 export { default as deleteUser } from "./delete-user";
 export { default as editProfile } from "./edit-profile";
@@ -9,8 +9,7 @@ export { default as loginUser } from "./login-user";
 export { default as logoutUser } from "./logout-user";
 export { default as registerUser } from "./register-user";
 
-export const setCurrentUser = token => async dispatch => {
-  const decodedToken = jwt_decode(token);
+export const setCurrentUser = decodedToken => async dispatch => {
   const isAuthenticated = Object.keys(decodedToken).length !== 0;
   if (isAuthenticated) await dispatch(getUser());
   dispatch({

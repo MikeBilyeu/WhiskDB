@@ -1,19 +1,8 @@
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
-var GoogleStrategy = require("passport-google-oauth20").Strategy;
-
-const Pool = require("pg").Pool;
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 const { GOOGLE, ...keys } = require("./keys");
-
-// Connect to pool
-const pool = new Pool({
-  user: keys.user,
-  host: keys.host,
-  database: keys.database,
-  password: keys.password,
-  port: keys.port
-});
 
 module.exports = passport => {
   passport.use(
@@ -32,8 +21,6 @@ module.exports = passport => {
     )
   );
 
-  console.log("GOOGLE:", GOOGLE);
-
   passport.use(
     new GoogleStrategy(
       {
@@ -41,11 +28,10 @@ module.exports = passport => {
         clientSecret: GOOGLE.clientSecret,
         callbackURL: "http://localhost:3000/auth/google/redirect"
       },
-      (accessToken, refreshToken, profile, cb) => {
-        // User.findOrCreate({ googleId: profile.id }, (err, user) => {
-        //   return cb(err, user);
-        // });
-        console.log("profile:", profile);
+      (accessToken, refreshToken, profile, done) => {
+        console.log(accessToken, refreshToken, profile);
+        // add user to db
+        return done(accessToken, refreshToken, profile);
       }
     )
   );

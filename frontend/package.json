@@ -7,14 +7,14 @@
     "jwt-decode": "^2.2.0",
     "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
-    "react": "^16.7.0",
-    "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^16.7.0",
-    "react-redux": "^6.0.0",
+    "react": "^16.12.0",
+    "react-copy-to-clipboard": "^5.0.2",
+    "react-dom": "^16.12.0",
+    "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.5",
-    "redux": "^4.0.1",
-    "redux-form": "^8.1.0",
+    "react-scripts": "^2.1.8",
+    "redux": "^4.0.4",
+    "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"
   },
@@ -36,10 +36,10 @@
   "proxy": "http://localhost:3001",
   "devDependencies": {
     "check-prop-types": "^1.1.2",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.13.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "jest-enzyme": "^7.1.2",
     "moxios": "^0.4.0",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.12.0"
   }
 }

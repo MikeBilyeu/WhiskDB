@@ -1,6 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
+
 const PORT = process.env.PORT || 3001;
+
 const createUser = require("./queries/createUser").createUser;
 const userLogin = require("./queries/userLogin").userLogin;
 const createRecipe = require("./queries/createRecipe").createRecipe;
@@ -29,8 +32,9 @@ app.use(
   })
 );
 
-// Passport middleware
 app.use(passport.initialize());
+app.use(cors());
+
 // Passport config
 require("./config/passport")(passport);
 
@@ -120,9 +124,9 @@ app.get(
 
 app.get(
   "/auth/google/redirect",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  function(req, res) {
-    // Successful authentication, redirect home.
+  passport.authenticate("google"),
+  (req, res) => {
+    // Successful authentication, redirect profile.
     res.redirect("/profile");
   }
 );

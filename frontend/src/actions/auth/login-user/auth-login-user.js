@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import { SubmissionError } from "redux-form";
 import setAuthToken from "../../../utils/setAuthToken";
 import { setCurrentUser } from "../../auth";
@@ -10,7 +11,8 @@ const loginUser = userData => async dispatch => {
     localStorage.setItem("jwtToken", token);
     // Add token to auth header for future requests
     setAuthToken(token);
-    dispatch(setCurrentUser(token));
+    const decodedToken = jwt_decode(token);
+    dispatch(setCurrentUser(decodedToken));
   } catch (err) {
     throw new SubmissionError(err.response.data);
   }
