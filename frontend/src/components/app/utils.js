@@ -9,9 +9,9 @@ export const checkAuthToken = () => {
     // Set auth token header auth
     const token = localStorage.jwtToken;
     setAuthToken(token);
+    const decode = jwt_decode(token);
+    store.dispatch(setCurrentUser(decode));
 
-    // Set user and isAuthenticated
-    store.dispatch(setCurrentUser(token));
     // Check for expired token
     const currentTime = Date.now() / 1000; // to get in milliseconds
     if (jwt_decode(token).exp < currentTime) {

@@ -68,26 +68,24 @@ export const getRecipe = (recipe_id, user_id) => dispatch => {
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
 
-export const getSavedRecipes = user_id => dispatch => {
+export const getSavedRecipes = () => async dispatch => {
   dispatch({ type: GET_SAVED_RECIPES_REQUEST });
-
-  axios
-    .get("/save-recipe", { params: { user_id } })
-    .then(res => {
-      dispatch({ type: GET_SAVED_RECIPES, payload: res.data });
-    })
-    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+  try {
+    const res = await axios.get("/save-recipe");
+    dispatch({ type: GET_SAVED_RECIPES, payload: res.data });
+  } catch (err) {
+    dispatch({ type: GET_ERRORS, payload: err });
+  }
 };
 
-export const getMyRecipes = user_id => dispatch => {
+export const getMyRecipes = () => async dispatch => {
   dispatch({ type: GET_MY_RECIPES_REQUEST });
-
-  axios
-    .get("/my-recipe", { params: { user_id } })
-    .then(res => {
-      dispatch({ type: GET_MY_RECIPES, payload: res.data });
-    })
-    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+  try {
+    const res = await axios.get("/my-recipe");
+    dispatch({ type: GET_MY_RECIPES, payload: res.data });
+  } catch (err) {
+    dispatch({ type: GET_ERRORS, payload: err });
+  }
 };
 
 export const sortSavedRecipes = sortBy => dispatch => {
@@ -99,13 +97,12 @@ export const toggleSortButton = () => {
   return { type: TOGGLE_SORT_BUTTON };
 };
 
-// Save Recipe Action Creator
-export const saveRecipe = (recipe_id, user_id) => dispatch => {
-  if (user_id !== null) {
+export const saveRecipe = recipe_id => async dispatch => {
+  try {
     dispatch({ type: SAVE_RECIPE });
-    axios
-      .post("/save-recipe", { user_id, recipe_id })
-      .catch(err => console.log(err));
+    await axios.post("/save-recipe", { recipe_id });
+  } catch (err) {
+    dispatch({ type: GET_ERRORS, payload: err });
   }
 };
 

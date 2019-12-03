@@ -11,7 +11,7 @@ const pool = new Pool({
 });
 
 const getMyRecipes = (request, response) => {
-  const { user_id } = request.query;
+  const { user_id } = request.user;
   //connect pool
   pool.connect().then(client => {
     return client

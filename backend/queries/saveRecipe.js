@@ -11,7 +11,8 @@ const pool = new Pool({
 });
 
 const saveRecipe = (request, response) => {
-  const { recipe_id, user_id } = request.body;
+  const { recipe_id } = request.body;
+  const { user_id } = request.user;
 
   pool.connect().then(client => {
     return client

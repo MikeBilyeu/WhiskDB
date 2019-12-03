@@ -8,7 +8,6 @@ import {
   toggleSortButton,
   createRecipe
 } from "../../actions/recipeActions";
-import { getUser } from "../../actions/auth";
 import Header from "./header";
 import RecipeContainer from "./recipes";
 import SortBy from "./SortBy";
@@ -27,11 +26,8 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getUser();
-    const user_id =
-      this.props.auth.isAuthenticated && this.props.auth.user.user_id;
-    this.props.getMyRecipes(user_id);
-    this.props.getSavedRecipes(user_id);
+    this.props.getMyRecipes();
+    this.props.getSavedRecipes();
   }
 
   handlePageClick = page => {
@@ -92,6 +88,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getUser, getMyRecipes, getSavedRecipes, toggleSortButton, createRecipe }
+    { getMyRecipes, getSavedRecipes, toggleSortButton, createRecipe }
   )(Profile)
 );

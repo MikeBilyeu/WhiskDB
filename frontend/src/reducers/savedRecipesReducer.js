@@ -50,7 +50,7 @@ export default function(state = initialState, action) {
     case GET_SAVED_RECIPES:
       return {
         ...state,
-        recipes: action.payload.sort(sortRecipes(state.sortBy)),
+        recipes: action.payload,
         isFetching: false
       };
     case SORT_SAVED_RECIPES:
