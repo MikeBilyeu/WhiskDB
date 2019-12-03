@@ -6,12 +6,10 @@ import recipeReducer from "./recipeReducer";
 import savedRecipesReducer from "./savedRecipesReducer";
 import myRecipesRecuder from "./myRecipesReducer";
 import browseRecipesReducer from "./browseRecipesReducer";
-import userReducer from "./userReducer";
 
 export default combineReducers({
   form: formReducer,
   auth: authReducer,
-  userData: userReducer,
   recipe: recipeReducer,
   savedRecipes: savedRecipesReducer,
   myRecipes: myRecipesRecuder,
