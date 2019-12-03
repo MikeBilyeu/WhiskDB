@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { logoutUser } from "../../../../actions/authActions";
+import { logoutUser } from "../../../../actions/auth";
 import { ReactComponent as Arrow } from "../../../../assets/images/arrowLeft.svg";
 import "./edit-header.scss";
 

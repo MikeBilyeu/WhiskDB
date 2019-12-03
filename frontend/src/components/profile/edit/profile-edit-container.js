@@ -1,11 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm, isDirty } from "redux-form";
-import {
-  logoutUser,
-  editProfile,
-  toggleDelete
-} from "../../../actions/authActions";
+import { logoutUser, editProfile, toggleDelete } from "../../../actions/auth";
 import { validateUsername } from "../../auth/utils/validation.js";
 import { usernameValidate } from "../../auth/utils/async-validation";
 import Input from "../../form-inputs/input";

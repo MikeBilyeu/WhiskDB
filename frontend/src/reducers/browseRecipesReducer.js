@@ -2,7 +2,8 @@ import {
   GET_BROWSE_RECIPES,
   GET_BROWSE_REQUEST,
   SET_BROWSE_DATA,
-  TOGGLE_FILTER_BUTTON
+  TOGGLE_FILTER_BUTTON,
+  GET_BROWSE_IMAGES
 } from "../actions/types";
 
 const initialState = {

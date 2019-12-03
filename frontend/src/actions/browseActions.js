@@ -9,7 +9,7 @@ import {
 } from "./types";
 
 // dispatch an action with a type of get browse request
-export const getBrowseRecipes = browseData => (dispatch, getState) => {
+export const getBrowseRecipes = browseData => async (dispatch, getState) => {
   // Get the user_id from state to check if user saved the recipe
   const {
     auth: {
@@ -23,12 +23,15 @@ export const getBrowseRecipes = browseData => (dispatch, getState) => {
   dispatch({ type: SET_BROWSE_DATA, payload: browseData });
 
   // make axios request
-  axios
-    .get("/browse-recipe", { params: { browseData, user_id } })
-    .then(res => {
-      dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
-    })
-    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+  try {
+    const res = await axios.get("/browse-recipe", {
+      params: { browseData, user_id }
+    });
+
+    dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
+  } catch (err) {
+    dispatch({ type: GET_ERRORS, payload: err });
+  }
 };
 
 // dispatch an action with a type of get search request

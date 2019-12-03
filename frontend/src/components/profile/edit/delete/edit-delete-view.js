@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { toggleDelete, deleteUser } from "../../../../actions/authActions";
+import { toggleDelete, deleteUser } from "../../../../actions/auth";
 
 const Delete = props => {
   return (

@@ -8,7 +8,7 @@ import {
   toggleSortButton,
   createRecipe
 } from "../../actions/recipeActions";
-import { getUser } from "../../actions/authActions";
+import { getUser } from "../../actions/auth";
 import Header from "./header";
 import RecipeContainer from "./recipes";
 import SortBy from "./SortBy";
