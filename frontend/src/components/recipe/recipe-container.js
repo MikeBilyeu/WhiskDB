@@ -31,7 +31,7 @@ class Recipe extends React.Component {
       shareOpen,
       isFetching,
       editRecipe,
-      recipe: { image_url, directions, footnote, time, num_reviews }
+      recipe: { image_url, directions, footnote, time }
     } = this.props.recipeData;
     const recipe_id = this.props.match.params.recipe_id;
     const user_id = this.props.auth.user.user_id || null;
@@ -51,9 +51,7 @@ class Recipe extends React.Component {
         <img className="whiskdb-print-logo" src={Whiskdb} alt="Whiskdb logo" />
         <Header recipe_id={recipe_id} user_id={user_id} />
         {shareOpen ? <Share /> : null}
-        {reviewOpen ? (
-          <Review recipe_id={recipe_id} num_reviews={num_reviews} />
-        ) : null}
+        {reviewOpen ? <Review recipe_id={recipe_id} /> : null}
 
         <img
           className="recipe-img"

@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Stars from "./stars";
 import Details from "./details";
-import { ReactComponent as Star } from "../../../assets/images/star.svg";
+
 import { ReactComponent as Close } from "../../../assets/images/removeDark.svg";
 import { toggleReview, submitReview } from "../../../actions/rateActions";
 import "./recipe-review.scss";
@@ -11,60 +12,24 @@ class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      starColor: ["#E2E2E2", "#E2E2E2", "#E2E2E2", "#E2E2E2", "#E2E2E2"],
       rating: 0,
       comment: ""
     };
   }
-  renderRating = () => {
-    return this.state.starColor.map((color, i) => {
-      return (
-        <Star
-          key={"star" + i}
-          style={{
-            width: "2rem",
-            fill: color,
-            cursor: "pointer"
-          }}
-          onMouseEnter={() => this.handleMouseEnter(i + 1)}
-          onClick={() => {
-            this.setState({ rating: i + 1 });
-          }}
-        />
-      );
-    });
-  };
-
-  setStarColor = rating => {
-    this.setState(() => {
-      let colors = [];
-      for (let i = 0; i < 5; i++) {
-        colors = [...colors, rating > i ? "#FFA805" : "#E2E2E2"];
-      }
-      return { starColor: colors };
-    });
-  };
-
-  handleMouseEnter = rating => {
-    this.setStarColor(rating);
-  };
-
-  handleMouseLeave = () => {
-    this.setStarColor(this.state.rating);
-  };
 
   componentDidMount() {
     this.setState({
-      starColor: ["#E2E2E2", "#E2E2E2", "#E2E2E2", "#E2E2E2", "#E2E2E2"],
       rating: 0,
-      review: ""
+      comment: ""
     });
   }
 
   handleChange = e => {
     this.setState({ comment: e.target.value });
   };
-
+  handleClick = rating => {
+    this.setState({ rating: rating + 1 });
+  };
   handleSubmit = () => {
     const review = {
       recipe_id: this.props.recipe_id,
@@ -74,13 +39,7 @@ class Review extends React.Component {
     this.props.submitReview(review);
   };
   render() {
-    const {
-      recipe_id,
-      num_reviews,
-      starClicked,
-      submitReview,
-      isAuthenticated
-    } = this.props;
+    const { recipe_id, isAuthenticated } = this.props;
     return (
       <div className="rate">
         <Close className="close-btn" onClick={this.props.toggleReview} />
@@ -95,18 +54,9 @@ class Review extends React.Component {
             {" to rate a recipe."}
           </h3>
         ) : null}
-        <div
-          onMouseLeave={this.handleMouseLeave}
-          style={{
-            display: "grid",
-            gridAutoFlow: "column",
-            placeItems: "center",
-            width: "12rem",
-            margin: "auto"
-          }}
-        >
-          {this.renderRating()}
-        </div>
+
+        <Stars handleClick={this.handleClick} rating={this.state.rating} />
+
         <label className="review">
           Review
           <textarea
