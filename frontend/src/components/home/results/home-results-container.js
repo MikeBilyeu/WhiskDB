@@ -12,11 +12,18 @@ import "./home-results.scss";
 
 class Results extends React.Component {
   componentDidMount() {
-    if (this.props.browseData.search === "") {
-      this.props.getBrowseRecipes(this.props.browseData);
-    } else {
-      this.props.getSearchRecipes(this.props.browseData);
+    // Prevents axios requests
+    if (this.props.recipes.isFetching) {
+      if (this.props.browseData.search === "") {
+        this.props.getBrowseRecipes(this.props.browseData);
+      } else {
+        this.props.getSearchRecipes(this.props.browseData);
+      }
     }
+  }
+
+  shouldComponentUpdate(prevProps, prevState) {
+    return prevProps.recipes.isFetching !== this.props.recipes.isFetching;
   }
 
   renderRecipeList = () => {
