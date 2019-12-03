@@ -33,6 +33,7 @@
     @include grid-center;
     gridautoflow: column;
     width: 13rem;
+    margin: auto;
     cursor: pointer;
     .star {
       width: 100%;

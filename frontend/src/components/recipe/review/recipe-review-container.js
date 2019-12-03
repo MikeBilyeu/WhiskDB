@@ -44,8 +44,7 @@ class Review extends React.Component {
       <div className="rate">
         <Close className="close-btn" onClick={this.props.toggleReview} />
 
-        <h2>How was it?</h2>
-        {this.state.rating && !isAuthenticated ? (
+        {!isAuthenticated ? (
           <h3>
             {"You must "}
             <Link to="/auth" style={{ color: "#0172c4" }}>
@@ -53,31 +52,34 @@ class Review extends React.Component {
             </Link>
             {" to rate a recipe."}
           </h3>
-        ) : null}
+        ) : (
+          <div style={{ width: "100%" }}>
+            <h2>How was it?</h2>
+            <Stars handleClick={this.handleClick} rating={this.state.rating} />
+            <label className="review">
+              Review
+              <textarea
+                placeholder="Write a review…"
+                value={this.state.comment}
+                onChange={this.handleChange}
+              />
+            </label>
 
-        <Stars handleClick={this.handleClick} rating={this.state.rating} />
-
-        <label className="review">
-          Review
-          <textarea
-            placeholder="Write a review…"
-            value={this.state.comment}
-            onChange={this.handleChange}
-          />
-        </label>
-
-        <div
-          className="submit-review"
-          style={{
-            opacity: this.state.rating && isAuthenticated ? "1" : ".5",
-            cursor: this.state.rating && isAuthenticated ? "pointer" : "auto"
-          }}
-          onClick={
-            this.state.rating && isAuthenticated ? this.handleSubmit : null
-          }
-        >
-          Submit
-        </div>
+            <div
+              className="submit-review"
+              style={{
+                opacity: this.state.rating && isAuthenticated ? "1" : ".5",
+                cursor:
+                  this.state.rating && isAuthenticated ? "pointer" : "auto"
+              }}
+              onClick={
+                this.state.rating && isAuthenticated ? this.handleSubmit : null
+              }
+            >
+              Submit
+            </div>
+          </div>
+        )}
 
         <Details recipe_id={recipe_id} />
       </div>
