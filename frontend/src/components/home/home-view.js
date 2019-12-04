@@ -12,19 +12,13 @@ import { filterOptions } from "./utils";
 
 class Home extends React.Component {
   componentDidMount() {
-    // Prevents axios requests
-    if (this.props.recipes.isFetching) {
-      if (this.props.browseData.search === "") {
-        this.props.getBrowseRecipes(this.props.browseData);
-      } else {
-        this.props.getSearchRecipes(this.props.browseData);
-      }
+    if (this.props.browseData.search === "") {
+      this.props.getBrowseRecipes(this.props.browseData);
+    } else {
+      this.props.getSearchRecipes(this.props.browseData);
     }
   }
 
-  // shouldComponentUpdate(prevProps, prevState) {
-  //   return prevProps.recipes.isFetching !== this.props.recipes.isFetching;
-  // }
   render() {
     const { options, type } = filterOptions(this.props.buttonToggled);
     return (
