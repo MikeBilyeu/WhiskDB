@@ -23,10 +23,10 @@ const getRecipe = async (request, response) => {
       [recipe_id, user_id]
     );
     if (res.rows[0]) {
-      return response.status(200).json(res.rows[0]);
+      response.status(200).json(res.rows[0]);
     }
   } catch (err) {
-    return response.status(500).json(err);
+    response.status(500).json(err);
   }
 };
 

@@ -20,7 +20,7 @@ const editRecipe = async (request, response) => {
   const total_time_mins = timeHours * 60 + timeMinutes;
 
   if (user_id !== created_by) {
-    return response.status(401).send("You can't edit this recipe");
+    response.status(401).send("You can't edit this recipe");
   }
 
   try {
@@ -42,9 +42,9 @@ const editRecipe = async (request, response) => {
         recipe_id
       ]
     );
-    return response.status(200).send("Changes saved!");
+    response.status(200).send("Changes saved!");
   } catch (err) {
-    return response.status(500).json(err);
+    response.status(500).json(err);
   }
 };
 

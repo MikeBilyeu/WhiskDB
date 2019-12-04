@@ -10,11 +10,11 @@ const getEmails = async (request, response) => {
     ]);
     client.release();
     if (res.rowCount > 0) {
-      return response.status(409).json({ usernmae: "Email is in use" });
+      response.status(409).json({ usernmae: "Email is in use" });
     }
-    return response.status(200).json({ usernmae: "Email is not in use" });
+    response.status(200).json({ usernmae: "Email is not in use" });
   } catch (err) {
-    return response.status(500).json(err);
+    response.status(500).json(err);
   }
 };
 

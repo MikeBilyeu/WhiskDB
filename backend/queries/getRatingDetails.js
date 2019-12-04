@@ -35,7 +35,7 @@ const getRatingDetails = async (request, response) => {
       response.status(200).json(res.rows[0]);
     }
   } catch (err) {
-    return response.status(500).json(err);
+    response.status(500).json(err);
   }
 };
 

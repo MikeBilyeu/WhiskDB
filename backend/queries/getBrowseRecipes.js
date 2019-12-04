@@ -69,7 +69,7 @@ const getBrowseRecipes = async (request, response) => {
     client.release();
     response.status(200).json(res.rows);
   } catch (err) {
-    return response.status(500).json(err);
+    response.status(500).json(err);
   }
 };
 

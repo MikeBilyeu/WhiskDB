@@ -22,9 +22,9 @@ const getMyRecipes = async (request, response) => {
       [user_id]
     );
     client.release();
-    return response.status(200).json(res.rows);
+    response.status(200).json(res.rows);
   } catch (err) {
-    return response.status(500).json(err);
+    response.status(500).json(err);
   }
 };
 

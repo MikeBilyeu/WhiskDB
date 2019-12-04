@@ -21,7 +21,7 @@ const createRecipe = async (request, response) => {
   // const errors = validateRecipeInput(request.body);
   // // Check validation
   // if (Object.keys(errors).length !== 0) {
-  //   return response.status(400).json(errors);
+  //   response.status(400).json(errors);
   // }
 
   const timeHours = time.hours > 0 ? time.hours : 0;
@@ -34,7 +34,7 @@ const createRecipe = async (request, response) => {
       `INSERT INTO recipes( created_by, title, servings, total_time_mins,
         footnote, directions, ingredients, keywords, categories, image_url,
         document_vectors ) VALUES ( $1, CAST($2 AS VARCHAR), $3, $4, $5, $6,
-        $7, CAST($8 AS VARCHAR[]), $9, $10, ( to_tsvector($2) || to_tsvector( 
+        $7, CAST($8 AS VARCHAR[]), $9, $10, ( to_tsvector($2) || to_tsvector(
         array_to_string($8, ' ') ) ) ) RETURNING recipe_id`,
       [
         created_by,
@@ -61,9 +61,9 @@ const createRecipe = async (request, response) => {
       );
     });
     client.release();
-    return response.status(200).send({ recipe_id: recipe_id });
+    response.status(200).send({ recipe_id: recipe_id });
   } catch (err) {
-    return response.status(400).json(err);
+    response.status(400).json(err);
   }
 };
 

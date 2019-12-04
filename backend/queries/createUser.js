@@ -12,7 +12,7 @@ const createUser = async (request, response) => {
   const errors = validateRegisterInput(request.body);
   // Check validation
   if (Object.keys(errors).length !== 0) {
-    return response.status(400).json(errors);
+    response.status(400).json(errors);
   }
 
   const client = await pool.connect();
@@ -23,11 +23,11 @@ const createUser = async (request, response) => {
 
   if (res.rowCount > 0) {
     if (email === res.rows[0].email) {
-      return response
+      response
         .status(400)
         .send("This email is already registered, Want to Log in");
     } else if (username === res.rows[0].username) {
-      return response.status(400).send("Username is already registered, Sorry");
+      response.status(400).send("Username is already registered, Sorry");
     }
   } else {
     // Hash password before saving in database
@@ -47,7 +47,7 @@ const createUser = async (request, response) => {
             .send(`User added with ID: ${result.rows[0].user_id}`);
         } catch (err) {
           // client.release();
-          return response.status(400).json(err);
+          response.status(400).json(err);
         }
       });
     });

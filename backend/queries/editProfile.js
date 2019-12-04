@@ -8,7 +8,7 @@ const editProfile = async (request, response) => {
   const errors = validateUsername(username);
   // Check errors for username validation
   if (Object.keys(errors).length !== 0) {
-    return response.status(400).json(errors);
+    response.status(400).json(errors);
   }
 
   try {
@@ -41,7 +41,7 @@ const editProfile = async (request, response) => {
       }
     );
   } catch (err) {
-    return response.status(400).json(err);
+    response.status(400).json(err);
   }
 };
 
