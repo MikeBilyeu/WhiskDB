@@ -6,6 +6,7 @@ import {
 } from "../../../actions/browseActions";
 import Loading from "../../loading";
 import RecipeDisplay from "../../recipe-display";
+import Button from "../../button";
 import NoResults from "../no-results";
 
 import "./home-results.scss";
@@ -44,6 +45,7 @@ class Results extends React.Component {
     return (
       <div className="recipe-results">
         <ul>{this.renderRecipeList()}</ul>
+        <Button className="btn load-more">Load More</Button>
       </div>
     );
   }

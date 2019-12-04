@@ -1,11 +1,32 @@
+@import "../../../assets/styles/variables";
 .recipe-results {
+  @include grid-center;
   ul {
     display: grid;
+    width: 100%;
     grid-gap: 4rem;
     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
     padding: 0;
     list-style-type: none;
     list-style: none;
+  }
+
+  .load-more {
+    outline: none;
+    border: solid lightColor(medium) 0.09rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: darkColor(medium);
+    font-weight: 900;
+    font-size: 1.1rem;
+    background-color: #fff;
+    width: 75%;
+    min-width: 18rem;
+    max-width: 20rem;
+    margin: 4rem auto;
+    padding: 0.6rem 5rem;
+    fontweight: bold;
+    text-align: center;
   }
 }
 
