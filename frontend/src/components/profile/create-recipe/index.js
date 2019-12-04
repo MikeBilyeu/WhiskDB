@@ -1,1 +1,1 @@
-export { default } from "./profile-create-recipe-view";
+export { default } from "./profile-create-recipe-view.jsx";

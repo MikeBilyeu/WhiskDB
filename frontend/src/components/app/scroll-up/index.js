@@ -1,1 +1,1 @@
-export { default } from "./app-scroll-up-view";
+export { default } from "./app-scroll-up-view.jsx";

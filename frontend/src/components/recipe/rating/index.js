@@ -1,1 +1,1 @@
-export { default } from "./recipe-rating-view";
+export { default } from "./recipe-rating-view.jsx";

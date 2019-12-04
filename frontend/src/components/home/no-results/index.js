@@ -1,1 +1,1 @@
-export { default } from "./home-no-results-view";
+export { default } from "./home-no-results-view.jsx";

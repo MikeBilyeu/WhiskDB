@@ -1,1 +1,1 @@
-export { default } from "./private-route-container";
+export { default } from "./private-route-container.jsx";

@@ -1,1 +1,1 @@
-export { default } from "./recipe-upsert-ingredients-container";
+export { default } from "./recipe-upsert-ingredients-container.jsx";

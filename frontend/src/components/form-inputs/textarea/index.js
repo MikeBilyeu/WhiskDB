@@ -1,1 +1,1 @@
-export { default } from "./textarea-view";
+export { default } from "./textarea-view.jsx";

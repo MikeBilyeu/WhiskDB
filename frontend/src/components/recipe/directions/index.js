@@ -1,1 +1,1 @@
-export { default } from "./recipe-directions-view";
+export { default } from "./recipe-directions-view.jsx";

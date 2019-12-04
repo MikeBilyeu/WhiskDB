@@ -1,1 +1,1 @@
-export { default } from "./input-view.js";
+export { default } from "./input-view.jsx";

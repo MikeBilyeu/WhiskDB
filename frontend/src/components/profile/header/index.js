@@ -1,1 +1,1 @@
-export { default } from "./profile-header-view";
+export { default } from "./profile-header-view.jsx";

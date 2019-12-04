@@ -1,1 +1,1 @@
-export { default } from "./stars-star-view.js";
+export { default } from "./stars-star-view.jsx";

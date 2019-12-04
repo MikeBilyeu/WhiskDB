@@ -1,1 +1,1 @@
-export { default } from "./units-servings-servings-view";
+export { default } from "./units-servings-servings-view.jsx";

@@ -1,1 +1,1 @@
-export { default } from "./review-stars-container.js";
+export { default } from "./review-stars-container.jsx";

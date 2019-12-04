@@ -1,1 +1,1 @@
-export { default } from "./recipe-edit-conatiner.js";
+export { default } from "./recipe-edit-conatiner.jsx";
