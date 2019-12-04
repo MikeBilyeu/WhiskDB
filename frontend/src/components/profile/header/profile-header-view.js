@@ -22,7 +22,6 @@ const Header = ({ username, fullName, ...props }) => {
           <div className="create-recipe-btn">Create Recipe</div>
         </Link>
       </div>
-      <PageToggle page={props.page} onClick={props.onPageClick} />
     </div>
   );
 };

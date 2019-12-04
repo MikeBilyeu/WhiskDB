@@ -4,13 +4,14 @@
   @include grid-center;
   grid-auto-flow: column;
   border-bottom: solid lightColor(light) 0.05rem;
-  position: relative;
-  top: 13.5rem;
+
+  position: sticky;
+  top: -1rem;
+  margin-top: 15rem;
   background-color: #fff;
   width: 100%;
   z-index: 2;
-  padding: 0rem 0;
-  padding-bottom: 0;
+  padding: 0;
 
   .btn {
     outline: none;

@@ -2,8 +2,9 @@
 
 .profile-header {
   color: darkColor(medium);
-  position: relative;
+
   width: 100%;
+  height: 0;
 
   .user-info {
     @include grid-center;

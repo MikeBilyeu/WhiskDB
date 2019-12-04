@@ -8,8 +8,9 @@
   background-color: #fff;
   width: 100%;
   z-index: 1;
-  margin-top: 10rem;
-  padding-top: 4rem;
+  margin-top: 0rem;
+  //padding-top: 4rem;
+  position: relative;
 
   ul {
     @include grid-center;

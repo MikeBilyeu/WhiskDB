@@ -14,6 +14,7 @@ import SortBy from "./SortBy";
 import SortButton from "../sort-button";
 import Edit from "./edit";
 import CreateRecipe from "./create-recipe";
+import PageToggle from "./header/page-toggle";
 import "./profile.scss";
 
 class Profile extends React.Component {
@@ -58,11 +59,10 @@ class Profile extends React.Component {
           component={() => {
             return (
               <div className="profile">
-                <Header
-                  username={username}
-                  fullName={full_name}
-                  page={page}
-                  onPageClick={this.handlePageClick}
+                <Header username={username} fullName={full_name} />
+                <PageToggle
+                  page={this.state.page}
+                  onClick={this.handlePageClick}
                 />
                 {page === "saved" ? (
                   <RecipeContainer recipes={savedRecipes}>
