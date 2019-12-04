@@ -1,37 +1,27 @@
-const Pool = require("pg").Pool;
-const keys = require("../config/keys");
+const pool = require("../utils/connectPool");
 
-// Connect to pool
-const pool = new Pool({
-  user: keys.user,
-  host: keys.host,
-  database: keys.database,
-  password: keys.password,
-  port: keys.port
-});
+const getUser = async (request, response) => {
+  const { user_id } = request.user; // Get user_id from auth
 
-const getUser = (request, response) => {
-  const { user_id } = request.user;
-
-  pool.connect().then(client => {
-    return client
-      .query(
-        "SELECT user_id, username, full_name, email FROM users WHERE user_id = $1",
-        [user_id]
-      )
-      .then(res => {
-        client.release();
-        if (res.rowCount === 0) {
-          return response.status(401);
-        }
-        const user = res.rows[0];
-        response.status(200).json(user);
-      })
-      .catch(e => {
-        client.release();
-        console.log(e);
-      });
-  });
+  try {
+    const client = await pool.connect();
+    const res = await client.query(
+      `SELECT user_id,
+             username,
+             full_name,
+             email
+      FROM users
+      WHERE user_id = $1`,
+      [user_id]
+    );
+    if (res.rowCount === 0) {
+      response.status(401);
+    }
+    const user = res.rows[0];
+    response.status(200).json(user);
+  } catch (err) {
+    response.status(500).json(err);
+  }
 };
 
 module.exports = {
