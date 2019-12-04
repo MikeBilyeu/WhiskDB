@@ -20,15 +20,15 @@ const getBrowseRecipes = async (request, response) => {
        CAST(count(rw.*) AS INTEGER) AS num_reviews,
        u.username AS username,
        sr.saved_by = $5 saved
-FROM recipes r
-LEFT JOIN users u ON r.created_by = u.user_id
-LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
-LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
-AND sr.saved_by = $5
-WHERE r.recipe_id IN
-    (SELECT recipe
-     FROM recipes_join_categories
-     WHERE CASE
+      FROM recipes r
+      LEFT JOIN users u ON r.created_by = u.user_id
+      LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
+      LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
+      AND sr.saved_by = $5
+      WHERE r.recipe_id IN
+      (SELECT recipe
+      FROM recipes_join_categories
+      WHERE CASE
                WHEN $2 != ''
                     AND $1 != 'all meals' THEN category IN
                       (SELECT category_id
@@ -48,13 +48,13 @@ WHERE r.recipe_id IN
                       (SELECT category_id
                        FROM categories)
            END
-     GROUP BY recipe
-     HAVING COUNT(*) >= $3)
-GROUP BY r.recipe_id,
+      GROUP BY recipe
+      HAVING COUNT(*) >= $3)
+      GROUP BY r.recipe_id,
          u.user_id,
          rw.recipe_id,
          sr.saved_by
-ORDER BY CASE
+      ORDER BY CASE
              WHEN $4 = 'a-z' THEN LOWER(r.title)
          END ASC, CASE
                       WHEN $4 = 'time' THEN r.total_time_mins
