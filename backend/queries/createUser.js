@@ -1,15 +1,5 @@
-const Pool = require("pg").Pool;
+const pool = require("../utils/connectPool");
 const jwt = require("jsonwebtoken");
-const keys = require("../config/keys");
-// Connect to pool
-const pool = new Pool({
-  user: keys.user,
-  host: keys.host,
-  database: keys.database,
-  password: keys.password,
-  port: keys.port
-});
-
 const bcrypt = require("bcryptjs");
 
 // Load input validation
