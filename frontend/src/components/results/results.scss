@@ -1,6 +1,12 @@
-@import "../../../assets/styles/variables";
+@import "../../assets/styles/variables";
+
 .recipe-results {
-  @include grid-center;
+  width: 100%;
+  margin-top: 0rem;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+  background-color: #fff;
   ul {
     display: grid;
     width: 100%;
@@ -9,8 +15,8 @@
     padding: 0;
     list-style-type: none;
     list-style: none;
+    text-align: left;
   }
-
   .load-more {
     outline: none;
     border: solid lightColor(medium) 0.09rem;

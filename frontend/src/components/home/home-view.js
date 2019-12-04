@@ -2,27 +2,55 @@ import React from "react";
 import { connect } from "react-redux";
 import Header from "./header";
 import Filter from "./filter";
-import Results from "./results";
+import Results from "../results";
+import {
+  getBrowseRecipes,
+  getSearchRecipes
+} from "../../actions/browseActions";
 
 import { filterOptions } from "./utils";
 
-const Home = props => {
-  const { options, type } = filterOptions(props.buttonToggled);
+class Home extends React.Component {
+  componentDidMount() {
+    // Prevents axios requests
+    if (this.props.recipes.isFetching) {
+      if (this.props.browseData.search === "") {
+        this.props.getBrowseRecipes(this.props.browseData);
+      } else {
+        this.props.getSearchRecipes(this.props.browseData);
+      }
+    }
+  }
 
-  return (
-    <div className="home">
-      <Header />
-      {props.buttonToggled ? (
-        <Filter filterOptions={options} filterType={type} />
-      ) : null}
-      <Results />
-    </div>
-  );
-};
+  // shouldComponentUpdate(prevProps, prevState) {
+  //   return prevProps.recipes.isFetching !== this.props.recipes.isFetching;
+  // }
+  render() {
+    const { options, type } = filterOptions(this.props.buttonToggled);
+    return (
+      <div className="home">
+        <Header />
+        {this.props.buttonToggled ? (
+          <Filter filterOptions={options} filterType={type} />
+        ) : null}
 
-const mapSateToProps = state => {
-  return {
-    buttonToggled: state.browseRecipes.toggleFilterButton
-  };
-};
-export default connect(mapSateToProps)(Home);
+        <Results
+          recipes={this.props.recipes.recipes}
+          isFetching={this.props.recipes.isFetching}
+        />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  buttonToggled: state.browseRecipes.toggleFilterButton,
+  recipes: state.browseRecipes,
+  browseData: state.browseRecipes.browseData,
+  user_id: state.auth.user.user_id
+});
+
+export default connect(
+  mapStateToProps,
+  { getBrowseRecipes, getSearchRecipes }
+)(Home);

@@ -3,19 +3,3 @@
 .profile {
   @include grid-center;
 }
-
-.profile-recipes {
-  background-color: #fff;
-  width: 100%;
-  z-index: 1;
-  margin-top: 0rem;
-  //padding-top: 4rem;
-  position: relative;
-
-  ul {
-    @include grid-center;
-    grid-gap: 2.5rem;
-    padding: 0;
-    list-style-type: none;
-  }
-}

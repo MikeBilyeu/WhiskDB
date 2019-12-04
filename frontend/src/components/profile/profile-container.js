@@ -9,9 +9,7 @@ import {
   createRecipe
 } from "../../actions/recipeActions";
 import Header from "./header";
-import RecipeContainer from "./recipes";
-import SortBy from "./SortBy";
-import SortButton from "../sort-button";
+import Results from "../results";
 import Edit from "./edit";
 import CreateRecipe from "./create-recipe";
 import PageToggle from "./header/page-toggle";
@@ -65,11 +63,9 @@ class Profile extends React.Component {
                   onClick={this.handlePageClick}
                 />
                 {page === "saved" ? (
-                  <RecipeContainer recipes={savedRecipes}>
-                    {sortActive && <SortBy />}
-                  </RecipeContainer>
+                  <Results recipes={savedRecipes} isFetching={null} />
                 ) : (
-                  <RecipeContainer recipes={myRecipes} />
+                  <Results recipes={myRecipes} isFetching={null} />
                 )}
               </div>
             );
