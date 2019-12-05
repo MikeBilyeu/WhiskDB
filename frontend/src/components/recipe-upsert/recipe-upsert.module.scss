@@ -214,16 +214,22 @@
 .keywordsContainer {
   @extend .categoriesContainer;
   .list {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
     .removeBtn {
+      margin: 0.1rem;
       @extend .active;
+      border-radius: 0.5rem;
+      font-weight: normal;
       color: darkColor(medium);
-      border: solid $error-color 0.05rem;
+      border: solid lightColor(dark) 0.05rem;
       white-space: nowrap;
       overflow: hidden;
       display: inline-block;
       width: auto;
-      padding: 0.5rem 2rem;
+      padding: 0.5rem 1.5rem 0.5rem 1rem;
 
       &:focus {
         outline: 0;

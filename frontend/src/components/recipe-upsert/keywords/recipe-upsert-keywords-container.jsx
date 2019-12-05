@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Input from "../../form-inputs/input";
 import Button from "../../button";
+import { ReactComponent as Remove } from "../../../assets/images/removeDark.svg";
 import styles from "../recipe-upsert.module.scss";
 
 class Keywords extends Component {
@@ -49,7 +50,7 @@ class Keywords extends Component {
       <div className={styles.keywordsContainer}>
         <h2>Keywords</h2>
         <Input
-          label="Keyword"
+          label="Click enter to add Keyword"
           input={{
             value: this.state.keyword,
             onChange: this.handleChange,
@@ -68,6 +69,7 @@ class Keywords extends Component {
                     className={styles.removeBtn}
                     onClick={e => this.handleClick(e, keyword)}
                   >
+                    <Remove style={{ width: ".7rem", marginRight: ".5rem" }} />
                     {keyword}
                   </Button>
                 </li>
