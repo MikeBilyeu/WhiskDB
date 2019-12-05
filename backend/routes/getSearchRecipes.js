@@ -9,7 +9,7 @@ router.get("/", async (request, response) => {
   const { user_id } = request.query;
   search = search.trim();
   try {
-    const { rows } = await db.query(
+    const { rows, rowCount } = await db.query(
       `SELECT r.recipe_id,
              u.username AS username,
              r.title,
@@ -32,7 +32,11 @@ router.get("/", async (request, response) => {
                num_reviews DESC;`,
       [search, user_id]
     );
-    response.status(200).json(rows);
+    if (rowCount < 1) {
+      response.status(204).send();
+    } else {
+      response.status(200).json(rows);
+    }
   } catch (err) {
     response.status(500).json(err);
   }

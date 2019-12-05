@@ -6,12 +6,11 @@ module.exports = router;
 router.get("/", async (request, response) => {
   let { meal, diet, sort } = JSON.parse(request.query.browseData.toLowerCase());
   const { user_id } = request.query;
-
   diet = diet === "none" ? null : diet;
-
   const numOfCats = diet ? (meal == "all meals" ? 1 : 2) : 1;
+
   try {
-    const { rows } = await db.query(
+    const { rows, rowCount } = await db.query(
       `SELECT r.recipe_id,
        r.created_by,
        r.title,
@@ -67,8 +66,11 @@ router.get("/", async (request, response) => {
                                      created_at DESC;`,
       [meal, diet, numOfCats, sort, user_id]
     );
-
-    response.status(200).json(rows);
+    if (rowCount < 1) {
+      response.status(204).send();
+    } else {
+      response.status(200).json(rows);
+    }
   } catch (err) {
     response.status(500).json(err);
   }
