@@ -1,10 +1,11 @@
 const Router = require("express-promise-router");
+const passport = require("passport");
 const db = require("../db");
 const router = new Router();
 module.exports = router;
 
 router.get(
-  "/my-recipe",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
     const { user_id } = request.user; // Get user_id from auth
@@ -26,7 +27,7 @@ router.get(
         ORDER BY created_at DESC;`,
         [user_id]
       );
-      response.status(200).json(res.rows);
+      response.status(200).json(rows);
     } catch (err) {
       response.status(500).json(err);
     }

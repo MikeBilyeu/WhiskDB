@@ -1,10 +1,11 @@
 const Router = require("express-promise-router");
 const db = require("../db");
 const router = new Router();
+const passport = require("passport");
 module.exports = router;
 
 router.get(
-  "/save-recipe",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
     const { user_id } = request.user;
@@ -26,9 +27,9 @@ router.get(
                  rw.recipe_id;`,
         [user_id]
       );
-      response.status(200).json(res.rows);
+      response.status(200).json(rows);
     } catch (err) {
-      response.status(500).json(errs);
+      response.status(500).json(err);
     }
   }
 );

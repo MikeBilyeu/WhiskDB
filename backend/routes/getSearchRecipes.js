@@ -1,9 +1,10 @@
 const Router = require("express-promise-router");
 const db = require("../db");
 const router = new Router();
+const passport = require("passport");
 module.exports = router;
 
-app.get("/search-recipe", async (request, response) => {
+router.get("/", async (request, response) => {
   let { search } = JSON.parse(request.query.browseData.toLowerCase());
   const { user_id } = request.query;
   search = search.trim();

@@ -22,21 +22,21 @@ require("./config/passport")(passport);
 // Routes
 mountRoutes(app);
 
-app.get(
-  "/auth/google",
-  passport.authenticate("google", {
-    scope: ["profile"]
-  })
-);
-
-app.get(
-  "/auth/google/redirect",
-  passport.authenticate("google"),
-  (req, res) => {
-    // Successful authentication, redirect profile.
-    res.redirect("/profile");
-  }
-);
+// app.get(
+//   "/auth/google",
+//   passport.authenticate("google", {
+//     scope: ["profile"]
+//   })
+// );
+//
+// app.get(
+//   "/auth/google/redirect",
+//   passport.authenticate("google"),
+//   (req, res) => {
+//     // Successful authentication, redirect profile.
+//     res.redirect("/profile");
+//   }
+// );
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);

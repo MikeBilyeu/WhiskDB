@@ -3,7 +3,7 @@ const db = require("../db");
 const router = new Router();
 module.exports = router;
 
-router.get("/usernames", async (request, response) => {
+router.get("/", async (request, response) => {
   const { username } = request.query;
 
   try {

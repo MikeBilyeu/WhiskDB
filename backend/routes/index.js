@@ -1,20 +1,20 @@
-const createRecipe = require("./routes/createRecipe");
-const getEmails = require("./routes/getEmails");
-const createUser = require("./routes/createUser");
-const deleteUser = require("./routes/deleteUser");
-const editProfile = require("./routes/editProfile");
-const userLogin = require("./routes/userLogin");
-const editRecipe = require("./routes/editRecipe");
-const getRecipe = require("./routes/getRecipe");
-const saveRecipe = require("./routes/saveRecipe");
-const postReview = require("./routes/postReview");
-const getRatingDetails = require("./routes/getRatingDetails");
-const getUser = require("./routes/getUser");
-const getBrowseRecipes = require("./routes/getBrowseRecipes");
-const getUsernames = require("./routes/getUsernames");
-const getSavedRecipes = require("./routes/getSavedRecipes");
-const getMyRecipes = require("./routes/getMyRecipes");
-const getSearchRecipes = require("./routes/getSearchRecipes");
+const createRecipe = require("./createRecipe");
+const getEmails = require("./getEmails");
+const createUser = require("./createUser");
+const deleteUser = require("./deleteUser");
+const editProfile = require("./editProfile");
+const userLogin = require("./userLogin");
+const editRecipe = require("./editRecipe");
+const getRecipe = require("./getRecipe");
+const saveRecipe = require("./saveRecipe");
+const postReview = require("./postReview");
+const getRatingDetails = require("./getRatingDetails");
+const getUser = require("./getUser");
+const getBrowseRecipes = require("./getBrowseRecipes");
+const getUsernames = require("./getUsernames");
+const getSavedRecipes = require("./getSavedRecipes");
+const getMyRecipes = require("./getMyRecipes");
+const getSearchRecipes = require("./getSearchRecipes");
 
 module.exports = app => {
   app.use("/profile/create-recipe", createRecipe);

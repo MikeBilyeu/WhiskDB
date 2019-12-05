@@ -9,7 +9,7 @@ const validateRegisterInput = require("../validation/register");
 // export our router to be mounted by the parent application
 module.exports = router;
 
-router.post("/register", async (request, response) => {
+router.post("/", async (request, response) => {
   const { username, email, password } = request.body;
 
   // Form validation

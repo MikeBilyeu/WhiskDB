@@ -5,7 +5,7 @@ const router = new Router();
 // export our router to be mounted by the parent application
 module.exports = router;
 
-router.get("/emails", async (request, response) => {
+router.get("/", async (request, response) => {
   const { email } = request.query;
 
   try {

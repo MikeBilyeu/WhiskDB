@@ -3,7 +3,7 @@ const db = require("../db");
 const router = new Router();
 module.exports = router;
 
-router.get("/recipe", async (request, response) => {
+router.get("/", async (request, response) => {
   const { recipe_id, user_id } = request.query;
   try {
     const { rows } = await db.query(

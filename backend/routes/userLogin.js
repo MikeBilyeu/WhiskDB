@@ -1,5 +1,6 @@
 const Router = require("express-promise-router");
 const db = require("../db");
+const keys = require("../config/keys");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const validateLoginInput = require("../validation/login");
@@ -8,7 +9,7 @@ const router = new Router();
 
 module.exports = router;
 
-router.post("/login", async (request, response) => {
+router.post("/", async (request, response) => {
   // Form validation
   const errors = validateLoginInput(request.body);
   // checking if login validator has errors
@@ -37,7 +38,6 @@ router.post("/login", async (request, response) => {
 
     // Check password
     const isMatch = await bcrypt.compare(password, user.password_encrypted);
-
     if (isMatch) {
       // Create JWT Payload
       const payload = {

@@ -1,13 +1,14 @@
 const Router = require("express-promise-router");
 const db = require("../db");
 const jwt = require("jsonwebtoken");
+const passport = require("passport");
 
 const router = new Router();
 
 module.exports = router;
 
 router.delete(
-  "/delete-user",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
     const { user_id } = request.user; // Get user_id from auth

@@ -3,11 +3,12 @@ const jwt = require("jsonwebtoken");
 const db = require("../db");
 const validateUsername = require("../validation/usernameValidate");
 const router = new Router();
+const passport = require("passport");
 
 module.exports = router;
 
 router.post(
-  "/edit-profile",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
     const { full_name, username } = request.body;

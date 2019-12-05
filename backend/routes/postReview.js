@@ -1,10 +1,11 @@
 const Router = require("express-promise-router");
 const db = require("../db");
 const router = new Router();
+const passport = require("passport");
 module.exports = router;
 
 router.post(
-  "/recipe-review",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
     const { recipe_id, rating, comment } = request.body;

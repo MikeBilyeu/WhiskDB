@@ -3,7 +3,7 @@ const db = require("../db");
 const router = new Router();
 module.exports = router;
 
-router.get("/browse-recipe", async (request, response) => {
+router.get("/", async (request, response) => {
   let { meal, diet, sort } = JSON.parse(request.query.browseData.toLowerCase());
   const { user_id } = request.query;
 

@@ -1,10 +1,11 @@
 const Router = require("express-promise-router");
 const db = require("../db");
 const router = new Router();
+const passport = require("passport");
 module.exports = router;
 
 router.put(
-  "/profile/edit-recipe",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
     const { user_id } = request.user; // Get user_id from auth

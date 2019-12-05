@@ -1,12 +1,13 @@
 const Router = require("express-promise-router");
 const db = require("../db");
 const router = new Router();
+const passport = require("passport");
 
 // export our router to be mounted by the parent application
 module.exports = router;
 
 router.post(
-  "/profile/create-recipe",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
     const {
