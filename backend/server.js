@@ -3,21 +3,21 @@ const mountRoutes = require("./routes");
 const cors = require("cors");
 const app = express();
 const passport = require("passport");
+// Passport config
+require("./config/passport")(passport);
+const morgan = require("morgan");
 const PORT = process.env.PORT || 3001;
 
-// Parse middleware
+// Middleware
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(
   express.urlencoded({
     extended: true
   })
 );
-
 app.use(passport.initialize());
 app.use(cors());
-
-// Passport config
-require("./config/passport")(passport);
 
 // Routes
 mountRoutes(app);

@@ -34,4 +34,18 @@ module.exports = app => {
   app.use("/save-recipe", getSavedRecipes);
   app.use("/my-recipe", getMyRecipes);
   app.use("/search-recipe", getSearchRecipes);
+  app.use((request, response, next) => {
+    const error = new Error("Not found");
+    error.status = 404;
+    next(error);
+  });
+
+  app.use((error, request, response, next) => {
+    response.status(error.status || 500);
+    response.json({
+      error: {
+        message: error.message
+      }
+    });
+  });
 };
