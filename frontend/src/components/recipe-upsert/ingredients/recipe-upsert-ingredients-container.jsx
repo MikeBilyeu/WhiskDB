@@ -25,8 +25,7 @@ class Ingredients extends React.Component {
     if (e.key === "Enter") {
       if (!validIngredientRegEx.test(this.state.ingredient)) {
         this.setState({
-          error:
-            "Ingredient is not in a valid format: Amount, Unit, Ingredient, (prep)"
+          error: "Ingredient is not in a valid format: Amount, Unit, Ingredient"
         });
       } else {
         this.props.fields.push(this.state.ingredient);
@@ -90,7 +89,7 @@ class Ingredients extends React.Component {
           })}
         </ul>
         <Input
-          label="Ingredient"
+          label="Click enter to add Ingredient"
           input={{
             value: this.state.ingredient,
             onChange: this.handleChange,

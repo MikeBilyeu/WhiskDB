@@ -45,7 +45,7 @@ const validateIngredients = ingredients => {
 
       if (!ingredientRegEx.test(ingredients[i])) {
         errors.ingredients[i] =
-          "Ingredient is not in a valid format: Amount Unit Ingredient (prep)";
+          "Ingredient is not in a valid format: Amount Unit Ingredient";
       }
     }
   }

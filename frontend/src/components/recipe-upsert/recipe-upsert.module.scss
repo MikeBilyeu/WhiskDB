@@ -3,11 +3,11 @@
 .form {
   padding: 2rem 0.6rem;
   @include grid-center;
-  grid-gap: 3rem;
+  grid-gap: 10rem;
 
   label {
-    color: darkColor(light);
-    font-size: 1drem;
+    color: darkColor(medium);
+    font-size: 0.9rem;
     @include grid-center width: 100%;
   }
 
@@ -24,7 +24,7 @@
     font-size: 1rem;
     color: darkColor(medium);
     &::placeholder {
-      color: darkColor(light);
+      color: lightColor(medium);
     }
     border: solid lightColor(light) 0.08rem;
     border-radius: 0.2rem;
@@ -45,6 +45,9 @@
     text-align: center;
     border-bottom: solid darkColor(dark) 0.1rem;
     grid-row: 1;
+    &::placeholder {
+      color: lightColor(medium);
+    }
   }
 
   ul {
@@ -69,9 +72,6 @@
   font-size: 1.5rem !important;
   margin-top: 3rem;
   font-weight: fontWeight(normal);
-  &::placeholder {
-    opacity: 0.2;
-  }
 }
 
 .ingredientsContainer,
@@ -85,7 +85,7 @@
 
 .ingredientsContainer {
   .yield {
-    width: 10rem;
+    width: 7rem;
   }
 
   ul {
@@ -119,9 +119,6 @@
 
   input {
     font-weight: fontWeight(normal);
-    &::placeholder {
-      opacity: 0.2;
-    }
   }
 
   input[type="number"] {
@@ -151,7 +148,7 @@
         border: none;
         font-weight: fontWeight(normal);
         &::placeholder {
-          opacity: 0.2;
+          color: lightColor(medium);
         }
       }
     }
@@ -163,7 +160,7 @@
   }
 
   .directions {
-    height: 25rem;
+    height: 10rem;
   }
 
   .footnote {
@@ -241,15 +238,17 @@
 }
 
 .submitBtn {
-  width: 95%;
-  background-color: $primary-color;
-  border-radius: 50rem;
-  color: white;
-  padding: 0.5em 0;
   border: none;
-  font-size: 1.2rem;
+  outline: none;
   cursor: pointer;
-  &:hover {
-    opacity: 0.8;
-  }
+  font-size: 1.2rem;
+  border: solid $primary-color 0.09rem;
+  font-weight: bold;
+  color: $primary-color;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  height: 2.7rem;
+  width: 80%;
+  max-width: 20rem;
+  place-self: center;
 }
