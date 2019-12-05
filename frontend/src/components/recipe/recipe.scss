@@ -133,14 +133,14 @@
 
 .ingredients {
   width: 100%;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   margin: 6rem 0;
   @include grid-center;
   grid-gap: 1rem;
 
   ul {
     justify-self: start;
-    padding-left: 0.5rem;
+    padding: 0;
     list-style-type: none;
     margin: 0;
     li {
@@ -167,8 +167,8 @@
 
   #directions {
     white-space: pre-wrap;
-    margin: 1.5rem 0 0 0.3rem;
-    font-size: 1.1rem;
+    margin: 1.5rem 0 0 0rem;
+    font-size: 1.13rem;
     line-height: 1.45rem;
     max-width: 40rem;
     &::first-letter {
@@ -275,7 +275,6 @@
       color: black !important;
     }
     #directions {
-      border: solid red;
       margin-top: 0.5rem !important;
       font-size: 14pt !important;
       line-height: 17pt !important;
