@@ -3,7 +3,6 @@ import jwt_decode from "jwt-decode";
 import { SubmissionError } from "redux-form";
 import setAuthToken from "../../../utils/setAuthToken";
 import { setCurrentUser } from "../../auth";
-import getUser from "../get-user";
 
 const editProfile = (userData, history) => async dispatch => {
   try {
@@ -14,10 +13,10 @@ const editProfile = (userData, history) => async dispatch => {
     setAuthToken(token);
     const decodedToken = jwt_decode(token);
     dispatch(setCurrentUser(decodedToken));
-    dispatch(getUser());
     history.push(`/profile/`);
   } catch (err) {
-    throw new SubmissionError(err.response.data);
+    console.error(err);
+    throw new SubmissionError(err);
   }
 };
 

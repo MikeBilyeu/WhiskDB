@@ -10,12 +10,12 @@ export { default as logoutUser } from "./logout-user";
 export { default as registerUser } from "./register-user";
 
 export const setCurrentUser = decodedToken => async dispatch => {
-  const isAuthenticated = Object.keys(decodedToken).length !== 0;
-  if (isAuthenticated) await dispatch(getUser());
   dispatch({
     type: SET_CURRENT_USER,
     payload: decodedToken
   });
+  const isAuthenticated = Object.keys(decodedToken).length !== 0;
+  if (isAuthenticated) await dispatch(getUser());
 };
 
 export const setUserLoadin = () => ({

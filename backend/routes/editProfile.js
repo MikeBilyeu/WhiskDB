@@ -1,5 +1,6 @@
 const Router = require("express-promise-router");
 const jwt = require("jsonwebtoken");
+const keys = require("../config/keys");
 const db = require("../db");
 const validateUsername = require("../validation/usernameValidate");
 const router = new Router();
@@ -33,6 +34,7 @@ router.post(
         username: username,
         full_name: full_name
       };
+      console.log(payload);
 
       // Sign token
       jwt.sign(
