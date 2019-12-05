@@ -1,9 +1,14 @@
-const pool = require("../utils/connectPool");
+const Router = require("express-promise-router");
+const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const validateLoginInput = require("../validation/login");
 
-const userLogin = async (request, response) => {
+const router = new Router();
+
+module.exports = router;
+
+router.post("/login", async (request, response) => {
   // Form validation
   const errors = validateLoginInput(request.body);
   // checking if login validator has errors
@@ -15,21 +20,20 @@ const userLogin = async (request, response) => {
   const password = request.body.password;
 
   try {
-    const client = await pool.connect();
-    const res = await client.query(
+    const { rowCount, rows } = await db.query(
       `SELECT *
         FROM users
         WHERE email = $1`,
       [email]
     );
 
-    if (res.rowCount === 0) {
+    if (rowCount === 0) {
       response.status(401).json({
         email: "We can't find an account with that email address"
       });
     }
 
-    const user = res.rows[0];
+    const user = rows[0];
 
     // Check password
     const isMatch = await bcrypt.compare(password, user.password_encrypted);
@@ -60,8 +64,4 @@ const userLogin = async (request, response) => {
   } catch (err) {
     response.status(500).json(err);
   }
-};
-
-module.exports = {
-  userLogin
-};
+});

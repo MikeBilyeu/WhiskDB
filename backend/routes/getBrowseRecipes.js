@@ -1,6 +1,9 @@
-const pool = require("../utils/connectPool");
+const Router = require("express-promise-router");
+const db = require("../db");
+const router = new Router();
+module.exports = router;
 
-const getBrowseRecipes = async (request, response) => {
+router.get("/browse-recipe", async (request, response) => {
   let { meal, diet, sort } = JSON.parse(request.query.browseData.toLowerCase());
   const { user_id } = request.query;
 
@@ -8,8 +11,7 @@ const getBrowseRecipes = async (request, response) => {
 
   const numOfCats = diet ? (meal == "all meals" ? 1 : 2) : 1;
   try {
-    const client = await pool.connect();
-    const res = await client.query(
+    const { rows } = await db.query(
       `SELECT r.recipe_id,
        r.created_by,
        r.title,
@@ -66,13 +68,8 @@ const getBrowseRecipes = async (request, response) => {
       [meal, diet, numOfCats, sort, user_id]
     );
 
-    client.release();
-    response.status(200).json(res.rows);
+    response.status(200).json(rows);
   } catch (err) {
     response.status(500).json(err);
   }
-};
-
-module.exports = {
-  getBrowseRecipes
-};
+});

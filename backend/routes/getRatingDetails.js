@@ -1,10 +1,12 @@
-const pool = require("../utils/connectPool");
+const Router = require("express-promise-router");
+const db = require("../db");
+const router = new Router();
+module.exports = router;
 
-const getRatingDetails = async (request, response) => {
+router.get("/rating-details", async (request, response) => {
   const { recipe_id } = request.query;
   try {
-    const client = await pool.connect();
-    const res = await client.query(
+    const { rows } = await db.query(
       `SELECT COALESCE(CAST(SUM(CASE
                                  WHEN rating = 5 THEN 1
                                  ELSE 0
@@ -31,14 +33,10 @@ const getRatingDetails = async (request, response) => {
     WHERE recipe_id = $1`,
       [recipe_id]
     );
-    if (res.rows[0]) {
-      response.status(200).json(res.rows[0]);
+    if (rows[0]) {
+      response.status(200).json(rows[0]);
     }
   } catch (err) {
     response.status(500).json(err);
   }
-};
-
-module.exports = {
-  getRatingDetails
-};
+});

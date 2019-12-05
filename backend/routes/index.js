@@ -1,0 +1,37 @@
+const createRecipe = require("./routes/createRecipe");
+const getEmails = require("./routes/getEmails");
+const createUser = require("./routes/createUser");
+const deleteUser = require("./routes/deleteUser");
+const editProfile = require("./routes/editProfile");
+const userLogin = require("./routes/userLogin");
+const editRecipe = require("./routes/editRecipe");
+const getRecipe = require("./routes/getRecipe");
+const saveRecipe = require("./routes/saveRecipe");
+const postReview = require("./routes/postReview");
+const getRatingDetails = require("./routes/getRatingDetails");
+const getUser = require("./routes/getUser");
+const getBrowseRecipes = require("./routes/getBrowseRecipes");
+const getUsernames = require("./routes/getUsernames");
+const getSavedRecipes = require("./routes/getSavedRecipes");
+const getMyRecipes = require("./routes/getMyRecipes");
+const getSearchRecipes = require("./routes/getSearchRecipes");
+
+module.exports = app => {
+  app.use("/profile/create-recipe", createRecipe);
+  app.use("/emails", getEmails);
+  app.use("/register", createUser);
+  app.use("/delete-user", deleteUser);
+  app.use("/edit-profile", editProfile);
+  app.use("/login", userLogin);
+  app.use("/profile/edit-recipe", editRecipe);
+  app.use("/recipe", getRecipe);
+  app.use("/save-recipe", saveRecipe);
+  app.use("/recipe-review", postReview);
+  app.use("/rating-details", getRatingDetails);
+  app.use("/user", getUser);
+  app.use("/browse-recipe", getBrowseRecipes);
+  app.use("/usernames", getUsernames);
+  app.use("/save-recipe", getSavedRecipes);
+  app.use("/my-recipe", getMyRecipes);
+  app.use("/search-recipe", getSearchRecipes);
+};

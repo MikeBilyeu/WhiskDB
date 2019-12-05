@@ -1,10 +1,12 @@
-const pool = require("../utils/connectPool");
+const Router = require("express-promise-router");
+const db = require("../db");
+const router = new Router();
+module.exports = router;
 
-const getRecipe = async (request, response) => {
+router.get("/recipe", async (request, response) => {
   const { recipe_id, user_id } = request.query;
   try {
-    const client = await pool.connect();
-    const res = await client.query(
+    const { rows } = await db.query(
       `SELECT r.*,
              TO_CHAR(r.created_at, 'Mon fmDD, YYYY') AS date_created,
              u.username AS username,
@@ -22,14 +24,10 @@ const getRecipe = async (request, response) => {
                sr.saved_by;`,
       [recipe_id, user_id]
     );
-    if (res.rows[0]) {
-      response.status(200).json(res.rows[0]);
+    if (rows[0]) {
+      response.status(200).json(rows[0]);
     }
   } catch (err) {
     response.status(500).json(err);
   }
-};
-
-module.exports = {
-  getRecipe
-};
+});

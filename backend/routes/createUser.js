@@ -1,32 +1,36 @@
-const pool = require("../utils/connectPool");
+const Router = require("express-promise-router");
+const db = require("../db");
+const router = new Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-
 // Load input validation
 const validateRegisterInput = require("../validation/register");
 
-const createUser = async (request, response) => {
+// export our router to be mounted by the parent application
+module.exports = router;
+
+router.post("/register", async (request, response) => {
   const { username, email, password } = request.body;
 
   // Form validation
   const errors = validateRegisterInput(request.body);
+
   // Check validation
   if (Object.keys(errors).length !== 0) {
     response.status(400).json(errors);
   }
 
-  const client = await pool.connect();
-  const res = await client.query(
+  const { rows, rowCount } = await db.query(
     "SELECT * FROM users WHERE username = $1 OR email = $2",
     [username, email]
   );
 
-  if (res.rowCount > 0) {
-    if (email === res.rows[0].email) {
+  if (rowCount > 0) {
+    if (email === rows[0].email) {
       response
         .status(400)
         .send("This email is already registered, Want to Log in");
-    } else if (username === res.rows[0].username) {
+    } else if (username === rows[0].username) {
       response.status(400).send("Username is already registered, Sorry");
     }
   } else {
@@ -37,23 +41,16 @@ const createUser = async (request, response) => {
         password_encrypted = hash;
 
         try {
-          const result = await client.query(
+          const { rows } = await db.query(
             "INSERT INTO users (username, email, password_encrypted) VALUES ($1, $2, $3) RETURNING user_id",
             [username, email, password_encrypted]
           );
-          // client.release();
-          response
-            .status(201)
-            .send(`User added with ID: ${result.rows[0].user_id}`);
+
+          response.status(201).send(`User added with ID: ${rows[0].user_id}`);
         } catch (err) {
-          // client.release();
           response.status(400).json(err);
         }
       });
     });
   }
-};
-
-module.exports = {
-  createUser
-};
+});
