@@ -39,7 +39,6 @@ class Profile extends React.Component {
 
   render() {
     const page = this.state.page;
-    const username = this.props.auth.user.username.toLowerCase();
     const { full_name } = this.props.auth.user;
 
     const {
@@ -54,10 +53,11 @@ class Profile extends React.Component {
         <Route path="/profile/edit" component={Edit} />
         <Route path="/profile/create-recipe" component={CreateRecipe} />
         <Route
-          component={() => {
+          path="/profile"
+          render={() => {
             return (
               <div className="profile">
-                <Header username={username} fullName={full_name} />
+                <Header fullName={full_name} />
                 <PageToggle
                   page={this.state.page}
                   onClick={this.handlePageClick}
