@@ -7,11 +7,7 @@ import NoResults from "../home/no-results";
 
 import "./results.scss";
 
-class Results extends React.Component {
-  shouldComponentUpdate(prevProps, prevState) {
-    return prevProps.isFetching !== this.props.isFetching;
-  }
-
+class Results extends React.PureComponent {
   renderRecipeList = () => {
     return this.props.recipes.map((recipe, i) => {
       return <RecipeDisplay key={i} recipe={recipe} />;

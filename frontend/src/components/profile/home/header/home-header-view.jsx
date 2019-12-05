@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { ReactComponent as WhiskIcon } from "../../../assets/images/WhiskIcon.svg";
-import SortButton from "../../sort-button";
+import { ReactComponent as WhiskIcon } from "../../../../assets/images/WhiskIcon.svg";
+import SortButton from "../../../sort-button";
 import PageToggle from "./page-toggle";
-import userPhoto from "../../../assets/images/user-photo.jpg";
-import "./profile-header.scss";
+import userPhoto from "../../../../assets/images/user-photo.jpg";
+import "./home-header.scss";
 
 class Header extends React.PureComponent {
   render() {
