@@ -36,7 +36,8 @@ class Home extends React.PureComponent {
 
   render() {
     const { page } = this.state;
-    const { full_name } = this.props.auth.user;
+    const { full_name, username } = this.props.auth.user;
+    document.title = `WhiskDB | ${username}`;
     const { recipes: savedRecipes } = this.props.savedRecipes;
     const { recipes: myRecipes } = this.props.myRecipes;
     return (
