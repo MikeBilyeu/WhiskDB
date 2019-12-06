@@ -12,7 +12,6 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
     const {
-      time,
       servings,
       ingredients,
       directions,
@@ -21,8 +20,19 @@ router.post(
       keywords,
       image_url
     } = request.body;
-    const { user_id: created_by } = request.user;
-    const title = request.body.title.trim();
+
+    let recipeData = [
+      request.user.user_id,
+      request.body.title.trim(),
+      servings,
+      convertTimeToMin(request.body.time),
+      footnote,
+      directions,
+      ingredients,
+      keywords,
+      categories,
+      image_url
+    ];
 
     // Form validation
     // const errors = validateRecipeInput(request.body);
@@ -31,8 +41,6 @@ router.post(
     //   response.status(400).json(errors);
     // }
 
-    const total_time_mins = convertTimeToMin(time);
-
     try {
       const res = await db.query(
         `INSERT INTO recipes( created_by, title, servings, total_time_mins,
@@ -40,18 +48,7 @@ router.post(
           document_vectors ) VALUES ( $1, CAST($2 AS VARCHAR), $3, $4, $5, $6,
           $7, CAST($8 AS VARCHAR[]), $9, $10, ( to_tsvector($2) || to_tsvector(
           array_to_string($8, ' ') ) ) ) RETURNING recipe_id`,
-        [
-          created_by,
-          title,
-          servings,
-          total_time_mins,
-          footnote,
-          directions,
-          ingredients,
-          keywords,
-          categories,
-          image_url
-        ]
+        recipeData
       );
 
       const recipe_id = res.rows[0].recipe_id;
