@@ -10,6 +10,7 @@ const recipeCategories = [
   "lunch",
   "dinner",
   "appetizer",
+  "side",
   "dessert",
   "beverage"
 ];
