@@ -12,6 +12,7 @@ import { filterOptions } from "./utils";
 
 class Home extends React.Component {
   componentDidMount() {
+    document.title = "WhiskDB | A Recipe Database";
     if (this.props.browseData.search === "") {
       this.props.getBrowseRecipes(this.props.browseData);
     } else {

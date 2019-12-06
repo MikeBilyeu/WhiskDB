@@ -14,6 +14,8 @@ class CreateRecipe extends React.Component {
     };
   }
   componentDidMount() {
+    document.title = "WhiskDB | Create Recipe";
+
     (async () => {
       const res = await axios.get(
         "https://source.unsplash.com/collection/251966/500x500"

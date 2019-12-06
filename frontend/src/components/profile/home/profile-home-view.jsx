@@ -19,7 +19,9 @@ class Home extends React.PureComponent {
       page: "saved"
     };
   }
+
   componentDidMount() {
+    document.title = "WhiskDB | Profile";
     this.props.getMyRecipes();
     this.props.getSavedRecipes();
   }

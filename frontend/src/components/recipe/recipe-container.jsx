@@ -26,16 +26,16 @@ class Recipe extends React.Component {
   };
 
   render() {
+    const recipe_id = this.props.match.params.recipe_id;
+    const user_id = this.props.auth.user.user_id || null;
     const {
       reviewOpen,
       shareOpen,
       isFetching,
       editRecipe,
-      recipe: { image_url, directions, footnote, time }
+      recipe: { image_url, directions, footnote, time, title }
     } = this.props.recipeData;
-    const recipe_id = this.props.match.params.recipe_id;
-    const user_id = this.props.auth.user.user_id || null;
-    let randomNum = Math.floor(Math.random() * recipe_id);
+    document.title = !title ? document.title : `${title} |  WhiskDB`;
 
     // display loading if isFetching
     if (isFetching) {
