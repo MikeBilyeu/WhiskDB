@@ -2,6 +2,7 @@ const Router = require("express-promise-router");
 const db = require("../db");
 const router = new Router();
 const passport = require("passport");
+const { convertTimeToMin } = require("../utils");
 module.exports = router;
 
 router.put(
@@ -22,9 +23,7 @@ router.put(
     } = request.body;
     const title = request.body.title.trim();
 
-    const timeHours = time.hours > 0 ? time.hours : 0;
-    const timeMinutes = time.minutes > 0 ? parseInt(time.minutes) : 0;
-    const total_time_mins = timeHours * 60 + timeMinutes;
+    const total_time_mins = convertTimeToMin(time);
 
     if (user_id !== created_by) {
       response.status(401).send("You can't edit this recipe");
