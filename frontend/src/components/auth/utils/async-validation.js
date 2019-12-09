@@ -18,11 +18,9 @@ const combineAsyncValidation = validator => {
 export const usernameValidate = (values, dispatch) => {
   return new Promise((resolve, reject) => {
     const { username, currentUsername } = values;
-    //bypass if no change made to usename
-    if (username.toLowerCase() === currentUsername.toLowerCase()) {
-      delete errors.username;
-      Object.keys(errors).length ? reject(errors) : resolve();
-    } else {
+
+    if (!currentUsername) {
+      // Check db if username is taken
       axios
         .get("/usernames", { params: { username } })
         .then(() => {
@@ -33,6 +31,11 @@ export const usernameValidate = (values, dispatch) => {
           errors = { ...errors, username: "This username is taken" };
           reject(errors);
         });
+    }
+    // Username unaltered
+    else if (username.toLowerCase() === currentUsername.toLowerCase()) {
+      delete errors.username;
+      Object.keys(errors).length ? reject(errors) : resolve();
     }
   });
 };
