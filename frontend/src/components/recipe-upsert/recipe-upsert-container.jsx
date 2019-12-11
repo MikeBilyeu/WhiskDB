@@ -45,6 +45,42 @@ const RecipeUpsert = props => {
   return (
     <div>
       {props.header}
+      {/*
+        when componentmounts check if clipboard contains a url with
+      navigator.clipboard.readText()
+      change opacity and click if so
+      create action that takes the url with
+
+      function paste() {
+  var pasteText = document.querySelector("#output");
+  pasteText.focus();
+  document.execCommand("paste");
+  console.log(pasteText.textContent);
+}
+
+              -- or --
+
+navigator.clipboard.readText().then(clipText =>
+  document.getElementById("outbox").innerText = clipText)
+
+  in action make axios request to /copy-recipe
+  pass recipe url as param
+
+  make request to the reicpe url and extract the html
+  try the array of querySelectors
+  (https://github.com/MikeBilyeu/RecipeFilter/blob/master/src/js/main.js)
+  convert the html data for recipe to json
+  responed with the recipe in json
+  or responed with couldn't process any recipe data
+
+      use custom input
+      take a string
+      onClick -> action send url to server
+      check url on backend
+      responed with recipe if found
+      dispatch action saying recipe found
+      populate form with recipe data
+      */}
       <form
         action="#"
         className={styles.form}
