@@ -1,4 +1,5 @@
 import axios from "axios";
+import { change } from "redux-form";
 import {
   GET_ERRORS,
   GET_RECIPE,
@@ -13,10 +14,22 @@ import {
   SORT_SAVED_RECIPES,
   TOGGLE_SORT_BUTTON,
   TOGGLE_SHARE,
-  TOGGLE_EDIT_RECIPE
+  TOGGLE_EDIT_RECIPE,
+  GET_SCRAPE_URL_REQUEST
 } from "./types";
 
 import { reset } from "redux-form";
+
+export const scrapeSite = URL => async dispatch => {
+  dispatch({ type: GET_SCRAPE_URL_REQUEST });
+  try {
+    const res = await axios.get("/scrape-url", { params: { URL } });
+    console.log(res);
+    dispatch(change("newRecipe", "title", res.data.title));
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 // Create Recipe
 export const createRecipe = (recipeData, history) => dispatch => {

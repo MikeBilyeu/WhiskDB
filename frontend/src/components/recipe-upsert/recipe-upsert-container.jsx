@@ -9,6 +9,7 @@ import {
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import ScrapeUrl from "./scrape";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Categories from "./categories";
@@ -81,12 +82,14 @@ navigator.clipboard.readText().then(clipText =>
       dispatch action saying recipe found
       populate form with recipe data
       */}
+
       <form
         action="#"
         className={styles.form}
         onKeyDown={handleKeyDown}
         onSubmit={props.handleSubmit(props.onSubmit)}
       >
+        <ScrapeUrl />
         <Field
           name="title"
           className={styles.title}
