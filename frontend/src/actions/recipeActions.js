@@ -27,9 +27,11 @@ export const scrapeSite = URL => async dispatch => {
       params: { URL }
     });
     console.log(recipe);
+    dispatch(change("newRecipe", "image_url", recipe.image_url));
     dispatch(change("newRecipe", "title", recipe.title));
     dispatch(change("newRecipe", "servings", recipe.servings));
     dispatch(change("newRecipe", "ingredients", recipe.ingredients));
+    dispatch(change("newRecipe", "directions", recipe.directions));
   } catch (err) {
     console.error(err);
   }
