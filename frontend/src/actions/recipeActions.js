@@ -23,9 +23,13 @@ import { reset } from "redux-form";
 export const scrapeSite = URL => async dispatch => {
   dispatch({ type: GET_SCRAPE_URL_REQUEST });
   try {
-    const res = await axios.get("/scrape-url", { params: { URL } });
-    console.log(res);
-    dispatch(change("newRecipe", "title", res.data.title));
+    const { data: recipe } = await axios.get("/scrape-url", {
+      params: { URL }
+    });
+    console.log(recipe);
+    dispatch(change("newRecipe", "title", recipe.title));
+    dispatch(change("newRecipe", "servings", recipe.servings));
+    dispatch(change("newRecipe", "ingredients", recipe.ingredients));
   } catch (err) {
     console.error(err);
   }

@@ -9,7 +9,8 @@ class ScrapeUrl extends React.Component {
     //check for url in clipboard
   }
 
-  handleClick = async () => {
+  handleClick = async e => {
+    e.preventDefault();
     const URL = await navigator.clipboard.readText();
     this.props.scrapeSite(URL);
   };
