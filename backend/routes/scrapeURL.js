@@ -88,6 +88,17 @@ router.get(
         recipeObj = obj;
         return false;
       }
+      if (obj["@graph"].length) {
+        obj["@graph"].forEach((graphObj, i) => {
+          if (graphObj["@type"] === "Recipe") {
+            recipeObj = graphObj;
+            // return false;
+          }
+        });
+        //console.log(obj["@graph"][i]);
+        //return false;
+      }
+      //  console.log(obj);
       // else if '@graph' key loop over array and check for '@type' === 'Recipe'
     });
 
@@ -98,16 +109,29 @@ router.get(
         recipeYield: servings,
         recipeIngredient: ingredients,
         totalTime: time,
-        recipeInstructions: directions,
+        recipeInstructions,
         recipeCategory: keywords
+        //keywords
       } = recipeObj;
+      // nned to join categores array into keywords
+
       const image_url = image[0];
+
+      let directions = "";
+
+      if (Array.isArray(recipeInstructions)) {
+        recipeInstructions.forEach(obj => {
+          directions += obj.text + "  ";
+        });
+      } else {
+        directions = recipeInstructions;
+      }
+
       directions = directions
         .split(/\s\s+/g)
         .join("\n\n")
         .replace(/^ +|[, ]+$/gm, "");
 
-      console.log(directions);
       const recipe = {
         image_url,
         title,
