@@ -77,12 +77,49 @@ router.get(
 
     // some "@type":"Recipe" are nested within "@context":"https://schema.org" "@graph":[]
     //
+    //NOT WORKING:
+    // allrecipes.com
+    // thekitchn.com
+    let recipeObj = {};
 
     $("script[type='application/ld+json']").each((i, e) => {
-      console.log(i);
-      console.log("json", $(e).get()[0].children[0].data);
-      //console.log("---JSON:", $(e).get().children[0].data);
+      const obj = JSON.parse($(e).get()[0].children[0].data);
+      if (obj["@type"] === "Recipe") {
+        recipeObj = obj;
+        return false;
+      }
+      // else if '@graph' key loop over array and check for '@type' === 'Recipe'
     });
+
+    if (Object.keys(recipeObj).length) {
+      let {
+        image,
+        name: title,
+        recipeYield: servings,
+        recipeIngredient: ingredients,
+        totalTime: time,
+        recipeInstructions: directions,
+        recipeCategory: keywords
+      } = recipeObj;
+      const image_url = image[0];
+      directions = directions
+        .split(/\s\s+/g)
+        .join("\n\n")
+        .replace(/^ +|[, ]+$/gm, "");
+
+      console.log(directions);
+      const recipe = {
+        image_url,
+        title,
+        servings,
+        ingredients,
+        time,
+        directions,
+        keywords
+      };
+      response.status(200).json(recipe);
+      return;
+    }
 
     //  console.log(html);
     // {
@@ -99,63 +136,63 @@ router.get(
     // const image_url = $(".m-MediaBlock__a-Image.a-Image").attr("src"); foodnetwork.com missing "https:"
     // const image_url = $(".recipe-hero__item img").attr("src"); images loaded dynamically
 
-    const title = $("h1.recipe-title")
-      .text()
-      .trim();
-
-    // const servings = $(".servings input").attr("value"); // yummly.com needs .attr('value')
-    const servings = $(".servings input")
-      .text()
-      .trim();
-
-    let ingredients = [];
-
-    $(".IngredientLine").each((index, element) => {
-      ingredients.push(
-        $(element)
-          .text()
-          .replace(/\s\s+/g, " ")
-          .trim()
-      );
-    });
-
-    const time = $(".summary-item-wrapper div:nth-child(2)").text();
-    //console.log(time);
-    // //split the time into hours and minutes
+    // const title = $("h1.recipe-title")
+    //   .text()
+    //   .trim();
     //
-    let directions = "";
-
-    $(".prep-step").each((i, e) => {
-      directions +=
-        $(e)
-          .text()
-          .replace(/\d+/g, "")
-          .trim() + " \n\n";
-      // .replace(/\s\s+/g, "\n\n");
-    });
-
-    let footnote = "";
-
-    const keywords = [];
-
-    $(".o-Capsule__m-TagList.m-TagList a").each((index, element) => {
-      keywords.push(
-        $(element)
-          .text()
-          .replace(/\s\s+/g, " ")
-          .trim()
-      );
-    });
+    // // const servings = $(".servings input").attr("value"); // yummly.com needs .attr('value')
+    // const servings = $(".servings input")
+    //   .text()
+    //   .trim();
+    //
+    // let ingredients = [];
+    //
+    // $(".IngredientLine").each((index, element) => {
+    //   ingredients.push(
+    //     $(element)
+    //       .text()
+    //       .replace(/\s\s+/g, " ")
+    //       .trim()
+    //   );
+    // });
+    //
+    // const time = $(".summary-item-wrapper div:nth-child(2)").text();
+    // //console.log(time);
+    // // //split the time into hours and minutes
+    // //
+    // let directions = "";
+    //
+    // $(".prep-step").each((i, e) => {
+    //   directions +=
+    //     $(e)
+    //       .text()
+    //       .replace(/\d+/g, "")
+    //       .trim() + " \n\n";
+    //   // .replace(/\s\s+/g, "\n\n");
+    // });
+    //
+    // let footnote = "";
+    //
+    // const keywords = [];
+    //
+    // $(".o-Capsule__m-TagList.m-TagList a").each((index, element) => {
+    //   keywords.push(
+    //     $(element)
+    //       .text()
+    //       .replace(/\s\s+/g, " ")
+    //       .trim()
+    //   );
+    // });
 
     const recipe = {
       //image_url,
-      title,
-      servings,
-      ingredients,
-      time,
-      directions,
-      footnote,
-      keywords
+      // title,
+      // servings,
+      // ingredients,
+      // time,
+      // directions,
+      // footnote,
+      // keywords
     };
     response.status(200).json(recipe);
   }
