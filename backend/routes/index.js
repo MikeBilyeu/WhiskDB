@@ -15,7 +15,7 @@ const getUsernames = require("./getUsernames");
 const getSavedRecipes = require("./getSavedRecipes");
 const getMyRecipes = require("./getMyRecipes");
 const getSearchRecipes = require("./getSearchRecipes");
-const scrapeURL = require("./scrapeURL");
+const scrapeURL = require("./scrape-url/scrapeURL");
 
 module.exports = app => {
   app.use("/profile/create-recipe", createRecipe);
