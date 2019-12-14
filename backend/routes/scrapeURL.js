@@ -66,56 +66,56 @@ router.get(
     const { URL } = request.query;
     const { data: html } = await axios.get(URL);
     const $ = await cheerio.load(html);
-    // get json
-
-    // yummly
-    // food.com
-    // chowhound.com wacky format
-    // some string values have unicode
 
     // possibly get iframe src and make axios request and check for "@context":"https://schema.org" json
-
-    // some "@type":"Recipe" are nested within "@context":"https://schema.org" "@graph":[]
-    //
     //NOT WORKING:
     // allrecipes.com
     // thekitchn.com
-    let recipeObj = {};
 
-    $("script[type='application/ld+json']").each((i, e) => {
-      const obj = JSON.parse($(e).get()[0].children[0].data);
-      if (obj["@type"] === "Recipe") {
-        recipeObj = obj;
+    const searchForRecipe = data => {
+      // not nested
+      if (data["@type"] === "Recipe") {
+        recipeData = data;
         return false;
       }
-      if (obj["@graph"].length) {
-        obj["@graph"].forEach((graphObj, i) => {
-          if (graphObj["@type"] === "Recipe") {
-            recipeObj = graphObj;
-            // return false;
+      // Is nested
+      if (data["@graph"].length) {
+        data["@graph"].forEach((obj, i) => {
+          if (obj["@type"] === "Recipe") {
+            recipeData = obj;
+            return false;
           }
         });
-        //console.log(obj["@graph"][i]);
-        //return false;
       }
-      //  console.log(obj);
-      // else if '@graph' key loop over array and check for '@type' === 'Recipe'
+    };
+    let recipeData = {};
+
+    $("script[type='application/ld+json']").each((i, e) => {
+      const data = JSON.parse($(e).get()[0].children[0].data);
+      if (Array.isArray(data)) {
+        for (const obj of data) {
+          if (searchForRecipe(obj) === false) {
+            return false;
+          }
+        }
+      }
+      return searchForRecipe(data);
     });
 
-    if (Object.keys(recipeObj).length) {
+    if (Object.keys(recipeData).length) {
+      // check if value exists
       let {
-        image,
         name: title,
         recipeYield: servings,
         recipeIngredient: ingredients,
         totalTime: time,
         recipeInstructions,
         recipeCategory: keywords
-        //keywords
-      } = recipeObj;
-      // nned to join categores array into keywords
+      } = recipeData;
 
-      const image_url = image[0];
+      // need to join categores array into keywords
+
+      const image_url = recipeData.image[0];
 
       let directions = "";
 
