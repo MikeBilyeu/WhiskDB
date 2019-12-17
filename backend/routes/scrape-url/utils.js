@@ -1,3 +1,5 @@
+const cheerio = require("cheerio");
+
 const searchData = dataObj => {
   if (dataObj["@type"] === "Recipe") {
     return dataObj;
@@ -28,15 +30,14 @@ const findRecipe = data => {
 
 const formatData = data => {
   let recipe = {};
-  if (Array.isArray(data.image)) {
-    recipe.image_url = data.image[0];
-  } else {
-    recipe.image_url = data.image;
-  }
+  recipe.image_url = formatRecipeImage(data.image);
 
   recipe.title = data.name;
   recipe.servings = data.recipeYield;
-  recipe.ingredients = data.recipeIngredient.join("\n").replace(/\s\s+/g, " ");
+
+  recipe.ingredients = data.recipeIngredient
+    .map(ing => ing.replace(/\s\s+/g, " "))
+    .join("\n");
 
   let hours = data.totalTime.match(/\d{1,2}(?=H)/);
   let minutes = data.totalTime.match(/\d{1,2}(?=M)/);
@@ -45,96 +46,90 @@ const formatData = data => {
     minutes: minutes ? minutes[0] : ""
   };
 
-  recipe.directions = "";
-  if (Array.isArray(data.recipeInstructions)) {
-    console.log(data.recipeInstructions);
-    data.recipeInstructions.forEach((obj, i, arr) => {
+  recipe.directions = formatDirections(data.recipeInstructions);
+
+  // need to join categores array into keywords
+  if (typeof data.keywords === "string") {
+    recipe.keywords = data.keywords.split(",").map(keywords => keywords.trim());
+  } else {
+    recipe.keywords = data.keywords;
+  }
+
+  return recipe;
+};
+
+const formatHTMLData = async html => {
+  const $ = await cheerio.load(html);
+  let recipe = {};
+
+  return recipe;
+};
+
+module.exports = { searchData, findRecipe, formatData, formatHTMLData };
+
+const formatRecipeImage = recipeImage => {
+  let image = "";
+  if (Array.isArray(recipeImage)) {
+    if (typeof recipeImage[0] === "object") {
+      image = recipeImage[0].url;
+    } else {
+      image = recipeImage[0];
+    }
+  } else if (typeof recipeImage === "object") {
+    image = recipeImage.url;
+  } else {
+    image = recipeImage;
+  }
+  return image;
+};
+
+const formatDirections = recipeInstructions => {
+  let directions = "";
+  if (Array.isArray(recipeInstructions)) {
+    recipeInstructions.forEach((obj, i, arr) => {
       if (obj.text) {
         if (i !== arr.length) {
-          recipe.directions += obj.text + "\n\n";
+          directions += obj.text + "\n\n";
         } else {
-          recipe.directions += obj.text;
+          directions += obj.text;
         }
       }
     });
   } else {
-    reicpe.directions = data.recipeInstructions.split(/\s\s+/g).join("\n\n");
+    directions = recipeInstructions.split(/\s\s+/g).join("\n\n");
   }
-
-  // need to join categores array into keywords
-  recipe.keywords = data.keywords.split(",").map(keywords => keywords.trim());
-  return recipe;
+  return directions;
 };
 
-module.exports = { searchData, findRecipe, formatData };
+const querySelector = {
+  image_url: [
+    ".image-overlay img", // allrecipes.com new
+    ".hero-photo__wrap img" // allrecipes.com
+  ],
+  title: [
+    ".recipe-container h1.heading-content", // allrecipes.com new
+    "h1#recipe-main-content" // allrecipes.com
+  ],
+  yield: [
+    ".recipe-adjust-servings__size-quantity", // allrecipes.com new
+    ".adjustServings .subtext" // allrecipes.com
+  ],
+  ingredients: [
+    ".ingredients-item-name", // allrecipes.com new
+    "[itemprop='recipeIngredient']" // allrecipes.com
+  ],
+  time: [
+    ".recipe-meta-container > div div:nth-child(3) div:last-child", // allrecipes.com new
+    "[itemprop='totalTime']" // allrecipes.com
+  ],
+  directions: [
+    ".instructions-section-item p", // allrecipes.com new
+    ".recipe-directions__list--item" // allrecipes.com
+  ]
+};
 
-const image_urlSelectors = [
-  ".image-overlay img", // allrecipes.com new
-  ".hero-photo__wrap img", // allrecipes.com
-  ".fr_r_header_vid_wrapperx img", // chowhound.com
-  ".m-MediaBlock__a-Image.a-Image", // foodnetwork.com
-  ".recipe-hero__item img" // food.com
-];
-const titleSelectors = [
-  ".recipe-container h1.heading-content", // allrecipes.com new
-  "h1#recipe-main-content", // allrecipes.com
-  ".fr_r_info h1", // chowhound.com
-  "h1.o-AssetTitle__a-Headline", // foodnetwork.com
-  ".recipe-title h1" // food.com
-];
-
-const servingsSelectors = [
-  ".recipe-adjust-servings__size-quantity", // allrecipes.com new
-  ".adjustServings .subtext", // allrecipes.com
-  ".frr_serves.fr_sep", // chowhound.com
-  ".o-RecipeInfo__m-Yield .o-RecipeInfo__a-Description", // foodnetwork.com
-  ".recipe-facts__servings a" // food.com
-];
-
-const ingredientSelectors = [
-  ".ingredients-item-name", // allrecipes.com new
-  "[itemprop='recipeIngredient']", // allrecipes.com
-  ".freyja_box.freyja_box81 ul li", // chowhound.com
-  ".o-Ingredients__a-Ingredient", // foodnetwork.com
-  ".recipe-ingredients__ingredient" // food.com
-];
-
-const timeSelectors = [
-  ".recipe-meta-container > div div:nth-child(3) div:last-child", // allrecipes.com new
-  "[itemprop='totalTime']", // allrecipes.com
-  ".frr_totaltime time", // chowhound.com
-  ".o-RecipeInfo__a-Description.m-RecipeInfo__a-Description--Total", // foodnetwork.com
-  ".recipe-facts__time span:not(.recipe-facts__title)" // food.com
-];
-
-const directionsSelector = [
-  ".instructions-section-item p", // allrecipes.com new
-  ".recipe-directions__list--item", // allrecipes.com
-  "ol li", // chowhound.com this might match for other sites add parent class to prevent false match
-  "ol .o-Method__m-Step", // foodnetwork.com
-  ".recipe-directions__step" // food.com
-];
-
-const footnoteSelector = [];
-
-const keywordSelector = [
-  "o-Capsule__m-TagList.m-TagList a" // foodnetwork.com
-];
-
-//  console.log(html);
-// {
-//   normalizeWhitespace: false;
-// }
-
-// we need to check if the recipe can even be parsed
-// iterate over array of 'recipe selectors' or check url
-// if recipe can be parsed run the scrapefunction
-//
 // const image_url = $(".icon-image-zoom").attr("data-image"); // allrecipes.com new
 // const image_url = $(".hero-photo__wrap img").attr("src"); // allrecipes.com
-// const image_url = $(".fr_r_header_vid_wrapperx img").attr("data-src"); // chowhound.com
-// const image_url = $(".m-MediaBlock__a-Image.a-Image").attr("src"); foodnetwork.com missing "https:"
-// const image_url = $(".recipe-hero__item img").attr("src"); images loaded dynamically
 
 // const title = $("h1.recipe-title")
 //   .text()

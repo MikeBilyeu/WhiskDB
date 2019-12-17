@@ -3,7 +3,12 @@ const cheerio = require("cheerio");
 const Router = require("express-promise-router");
 const router = new Router();
 const passport = require("passport");
-const { searchData, findRecipe, formatData } = require("./utils");
+const {
+  searchData,
+  findRecipe,
+  formatData,
+  formatHTMLData
+} = require("./utils");
 module.exports = router;
 
 router.get(
@@ -19,7 +24,6 @@ router.get(
 
     $("script[type='application/ld+json']").each((i, e) => {
       const data = JSON.parse($(e).get()[0].children[0].data);
-
       recipeData = findRecipe(data);
       if (recipeData) {
         // recipe found now exit .each loop with false
@@ -31,6 +35,9 @@ router.get(
       const recipe = formatData(recipeData);
       response.status(200).json(recipe);
       return;
+    } else {
+      const recipe = formatHTMLData(html);
+      response.status(200).json(recipe);
     }
   }
 );
