@@ -5,7 +5,7 @@ const searchData = dataObj => {
     return dataObj;
   }
   // Search array for a nested '@type' of Recipe
-  if (dataObj["@graph"].length) {
+  if (dataObj["@graph"] && dataObj["@graph"].length) {
     for (const subObj of dataObj["@graph"]) {
       if (subObj["@type"] === "Recipe") {
         return subObj;
@@ -31,21 +31,18 @@ const findRecipe = data => {
 const formatData = data => {
   let recipe = {};
   recipe.image_url = formatRecipeImage(data.image);
-
   recipe.title = data.name;
-  recipe.servings = data.recipeYield;
-
+  let servings = data.recipeYield.match(/\d{1,2}(?=( *serving))/i);
+  recipe.servings = servings ? servings[0] : "";
   recipe.ingredients = data.recipeIngredient
     .map(ing => ing.replace(/\s\s+/g, " "))
     .join("\n");
-
-  let hours = data.totalTime.match(/\d{1,2}(?=H)/);
-  let minutes = data.totalTime.match(/\d{1,2}(?=M)/);
+  let hours = data.totalTime.match(/\d{1,2}(?=H)/i);
+  let minutes = data.totalTime.match(/\d{1,2}(?=M)/i);
   recipe.time = {
     hours: hours ? hours[0] : "",
     minutes: minutes ? minutes[0] : ""
   };
-
   recipe.directions = formatDirections(data.recipeInstructions);
 
   // need to join categores array into keywords
@@ -58,9 +55,41 @@ const formatData = data => {
   return recipe;
 };
 
-const formatHTMLData = async html => {
-  const $ = await cheerio.load(html);
+const formatHTMLData = html => {
+  const $ = cheerio.load(html);
   let recipe = {};
+  recipe.image_url = $(querySelector.image_url[1]).attr("src");
+  recipe.title = $(querySelector.title[1])
+    .text()
+    .trim();
+  let servings = $(querySelector.yield[1])
+    .text()
+    .match(/\d{1,2}(?=( *serving))/i);
+  recipe.servings = servings ? servings[0] : "";
+  recipe.ingredients = "";
+  $(querySelector.ingredients[1]).each((index, element) => {
+    recipe.ingredients +=
+      $(element)
+        .text()
+        .replace(/\s\s+/g, " ")
+        .trim() + "\n";
+  });
+  let totalTime = $(querySelector.time[1]).text();
+  let hours = totalTime.match(/\d{1,2}(?=( *h))/i);
+  let minutes = totalTime.match(/\d{1,2}(?=( *m))/i);
+  recipe.time = {
+    hours: hours ? hours[0] : "",
+    minutes: minutes ? minutes[0] : ""
+  };
+  recipe.directions = "";
+
+  $(querySelector.directions[1]).each((i, e) => {
+    recipe.directions +=
+      $(e)
+        .text()
+        .replace(/\d+/g, "")
+        .trim() + " \n\n";
+  });
 
   return recipe;
 };
@@ -131,40 +160,11 @@ const querySelector = {
 // const image_url = $(".icon-image-zoom").attr("data-image"); // allrecipes.com new
 // const image_url = $(".hero-photo__wrap img").attr("src"); // allrecipes.com
 
-// const title = $("h1.recipe-title")
-//   .text()
-//   .trim();
-//
-// // const servings = $(".servings input").attr("value"); // yummly.com needs .attr('value')
-// const servings = $(".servings input")
-//   .text()
-//   .trim();
-//
-// let ingredients = [];
-//
-// $(".IngredientLine").each((index, element) => {
-//   ingredients.push(
-//     $(element)
-//       .text()
-//       .replace(/\s\s+/g, " ")
-//       .trim()
-//   );
-// });
-//
-// const time = $(".summary-item-wrapper div:nth-child(2)").text();
+// const time =
 // //console.log(time);
 // // //split the time into hours and minutes
 // //
-// let directions = "";
-//
-// $(".prep-step").each((i, e) => {
-//   directions +=
-//     $(e)
-//       .text()
-//       .replace(/\d+/g, "")
-//       .trim() + " \n\n";
-//   // .replace(/\s\s+/g, "\n\n");
-// });
+
 //
 // let footnote = "";
 //
@@ -178,15 +178,3 @@ const querySelector = {
 //       .trim()
 //   );
 // });
-
-//const recipe = {
-//image_url,
-// title,
-// servings,
-// ingredients,
-// time,
-// directions,
-// footnote,
-// keywords
-//};
-//response.status(200).json(recipe);
