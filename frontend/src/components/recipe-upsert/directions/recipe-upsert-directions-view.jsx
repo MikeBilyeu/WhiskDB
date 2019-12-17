@@ -13,7 +13,6 @@ const Directions = () => {
   };
   return (
     <div className={styles.directionsContainer}>
-      <h2>Directions</h2>
       <div className={styles.time}>
         <Field
           name="time.hours"

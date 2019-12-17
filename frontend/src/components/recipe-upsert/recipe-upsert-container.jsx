@@ -9,6 +9,7 @@ import {
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import Button from "../button";
 import ScrapeUrl from "./scrape";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
@@ -32,13 +33,13 @@ const RecipeUpsert = props => {
     }
   };
 
-  // function handleChange(e) {
-  //   console.log(e.target.files[0]);
-  //   // const {
-  //   //   input: { onChange }
-  //   // } = thisprops;
-  //   return e.target.files[0];
-  // }
+  const handleChange = e => {
+    console.log(e.target.files[0]);
+    // const {
+    //   input: { onChange }
+    // } = thisprops;
+    //return e.target.files[0];
+  };
 
   // if (isFetching) {
   //   return <Loading />;
@@ -99,14 +100,17 @@ navigator.clipboard.readText().then(clipText =>
           normalize={capitalize}
           parse={titleParse}
         />
+
         {/*<Field
           input={{ onChange: handleChange }}
           name="image"
-          className="cr-image"
+          className={styles.imageInput}
           component={Input}
           type="file"
           accept="image/.jpg, image/.png, image/.jpeg"
         />*/}
+        <Button className={styles.imageInputBtn}>Add Photo/Video</Button>
+
         <FieldArray name="ingredients" component={Ingredients} />
         <Directions />
         <Categories categories={props.categories} change={props.change} />

@@ -3,7 +3,7 @@
 .form {
   padding: 2rem 0.6rem;
   @include grid-center;
-  grid-gap: 10rem;
+  grid-gap: 5rem;
 
   label {
     color: darkColor(medium);
@@ -64,12 +64,11 @@
     padding: 0.5rem 0;
     width: 15rem;
     margin: auto;
-    font-size: 2rem;
+    font-size: 1.3rem;
   }
 }
 
 .title {
-  font-size: 1.5rem !important;
   margin-top: 3rem;
   font-weight: fontWeight(normal);
 }
@@ -266,26 +265,34 @@
 .scrapeContainer {
   @include grid-center;
   border-bottom: solid lightColor(light) 0.01rem;
-  background-color: #fdfeff;
-  width: 100vw;
-  position: relative;
-  left: -0.6rem;
-  top: 1.2rem;
+  width: 100%;
+}
+.scrapebtn {
+  @extend .submitBtn;
+  border: solid lightColor(dark) 0.05rem;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(213, 213, 213, 1) 100%
+  );
+  box-shadow: 0 0.5rem 0.5rem lightColor(medium);
+  color: darkColor(dark);
+  font-weight: 500;
+  margin: 5rem auto;
+  font-size: 0.9rem;
+}
 
-  .scrapebtn {
-    @extend .submitBtn;
-    border: solid lightColor(dark) 0.05rem;
-    background: rgb(2, 0, 36);
-    background: linear-gradient(
-      180deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(213, 213, 213, 1) 100%
-    );
-    box-shadow: 0 0.5rem 0.5rem lightColor(medium);
-    color: darkColor(dark);
-    font-weight: 500;
-    margin: 5rem auto;
-    font-size: 0.9rem;
-  }
+.imageInputBtn {
+  @extend .submitBtn;
+  @extend .scrapebtn;
+  border: solid #dda100 0.05rem;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(255, 235, 180, 1) 0%,
+    rgba(255, 186, 0, 1) 100%
+  );
 }

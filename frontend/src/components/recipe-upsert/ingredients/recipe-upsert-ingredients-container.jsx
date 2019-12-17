@@ -47,7 +47,6 @@ class Ingredients extends React.Component {
   render() {
     return (
       <div className={styles.ingredientsContainer}>
-        <h2>Ingredients</h2>
         <Field
           name="servings"
           component={Input}
