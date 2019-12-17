@@ -15,6 +15,7 @@ router.post(
     // if (Object.keys(errors).length !== 0) {
     //   response.status(400).json(errors);
     // }
+    const ingredientsArr = recipe.ingredients.split(/\n/);
 
     try {
       const { rows } = await db.query(
@@ -30,7 +31,7 @@ router.post(
           convertTimeToMin(recipe.time),
           recipe.footnote,
           recipe.directions,
-          recipe.ingredients,
+          ingredientsArr,
           recipe.keywords,
           recipe.categories,
           recipe.image_url

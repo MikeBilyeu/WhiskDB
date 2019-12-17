@@ -83,49 +83,16 @@
 }
 
 .ingredientsContainer {
+  @include grid-center;
+  grid-gap: 2rem;
+
   .yield {
     width: 7rem;
   }
-
-  ul {
-    justify-self: start;
-    width: calc(100% - 0.5rem);
-    margin-left: 0.5rem;
-    li {
-      margin: 1rem 0;
-      display: flex;
-      align-items: baseline;
-
-      button {
-        border: none;
-        margin-right: 0.5rem;
-        cursor: pointer;
-      }
-
-      .ingredientInput {
-        border: none;
-        text-align: left;
-        cursor: text;
-      }
-      .active {
-        border-bottom: solid darkColor(dark) 0.1rem;
-      }
-      .unactive {
-        opacity: 0.2;
-      }
-    }
-  }
-
-  input {
-    font-weight: fontWeight(normal);
-  }
-
-  input[type="number"] {
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
+  .ingredients {
+    height: 10rem;
+    white-space: nowrap;
+    overflow: auto;
   }
 }
 
@@ -186,7 +153,7 @@
       text-transform: capitalize;
       font-size: 1rem;
       margin: 0.5rem;
-      padding: 1rem;
+      padding: 0.5rem;
 
       text-align: center;
       color: darkColor(medium);
@@ -257,7 +224,7 @@
   border-radius: 0.3rem;
   background-color: #fff;
   height: 2.7rem;
-  width: 80%;
+  width: 90%;
   max-width: 20rem;
   place-self: center;
 }
@@ -269,7 +236,7 @@
 }
 .scrapebtn {
   @extend .submitBtn;
-  border: solid lightColor(dark) 0.05rem;
+  border: solid lightColor(dark) 0.09rem;
   background: rgb(2, 0, 36);
   background: linear-gradient(
     180deg,
@@ -287,12 +254,4 @@
 .imageInputBtn {
   @extend .submitBtn;
   @extend .scrapebtn;
-  border: solid #dda100 0.05rem;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    180deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(255, 235, 180, 1) 0%,
-    rgba(255, 186, 0, 1) 100%
-  );
 }

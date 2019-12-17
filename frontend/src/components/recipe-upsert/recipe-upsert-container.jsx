@@ -110,8 +110,7 @@ navigator.clipboard.readText().then(clipText =>
           accept="image/.jpg, image/.png, image/.jpeg"
         />*/}
         <Button className={styles.imageInputBtn}>Add Photo/Video</Button>
-
-        <FieldArray name="ingredients" component={Ingredients} />
+        <Ingredients />
         <Directions />
         <Categories categories={props.categories} change={props.change} />
         <Keywords keywords={props.keywords} change={props.change} />
