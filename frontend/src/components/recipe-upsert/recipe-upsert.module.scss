@@ -263,10 +263,29 @@
   place-self: center;
 }
 
-.scrapebtn {
-  @extend .submitBtn;
-  border: solid darkColor(dark) 0.05rem;
-  color: darkColor(dark);
-  font-weight: 500;
-  margin: 5rem auto;
+.scrapeContainer {
+  @include grid-center;
+  border-bottom: solid lightColor(light) 0.01rem;
+  background-color: #fdfeff;
+  width: 100vw;
+  position: relative;
+  left: -0.6rem;
+  top: 1.2rem;
+
+  .scrapebtn {
+    @extend .submitBtn;
+    border: solid lightColor(dark) 0.05rem;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      180deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(213, 213, 213, 1) 100%
+    );
+    box-shadow: 0 0.5rem 0.5rem lightColor(medium);
+    color: darkColor(dark);
+    font-weight: 500;
+    margin: 5rem auto;
+    font-size: 0.9rem;
+  }
 }

@@ -16,9 +16,11 @@ class ScrapeUrl extends React.Component {
   };
   render() {
     return (
-      <Button onClick={this.handleClick} className={styles.scrapebtn}>
-        Paste URL
-      </Button>
+      <div className={styles.scrapeContainer}>
+        <Button onClick={this.handleClick} className={styles.scrapebtn}>
+          Clone Recipe
+        </Button>
+      </div>
     );
   }
 }
