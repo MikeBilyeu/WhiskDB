@@ -26,7 +26,47 @@ const findRecipe = data => {
   return false;
 };
 
-module.exports = { searchData, findRecipe };
+const formatData = data => {
+  let recipe = {};
+  if (Array.isArray(data.image)) {
+    recipe.image_url = data.image[0];
+  } else {
+    recipe.image_url = data.image;
+  }
+
+  recipe.title = data.name;
+  recipe.servings = data.recipeYield;
+  recipe.ingredients = data.recipeIngredient.join("\n").replace(/\s\s+/g, " ");
+
+  let hours = data.totalTime.match(/\d{1,2}(?=H)/);
+  let minutes = data.totalTime.match(/\d{1,2}(?=M)/);
+  recipe.time = {
+    hours: hours ? hours[0] : "",
+    minutes: minutes ? minutes[0] : ""
+  };
+
+  recipe.directions = "";
+  if (Array.isArray(data.recipeInstructions)) {
+    console.log(data.recipeInstructions);
+    data.recipeInstructions.forEach((obj, i, arr) => {
+      if (obj.text) {
+        if (i !== arr.length) {
+          recipe.directions += obj.text + "\n\n";
+        } else {
+          recipe.directions += obj.text;
+        }
+      }
+    });
+  } else {
+    reicpe.directions = data.recipeInstructions.split(/\s\s+/g).join("\n\n");
+  }
+
+  // need to join categores array into keywords
+  recipe.keywords = data.keywords.split(",").map(keywords => keywords.trim());
+  return recipe;
+};
+
+module.exports = { searchData, findRecipe, formatData };
 
 const image_urlSelectors = [
   ".image-overlay img", // allrecipes.com new

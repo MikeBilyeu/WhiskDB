@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 const Router = require("express-promise-router");
 const router = new Router();
 const passport = require("passport");
-const { searchData, findRecipe } = require("./utils");
+const { searchData, findRecipe, formatData } = require("./utils");
 module.exports = router;
 
 router.get(
@@ -19,37 +19,17 @@ router.get(
 
     $("script[type='application/ld+json']").each((i, e) => {
       const data = JSON.parse($(e).get()[0].children[0].data);
+
       recipeData = findRecipe(data);
       if (recipeData) {
         // recipe found now exit .each loop with false
         return false;
       }
     });
-    console.log(recipeData);
 
     if (Object.keys(recipeData).length) {
-      //
-      // // need to join categores array into keywords
-      //
-      // const image_url = recipeData.image[0];
-      //
-      // let directions = "";
-      //
-      // if (Array.isArray(recipeInstructions)) {
-      //   recipeInstructions.forEach(obj => {
-      //     directions += obj.text + "  ";
-      //   });
-      // } else {
-      //   directions = recipeInstructions;
-      // }
-      //
-      // directions = directions
-      //   .split(/\s\s+/g)
-      //   .join("\n\n")
-      //   .replace(/^ +|[, ]+$/gm, "");
-      //
-
-      // response.status(200).json(recipe);
+      const recipe = formatData(recipeData);
+      response.status(200).json(recipe);
       return;
     }
   }
