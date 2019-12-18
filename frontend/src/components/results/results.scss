@@ -2,11 +2,12 @@
 
 .recipe-results {
   width: 100%;
-  margin-top: 0rem;
+  margin-top: -1rem;
   position: relative;
   text-align: center;
   z-index: 1;
   background-color: #fff;
+  padding-top: 2rem;
   ul {
     display: grid;
     width: 100%;
