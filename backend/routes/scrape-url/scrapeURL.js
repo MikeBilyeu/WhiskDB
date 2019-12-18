@@ -24,6 +24,7 @@ router.get(
 
     $("script[type='application/ld+json']").each((i, e) => {
       const data = JSON.parse($(e).get()[0].children[0].data);
+      console.log(data);
       recipeData = findRecipe(data);
       if (recipeData) {
         // recipe found now exit .each loop with false
