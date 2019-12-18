@@ -41,7 +41,18 @@ const formatDirections = recipeInstructions => {
   let directions = "";
   if (Array.isArray(recipeInstructions)) {
     recipeInstructions.forEach((obj, i, arr) => {
-      if (obj.text) {
+      if (obj["@type"] === "HowToSection") {
+        directions += obj.name + "\n";
+        obj.itemListElement.forEach((obj, i, arr) => {
+          if (obj.text) {
+            if (i !== arr.length) {
+              directions += obj.text + "\n\n";
+            } else {
+              directions += obj.text;
+            }
+          }
+        });
+      } else if (obj.text) {
         if (i !== arr.length) {
           directions += obj.text + "\n\n";
         } else {
