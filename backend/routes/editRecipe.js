@@ -12,7 +12,8 @@ router.put(
     if (user.user_id !== recipe.created_by) {
       response.status(401).send("You can't edit this recipe");
     }
-
+    const ingredientsArr = recipe.ingredients.split(/\n/);
+    console.log(recipe.categories);
     try {
       await db.query(
         `UPDATE recipes
@@ -22,7 +23,7 @@ router.put(
         [
           recipe.title.trim(),
           recipe.servings,
-          recipe.ingredients,
+          ingredientsArr,
           recipe.directions,
           recipe.footnote,
           recipe.categories,
@@ -31,6 +32,23 @@ router.put(
           recipe.recipe_id
         ]
       );
+
+      // Remove categories from recipes_join_categories
+      await db.query(
+        `DELETE
+        FROM recipes_join_categories
+        WHERE recipe= $1`,
+        [recipe.recipe_id]
+      );
+      // Add new categories
+      recipe.categories.forEach(async category => {
+        await db.query(
+          `INSERT INTO recipes_join_categories (recipe, category)
+           VALUES ($1, (SELECT category_id FROM categories
+           WHERE category_name = $2))`,
+          [recipe_id, category]
+        );
+      });
       response.status(200).send("Changes saved!");
     } catch (err) {
       response.status(500).json(err);

@@ -29,6 +29,7 @@ router.post(
           [user_id, recipe_id]
         );
         response.status(200).send("unsaved");
+        return;
       }
       // Add saved recipe to db
       await db.query(
