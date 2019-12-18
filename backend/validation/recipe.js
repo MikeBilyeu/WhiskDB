@@ -3,7 +3,7 @@ module.exports = function validateRecipeInput(data) {
   // store regex to check validation
   const titleRegEx = /^[A-Z0-9]([a-zA-Z0-9()-\/ ]){2,55}$/;
 
-  const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) (. *){3,90}?$/i;
+  const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3}( |-)[1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) (. *){3,90}?$/i;
   // old const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) ([a-z\d-,\/+.%&*!] *){3,40}( \( *([a-z\d-,\/+.%&*!] *){1,40}\) *)?$/i;
 
   // Keep Recipe form inputs consistant w/ validation

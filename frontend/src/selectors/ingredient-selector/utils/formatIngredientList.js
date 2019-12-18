@@ -22,9 +22,10 @@ const splitIngredientStr = ingredientStr => {
 const formatIngredientList = ingredientList => {
   let formatedList = ingredientList.map(ingredientStr => {
     let { amount, unit, ingredient } = splitIngredientStr(ingredientStr);
-
     // using eval to get the decimal of mixed fractions
-    let decimalAmount = eval(amount.split(" ").join("+"));
+    let decimalAmount = eval(amount.split(/[ -]/).join("+"));
+
+    //console.log("decimalAmount: ", decimalAmount);
     // may have to round decimal to nearest 1000th
 
     let metricUnit = unit;
