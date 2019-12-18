@@ -16,9 +16,17 @@ const Header = props => {
     recipeSaved,
     history
   } = props;
+
+  const handleBackClick = () => {
+    if (history.location.key) {
+      history.goBack();
+    }
+    history.push("/");
+  };
+
   return (
     <div className="recipe-header">
-      <Arrow className="back-btn" onClick={() => history.goBack()} />
+      <Arrow className="back-btn" onClick={handleBackClick} />
       <img className="whisk" src={Whiskdb} alt="Whiskdb logo" />
       <SaveIcon
         className="saveIcon"
