@@ -1,6 +1,6 @@
 {
-  "short_name": "WhiskDb",
   "name": "WhiskDB",
+  "short_name": "Whisk",
   "icons": [
     {
       "src": "whisk-256.png",

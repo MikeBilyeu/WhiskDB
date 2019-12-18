@@ -117,23 +117,23 @@ const formatData = data => {
 const formatHTMLData = html => {
   const $ = cheerio.load(html);
   let recipe = {};
-  recipe.image_url = $(querySelector.image_url[1]).attr("src");
-  recipe.title = $(querySelector.title[1])
+  recipe.image_url = $(querySelector.image_url[0]).attr("src");
+  recipe.title = $(querySelector.title[0])
     .text()
     .trim();
-  let servings = $(querySelector.yield[1])
+  let servings = $(querySelector.yield[0])
     .text()
     .match(/\d{1,2}(?=( *serving))/i);
   recipe.servings = servings ? servings[0] : "";
   recipe.ingredients = "";
-  $(querySelector.ingredients[1]).each((index, element) => {
+  $(querySelector.ingredients[0]).each((index, element) => {
     recipe.ingredients +=
       $(element)
         .text()
         .replace(/\s\s+/g, " ")
         .trim() + "\n";
   });
-  let totalTime = $(querySelector.time[1]).text();
+  let totalTime = $(querySelector.time[0]).text();
   let hours = totalTime.match(/\d{1,2}(?=( *h))/i);
   let minutes = totalTime.match(/\d{1,2}(?=( *m))/i);
   recipe.time = {
@@ -142,11 +142,10 @@ const formatHTMLData = html => {
   };
   recipe.directions = "";
 
-  $(querySelector.directions[1]).each((i, e) => {
+  $(querySelector.directions[0]).each((i, e) => {
     recipe.directions +=
       $(e)
         .text()
-        .replace(/\d+/g, "")
         .trim() + " \n\n";
   });
 

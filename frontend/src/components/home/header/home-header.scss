@@ -27,7 +27,8 @@
 }
 
 .filter-btn {
-  border: solid lightColor(medium) 0.09rem;
+  border: solid lightColor(medium) 0.07rem;
+  background-color: #fff;
   border-radius: 0.5rem;
   outline: none;
   cursor: pointer;
@@ -39,17 +40,18 @@
   max-width: 12rem;
   place-self: center;
   color: darkColor(medium);
-  font-weight: bold;
+  font-weight: medium;
   position: relative;
 }
 
 .filter-btn.filter-active {
-  border: solid $primary-color 0.09rem;
+  border: solid $primary-color 0.07rem;
   color: $primary-color;
 }
 
 .filter-btn.filter-select {
-  // color: $primary-color;
+  //color: $primary-color;
+  //border: solid $primary-color 0.07rem;
 }
 
 .filter-btn.diet {
