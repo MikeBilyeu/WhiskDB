@@ -18,10 +18,7 @@ const Header = props => {
   } = props;
 
   const handleBackClick = () => {
-    if (history.location.key) {
-      history.goBack();
-    }
-    history.push("/");
+    history.location.key ? history.goBack() : history.push("/");
   };
 
   return (
