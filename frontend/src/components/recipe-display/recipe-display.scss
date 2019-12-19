@@ -1,5 +1,8 @@
+@import "../../assets/styles/variables";
+
 .recipe-card {
   display: grid;
+  grid-gap: 0.2rem;
   grid-template-areas:
     "thumbnail"
     "title"
@@ -11,50 +14,52 @@
   margin: auto;
 
   .title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     letter-spacing: -0.5px;
     line-height: 1.4rem;
-    color: #464646;
-    margin: 0.3rem;
+    color: darkColor(dark);
+    margin: 0 0.4rem;
     grid-area: title;
   }
-  .rating-time {
+  .recipe-meta {
     grid-area: rt;
-    margin: 0 0.3rem;
-    color: #676767;
-    font-size: 0.9rem;
+    margin: 0 0.1rem;
+    color: darkColor(light);
+    font-family: Arial !important;
+    font-size: 1rem;
+    font-weight: 100;
     display: grid;
-    grid-template-columns: fit-content(20rem) 0.5rem fit-content(15rem);
+    grid-template-columns: 2fr 2fr 1fr;
     grid-gap: 0.3rem;
     place-items: center;
+
+    .rating {
+      justify-self: start;
+
+      .votes {
+        font-size: 1rem;
+      }
+    }
+
+    .time {
+      @include grid-center;
+      grid-auto-flow: column;
+      grid-gap: 0.2rem;
+      img {
+        width: 1rem;
+      }
+    }
+    .saves {
+      @extend .time;
+    }
   }
-}
-
-.login-to-save {
-  grid-area: save;
-  justify-self: end;
-  padding: 0.4rem 1.5rem;
-  border-radius: 5rem;
-  color: #fff;
-  background-color: #0172c4;
-  margin: 0.5rem;
-}
-
-.SaveIcon {
-  fill: #b7b7b7;
-  width: 2.2rem;
-  margin: 0.3rem 0;
-  grid-area: save;
-  justify-self: end;
-  padding: 0.5rem;
-  cursor: pointer;
 }
 
 .thumbnail {
   grid-area: thumbnail;
-  max-height: 35vh;
-  min-height: 35vh;
+  max-height: 25vh;
+  min-height: 25vh;
   width: 100%;
   object-fit: cover;
   transition: all 0.2s;

@@ -1,5 +1,5 @@
 import React from "react";
-import { renderTime } from "./utils";
+import renderTime from "../../../utils/time";
 import Footnote from "./footnote";
 
 const Directions = ({ time, directions, footnote }) => {

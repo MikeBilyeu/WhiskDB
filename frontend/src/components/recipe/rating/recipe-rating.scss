@@ -1,6 +1,6 @@
 .rating {
   display: grid;
-  grid-template-columns: 5.9rem fit-content(5rem);
+  grid-template-columns: 7rem fit-content(5rem);
   place-items: center;
   grid-template-rows: 1.5rem;
 }
@@ -13,5 +13,5 @@
 }
 
 .votes {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }

@@ -1,4 +1,4 @@
-export const renderTime = ({ hours, minutes }) => {
+const renderTime = ({ hours, minutes }) => {
   const hr =
     hours && !minutes
       ? `${hours} Hour${hours > 1 ? "s" : ""}`
@@ -13,3 +13,5 @@ export const renderTime = ({ hours, minutes }) => {
       : "";
   return `${hr} ${min}`;
 };
+
+export default renderTime;

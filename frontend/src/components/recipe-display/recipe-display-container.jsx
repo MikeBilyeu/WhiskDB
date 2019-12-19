@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import renderTime from "../../utils/time";
 import { ReactComponent as SaveIcon } from "../../assets/images/saveIcon.svg";
+import clock from "../../assets/images/time.png";
 import Rating from "../recipe/rating";
 import "./recipe-display.scss";
 import { saveRecipe } from "../../actions/recipeActions";
@@ -18,13 +20,10 @@ class RecipeDisplay extends React.Component {
     this.setState({ saved: this.props.recipe.saved });
   }
 
-  formatMinsToHours = totalMinutes => {
-    const hours =
-      Math.floor(totalMinutes / 60) !== 0
-        ? `${Math.floor(totalMinutes / 60)}hr`
-        : ``;
-    const minutes = totalMinutes % 60 !== 0 ? `${totalMinutes % 60}min` : ``;
-    return `${hours} ${minutes}`;
+  convertTime = total_time_mins => {
+    const hours = Math.floor(parseInt(total_time_mins) / 60) || "";
+    const minutes = parseInt(total_time_mins) % 60 || "";
+    return renderTime({ hours, minutes });
   };
 
   handleClick = e => {
@@ -50,10 +49,21 @@ class RecipeDisplay extends React.Component {
         <Link className="recipe-card" to={`/recipe/${recipe_id}`}>
           <img className="thumbnail" src={image_url} alt="" />
           <div className="title">{title}</div>
-          <div className="rating-time">
-            <Rating className="rating" rating={rating} votes={num_reviews} />
-            <div>•</div>
-            {this.formatMinsToHours(total_time_mins)}
+          <div className="recipe-meta">
+            <Rating
+              className="rating results-view"
+              rating={rating}
+              votes={num_reviews}
+            />
+            <div className="time">
+              <img src={clock} alt="" />
+              {this.convertTime(total_time_mins)}
+            </div>
+
+            <div className="saves">
+              <SaveIcon style={{ width: ".9rem", fill: "#E2E2E2" }} />
+              {19}
+            </div>
           </div>
         </Link>
       </li>

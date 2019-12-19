@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import convertTime from "../../selectors/time-selector";
 import Header from "./header";
 import Filter from "./filter";
 import Results from "../results";
