@@ -40,14 +40,16 @@ router.post(
 
       const recipe_id = rows[0].recipe_id;
 
-      recipe.categories.forEach(category => {
-        db.query(
-          `INSERT INTO recipes_join_categories (recipe, category)
+      Promise.all(
+        recipe.categories.map(async category => {
+          await db.query(
+            `INSERT INTO recipes_join_categories (recipe, category)
            VALUES ($1, (SELECT category_id FROM categories
            WHERE category_name = $2))`,
-          [recipe_id, category]
-        );
-      });
+            [recipe_id, category]
+          );
+        })
+      );
 
       response.status(200).send({ recipe_id: recipe_id });
     } catch (err) {

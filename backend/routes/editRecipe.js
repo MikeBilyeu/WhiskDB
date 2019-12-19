@@ -41,14 +41,17 @@ router.put(
         [recipe.recipe_id]
       );
       // Add new categories
-      recipe.categories.forEach(async category => {
-        await db.query(
-          `INSERT INTO recipes_join_categories (recipe, category)
+      Promise.all(
+        recipe.categories.map(async category => {
+          await db.query(
+            `INSERT INTO recipes_join_categories (recipe, category)
            VALUES ($1, (SELECT category_id FROM categories
            WHERE category_name = $2))`,
-          [recipe_id, category]
-        );
-      });
+            [recipe.recipe_id, category]
+          );
+        })
+      );
+
       response.status(200).send("Changes saved!");
     } catch (err) {
       response.status(500).json(err);
