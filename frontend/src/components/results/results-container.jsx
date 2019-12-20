@@ -10,7 +10,7 @@ import "./results.scss";
 class Results extends React.PureComponent {
   renderRecipeList = () => {
     return this.props.recipes.map((recipe, i) => {
-      return <RecipeDisplay key={i} recipe={recipe} />;
+      return <RecipeDisplay key={recipe.recipe_id} recipe={recipe} />;
     });
   };
 

@@ -16,15 +16,16 @@ router.get(
                r.image_url,
                r.total_time_mins,
                COALESCE(AVG(rw.rating), 0) AS rating,
-               CAST(count(rw.*) AS INTEGER) AS num_reviews
+               CAST(count(distinct rw.*) AS INTEGER) AS num_reviews,
+               COUNT(distinct sr.*) AS num_saves
         FROM recipes r
         LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
+        LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
         WHERE r.recipe_id IN
             (SELECT recipe_saved
              FROM saved_recipes
-             WHERE saved_by = $1 )
-        GROUP BY r.recipe_id,
-                 rw.recipe_id;`,
+             WHERE saved_by = $1)
+        GROUP BY r.recipe_id ORDER BY LOWER(r.title);`,
         [user_id]
       );
       response.status(200).json(rows);

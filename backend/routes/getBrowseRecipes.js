@@ -18,7 +18,7 @@ router.get("/", async (request, response) => {
        r.created_at,
        COALESCE(AVG(rw.rating), 0) AS rating,
        CAST(COUNT(distinct rw.*) AS INTEGER) AS num_reviews,
-       COUNT(distinct sr.saved_by) AS num_saves
+       COUNT(distinct sr.*) AS num_saves
       FROM recipes r
       LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
       LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved

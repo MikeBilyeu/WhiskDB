@@ -18,12 +18,14 @@ router.get(
                 r.created_at,
                 r.total_time_mins,
                 COALESCE(AVG(rw.rating), 0) AS rating,
-                CAST(count(rw.*) AS INTEGER) AS num_reviews
+                CAST(count(distinct rw.*) AS INTEGER) AS num_reviews,
+                COUNT(distinct sr.*) AS num_saves
         FROM recipes r
         LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
+        LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
         WHERE created_by = $1
         GROUP BY r.recipe_id,
-                 rw.recipe_id
+                 sr.recipe_saved
         ORDER BY created_at DESC;`,
         [user_id]
       );
