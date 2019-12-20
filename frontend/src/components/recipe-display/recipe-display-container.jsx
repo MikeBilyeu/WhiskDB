@@ -35,6 +35,15 @@ class RecipeDisplay extends React.Component {
       this.props.saveRecipe(this.props.recipe.recipe_id, this.props.user_id);
     }
   };
+
+  convertSaves = num => {
+    return num > 1000000
+      ? parseFloat((num / 1000000).toFixed(1)) + "m"
+      : num > 1000
+      ? parseFloat((num / 1000).toFixed(1)) + "k"
+      : num;
+  };
+
   render() {
     const {
       title,
@@ -42,7 +51,8 @@ class RecipeDisplay extends React.Component {
       rating,
       recipe_id,
       total_time_mins,
-      image_url
+      image_url,
+      num_saves
     } = this.props.recipe;
     return (
       <li>
@@ -62,7 +72,7 @@ class RecipeDisplay extends React.Component {
 
             <div className="saves">
               <SaveIcon style={{ width: ".9rem", fill: "#E2E2E2" }} />
-              {19}
+              {this.convertSaves(num_saves)}
             </div>
           </div>
         </Link>
