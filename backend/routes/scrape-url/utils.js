@@ -2,22 +2,33 @@ const cheerio = require("cheerio");
 
 const querySelector = {
   image_url: [
-    ".hero-photo__wrap img" // allrecipes.com
+    ".hero-photo__wrap img", // allrecipes.com
+    ".media-container [itemprop='image']"
   ],
   title: [
-    "h1#recipe-main-content" // allrecipes.com
+    "h1#recipe-main-content", // allrecipes.com
+    "h1.recipe-title" //cooking.nytimes.com
   ],
   yield: [
-    ".adjustServings .subtext" // allrecipes.com
+    ".adjustServings .subtext", // allrecipes.com
+    "[itemprop='recipeYield']" //cooking.nytimes.com
   ],
   ingredients: [
-    "[itemprop='recipeIngredient']" // allrecipes.com
+    "[itemprop='recipeIngredient']" // allrecipes.com, cooking.nytimes.com
   ],
   time: [
-    "[itemprop='totalTime']" // allrecipes.com
+    "[itemprop='totalTime']", // allrecipes.com
+    ".recipe-time-yield li:nth-child(2)" //cooking.nytimes.com
   ],
   directions: [
-    ".recipe-directions__list--item" // allrecipes.com
+    ".recipe-directions__list--item", // allrecipes.com
+    "[itemprop='recipeInstructions'] li" //cooking.nytimes.com
+  ],
+  footnotes: [
+    ".recipe-notes" //cooking.nytimes.com
+  ],
+  keywords: [
+    "a.tag" //cooking.nytimes.com
   ]
 };
 
@@ -128,11 +139,11 @@ const formatData = data => {
 const formatHTMLData = html => {
   const $ = cheerio.load(html);
   let recipe = {};
-  recipe.image_url = $(querySelector.image_url[0]).attr("src");
-  recipe.title = $(querySelector.title[0])
+  recipe.image_url = $(querySelector.image_url[1]).attr("src");
+  recipe.title = $(querySelector.title[1])
     .text()
     .trim();
-  let servings = $(querySelector.yield[0])
+  let servings = $(querySelector.yield[1])
     .text()
     .match(/\d{1,2}(?=( *serving))/i);
   recipe.servings = servings ? servings[0] : "";
@@ -144,7 +155,7 @@ const formatHTMLData = html => {
         .replace(/\s\s+/g, " ")
         .trim() + "\n";
   });
-  let totalTime = $(querySelector.time[0]).text();
+  let totalTime = $(querySelector.time[1]).text();
   let hours = totalTime.match(/\d{1,2}(?=( *h))/i);
   let minutes = totalTime.match(/\d{1,2}(?=( *m))/i);
   recipe.time = {
@@ -153,14 +164,22 @@ const formatHTMLData = html => {
   };
   recipe.directions = "";
 
-  $(querySelector.directions[0]).each((i, e) => {
+  $(querySelector.directions[1]).each((i, e) => {
     recipe.directions +=
       $(e)
         .text()
         .trim() + " \n\n";
+  });
+  recipe.keywords = [];
+  $(querySelector.keywords[0]).each((i, e) => {
+    recipe.keywords.push($(e).text());
   });
 
   return recipe;
 };
 
 module.exports = { searchData, findRecipe, formatData, formatHTMLData };
+
+// cooking.NYTimes.com
+
+//title; //h1.recipe-title
