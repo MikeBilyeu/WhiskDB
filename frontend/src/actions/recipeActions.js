@@ -15,7 +15,9 @@ import {
   TOGGLE_SORT_BUTTON,
   TOGGLE_SHARE,
   TOGGLE_EDIT_RECIPE,
-  GET_SCRAPE_URL_REQUEST
+  GET_SCRAPE_URL_REQUEST,
+  TOGGLE_FILTER_BUTTON,
+  SET_PROFILE_FILTER_DATA
 } from "./types";
 
 import { reset } from "redux-form";
@@ -89,20 +91,22 @@ export const getRecipe = (recipe_id, user_id) => dispatch => {
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
 
-export const getSavedRecipes = () => async dispatch => {
+export const getSavedRecipes = data => async dispatch => {
   dispatch({ type: GET_SAVED_RECIPES_REQUEST });
+  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
+  dispatch({ type: SET_PROFILE_FILTER_DATA, payload: data });
   try {
-    const res = await axios.get("/save-recipe");
+    const res = await axios.get("/save-recipe", { params: data });
     dispatch({ type: GET_SAVED_RECIPES, payload: res.data });
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
   }
 };
 
-export const getMyRecipes = () => async dispatch => {
+export const getMyRecipes = data => async dispatch => {
   dispatch({ type: GET_MY_RECIPES_REQUEST });
   try {
-    const res = await axios.get("/my-recipe");
+    const res = await axios.get("/my-recipe", { params: data });
     dispatch({ type: GET_MY_RECIPES, payload: res.data });
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });

@@ -1,15 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import convertTime from "../../selectors/time-selector";
 import Header from "./header";
-import Filter from "./filter";
+import Filter from "../filter";
 import Results from "../results";
 import {
   getBrowseRecipes,
   getSearchRecipes
 } from "../../actions/browseActions";
-
-import { filterOptions } from "./utils";
 
 class Home extends React.Component {
   componentDidMount() {
@@ -21,13 +18,26 @@ class Home extends React.Component {
     }
   }
 
+  handleClick = (option, type) => {
+    // set the browseData to the option selected
+    // getSavedRecipes / postedRecipes
+    this.props.getBrowseRecipes({
+      ...this.props.browseData,
+      [type]: option,
+      search: ""
+    });
+  };
+
   render() {
-    const { options, type } = filterOptions(this.props.buttonToggled);
     return (
       <div className="home">
         <Header />
         {this.props.buttonToggled ? (
-          <Filter filterOptions={options} filterType={type} />
+          <Filter
+            filterRecipes={this.props.browseData}
+            handleClick={this.handleClick}
+            buttonToggled={this.props.buttonToggled}
+          />
         ) : null}
 
         <Results

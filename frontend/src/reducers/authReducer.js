@@ -2,15 +2,19 @@ import {
   GET_USER,
   SET_CURRENT_USER,
   USER_LOADING,
-  TOGGLE_DELETE
+  TOGGLE_DELETE,
+  SET_PROFILE_FILTER_DATA,
+  TOGGLE_FILTER_BUTTON
 } from "../actions/types";
 const initialState = {
   isAuthenticated: false,
   user: { user_id: null, username: "", full_name: "", email: "" },
   loading: false,
-  openDelete: false
+  openDelete: false,
+  filterRecipes: { meal: "All Meals" },
+  toggleFilterButton: null
 };
-
+//state.browseRecipes.toggleFilterButton
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_CURRENT_USER:
@@ -22,7 +26,20 @@ export default function(state = initialState, action) {
         };
       }
       return initialState;
-
+    case SET_PROFILE_FILTER_DATA:
+      return { ...state, filterRecipes: action.payload };
+    case TOGGLE_FILTER_BUTTON:
+      if (action.payload === state.toggleFilterButton)
+        return {
+          ...state,
+          toggleFilterButton: null
+        };
+      else {
+        return {
+          ...state,
+          toggleFilterButton: action.payload
+        };
+      }
     case GET_USER:
       return {
         ...state,

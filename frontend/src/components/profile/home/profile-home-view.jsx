@@ -6,6 +6,7 @@ import {
   getSavedRecipes,
   toggleSortButton
 } from "../../../actions/recipeActions";
+import Filter from "../../filter";
 import Header from "./header";
 import PageToggle from "./header/page-toggle";
 import Results from "../../results";
@@ -23,7 +24,7 @@ class Home extends React.PureComponent {
   componentDidMount() {
     document.title = "WhiskDB | Profile";
     this.props.getMyRecipes();
-    this.props.getSavedRecipes();
+    this.props.getSavedRecipes({ meal: "All Meals" });
   }
 
   handlePageClick = page => {
@@ -32,6 +33,14 @@ class Home extends React.PureComponent {
         return { page };
       }
     });
+  };
+
+  handleClick = (option, type) => {
+    if (this.state.page === "saved") {
+      this.props.getSavedRecipes({ [type]: option });
+    } else {
+      this.props.getMyRecipes({ [type]: option });
+    }
   };
 
   render() {
@@ -44,6 +53,13 @@ class Home extends React.PureComponent {
       <div className="profile">
         <Header fullName={full_name} />
         <PageToggle page={this.state.page} onClick={this.handlePageClick} />
+        {this.props.buttonToggled ? (
+          <Filter
+            filterRecipes={this.props.filterRecipes}
+            buttonToggled={this.props.buttonToggled}
+            handleClick={this.handleClick}
+          />
+        ) : null}
         {page === "saved" ? (
           <Results recipes={savedRecipes} isFetching={null} />
         ) : (
@@ -55,6 +71,8 @@ class Home extends React.PureComponent {
 }
 
 const mapStateToProps = state => ({
+  filterRecipes: state.auth.filterRecipes,
+  buttonToggled: state.auth.toggleFilterButton,
   auth: state.auth,
   savedRecipes: state.savedRecipes,
   myRecipes: state.myRecipes

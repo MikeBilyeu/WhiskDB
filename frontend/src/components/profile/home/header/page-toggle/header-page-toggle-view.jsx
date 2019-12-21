@@ -1,13 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Button from "../../../../button";
+import CategoryButton from "../../../../category-button";
+import { toggleFilterButton } from "../../../../../actions/browseActions";
 import "./header-page-toggle.scss";
 
-const PageToggle = ({ page, onClick }) => {
+const PageToggle = ({
+  page,
+  onClick,
+  activeFilterBtn,
+  meal,
+  toggleFilterButton
+}) => {
   const savedActive = page === "saved" ? "active" : "";
   const myRecipesActive = page === "myRecipes" ? "active" : "";
+  const mealBtnActive = activeFilterBtn === "Meal";
   return (
     <div className="page-toggle">
+      <CategoryButton
+        active={mealBtnActive}
+        name={meal === "All Meals" ? "Meal" : meal}
+        selected={meal !== "All Meals"}
+        handleClick={() => toggleFilterButton("Meal")}
+      />
       <Button
         className={`btn saved ${savedActive}`}
         onClick={() => onClick("saved")}
@@ -25,6 +41,11 @@ const PageToggle = ({ page, onClick }) => {
   );
 };
 
+const mapSateToProps = state => ({
+  activeFilterBtn: state.browseRecipes.toggleFilterButton,
+  meal: state.auth.filterRecipes.meal
+});
+
 PageToggle.propTypes = {
   onClick: PropTypes.func.isRequired,
   page: PropTypes.string.isRequired,
@@ -32,4 +53,7 @@ PageToggle.propTypes = {
   numRecipesPosted: PropTypes.number.isRequired
 };
 
-export default PageToggle;
+export default connect(
+  mapSateToProps,
+  { toggleFilterButton }
+)(PageToggle);
