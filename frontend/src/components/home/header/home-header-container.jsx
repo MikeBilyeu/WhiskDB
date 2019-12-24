@@ -8,15 +8,10 @@ import CategoryButton from "../../category-button";
 import Whiskdb from "../../../assets/images/whiskdb.png";
 import "./home-header.scss";
 
-const Header = ({
-  sortBy,
-  diet,
-  meal,
-  activeFilterBtn,
-  toggleFilterButton
-}) => {
-  const mealBtnActive = activeFilterBtn === "Meal";
-  const sortBtnActive = activeFilterBtn === "Sort";
+const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
+  const mealBtnActive = buttonToggled === "Meal";
+  const sortBtnActive = buttonToggled === "Sort";
+  const { meal, sortBy } = filterRecipes;
 
   return (
     <div className="header">
@@ -39,21 +34,12 @@ const Header = ({
 };
 
 Header.propTypes = {
-  sortBy: PropTypes.string.isRequired,
-  diet: PropTypes.string.isRequired,
-  meal: PropTypes.string.isRequired,
+  filterRecipes: PropTypes.object.isRequired,
   activeFilterBtn: PropTypes.string.isRequired,
   toggleFilterButton: PropTypes.func.isRequired
 };
 
-const mapSateToProps = state => ({
-  activeFilterBtn: state.browseRecipes.toggleFilterButton,
-  sortBy: state.browseRecipes.browseData.sort,
-  diet: state.browseRecipes.browseData.diet,
-  meal: state.browseRecipes.browseData.meal
-});
-
 export default connect(
-  mapSateToProps,
+  null,
   { toggleFilterButton }
 )(Header);

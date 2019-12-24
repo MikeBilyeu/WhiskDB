@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { filterOptions } from "../filter/utils";
+import { filterOptions } from "./utils";
 import { getBrowseRecipes } from "../../actions/browseActions";
 import Button from "../button";
 
-import "./filter.scss";
+import "./filter-results.scss";
 
-const Filter = ({
+const FilterResults = ({
   filterRecipes,
   getBrowseRecipes,
   handleClick,
@@ -42,7 +42,7 @@ const Filter = ({
   );
 };
 
-Filter.propTypes = {
+FilterResults.propTypes = {
   handleClick: PropTypes.func.isRequired,
   filterRecipes: PropTypes.object.isRequired,
   getBrowseRecipes: PropTypes.func.isRequired
@@ -51,4 +51,4 @@ Filter.propTypes = {
 export default connect(
   null,
   { getBrowseRecipes }
-)(Filter);
+)(FilterResults);

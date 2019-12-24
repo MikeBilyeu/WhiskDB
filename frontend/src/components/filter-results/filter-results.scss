@@ -7,6 +7,9 @@
   padding: 1rem;
   margin: 0 auto;
   border-bottom: solid lightColor(light) 0.05rem;
+  background-color: #fff;
+  width: 100%;
+  z-index: 1;
 
   h2 {
     color: darkColor(dark);

@@ -82,8 +82,8 @@ class SearchBar extends React.Component {
 
 const mapSateToProps = state => {
   return {
-    browseData: state.browseRecipes.browseData,
-    searchTerm: state.browseRecipes.browseData.search
+    browseData: state.browseRecipes.filterRecipes,
+    searchTerm: state.browseRecipes.filterRecipes.search
   };
 };
 

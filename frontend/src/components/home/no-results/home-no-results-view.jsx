@@ -7,10 +7,11 @@ const NoResults = props => {
       style={{
         color: "#313131",
         textAlign: "center",
-        height: "10rem",
         display: "grid",
         placeItems: "center",
-        marginTop: "1.5rem"
+        backgroundColor: "#fff",
+        height: "50vh",
+        width: "100%"
       }}
     >
       <div style={{ fontSize: "1.2rem" }}>

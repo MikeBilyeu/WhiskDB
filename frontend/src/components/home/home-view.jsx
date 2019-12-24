@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Header from "./header";
-import Filter from "../filter";
+import FilterResults from "../filter-results";
 import Results from "../results";
 import {
   getBrowseRecipes,
@@ -11,18 +11,17 @@ import {
 class Home extends React.Component {
   componentDidMount() {
     document.title = "WhiskDB | A Recipe Database";
-    if (this.props.browseData.search === "") {
-      this.props.getBrowseRecipes(this.props.browseData);
+    if (this.props.filterRecipes.search === "") {
+      this.props.getBrowseRecipes(this.props.filterRecipes);
     } else {
-      this.props.getSearchRecipes(this.props.browseData);
+      this.props.getSearchRecipes(this.props.filterRecipes);
     }
   }
 
   handleClick = (option, type) => {
-    // set the browseData to the option selected
-    // getSavedRecipes / postedRecipes
+    // set the filterRecipes to the option selected
     this.props.getBrowseRecipes({
-      ...this.props.browseData,
+      ...this.props.filterRecipes,
       [type]: option,
       search: ""
     });
@@ -31,10 +30,13 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
-        <Header />
+        <Header
+          filterRecipes={this.props.filterRecipes}
+          buttonToggled={this.props.buttonToggled}
+        />
         {this.props.buttonToggled ? (
-          <Filter
-            filterRecipes={this.props.browseData}
+          <FilterResults
+            filterRecipes={this.props.filterRecipes}
             handleClick={this.handleClick}
             buttonToggled={this.props.buttonToggled}
           />
@@ -52,7 +54,7 @@ class Home extends React.Component {
 const mapStateToProps = state => ({
   buttonToggled: state.browseRecipes.toggleFilterButton,
   recipes: state.browseRecipes,
-  browseData: state.browseRecipes.browseData,
+  filterRecipes: state.browseRecipes.filterRecipes,
   user_id: state.auth.user.user_id
 });
 

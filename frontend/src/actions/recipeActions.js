@@ -95,6 +95,7 @@ export const getSavedRecipes = data => async dispatch => {
   dispatch({ type: GET_SAVED_RECIPES_REQUEST });
   dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
   dispatch({ type: SET_PROFILE_FILTER_DATA, payload: data });
+
   try {
     const res = await axios.get("/save-recipe", { params: data });
     dispatch({ type: GET_SAVED_RECIPES, payload: res.data });
@@ -105,6 +106,8 @@ export const getSavedRecipes = data => async dispatch => {
 
 export const getMyRecipes = data => async dispatch => {
   dispatch({ type: GET_MY_RECIPES_REQUEST });
+  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
+  dispatch({ type: SET_PROFILE_FILTER_DATA, payload: data });
   try {
     const res = await axios.get("/my-recipe", { params: data });
     dispatch({ type: GET_MY_RECIPES, payload: res.data });

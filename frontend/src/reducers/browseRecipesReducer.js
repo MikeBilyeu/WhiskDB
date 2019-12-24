@@ -9,7 +9,7 @@ import {
 const initialState = {
   recipes: [],
   isFetching: true,
-  browseData: {
+  filterRecipes: {
     search: "",
     meal: "All Meals",
     diet: "None",
@@ -27,7 +27,7 @@ export default function(state = initialState, action) {
     case SET_BROWSE_DATA:
       return {
         ...state,
-        browseData: action.payload
+        filterRecipes: action.payload
       };
     case TOGGLE_FILTER_BUTTON:
       if (action.payload === state.toggleFilterButton)

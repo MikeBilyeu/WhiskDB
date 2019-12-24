@@ -6,7 +6,7 @@ import {
   getSavedRecipes,
   toggleSortButton
 } from "../../../actions/recipeActions";
-import Filter from "../../filter";
+import FilterResults from "../../filter-results";
 import Header from "./header";
 import PageToggle from "./header/page-toggle";
 import Results from "../../results";
@@ -23,8 +23,8 @@ class Home extends React.PureComponent {
 
   componentDidMount() {
     document.title = "WhiskDB | Profile";
-    this.props.getMyRecipes();
-    this.props.getSavedRecipes({ meal: "All Meals" });
+    this.props.getMyRecipes(this.props.filterRecipes);
+    this.props.getSavedRecipes(this.props.filterRecipes);
   }
 
   handlePageClick = page => {
@@ -35,12 +35,9 @@ class Home extends React.PureComponent {
     });
   };
 
-  handleClick = (option, type) => {
-    if (this.state.page === "saved") {
-      this.props.getSavedRecipes({ [type]: option });
-    } else {
-      this.props.getMyRecipes({ [type]: option });
-    }
+  handleFilterClick = (option, type) => {
+    this.props.getSavedRecipes({ [type]: option });
+    this.props.getMyRecipes({ [type]: option });
   };
 
   render() {
@@ -54,10 +51,10 @@ class Home extends React.PureComponent {
         <Header fullName={full_name} />
         <PageToggle page={this.state.page} onClick={this.handlePageClick} />
         {this.props.buttonToggled ? (
-          <Filter
+          <FilterResults
             filterRecipes={this.props.filterRecipes}
             buttonToggled={this.props.buttonToggled}
-            handleClick={this.handleClick}
+            handleClick={this.handleFilterClick}
           />
         ) : null}
         {page === "saved" ? (
