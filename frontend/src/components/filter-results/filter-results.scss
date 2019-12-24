@@ -7,24 +7,29 @@
   padding: 1rem;
   margin: 0 auto;
   border-bottom: solid lightColor(light) 0.05rem;
-  background-color: #fff;
+  background-color: #fcfcfc;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 
   h2 {
     color: darkColor(dark);
     font-weight: medium;
     padding: 0.5rem 3rem;
-    margin: 0 0 0.5rem 0;
+    margin: 0;
     text-transform: capitalize;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0 0 1rem 0;
   }
 }
 
 .filter-option {
   padding: 0.4rem 0;
   border-radius: 0.5rem;
-  background-color: #fff;
-  width: 7rem;
+  background-color: rgba(0, 0, 0, 0);
+  width: 6rem;
   cursor: pointer;
   color: darkColor(dark);
   border: none;

@@ -4,9 +4,9 @@ import Button from "../button";
 import { ReactComponent as Arrow } from "../../assets/images/filterArrow.svg";
 import "./category-button.scss";
 
-const CategoryButton = ({ name, selected, active, handleClick }) => {
+const CategoryButton = ({ name, selected, active, handleClick, className }) => {
   const btnStyle = `filter-btn ${active && "filter-active"} ${selected &&
-    "filter-select"}`;
+    "filter-select"} ${className}`;
   const arrowStyle = `filter-arrow ${active && "filter-active"}`;
 
   return (

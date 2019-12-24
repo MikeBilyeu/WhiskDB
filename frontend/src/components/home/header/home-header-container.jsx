@@ -24,8 +24,9 @@ const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
       <img className="whisk" src={Whiskdb} alt="Whiskdb logo" />
       <SearchBar />
       <CategoryButton
+        className="categoryBtn"
         active={mealBtnActive}
-        name={meal === "All Meals" ? "Meal" : meal}
+        name={meal === "All Meals" ? "Categories" : meal}
         selected={meal !== "All Meals"}
         handleClick={() => toggleFilterButton("Meal")}
       />

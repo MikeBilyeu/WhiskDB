@@ -2,4 +2,9 @@
 
 .profile {
   @include grid-center;
+
+  .filter-box {
+    position: sticky;
+    top: 4.75rem;
+  }
 }

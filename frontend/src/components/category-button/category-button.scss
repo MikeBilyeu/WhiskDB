@@ -1,17 +1,17 @@
 @import "../../assets/styles/variables";
 
 .filter-btn {
-  border: solid lightColor(medium) 0.07rem;
+  border: solid darkColor(light) 0.07rem;
   background-color: #fff;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   outline: none;
   cursor: pointer;
   font-size: 0.9rem;
-  margin: 0.4rem;
-  padding: 0.4rem;
+  margin: 0.4rem 0 1rem 0;
+  padding: 0.3rem;
   width: 100%;
-  min-width: 7rem;
-  max-width: 12rem;
+  min-width: 9rem;
+  max-width: 9rem;
   place-self: center;
   color: darkColor(medium);
   font-weight: medium;
@@ -25,26 +25,19 @@
   .filter-arrow {
     width: 0.8rem;
     position: absolute;
-    top: 0.6rem;
+    top: 0.5rem;
     right: 0.35rem;
     transition: all 0.2s ease-out;
-    fill: lightColor(medium);
+    fill: darkColor(light);
     &.filter-active {
       transform: rotate(90deg);
       fill: $primary-color;
     }
   }
-}
 
-.filter-btn.filter-select {
-  //color: $primary-color;
-  //border: solid $primary-color 0.07rem;
-}
-
-.filter-btn.diet {
-  grid-area: Diet;
-}
-
-.filter-btn.meal {
-  grid-area: Meal;
+  &.filter-select {
+    color: $primary-color;
+    font-weight: bold;
+    //border: solid $primary-color 0.07rem;
+  }
 }

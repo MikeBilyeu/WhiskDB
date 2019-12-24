@@ -37,7 +37,7 @@ const FilterResults = ({
   return (
     <div className="filter-box">
       <h2>{type}</h2>
-      {renderFilterOptions()}
+      <ul>{renderFilterOptions()}</ul>
     </div>
   );
 };

@@ -3,16 +3,18 @@
 .home {
   .header {
     width: 100%;
-    z-index: 2;
+    z-index: 3;
     overflow: hidden;
     display: grid;
     align-items: center;
-    position: relative;
+    position: fixed;
+    top: 0;
+    margin-bottom: 10rem;
     grid-template-areas:
       "sort whisk search"
       ". Meal .";
     grid-template-columns: 1fr 1fr 1fr;
-    border-bottom: solid 0.01rem lightColor(light);
+    border-bottom: solid lightColor(medium) 0.07rem;
     padding: 0.3rem 0.1rem 0 0.1rem;
 
     box-sizing: border-box;
@@ -21,6 +23,9 @@
       width: 5rem;
       grid-area: whisk;
       justify-self: center;
+    }
+    .categoryBtn {
+      grid-area: Meal;
     }
   }
 }

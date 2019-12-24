@@ -19,8 +19,9 @@ const PageToggle = ({
   return (
     <div className="page-toggle">
       <CategoryButton
+        className="categoryBtn"
         active={mealBtnActive}
-        name={meal === "All Meals" ? "Meal" : meal}
+        name={meal === "All Meals" ? "Categories" : meal}
         selected={meal !== "All Meals"}
         handleClick={() => toggleFilterButton("Meal")}
       />

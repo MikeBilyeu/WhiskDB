@@ -7,6 +7,7 @@ import {
   getBrowseRecipes,
   getSearchRecipes
 } from "../../actions/browseActions";
+import "./home.scss";
 
 class Home extends React.Component {
   componentDidMount() {
