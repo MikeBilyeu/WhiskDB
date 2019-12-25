@@ -16,7 +16,7 @@
     width: 8rem;
     text-align: center;
     cursor: pointer;
-    color: $primary-color;
+    opacity: 0.5;
     background-color: #fff;
     border: none;
     outline: none;
@@ -29,6 +29,7 @@
   .active {
     color: darkColor(dark);
     cursor: inherit;
+    opacity: 1;
     margin-bottom: 0rem;
     border-bottom: solid darkColor(medium) 0.1rem;
   }

@@ -5,7 +5,6 @@ import { toggleFilterButton } from "../../../actions/browseActions";
 import SearchBar from "../search-bar";
 import SortButton from "../../sort-button";
 import CategoryButton from "../../category-button";
-import Whiskdb from "../../../assets/images/whiskdb.png";
 import "./home-header.scss";
 
 const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
@@ -21,7 +20,6 @@ const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
         sortBy={sortBy}
         className="sort-btn"
       />
-      <img className="whisk" src={Whiskdb} alt="Whiskdb logo" />
       <SearchBar />
       <CategoryButton
         className="categoryBtn"
