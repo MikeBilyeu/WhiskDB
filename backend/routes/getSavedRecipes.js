@@ -19,7 +19,7 @@ router.get(
                r.total_time_mins,
                COALESCE(AVG(rw.rating), 0) AS rating,
                CAST(COUNT(DISTINCT rw.*) AS INTEGER) AS num_reviews,
-               COUNT(sr.*) AS num_saves
+               COUNT(DISTINCT sr.*) AS num_saves
         FROM saved_recipes sr
         LEFT JOIN recipes r ON r.recipe_id = sr.recipe_saved
         LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
