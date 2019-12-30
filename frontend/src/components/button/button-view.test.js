@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { Button } from "./Button";
-import { checkProps } from "../utils/testingUtils";
+import Button from "../button";
+import { checkProps } from "../../utils/testingUtils";
 
 describe("<Button />", () => {
   it("should render a button element", () => {
