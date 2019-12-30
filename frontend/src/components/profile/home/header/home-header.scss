@@ -42,6 +42,11 @@
     .create-recipe-link {
       grid-column: 2 / 4;
       grid-row: 2 / 3;
+      @include grid-center;
+      display: grid;
+      place-items: center;
+      padding: 0 0.5rem;
+      grid-template-columns: 1fr 1.5rem;
       .create-recipe-btn {
         outline: none;
         border: none;
@@ -50,10 +55,10 @@
         color: $primary-color;
         font-size: 1.1rem;
         width: 75%;
-        min-width: 18rem;
+        min-width: 8rem;
         max-width: 20rem;
         margin: 0 auto;
-        padding: 0.4rem 5rem;
+        padding: 0.4rem 0;
         fontweight: bold;
         text-align: center;
         &:hover {
