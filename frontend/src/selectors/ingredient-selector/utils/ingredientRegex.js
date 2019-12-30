@@ -15,6 +15,5 @@ const regEx = {
 };
 
 //create a regex for capital T for tablespoon js regex doesn't allow partial case insensitivity
-
 //create a regex for lowercase t for teaspoon js regex doesn't allow partial case insensitivity
 export default regEx;

@@ -1,6 +1,6 @@
 import regEx from "./ingredientRegex";
 
-const splitIngredientStr = ingredientStr => {
+export const splitIngredientStr = ingredientStr => {
   //remove extra white space
   ingredientStr = ingredientStr.replace(/\s+/g, " ").trim();
 
@@ -42,8 +42,12 @@ const formatIngredientList = ingredientList => {
           metricUnit = "ml.";
           break;
         case regEx.teaspoon.test(unit):
-        case regEx.T.test(unit):
+        case regEx.t.test(unit):
           decimalAmount *= 4.929;
+          metricUnit = "ml.";
+          break;
+        case regEx.milliliter.test(unit):
+          decimalAmount *= 1;
           metricUnit = "ml.";
           break;
         case regEx.liter.test(unit):
@@ -62,6 +66,10 @@ const formatIngredientList = ingredientList => {
           decimalAmount *= 1000;
           metricUnit = "g.";
           break;
+        case regEx.gram.test(unit):
+          decimalAmount *= 1;
+          metricUnit = "g.";
+          break;
         default:
           break;
       }
@@ -76,7 +84,6 @@ const formatIngredientList = ingredientList => {
       ingredient: ingredient
     };
   });
-
   return formatedList;
 };
 
