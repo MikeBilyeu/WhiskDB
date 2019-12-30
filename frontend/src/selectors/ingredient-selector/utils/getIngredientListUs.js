@@ -56,6 +56,7 @@ const getIngredientListUs = metricIngredients => {
 
       if (unitType === "mass") {
         let pounds = Math.floor(amount / 453);
+
         // sets the decimal precision depending on amount
         let fixedTo = amount <= 1 ? 3 : 1;
 
@@ -66,8 +67,13 @@ const getIngredientListUs = metricIngredients => {
             amount: pounds,
             unit: "lb."
           });
-        }
-        if (ounces > 0.0) {
+          if (ounces >= 0.5) {
+            amounts.push({
+              amount: ounces,
+              unit: "oz."
+            });
+          }
+        } else if (ounces >= 0.01) {
           amounts.push({
             amount: ounces,
             unit: "oz."

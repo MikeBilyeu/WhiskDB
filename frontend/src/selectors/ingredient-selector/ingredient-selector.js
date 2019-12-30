@@ -17,6 +17,7 @@ const convertIngredients = (
 ) => {
   // converts ingredients into a metric objects "amounts not rounded"
   ingredientList = formatIngredientList(ingredientList);
+  console.log(ingredientList);
 
   const metricIngredientList = getIngredientListMetric(
     ingredientList,
