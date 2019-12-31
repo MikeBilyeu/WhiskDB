@@ -33,9 +33,9 @@
       img {
         width: 5.5rem;
         height: 5.5rem;
-        object-fit: cover;
         border-radius: 100%;
-        border: solid $secondary-color 0.1rem;
+        border: solid $secondary-color 0.2rem;
+        padding: 0.01rem;
       }
     }
 

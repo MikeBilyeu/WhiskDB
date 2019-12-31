@@ -30,6 +30,7 @@
     padding: 0.5rem 3rem;
     padding-bottom: 0.3rem;
     font-size: 0.8rem;
+    font-weight: bold;
     opacity: 0.5;
     &:hover {
       opacity: 0.8;
@@ -45,7 +46,7 @@
   }
 
   .active {
-    border-bottom: solid darkColor(dark) 0.1rem;
+    border-bottom: solid $primary-color 0.1rem;
     bottom: -0.05rem;
     opacity: 1;
   }
