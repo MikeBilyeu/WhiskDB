@@ -1,1 +1,14 @@
 @import "../../../assets/styles/variables";
+.edit-profile {
+  h2 {
+    margin: 0;
+  }
+  .radio {
+    @include grid-center;
+    grid-auto-flow: column;
+    grid-gap: 0.5rem;
+    width: 3rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+  }
+}

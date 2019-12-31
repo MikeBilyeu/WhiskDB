@@ -43,6 +43,39 @@ class Edit extends React.Component {
             placeholder="Enter new username"
             label="Username"
           />
+          <div>
+            <h2>Diet</h2>
+            <div>
+              <label className="radio">
+                <Field
+                  name="diet"
+                  component={Input}
+                  type="radio"
+                  value="none"
+                />
+                None
+              </label>
+              <label className="radio">
+                <Field
+                  name="diet"
+                  component={Input}
+                  type="radio"
+                  value="vegetarian"
+                />
+                Vegetarian
+              </label>
+              <label className="radio">
+                <Field
+                  name="diet"
+                  component={Input}
+                  type="radio"
+                  value="vegan"
+                />
+                Vegan
+              </label>
+            </div>
+          </div>
+
           {this.props.dirty ? (
             <button type="submit">Save changes</button>
           ) : null}

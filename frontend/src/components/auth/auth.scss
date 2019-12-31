@@ -21,7 +21,7 @@
     // @include grid-center;
     display: grid;
     text-align: start;
-    input {
+    input[type="text"] {
       all: unset;
       box-sizing: border-box;
       width: 100%;
