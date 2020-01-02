@@ -15,7 +15,8 @@ router.get(
         `SELECT user_id,
              username,
              full_name,
-             email
+             email,
+             diet
       FROM users
       WHERE user_id = $1`,
         [user_id]

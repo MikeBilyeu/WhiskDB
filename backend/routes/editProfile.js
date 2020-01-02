@@ -12,9 +12,8 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
-    const { full_name, username } = request.body;
+    const { full_name, username, diet } = request.body;
     const { user_id } = request.user; // get user_id from auth
-
     const errors = validateUsername(username);
 
     // Check errors for username validation
@@ -25,8 +24,8 @@ router.post(
     try {
       await db.query(
         `UPDATE users SET full_name = $1,
-       username = $2 WHERE user_id = $3`,
-        [full_name, username, user_id]
+       username = $2, diet = $3 WHERE user_id = $4`,
+        [full_name, username, diet, user_id]
       );
 
       const payload = {

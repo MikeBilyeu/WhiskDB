@@ -104,7 +104,8 @@ class Edit extends React.Component {
 const mapStateToProps = state => ({
   initialValues: {
     ...state.auth.user,
-    currentUsername: state.auth.user.username //pass currentUsername to bypass if no change made to username
+    currentUsername: state.auth.user.username, //pass currentUsername to bypass if no change made to username
+    diet: state.auth.user.diet || "none"
   },
   dirty: isDirty("edit-profile"),
   openDelete: state.auth.openDelete
