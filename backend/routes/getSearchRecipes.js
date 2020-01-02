@@ -8,6 +8,9 @@ router.get("/", async (request, response) => {
   let { search } = JSON.parse(request.query.browseData.toLowerCase());
   const { user_id } = request.query;
   search = search.trim();
+  const LIMIT = 10;
+  const OFFSET = 0 * LIMIT;
+
   try {
     const { rows, rowCount } = await db.query(
       `SELECT r.recipe_id,
@@ -25,8 +28,9 @@ router.get("/", async (request, response) => {
       GROUP BY r.recipe_id,
                sr.recipe_saved
       ORDER BY rating DESC,
-               num_reviews DESC;`,
-      [search]
+               num_reviews DESC
+               LIMIT $2 OFFSET $3;`,
+      [search, LIMIT, OFFSET]
     );
     if (rowCount < 1) {
       response.status(204).send();

@@ -8,6 +8,8 @@ router.get("/", async (request, response) => {
   const { user_id } = request.query;
   diet = diet === "none" ? null : diet;
   const numOfCats = diet ? (meal == "all meals" ? 1 : 2) : 1;
+  const LIMIT = 10;
+  const OFFSET = 0 * LIMIT;
 
   try {
     const { rows, rowCount } = await db.query(
@@ -58,8 +60,9 @@ router.get("/", async (request, response) => {
                                WHEN $4 = 'newest' THEN r.created_at
                            END DESC, rating DESC,
                                      num_reviews DESC,
-                                     created_at DESC;`,
-      [meal, diet, numOfCats, sort]
+                                     created_at DESC
+                                     LIMIT $5 OFFSET $6;`,
+      [meal, diet, numOfCats, sort, LIMIT, OFFSET]
     );
     if (rowCount < 1) {
       response.status(204).send();

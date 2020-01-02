@@ -10,7 +10,6 @@ router.get(
   async (request, response) => {
     const { user_id } = request.user; // Get user_id from auth
     const { meal } = request.query;
-    console.log(meal);
 
     try {
       const { rows } = await db.query(
