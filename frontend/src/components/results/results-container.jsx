@@ -24,7 +24,9 @@ class Results extends React.PureComponent {
     return (
       <div className="recipe-results">
         <ul>{this.renderRecipeList()}</ul>
-        <Button className="btn load-more">Load More</Button>
+        <Button className="btn load-more" onClick={this.props.handleClick}>
+          Load More
+        </Button>
       </div>
     );
   }
@@ -32,7 +34,8 @@ class Results extends React.PureComponent {
 
 Results.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  recipes: PropTypes.array.isRequired
+  recipes: PropTypes.array.isRequired,
+  handleClick: PropTypes.func.isRequired
 };
 
 export default Results;

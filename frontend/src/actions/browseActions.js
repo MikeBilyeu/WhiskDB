@@ -5,7 +5,8 @@ import {
   GET_BROWSE_RECIPES,
   GET_BROWSE_REQUEST,
   SET_BROWSE_DATA,
-  TOGGLE_FILTER_BUTTON
+  TOGGLE_FILTER_BUTTON,
+  OFFSET_INCREMENT
 } from "./types";
 
 // dispatch an action with a type of get browse request
@@ -32,6 +33,10 @@ export const getBrowseRecipes = browseData => async (dispatch, getState) => {
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
   }
+};
+
+export const loadMoreResults = () => {
+  return { type: OFFSET_INCREMENT };
 };
 
 // dispatch an action with a type of get search request

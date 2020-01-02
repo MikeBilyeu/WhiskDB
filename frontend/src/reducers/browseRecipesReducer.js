@@ -3,7 +3,7 @@ import {
   GET_BROWSE_REQUEST,
   SET_BROWSE_DATA,
   TOGGLE_FILTER_BUTTON,
-  GET_BROWSE_IMAGES
+  OFFSET_INCREMENT
 } from "../actions/types";
 
 const initialState = {
@@ -13,7 +13,8 @@ const initialState = {
     search: "",
     meal: "All Meals",
     diet: "None",
-    sort: "Top Rated"
+    sort: "Top Rated",
+    offset: 0
   },
   toggleFilterButton: null
 };
@@ -28,6 +29,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         filterRecipes: action.payload
+      };
+    case OFFSET_INCREMENT:
+      return {
+        ...state,
+        filterRecipes: {
+          ...state.filterRecipes,
+          offset: state.filterRecipes.offset + 1
+        }
       };
     case TOGGLE_FILTER_BUTTON:
       if (action.payload === state.toggleFilterButton)

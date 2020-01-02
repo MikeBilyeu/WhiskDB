@@ -5,7 +5,8 @@ import FilterResults from "../filter-results";
 import Results from "../results";
 import {
   getBrowseRecipes,
-  getSearchRecipes
+  getSearchRecipes,
+  loadMoreResults
 } from "../../actions/browseActions";
 import "./home.scss";
 
@@ -28,6 +29,10 @@ class Home extends React.Component {
     });
   };
 
+  handleLoadMoreClick = () => {
+    this.props.loadMoreResults();
+  };
+
   render() {
     return (
       <div className="home">
@@ -46,6 +51,7 @@ class Home extends React.Component {
         <Results
           recipes={this.props.recipes.recipes}
           isFetching={this.props.recipes.isFetching}
+          handleClick={this.handleLoadMoreClick}
         />
       </div>
     );
@@ -61,5 +67,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getBrowseRecipes, getSearchRecipes }
+  { getBrowseRecipes, getSearchRecipes, loadMoreResults }
 )(Home);
