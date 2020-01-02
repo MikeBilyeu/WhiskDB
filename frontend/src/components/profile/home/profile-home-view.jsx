@@ -42,13 +42,13 @@ class Home extends React.PureComponent {
 
   render() {
     const { page } = this.state;
-    const { full_name, username } = this.props.auth.user;
+    const { full_name, username, diet } = this.props.auth.user;
     document.title = `WhiskDB | ${username}`;
     const { savedRecipes, myRecipes } = this.props;
 
     return (
       <div className="profile">
-        <Header fullName={full_name} />
+        <Header fullName={full_name} diet={diet === "none" ? null : diet} />
         <PageToggle
           page={this.state.page}
           onClick={this.handlePageClick}
