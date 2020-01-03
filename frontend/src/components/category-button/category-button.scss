@@ -14,7 +14,7 @@
   max-width: 12rem;
   place-self: center;
   color: darkColor(medium);
-  font-weight: medium;
+  font-weight: bold;
   position: relative;
   line-height: 1rem;
   &.filter-active {
@@ -29,6 +29,7 @@
     right: 0.35rem;
     transition: all 0.2s ease-out;
     fill: darkColor(light);
+
     &.filter-active {
       transform: rotate(90deg);
       fill: $primary-color;
@@ -37,7 +38,7 @@
 
   &.filter-select {
     color: $primary-color;
-    font-weight: bold;
+
     //border: solid $primary-color 0.07rem;
   }
 }

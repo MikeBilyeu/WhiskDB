@@ -6,21 +6,23 @@
   .user-info {
     @include grid-center;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 2fr 0.8rem 3fr;
+    grid-template-rows: 1fr 0.7rem 2.2rem;
+    grid-column-gap: 1rem;
     left: 0;
     width: 100%;
     top: 0;
     position: fixed;
     z-index: 2;
     background-color: #fff;
-    padding: 0.5rem;
+    padding: 0.5rem 2rem 0rem 0.5rem;
 
     h2 {
       align-self: end;
       grid-column: 2 / 4;
       grid-row: 1 / 2;
-      font-size: 1.3rem;
-      font-weight: 100;
+      font-size: 1.2rem;
+      font-weight: medium;
+      color: darkColor(dark);
       margin: 0;
     }
 
@@ -29,7 +31,7 @@
       grid-row: 2 / 3;
       font-size: 0.8rem;
       font-weight: 100;
-      color: lightColor(dark);
+      color: darkColor(light);
       margin: 0;
     }
 
@@ -41,11 +43,12 @@
         opacity: 0.9;
       }
       img {
+        float: left;
         width: 5.5rem;
         height: 5.5rem;
         border-radius: 100%;
-        border: solid $secondary-color 0.2rem;
-        padding: 0.01rem;
+        border: solid lightColor(medium) 0.1rem;
+        padding: 0.1rem;
       }
     }
 
@@ -56,17 +59,17 @@
       display: grid;
       place-items: center;
       padding: 0 0.5rem;
-      grid-template-columns: 1fr 1.5rem;
+      grid-template-columns: 1fr 1rem;
       .create-recipe-btn {
         outline: none;
         border: none;
         background: rgba(0, 0, 0, 0);
         cursor: pointer;
         color: $primary-color;
-        font-size: 1.1rem;
+        font-size: 1rem;
         width: 75%;
-        min-width: 8rem;
-        max-width: 20rem;
+        min-width: 7rem;
+        max-width: 8rem;
         margin: 0 auto;
         padding: 0.4rem 0;
         fontweight: bold;
