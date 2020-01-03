@@ -91,29 +91,43 @@ export const getRecipe = (recipe_id, user_id) => dispatch => {
     .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
 };
 
-export const getSavedRecipes = data => async dispatch => {
+export const getSavedRecipes = () => async (dispatch, getState) => {
+  const {
+    auth: { filterRecipes }
+  } = getState();
+
   dispatch({ type: GET_SAVED_RECIPES_REQUEST });
   dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
-  dispatch({ type: SET_PROFILE_FILTER_DATA, payload: data });
+  dispatch({ type: SET_PROFILE_FILTER_DATA, payload: filterRecipes });
 
   try {
-    const res = await axios.get("/save-recipe", { params: data });
+    const res = await axios.get("/save-recipe", { params: filterRecipes });
     dispatch({ type: GET_SAVED_RECIPES, payload: res.data });
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
   }
 };
 
-export const getMyRecipes = data => async dispatch => {
+export const getMyRecipes = () => async (dispatch, getState) => {
+  const {
+    auth: { filterRecipes }
+  } = getState();
+
   dispatch({ type: GET_MY_RECIPES_REQUEST });
   dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
-  dispatch({ type: SET_PROFILE_FILTER_DATA, payload: data });
+  dispatch({ type: SET_PROFILE_FILTER_DATA, payload: filterRecipes });
   try {
-    const res = await axios.get("/my-recipe", { params: data });
+    const res = await axios.get("/my-recipe", { params: filterRecipes });
     dispatch({ type: GET_MY_RECIPES, payload: res.data });
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
   }
+};
+
+export const updateFilterRecipe = option => (dispatch, getState) => {
+  dispatch({ type: SET_PROFILE_FILTER_DATA, payload: { meal: option } });
+  dispatch(getMyRecipes());
+  dispatch(getSavedRecipes());
 };
 
 export const sortSavedRecipes = sortBy => dispatch => {

@@ -1,7 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+import { getBrowseRecipes } from "../../actions/browseActions";
+import { getMyRecipes, getSavedRecipes } from "../../actions/recipeActions";
 import { ReactComponent as Home } from "../../assets/images/search.svg";
 import { ReactComponent as Profile } from "../../assets/images/profile.svg";
+
 import "./nav.scss";
 
 class Nav extends React.Component {
@@ -14,6 +18,7 @@ class Nav extends React.Component {
   componentDidMount() {
     this.setNavState();
   }
+
   // set state depending on url location
   componentWillReceiveProps(nextProps) {
     this.setNavState();
@@ -29,6 +34,15 @@ class Nav extends React.Component {
         return { nav: "home" };
       }
     });
+  };
+
+  handleProfileClick = () => {
+    // this.props.getMyRecipes();
+    // this.props.getSavedRecipes();
+  };
+
+  handleHomeClick = () => {
+    //this.props.getBrowseRecipes();
   };
 
   render() {
@@ -57,4 +71,9 @@ class Nav extends React.Component {
     );
   }
 }
-export default withRouter(Nav);
+export default withRouter(
+  connect(
+    null,
+    { getMyRecipes, getSavedRecipes, getBrowseRecipes }
+  )(Nav)
+);

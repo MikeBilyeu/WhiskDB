@@ -7,7 +7,6 @@ import "./home-header.scss";
 
 class Header extends React.PureComponent {
   render() {
-    console.log(this.props.diet);
     return (
       <div className="profile-header">
         <div className="user-info">

@@ -4,7 +4,8 @@ import { withRouter } from "react-router-dom";
 import {
   getMyRecipes,
   getSavedRecipes,
-  toggleSortButton
+  toggleSortButton,
+  updateFilterRecipe
 } from "../../../actions/recipeActions";
 import FilterResults from "../../filter-results";
 import Header from "./header";
@@ -23,8 +24,10 @@ class Home extends React.PureComponent {
 
   componentDidMount() {
     document.title = "WhiskDB | Profile";
-    this.props.getMyRecipes(this.props.filterRecipes);
-    this.props.getSavedRecipes(this.props.filterRecipes);
+    if (!this.props.myRecipes.length && !this.props.savedRecipes.length) {
+      this.props.getMyRecipes();
+      this.props.getSavedRecipes();
+    }
   }
 
   handlePageClick = page => {
@@ -35,9 +38,8 @@ class Home extends React.PureComponent {
     });
   };
 
-  handleFilterClick = (option, type) => {
-    this.props.getSavedRecipes({ [type]: option });
-    this.props.getMyRecipes({ [type]: option });
+  handleFilterClick = option => {
+    this.props.updateFilterRecipe(option);
   };
 
   render() {
@@ -86,6 +88,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getMyRecipes, getSavedRecipes, toggleSortButton }
+    { getMyRecipes, getSavedRecipes, toggleSortButton, updateFilterRecipe }
   )(Home)
 );

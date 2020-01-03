@@ -15,8 +15,7 @@ const PageToggle = ({
   numSaved,
   numPosted,
   isFetching,
-  savedRecipes,
-  isSavedRecipesFetching
+  savedRecipes
 }) => {
   const savedActive = page === "saved" ? "active" : "";
   const myRecipesActive = page === "myRecipes" ? "active" : "";
