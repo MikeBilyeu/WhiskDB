@@ -6,31 +6,27 @@ import Results from "../results";
 import {
   getBrowseRecipes,
   getSearchRecipes,
-  loadMoreResults
+  incrementOffset,
+  updateFilterRecipe
 } from "../../actions/browseActions";
 import "./home.scss";
 
 class Home extends React.Component {
   componentDidMount() {
     document.title = "WhiskDB | A Recipe Database";
-    if (this.props.filterRecipes.search === "") {
-      this.props.getBrowseRecipes(this.props.filterRecipes);
-    } else {
-      this.props.getSearchRecipes(this.props.filterRecipes);
+    if (!this.props.recipes.recipes.length) {
+      this.props.getBrowseRecipes();
     }
   }
 
   handleClick = (option, type) => {
     // set the filterRecipes to the option selected
-    this.props.getBrowseRecipes({
-      ...this.props.filterRecipes,
-      [type]: option,
-      search: ""
-    });
+    this.props.updateFilterRecipe(type, option);
+    window.scrollTo(0, 0);
   };
 
   handleLoadMoreClick = () => {
-    this.props.loadMoreResults();
+    this.props.incrementOffset();
   };
 
   render() {
@@ -67,5 +63,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getBrowseRecipes, getSearchRecipes, loadMoreResults }
+  { getBrowseRecipes, getSearchRecipes, incrementOffset, updateFilterRecipe }
 )(Home);

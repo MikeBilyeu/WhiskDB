@@ -3,7 +3,8 @@ import {
   GET_BROWSE_REQUEST,
   SET_BROWSE_DATA,
   TOGGLE_FILTER_BUTTON,
-  OFFSET_INCREMENT
+  OFFSET_INCREMENT,
+  REMOVE_RECIPES
 } from "../actions/types";
 
 const initialState = {
@@ -24,11 +25,20 @@ export default function(state = initialState, action) {
     case GET_BROWSE_REQUEST:
       return { ...state, isFetching: true };
     case GET_BROWSE_RECIPES:
-      return { ...state, recipes: action.payload, isFetching: false };
+      return {
+        ...state,
+        recipes: [...state.recipes, ...action.payload],
+        isFetching: false
+      };
     case SET_BROWSE_DATA:
       return {
         ...state,
-        filterRecipes: action.payload
+        filterRecipes: { ...state.filterRecipes, ...action.payload }
+      };
+    case REMOVE_RECIPES:
+      return {
+        ...state,
+        recipes: initialState.recipes
       };
     case OFFSET_INCREMENT:
       return {
@@ -38,13 +48,14 @@ export default function(state = initialState, action) {
           offset: state.filterRecipes.offset + 1
         }
       };
+
     case TOGGLE_FILTER_BUTTON:
-      if (action.payload === state.toggleFilterButton)
+      if (action.payload === state.toggleFilterButton) {
         return {
           ...state,
           toggleFilterButton: null
         };
-      else {
+      } else {
         return {
           ...state,
           toggleFilterButton: action.payload

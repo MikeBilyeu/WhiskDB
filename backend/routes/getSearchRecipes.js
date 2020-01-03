@@ -5,7 +5,7 @@ const passport = require("passport");
 module.exports = router;
 
 router.get("/", async (request, response) => {
-  let { search } = JSON.parse(request.query.browseData.toLowerCase());
+  let { search } = JSON.parse(request.query.filterRecipes.toLowerCase());
   const { user_id } = request.query;
   search = search.trim();
   const LIMIT = 10;
