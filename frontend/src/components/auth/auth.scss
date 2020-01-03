@@ -21,7 +21,8 @@
     // @include grid-center;
     display: grid;
     text-align: start;
-    input[type="text"] {
+    input[type="text"],
+    input[type="password"] {
       all: unset;
       box-sizing: border-box;
       width: 100%;
