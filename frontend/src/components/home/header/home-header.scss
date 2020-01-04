@@ -8,11 +8,12 @@
     display: grid;
     align-items: center;
     position: fixed;
-    top: 0;
+    top: 0rem;
     grid-template-areas: "sort meal search";
     grid-template-columns: 1fr 1fr 1fr;
-    border-bottom: solid lightColor(medium) 0.07rem;
-    padding: 0.3rem 0.1rem 0 0.1rem;
+    border: none;
+    //border-bottom: solid lightColor(medium) 0.07rem;
+    padding: 0.5rem 0.1rem 0.2rem 0.1rem;
     box-sizing: border-box;
 
     .sort-btn {
