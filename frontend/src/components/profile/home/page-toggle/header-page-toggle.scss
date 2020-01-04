@@ -20,6 +20,8 @@
   }
 
   .btn {
+    width: 9rem;
+    align-self: end;
     outline: none;
     background-color: #fff;
     background-color: rgba(256, 256, 256, 0);
@@ -28,7 +30,7 @@
     display: grid;
     grid-auto-flow: row;
     cursor: pointer;
-    padding: 0.5rem 2.5rem;
+    padding: 0.5rem 0;
     padding-bottom: 0.3rem;
     font-size: 0.8rem;
     font-weight: bold;
@@ -48,7 +50,7 @@
 
   .active {
     border-bottom: solid $primary-color 0.1rem;
-    bottom: -0.05rem;
+    bottom: -0.08rem;
     opacity: 1;
   }
 }

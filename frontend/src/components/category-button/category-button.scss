@@ -1,44 +1,37 @@
 @import "../../assets/styles/variables";
 
 .filter-btn {
-  border: solid lightColor(dark) 0.07rem;
+  border: none;
+  //border: solid lightColor(dark) 0.07rem;
   background-color: #fff;
-  border-radius: 0.3rem;
+  //border-radius: 0.3rem;
+
   outline: none;
   cursor: pointer;
-  font-size: 0.9rem;
-  margin: 0.4rem 0 1rem 0;
-  padding: 0.4rem;
-  width: 100%;
-  min-width: 12rem;
-  max-width: 12rem;
+  font-family: Gelion, Arial, sans-serif, times !important;
+  font-size: 1.3rem;
+  margin: 0.4rem 0 0.5rem 1.6rem !important;
   place-self: center;
   color: darkColor(medium);
   font-weight: bold;
-  position: relative;
-  line-height: 1rem;
+  line-height: 1.5rem;
   &.filter-active {
-    border: solid $primary-color 0.07rem;
+    //border: solid $primary-color 0.07rem;
     color: $primary-color;
   }
 
   .filter-arrow {
-    width: 0.8rem;
-    position: absolute;
-    top: 0.55rem;
-    right: 0.35rem;
+    width: 1.1rem;
+    margin-left: 0.4rem;
     transition: all 0.2s ease-out;
-    fill: darkColor(light);
 
     &.filter-active {
-      transform: rotate(90deg);
-      fill: $primary-color;
+      transform: rotate(-90deg);
     }
   }
 
   &.filter-select {
     color: $primary-color;
-
     //border: solid $primary-color 0.07rem;
   }
 }
