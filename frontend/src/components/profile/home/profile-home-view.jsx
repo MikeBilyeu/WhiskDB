@@ -67,9 +67,17 @@ class Home extends React.PureComponent {
           />
         ) : null}
         {page === "saved" ? (
-          <Results recipes={savedRecipes} isFetching={this.props.isFetching} />
+          <Results
+            filterOptionsOpened={this.props.buttonToggled}
+            recipes={savedRecipes}
+            isFetching={this.props.isFetching}
+          />
         ) : (
-          <Results recipes={myRecipes} isFetching={this.props.isFetching} />
+          <Results
+            filterOptionsOpened={this.props.buttonToggled}
+            recipes={myRecipes}
+            isFetching={this.props.isFetching}
+          />
         )}
       </div>
     );

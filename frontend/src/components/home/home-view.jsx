@@ -45,6 +45,7 @@ class Home extends React.Component {
         ) : null}
 
         <Results
+          filterOptionsOpened={this.props.buttonToggled}
           recipes={this.props.recipes.recipes}
           isFetching={this.props.recipes.isFetching}
           handleClick={this.handleLoadMoreClick}

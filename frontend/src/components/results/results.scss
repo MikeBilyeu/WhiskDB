@@ -1,6 +1,9 @@
 @import "../../assets/styles/variables";
 
 .recipe-results {
+  &.active {
+    @include dark-overlay;
+  }
   width: 100%;
   margin-top: -1rem;
   position: relative;

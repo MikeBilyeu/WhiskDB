@@ -37,3 +37,20 @@ $star-color: #ffa805;
   display: grid;
   place-items: center;
 }
+
+@mixin dark-overlay {
+  &:after {
+    -webkit-backdrop-filter: blur(0.05rem);
+    backdrop-filter: blur(0.05rem);
+    content: "";
+    width: 100%;
+    height: 105%;
+    background: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    z-index: 3; // Take note of this negative z-index and compare to each article's positive z-index. This helps your content to show up over the overlay.
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}

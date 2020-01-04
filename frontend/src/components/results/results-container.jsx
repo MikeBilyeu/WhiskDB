@@ -22,7 +22,10 @@ class Results extends React.PureComponent {
       return <NoResults />;
     }
     return (
-      <div className="recipe-results">
+      <div
+        className={`recipe-results ${this.props.filterOptionsOpened &&
+          "active"}`}
+      >
         <ul>{this.renderRecipeList()}</ul>
         <Button className="btn load-more" onClick={this.props.handleClick}>
           Load More
@@ -35,7 +38,8 @@ class Results extends React.PureComponent {
 Results.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   recipes: PropTypes.array.isRequired,
-  handleClick: PropTypes.func.isRequired
+  handleClick: PropTypes.func.isRequired,
+  filterOptionsOpened: PropTypes.bool.isRequired
 };
 
 export default Results;

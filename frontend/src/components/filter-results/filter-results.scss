@@ -6,7 +6,9 @@
   text-align: center;
   padding: 1rem;
   margin: 0 auto;
-  border-bottom: solid lightColor(light) 0.05rem;
+  //border-bottom: solid lightColor(light) 0.05rem;
+  box-shadow: 0 0.4rem 1rem 0 rgba(0, 0, 0, 0.08);
+  border-radius: 0 0 0.8rem 0.8rem;
   background-color: #fcfcfc;
   width: 100%;
   z-index: 3;
