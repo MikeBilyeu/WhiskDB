@@ -31,5 +31,8 @@
 
   &.filter-select {
     color: darkColor(dark);
+    &.filter-active {
+      color: $primary-color;
+    }
   }
 }
