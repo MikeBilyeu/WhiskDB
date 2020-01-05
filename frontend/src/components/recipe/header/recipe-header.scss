@@ -1,0 +1,48 @@
+@import "../../../assets/styles/variables";
+
+.recipe {
+  .recipe-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 3rem;
+    padding: 0;
+    background-color: #fff;
+    border-bottom: solid 0.01rem lightColor(light);
+    @include grid-center;
+    grid-template-columns: 1fr 1fr 1fr;
+    user-select: none;
+    z-index: 1;
+    .back-btn {
+      @include grid-center;
+      grid-auto-flow: column;
+      justify-self: start;
+      cursor: pointer;
+      padding: 1rem 2rem 1rem 1rem;
+      width: 4rem;
+    }
+
+    .whisk {
+      width: 5rem;
+    }
+
+    .saveIcon {
+      position: absolute;
+      margin-left: 9rem;
+      cursor: pointer;
+      padding: 1rem 2rem;
+      width: 5rem;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .more-btn {
+      transform: rotate(90deg);
+      cursor: pointer;
+      padding: 1rem 1rem 1rem 1rem;
+      width: 3.3rem;
+      justify-self: end;
+    }
+  }
+}
