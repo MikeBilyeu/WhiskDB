@@ -10,14 +10,14 @@ import "./home-header.scss";
 const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
   const mealBtnActive = buttonToggled === "Meal";
   const sortBtnActive = buttonToggled === "Sort";
-  const { meal, sortBy } = filterRecipes;
+  const { meal, sort } = filterRecipes;
 
   return (
     <div className="header">
       <SortButton
         onClick={() => toggleFilterButton("Sort")}
         sortActive={sortBtnActive}
-        sortBy={sortBy}
+        sortBy={sort}
         className="sort-btn"
       />
       <SearchBar />

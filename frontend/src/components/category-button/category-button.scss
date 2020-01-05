@@ -16,7 +16,6 @@
   font-weight: bold;
   line-height: 1.5rem;
   &.filter-active {
-    //border: solid $primary-color 0.07rem;
     color: $primary-color;
   }
 
@@ -31,7 +30,6 @@
   }
 
   &.filter-select {
-    color: $primary-color;
-    //border: solid $primary-color 0.07rem;
+    color: darkColor(dark);
   }
 }
