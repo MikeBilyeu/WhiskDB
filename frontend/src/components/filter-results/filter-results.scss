@@ -24,25 +24,24 @@
   ul {
     padding: 0;
     margin: 0 0 1rem 0;
-  }
-}
 
-.filter-option {
-  padding: 0.4rem 0;
-  border-radius: 0.5rem;
-  background-color: rgba(0, 0, 0, 0);
-  width: 6rem;
-  cursor: pointer;
-  color: darkColor(dark);
-  border: none;
-  outline: none;
-  font-size: 0.9rem;
-  &:hover {
-    color: $primary-color;
+    .filter-option {
+      padding: 0.4rem 0;
+      border-radius: 0.5rem;
+      background-color: rgba(0, 0, 0, 0);
+      width: 6rem;
+      cursor: pointer;
+      color: darkColor(dark);
+      border: none;
+      outline: none;
+      font-size: 0.9rem;
+      &:hover {
+        color: $primary-color;
+      }
+      &.option-active {
+        color: $primary-color;
+        font-weight: bold;
+      }
+    }
   }
-}
-
-.filter-option.option-active {
-  color: $primary-color;
-  font-weight: bold;
 }
