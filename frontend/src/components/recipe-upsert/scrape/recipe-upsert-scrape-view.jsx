@@ -21,12 +21,10 @@ class ScrapeUrl extends React.Component {
   };
   render() {
     return (
-      <div className={styles.scrapeContainer}>
-        <Button onClick={this.handleClick} className={styles.scrapebtn}>
-          Clone Recipe
-          <div className={styles.URL}>{this.state.URL}</div>
-        </Button>
-      </div>
+      <Button onClick={this.handleClick} className={styles.scrapebtn}>
+        Clone Recipe
+        <div className={styles.URL}>{this.state.URL}</div>
+      </Button>
     );
   }
 }

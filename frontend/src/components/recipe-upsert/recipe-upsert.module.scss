@@ -2,6 +2,8 @@
 
 .form {
   padding: 2rem 0.6rem;
+  position: relative;
+  top: 3rem;
   @include grid-center;
   grid-gap: 5rem;
 
@@ -230,29 +232,31 @@
   place-self: center;
 }
 
-.scrapeContainer {
-  @include grid-center;
-  border-bottom: solid lightColor(light) 0.01rem;
-  width: calc(100% + 1.2rem);
-  height: 10rem;
-  background-color: lighten(lightColor(light), 3%);
-}
 .scrapebtn {
+  @include grid-center;
+  width: 100%;
+  height: 10rem;
+  background-color: lightColor(light);
+  border-radius: 0.2rem;
+
   outline: none;
   border: none;
-  background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
   color: $primary-color;
-  margin: 3rem auto;
   font-size: 1rem;
-}
-.URL {
-  color: lightColor(dark);
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  width: 90vw;
-  overflow-x: hidden;
-  white-space: wrap;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  .URL {
+    color: lightColor(dark);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    width: 90vw;
+    overflow-x: hidden;
+    white-space: wrap;
+  }
 }
 
 .imageInputBtn {
