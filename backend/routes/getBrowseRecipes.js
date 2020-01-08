@@ -32,22 +32,13 @@ router.get("/", async (request, response) => {
       WHERE CASE
                WHEN $2 != ''
                     AND $1 != 'all meals' THEN category IN
-                      (SELECT category_id
-                       FROM categories
-                       WHERE category_name IN ($2,
-                                               $1) )
+                      ($1, $2)
                WHEN $2 != ''
                     AND $1 = 'all meals' THEN category IN
-                      (SELECT category_id
-                       FROM categories
-                       WHERE category_name IN ($2))
+                      ($2)
                WHEN $1 != 'all meals' THEN category IN
-                      (SELECT category_id
-                       FROM categories
-                       WHERE category_name IN ($1))
-               ELSE category IN
-                      (SELECT category_id
-                       FROM categories)
+                      ($1)
+               ELSE TRUE
            END
       GROUP BY recipe
       HAVING COUNT(*) >= $3)

@@ -27,10 +27,7 @@ router.get(
         WHERE CASE
                   WHEN $2 = 'All Meals' THEN sr.saved_by = $1
                   ELSE sr.saved_by = $1
-                       AND rjc.category =
-                         (SELECT category_id
-                          FROM categories
-                          WHERE category_name = LOWER($2))
+                       AND rjc.category = LOWER($2)
               END
         GROUP BY sr.saved_at, r.recipe_id
         ORDER BY sr.saved_at DESC;`,

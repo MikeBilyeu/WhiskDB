@@ -28,10 +28,7 @@ router.get(
         WHERE CASE
                   WHEN $2 = 'All Meals' THEN created_by = $1
                   ELSE created_by = $1
-                       AND rjc.category =
-                         (SELECT category_id
-                          FROM categories
-                          WHERE category_name = LOWER($2))
+                       AND rjc.category = LOWER($2)
               END
         GROUP BY r.recipe_id,
                  sr.recipe_saved

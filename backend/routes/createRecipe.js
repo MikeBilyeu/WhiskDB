@@ -44,8 +44,7 @@ router.post(
         recipe.categories.map(async category => {
           await db.query(
             `INSERT INTO recipes_join_categories (recipe, category)
-           VALUES ($1, (SELECT category_id FROM categories
-           WHERE category_name = $2))`,
+           VALUES ($1, $2)`,
             [recipe_id, category]
           );
         })
@@ -53,6 +52,7 @@ router.post(
 
       response.status(200).send({ recipe_id: recipe_id });
     } catch (err) {
+      console.error(err);
       response.status(400).json(err);
     }
   }

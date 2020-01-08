@@ -13,7 +13,6 @@ router.put(
       response.status(401).send("You can't edit this recipe");
     }
     const ingredientsArr = recipe.ingredients.split(/\n/);
-    console.log(recipe.categories);
     try {
       await db.query(
         `UPDATE recipes
@@ -45,8 +44,7 @@ router.put(
         recipe.categories.map(async category => {
           await db.query(
             `INSERT INTO recipes_join_categories (recipe, category)
-           VALUES ($1, (SELECT category_id FROM categories
-           WHERE category_name = $2))`,
+           VALUES ($1, $2)`,
             [recipe.recipe_id, category]
           );
         })
