@@ -260,6 +260,6 @@
 }
 
 .imageInputBtn {
-  @extend .submitBtn;
   @extend .scrapebtn;
+  padding: 0;
 }

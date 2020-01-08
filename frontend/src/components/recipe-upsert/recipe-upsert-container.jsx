@@ -9,8 +9,8 @@ import {
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import Button from "../button";
 import ScrapeUrl from "./scrape";
+import ImageUpload from "./image";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Categories from "./categories";
@@ -109,7 +109,7 @@ navigator.clipboard.readText().then(clipText =>
           type="file"
           accept="image/.jpg, image/.png, image/.jpeg"
         />*/}
-        <Button className={styles.imageInputBtn}>Add Photo/Video</Button>
+        <ImageUpload />
         <Ingredients />
         <Directions />
         <Categories categories={props.categories} change={props.change} />
