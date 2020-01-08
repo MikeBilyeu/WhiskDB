@@ -29,7 +29,7 @@ class Ingredients extends React.Component {
 
   render() {
     const placeholder = {
-      ingredients: `1-1/2 cup milk\n1 tablespoon olive oil`
+      ingredients: "1-1/2 cup milk\n1 tablespoon olive oil"
     };
     return (
       <div className={styles.ingredientsContainer}>

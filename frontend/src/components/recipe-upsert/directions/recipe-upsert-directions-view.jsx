@@ -13,27 +13,30 @@ const Directions = () => {
   };
   return (
     <div className={styles.directionsContainer}>
-      <div className={styles.time}>
-        <Field
-          name="time.hours"
-          component={Input}
-          label="Hr"
-          placeholder="1"
-          normalize={numberParse}
-          pattern="[0-9]*"
-          className={styles.hours}
-        />
-        <Field
-          name="time.minutes"
-          component={Input}
-          label="Min"
-          placeholder="15"
-          normalize={minuteParse}
-          pattern="[0-9]*"
-          className={styles.minutes}
-        />
-      </div>
-      <label className={styles.timeLabel}>Time</label>
+      <label className={styles.time}>
+        Time
+        <div className={styles.border}>
+          <Field
+            name="time.hours"
+            component={Input}
+            label="Hr"
+            placeholder="1"
+            normalize={numberParse}
+            pattern="[0-9]*"
+            className={styles.hours}
+          />
+          <Field
+            name="time.minutes"
+            component={Input}
+            label="Min"
+            placeholder="15"
+            normalize={minuteParse}
+            pattern="[0-9]*"
+            className={styles.minutes}
+          />
+        </div>
+      </label>
+
       <Field
         name="directions"
         className={styles.directions}

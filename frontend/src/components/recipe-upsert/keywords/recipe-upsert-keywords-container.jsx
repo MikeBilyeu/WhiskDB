@@ -48,15 +48,14 @@ class Keywords extends Component {
   render() {
     return (
       <div className={styles.keywordsContainer}>
-        <h2>Keywords</h2>
         <Input
-          label="Click enter to add Keyword"
+          label="Tags"
           input={{
             value: this.state.keyword,
             onChange: this.handleChange,
             onKeyDown: this.handleKeyDown
           }}
-          placeholder="Simple"
+          placeholder="Tags (e.g., baked, crunchy, healthy)"
           meta={{ error: this.state.error, touched: true }}
         />
 

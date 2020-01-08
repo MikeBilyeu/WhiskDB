@@ -10,7 +10,7 @@
   label {
     color: darkColor(medium);
     font-size: 0.9rem;
-    @include grid-center width: 100%;
+    width: 100%;
   }
 
   textarea {
@@ -28,7 +28,7 @@
     &::placeholder {
       color: lightColor(medium);
     }
-    border: solid lightColor(light) 0.08rem;
+    border: solid lightColor(dark) 0.1rem;
     border-radius: 0.2rem;
     resize: none;
   }
@@ -37,7 +37,7 @@
     background: none;
     border: 0;
     outline: 0;
-    padding: 0.1rem 0;
+    padding: 0.6rem 0;
     width: 100%;
     appearance: none;
 
@@ -45,8 +45,8 @@
     border-radius: 0;
     color: darkColor(medium);
     text-align: center;
-    border-bottom: solid darkColor(dark) 0.1rem;
-    grid-row: 1;
+    border: solid lightColor(dark) 0.1rem;
+    border-radius: 0.2rem;
     &::placeholder {
       color: lightColor(medium);
     }
@@ -71,7 +71,6 @@
 }
 
 .title {
-  margin-top: 3rem;
   font-weight: fontWeight(normal);
 }
 
@@ -88,9 +87,6 @@
   @include grid-center;
   grid-gap: 2rem;
 
-  .yield {
-    width: 7rem;
-  }
   .ingredients {
     height: 10rem;
     white-space: nowrap;
@@ -100,26 +96,44 @@
 
 .directionsContainer {
   .time {
-    @include grid-center;
     grid-template-columns: 1fr 1fr;
-    border-bottom: solid darkColor(medium) 0.1rem;
     grid-gap: 1rem;
-    label {
+
+    .border {
       @include grid-center;
-      cursor: text;
-      align-items: baseline;
-      grid-template-columns: 2rem 2rem;
+      grid-template-columns: 1fr 1fr;
+      border: solid lightColor(dark) 0.1rem;
+      border-radius: 0.2rem;
+      label {
+        text-align: center;
+        position: relative;
+        height: 2.75rem;
+        line-height: 3rem;
+        &:first-child {
+          text-indent: 3rem;
+        }
+      }
+
       .hours,
       .minutes {
-        text-align: right;
-        grid-column: 1;
+        left: 0;
+        position: absolute;
+        text-align: center;
+        width: 100%;
         border: none;
         font-weight: fontWeight(normal);
         &::placeholder {
           color: lightColor(medium);
         }
       }
+      .minutes {
+        text-indent: -3.5rem;
+      }
     }
+
+    cursor: text;
+    align-items: baseline;
+    grid-template-columns: 2rem 2rem;
   }
 
   .timeLabel {
@@ -186,6 +200,7 @@
 
 .keywordsContainer {
   @extend .categoriesContainer;
+  font-size: 1rem;
   .list {
     display: flex;
     flex-wrap: wrap;

@@ -112,8 +112,8 @@ navigator.clipboard.readText().then(clipText =>
         <ImageUpload />
         <Ingredients />
         <Directions />
-        <Categories categories={props.categories} change={props.change} />
         <Keywords keywords={props.keywords} change={props.change} />
+        <Categories categories={props.categories} change={props.change} />
         <button className={styles.submitBtn} type="submit">
           {props.submitText}
         </button>
