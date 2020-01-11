@@ -27,9 +27,11 @@ class Results extends React.PureComponent {
           "active"}`}
       >
         <ul>{this.renderRecipeList()}</ul>
-        <Button className="btn load-more" onClick={this.props.handleClick}>
-          Load More
-        </Button>
+        {this.props.recipes.length < this.props.recipes[0].full_count ? (
+          <Button className="btn load-more" onClick={this.props.handleClick}>
+            Load More
+          </Button>
+        ) : null}
       </div>
     );
   }
