@@ -24,7 +24,6 @@ const RecipeUpsert = props => {
       e.preventDefault();
     }
   };
-
   return (
     <div>
       {props.header}
@@ -44,7 +43,7 @@ const RecipeUpsert = props => {
           parse={titleParse}
         />
 
-        <Field name="image" component={ImageUpload} />
+        <Field name="image" component={ImageUpload} imageURL={props.image} />
 
         <Ingredients />
         <Directions />
@@ -71,7 +70,8 @@ const mapSateToProps = state => {
   return {
     recipeData: state.recipe,
     keywords: selector(state, "keywords"),
-    categories: selector(state, "categories")
+    categories: selector(state, "categories"),
+    image: selector(state, "image")
   };
 };
 
