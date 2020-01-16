@@ -274,6 +274,19 @@
   }
 }
 
+.imageInput {
+  @extend .scrapebtn;
+  background-color: lightColor(light) !important;
+  border-radius: 0.2rem;
+
+  outline: none;
+  border: none !important;
+  padding: 160px 0 0 0 !important;
+  cursor: pointer;
+  color: $primary-color;
+  font-size: 1rem;
+}
+
 .imageInputBtn {
   @extend .scrapebtn;
   padding: 0;
