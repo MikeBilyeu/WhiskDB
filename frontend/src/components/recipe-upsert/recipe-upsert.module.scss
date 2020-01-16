@@ -275,16 +275,29 @@
 }
 
 .imageInput {
+  text-align: center;
   @extend .scrapebtn;
-  background-color: lightColor(light) !important;
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 0.2rem;
-
   outline: none;
   border: none !important;
-  padding: 160px 0 0 0 !important;
   cursor: pointer;
-  color: $primary-color;
-  font-size: 1rem;
+
+  label {
+    color: $primary-color;
+    font-size: 1rem;
+    height: 10rem;
+    line-height: 10rem;
+    cursor: pointer;
+    span {
+      padding: 0.7rem 2rem;
+      opacity: 0.8;
+      background-color: lightColor(light);
+      border-radius: 2rem;
+    }
+  }
 }
 
 .imageInputBtn {
