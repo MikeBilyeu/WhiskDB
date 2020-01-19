@@ -28,7 +28,7 @@
     &::placeholder {
       color: lightColor(medium);
     }
-    border: solid lightColor(dark) 0.1rem;
+    border: solid lightColor(dark) 0.08rem;
     border-radius: 0.2rem;
     resize: none;
   }
@@ -45,7 +45,7 @@
     border-radius: 0;
     color: darkColor(medium);
     text-align: center;
-    border: solid lightColor(dark) 0.1rem;
+    border: solid lightColor(dark) 0.08rem;
     border-radius: 0.2rem;
     &::placeholder {
       color: lightColor(medium);
@@ -102,7 +102,7 @@
     .border {
       @include grid-center;
       grid-template-columns: 1fr 1fr;
-      border: solid lightColor(dark) 0.1rem;
+      border: solid lightColor(dark) 0.08rem;
       border-radius: 0.2rem;
       label {
         text-align: center;
