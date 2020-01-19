@@ -17,7 +17,7 @@ class Header extends React.PureComponent {
           <h3>{this.props.diet || null}</h3>
           <Link className="create-recipe-link" to="/profile/create-recipe">
             <div className="create-recipe-btn">Create Recipe</div>
-            <AddIcon style={{ width: "1.2rem" }} />
+            <AddIcon style={{ width: "1.3rem" }} />
           </Link>
         </div>
       </div>
