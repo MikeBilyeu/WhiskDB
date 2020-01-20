@@ -1,5 +1,6 @@
 const Router = require("express-promise-router");
 const db = require("../db");
+const keys = require("../config/keys");
 const router = new Router();
 const passport = require("passport");
 const { convertTimeToMin } = require("../utils");
@@ -34,7 +35,7 @@ router.post(
           ingredientsArr,
           recipe.keywords,
           recipe.categories,
-          recipe.image_url
+          recipe.image
         ]
       );
 

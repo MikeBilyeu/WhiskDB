@@ -1,17 +1,22 @@
 import React from "react";
+import { connect } from "react-redux";
+import { imageUpload } from "../../../actions/recipeActions";
 import styles from "../recipe-upsert.module.scss";
 
 const ImageUpload = ({ input: { onChange }, ...props }) => {
   const onImgChange = e => {
-    onChange(URL.createObjectURL(e.target.files[0]));
+    const file = e.target.files[0];
+    // Upload image to cloudinary from client side get the url and store it in form
+    props.imageUpload(file);
   };
+
   return (
     <div
       className={styles.imageInput}
-      style={{ backgroundImage: `url(${props.imageURL})` }}
+      style={{ backgroundImage: `url(${props.imageFile})` }}
     >
       <label htmlFor="ImageUpload">
-        <span>{props.imageURL ? "Change Image" : "Upload Image"}</span>
+        <span>{props.imageFile ? "Change Image" : "Upload Image"}</span>
       </label>
       <input
         type="file"
@@ -24,4 +29,7 @@ const ImageUpload = ({ input: { onChange }, ...props }) => {
   );
 };
 
-export default ImageUpload;
+export default connect(
+  null,
+  { imageUpload }
+)(ImageUpload);

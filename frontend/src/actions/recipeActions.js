@@ -41,6 +41,27 @@ export const scrapeSite = URL => async dispatch => {
   }
 };
 
+//cloudinary image Upload
+export const imageUpload = file => async dispatch => {
+  const CLOUDINARY_URL =
+    "https://api.cloudinary.com/v1_1/mikebilyeuimg/image/upload";
+  let data = new FormData();
+  data.append("file", file);
+  data.append("upload_preset", "recipes");
+
+  try {
+    let res = await fetch(
+      "https://api.cloudinary.com/v1_1/mikebilyeuimg/image/upload",
+      { method: "POST", body: data }
+    );
+    res = await res.json();
+
+    dispatch(change("newRecipe", "image", res.secure_url));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // Create Recipe
 export const createRecipe = (recipeData, history) => dispatch => {
   axios
