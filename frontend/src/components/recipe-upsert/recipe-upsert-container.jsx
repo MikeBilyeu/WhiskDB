@@ -44,7 +44,7 @@ const RecipeUpsert = props => {
         />
 
         <Field
-          name="image"
+          name="image_url"
           component={ImageUpload}
           imageFile={props.imageFile}
         />

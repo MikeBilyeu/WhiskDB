@@ -1,35 +1,48 @@
 import React from "react";
-import { connect } from "react-redux";
-import { imageUpload } from "../../../actions/recipeActions";
 import styles from "../recipe-upsert.module.scss";
 
-const ImageUpload = ({ input: { onChange }, ...props }) => {
-  const onImgChange = e => {
+class ImageUpload extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      imgBlob: ""
+    };
+  }
+
+  onImgChange = e => {
     const file = e.target.files[0];
-    // Upload image to cloudinary from client side get the url and store it in form
-    props.imageUpload(file);
+
+    if (file) {
+      // prevent memory issues
+      URL.revokeObjectURL(this.state.imgBlob);
+
+      const imgBlob = URL.createObjectURL(file);
+      this.setState({ imgBlob });
+
+      let data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "recipes");
+      this.props.input.onChange(data);
+    }
   };
-
-  return (
-    <div
-      className={styles.imageInput}
-      style={{ backgroundImage: `url(${props.imageFile})` }}
-    >
-      <label htmlFor="ImageUpload">
-        <span>{props.imageFile ? "Change Image" : "Upload Image"}</span>
+  render() {
+    return (
+      <label className={styles.imageInput}>
+        <span>
+          {this.state.imgBlob || this.props.input.value
+            ? "Change Image"
+            : "Upload Image"}
+        </span>
+        <img src={this.state.imgBlob || this.props.input.value} alt="" />
+        <input
+          type="file"
+          accept="image/.jpg;.png;.jpeg;capture=camera"
+          onChange={this.onImgChange}
+          style={{ display: "none" }}
+        />
       </label>
-      <input
-        type="file"
-        accept="image/.jpg;.png;.jpeg;capture=camera"
-        onChange={onImgChange}
-        id="ImageUpload"
-        style={{ display: "none" }}
-      />
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default connect(
-  null,
-  { imageUpload }
-)(ImageUpload);
+export default ImageUpload;

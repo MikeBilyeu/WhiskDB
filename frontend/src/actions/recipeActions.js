@@ -41,47 +41,6 @@ export const scrapeSite = URL => async dispatch => {
   }
 };
 
-//cloudinary image Upload
-export const imageUpload = file => async dispatch => {
-  const CLOUDINARY_URL =
-    "https://api.cloudinary.com/v1_1/mikebilyeuimg/image/upload";
-  let data = new FormData();
-  data.append("file", file);
-  data.append("upload_preset", "recipes");
-
-  try {
-    let res = await fetch(
-      "https://api.cloudinary.com/v1_1/mikebilyeuimg/image/upload",
-      { method: "POST", body: data }
-    );
-    res = await res.json();
-
-    dispatch(change("newRecipe", "image", res.secure_url));
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-// Create Recipe
-export const createRecipe = (recipeData, history) => dispatch => {
-  axios
-    .post("/profile/create-recipe", recipeData)
-    .then(res => {
-      //clear the recipe form after successful submit
-      dispatch(reset("newRecipe"));
-      let recipe_id = res.data.recipe_id;
-      // redirect to home after successful submit
-      return history.push(`/recipe/${recipe_id}`);
-    })
-    .catch(
-      err => console.log(err)
-      // dispatch({
-      //   type: GET_ERRORS,
-      //   payload: err.response.data
-      // })
-    );
-};
-
 export const toggleEditRecipe = () => {
   return { type: TOGGLE_EDIT_RECIPE };
 };

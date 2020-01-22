@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Header from "./header";
 import RecipeUpsert from "../../recipe-upsert";
-import { createRecipe } from "../../../actions/recipeActions";
+import { createRecipe } from "../../../actions/recipe";
 
 class CreateRecipe extends React.Component {
   componentDidMount() {
