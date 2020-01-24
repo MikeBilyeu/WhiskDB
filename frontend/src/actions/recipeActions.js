@@ -41,36 +41,6 @@ export const scrapeSite = URL => async dispatch => {
   }
 };
 
-export const toggleEditRecipe = () => {
-  return { type: TOGGLE_EDIT_RECIPE };
-};
-
-// Edit Recipe
-export const submitEditRecipe = recipeData => dispatch => {
-  axios
-    .put("/profile/edit-recipe", recipeData)
-    .then(res => {
-      dispatch(toggleEditRecipe());
-      dispatch(getRecipe(recipeData.recipe_id, recipeData.created_by));
-    })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
-
-export const getRecipe = (recipe_id, user_id) => dispatch => {
-  dispatch({ type: GET_RECIPE_REQUEST });
-  axios
-    .get("/recipe", { params: { recipe_id, user_id } })
-    .then(res => {
-      dispatch({ type: GET_RECIPE, payload: res.data });
-    })
-    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
-};
-
 export const getSavedRecipes = () => async (dispatch, getState) => {
   const {
     auth: { filterRecipes }
@@ -119,23 +89,10 @@ export const toggleSortButton = () => {
   return { type: TOGGLE_SORT_BUTTON };
 };
 
-export const saveRecipe = recipe_id => async dispatch => {
-  try {
-    dispatch({ type: SAVE_RECIPE });
-    await axios.post("/save-recipe", { recipe_id });
-  } catch (err) {
-    dispatch({ type: GET_ERRORS, payload: err });
-  }
-};
-
 export const toggleUnit = unit => {
   return { type: TOGGLE_UNIT };
 };
 
 export const convertServings = number => {
   return { type: CONVERT_SERVINGS, payload: number };
-};
-
-export const toggleShare = () => {
-  return { type: TOGGLE_SHARE };
 };

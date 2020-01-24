@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { toggleShare, toggleEditRecipe } from "../../../actions/recipeActions";
+import { toggleShare, toggleEditRecipe } from "../../../actions/recipe";
 import { ReactComponent as Close } from "../../../assets/images/removeDark.svg";
 import "./share.scss";
 

@@ -8,7 +8,7 @@ import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Review from "./review";
 import Share from "./share";
-import { getRecipe, submitEditRecipe } from "../../actions/recipeActions";
+import { getRecipe, submitEditRecipe } from "../../actions/recipe";
 import convertTime from "../../selectors/time-selector";
 import Loading from "../loading";
 import Edit from "./edit";

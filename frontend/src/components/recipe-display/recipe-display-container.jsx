@@ -6,7 +6,7 @@ import { ReactComponent as SaveIcon } from "../../assets/images/saveIcon.svg";
 import clock from "../../assets/images/time.png";
 import Rating from "../recipe/rating";
 import "./recipe-display.scss";
-import { saveRecipe } from "../../actions/recipeActions";
+import { saveRecipe } from "../../actions/recipe";
 
 class RecipeDisplay extends React.Component {
   constructor(props) {

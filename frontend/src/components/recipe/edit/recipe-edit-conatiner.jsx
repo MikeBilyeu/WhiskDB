@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { reduxForm, isDirty } from "redux-form";
-import { getRecipe, submitEditRecipe } from "../../../actions/recipeActions";
+import { getRecipe, submitEditRecipe } from "../../../actions/recipe";
 import convertTime from "../../../selectors/time-selector";
 import Header from "./header";
 import RecipeUpsert from "../../recipe-upsert";

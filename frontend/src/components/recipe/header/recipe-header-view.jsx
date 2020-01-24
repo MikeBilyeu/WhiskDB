@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { toggleShare, saveRecipe } from "../../../actions/recipeActions";
+import { toggleShare, saveRecipe } from "../../../actions/recipe";
 import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
 import { ReactComponent as SaveIcon } from "../../../assets/images/saveIcon.svg";
 import { ReactComponent as More } from "../../../assets/images/more.svg";

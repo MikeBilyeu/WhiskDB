@@ -1,6 +1,6 @@
 import axios from "axios";
 import { reset } from "redux-form";
-import { imageUpload } from "../../recipe";
+import { imageUpload } from "../actions-recipe";
 
 import {} from "../../types";
 
