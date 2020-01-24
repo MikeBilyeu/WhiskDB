@@ -28,6 +28,9 @@
     &::placeholder {
       color: lightColor(medium);
     }
+    &:focus {
+      border: solid darkColor(dark) 0.08rem;
+    }
     border: solid lightColor(dark) 0.08rem;
     border-radius: 0.2rem;
     resize: none;
@@ -50,6 +53,9 @@
     &::placeholder {
       color: lightColor(medium);
     }
+    &:focus {
+      border: solid darkColor(dark) 0.08rem;
+    }
   }
 
   ul {
@@ -68,10 +74,6 @@
     margin: auto;
     font-size: 1.3rem;
   }
-}
-
-.title {
-  font-weight: fontWeight(normal);
 }
 
 .ingredientsContainer,
@@ -100,11 +102,18 @@
     grid-gap: 1rem;
 
     .border {
+      &:focus-within {
+        border: solid darkColor(dark) 0.08rem;
+      }
+
       @include grid-center;
       grid-template-columns: 1fr 1fr;
       border: solid lightColor(dark) 0.08rem;
       border-radius: 0.2rem;
       label {
+        &:focus-within {
+          color: $primary-color;
+        }
         text-align: center;
         position: relative;
         height: 2.75rem;
@@ -120,8 +129,7 @@
         position: absolute;
         text-align: center;
         width: 100%;
-        border: none;
-        font-weight: fontWeight(normal);
+        border: none !important;
         &::placeholder {
           color: lightColor(medium);
         }
