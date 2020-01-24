@@ -1,39 +1,32 @@
 import React from "react";
+import { connect } from "react-redux";
+import { change } from "redux-form";
+
 import styles from "../recipe-upsert.module.scss";
 
 class ImageUpload extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      imgBlob: ""
-    };
-  }
-
   onImgChange = e => {
     const file = e.target.files[0];
 
     if (file) {
       // prevent memory issues
-      URL.revokeObjectURL(this.state.imgBlob);
+      URL.revokeObjectURL(this.props.input.value);
 
-      const imgBlob = URL.createObjectURL(file);
-      this.setState({ imgBlob });
+      const imageURL = URL.createObjectURL(file);
 
       let data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "recipes");
-      this.props.input.onChange(data);
+      this.props.change("newRecipe", "imageFile", data);
+
+      this.props.input.onChange(imageURL);
     }
   };
   render() {
     return (
       <label className={styles.imageInput}>
-        <span>
-          {this.state.imgBlob || this.props.input.value
-            ? "Change Image"
-            : "Upload Image"}
-        </span>
-        <img src={this.state.imgBlob || this.props.input.value} alt="" />
+        <span>{this.props.input.value ? "Change Image" : "Upload Image"}</span>
+        <img src={this.props.input.value} alt="" />
         <input
           type="file"
           accept="image/.jpg;.png;.jpeg;capture=camera"
@@ -45,4 +38,7 @@ class ImageUpload extends React.Component {
   }
 }
 
-export default ImageUpload;
+export default connect(
+  null,
+  { change }
+)(ImageUpload);

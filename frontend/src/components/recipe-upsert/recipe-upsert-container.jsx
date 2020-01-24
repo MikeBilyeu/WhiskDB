@@ -43,11 +43,7 @@ const RecipeUpsert = props => {
           parse={titleParse}
         />
 
-        <Field
-          name="image_url"
-          component={ImageUpload}
-          imageFile={props.imageFile}
-        />
+        <Field name="image_url" component={ImageUpload} />
 
         <Ingredients />
         <Directions />
@@ -74,8 +70,7 @@ const mapSateToProps = state => {
   return {
     recipeData: state.recipe,
     keywords: selector(state, "keywords"),
-    categories: selector(state, "categories"),
-    imageFile: selector(state, "image")
+    categories: selector(state, "categories")
   };
 };
 

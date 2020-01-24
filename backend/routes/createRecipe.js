@@ -35,7 +35,7 @@ router.post(
           ingredientsArr,
           recipe.keywords,
           recipe.categories,
-          recipe.image
+          recipe.image_url
         ]
       );
 

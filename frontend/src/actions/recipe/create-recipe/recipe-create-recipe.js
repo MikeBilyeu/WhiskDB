@@ -9,11 +9,11 @@ export const createRecipe = (recipeData, history) => async dispatch => {
   // CREATE_RECIPE_REQUEST
 
   try {
-    let imageURL = await dispatch(imageUpload(recipeData.image));
+    let imageURL = await dispatch(imageUpload(recipeData.imageFile));
 
     let res = await axios.post("/profile/create-recipe", {
       ...recipeData,
-      image: imageURL
+      image_url: imageURL
     });
     // CREATE_RECIPE_SUCCESS
 
