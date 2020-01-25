@@ -12,10 +12,10 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
-    const { full_name, username, diet } = request.body;
+    const { full_name, username, diet, image_url } = request.body;
     const { user_id } = request.user; // get user_id from auth
     const errors = validateUsername(username);
-
+    console.log(image_url);
     // Check errors for username validation
     if (Object.keys(errors).length !== 0) {
       response.status(400).json(errors);
@@ -24,14 +24,15 @@ router.post(
     try {
       await db.query(
         `UPDATE users SET full_name = $1,
-       username = $2, diet = $3 WHERE user_id = $4`,
-        [full_name, username, diet, user_id]
+       username = $2, diet = $3, image_url = $4 WHERE user_id = $5`,
+        [full_name, username, diet, image_url, user_id]
       );
 
       const payload = {
         user_id: user_id,
         username: username,
-        full_name: full_name
+        full_name: full_name,
+        image_url: image_url
       };
       console.log(payload);
 

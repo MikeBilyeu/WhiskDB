@@ -5,6 +5,7 @@ import { logoutUser, editProfile, toggleDelete } from "../../../actions/auth";
 import { validateUsername } from "../../auth/utils/validation.js";
 import { usernameValidate } from "../../auth/utils/async-validation";
 import Input from "../../form-inputs/input";
+import ImageUpload from "../../image-upload";
 import Header from "./header";
 import Delete from "./delete";
 import "./profile-edit.scss";
@@ -29,6 +30,11 @@ class Edit extends React.Component {
           style={{ marginTop: "4rem" }}
           onSubmit={this.props.handleSubmit(this.handleSubmit)}
         >
+          <Field
+            name="image_url"
+            className="imageInput circle"
+            component={ImageUpload}
+          />
           <Field
             name="full_name"
             component={Input}

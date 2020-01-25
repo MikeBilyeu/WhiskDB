@@ -9,7 +9,7 @@ import {
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import ImageUpload from "./image";
+import ImageUpload from "../image-upload";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Categories from "./categories";
@@ -43,7 +43,11 @@ const RecipeUpsert = props => {
           parse={titleParse}
         />
 
-        <Field name="image_url" component={ImageUpload} />
+        <Field
+          name="image_url"
+          className="imageInput"
+          component={ImageUpload}
+        />
 
         <Ingredients />
         <Directions />

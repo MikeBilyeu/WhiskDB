@@ -16,7 +16,8 @@ router.get(
              username,
              full_name,
              email,
-             diet
+             diet,
+             image_url
       FROM users
       WHERE user_id = $1`,
         [user_id]

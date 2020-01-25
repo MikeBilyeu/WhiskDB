@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { change } from "redux-form";
 
-import styles from "../recipe-upsert.module.scss";
+import "./image-upload.scss";
 
 class ImageUpload extends React.Component {
   onImgChange = e => {
@@ -17,15 +18,15 @@ class ImageUpload extends React.Component {
       let data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "recipes");
-      this.props.change("newRecipe", "imageFile", data);
+      this.props.change(this.props.meta.form, "imageFile", data);
 
       this.props.input.onChange(imageURL);
     }
   };
   render() {
     return (
-      <label className={styles.imageInput}>
-        <span>{this.props.input.value ? "Change Image" : "Upload Image"}</span>
+      <label className={this.props.className}>
+        <span>{this.props.input.value ? "Change Image" : "Choose Image"}</span>
         <img src={this.props.input.value} alt="" />
         <input
           type="file"
@@ -37,6 +38,10 @@ class ImageUpload extends React.Component {
     );
   }
 }
+
+ImageUpload.propTypes = {
+  className: PropTypes.string.isRequired
+};
 
 export default connect(
   null,
