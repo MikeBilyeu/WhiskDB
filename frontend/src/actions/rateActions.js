@@ -1,6 +1,5 @@
 import axios from "axios";
 import {
-  STAR_CLICKED,
   TOGGLE_REVIEW,
   GET_RATING_DETAILS,
   GET_ERRORS,

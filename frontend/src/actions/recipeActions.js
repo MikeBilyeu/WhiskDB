@@ -2,9 +2,6 @@ import axios from "axios";
 import { change } from "redux-form";
 import {
   GET_ERRORS,
-  GET_RECIPE,
-  GET_RECIPE_REQUEST,
-  SAVE_RECIPE,
   GET_SAVED_RECIPES,
   GET_SAVED_RECIPES_REQUEST,
   GET_MY_RECIPES,
@@ -13,14 +10,10 @@ import {
   CONVERT_SERVINGS,
   SORT_SAVED_RECIPES,
   TOGGLE_SORT_BUTTON,
-  TOGGLE_SHARE,
-  TOGGLE_EDIT_RECIPE,
   GET_SCRAPE_URL_REQUEST,
   TOGGLE_FILTER_BUTTON,
   SET_PROFILE_FILTER_DATA
 } from "./types";
-
-import { reset } from "redux-form";
 
 export const scrapeSite = URL => async dispatch => {
   dispatch({ type: GET_SCRAPE_URL_REQUEST });
