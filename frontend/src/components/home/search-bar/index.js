@@ -1,1 +1,1 @@
-export { default } from "./home-search-bar-container.jsx";
+export { default } from "./home-search-bar.jsx";

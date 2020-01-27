@@ -20,7 +20,7 @@ const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
         sortBy={sort}
         className="sort-btn"
       />
-      <SearchBar />
+      {/*<SearchBar />*/}
       <CategoryButton
         className="categoryBtn"
         active={mealBtnActive}

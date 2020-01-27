@@ -1,1 +1,1 @@
-export { default } from "./home-header-container.jsx";
+export { default } from "./home-header.jsx";
