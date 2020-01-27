@@ -1,1 +1,1 @@
-export { default } from "./profile-edit-container.jsx";
+export { default } from "./profile-edit.jsx";

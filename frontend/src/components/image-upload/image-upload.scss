@@ -25,7 +25,7 @@
   }
 
   span {
-    padding: 0.7rem 2rem;
+    padding: 0.5rem 1rem;
     opacity: 0.8;
     background-color: lightColor(light);
     border-radius: 2rem;
@@ -43,12 +43,14 @@
 .circle {
   border: solid lightColor(medium) 0.08rem;
   border-radius: 100%;
-  width: 10rem;
-  height: 10rem;
+  width: 8rem;
+  height: 8rem;
 
   img {
     border-radius: 100%;
     border: solid lightColor(medium) 0.08rem;
-    width: 10rem;
+    width: 5rem;
+    width: 8rem;
+    height: 8rem;
   }
 }

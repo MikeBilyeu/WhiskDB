@@ -27,7 +27,7 @@ class Edit extends React.Component {
         <Header />
         <form
           className="auth-form"
-          style={{ marginTop: "4rem" }}
+          style={{ marginTop: "3rem" }}
           onSubmit={this.props.handleSubmit(this.handleSubmit)}
         >
           <Field
@@ -83,25 +83,15 @@ class Edit extends React.Component {
           </div>
 
           {this.props.dirty ? (
-            <button type="submit">Save changes</button>
+            <button className="saveBtn" type="submit">
+              Save changes
+            </button>
           ) : null}
+
+          <div className="deleteBtn" onClick={this.props.toggleDelete}>
+            Delete Account
+          </div>
         </form>
-        <div
-          style={{
-            border: "solid #C40801 .05rem",
-            width: "13rem",
-            textAlign: "center",
-            color: "#C40801",
-            padding: ".5rem",
-            postion: "relative",
-            margin: "3rem auto",
-            cursor: "pointer",
-            borderRadius: ".5rem"
-          }}
-          onClick={this.props.toggleDelete}
-        >
-          Delete Account
-        </div>
       </div>
     );
   }

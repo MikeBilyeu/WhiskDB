@@ -12,4 +12,20 @@
     margin: 0.5rem 0;
     cursor: pointer;
   }
+
+  .saveBtn {
+    width: 100%;
+  }
+  .deleteBtn {
+    border: solid #c40801 0.09rem;
+    text-align: center;
+    color: #c40801;
+    padding: 0.7rem;
+    place-self: center;
+    margin: 1rem;
+    width: 80%;
+    postion: relative;
+    cursor: pointer;
+    border-radius: 0.5rem;
+  }
 }

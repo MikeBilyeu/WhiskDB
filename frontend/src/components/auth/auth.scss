@@ -40,6 +40,9 @@
         color: #000;
         opacity: 0.2; /* Firefox */
       }
+      &:focus {
+        border: solid darkColor(dark) 0.08rem;
+      }
 
       &:-webkit-autofill,
       &:-webkit-autofill:hover,
@@ -111,7 +114,6 @@
     background-color: #fff;
     height: 2.7rem;
     width: 80%;
-    max-width: 20rem;
     place-self: center;
   }
 }

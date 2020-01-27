@@ -6,10 +6,14 @@
     grid-template-columns: 4rem 1fr 4rem;
     position: fixed;
     top: 0;
+
     .back-btn {
-      width: 3.5rem;
-      padding: 1rem;
+      @include grid-center;
+      grid-auto-flow: column;
+      justify-self: start;
       cursor: pointer;
+      padding: 1rem 2rem 1rem 1rem;
+      width: 4rem;
     }
 
     h2 {
