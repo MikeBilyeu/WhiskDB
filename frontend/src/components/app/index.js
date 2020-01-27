@@ -1,1 +1,1 @@
-export { default } from "./app-view.jsx";
+export { default } from "./app.jsx";

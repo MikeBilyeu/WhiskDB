@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { toggleFilterButton } from "../../../actions/browseActions";
-import SearchBar from "../search-bar";
-import SortButton from "../../sort-button";
-import CategoryButton from "../../category-button";
+import SearchBar from "../search_bar";
+import SortButton from "../../sort_button";
+import CategoryButton from "../../category_button";
 import "./home-header.scss";
 
 const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {

@@ -1,1 +1,1 @@
-export { default } from "./edit-delete-view.jsx";
+export { default } from "./edit-delete.jsx";

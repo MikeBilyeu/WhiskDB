@@ -1,1 +1,1 @@
-export { default } from "./recipe-ingredients-view.jsx";
+export { default } from "./recipe-ingredients.jsx";

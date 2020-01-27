@@ -1,1 +1,1 @@
-export { default } from "./review-details-view.jsx";
+export { default } from "./review-details.jsx";

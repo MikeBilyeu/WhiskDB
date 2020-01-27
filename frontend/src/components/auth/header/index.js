@@ -1,1 +1,1 @@
-export { default } from "./auth-header-view.jsx";
+export { default } from "./auth-header.jsx";

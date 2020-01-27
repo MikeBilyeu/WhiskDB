@@ -1,1 +1,1 @@
-export { default } from "./home-view.jsx";
+export { default } from "./home.jsx";

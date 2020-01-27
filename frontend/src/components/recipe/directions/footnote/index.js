@@ -1,1 +1,1 @@
-export { default } from "./directions-footnote-view.jsx";
+export { default } from "./directions-footnote.jsx";

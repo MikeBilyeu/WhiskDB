@@ -1,1 +1,1 @@
-export { default } from "./profile-home-view.jsx";
+export { default } from "./profile-home.jsx";

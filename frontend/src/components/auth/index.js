@@ -1,1 +1,1 @@
-export { default } from "./auth-container.jsx";
+export { default } from "./auth.jsx";
