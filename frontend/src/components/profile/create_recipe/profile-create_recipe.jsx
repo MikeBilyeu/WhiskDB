@@ -21,7 +21,6 @@ class CreateRecipe extends React.Component {
   render() {
     const initialValues = {
       categories: [],
-      keywords: [],
       imageFile: null
     };
     return (

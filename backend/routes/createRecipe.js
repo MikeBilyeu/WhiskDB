@@ -17,6 +17,7 @@ router.post(
     //   response.status(400).json(errors);
     // }
     const ingredientsArr = recipe.ingredients.split(/\n/);
+    const keywordsArr = recipe.keywords.split(",").map(item => item.trim());
 
     try {
       const { rows } = await db.query(
@@ -33,7 +34,7 @@ router.post(
           recipe.footnote,
           recipe.directions,
           ingredientsArr,
-          recipe.keywords,
+          keywordsArr,
           recipe.categories,
           recipe.image_url
         ]

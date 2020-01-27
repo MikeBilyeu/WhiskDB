@@ -28,9 +28,6 @@ class Ingredients extends React.Component {
   // };
 
   render() {
-    const placeholder = {
-      ingredients: "1-1/2 cup milk\n1 tablespoon olive oil"
-    };
     return (
       <div className={styles.ingredientsContainer}>
         <Field
@@ -49,7 +46,7 @@ class Ingredients extends React.Component {
           type="text"
           component={TextArea}
           label="Ingredients"
-          placeholder={placeholder.ingredients}
+          placeholder={"1-1/2 cup milk\n1 tablespoon olive oil"}
         />
       </div>
     );

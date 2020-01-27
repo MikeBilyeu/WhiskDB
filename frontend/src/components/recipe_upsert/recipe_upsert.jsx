@@ -7,7 +7,6 @@ import ImageUpload from "../image_upload";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Categories from "./categories";
-import Keywords from "./keywords";
 import Input from "../form_inputs/input";
 import { capitalize, titleParse } from "./utils/input-parse";
 import styles from "./recipe_upsert.module.scss";
@@ -47,9 +46,11 @@ const RecipeUpsert = props => {
         <Directions />
         <Field
           name="keywords"
-          className={styles.keywordsContainer}
-          component={Keywords}
+          component={Input}
+          label="Tags"
+          placeholder="Tags (e.g., baked, crunchy, healthy)"
         />
+
         <Categories categories={props.categories} change={props.change} />
         <button className={styles.submitBtn} type="submit">
           {props.submitText}

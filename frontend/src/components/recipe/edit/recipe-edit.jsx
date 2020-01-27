@@ -15,11 +15,13 @@ class Edit extends React.Component {
   render() {
     let { isFetching, recipe } = this.props.recipeData;
     const ingredientsStr = recipe.ingredients.join("\n");
+    const keywordsStr = recipe.keywords.join(", ");
 
     recipe = {
       ...recipe,
       time: this.props.recipeTime,
-      ingredients: ingredientsStr
+      ingredients: ingredientsStr,
+      keywords: keywordsStr
     };
 
     if (isFetching) {

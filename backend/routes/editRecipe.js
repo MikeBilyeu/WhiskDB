@@ -13,6 +13,8 @@ router.put(
       response.status(401).send("You can't edit this recipe");
     }
     const ingredientsArr = recipe.ingredients.split(/\n/);
+    const keywordsArr = recipe.keywords.split(",").map(item => item.trim());
+
     try {
       await db.query(
         `UPDATE recipes
@@ -26,7 +28,7 @@ router.put(
           recipe.directions,
           recipe.footnote,
           recipe.categories,
-          recipe.keywords,
+          keywordsArr,
           convertTimeToMin(recipe.time),
           recipe.recipe_id
         ]
