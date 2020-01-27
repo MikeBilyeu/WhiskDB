@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Field,
-  FieldArray,
-  reduxForm,
-  formValueSelector,
-  change
-} from "redux-form";
+import { Field, reduxForm, formValueSelector } from "redux-form";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -51,7 +45,11 @@ const RecipeUpsert = props => {
 
         <Ingredients />
         <Directions />
-        <Keywords keywords={props.keywords} change={props.change} />
+        <Field
+          name="keywords"
+          className={styles.keywordsContainer}
+          component={Keywords}
+        />
         <Categories categories={props.categories} change={props.change} />
         <button className={styles.submitBtn} type="submit">
           {props.submitText}

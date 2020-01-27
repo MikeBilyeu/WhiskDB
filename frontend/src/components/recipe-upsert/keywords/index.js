@@ -1,1 +1,1 @@
-export { default } from "./recipe-upsert-keywords-container.jsx";
+export { default } from "./recipe-upsert-keywords.jsx";
