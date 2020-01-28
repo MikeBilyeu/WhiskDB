@@ -8,8 +8,8 @@
     "title"
     "rt";
   align-items: center;
-  max-width: 25rem;
-  min-width: 18rem;
+  max-width: 31rem;
+  min-width: 15rem;
   background-color: #fff;
   margin: auto;
 
@@ -29,6 +29,7 @@
     font-family: Arial !important;
     font-size: 1rem;
     font-weight: 100;
+
     display: grid;
     grid-template-columns: 3fr 3fr 1fr;
     grid-gap: 0.3rem;
