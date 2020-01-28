@@ -7,11 +7,11 @@ const NoResults = props => {
       style={{
         color: "#313131",
         textAlign: "center",
-        display: "grid",
         placeItems: "center",
         backgroundColor: "#fff",
         height: "50vh",
-        width: "100%"
+        width: "100%",
+        marginTop: "5rem"
       }}
     >
       <div style={{ fontSize: "1.2rem" }}>
@@ -26,7 +26,14 @@ const NoResults = props => {
       >
         please try searching for another recipe
       </div>
-      <div style={{ fontSize: "1.5rem", color: "#707070", alignSelf: "start" }}>
+      <div
+        style={{
+          fontSize: "1.5rem",
+          color: "#707070",
+          alignSelf: "start",
+          margin: "3rem"
+        }}
+      >
         or
       </div>
 

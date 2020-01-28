@@ -56,6 +56,27 @@
   }
 }
 
+.recipe-card.loading {
+  grid-gap: 0.5rem;
+  width: 100%;
+  .thumbnail {
+    background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
+    background-size: 200% 200%;
+    animation: Animation 3s ease-in infinite;
+  }
+  .title,
+  .recipe-meta {
+    margin: 0 0.2rem;
+    width: 75%;
+    height: 1rem;
+    background-color: lightColor(light);
+    border-radius: 0.2rem;
+  }
+  .recipe-meta {
+    width: 100%;
+  }
+}
+
 .thumbnail {
   grid-area: thumbnail;
   max-height: 25vh;
@@ -63,4 +84,22 @@
   width: 100%;
   object-fit: cover;
   transition: all 0.2s;
+
+  &.loading {
+    background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
+    background-size: 200% 200%;
+    animation: Animation 3s ease-in infinite;
+  }
+}
+
+@keyframes Animation {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 91% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }

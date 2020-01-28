@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Loading from "../loading";
+import Loading from "../recipe_display/loading";
 import RecipeDisplay from "../recipe_display";
 import Button from "../button";
 import NoResults from "../home/no_results";
@@ -14,13 +14,30 @@ class Results extends React.PureComponent {
     });
   };
 
+  renderRecipeListLoading = () => {
+    // Display 6 loading placeholders
+    let recipeListLoading = [];
+    for (let i = 0; i <= 5; i++) {
+      recipeListLoading.push(<Loading />);
+    }
+    return recipeListLoading;
+  };
+
   render() {
     if (this.props.isFetching) {
-      return <Loading />;
+      return (
+        <div
+          className={`recipe-results ${this.props.filterOptionsOpened &&
+            "active"}`}
+        >
+          <ul>{this.renderRecipeListLoading()}</ul>
+        </div>
+      );
     }
     if (this.props.recipes.length < 1) {
       return <NoResults />;
     }
+
     return (
       <div
         className={`recipe-results ${this.props.filterOptionsOpened &&

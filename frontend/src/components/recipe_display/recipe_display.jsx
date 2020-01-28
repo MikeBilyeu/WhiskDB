@@ -54,10 +54,11 @@ class RecipeDisplay extends React.Component {
       image_url,
       num_saves
     } = this.props.recipe;
+
     return (
       <li>
         <Link className="recipe-card" to={`/recipe/${recipe_id}`}>
-          <img className="thumbnail" src={image_url} alt="" />
+          <img className="thumbnail loading" src={image_url} alt="" />
           <div className="title">{title}</div>
           <div className="recipe-meta">
             <Rating
