@@ -6,6 +6,10 @@
   "scripts": {
     "start": "concurrently --kill-others \"cd backend && npm start\" \"cd frontend && npm start\""
   },
+  "engines": {
+    "node": "12.7.0",
+    "npm": "6.9.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
