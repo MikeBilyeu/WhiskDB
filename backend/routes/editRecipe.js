@@ -19,8 +19,8 @@ router.put(
       await db.query(
         `UPDATE recipes
        SET title = $1, servings = $2, ingredients = $3, directions = $4,
-        footnote = $5, categories = $6, keywords = $7, total_time_mins = $8
-       WHERE recipe_id = $9`,
+        footnote = $5, categories = $6, keywords = $7, total_time_mins = $8, image_url = $9
+       WHERE recipe_id = $10`,
         [
           recipe.title.trim(),
           recipe.servings,
@@ -30,6 +30,7 @@ router.put(
           recipe.categories,
           keywordsArr,
           convertTimeToMin(recipe.time),
+          recipe.image_url,
           recipe.recipe_id
         ]
       );
