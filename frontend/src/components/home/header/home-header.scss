@@ -2,32 +2,54 @@
 
 .home {
   .header {
+    display: block;
     width: 100%;
     z-index: 4;
     overflow: hidden;
-    display: grid;
-    align-items: center;
     position: fixed;
     top: 0rem;
-    grid-template-areas: "sort meal search";
-    grid-template-columns: 1fr 1fr 1fr;
     border: none;
-    //border-bottom: solid lightColor(medium) 0.07rem;
     padding: 0.5rem 0.1rem 0.2rem 0.1rem;
     box-sizing: border-box;
 
-    .sort-btn {
-      grid-area: sort;
+    .mobile {
+      width: 100%;
+      display: grid;
+      align-items: center;
+      grid-template-areas: "sort meal search";
+      grid-template-columns: 1fr 1fr 1fr;
+
+      .sort-btn {
+        grid-area: sort;
+      }
+
+      .categoryBtn {
+        grid-area: meal;
+        margin: 0.3rem 0 0.5rem 0;
+      }
     }
 
-    .categoryBtn {
-      grid-area: meal;
-      margin: 0.3rem 0 0.5rem 0;
+    .desktop {
+      margin: 0 auto;
+      display: none;
+      align-items: center;
+      grid-template-columns: 1fr 5fr;
+      grid-column-gap: 1rem;
+
+      .logo {
+        width: 7rem;
+        justify-self: start;
+      }
+    }
+
+    @media (min-width: 600px) {
+      .mobile {
+        display: none;
+      }
+
+      .desktop {
+        display: grid;
+      }
     }
   }
 }
-
-/* not working ios safari... color staying on after click */
-/* .filter-btn:hover {
-  color: #0172c4;
-} */

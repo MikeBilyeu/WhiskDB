@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { toggleFilterButton } from "../../../actions/browseActions";
-import SearchBar from "../search_bar";
 import SortButton from "../../sort_button";
 import CategoryButton from "../../category_button";
+import SearchBar from "../../search_bar";
+import Logo from "../../../assets/images/zipiwisk-logo.png";
+
 import "./home-header.scss";
 
 const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
@@ -13,22 +16,30 @@ const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
   const { meal, sort } = filterRecipes;
 
   return (
-    <div className="header">
-      <SortButton
-        onClick={() => toggleFilterButton("Sort")}
-        sortActive={sortBtnActive}
-        sortBy={sort}
-        className="sort-btn"
-      />
-      {/*<SearchBar />*/}
-      <CategoryButton
-        className="categoryBtn"
-        active={mealBtnActive}
-        name={meal === "All Meals" ? "Categories" : meal}
-        selected={meal !== "All Meals"}
-        handleClick={() => toggleFilterButton("Meal")}
-      />
-    </div>
+    <header className="header">
+      <div className="mobile">
+        <SortButton
+          onClick={() => toggleFilterButton("Sort")}
+          sortActive={sortBtnActive}
+          sortBy={sort}
+          className="sort-btn"
+        />
+        {/*<SearchBar />*/}
+        <CategoryButton
+          className="categoryBtn"
+          active={mealBtnActive}
+          name={meal === "All Meals" ? "Categories" : meal}
+          selected={meal !== "All Meals"}
+          handleClick={() => toggleFilterButton("Meal")}
+        />
+      </div>
+
+      <div className="desktop">
+        <img src={Logo} className="logo" alt="zipiwisk logo" />
+
+        <SearchBar />
+      </div>
+    </header>
   );
 };
 

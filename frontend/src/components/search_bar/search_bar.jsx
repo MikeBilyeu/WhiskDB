@@ -4,9 +4,9 @@ import {
   getBrowseRecipes,
   getSearchRecipes,
   toggleFilterButton
-} from "../../../actions/browseActions";
-import { ReactComponent as SearchIcon } from "../../../assets/images/searchIcon.svg";
-import "./home-search_bar.scss";
+} from "../../actions/browseActions";
+import { ReactComponent as SearchIcon } from "../../assets/images/searchIcon.svg";
+import "./search_bar.scss";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -58,19 +58,19 @@ class SearchBar extends React.Component {
         onBlur={this.handleBlur}
       >
         <SearchIcon
-          style={{ fill: this.state.focus ? "#0172C4" : "#676767" }}
+          style={{ fill: this.state.focus ? "#313131" : "#707070" }}
           onClick={this.handleFocus}
           className="searchIcon"
         />
         <input
           ref={this.textInput}
-          style={{ width: this.state.focus ? "calc(100% - 1rem)" : "0" }}
+          style={{ width: "100%" }}
           className="input"
           onChange={this.handleChange}
           onFocus={this.handleFocus}
           onKeyPress={this.handleKeyPress}
           autoComplete="off"
-          placeholder="Search"
+          placeholder="Search thousands of delicious recipes…"
           value={this.props.searchTerm}
           type="search"
           aria-label="Search"

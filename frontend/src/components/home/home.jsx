@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Header from "./header";
+import Hero from "./hero";
 import FilterResults from "../filter_results";
 import Results from "../results";
 import {
@@ -43,6 +44,7 @@ class Home extends React.Component {
             buttonToggled={this.props.buttonToggled}
           />
         ) : null}
+        <Hero />
 
         <Results
           filterOptionsOpened={this.props.buttonToggled}

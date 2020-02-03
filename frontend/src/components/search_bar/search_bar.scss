@@ -1,0 +1,75 @@
+@import "../../assets/styles/variables";
+
+.searchBar {
+  padding: 0 0.5rem;
+  background-color: lightColor(light);
+  height: 2rem;
+  width: 100%;
+  justify-self: end;
+  border-radius: 50rem;
+  border: solid lightColor(light) 0.05rem;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  box-sizing: border-box;
+
+  .searchIcon {
+    width: 1rem;
+    margin: auto;
+    cursor: text;
+  }
+
+  .input {
+    all: unset;
+    font-size: 0.8rem;
+    caret-color: #676767;
+    color: darkColor(dark);
+    -webkit-text-fill-color: darkColor(dark);
+    opacity: 1; /* required on iOS */
+
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #000;
+      opacity: 0.4; /* Firefox */
+    }
+  }
+}
+
+.searchBar.search-active {
+  border: solid lightColor(dark) 0.05rem;
+  //animation: expand 0.2s linear forwards;
+}
+//
+// @-webkit-keyframes expand {
+//   0% {
+//     width: 2.2rem;
+//   }
+//   100% {
+//     width: 100%;
+//   }
+// }
+// @-moz-keyframes expand {
+//   0% {
+//     width: 2.2rem;
+//   }
+//   100% {
+//     width: 100%;
+//   }
+// }
+// @-o-keyframes expand {
+//   0% {
+//     width: 2.2rem;
+//   }
+//   100% {
+//     width: 100%;
+//   }
+// }
+// @keyframes expand {
+//   0% {
+//     width: 2.2rem;
+//   }
+//
+//   100% {
+//     width: 100%;
+//   }
+// }
