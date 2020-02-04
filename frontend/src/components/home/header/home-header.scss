@@ -34,6 +34,7 @@
       display: none;
       align-items: center;
       grid-template-columns: 2fr 7fr 2fr;
+      grid-template-rows: 1fr 2rem;
       grid-column-gap: 0.75rem;
 
       .logo {
@@ -70,9 +71,47 @@
           color: $primary-color;
         }
       }
+
+      .filter-box {
+        padding: 0 0.5rem;
+        justify-items: start;
+        border-radius: 0;
+        position: static;
+        grid-column: 1 / 3;
+        box-shadow: none;
+        background-color: inherit;
+        h2 {
+          display: none;
+        }
+        ul {
+          margin: 0;
+          display: grid;
+          width: 100%;
+          max-width: 40rem;
+          min-width: 30rem;
+          grid-auto-flow: column;
+          place-items: center;
+
+          .filter-option {
+            width: 100%;
+            //max-width: 4rem;
+            font-size: 0.8rem;
+            padding: 0.2rem 0rem;
+            display: inline-block;
+            white-space: nowrap;
+            border-bottom: solid #fff 0.1rem;
+
+            &.option-active {
+              color: darkColor(dark);
+              font-weight: normal;
+              border-bottom: solid $primary-color 0.1rem;
+            }
+          }
+        }
+      }
     }
 
-    @media (min-width: 600px) {
+    @media (min-width: 650px) {
       .mobile {
         display: none;
       }

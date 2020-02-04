@@ -11,7 +11,8 @@ const FilterResults = ({
   filterRecipes,
   getBrowseRecipes,
   handleClick,
-  buttonToggled
+  buttonToggled,
+  className
 }) => {
   const { options, type } = filterOptions(buttonToggled);
 
@@ -35,7 +36,7 @@ const FilterResults = ({
   };
 
   return (
-    <div className="filter-box">
+    <div className={`filter-box ${className}`}>
       <h2>{type}</h2>
       <ul>{renderFilterOptions()}</ul>
     </div>

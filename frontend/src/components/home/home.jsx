@@ -35,10 +35,11 @@ class Home extends React.Component {
       <div className="home">
         <Header
           filterRecipes={this.props.filterRecipes}
-          buttonToggled={this.props.buttonToggled}
+          handleClick={this.handleClick}
         />
         {this.props.buttonToggled ? (
           <FilterResults
+            className="mobile"
             filterRecipes={this.props.filterRecipes}
             handleClick={this.handleClick}
             buttonToggled={this.props.buttonToggled}

@@ -9,11 +9,17 @@
     height: 43vw;
     min-height: 50vh;
     object-fit: cover;
-    @media (min-width: 600px) {
+    @media (min-width: 650px) {
       display: block;
     }
   }
   .recipe-results {
     margin-top: 6rem;
+  }
+
+  @media (min-width: 650px) {
+    .mobile {
+      display: none;
+    }
   }
 }

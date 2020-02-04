@@ -7,10 +7,16 @@ import SortButton from "../../sort_button";
 import CategoryButton from "../../category_button";
 import SearchBar from "../../search_bar";
 import Logo from "../../../assets/images/zipiwisk-logo.png";
+import FilterResults from "../../filter_results";
 
 import "./home-header.scss";
 
-const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
+const Header = ({
+  filterRecipes,
+  buttonToggled,
+  handleClick,
+  toggleFilterButton
+}) => {
   const mealBtnActive = buttonToggled === "Meal";
   const sortBtnActive = buttonToggled === "Sort";
   const { meal, sort } = filterRecipes;
@@ -47,6 +53,11 @@ const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
             <span className="signup-btn">Signup free</span>
           </Link>
         </div>
+        <FilterResults
+          filterRecipes={filterRecipes}
+          handleClick={handleClick}
+          buttonToggled="Meal"
+        />
       </div>
     </header>
   );
@@ -54,6 +65,7 @@ const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
 
 Header.propTypes = {
   filterRecipes: PropTypes.object.isRequired,
+  handleClick: PropTypes.func.isRequired,
   activeFilterBtn: PropTypes.string.isRequired,
   toggleFilterButton: PropTypes.func.isRequired
 };
