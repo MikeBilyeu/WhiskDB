@@ -35,9 +35,18 @@ const Header = ({ filterRecipes, buttonToggled, toggleFilterButton }) => {
       </div>
 
       <div className="desktop">
-        <img src={Logo} className="logo" alt="zipiwisk logo" />
-
+        <Link to="/">
+          <img src={Logo} className="logo" alt="zipiwisk logo" />
+        </Link>
         <SearchBar />
+        <div className="auth-btns">
+          <Link to="/profile">
+            <span className="login-btn">Login</span>
+          </Link>
+          <Link to="/profile">
+            <span className="signup-btn">Signup free</span>
+          </Link>
+        </div>
       </div>
     </header>
   );
