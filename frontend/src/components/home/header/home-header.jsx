@@ -7,6 +7,7 @@ import SortButton from "../../sort_button";
 import CategoryButton from "../../category_button";
 import SearchBar from "../../search_bar";
 import Logo from "../../../assets/images/zipiwisk-logo.png";
+import userLogo from "../../../assets/images/profileLogo.png";
 import FilterResults from "../../filter_results";
 
 import "./home-header.scss";
@@ -66,7 +67,7 @@ const Header = ({
             className="profile-button"
             style={{ display: !isAuth && "none" }}
           >
-            <img src={user_img} alt="user profile" />
+            <img src={user_img || userLogo} alt="user profile" />
           </Link>
         </div>
         <FilterResults
