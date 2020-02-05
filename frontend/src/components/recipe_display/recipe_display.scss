@@ -19,13 +19,13 @@
   .thumbnail {
     grid-area: thumbnail;
     //max-height: 20vh;
-    min-height: 10rem;
-    max-height: 10rem;
+    min-height: 9rem;
+    max-height: 9rem;
     width: 100%;
     object-fit: cover;
     transition: all 0.2s;
     margin-bottom: 0.75rem;
-    border-radius: 0.1 rem;
+    border-radius: 0.1rem;
     &.loading {
       background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
       background-size: 200% 200%;

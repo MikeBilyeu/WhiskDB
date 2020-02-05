@@ -49,10 +49,10 @@
 
       .auth-btns {
         border-left: solid lightColor(medium) 0.05rem;
-        height: 1.75rem;
+        height: 2.2rem;
         padding: 0 0.5rem 0 1rem;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-auto-flow: column;
         grid-gap: 0.5rem;
         place-items: center;
         font-size: 0.75rem;
@@ -70,6 +70,32 @@
           border: solid $primary-color 0.08rem;
           border-radius: 50rem;
           color: $primary-color;
+        }
+
+        .profile-button {
+          padding: 0 1rem;
+          height: 2.2rem;
+          img {
+            width: 2.2rem;
+            border-radius: 100%;
+            border: solid lightColor(medium) 0.05rem;
+          }
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+
+        .create-recipe-btn {
+          border: solid lightColor(dark) 0.05rem;
+          white-space: nowrap;
+          padding: 0.4rem 0.75rem;
+          color: darkColor(light);
+          font-weight: medium;
+          border-radius: 0.2rem;
+          &:hover {
+            border: solid $primary-color 0.05rem;
+            color: $primary-color;
+          }
         }
       }
 

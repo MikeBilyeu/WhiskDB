@@ -50,6 +50,8 @@ class Home extends React.Component {
         <Header
           filterRecipes={this.props.filterRecipes}
           handleClick={this.handleClick}
+          isAuth={this.props.isAuth}
+          user_img={this.props.user_img}
         />
         {this.props.buttonToggled ? (
           <FilterResults
@@ -77,7 +79,9 @@ const mapStateToProps = state => ({
   buttonToggled: state.browseRecipes.toggleFilterButton,
   recipes: state.browseRecipes,
   filterRecipes: state.browseRecipes.filterRecipes,
-  user_id: state.auth.user.user_id
+  user_id: state.auth.user.user_id,
+  user_img: state.auth.user.image_url,
+  isAuth: state.auth.isAuthenticated
 });
 
 export default connect(

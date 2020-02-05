@@ -15,7 +15,9 @@ const Header = ({
   filterRecipes,
   buttonToggled,
   handleClick,
-  toggleFilterButton
+  toggleFilterButton,
+  isAuth,
+  user_img
 }) => {
   const mealBtnActive = buttonToggled === "Meal";
   const sortBtnActive = buttonToggled === "Sort";
@@ -46,11 +48,25 @@ const Header = ({
         </Link>
         <SearchBar />
         <div className="auth-btns">
-          <Link to="/profile">
+          <Link to="/profile" style={{ display: isAuth && "none" }}>
             <span className="login-btn">Login</span>
           </Link>
-          <Link to="/profile">
+          <Link to="/profile" style={{ display: isAuth && "none" }}>
             <span className="signup-btn">Signup free</span>
+          </Link>
+          <Link
+            to="/profile/create-recipe"
+            className="create-recipe-btn"
+            style={{ display: !isAuth && "none" }}
+          >
+            Create Recipe
+          </Link>
+          <Link
+            to="/profile"
+            className="profile-button"
+            style={{ display: !isAuth && "none" }}
+          >
+            <img src={user_img} alt="user profile" />
           </Link>
         </div>
         <FilterResults
@@ -73,7 +89,8 @@ Header.propTypes = {
   filterRecipes: PropTypes.object.isRequired,
   handleClick: PropTypes.func.isRequired,
   activeFilterBtn: PropTypes.string.isRequired,
-  toggleFilterButton: PropTypes.func.isRequired
+  toggleFilterButton: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool.isRequired
 };
 
 export default connect(
