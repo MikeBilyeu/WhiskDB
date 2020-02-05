@@ -30,6 +30,20 @@ class Home extends React.Component {
     this.props.incrementOffset();
   };
 
+  dirtyFilterRecipes = () => {
+    // Check if user changed the filterRecipes
+    return (
+      JSON.stringify(this.props.filterRecipes) !==
+      JSON.stringify({
+        search: "",
+        meal: "All Meals",
+        diet: "None",
+        sort: "Top Rated",
+        offset: 0
+      })
+    );
+  };
+
   render() {
     return (
       <div className="home">
@@ -45,7 +59,8 @@ class Home extends React.Component {
             buttonToggled={this.props.buttonToggled}
           />
         ) : null}
-        <Hero />
+
+        {this.dirtyFilterRecipes() ? null : <Hero />}
 
         <Results
           filterOptionsOpened={this.props.buttonToggled}
