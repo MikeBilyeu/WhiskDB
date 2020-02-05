@@ -23,7 +23,7 @@ class Home extends React.PureComponent {
   }
 
   componentDidMount() {
-    document.title = "WhiskDB | Profile";
+    document.title = "Zipiwhisk | Profile";
     if (!this.props.myRecipes.length && !this.props.savedRecipes.length) {
       this.props.getMyRecipes();
       this.props.getSavedRecipes();
@@ -45,7 +45,7 @@ class Home extends React.PureComponent {
   render() {
     const { page } = this.state;
     const { full_name, username, diet, image_url } = this.props.auth.user;
-    document.title = `WhiskDB | ${username}`;
+    document.title = `Zipiwhisk | ${username}`;
     const { savedRecipes, myRecipes } = this.props;
 
     return (

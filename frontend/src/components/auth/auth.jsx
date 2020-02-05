@@ -15,6 +15,7 @@ class Auth extends React.Component {
   }
 
   componentDidMount() {
+    document.title = "Zipiwhisk | The internet’s source of free recipes.";
     // If logged in and user auth redirect to profile
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/profile");

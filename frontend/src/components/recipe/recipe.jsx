@@ -35,7 +35,7 @@ class Recipe extends React.Component {
       editRecipe,
       recipe: { image_url, directions, footnote, time, title }
     } = this.props.recipeData;
-    document.title = !title ? document.title : `${title} |  WhiskDB`;
+    document.title = !title ? document.title : `${title} |  Zipiwhisk`;
 
     // display loading if isFetching
     if (isFetching) {

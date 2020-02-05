@@ -7,7 +7,7 @@ import { createRecipe } from "../../../actions/recipe";
 
 class CreateRecipe extends React.Component {
   componentDidMount() {
-    document.title = "WhiskDB | Create Recipe";
+    document.title = "Zipiwhisk | Create Recipe";
   }
 
   handleSubmit = values => {

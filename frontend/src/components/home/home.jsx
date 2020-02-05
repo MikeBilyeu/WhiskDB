@@ -14,7 +14,7 @@ import "./home.scss";
 
 class Home extends React.Component {
   componentDidMount() {
-    document.title = "WhiskDB | A Recipe Database";
+    document.title = "Zipiwhisk | The internet’s source of free recipes.";
     if (!this.props.recipes.recipes.length) {
       this.props.getBrowseRecipes();
     }

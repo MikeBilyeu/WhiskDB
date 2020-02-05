@@ -114,6 +114,7 @@
     }
 
     @media (min-width: 650px) {
+      border-bottom: solid lightColor(medium) 0.05rem;
       .mobile {
         display: none;
       }
