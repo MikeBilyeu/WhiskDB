@@ -58,6 +58,12 @@ const Header = ({
           handleClick={handleClick}
           buttonToggled="Meal"
         />
+        <SortButton
+          onClick={() => toggleFilterButton("Sort")}
+          sortActive={sortBtnActive}
+          sortBy={sort}
+          className="sort-btn"
+        />
       </div>
     </header>
   );

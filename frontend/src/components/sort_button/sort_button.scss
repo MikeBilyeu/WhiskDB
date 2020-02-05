@@ -6,21 +6,57 @@
   outline: none;
   cursor: pointer;
   justify-self: start;
-  font-size: 0.7rem;
   color: darkColor(medium);
   width: 2.8rem;
 
+  @media (max-width: 649px) {
+    .desktop {
+      display: none !important;
+    }
+
+    .sortBy {
+      .mobile {
+        text-align: center !important;
+        display: block !important;
+      }
+    }
+  }
+
+  // desktop view
+  @media (min-width: 650px) {
+    justify-self: center;
+    margin: auto;
+    width: 100%;
+    .desktop {
+      display: inline !important;
+    }
+
+    .sortBy {
+      font-size: 0.75rem;
+      color: darkColor(medium);
+      left: 0;
+      .mobile {
+        text-align: center !important;
+        display: none !important;
+      }
+    }
+  }
+
   .sort-icon {
-    width: 1.3rem;
     padding: 0;
+    &.openArrow {
+      width: 0.7rem;
+      height: 1rem;
+      position: relative;
+      top: 0.2rem;
+      left: 0.5rem;
+    }
   }
 
   .sortBy {
-    position: absolute;
-    display: inline;
-    top: 1.45rem;
-    left: 2.2rem;
-    font-size: 0.55rem;
+    position: relative;
+    white-space: nowrap;
+    font-size: 0.75rem;
     color: darkColor(light);
   }
 }

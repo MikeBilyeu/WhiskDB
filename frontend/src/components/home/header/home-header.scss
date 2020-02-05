@@ -99,11 +99,13 @@
             padding: 0.2rem 0rem;
             display: inline-block;
             white-space: nowrap;
-            border-bottom: solid #fff 0.1rem;
+            margin-top: 0.2rem;
+            margin-bottom: 0.1rem;
 
             &.option-active {
               color: darkColor(dark);
               font-weight: normal;
+              margin-bottom: 0;
               border-bottom: solid $primary-color 0.1rem;
             }
           }
