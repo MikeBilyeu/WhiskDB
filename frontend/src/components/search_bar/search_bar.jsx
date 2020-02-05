@@ -54,7 +54,9 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div
-        className={"searchBar " + (this.state.focus ? "search-active" : "")}
+        className={`searchBar ${this.state.focus && "search-active"} ${
+          this.props.className
+        }`}
         onBlur={this.handleBlur}
       >
         <SearchIcon

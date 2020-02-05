@@ -1,12 +1,19 @@
 import React from "react";
+import SearchBar from "../../search_bar";
+import "./home-hero.scss";
 
 const Hero = () => {
   return (
-    <img
-      className="hero-img"
-      src="https://res.cloudinary.com/mikebilyeuimg/image/upload/q_auto:low/v1580746441/Recipes/lukas-blazek-f-TWhXOrLiU-unsplash.jpg"
-      alt=""
-    />
+    <div className="hero">
+      <div>
+        <h1>Zipiwisk</h1>
+        <p>
+          The internet’s source of free recipes.
+          <br /> Powered by cooks around the world!
+        </p>
+        <SearchBar className="hero-searchBar" />
+      </div>
+    </div>
   );
 };
 

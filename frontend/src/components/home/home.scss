@@ -3,16 +3,7 @@
     position: fixed;
     top: 2.5rem;
   }
-  .hero-img {
-    display: none;
-    width: 100%;
-    height: 43vw;
-    min-height: 50vh;
-    object-fit: cover;
-    @media (min-width: 650px) {
-      display: block;
-    }
-  }
+
   .recipe-results {
     margin-top: 4rem;
   }
