@@ -41,7 +41,7 @@ const Header = ({
       </div>
 
       <div className="desktop">
-        <Link to="/">
+        <Link to="/" onClick={() => window.location.reload()}>
           <img src={Logo} className="logo" alt="zipiwisk logo" />
         </Link>
         <SearchBar />
