@@ -87,6 +87,14 @@
           }
         }
 
+        .home-btn {
+          padding: 0.3rem 1rem;
+          color: darkColor(medium);
+          &:hover {
+            color: $primary-color;
+          }
+        }
+
         .create-recipe-btn {
           border: solid lightColor(dark) 0.05rem;
           white-space: nowrap;

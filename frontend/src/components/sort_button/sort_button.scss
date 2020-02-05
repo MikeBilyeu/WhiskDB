@@ -24,9 +24,10 @@
 
   // desktop view
   @media (min-width: 650px) {
-    justify-self: center;
-    margin: auto;
-    width: 100%;
+    justify-self: end;
+    margin-right: 1rem;
+    width: 9rem;
+    text-align: center;
     .desktop {
       display: inline !important;
     }

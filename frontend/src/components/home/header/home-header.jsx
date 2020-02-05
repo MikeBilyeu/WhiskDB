@@ -56,6 +56,14 @@ const Header = ({
             <span className="signup-btn">Signup free</span>
           </Link>
           <Link
+            to="/"
+            onClick={() => window.location.reload()}
+            className="home-btn"
+            style={{ display: !isAuth && "none" }}
+          >
+            Home
+          </Link>
+          <Link
             to="/profile/create-recipe"
             className="create-recipe-btn"
             style={{ display: !isAuth && "none" }}
