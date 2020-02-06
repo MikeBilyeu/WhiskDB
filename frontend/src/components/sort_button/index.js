@@ -1,1 +1,1 @@
-export { default } from "./sort_button.jsx";
+export { SortButton, SortButtonDesktop } from "./sort_button.jsx";

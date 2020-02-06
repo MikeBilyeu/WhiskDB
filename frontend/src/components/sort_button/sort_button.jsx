@@ -5,16 +5,12 @@ import { ReactComponent as OpenArrow } from "../../assets/images/openArrow.svg";
 import { abbreviateSortBy } from "./utils";
 import "./sort_button.scss";
 
-const SortButton = ({ sortBy, onClick, ...props }) => {
+// Mobile
+export const SortButton = ({ sortBy, onClick, ...props }) => {
   return (
     <button onClick={onClick} className="sort-btn">
-      <SortIcon className="sort-btn__mobile-icon" />
-      <div className="sort-btn__mobile-sort-by">{abbreviateSortBy(sortBy)}</div>
-
-      <div className="sort-btn__desktop-sort-by">
-        Sort by <span style={{ fontWeight: "bold" }}>{sortBy}</span>
-      </div>
-      <OpenArrow className="sort-btn__desktop-icon" />
+      <SortIcon className="sort-btn__icon" />
+      <div className="sort-btn__sort-by">{abbreviateSortBy(sortBy)}</div>
     </button>
   );
 };
@@ -24,4 +20,19 @@ SortButton.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-export default SortButton;
+// Desktop
+export const SortButtonDesktop = ({ sortBy, onClick, ...props }) => {
+  return (
+    <button onClick={onClick} className="sort-btn-d">
+      <div className="sort-btn-d__sort-by">
+        Sort by <span style={{ fontWeight: "bold" }}>{sortBy}</span>
+      </div>
+      <OpenArrow className="sort-btn-d__icon" />
+    </button>
+  );
+};
+
+SortButtonDesktop.propTypes = {
+  sortBy: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};

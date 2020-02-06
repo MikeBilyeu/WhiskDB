@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { toggleFilterButton } from "../../../actions/browseActions";
-import SortButton from "../../sort_button";
+import { SortButton, SortButtonDesktop } from "../../sort_button";
 import CategoryButton from "../../category_button";
 import SearchBar from "../../search_bar";
 import Logo from "../../../assets/images/zipiwisk-logo.png";
@@ -77,11 +77,9 @@ const Header = ({
           handleClick={handleClick}
           buttonToggled="Meal"
         />
-        <SortButton
+        <SortButtonDesktop
           onClick={() => toggleFilterButton("Sort")}
-          sortActive={sortBtnActive}
           sortBy={sort}
-          className="sort-btn"
         />
       </div>
     </header>
