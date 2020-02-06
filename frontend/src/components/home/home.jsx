@@ -55,7 +55,7 @@ class Home extends React.Component {
         />
         {this.props.buttonToggled ? (
           <FilterResults
-            className="mobile"
+            className={`mobile ${this.props.buttonToggled}`}
             filterRecipes={this.props.filterRecipes}
             handleClick={this.handleClick}
             buttonToggled={this.props.buttonToggled}

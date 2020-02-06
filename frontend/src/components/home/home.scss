@@ -9,8 +9,31 @@
   }
 
   @media (min-width: 650px) {
-    .mobile {
+    .mobile.Meal {
       display: none;
+    }
+    .Sort {
+      width: 9rem;
+      position: fixed;
+      padding: 1rem 0;
+      right: 1rem;
+      top: 5.5rem;
+      background-color: #fff;
+      h2 {
+        display: none;
+      }
+      ul {
+        button {
+          text-align: center;
+          width: 100%;
+          &:hover {
+            background-color: #efefef;
+          }
+        }
+        text-align: center;
+        width: 100%;
+        display: grid;
+      }
     }
   }
 }

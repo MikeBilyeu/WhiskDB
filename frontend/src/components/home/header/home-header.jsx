@@ -23,7 +23,6 @@ const Header = ({
   const mealBtnActive = buttonToggled === "Meal";
   const sortBtnActive = buttonToggled === "Sort";
   const { meal, sort } = filterRecipes;
-
   return (
     <header className="header">
       <div className="mobile">

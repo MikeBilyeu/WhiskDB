@@ -36,6 +36,9 @@
       font-size: 0.75rem;
       color: darkColor(medium);
       left: 0;
+      &:hover {
+        opacity: 0.8;
+      }
       .mobile {
         text-align: center !important;
         display: none !important;
