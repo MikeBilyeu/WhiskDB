@@ -1,66 +1,63 @@
 @import "../../assets/styles/variables";
 
-.arrow-style {
+.sort-btn {
   border: none;
   background-color: #fff;
   outline: none;
   cursor: pointer;
-  justify-self: start;
+  line-height: 1rem;
   color: darkColor(medium);
-  width: 2.8rem;
+  font-size: 0.75rem;
 
+  &:hover {
+    color: $primary-color;
+  }
+
+  &__mobile-icon {
+    padding: 0;
+    width: 1.1rem;
+    margin: 0 auto;
+  }
+
+  &__desktop-icon {
+    width: 0.7rem;
+    height: 1rem;
+    position: relative;
+    top: 0.2rem;
+    left: 0.5rem;
+  }
+
+  // Mobile screen size
   @media (max-width: 649px) {
-    .desktop {
-      display: none !important;
+    width: 3rem;
+    height: 3rem;
+    justify-self: start;
+
+    &__desktop-sort-by,
+    &__desktop-icon {
+      display: none;
     }
 
-    .sortBy {
-      .mobile {
-        text-align: center !important;
-        display: block !important;
-      }
+    &__mobile-icon {
+      display: block !important;
     }
   }
 
-  // desktop view
+  // Desktop screen size
   @media (min-width: 650px) {
     justify-self: end;
     margin-right: 1rem;
     width: 9rem;
-    text-align: center;
-    .desktop {
-      display: inline !important;
+    height: 2rem;
+
+    &__desktop-icon,
+    &__desktop-sort-by {
+      display: inline;
     }
 
-    .sortBy {
-      font-size: 0.75rem;
-      color: darkColor(medium);
-      left: 0;
-      &:hover {
-        opacity: 0.8;
-      }
-      .mobile {
-        text-align: center !important;
-        display: none !important;
-      }
+    &__mobile-icon,
+    &__mobile-sort-by {
+      display: none !important;
     }
-  }
-
-  .sort-icon {
-    padding: 0;
-    &.openArrow {
-      width: 0.7rem;
-      height: 1rem;
-      position: relative;
-      top: 0.2rem;
-      left: 0.5rem;
-    }
-  }
-
-  .sortBy {
-    position: relative;
-    white-space: nowrap;
-    font-size: 0.75rem;
-    color: darkColor(medium);
   }
 }

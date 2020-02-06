@@ -20,7 +20,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  className: "button"
+  //className: "button"
 };
 
 export default Button;

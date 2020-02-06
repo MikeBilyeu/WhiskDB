@@ -1,37 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../button";
 import { ReactComponent as SortIcon } from "../../assets/images/SortIcon.svg";
 import { ReactComponent as OpenArrow } from "../../assets/images/openArrow.svg";
 import { abbreviateSortBy } from "./utils";
 import "./sort_button.scss";
 
-const SortButton = ({ sortBy, onClick, sortActive, className, ...props }) => {
+const SortButton = ({ sortBy, onClick, ...props }) => {
   return (
-    <Button onClick={onClick} className={`arrow-style ${className}`}>
-      <SortIcon
-        className="sort-icon mobile"
-        style={{ width: "1.3rem", margin: "auto" }}
-      />
+    <button onClick={onClick} className="sort-btn">
+      <SortIcon className="sort-btn__mobile-icon" />
+      <div className="sort-btn__mobile-sort-by">{abbreviateSortBy(sortBy)}</div>
 
-      <div className="sortBy" style={{ display: "inline" }}>
-        <span className="desktop">
-          Sort by <span style={{ fontWeight: "bold" }}>{sortBy}</span>
-        </span>
-        <span className="mobile"> {abbreviateSortBy(sortBy)}</span>
+      <div className="sort-btn__desktop-sort-by">
+        Sort by <span style={{ fontWeight: "bold" }}>{sortBy}</span>
       </div>
-      <OpenArrow
-        style={{ display: "inline" }}
-        className="sort-icon openArrow desktop"
-      />
-    </Button>
+      <OpenArrow className="sort-btn__desktop-icon" />
+    </button>
   );
 };
 
 SortButton.propTypes = {
   sortBy: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  sortActive: PropTypes.bool.isRequired
+  onClick: PropTypes.func.isRequired
 };
 
 export default SortButton;

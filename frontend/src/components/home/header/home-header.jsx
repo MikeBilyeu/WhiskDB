@@ -25,13 +25,8 @@ const Header = ({
   const { meal, sort } = filterRecipes;
   return (
     <header className="header">
-      <div className="mobile">
-        <SortButton
-          onClick={() => toggleFilterButton("Sort")}
-          sortActive={sortBtnActive}
-          sortBy={sort}
-          className="sort-btn"
-        />
+      <div className="mobile-header">
+        <SortButton onClick={() => toggleFilterButton("Sort")} sortBy={sort} />
         {/*<SearchBar />*/}
         <CategoryButton
           className="categoryBtn"
