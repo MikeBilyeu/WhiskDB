@@ -1,9 +1,6 @@
 @import "../../assets/styles/variables";
 
-.navBar {
-  @media (min-width: 650px) {
-    display: none;
-  }
+.nav-bar {
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -16,30 +13,32 @@
   background-color: rgba(256, 256, 256, 0.95);
   -webkit-backdrop-filter: blur(0.5rem);
   backdrop-filter: blur(0.5rem);
-  z-index: 2;
+  z-index: 4;
 
-  a {
+  &__link {
     display: block;
     width: 100%;
+    height: 2.75rem;
     text-align: center;
     line-height: 4.25rem;
     font-size: 0rem;
     margin: 0rem;
-    height: 2.75rem;
   }
-}
 
-.navIcon {
-  width: 1.5rem;
-  path {
-    stroke-width: 0.2;
-    fill: darkColor(light);
-    stroke: darkColor(light);
+  &__icon {
+    width: 1.5rem;
+    path {
+      stroke-width: 0.2;
+      fill: darkColor(light);
+      stroke: darkColor(light);
+    }
+
+    &--active {
+      path {
+        stroke-width: 2;
+        fill: darkColor(dark);
+        stroke: darkColor(dark);
+      }
+    }
   }
-}
-
-.navActive path {
-  stroke-width: 2;
-  fill: darkColor(dark);
-  stroke: darkColor(dark);
 }

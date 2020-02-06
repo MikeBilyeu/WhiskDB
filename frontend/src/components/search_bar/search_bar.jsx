@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { connect } from "react-redux";
 import {
   getBrowseRecipes,
@@ -54,20 +55,20 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div
-        className={`searchBar ${this.state.focus && "search-active"} ${
-          this.props.className
-        }`}
+        className={classNames("search-bar", {
+          "search-bar--active": this.state.focus
+        })}
         onBlur={this.handleBlur}
       >
         <SearchIcon
-          style={{ fill: this.state.focus ? "#313131" : "#707070" }}
           onClick={this.handleFocus}
-          className="searchIcon"
+          className={classNames("search-bar__icon", {
+            "search-bar__icon--active": this.state.focus
+          })}
         />
         <input
           ref={this.textInput}
-          style={{ width: "100%" }}
-          className="input"
+          className="search-bar__input"
           onChange={this.handleChange}
           onFocus={this.handleFocus}
           onKeyPress={this.handleKeyPress}

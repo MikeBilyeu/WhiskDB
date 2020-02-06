@@ -5,13 +5,13 @@ import "./home-hero.scss";
 const Hero = () => {
   return (
     <div className="hero">
-      <div>
-        <h1>Zipiwisk</h1>
-        <p>
+      <div className="hero__container">
+        <h1 className="hero__title">Zipiwisk</h1>
+        <p className="hero__desc">
           The internet’s source of free recipes.
           <br /> Powered by cooks around the world!
         </p>
-        <SearchBar className="hero-searchBar" />
+        <SearchBar />
       </div>
     </div>
   );

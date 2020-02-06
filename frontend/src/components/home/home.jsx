@@ -1,9 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import MediaQuery from "react-responsive";
 import Header from "./header";
+import HeaderDesktop from "./header_desktop";
 import Hero from "./hero";
 import FilterResults from "../filter_results";
 import Results from "../results";
+
 import {
   getBrowseRecipes,
   getSearchRecipes,
@@ -47,12 +50,25 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
-        <Header
-          filterRecipes={this.props.filterRecipes}
-          handleClick={this.handleClick}
-          isAuth={this.props.isAuth}
-          user_img={this.props.user_img}
-        />
+        <MediaQuery maxDeviceWidth={649}>
+          <Header
+            filterRecipes={this.props.filterRecipes}
+            handleClick={this.handleClick}
+            isAuth={this.props.isAuth}
+            user_img={this.props.user_img}
+          />
+        </MediaQuery>
+
+        <MediaQuery minDeviceWidth={650}>
+          <HeaderDesktop
+            filterRecipes={this.props.filterRecipes}
+            handleClick={this.handleClick}
+            isAuth={this.props.isAuth}
+            user_img={this.props.user_img}
+          />
+          {this.dirtyFilterRecipes() ? null : <Hero />}
+        </MediaQuery>
+
         {this.props.buttonToggled ? (
           <FilterResults
             className={`mobile ${this.props.buttonToggled}`}
@@ -61,8 +77,6 @@ class Home extends React.Component {
             buttonToggled={this.props.buttonToggled}
           />
         ) : null}
-
-        {this.dirtyFilterRecipes() ? null : <Hero />}
 
         <Results
           filterOptionsOpened={this.props.buttonToggled}

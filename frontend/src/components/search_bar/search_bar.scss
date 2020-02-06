@@ -1,6 +1,6 @@
 @import "../../assets/styles/variables";
 
-.searchBar {
+.search-bar {
   padding: 0 0.5rem;
   background-color: lightColor(light);
   height: 2.2rem;
@@ -11,18 +11,25 @@
   border: solid lightColor(light) 0.05rem;
   z-index: 1;
   display: grid;
-  grid-template-columns: 2.2rem 1fr;
+  grid-template-columns: 2rem 1fr;
   box-sizing: border-box;
 
-  .searchIcon {
-    width: 1rem;
+  &__icon {
+    width: 100%;
     margin: auto;
+    padding: 0.5rem;
     cursor: text;
+    fill: darkColor(light);
+
+    &--active {
+      fill: darkColor(dark);
+    }
   }
 
-  .input {
+  &__input {
     all: unset;
     font-size: 0.75rem;
+    width: 100%;
     caret-color: #676767;
     color: darkColor(dark);
     -webkit-text-fill-color: darkColor(dark);
@@ -34,43 +41,22 @@
       opacity: 0.6; /* Firefox */
     }
   }
+
+  &--active {
+    border: solid lightColor(dark) 0.05rem;
+  }
 }
 
-.searchBar.search-active {
-  border: solid lightColor(dark) 0.05rem;
-  //animation: expand 0.2s linear forwards;
+//&--active {
+//   animation: expand 0.2s linear forwards;
+// }
+
+@keyframes expand {
+  0% {
+    width: 60%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
-//
-// @-webkit-keyframes expand {
-//   0% {
-//     width: 2.2rem;
-//   }
-//   100% {
-//     width: 100%;
-//   }
-// }
-// @-moz-keyframes expand {
-//   0% {
-//     width: 2.2rem;
-//   }
-//   100% {
-//     width: 100%;
-//   }
-// }
-// @-o-keyframes expand {
-//   0% {
-//     width: 2.2rem;
-//   }
-//   100% {
-//     width: 100%;
-//   }
-// }
-// @keyframes expand {
-//   0% {
-//     width: 2.2rem;
-//   }
-//
-//   100% {
-//     width: 100%;
-//   }
-// }

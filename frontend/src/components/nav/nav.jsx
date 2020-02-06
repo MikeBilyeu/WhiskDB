@@ -1,10 +1,12 @@
 import React from "react";
+import classNames from "classnames";
+import MediaQuery from "react-responsive";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { getBrowseRecipes } from "../../actions/browseActions";
 import { getMyRecipes, getSavedRecipes } from "../../actions/recipeActions";
-import { ReactComponent as Home } from "../../assets/images/search.svg";
-import { ReactComponent as Profile } from "../../assets/images/profile.svg";
+import { ReactComponent as HomeIcon } from "../../assets/images/search.svg";
+import { ReactComponent as ProfileIcon } from "../../assets/images/profile.svg";
 
 import "./nav.scss";
 
@@ -51,23 +53,25 @@ class Nav extends React.Component {
       return null;
     }
     return (
-      <div className="navBar">
-        <Link to="/">
-          <Home
-            className={
-              "navIcon" + (this.state.nav === "home" ? " navActive" : "")
-            }
-          />
-        </Link>
+      <MediaQuery maxDeviceWidth={649}>
+        <div className="nav-bar">
+          <Link to="/" className="nav-bar__link">
+            <HomeIcon
+              className={classNames("nav-bar__icon", {
+                "nav-bar__icon--active": this.state.nav === "home"
+              })}
+            />
+          </Link>
 
-        <Link to="/profile">
-          <Profile
-            className={
-              "navIcon" + (this.state.nav === "profile" ? " navActive" : "")
-            }
-          />
-        </Link>
-      </div>
+          <Link to="/profile" className="nav-bar__link">
+            <ProfileIcon
+              className={classNames("nav-bar__icon", {
+                "nav-bar__icon--active": this.state.nav === "profile"
+              })}
+            />
+          </Link>
+        </div>
+      </MediaQuery>
     );
   }
 }
