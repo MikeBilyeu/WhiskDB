@@ -30,7 +30,7 @@
       background-color: rgba(0, 0, 0, 0);
       width: 6rem;
       cursor: pointer;
-      color: darkColor(dark);
+      color: darkColor(medium);
       border: none;
       outline: none;
       font-size: 0.9rem;
@@ -38,8 +38,8 @@
         color: $primary-color;
       }
       &.option-active {
+        color: darkColor(medium);
         color: $primary-color;
-        font-weight: bold;
       }
     }
   }
