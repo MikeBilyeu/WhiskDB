@@ -14,12 +14,16 @@
   display: grid;
   grid-template-columns: 2rem 1fr;
   box-sizing: border-box;
+  cursor: text;
+
+  &:hover {
+    border: solid lightColor(dark) 0.05rem;
+  }
 
   &__icon {
     width: 100%;
     margin: auto;
     padding: 0.5rem;
-    cursor: text;
     fill: darkColor(light);
 
     &--active {

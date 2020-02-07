@@ -58,10 +58,10 @@ class SearchBar extends React.Component {
         className={classNames("search-bar", {
           "search-bar--active": this.state.focus
         })}
+        onClick={this.handleFocus}
         onBlur={this.handleBlur}
       >
         <SearchIcon
-          onClick={this.handleFocus}
           className={classNames("search-bar__icon", {
             "search-bar__icon--active": this.state.focus
           })}

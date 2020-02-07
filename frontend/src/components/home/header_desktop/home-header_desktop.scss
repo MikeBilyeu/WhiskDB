@@ -141,6 +141,10 @@
       outline: none;
       font-size: 0.75rem;
       cursor: pointer;
+
+      &:hover {
+        color: $primary-color;
+      }
     }
 
     // Small screen
