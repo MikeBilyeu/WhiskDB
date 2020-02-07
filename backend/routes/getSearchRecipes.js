@@ -5,11 +5,13 @@ const passport = require("passport");
 module.exports = router;
 
 router.get("/", async (request, response) => {
-  let { search } = JSON.parse(request.query.filterRecipes.toLowerCase());
+  let { search, offset } = JSON.parse(
+    request.query.filterRecipes.toLowerCase()
+  );
   const { user_id } = request.query;
   search = search.trim();
   const LIMIT = 10;
-  const OFFSET = 0 * LIMIT;
+  const OFFSET = offset * LIMIT;
 
   try {
     const { rows, rowCount } = await db.query(
@@ -20,7 +22,8 @@ router.get("/", async (request, response) => {
              r.created_at,
              COALESCE(AVG(rw.rating), 0) AS rating,
              CAST(count(distinct rw.*) AS INTEGER) AS num_reviews,
-             COUNT(distinct sr.*) AS num_saves
+             COUNT(distinct sr.*) AS num_saves,
+             COUNT(*) OVER() AS full_count
       FROM recipes r
       LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
       LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved

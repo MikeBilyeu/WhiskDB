@@ -2,9 +2,8 @@ import React from "react";
 import classNames from "classnames";
 import { connect } from "react-redux";
 import {
-  getBrowseRecipes,
-  getSearchRecipes,
-  toggleFilterButton
+  toggleFilterButton,
+  updateFilterRecipe
 } from "../../actions/browseActions";
 import { ReactComponent as SearchIcon } from "../../assets/images/searchIcon.svg";
 import "./search_bar.scss";
@@ -25,31 +24,11 @@ class SearchBar extends React.Component {
   handleChange = e => {
     this.setState({ ...this.state, searchTerm: e.target.value });
   };
-  //console.log(e.target.value);
-  //   this.props.getSearchRecipes({
-  //     ...this.props.browseData,
-  //     search: e.target.value
-  //   });
-  // };
-  //if search is whitespace
-  //   if (!/\S/.test(e.target.value)) {
-  //     this.props.getBrowseRecipes({
-  //       ...this.props.browseData,
-  //       search: e.target.value
-  //     });
-  //   } else {
-  //
-  //   }
-  // };
 
   handleKeyPress = e => {
     if (e.key === "Enter") {
       if (/\S/.test(this.state.searchTerm)) {
-        this.props.getSearchRecipes({
-          ...this.props.browseData,
-          search: this.state.searchTerm,
-          meal: "All Meals"
-        });
+        this.props.updateFilterRecipe("search", this.state.searchTerm);
       }
     }
   };
@@ -98,12 +77,11 @@ class SearchBar extends React.Component {
 
 const mapSateToProps = state => {
   return {
-    browseData: state.browseRecipes.filterRecipes,
     searchTerm: state.browseRecipes.filterRecipes.search
   };
 };
 
 export default connect(
   mapSateToProps,
-  { getBrowseRecipes, getSearchRecipes, toggleFilterButton }
+  { toggleFilterButton, updateFilterRecipe }
 )(SearchBar);

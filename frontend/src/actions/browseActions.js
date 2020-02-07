@@ -10,8 +10,66 @@ import {
   REMOVE_RECIPES
 } from "./types";
 
-// dispatch an action with a type of get browse request
 export const getBrowseRecipes = () => async (dispatch, getState) => {
+  // Get the user_id from state to check if user saved the recipe
+  const {
+    auth: {
+      user: { user_id }
+    },
+    browseRecipes: { filterRecipes }
+  } = getState();
+
+  // Dispatch a browse request sets isFetching: true
+  dispatch({ type: GET_BROWSE_REQUEST });
+  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
+  dispatch({ type: SET_BROWSE_DATA, payload: filterRecipes });
+
+  try {
+    const { data } = await axios.get("/browse-recipe", {
+      params: { filterRecipes, user_id }
+    });
+
+    dispatch({ type: GET_BROWSE_RECIPES, payload: data });
+  } catch (err) {
+    dispatch({ type: GET_ERRORS, payload: err });
+  }
+};
+
+export const updateFilterRecipe = (type, value) => (dispatch, getState) => {
+  // Remove recipes from previous request
+  dispatch({ type: REMOVE_RECIPES });
+
+  if (type === "search") {
+    dispatch({
+      type: SET_BROWSE_DATA,
+      payload: { [type]: value, offset: 0, meal: "All Meals" }
+    });
+    dispatch(getSearchRecipes());
+  } else {
+    dispatch({
+      type: SET_BROWSE_DATA,
+      payload: { [type]: value, offset: 0, search: "" }
+    });
+    dispatch(getBrowseRecipes());
+  }
+};
+
+export const incrementOffset = () => (dispatch, getState) => {
+  const {
+    browseRecipes: { filterRecipes }
+  } = getState();
+
+  if (filterRecipes.search) {
+    dispatch({ type: OFFSET_INCREMENT });
+    dispatch(getSearchRecipes(filterRecipes));
+  } else {
+    dispatch({ type: OFFSET_INCREMENT });
+    dispatch(getBrowseRecipes());
+  }
+};
+
+// dispatch an action with a type of get search request
+export const getSearchRecipes = () => async (dispatch, getState) => {
   // Get the user_id from state to check if user saved the recipe
   const {
     auth: {
@@ -22,59 +80,15 @@ export const getBrowseRecipes = () => async (dispatch, getState) => {
 
   // dispatch a browse request
   dispatch({ type: GET_BROWSE_REQUEST });
-  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
+
   dispatch({ type: SET_BROWSE_DATA, payload: filterRecipes });
-
-  // make axios request
-  try {
-    const res = await axios.get("/browse-recipe", {
-      params: { filterRecipes, user_id }
-    });
-
-    dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
-  } catch (err) {
-    dispatch({ type: GET_ERRORS, payload: err });
-  }
-};
-
-export const updateFilterRecipe = (type, option) => (dispatch, getState) => {
-  dispatch({
-    type: SET_BROWSE_DATA,
-    payload: { [type]: option, search: "", offset: 0 }
-  });
-  // Remove recipes from previous request
-  dispatch({ type: REMOVE_RECIPES });
-  dispatch(getBrowseRecipes());
-};
-
-export const incrementOffset = () => dispatch => {
-  dispatch({ type: OFFSET_INCREMENT });
-  dispatch(getBrowseRecipes());
-};
-
-// dispatch an action with a type of get search request
-export const getSearchRecipes = searchData => async (dispatch, getState) => {
-  console.log("search data:", searchData);
-  //  Get the user_id from state to check if user saved the recipe
-  const {
-    auth: {
-      user: { user_id }
-    }
-  } = getState();
-
-  // dispatch a browse request
-  dispatch({ type: GET_BROWSE_REQUEST });
-
-  dispatch({ type: SET_BROWSE_DATA, payload: searchData });
-
-  // Close filter buttons
-  //dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
 
   try {
     let { data } = await axios.get("/search-recipe", {
-      params: { searchData, user_id }
+      params: { filterRecipes, user_id }
     });
 
+    // dispatch({ type: REMOVE_RECIPES, payload: data });
     dispatch({ type: GET_BROWSE_RECIPES, payload: data });
   } catch (err) {
     console.error(err);

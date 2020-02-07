@@ -24,6 +24,7 @@ class Home extends React.Component {
   }
 
   handleClick = (option, type) => {
+    console.log("test");
     // set the filterRecipes to the option selected
     this.props.updateFilterRecipe(type, option);
     window.scrollTo(0, 0);
@@ -35,16 +36,8 @@ class Home extends React.Component {
 
   dirtyFilterRecipes = () => {
     // Check if user changed the filterRecipes
-    return (
-      JSON.stringify(this.props.filterRecipes) !==
-      JSON.stringify({
-        search: "",
-        meal: "All Meals",
-        diet: "None",
-        sort: "Top Rated",
-        offset: 0
-      })
-    );
+    const { search, meal } = this.props.filterRecipes;
+    return search !== "" || meal !== "All Meals";
   };
 
   render() {

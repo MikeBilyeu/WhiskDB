@@ -15,10 +15,11 @@
   grid-template-columns: 2rem 1fr;
   box-sizing: border-box;
   cursor: text;
+  transition: all 0.1s ease-in;
 
-  &:hover {
-    border: solid lightColor(dark) 0.05rem;
-  }
+  // &:hover {
+  //   border: solid lightColor(dark) 0.05rem;
+  // }
 
   &__icon {
     width: 100%;
@@ -34,7 +35,7 @@
   &__input {
     all: unset;
     font-size: 0.75rem;
-    width: 100%;
+    width: calc(100% - 0.5rem);
     caret-color: #676767;
     color: darkColor(dark);
     -webkit-text-fill-color: darkColor(dark);
@@ -49,6 +50,7 @@
 
   &--active {
     border: solid lightColor(dark) 0.05rem;
+    background-color: #fff;
   }
 }
 
