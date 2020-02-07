@@ -1,30 +1,29 @@
 @import "../../assets/styles/variables";
 
-.filter-btn {
+.category-btn {
   border: none;
-  //border: solid lightColor(dark) 0.07rem;
   background-color: #fff;
-  //border-radius: 0.3rem;
-
   outline: none;
   cursor: pointer;
   font-family: Gelion, Arial, sans-serif, times !important;
-  font-size: 1.3rem;
-  margin: 0.4rem 0 0.5rem 1.6rem !important;
+  font-size: 1rem;
+  //margin: 0.4rem 0 0.5rem 1.6rem !important;
   place-self: center;
   color: darkColor(medium);
   font-weight: bold;
   line-height: 1.5rem;
-  &.filter-active {
+
+  &--active {
     color: $primary-color;
   }
 
-  .filter-arrow {
+  &__icon {
+    display: inline;
     width: 1.1rem;
     margin-left: 0.4rem;
     transition: all 0.2s ease-out;
 
-    &.filter-active {
+    &--active {
       transform: rotate(-90deg);
     }
   }

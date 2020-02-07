@@ -2,7 +2,7 @@
 
 .recipe-results {
   &.active {
-    @media (max-width: 649px) {
+    @media (max-devive-width: 649px) {
       @include dark-overlay;
     }
   }

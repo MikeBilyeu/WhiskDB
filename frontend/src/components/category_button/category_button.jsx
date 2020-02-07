@@ -1,21 +1,26 @@
 import React from "react";
+import classNames from "classnames";
 import PropTypes from "prop-types";
-import Button from "../button";
 import { ReactComponent as Arrow } from "../../assets/images/filterArrow.svg";
 import "./category_button.scss";
 
-const CategoryButton = ({ name, selected, active, handleClick, className }) => {
-  const btnStyle = `filter-btn ${active && "filter-active"} ${selected &&
-    "filter-select"} ${className}`;
-  const arrowStyle = `filter-arrow ${active && "filter-active"}`;
-
+const CategoryButton = ({ name, selected, active, handleClick }) => {
   return (
-    <Button className={btnStyle} onClick={handleClick}>
+    <button
+      className={classNames("category-btn", {
+        "category-btn--active": active,
+        "category-btn--selected": selected
+      })}
+      onClick={handleClick}
+    >
       {name}
-      <span>
-        <Arrow className={arrowStyle} />
-      </span>
-    </Button>
+
+      <Arrow
+        className={classNames("category-btn__icon", {
+          "category-btn__icon--active": active
+        })}
+      />
+    </button>
   );
 };
 

@@ -1,5 +1,8 @@
+@import "../../assets/styles/variables";
+
 .home {
-  .filter-box {
+  .filter-results-sort,
+  .filter-results-meal {
     position: fixed;
     top: 2.5rem;
   }
@@ -8,22 +11,21 @@
     margin-top: 4rem;
   }
 
-  @media (min-width: 650px) {
-    .mobile.Meal {
-      display: none;
-    }
-    .Sort {
+  // Desktop view
+  @media (min-device-width: 650px) {
+    .filter-results-sort,
+    .filter-results-meal {
       width: 9rem;
       position: fixed;
       padding: 1rem 0;
-      right: 1rem;
-      top: 5.5rem;
       background-color: #fff;
-      h2 {
+      border: solid lightColor(medium) 0.05rem;
+      border-radius: 0 0 0.3rem 0.3rem;
+      &__title {
         display: none;
       }
-      ul {
-        button {
+      .filter-list {
+        &__option {
           text-align: center;
           width: 100%;
           font-size: 0.75rem;
@@ -34,6 +36,16 @@
         text-align: center;
         width: 100%;
         display: grid;
+      }
+    }
+    .filter-results-sort {
+      right: 1rem;
+      top: 5.5rem;
+    }
+    @media (max-width: 670px) {
+      .filter-results-meal {
+        left: 1rem;
+        top: 5.5rem;
       }
     }
   }

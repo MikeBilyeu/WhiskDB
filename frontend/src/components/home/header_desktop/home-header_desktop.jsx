@@ -6,6 +6,7 @@ import { toggleFilterButton } from "../../../actions/browseActions";
 import { SortButtonDesktop } from "../../sort_button";
 import SearchBar from "../../search_bar";
 import Logo from "../../../assets/images/zipiwisk-logo.png";
+import { ReactComponent as OpenArrow } from "../../../assets/images/openArrow.svg";
 import userLogo from "../../../assets/images/profileLogo.png";
 import FilterResults from "../../filter_results";
 
@@ -19,7 +20,7 @@ const HeaderDesktop = ({
   isAuth,
   user_img
 }) => {
-  const { sort } = filterRecipes;
+  const { sort, meal } = filterRecipes;
   return (
     <header className="header-d">
       <Link to="/" onClick={() => window.location.reload()}>
@@ -58,6 +59,14 @@ const HeaderDesktop = ({
           </>
         ) : null}
       </div>
+
+      <button
+        className="header-d__category-btn"
+        onClick={() => toggleFilterButton("Meal")}
+      >
+        {meal === "All Meals" ? "All categories" : meal}
+        <OpenArrow className="sort-btn-d__icon" />
+      </button>
 
       <FilterResults
         filterRecipes={filterRecipes}
