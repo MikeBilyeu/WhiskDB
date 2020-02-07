@@ -13,30 +13,42 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
-    this.state = { focus: false };
+    this.state = { focus: false, searchTerm: "" };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.searchTerm !== this.props.searchTerm) {
+      this.setState({ ...this.state, searchTerm: this.props.searchTerm });
+    }
   }
 
   handleChange = e => {
-    //if search is whitespace
-    if (!/\S/.test(e.target.value)) {
-      this.props.getBrowseRecipes({
-        ...this.props.browseData,
-        search: e.target.value
-      });
-    } else {
-      this.props.getSearchRecipes({
-        ...this.props.browseData,
-        search: e.target.value
-      });
-    }
+    this.setState({ ...this.state, searchTerm: e.target.value });
   };
+  //console.log(e.target.value);
+  //   this.props.getSearchRecipes({
+  //     ...this.props.browseData,
+  //     search: e.target.value
+  //   });
+  // };
+  //if search is whitespace
+  //   if (!/\S/.test(e.target.value)) {
+  //     this.props.getBrowseRecipes({
+  //       ...this.props.browseData,
+  //       search: e.target.value
+  //     });
+  //   } else {
+  //
+  //   }
+  // };
 
   handleKeyPress = e => {
     if (e.key === "Enter") {
-      if (/\S/.test(this.props.searchTerm)) {
+      if (/\S/.test(this.state.searchTerm)) {
         this.props.getSearchRecipes({
           ...this.props.browseData,
-          search: this.props.searchTerm
+          search: this.state.searchTerm,
+          meal: "All Meals"
         });
       }
     }
@@ -53,6 +65,7 @@ class SearchBar extends React.Component {
   };
 
   render() {
+    // if redux searchTerm store it in local searchTerm
     return (
       <div
         className={classNames("search-bar", {
@@ -74,7 +87,7 @@ class SearchBar extends React.Component {
           onKeyPress={this.handleKeyPress}
           autoComplete="off"
           placeholder="Search thousands of delicious recipes…"
-          value={this.props.searchTerm}
+          value={this.state.searchTerm}
           type="search"
           aria-label="Search"
         />

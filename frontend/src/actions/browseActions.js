@@ -53,29 +53,32 @@ export const incrementOffset = () => dispatch => {
 };
 
 // dispatch an action with a type of get search request
-export const getSearchRecipes = () => (dispatch, getState) => {
-  // Get the user_id from state to check if user saved the recipe
+export const getSearchRecipes = searchData => async (dispatch, getState) => {
+  console.log("search data:", searchData);
+  //  Get the user_id from state to check if user saved the recipe
   const {
     auth: {
       user: { user_id }
-    },
-    browseRecipes: { filterRecipes }
+    }
   } = getState();
 
   // dispatch a browse request
   dispatch({ type: GET_BROWSE_REQUEST });
 
-  dispatch({ type: SET_BROWSE_DATA, payload: filterRecipes });
-  // close filter buttons
-  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
+  dispatch({ type: SET_BROWSE_DATA, payload: searchData });
 
-  // make axios request
-  axios
-    .get("/search-recipe", { params: { filterRecipes, user_id } })
-    .then(res => {
-      dispatch({ type: GET_BROWSE_RECIPES, payload: res.data });
-    })
-    .catch(err => dispatch({ type: GET_ERRORS, payload: err }));
+  // Close filter buttons
+  //dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
+
+  try {
+    let { data } = await axios.get("/search-recipe", {
+      params: { searchData, user_id }
+    });
+
+    dispatch({ type: GET_BROWSE_RECIPES, payload: data });
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export const toggleFilterButton = buttonName => {
