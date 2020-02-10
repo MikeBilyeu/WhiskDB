@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import Header from "./header";
-import HeaderDesktop from "./header_desktop";
+import HeaderDesktop from "../header_desktop";
+import FilterButtons from "../header_desktop/filter_buttons";
 import Hero from "./hero";
 import FilterResults from "../filter_results";
 import Results from "../results";
@@ -24,7 +25,6 @@ class Home extends React.Component {
   }
 
   handleClick = (option, type) => {
-    console.log("test");
     // set the filterRecipes to the option selected
     this.props.updateFilterRecipe(type, option);
     window.scrollTo(0, 0);
@@ -54,11 +54,15 @@ class Home extends React.Component {
 
         <MediaQuery minDeviceWidth={650}>
           <HeaderDesktop
-            filterRecipes={this.props.filterRecipes}
-            handleClick={this.handleClick}
             isAuth={this.props.isAuth}
             user_img={this.props.user_img}
-          />
+          >
+            <FilterButtons
+              filterRecipes={this.props.filterRecipes}
+              handleClick={this.handleClick}
+            />
+          </HeaderDesktop>
+
           {this.dirtyFilterRecipes() ? null : <Hero />}
         </MediaQuery>
 

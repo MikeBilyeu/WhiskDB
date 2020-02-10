@@ -10,14 +10,13 @@ const Input = ({
   ...props
 }) => {
   return (
-    <label>
+    <label className={className}>
       {label}
       <input
         {...input}
         autoComplete="off"
         type={type}
         placeholder={placeholder}
-        className={className}
       />
       {props.children}
       {touched && error && <div className="error">*{error}</div>}

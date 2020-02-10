@@ -1,23 +1,16 @@
 import React from "react";
-import Button from "../../button";
+import { Link } from "react-router-dom";
 import "./auth-header.scss";
 
-const Header = ({ page, onClick }) => {
+const Header = () => {
   return (
     <div className="auth-header">
-      <Button
-        className={"button " + (page === "Login" ? "active" : "")}
-        onClick={() => onClick("Login")}
-      >
+      <Link to="/auth/login" className="auth-header__btn">
         Login
-      </Button>
-
-      <Button
-        className={"button " + (page === "Signup" ? "active" : "")}
-        onClick={() => onClick("Signup")}
-      >
+      </Link>
+      <Link to="/auth/signup" className="auth-header__btn">
         Signup
-      </Button>
+      </Link>
     </div>
   );
 };

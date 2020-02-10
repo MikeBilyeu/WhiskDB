@@ -5,39 +5,28 @@ import { registerUser } from "../../../actions/auth";
 import { validateSignup } from "../utils/validation";
 import asyncValidate from "../utils/async-validation";
 import Input from "../../form_inputs/input";
-import Button from "../../button";
 import "../auth.scss";
 
 class Signup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showPassword: false
-    };
-  }
-
-  handleClick = e => {
-    e.preventDefault();
-    this.setState(prevState => {
-      return { showPassword: !prevState.showPassword };
-    });
-  };
-
   render() {
     const lower = value => value && value.toLowerCase();
 
     return (
       <form
-        className="auth-form"
+        className="signup-form"
         onSubmit={this.props.handleSubmit(this.props.registerUser)}
       >
-        <h1>Make an Account. It's Easy!</h1>
+        <h1 className="signup-form__title">
+          Make an Account with Zipiwisk.
+          <br /> It’s Easy & Free!
+        </h1>
         <Field
           name="username"
           component={Input}
           inputId="username"
           placeholder="Username"
           label="Username"
+          className="signup-form__input"
         />
         <Field
           name="email"
@@ -46,6 +35,7 @@ class Signup extends Component {
           placeholder="Enter your email"
           normalize={lower}
           label="Email"
+          className="signup-form__input"
         />
 
         <Field
@@ -54,13 +44,12 @@ class Signup extends Component {
           inputId="password"
           placeholder="Enter a password"
           label="Password"
-          type={this.state.showPassword ? "text" : "password"}
-        >
-          <Button className="show-hide" onClick={this.handleClick}>
-            {this.state.showPassword ? "hide" : "show"}
-          </Button>
-        </Field>
-        <button type="submit">Sign up</button>
+          type="password"
+          className="signup-form__input"
+        />
+        <button className="signup-form__sbmt-btn" type="submit">
+          Sign up
+        </button>
       </form>
     );
   }

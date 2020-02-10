@@ -4,31 +4,16 @@ import { connect } from "react-redux";
 import { loginUser, googleLogin } from "../../../actions/auth";
 import { validateLogin } from "../utils/validation";
 import Input from "../../form_inputs/input";
-import Button from "../../button";
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showPassword: false
-    };
-  }
-
-  handleClick = e => {
-    e.preventDefault();
-    this.setState(prevState => {
-      return { showPassword: !prevState.showPassword };
-    });
-  };
-
   render() {
     const lower = value => value && value.toLowerCase();
     return (
       <form
-        className="auth-form"
+        className="login-form"
         onSubmit={this.props.handleSubmit(this.props.loginUser)}
       >
-        <h1>
+        <h1 className="login-form__title">
           Already Have an Account?
           <br />
           Just Login!
@@ -40,6 +25,7 @@ class Login extends Component {
           placeholder="Enter your email"
           normalize={lower}
           label="Email"
+          className="login-form__input"
         />
 
         <Field
@@ -48,19 +34,12 @@ class Login extends Component {
           inputId="password"
           placeholder="Enter your password"
           label="Password"
-          className="password-input"
-          type={this.state.showPassword ? "text" : "password"}
-        >
-          <Button className="show-hide" onClick={this.handleClick}>
-            {this.state.showPassword ? "hide" : "show"}
-          </Button>
-        </Field>
-
-        <button type="submit">Log In</button>
-        {/*<div style={{ textAlign: "center" }}>Or</div>
-        <div className="google-login" onClick={() => this.props.googleLogin()}>
-          Log In with Google
-        </div>*/}
+          type="password"
+          className="login-form__input"
+        />
+        <button className="signup-form__sbmt-btn" type="submit">
+          Log In
+        </button>
       </form>
     );
   }

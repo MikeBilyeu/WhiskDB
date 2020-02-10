@@ -1,19 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
+import MediaQuery from "react-responsive";
+import { Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import Header from "./header";
+import HeaderDesktop from "../header_desktop";
 import Login from "./login";
 import Signup from "./signup";
 import "./auth.scss";
 
 class Auth extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: "Login"
-    };
-  }
-
   componentDidMount() {
     document.title = "Zipiwhisk | The internet’s source of free recipes.";
     // If logged in and user auth redirect to profile
@@ -29,16 +25,20 @@ class Auth extends React.Component {
     }
   }
 
-  handleClick = page => {
-    this.setState({ page });
-  };
-
   render() {
-    const page = this.state.page;
+    //const page = this.state.page;
     return (
-      <div>
-        <Header page={page} onClick={this.handleClick} />
-        {page === "Login" ? <Login /> : <Signup />}
+      <div className="auth-page">
+        <MediaQuery maxDeviceWidth={649}>
+          <Header />
+        </MediaQuery>
+        <MediaQuery minDeviceWidth={650}>
+          <HeaderDesktop />
+        </MediaQuery>
+        <Switch>
+          <Route path="/auth/signup" component={Signup} />
+          <Route path="/auth" component={Login} />
+        </Switch>
       </div>
     );
   }
