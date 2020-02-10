@@ -56,23 +56,27 @@ class RecipeDisplay extends React.Component {
     } = this.props.recipe;
 
     return (
-      <li>
-        <Link className="recipe-card" to={`/recipe/${recipe_id}`}>
-          <img className="thumbnail loading" src={image_url} alt="" />
-          <div className="title">{title}</div>
-          <div className="recipe-meta">
+      <li className="recipe-card">
+        <Link to={`/recipe/${recipe_id}`}>
+          <img
+            className="recipe-card__thumbnail loading"
+            src={image_url}
+            alt=""
+          />
+
+          <div className="recipe-card__title">{title}</div>
+          <div className="recipe-card__meta">
             <Rating
-              className="rating results-view"
+              className="recipe-card__rating"
               rating={rating}
               votes={num_reviews}
             />
-            <div className="time">
-              <img src={clock} alt="" />
+            <div className="recipe-card__time">
+              <img className="recipe-card__icon" src={clock} alt="" />
               {this.convertTime(total_time_mins)}
             </div>
-
-            <div className="saves">
-              <SaveIcon style={{ width: ".9rem", fill: "#E2E2E2" }} />
+            <div className="recipe-card__saves">
+              <SaveIcon className="recipe-card__icon" />
               {this.convertSaves(num_saves)}
             </div>
           </div>

@@ -2,8 +2,11 @@
 
 .recipe-card {
   &:hover {
-    opacity: 0.8;
+    .recipe-card__thumbnail {
+      opacity: 0.8;
+    }
   }
+  position: relative;
   display: grid;
   grid-template-areas:
     "thumbnail"
@@ -16,14 +19,14 @@
   margin: 0 auto;
   text-align: left;
 
-  .thumbnail {
+  &__thumbnail {
     grid-area: thumbnail;
     min-height: 9rem;
     max-height: 9rem;
     width: 100%;
     object-fit: cover;
     transition: all 0.2s;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     border-radius: 0.15rem;
     box-shadow: 0 0.5rem 0.9rem 0 rgba(0, 0, 0, 0.1);
     &.loading {
@@ -33,8 +36,8 @@
     }
   }
 
-  .title {
-    font-size: 1rem;
+  &__title {
+    font-size: 0.9rem;
     font-weight: bold;
     letter-spacing: -0.5px;
     line-height: 1.4rem;
@@ -42,56 +45,65 @@
     margin: 0 0.4rem;
     grid-area: title;
   }
-  .recipe-meta {
+
+  &__meta {
     grid-area: rt;
     margin: 0 0.1rem;
     color: darkColor(light);
     font-family: Arial !important;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     white-space: nowrap;
     display: grid;
-    grid-template-columns: 3fr 3fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-gap: 0.3rem;
     place-items: center;
+  }
 
-    .rating {
-      justify-self: start;
-      .votes {
-        font-size: 0.9rem;
-      }
+  &__rating {
+    justify-self: start;
+    grid-template-columns: 1fr 1fr !important;
+    grid-gap: 0.25rem;
+    width: 7.5rem;
+    .votes {
+      font-size: 0.75rem !important;
     }
+  }
 
-    .time {
-      @include grid-center;
-      grid-auto-flow: column;
-      grid-gap: 0.2rem;
-      img {
-        width: 0.9rem;
-      }
-    }
-    .saves {
-      @extend .time;
-    }
+  &__icon {
+    width: 0.9rem;
+    fill: #e2e2e2;
+  }
+
+  &__time,
+  &__saves {
+    @include grid-center;
+    grid-auto-flow: column;
+    grid-gap: 0.2rem;
+  }
+
+  &__saves {
+    justify-self: end;
+    padding: 0 0.5rem;
   }
 }
 
 .recipe-card.loading {
   grid-gap: 0.5rem;
   width: 100%;
-  .thumbnail {
+  &__thumbnail {
     background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
     background-size: 200% 200%;
     animation: Animation 3s ease-in infinite;
   }
-  .title,
-  .recipe-meta {
+  &__title,
+  &__recipe-meta {
     margin: 0 0.2rem;
     width: 75%;
     height: 1rem;
     background-color: lightColor(light);
     border-radius: 0.2rem;
   }
-  .recipe-meta {
+  &__recipe-meta {
     width: 100%;
   }
 }

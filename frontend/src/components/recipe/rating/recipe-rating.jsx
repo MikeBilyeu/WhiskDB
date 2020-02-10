@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { ReactComponent as Star } from "../../../assets/images/star.svg";
 import "./recipe-rating.scss";
 
@@ -34,14 +35,19 @@ class Rating extends React.Component {
 
   renderRating = () => {
     return this.state.starColor.map((color, i) => {
-      return <Star key={"star" + i} style={{ width: "1.3rem", fill: color }} />;
+      return <Star key={"star" + i} style={{ width: "1.2rem", fill: color }} />;
     });
   };
 
   render() {
     const { votes } = this.props;
     return (
-      <div className="rating" onClick={this.props.onClick}>
+      <div
+        className={classNames("rating", {
+          [this.props.className]: this.props.className
+        })}
+        onClick={this.props.onClick}
+      >
         <div className="stars">{this.renderRating()}</div>
         <div className="votes">{`(${
           votes > 1000 ? parseFloat((votes / 1000).toFixed(1)) + "k" : votes
