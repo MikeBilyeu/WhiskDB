@@ -36,6 +36,7 @@ export const getBrowseRecipes = () => async (dispatch, getState) => {
 };
 
 export const updateFilterRecipe = (type, value) => (dispatch, getState) => {
+  console.log("type:", type);
   // Remove recipes from previous request
   dispatch({ type: REMOVE_RECIPES });
 

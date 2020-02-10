@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
 import {
   getMyRecipes,
@@ -7,6 +8,7 @@ import {
   toggleSortButton,
   updateFilterRecipe
 } from "../../../actions/recipeActions";
+import HeaderDesktop from "../../header_desktop";
 import FilterResults from "../../filter_results";
 import Header from "./header";
 import PageToggle from "./page_toggle";
@@ -50,6 +52,9 @@ class Home extends React.PureComponent {
 
     return (
       <div className="profile">
+        <MediaQuery minDeviceWidth={650}>
+          <HeaderDesktop isAuth={true} user_img={image_url} />
+        </MediaQuery>
         <Header
           fullName={full_name}
           diet={diet === "none" ? null : diet}

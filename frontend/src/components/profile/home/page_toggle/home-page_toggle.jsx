@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Button from "../../../button";
 import CategoryButton from "../../../category_button";
 import { toggleFilterButton } from "../../../../actions/browseActions";
-import "./hoem-page_toggle.scss";
+import "./home-page_toggle.scss";
 
 const PageToggle = ({
   page,

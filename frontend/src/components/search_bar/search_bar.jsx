@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import {
   toggleFilterButton,
   updateFilterRecipe
@@ -14,8 +15,11 @@ class SearchBar extends React.Component {
     this.textInput = React.createRef();
     this.state = { focus: false, searchTerm: "" };
   }
+  componentDidMount() {
+    this.setState({ searchTerm: this.props.searchTerm });
+  }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.searchTerm !== this.props.searchTerm) {
       this.setState({ ...this.state, searchTerm: this.props.searchTerm });
     }
@@ -28,6 +32,7 @@ class SearchBar extends React.Component {
   handleKeyPress = e => {
     if (e.key === "Enter") {
       if (/\S/.test(this.state.searchTerm)) {
+        this.props.history.push("/");
         this.props.updateFilterRecipe("search", this.state.searchTerm);
       }
     }
@@ -81,7 +86,9 @@ const mapSateToProps = state => {
   };
 };
 
-export default connect(
-  mapSateToProps,
-  { toggleFilterButton, updateFilterRecipe }
-)(SearchBar);
+export default withRouter(
+  connect(
+    mapSateToProps,
+    { toggleFilterButton, updateFilterRecipe }
+  )(SearchBar)
+);

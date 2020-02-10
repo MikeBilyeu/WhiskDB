@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   recipes: [],
-  isFetching: true,
+  isFetching: false,
   filterRecipes: {
     search: "",
     meal: "All Meals",
