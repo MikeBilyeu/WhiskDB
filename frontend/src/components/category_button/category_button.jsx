@@ -1,8 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { toggleFilterButton } from "../../actions/browseActions";
 import { ReactComponent as Arrow } from "../../assets/images/filterArrow.svg";
 import { ReactComponent as DesktopArrow } from "../../assets/images/openArrow.svg";
 import "./category_button.scss";
@@ -10,10 +8,10 @@ import "./category_button.scss";
 const CategoryButton = ({
   meal,
   className,
-  buttonToggled,
+  activeFilterBtn,
   toggleFilterButton
 }) => {
-  const active = buttonToggled === "Meal";
+  const active = activeFilterBtn === "Meal";
   return (
     <button
       className={classNames(`${className}`, {
@@ -36,16 +34,11 @@ const CategoryButton = ({
   );
 };
 
-const mapStatetoProps = state => ({
-  buttonToggled: state.browseRecipes.toggleFilterButton,
-  meal: state.browseRecipes.filterRecipes.meal
-});
-
 CategoryButton.propTypes = {
-  className: PropTypes.string.isRequired
+  className: PropTypes.string.isRequired,
+  meal: PropTypes.string.isRequired,
+  activeFilterBtn: PropTypes.string.isRequired,
+  toggleFilterButton: PropTypes.func.isRequired
 };
 
-export default connect(
-  mapStatetoProps,
-  { toggleFilterButton }
-)(CategoryButton);
+export default CategoryButton;

@@ -4,7 +4,7 @@ import {
   USER_LOADING,
   TOGGLE_DELETE,
   SET_PROFILE_FILTER_DATA,
-  TOGGLE_FILTER_BUTTON
+  TOGGLE_FILTER_BUTTON_PROFILE
 } from "../actions/types";
 const initialState = {
   isAuthenticated: false,
@@ -12,9 +12,9 @@ const initialState = {
   loading: false,
   openDelete: false,
   filterRecipes: { meal: "All Meals" },
-  toggleFilterButton: null
+  activeFilterBtn: null
 };
-//state.browseRecipes.toggleFilterButton
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_CURRENT_USER:
@@ -28,16 +28,16 @@ export default function(state = initialState, action) {
       return initialState;
     case SET_PROFILE_FILTER_DATA:
       return { ...state, filterRecipes: action.payload };
-    case TOGGLE_FILTER_BUTTON:
-      if (action.payload === state.toggleFilterButton)
+    case TOGGLE_FILTER_BUTTON_PROFILE:
+      if (action.payload === state.activeFilterBtn)
         return {
           ...state,
-          toggleFilterButton: null
+          activeFilterBtn: null
         };
       else {
         return {
           ...state,
-          toggleFilterButton: action.payload
+          activeFilterBtn: action.payload
         };
       }
     case GET_USER:

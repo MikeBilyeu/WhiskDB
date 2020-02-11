@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import {
-  toggleFilterButton,
+  toggleFilterBtnBrowse,
   updateFilterRecipe
 } from "../../actions/browseActions";
 import { ReactComponent as SearchIcon } from "../../assets/images/searchIcon.svg";
@@ -40,7 +40,7 @@ class SearchBar extends React.Component {
 
   handleFocus = () => {
     this.setState({ focus: true });
-    this.props.toggleFilterButton(null);
+    this.props.toggleFilterBtnBrowse(null);
     this.textInput.current.focus();
   };
 
@@ -89,6 +89,6 @@ const mapSateToProps = state => {
 export default withRouter(
   connect(
     mapSateToProps,
-    { toggleFilterButton, updateFilterRecipe }
+    { toggleFilterBtnBrowse, updateFilterRecipe }
   )(SearchBar)
 );

@@ -5,7 +5,8 @@ import {
   GET_BROWSE_RECIPES,
   GET_BROWSE_REQUEST,
   SET_BROWSE_DATA,
-  TOGGLE_FILTER_BUTTON,
+  TOGGLE_FILTER_BUTTON_BROWSE,
+  TOGGLE_FILTER_BUTTON_PROFILE,
   OFFSET_INCREMENT,
   REMOVE_RECIPES
 } from "./types";
@@ -21,7 +22,7 @@ export const getBrowseRecipes = () => async (dispatch, getState) => {
 
   // Dispatch a browse request sets isFetching: true
   dispatch({ type: GET_BROWSE_REQUEST });
-  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
+  dispatch({ type: TOGGLE_FILTER_BUTTON_BROWSE, payload: null });
   dispatch({ type: SET_BROWSE_DATA, payload: filterRecipes });
 
   try {
@@ -96,6 +97,10 @@ export const getSearchRecipes = () => async (dispatch, getState) => {
   }
 };
 
-export const toggleFilterButton = buttonName => {
-  return { type: TOGGLE_FILTER_BUTTON, payload: buttonName };
+export const toggleFilterBtnBrowse = buttonName => {
+  return { type: TOGGLE_FILTER_BUTTON_BROWSE, payload: buttonName };
+};
+
+export const toggleFilterBtnProfile = buttonName => {
+  return { type: TOGGLE_FILTER_BUTTON_PROFILE, payload: buttonName };
 };

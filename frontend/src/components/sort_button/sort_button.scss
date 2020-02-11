@@ -1,7 +1,7 @@
 @import "../../assets/styles/variables";
 
 // Mobile styles
-.sort-btn {
+.sort-btn-m {
   border: none;
   background-color: #fff;
   outline: none;
@@ -13,17 +13,25 @@
   height: 2.5rem;
   justify-self: start;
 
-  &__icon {
+  &__icon-m {
     padding: 0;
     width: 1.1rem;
     margin: 0 auto;
+  }
+  &__icon-d,
+  &__sort-by-d {
+    display: none;
   }
 }
 
 // Desktop styles
 .sort-btn-d {
-  @extend .sort-btn;
+  &__icon-m,
+  &__sort-by-m {
+    display: none;
+  }
 
+  @extend .sort-btn-m;
   width: 9rem;
   height: 2rem;
   justify-self: end;
@@ -35,16 +43,21 @@
     color: $primary-color;
   }
 
-  &__icon {
+  &__icon-d {
     width: 0.7rem;
     height: 1rem;
     position: relative;
     top: 0.2rem;
     left: 0.5rem;
+    transition: all 0.2s ease-out;
+
+    &--active {
+      transform: rotate(-90deg);
+    }
   }
 
-  &__icon,
-  &__sort-by {
+  &__icon-d,
+  &__sort-by-d {
     display: inline;
   }
 }

@@ -1,50 +1,33 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { toggleFilterButton } from "../../../actions/browseActions";
-import { SortButton } from "../../sort_button";
+import SortButton from "../../sort_button";
 import CategoryButton from "../../category_button";
 import SearchBar from "../../search_bar";
+import { toggleFilterBtnBrowse } from "../../../actions/browseActions";
 
 import "./home-header.scss";
 
-const Header = ({
-  filterRecipes,
-  buttonToggled,
-  handleClick,
-  toggleFilterButton,
-  isAuth,
-  user_img
-}) => {
-  const mealBtnActive = buttonToggled === "Meal";
-  const sortBtnActive = buttonToggled === "Sort";
-  const { meal, sort } = filterRecipes;
+const Header = ({ meal, activeFilterBtn, toggleFilterBtnBrowse }) => {
   return (
     <header className="header">
-      <SortButton onClick={() => toggleFilterButton("Sort")} sortBy={sort} />
-      <CategoryButton className="category-btn" />
+      <SortButton className="sort-btn-m" />
+      <CategoryButton
+        className="category-btn-m"
+        meal={meal}
+        activeFilterBtn={activeFilterBtn}
+        toggleFilterButton={toggleFilterBtnBrowse}
+      />
       {/*<SearchBar />*/}
     </header>
   );
 };
 
-Header.propTypes = {
-  filterRecipes: PropTypes.object.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  activeFilterBtn: PropTypes.string.isRequired,
-  toggleFilterButton: PropTypes.func.isRequired,
-  isAuth: PropTypes.bool.isRequired
-};
+const mapSateToProps = state => ({
+  meal: state.browseRecipes.filterRecipes.meal,
+  activeFilterBtn: state.browseRecipes.activeFilterBtn
+});
 
 export default connect(
-  null,
-  { toggleFilterButton }
+  mapSateToProps,
+  { toggleFilterBtnBrowse }
 )(Header);
-
-// <CategoryButton
-//   className="categoryBtn"
-//   active={mealBtnActive}
-//   name={meal === "All Meals" ? "Categories" : meal}
-//   selected={meal !== "All Meals"}
-//   handleClick={() => toggleFilterButton("Meal")}
-// />

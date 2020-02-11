@@ -11,7 +11,7 @@ import {
   SORT_SAVED_RECIPES,
   TOGGLE_SORT_BUTTON,
   GET_SCRAPE_URL_REQUEST,
-  TOGGLE_FILTER_BUTTON,
+  TOGGLE_FILTER_BUTTON_PROFILE,
   SET_PROFILE_FILTER_DATA
 } from "./types";
 
@@ -40,7 +40,7 @@ export const getSavedRecipes = () => async (dispatch, getState) => {
   } = getState();
 
   dispatch({ type: GET_SAVED_RECIPES_REQUEST });
-  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
+  dispatch({ type: TOGGLE_FILTER_BUTTON_PROFILE, payload: null });
   dispatch({ type: SET_PROFILE_FILTER_DATA, payload: filterRecipes });
 
   try {
@@ -57,7 +57,7 @@ export const getMyRecipes = () => async (dispatch, getState) => {
   } = getState();
 
   dispatch({ type: GET_MY_RECIPES_REQUEST });
-  dispatch({ type: TOGGLE_FILTER_BUTTON, payload: null });
+  dispatch({ type: TOGGLE_FILTER_BUTTON_PROFILE, payload: null });
   dispatch({ type: SET_PROFILE_FILTER_DATA, payload: filterRecipes });
   try {
     const res = await axios.get("/my-recipe", { params: filterRecipes });

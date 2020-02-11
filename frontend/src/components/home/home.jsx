@@ -66,17 +66,17 @@ class Home extends React.Component {
           {this.dirtyFilterRecipes() ? null : <Hero />}
         </MediaQuery>
 
-        {this.props.buttonToggled ? (
+        {this.props.activeFilterBtn ? (
           <FilterResults
-            className={`mobile ${this.props.buttonToggled}`}
+            className={`mobile ${this.props.activeFilterBtn}`}
             filterRecipes={this.props.filterRecipes}
             handleClick={this.handleClick}
-            buttonToggled={this.props.buttonToggled}
+            buttonToggled={this.props.activeFilterBtn}
           />
         ) : null}
 
         <Results
-          filterOptionsOpened={this.props.buttonToggled}
+          filterOptionsOpened={this.props.activeFilterBtn}
           recipes={this.props.recipes.recipes}
           isFetching={this.props.recipes.isFetching}
           handleClick={this.handleLoadMoreClick}
@@ -87,7 +87,7 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  buttonToggled: state.browseRecipes.toggleFilterButton,
+  activeFilterBtn: state.browseRecipes.activeFilterBtn,
   recipes: state.browseRecipes,
   filterRecipes: state.browseRecipes.filterRecipes,
   user_id: state.auth.user.user_id,

@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 import {
   getMyRecipes,
   getSavedRecipes,
-  toggleSortButton,
   updateFilterRecipe
 } from "../../../actions/recipeActions";
 import HeaderDesktop from "../../header_desktop";
@@ -68,22 +67,22 @@ class Home extends React.PureComponent {
           numPosted={myRecipes.length}
           isFetching={this.props.isFetching}
         />
-        {this.props.buttonToggled ? (
+        {this.props.activeFilterBtn ? (
           <FilterResults
             filterRecipes={this.props.filterRecipes}
-            buttonToggled={this.props.buttonToggled}
+            buttonToggled={this.props.activeFilterBtn}
             handleClick={this.handleFilterClick}
           />
         ) : null}
         {page === "saved" ? (
           <Results
-            filterOptionsOpened={this.props.buttonToggled}
+            filterOptionsOpened={this.props.activeFilterBtn}
             recipes={savedRecipes}
             isFetching={this.props.isFetching}
           />
         ) : (
           <Results
-            filterOptionsOpened={this.props.buttonToggled}
+            filterOptionsOpened={this.props.activeFilterBtn}
             recipes={myRecipes}
             isFetching={this.props.isFetching}
           />
@@ -95,7 +94,7 @@ class Home extends React.PureComponent {
 
 const mapStateToProps = state => ({
   filterRecipes: state.auth.filterRecipes,
-  buttonToggled: state.auth.toggleFilterButton,
+  activeFilterBtn: state.auth.activeFilterBtn,
   auth: state.auth,
   savedRecipes: state.savedRecipes.recipes,
   myRecipes: state.myRecipes.recipes,
@@ -105,6 +104,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getMyRecipes, getSavedRecipes, toggleSortButton, updateFilterRecipe }
+    { getMyRecipes, getSavedRecipes, updateFilterRecipe }
   )(Home)
 );

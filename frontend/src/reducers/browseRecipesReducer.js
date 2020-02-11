@@ -2,7 +2,7 @@ import {
   GET_BROWSE_RECIPES,
   GET_BROWSE_REQUEST,
   SET_BROWSE_DATA,
-  TOGGLE_FILTER_BUTTON,
+  TOGGLE_FILTER_BUTTON_BROWSE,
   OFFSET_INCREMENT,
   REMOVE_RECIPES
 } from "../actions/types";
@@ -17,7 +17,7 @@ const initialState = {
     sort: "Top Rated",
     offset: 0
   },
-  toggleFilterButton: null
+  activeFilterBtn: null
 };
 
 export default function(state = initialState, action) {
@@ -49,16 +49,16 @@ export default function(state = initialState, action) {
         }
       };
 
-    case TOGGLE_FILTER_BUTTON:
-      if (action.payload === state.toggleFilterButton) {
+    case TOGGLE_FILTER_BUTTON_BROWSE:
+      if (action.payload === state.activeFilterBtn) {
         return {
           ...state,
-          toggleFilterButton: null
+          activeFilterBtn: null
         };
       } else {
         return {
           ...state,
-          toggleFilterButton: action.payload
+          activeFilterBtn: action.payload
         };
       }
     default:

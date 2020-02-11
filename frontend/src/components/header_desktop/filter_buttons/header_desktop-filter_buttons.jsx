@@ -1,30 +1,41 @@
 import React from "react";
 import { connect } from "react-redux";
 import FilterResults from "../../filter_results";
-import { SortButtonDesktop } from "../../sort_button";
+import SortButton from "../../sort_button";
 import CategoryButton from "../../category_button";
-import { toggleFilterButton } from "../../../actions/browseActions";
+import { toggleFilterBtnBrowse } from "../../../actions/browseActions";
 
-const FitlerButtons = ({ toggleFilterButton, filterRecipes, handleClick }) => {
-  const { sort } = filterRecipes;
+const FitlerButtons = ({
+  filterRecipes,
+  handleClick,
+  meal,
+  activeFilterBtn,
+  toggleFilterBtnBrowse
+}) => {
   return (
     <>
-      <CategoryButton className="category-btn-desktop" />
-
+      <CategoryButton
+        className="category-btn-d"
+        meal={meal}
+        activeFilterBtn={activeFilterBtn}
+        toggleFilterButton={toggleFilterBtnBrowse}
+      />
       <FilterResults
         filterRecipes={filterRecipes}
         handleClick={handleClick}
         buttonToggled="Meal"
       />
-      <SortButtonDesktop
-        onClick={() => toggleFilterButton("Sort")}
-        sortBy={sort}
-      />
+      <SortButton className="sort-btn-d" />
     </>
   );
 };
 
+const mapSateToProps = state => ({
+  meal: state.browseRecipes.filterRecipes.meal,
+  activeFilterBtn: state.browseRecipes.activeFilterBtn
+});
+
 export default connect(
-  null,
-  { toggleFilterButton }
+  mapSateToProps,
+  { toggleFilterBtnBrowse }
 )(FitlerButtons);

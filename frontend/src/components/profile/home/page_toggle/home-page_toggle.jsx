@@ -4,26 +4,30 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import Button from "../../../button";
 import CategoryButton from "../../../category_button";
-import { toggleFilterButton } from "../../../../actions/browseActions";
+import { toggleFilterBtnProfile } from "../../../../actions/browseActions";
 import "./home-page_toggle.scss";
 
 const PageToggle = ({
   page,
   onClick,
-  activeFilterBtn,
   meal,
-  toggleFilterButton,
   numSaved,
   numPosted,
   isFetching,
-  savedRecipes
+  savedRecipes,
+  activeFilterBtn,
+  toggleFilterBtnProfile
 }) => {
   const savedActive = page === "saved";
   const postedActive = !savedActive;
-  const mealBtnActive = activeFilterBtn === "Meal";
   return (
     <div className="page-toggle">
-      <CategoryButton className="category-btn" />
+      <CategoryButton
+        className="category-btn-d"
+        meal={meal}
+        activeFilterBtn={activeFilterBtn}
+        toggleFilterButton={toggleFilterBtnProfile}
+      />
 
       <button
         className={classNames("page-toggle__btn", {
@@ -47,8 +51,8 @@ const PageToggle = ({
 };
 
 const mapSateToProps = state => ({
-  activeFilterBtn: state.browseRecipes.toggleFilterButton,
-  meal: state.auth.filterRecipes.meal
+  meal: state.auth.filterRecipes.meal,
+  activeFilterBtn: state.auth.activeFilterBtn
 });
 
 PageToggle.propTypes = {
@@ -61,5 +65,5 @@ PageToggle.propTypes = {
 
 export default connect(
   mapSateToProps,
-  { toggleFilterButton }
+  { toggleFilterBtnProfile }
 )(PageToggle);
