@@ -10,7 +10,7 @@ import {
 } from "../../../actions/recipeActions";
 import HeaderDesktop from "../../header_desktop";
 import FilterResults from "../../filter_results";
-import Header from "./header";
+import UserInfo from "./user_info";
 import PageToggle from "./page_toggle";
 import Results from "../../results";
 
@@ -51,11 +51,11 @@ class Home extends React.PureComponent {
     const { savedRecipes, myRecipes } = this.props;
 
     return (
-      <div className="profile">
+      <div className="profile-home">
         <MediaQuery minDeviceWidth={650}>
           <HeaderDesktop isAuth={true} user_img={image_url} />
         </MediaQuery>
-        <Header
+        <UserInfo
           fullName={full_name}
           diet={diet === "none" ? null : diet}
           image_url={image_url}

@@ -1,11 +1,86 @@
 @import "../../../assets/styles/variables";
 
-.profile {
+.profile-home {
   @include grid-center;
 
   .filter-box {
     position: sticky;
     z-index: 3;
     top: 5.2rem;
+  }
+}
+
+@media (min-device-width: 650px) {
+  .profile-home {
+    position: relative;
+    top: 3rem;
+
+    .header-d {
+      border: none;
+    }
+
+    .user-info {
+      padding: 0 !important;
+      top: 8rem;
+      left: 50%;
+      margin-left: -12.5rem;
+      max-width: 25rem;
+      grid-template-columns: 1fr 1fr;
+      place-items: center !important;
+
+      &__full-name {
+        font-size: 2rem;
+      }
+
+      &__edit {
+        img {
+          width: 11rem;
+          height: 11rem;
+          border-radius: 100%;
+          border: solid lightColor(medium) 0.1rem;
+          padding: 0.4rem;
+        }
+      }
+
+      &__create-recipe {
+        display: none;
+      }
+
+      &__edit-profile-btn {
+        border: solid lightColor(dark) 0.05rem;
+        white-space: nowrap;
+        padding: 0.4rem 1.5rem;
+        color: darkColor(light);
+        font-weight: medium;
+        border-radius: 0.2rem;
+        display: block;
+        font-size: 0.8rem;
+
+        &:hover {
+          border: solid $primary-color 0.05rem;
+          color: $primary-color;
+        }
+      }
+    }
+
+    .page-toggle {
+      margin-top: 15rem;
+      top: 3rem;
+      padding: 0.5rem 0.5rem 0 0.5rem;
+      grid-gap: 1rem;
+
+      grid-template-columns: 6rem 6rem 1fr;
+      grid-template-rows: 1fr;
+
+      &__cat-btn {
+        grid-column: 3 / 4;
+      }
+
+      &__btn {
+        grid-row: 1 / 2;
+        width: 6rem;
+        font-weight: 500 !important;
+      }
+    }
   }
 }

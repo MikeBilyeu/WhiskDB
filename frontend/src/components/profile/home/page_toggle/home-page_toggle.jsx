@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import classNames from "classnames";
 import PropTypes from "prop-types";
 import Button from "../../../button";
 import CategoryButton from "../../../category_button";
@@ -17,31 +18,35 @@ const PageToggle = ({
   isFetching,
   savedRecipes
 }) => {
-  const savedActive = page === "saved" ? "active" : "";
-  const myRecipesActive = page === "myRecipes" ? "active" : "";
+  const savedActive = page === "saved";
+  const postedActive = !savedActive;
   const mealBtnActive = activeFilterBtn === "Meal";
   return (
     <div className="page-toggle">
       <CategoryButton
-        className="categoryBtn"
+        className="page-toggle__cat-btn"
         active={mealBtnActive}
         name={meal === "All Meals" ? "Categories" : meal}
         selected={meal !== "All Meals"}
         handleClick={() => toggleFilterButton("Meal")}
       />
-      <Button
-        className={`btn saved ${savedActive}`}
+      <button
+        className={classNames("page-toggle__btn", {
+          "page-toggle__btn--active": savedActive
+        })}
         onClick={() => onClick("saved")}
       >
-        <div>{!isFetching && numSaved} Saved</div>
-      </Button>
+        {!isFetching && numSaved} Saved
+      </button>
 
-      <Button
-        className={`btn posted ${myRecipesActive}`}
+      <button
+        className={classNames("page-toggle__btn", {
+          "page-toggle__btn--active": postedActive
+        })}
         onClick={() => onClick("myRecipes")}
       >
-        <div>{!isFetching && numPosted} Posted</div>
-      </Button>
+        {!isFetching && numPosted} Posted
+      </button>
     </div>
   );
 };

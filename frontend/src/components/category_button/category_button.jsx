@@ -4,12 +4,13 @@ import PropTypes from "prop-types";
 import { ReactComponent as Arrow } from "../../assets/images/filterArrow.svg";
 import "./category_button.scss";
 
-const CategoryButton = ({ name, selected, active, handleClick }) => {
+const CategoryButton = ({ name, selected, active, handleClick, className }) => {
   return (
     <button
       className={classNames("category-btn", {
         "category-btn--active": active,
-        "category-btn--selected": selected
+        "category-btn--selected": selected,
+        [className]: className
       })}
       onClick={handleClick}
     >

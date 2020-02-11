@@ -1,0 +1,67 @@
+@import "../../../../assets/styles/variables";
+
+.profile-home {
+  .user-info {
+    @include grid-center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2rem 1rem 3rem;
+    grid-column-gap: 1rem;
+    left: 0;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 2;
+    background-color: #fff;
+    padding: 0.5rem 2rem 0rem 0.5rem;
+
+    &__edit {
+      grid-column: 1 / 2;
+      grid-row: 1 / 4;
+      @include grid-center;
+      &:hover {
+        opacity: 0.9;
+      }
+      img {
+        float: left;
+        width: 5.5rem;
+        height: 5.5rem;
+        border-radius: 100%;
+        border: solid lightColor(medium) 0.08rem;
+        padding: 0.1rem;
+      }
+    }
+
+    &__full-name {
+      align-self: end;
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      font-size: 1.2rem;
+      font-weight: medium;
+      color: darkColor(dark);
+      margin: 0;
+    }
+
+    &__diet {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      font-size: 0.8rem;
+      font-weight: 100;
+      color: darkColor(light);
+      margin: 0;
+    }
+
+    &__edit-profile-btn {
+      display: none;
+    }
+
+    &__create-recipe {
+      grid-column: 2 / 3;
+      grid-row: 3 / 4;
+      @include grid-center;
+      display: grid;
+      place-items: center;
+      padding: 0 0.5rem;
+      grid-template-columns: 1fr 1rem;
+    }
+  }
+}
