@@ -1,35 +1,51 @@
 import React from "react";
+import { connect } from "react-redux";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import { toggleFilterButton } from "../../actions/browseActions";
 import { ReactComponent as Arrow } from "../../assets/images/filterArrow.svg";
+import { ReactComponent as DesktopArrow } from "../../assets/images/openArrow.svg";
 import "./category_button.scss";
 
-const CategoryButton = ({ name, selected, active, handleClick, className }) => {
+const CategoryButton = ({
+  meal,
+  className,
+  buttonToggled,
+  toggleFilterButton
+}) => {
+  const active = buttonToggled === "Meal";
   return (
     <button
-      className={classNames("category-btn", {
-        "category-btn--active": active,
-        "category-btn--selected": selected,
-        [className]: className
+      className={classNames(`${className}`, {
+        [`${className}--active`]: active
       })}
-      onClick={handleClick}
+      onClick={() => toggleFilterButton("Meal")}
     >
-      {name}
-
+      {meal === "All Meals" ? "All categories" : meal}
       <Arrow
-        className={classNames("category-btn__icon", {
-          "category-btn__icon--active": active
+        className={classNames(`${className}__icon-m`, {
+          [`${className}__icon-m--active`]: active
+        })}
+      />
+      <DesktopArrow
+        className={classNames(`${className}__icon-d`, {
+          [`${className}__icon-d--active`]: active
         })}
       />
     </button>
   );
 };
 
+const mapStatetoProps = state => ({
+  buttonToggled: state.browseRecipes.toggleFilterButton,
+  meal: state.browseRecipes.filterRecipes.meal
+});
+
 CategoryButton.propTypes = {
-  active: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired,
-  selected: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired
+  className: PropTypes.string.isRequired
 };
 
-export default CategoryButton;
+export default connect(
+  mapStatetoProps,
+  { toggleFilterButton }
+)(CategoryButton);

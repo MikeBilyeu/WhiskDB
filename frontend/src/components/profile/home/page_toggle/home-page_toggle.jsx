@@ -23,13 +23,8 @@ const PageToggle = ({
   const mealBtnActive = activeFilterBtn === "Meal";
   return (
     <div className="page-toggle">
-      <CategoryButton
-        className="page-toggle__cat-btn"
-        active={mealBtnActive}
-        name={meal === "All Meals" ? "Categories" : meal}
-        selected={meal !== "All Meals"}
-        handleClick={() => toggleFilterButton("Meal")}
-      />
+      <CategoryButton className="category-btn" />
+
       <button
         className={classNames("page-toggle__btn", {
           "page-toggle__btn--active": savedActive

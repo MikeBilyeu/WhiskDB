@@ -22,13 +22,7 @@ const Header = ({
   return (
     <header className="header">
       <SortButton onClick={() => toggleFilterButton("Sort")} sortBy={sort} />
-      <CategoryButton
-        className="categoryBtn"
-        active={mealBtnActive}
-        name={meal === "All Meals" ? "Categories" : meal}
-        selected={meal !== "All Meals"}
-        handleClick={() => toggleFilterButton("Meal")}
-      />
+      <CategoryButton className="category-btn" />
       {/*<SearchBar />*/}
     </header>
   );
@@ -46,3 +40,11 @@ export default connect(
   null,
   { toggleFilterButton }
 )(Header);
+
+// <CategoryButton
+//   className="categoryBtn"
+//   active={mealBtnActive}
+//   name={meal === "All Meals" ? "Categories" : meal}
+//   selected={meal !== "All Meals"}
+//   handleClick={() => toggleFilterButton("Meal")}
+// />

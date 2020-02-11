@@ -2,20 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import FilterResults from "../../filter_results";
 import { SortButtonDesktop } from "../../sort_button";
-import { ReactComponent as OpenArrow } from "../../../assets/images/openArrow.svg";
+import CategoryButton from "../../category_button";
 import { toggleFilterButton } from "../../../actions/browseActions";
 
 const FitlerButtons = ({ toggleFilterButton, filterRecipes, handleClick }) => {
-  const { sort, meal } = filterRecipes;
+  const { sort } = filterRecipes;
   return (
     <>
-      <button
-        className="header-d__category-btn"
-        onClick={() => toggleFilterButton("Meal")}
-      >
-        {meal === "All Meals" ? "All categories" : meal}
-        <OpenArrow className="sort-btn-d__icon" />
-      </button>
+      <CategoryButton className="category-btn-desktop" />
 
       <FilterResults
         filterRecipes={filterRecipes}
