@@ -4,7 +4,7 @@ import MediaQuery from "react-responsive";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { getBrowseRecipes } from "../../actions/browseActions";
-import { getMyRecipes, getSavedRecipes } from "../../actions/recipeActions";
+import { getPostedRecipes, getSavedRecipes } from "../../actions/recipeActions";
 import { ReactComponent as HomeIcon } from "../../assets/images/search.svg";
 import { ReactComponent as ProfileIcon } from "../../assets/images/profile.svg";
 
@@ -78,6 +78,6 @@ class Nav extends React.Component {
 export default withRouter(
   connect(
     null,
-    { getMyRecipes, getSavedRecipes, getBrowseRecipes }
+    { getPostedRecipes, getSavedRecipes, getBrowseRecipes }
   )(Nav)
 );

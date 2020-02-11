@@ -4,11 +4,10 @@ import {
   GET_ERRORS,
   GET_SAVED_RECIPES,
   GET_SAVED_RECIPES_REQUEST,
-  GET_MY_RECIPES,
-  GET_MY_RECIPES_REQUEST,
+  GET_POSTED_RECIPES,
+  GET_POSTED_RECIPES_REQUEST,
   TOGGLE_UNIT,
   CONVERT_SERVINGS,
-  SORT_SAVED_RECIPES,
   TOGGLE_SORT_BUTTON,
   GET_SCRAPE_URL_REQUEST,
   TOGGLE_FILTER_BUTTON_PROFILE,
@@ -51,17 +50,17 @@ export const getSavedRecipes = () => async (dispatch, getState) => {
   }
 };
 
-export const getMyRecipes = () => async (dispatch, getState) => {
+export const getPostedRecipes = () => async (dispatch, getState) => {
   const {
     auth: { filterRecipes }
   } = getState();
 
-  dispatch({ type: GET_MY_RECIPES_REQUEST });
+  dispatch({ type: GET_POSTED_RECIPES_REQUEST });
   dispatch({ type: TOGGLE_FILTER_BUTTON_PROFILE, payload: null });
   dispatch({ type: SET_PROFILE_FILTER_DATA, payload: filterRecipes });
   try {
-    const res = await axios.get("/my-recipe", { params: filterRecipes });
-    dispatch({ type: GET_MY_RECIPES, payload: res.data });
+    const res = await axios.get("/posted-recipe", { params: filterRecipes });
+    dispatch({ type: GET_POSTED_RECIPES, payload: res.data });
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
   }
@@ -69,13 +68,8 @@ export const getMyRecipes = () => async (dispatch, getState) => {
 
 export const updateFilterRecipe = option => (dispatch, getState) => {
   dispatch({ type: SET_PROFILE_FILTER_DATA, payload: { meal: option } });
-  dispatch(getMyRecipes());
+  dispatch(getPostedRecipes());
   dispatch(getSavedRecipes());
-};
-
-export const sortSavedRecipes = sortBy => dispatch => {
-  dispatch({ type: SORT_SAVED_RECIPES, payload: sortBy });
-  dispatch({ type: TOGGLE_SORT_BUTTON });
 };
 
 export const toggleSortButton = () => {

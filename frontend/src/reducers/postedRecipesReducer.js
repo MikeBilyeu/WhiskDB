@@ -1,4 +1,7 @@
-import { GET_MY_RECIPES, GET_MY_RECIPES_REQUEST } from "../actions/types";
+import {
+  GET_POSTED_RECIPES,
+  GET_POSTED_RECIPES_REQUEST
+} from "../actions/types";
 
 const initialState = {
   recipes: [],
@@ -7,9 +10,9 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_MY_RECIPES_REQUEST:
+    case GET_POSTED_RECIPES_REQUEST:
       return { ...state, isFetching: true };
-    case GET_MY_RECIPES:
+    case GET_POSTED_RECIPES:
       return {
         ...state,
         recipes: action.payload,

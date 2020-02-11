@@ -13,7 +13,7 @@ const getUser = require("./getUser");
 const getBrowseRecipes = require("./getBrowseRecipes");
 const getUsernames = require("./getUsernames");
 const getSavedRecipes = require("./getSavedRecipes");
-const getMyRecipes = require("./getMyRecipes");
+const getPostedRecipes = require("./getPostedRecipes");
 const getSearchRecipes = require("./getSearchRecipes");
 const scrapeURL = require("./scrape-url/scrapeURL");
 
@@ -33,7 +33,7 @@ module.exports = app => {
   app.use("/browse-recipe", getBrowseRecipes);
   app.use("/usernames", getUsernames);
   app.use("/save-recipe", getSavedRecipes);
-  app.use("/my-recipe", getMyRecipes);
+  app.use("/posted-recipe", getPostedRecipes);
   app.use("/search-recipe", getSearchRecipes);
   app.use("/scrape-url", scrapeURL);
   app.use((request, response, next) => {

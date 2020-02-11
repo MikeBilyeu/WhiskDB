@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
 import {
-  getMyRecipes,
+  getPostedRecipes,
   getSavedRecipes,
   updateFilterRecipe
 } from "../../../actions/recipeActions";
@@ -25,8 +25,8 @@ class Home extends React.PureComponent {
 
   componentDidMount() {
     document.title = "Zipiwhisk | Profile";
-    if (!this.props.myRecipes.length && !this.props.savedRecipes.length) {
-      this.props.getMyRecipes();
+    if (!this.props.postedRecipes.length && !this.props.savedRecipes.length) {
+      this.props.getPostedRecipes();
       this.props.getSavedRecipes();
     }
   }
@@ -47,7 +47,7 @@ class Home extends React.PureComponent {
     const { page } = this.state;
     const { full_name, username, diet, image_url } = this.props.auth.user;
     document.title = `Zipiwhisk | ${username}`;
-    const { savedRecipes, myRecipes } = this.props;
+    const { savedRecipes, postedRecipes } = this.props;
 
     return (
       <div className="profile-home">
@@ -64,7 +64,7 @@ class Home extends React.PureComponent {
           onClick={this.handlePageClick}
           numSaved={savedRecipes.length}
           savedRecipes={savedRecipes}
-          numPosted={myRecipes.length}
+          numPosted={postedRecipes.length}
           isFetching={this.props.isFetching}
         />
         {this.props.activeFilterBtn ? (
@@ -83,7 +83,7 @@ class Home extends React.PureComponent {
         ) : (
           <Results
             filterOptionsOpened={this.props.activeFilterBtn}
-            recipes={myRecipes}
+            recipes={postedRecipes}
             isFetching={this.props.isFetching}
           />
         )}
@@ -97,13 +97,13 @@ const mapStateToProps = state => ({
   activeFilterBtn: state.auth.activeFilterBtn,
   auth: state.auth,
   savedRecipes: state.savedRecipes.recipes,
-  myRecipes: state.myRecipes.recipes,
-  isFetching: state.savedRecipes.isFetching || state.myRecipes.isFetching
+  postedRecipes: state.postedRecipes.recipes,
+  isFetching: state.savedRecipes.isFetching || state.postedRecipes.isFetching
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getMyRecipes, getSavedRecipes, updateFilterRecipe }
+    { getPostedRecipes, getSavedRecipes, updateFilterRecipe }
   )(Home)
 );
