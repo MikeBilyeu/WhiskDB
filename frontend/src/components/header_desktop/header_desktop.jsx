@@ -5,7 +5,7 @@ import SearchBar from "../search_bar";
 import Logo from "../../assets/images/zipiwisk-logo.png";
 import userLogo from "../../assets/images/profileLogo.png";
 
-import "./home-header_desktop.scss";
+import "./header_desktop.scss";
 //onClick={() => window.location.reload()}
 const HeaderDesktop = ({ isAuth, user_img, children }) => {
   return (

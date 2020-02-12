@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getRatingDetails } from "../../../../actions/rateActions";
+import { getRatingDetails } from "../../../../actions/review";
 import StarVotes from "./star_votes";
 
 class Details extends React.Component {

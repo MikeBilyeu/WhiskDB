@@ -20,7 +20,6 @@ export const scrapeSite = URL => async dispatch => {
     const { data: recipe } = await axios.get("/scrape-url", {
       params: { URL }
     });
-    console.log(recipe);
     dispatch(change("newRecipe", "image_url", recipe.image_url));
     dispatch(change("newRecipe", "title", recipe.title));
     dispatch(change("newRecipe", "servings", recipe.servings));

@@ -1,8 +1,8 @@
 import React from "react";
+import classNames from "classnames";
 import PropTypes from "prop-types";
-import Loading from "../recipe_display/loading";
-import RecipeDisplay from "../recipe_display";
-import Button from "../button";
+import Loading from "../recipe_card/loading";
+import RecipeCard from "../recipe_card";
 import NoResults from "../home/no_results";
 
 import "./results.scss";
@@ -10,45 +10,46 @@ import "./results.scss";
 class Results extends React.PureComponent {
   renderRecipeList = () => {
     return this.props.recipes.map((recipe, i) => {
-      return <RecipeDisplay key={recipe.recipe_id} recipe={recipe} />;
+      return <RecipeCard key={recipe.recipe_id} recipe={recipe} />;
     });
   };
 
   renderRecipeListLoading = () => {
-    // Display 6 loading placeholders
     let recipeListLoading = [];
-    for (let i = 0; i <= 5; i++) {
+    for (let i = 0; i < 8; i++) {
       recipeListLoading.push(<Loading />);
     }
     return recipeListLoading;
   };
 
   render() {
-    if (this.props.isFetching) {
-      return (
-        <div
-          className={`recipe-results ${this.props.filterOptionsOpened &&
-            "active"}`}
-        >
-          <ul>{this.renderRecipeListLoading()}</ul>
-        </div>
-      );
-    }
-    if (this.props.recipes.length < 1) {
+    if (this.props.recipes.length < 1 && !this.props.isFetching) {
       return <NoResults />;
     }
 
     return (
       <div
-        className={`recipe-results ${this.props.filterOptionsOpened &&
-          "active"}`}
+        className={classNames("recipe-results", {
+          "recipe-results--active": this.props.filterOptionsOpened
+        })}
       >
-        <ul>{this.renderRecipeList()}</ul>
-        {this.props.recipes.length < this.props.recipes[0].full_count ? (
-          <Button className="btn load-more" onClick={this.props.handleClick}>
-            Load More
-          </Button>
-        ) : null}
+        {this.props.isFetching ? (
+          <ul className="recipe-results__list">
+            {this.renderRecipeListLoading()}
+          </ul>
+        ) : (
+          <>
+            <ul className="recipe-results__list">{this.renderRecipeList()}</ul>
+            {this.props.recipes.length < this.props.recipes[0].full_count ? (
+              <button
+                className="recipe-results__load-more"
+                onClick={this.props.handleClick}
+              >
+                Load More
+              </button>
+            ) : null}
+          </>
+        )}
       </div>
     );
   }

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import MediaQuery from "react-responsive";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
-import { getBrowseRecipes } from "../../actions/browseActions";
+import { getBrowseRecipes } from "../../actions/browse";
 import { getPostedRecipes, getSavedRecipes } from "../../actions/recipeActions";
 import { ReactComponent as HomeIcon } from "../../assets/images/search.svg";
 import { ReactComponent as ProfileIcon } from "../../assets/images/profile.svg";

@@ -5,7 +5,7 @@ import Stars from "./stars";
 import Details from "./details";
 
 import { ReactComponent as Close } from "../../../assets/images/removeDark.svg";
-import { toggleReview, submitReview } from "../../../actions/rateActions";
+import { toggleReview, submitReview } from "../../../actions/review";
 import "./recipe-review.scss";
 
 class Review extends React.Component {

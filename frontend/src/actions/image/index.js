@@ -1,1 +1,1 @@
-export { default } from "./image-upload.js";
+export { default } from "./actions-image-upload.js";

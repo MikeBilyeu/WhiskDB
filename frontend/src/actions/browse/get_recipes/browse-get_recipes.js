@@ -5,11 +5,8 @@ import {
   GET_BROWSE_RECIPES,
   GET_BROWSE_REQUEST,
   SET_BROWSE_DATA,
-  TOGGLE_FILTER_BUTTON_BROWSE,
-  TOGGLE_FILTER_BUTTON_PROFILE,
-  OFFSET_INCREMENT,
-  REMOVE_RECIPES
-} from "./types";
+  TOGGLE_FILTER_BUTTON_BROWSE
+} from "../../types";
 
 export const getBrowseRecipes = () => async (dispatch, getState) => {
   // Get the user_id from state to check if user saved the recipe
@@ -33,40 +30,6 @@ export const getBrowseRecipes = () => async (dispatch, getState) => {
     dispatch({ type: GET_BROWSE_RECIPES, payload: data });
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
-  }
-};
-
-export const updateFilterRecipe = (type, value) => (dispatch, getState) => {
-  console.log("type:", type);
-  // Remove recipes from previous request
-  dispatch({ type: REMOVE_RECIPES });
-
-  if (type === "search") {
-    dispatch({
-      type: SET_BROWSE_DATA,
-      payload: { [type]: value, offset: 0, meal: "All Meals" }
-    });
-    dispatch(getSearchRecipes());
-  } else {
-    dispatch({
-      type: SET_BROWSE_DATA,
-      payload: { [type]: value, offset: 0, search: "" }
-    });
-    dispatch(getBrowseRecipes());
-  }
-};
-
-export const incrementOffset = () => (dispatch, getState) => {
-  const {
-    browseRecipes: { filterRecipes }
-  } = getState();
-
-  if (filterRecipes.search) {
-    dispatch({ type: OFFSET_INCREMENT });
-    dispatch(getSearchRecipes(filterRecipes));
-  } else {
-    dispatch({ type: OFFSET_INCREMENT });
-    dispatch(getBrowseRecipes());
   }
 };
 
@@ -95,12 +58,4 @@ export const getSearchRecipes = () => async (dispatch, getState) => {
   } catch (err) {
     console.error(err);
   }
-};
-
-export const toggleFilterBtnBrowse = buttonName => {
-  return { type: TOGGLE_FILTER_BUTTON_BROWSE, payload: buttonName };
-};
-
-export const toggleFilterBtnProfile = buttonName => {
-  return { type: TOGGLE_FILTER_BUTTON_PROFILE, payload: buttonName };
 };

@@ -108,29 +108,6 @@
     color: lightColor(dark);
     width: 100%;
   }
-
-  .rating {
-    &:hover {
-      opacity: 0.8;
-    }
-    cursor: pointer;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 0.3rem;
-    margin: 0.3rem auto;
-    width: 15rem;
-    padding: 0;
-
-    .votes {
-      color: $primary-color;
-      font-size: 0.9rem;
-    }
-  }
-  .stars {
-    svg {
-      width: 1.6rem !important;
-    }
-  }
 }
 
 .ingredients {

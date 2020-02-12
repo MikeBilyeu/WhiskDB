@@ -13,7 +13,7 @@ import {
   getSearchRecipes,
   incrementOffset,
   updateFilterRecipe
-} from "../../actions/browseActions";
+} from "../../actions/browse";
 import "./home.scss";
 
 class Home extends React.Component {

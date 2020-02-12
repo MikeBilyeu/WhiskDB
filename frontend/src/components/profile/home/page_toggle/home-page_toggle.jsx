@@ -4,7 +4,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import Button from "../../../button";
 import CategoryButton from "../../../category_button";
-import { toggleFilterBtnProfile } from "../../../../actions/browseActions";
+import { toggleFilterBtnProfile } from "../../../../actions/browse";
 import "./home-page_toggle.scss";
 
 const PageToggle = ({

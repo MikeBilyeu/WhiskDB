@@ -40,16 +40,13 @@ class Rating extends React.Component {
   };
 
   render() {
-    const { votes } = this.props;
+    const { votes, className, onClick } = this.props;
     return (
-      <div
-        className={classNames("rating", {
-          [this.props.className]: this.props.className
-        })}
-        onClick={this.props.onClick}
-      >
-        <div className="stars">{this.renderRating()}</div>
-        <div className="votes">{`(${
+      <div className={classNames(`${className}-rating`)} onClick={onClick}>
+        <div className={`${className}-rating__stars`}>
+          {this.renderRating()}
+        </div>
+        <div className={`${className}-rating__votes`}>{`(${
           votes > 1000 ? parseFloat((votes / 1000).toFixed(1)) + "k" : votes
         })`}</div>
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { toggleFilterBtnBrowse } from "../../actions/browseActions";
+import { toggleFilterBtnBrowse } from "../../actions/browse";
 import { ReactComponent as SortIcon } from "../../assets/images/SortIcon.svg";
 import { ReactComponent as OpenArrow } from "../../assets/images/openArrow.svg";
 import { abbreviateSortBy } from "./utils";

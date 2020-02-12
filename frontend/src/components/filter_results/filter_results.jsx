@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { connect } from "react-redux";
 import { filterOptions } from "./utils";
-import { getBrowseRecipes } from "../../actions/browseActions";
+import { getBrowseRecipes } from "../../actions/browse";
 
 import "./filter_results.scss";
 

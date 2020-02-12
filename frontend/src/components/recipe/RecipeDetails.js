@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { toggleReview } from "../../actions/rateActions";
+import { toggleReview } from "../../actions/review";
 import { ReactComponent as DownArrow } from "../../assets/images/arrowLeft.svg";
 import Rating from "./rating";
 
@@ -16,7 +16,12 @@ const RecipeDetails = ({
     <div className="recipe-details">
       <h1 className="title">{title}</h1>
       <div className="username">-{username.toLowerCase()}</div>
-      <Rating onClick={toggleReview} rating={rating} votes={num_reviews} />
+      <Rating
+        className="recipe"
+        onClick={toggleReview}
+        rating={rating}
+        votes={num_reviews}
+      />
       <DownArrow
         className="down-arrow"
         style={{

@@ -6,7 +6,7 @@ import {
   toggleFilterBtnBrowse,
   toggleFilterBtnProfile,
   updateFilterRecipe
-} from "../../actions/browseActions";
+} from "../../actions/browse";
 import { ReactComponent as SearchIcon } from "../../assets/images/searchIcon.svg";
 import "./search_bar.scss";
 

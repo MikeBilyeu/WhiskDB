@@ -7,12 +7,6 @@
     }
   }
   position: relative;
-  display: grid;
-  grid-template-areas:
-    "thumbnail"
-    "title"
-    "rt";
-  align-items: center;
   width: 100%;
   max-width: 25rem;
   background-color: #fff;
@@ -20,7 +14,6 @@
   text-align: left;
 
   &__thumbnail {
-    grid-area: thumbnail;
     min-height: 9rem;
     max-height: 9rem;
     width: 100%;
@@ -29,25 +22,21 @@
     margin-bottom: 0.5rem;
     border-radius: 0.15rem;
     box-shadow: 0 0.5rem 0.9rem 0 rgba(0, 0, 0, 0.1);
-    &.loading {
-      background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
-      background-size: 200% 200%;
-      animation: Animation 3s ease-in infinite;
-    }
+    background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
+    background-size: 200% 200%;
+    animation: Animation 3s ease-in infinite;
   }
 
   &__title {
     font-size: 0.9rem;
     font-weight: bold;
     letter-spacing: -0.5px;
-    line-height: 1.4rem;
+    line-height: 1.1rem;
     color: darkColor(dark);
-    margin: 0 0.4rem;
-    grid-area: title;
+    margin: 0.2rem;
   }
 
   &__meta {
-    grid-area: rt;
     margin: 0 0.1rem;
     color: darkColor(light);
     font-family: Arial !important;
@@ -57,16 +46,6 @@
     grid-template-columns: 1fr 2fr 1fr;
     grid-gap: 0.3rem;
     place-items: center;
-  }
-
-  &__rating {
-    justify-self: start;
-    grid-template-columns: 1fr 1fr !important;
-    grid-gap: 0.25rem;
-    width: 7.5rem;
-    .votes {
-      font-size: 0.75rem !important;
-    }
   }
 
   &__icon {
@@ -87,23 +66,23 @@
   }
 }
 
-.recipe-card.loading {
-  grid-gap: 0.5rem;
+.recipe-card-loading {
+  display: grid;
+  grid-gap: 0.25rem;
   width: 100%;
+  max-width: 25rem;
   &__thumbnail {
-    background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
-    background-size: 200% 200%;
-    animation: Animation 3s ease-in infinite;
+    @extend .recipe-card__thumbnail;
   }
   &__title,
-  &__recipe-meta {
-    margin: 0 0.2rem;
+  &__meta {
+    margin: 0;
     width: 75%;
-    height: 1rem;
+    height: 1.2rem;
     background-color: lightColor(light);
     border-radius: 0.2rem;
   }
-  &__recipe-meta {
+  &__meta {
     width: 100%;
   }
 }

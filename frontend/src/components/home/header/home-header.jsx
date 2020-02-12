@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import SortButton from "../../sort_button";
 import CategoryButton from "../../category_button";
 import SearchBar from "../../search_bar";
-import { toggleFilterBtnBrowse } from "../../../actions/browseActions";
+import { toggleFilterBtnBrowse } from "../../../actions/browse";
 
 import "./home-header.scss";
 

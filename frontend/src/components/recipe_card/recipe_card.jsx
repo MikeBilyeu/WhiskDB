@@ -5,10 +5,10 @@ import renderTime from "../../utils/time";
 import { ReactComponent as SaveIcon } from "../../assets/images/saveIcon.svg";
 import clock from "../../assets/images/time.png";
 import Rating from "../recipe/rating";
-import "./recipe_display.scss";
+import "./recipe_card.scss";
 import { saveRecipe } from "../../actions/recipe";
 
-class RecipeDisplay extends React.Component {
+class RecipeCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,16 +58,11 @@ class RecipeDisplay extends React.Component {
     return (
       <li className="recipe-card">
         <Link to={`/recipe/${recipe_id}`}>
-          <img
-            className="recipe-card__thumbnail loading"
-            src={image_url}
-            alt=""
-          />
-
+          <img className="recipe-card__thumbnail" src={image_url} alt="" />
           <div className="recipe-card__title">{title}</div>
           <div className="recipe-card__meta">
             <Rating
-              className="recipe-card__rating"
+              className="recipe-card"
               rating={rating}
               votes={num_reviews}
             />
@@ -91,4 +86,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { saveRecipe }
-)(RecipeDisplay);
+)(RecipeCard);
