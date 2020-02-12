@@ -4,8 +4,7 @@
   display: grid;
   grid-template-columns: 1fr 2rem;
   place-items: center;
-  grid-gap: 0.2rem;
-  //grid-template-rows: 1.5rem;
+  grid-gap: 0.25rem;
 
   &__stars {
     display: grid;
@@ -34,6 +33,7 @@
   &__votes {
     color: $primary-color;
     font-size: 0.9rem;
+    font-weight: 900 !important;
   }
 
   &__stars {
