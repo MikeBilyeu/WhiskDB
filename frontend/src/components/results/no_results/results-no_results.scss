@@ -1,0 +1,20 @@
+@import "../../../assets/styles/variables";
+
+.no-results {
+  position: relative;
+  top: 10rem;
+  text-align: center;
+
+  &__title {
+    color: darkColor(medium);
+    font-size: 1.8rem;
+    margin: 0;
+  }
+
+  &__msg {
+    color: darkColor(medium);
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0.5rem 0;
+  }
+}

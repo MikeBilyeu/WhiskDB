@@ -3,7 +3,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import Loading from "../recipe_card/loading";
 import RecipeCard from "../recipe_card";
-import NoResults from "../home/no_results";
+import NoResults from "./no_results";
 
 import "./results.scss";
 
