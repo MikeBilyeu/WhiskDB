@@ -3,6 +3,10 @@
 .profile-home {
   @include grid-center;
 
+  * {
+    //  border: solid red 1px;
+  }
+
   .filter-box {
     position: sticky;
     z-index: 3;
@@ -21,6 +25,7 @@
 
     .user-info {
       padding: 0 !important;
+      height: 15rem;
       top: 8rem;
       left: 50%;
       margin-left: -12.5rem;
