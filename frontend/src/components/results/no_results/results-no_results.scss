@@ -2,9 +2,13 @@
 
 .no-results {
   position: relative;
-  top: 10rem;
+  top: 0rem;
+  padding-top: 10rem;
+  padding-bottom: 2rem;
   text-align: center;
-
+  width: 100%;
+  z-index: 2;
+  background-color: #fff;
   &__title {
     color: darkColor(medium);
     font-size: 1.8rem;

@@ -31,6 +31,17 @@ class Home extends React.PureComponent {
     }
   }
 
+  componentDidUpdate() {
+    // Auto switch page state if results are empty
+    if (!this.props.isFetching && !this.props.savedRecipes.length) {
+      if (!this.props.postedRecipes.length) {
+        this.setState({ page: "saved" });
+      } else {
+        this.setState({ page: "posted" });
+      }
+    }
+  }
+
   handlePageClick = page => {
     this.setState(prevState => {
       if (prevState.page !== page) {
