@@ -3,10 +3,6 @@
 .profile-home {
   @include grid-center;
 
-  * {
-    //  border: solid red 1px;
-  }
-
   .filter-box {
     position: sticky;
     z-index: 3;

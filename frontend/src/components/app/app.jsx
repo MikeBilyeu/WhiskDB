@@ -13,19 +13,17 @@ checkAuthToken();
 
 const App = props => {
   return (
-    <div id="mainContainer">
-      <Router>
-        <ScrollUp>
-          <Route exact path="/" component={Home} />
-          <Switch>
-            <PrivateRoute path="/profile/:page?" component={Profile} />
-            <Route path="/auth" component={Auth} />
-            <Route path="/recipe/:recipe_id" component={Recipe} />
-          </Switch>
-          <Nav />
-        </ScrollUp>
-      </Router>
-    </div>
+    <Router>
+      <ScrollUp>
+        <Route exact path="/" component={Home} />
+        <Switch>
+          <PrivateRoute path="/profile/:page?" component={Profile} />
+          <Route path="/auth" component={Auth} />
+          <Route path="/recipe/:recipe_id" component={Recipe} />
+        </Switch>
+        <Nav />
+      </ScrollUp>
+    </Router>
   );
 };
 

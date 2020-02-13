@@ -17,10 +17,6 @@
   cursor: text;
   transition: all 0.1s ease-in;
 
-  // &:hover {
-  //   border: solid lightColor(dark) 0.05rem;
-  // }
-
   &__icon {
     width: 100%;
     margin: auto;
@@ -53,10 +49,6 @@
     background-color: #fff;
   }
 }
-
-//&--active {
-//   animation: expand 0.2s linear forwards;
-// }
 
 @keyframes expand {
   0% {

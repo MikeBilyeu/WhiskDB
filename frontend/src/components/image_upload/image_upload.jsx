@@ -35,6 +35,7 @@ class ImageUpload extends React.Component {
           className={`${className}__img`}
           src={this.props.input.value}
           alt=""
+          style={{ display: !this.props.input.value ? "none" : "block" }}
         />
         <input
           type="file"

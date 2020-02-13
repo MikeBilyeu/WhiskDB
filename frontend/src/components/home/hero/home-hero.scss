@@ -37,6 +37,10 @@
     border-radius: 0.3rem;
     border: none;
     background-color: #ffff;
+
+    &--active {
+      box-shadow: 0 0 0 0.3rem rgba(200, 200, 200, 0.2);
+    }
   }
 
   &__img-credit {
