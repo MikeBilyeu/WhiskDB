@@ -1,0 +1,13 @@
+@import "../../../assets/styles/variables";
+
+.create-recipe {
+  position: relative;
+  top: 3rem;
+
+  &__title {
+    text-align: center;
+    font-size: 1.1rem;
+    color: darkColor(medium);
+    margin: 3rem;
+  }
+}

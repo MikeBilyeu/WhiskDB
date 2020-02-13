@@ -1,7 +1,7 @@
 import React from "react";
+import classNames from "classnames";
 import PropTypes from "prop-types";
-import Button from "../../button";
-import styles from "../recipe_upsert.module.scss";
+import "../recipe_upsert.scss";
 
 const recipeCategories = [
   "vegetarian",
@@ -32,23 +32,20 @@ const Categories = props => {
   };
 
   return (
-    <div className={styles.categoriesContainer}>
-      <h2>Categories</h2>
-      <ul className={styles.list}>
+    <div className="ru-categories">
+      <h2 className="ru-categories__title">Categories</h2>
+      <ul className="ru-categories__list">
         {recipeCategories.map((category, index, arr) => {
-          const className =
-            props.categories && props.categories.includes(category)
-              ? styles.active
-              : styles.btn;
-
           return (
-            <li key={"categories " + index}>
-              <Button
-                className={className}
-                onClick={e => handleClick(e, category)}
-              >
-                {category}
-              </Button>
+            <li
+              key={"categories " + index}
+              className={classNames("ru-categories__item", {
+                "ru-categories__item--active":
+                  props.categories && props.categories.includes(category)
+              })}
+              onClick={e => handleClick(e, category)}
+            >
+              {category}
             </li>
           );
         })}

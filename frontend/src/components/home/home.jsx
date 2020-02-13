@@ -48,7 +48,6 @@ class Home extends React.Component {
             filterRecipes={this.props.filterRecipes}
             handleClick={this.handleClick}
             isAuth={this.props.isAuth}
-            user_img={this.props.user_img}
           />
         </MediaQuery>
 

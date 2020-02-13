@@ -23,11 +23,19 @@ class ImageUpload extends React.Component {
       this.props.input.onChange(imageURL);
     }
   };
+
   render() {
+    const { className } = this.props;
     return (
-      <label className={this.props.className}>
-        <span>{this.props.input.value ? "Change Image" : "Choose Image"}</span>
-        <img src={this.props.input.value} alt="" />
+      <label className={className}>
+        <span className={`${className}__text`}>
+          {this.props.input.value ? "Change Image" : "Choose Image to Upload"}
+        </span>
+        <img
+          className={`${className}__img`}
+          src={this.props.input.value}
+          alt=""
+        />
         <input
           type="file"
           accept="image/.jpg;.png;.jpeg;capture=camera"

@@ -1,9 +1,8 @@
 import React from "react";
 import { Field } from "redux-form";
 import TextArea from "../../form_inputs/textarea";
-import Input from "../../form_inputs/input";
-import { minuteParse, numberParse, footnoteParse } from "../utils/input-parse";
-import styles from "../recipe_upsert.module.scss";
+import { footnoteParse } from "../utils/input-parse";
+import "../recipe_upsert.scss";
 
 const Directions = () => {
   const placeholder = {
@@ -12,42 +11,18 @@ const Directions = () => {
     footnote: "Drop batter by large spoonfuls onto the griddle…"
   };
   return (
-    <div className={styles.directionsContainer}>
-      <label className={styles.time}>
-        Time
-        <div className={styles.border}>
-          <Field
-            name="time.hours"
-            component={Input}
-            label="Hr"
-            placeholder="1"
-            normalize={numberParse}
-            pattern="[0-9]*"
-            className={styles.hours}
-          />
-          <Field
-            name="time.minutes"
-            component={Input}
-            label="Min"
-            placeholder="15"
-            normalize={minuteParse}
-            pattern="[0-9]*"
-            className={styles.minutes}
-          />
-        </div>
-      </label>
-
+    <div className="ru-directions">
       <Field
         name="directions"
-        className={styles.directions}
+        className="ru-directions__input"
         type="text"
         component={TextArea}
-        label="Directions"
+        label="Instructions"
         placeholder={placeholder.directions}
       />
       <Field
         name="footnote"
-        className={styles.footnote}
+        className="ru-directions__footnote"
         type="text"
         component={TextArea}
         label="Footnote"

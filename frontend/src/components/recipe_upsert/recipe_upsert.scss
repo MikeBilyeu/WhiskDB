@@ -1,0 +1,288 @@
+@import "../../assets/styles/variables";
+
+.recipe-upsert {
+  padding: 0 0.6rem;
+  position: relative;
+  max-width: 40rem;
+  margin: 5rem auto;
+
+  @include grid-center;
+  grid-gap: 5rem;
+
+  &__yield {
+    input {
+      text-align: center;
+    }
+  }
+
+  &__sbmt-btn {
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border: solid $primary-color 0.09rem;
+    color: $primary-color;
+    background-color: #fff;
+    border-radius: 50rem;
+    padding: 0.5rem;
+    margin: 2rem;
+    width: 90%;
+    max-width: 15rem;
+    place-self: center;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: $primary-color;
+      color: #fff;
+    }
+  }
+
+  label {
+    color: darkColor(medium);
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  textarea {
+    -webkit-appearance: none;
+    background: none;
+    border: 0;
+    outline: 0;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 55rem;
+    appearance: none;
+    margin-top: 0.1rem;
+    font-size: 0.9rem;
+    color: darkColor(medium);
+    &::placeholder {
+      color: lightColor(medium);
+    }
+    &:focus {
+      border: solid darkColor(dark) 0.08rem;
+    }
+    border: solid lightColor(dark) 0.08rem;
+    border-radius: 0.2rem;
+    resize: none;
+  }
+
+  input {
+    background: none;
+    border: 0;
+    outline: 0;
+    padding: 0.75rem;
+    width: 100%;
+    appearance: none;
+    margin-top: 0.1rem;
+    font-size: 0.9rem;
+    border-radius: 0;
+    color: darkColor(medium);
+    border: solid lightColor(dark) 0.08rem;
+    border-radius: 0.2rem;
+    &::placeholder {
+      color: lightColor(medium);
+    }
+    &:focus {
+      border: solid darkColor(dark) 0.08rem;
+    }
+  }
+}
+
+.ru-image {
+  @include grid-center;
+  place-self: center;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  min-height: 15rem;
+  background-color: lightColor(light);
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0.2rem;
+  outline: none;
+  cursor: pointer;
+  color: darkColor(dark);
+  font-size: 0.8rem;
+  font-weight: 100 !important;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &__text {
+    padding: 0.5rem 1rem;
+    opacity: 0.8;
+    background-color: lightColor(light);
+    border-radius: 2rem;
+    z-index: 1;
+    color: $primary-color;
+  }
+
+  &__img {
+    width: 100%;
+    height: 40vh;
+    min-height: 15rem;
+    object-fit: cover;
+    position: absolute;
+    border-radius: 0.2rem;
+  }
+}
+
+.ru-ingredients,
+.ru-directions,
+.ru-categories {
+  @include grid-center;
+  grid-gap: 5rem;
+  width: 100%;
+}
+
+.ru-ingredients {
+  @include grid-center;
+  &__input {
+    height: 10rem;
+    white-space: nowrap;
+    overflow: auto;
+  }
+}
+
+.ru-time {
+  grid-gap: 1rem;
+  cursor: text;
+  align-items: baseline;
+  grid-template-columns: 2rem 2rem;
+
+  &__border {
+    margin-top: 0.1rem;
+    &:focus-within {
+      border: solid darkColor(dark) 0.08rem;
+    }
+
+    @include grid-center;
+    grid-template-columns: 1fr 1fr;
+    border: solid lightColor(dark) 0.08rem;
+    border-radius: 0.2rem;
+  }
+
+  &__hours,
+  &__minutes {
+    &:focus-within {
+      color: $primary-color;
+    }
+    text-align: center;
+    position: relative;
+    height: 2.75rem;
+    line-height: 2.75rem;
+    &:first-child {
+      text-indent: 3rem;
+    }
+
+    input {
+      left: 0;
+      position: absolute;
+      margin-top: 0;
+      text-align: center;
+      width: 100%;
+      border: none !important;
+      &::placeholder {
+        color: lightColor(medium);
+      }
+    }
+  }
+
+  &__minutes {
+    input {
+      text-indent: -3.5rem;
+    }
+  }
+}
+
+.ru-directions {
+  &__input {
+    height: 15rem;
+  }
+
+  &__footnote {
+    height: 7rem;
+    font-style: italic;
+  }
+}
+
+.ru-categories {
+  grid-gap: 1rem;
+
+  &__title {
+    text-align: center;
+    color: darkColor(dark);
+    padding: 0.5rem 0;
+    width: 15rem;
+    margin: auto;
+    font-size: 1.3rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: -0.5rem;
+    padding: 0;
+  }
+
+  &__item {
+    list-style-type: none;
+    text-transform: capitalize;
+    font-size: 1rem;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    color: darkColor(medium);
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+      color: $primary-color;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &--active {
+      color: $primary-color;
+      border-radius: 50rem;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+// .scrapebtn {
+//   @include grid-center;
+//   width: 100%;
+//   height: 10rem;
+//   background-color: lightColor(light);
+//   border-radius: 0.2rem;
+//
+//   outline: none;
+//   border: none;
+//   cursor: pointer;
+//   color: $primary-color;
+//   font-size: 1rem;
+//
+//   &:hover {
+//     opacity: 0.8;
+//   }
+//
+//   .URL {
+//     color: lightColor(dark);
+//     font-size: 0.8rem;
+//     margin-top: 0.5rem;
+//     width: 90vw;
+//     overflow-x: hidden;
+//     white-space: wrap;
+//   }
+// }

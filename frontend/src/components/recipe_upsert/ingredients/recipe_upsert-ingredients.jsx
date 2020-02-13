@@ -3,13 +3,9 @@ import { Field } from "redux-form";
 import Input from "../../form_inputs/input";
 import TextArea from "../../form_inputs/textarea";
 import { numberParse, validIngredientRegEx } from "../utils/input-parse";
-import styles from "../recipe_upsert.module.scss";
+import "../recipe_upsert.scss";
 
 class Ingredients extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleChange = e => {
     this.setState({ ingredient: e.target.value, error: null });
   };
@@ -29,24 +25,14 @@ class Ingredients extends React.Component {
 
   render() {
     return (
-      <div className={styles.ingredientsContainer}>
-        <Field
-          name="servings"
-          component={Input}
-          label="Yield"
-          placeholder="2"
-          type="number"
-          pattern="[0-9]*"
-          normalize={numberParse}
-          className={styles.yield}
-        />
+      <div className="ru-ingredients">
         <Field
           name="ingredients"
-          className={styles.ingredients}
+          className="ru-ingredients__input"
           type="text"
           component={TextArea}
           label="Ingredients"
-          placeholder={"1-1/2 cup milk\n1 tablespoon olive oil"}
+          placeholder="One ingredient per line"
         />
       </div>
     );

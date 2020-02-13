@@ -1,9 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
 import Header from "./header";
+import HeaderDesktop from "../../header_desktop";
 import RecipeUpsert from "../../recipe_upsert";
 import { createRecipe } from "../../../actions/recipe";
+
+import "./profile-create_recipe.scss";
 
 class CreateRecipe extends React.Component {
   componentDidMount() {
@@ -24,12 +28,18 @@ class CreateRecipe extends React.Component {
       imageFile: null
     };
     return (
-      <div>
-        <Header onClick={this.handleBackClick} />
+      <div className="create-recipe">
+        <MediaQuery maxDeviceWidth={649}>
+          <Header onClick={this.handleBackClick} />
+        </MediaQuery>
+        <MediaQuery minDeviceWidth={650}>
+          <HeaderDesktop isAuth={true} user_img={this.props.user_img} />
+        </MediaQuery>
+        <h1 className="create-recipe__title">Create Recipe</h1>
         <RecipeUpsert
           initialValues={initialValues}
           destroyOnUnmount={false}
-          submitText="Save Recipe"
+          submitText="Save"
           onSubmit={this.handleSubmit}
         />
       </div>
@@ -37,9 +47,12 @@ class CreateRecipe extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  user_img: state.auth.user.image_url
+});
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     { createRecipe }
   )(CreateRecipe)
 );
