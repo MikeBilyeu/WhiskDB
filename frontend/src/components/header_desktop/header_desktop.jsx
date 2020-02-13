@@ -1,16 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import SearchBar from "../search_bar";
 import Logo from "../../assets/images/zipiwisk-logo.png";
 import userLogo from "../../assets/images/profileLogo.png";
-
 import "./header_desktop.scss";
-//onClick={() => window.location.reload()}
-const HeaderDesktop = ({ isAuth, user_img, children }) => {
+
+const HeaderDesktop = ({
+  isAuth,
+  user_img,
+  children,
+  location: { pathname }
+}) => {
   return (
     <header className="header-d">
-      <Link to="/" className="header-d__logo">
+      <Link
+        to="/"
+        onClick={() => {
+          return pathname === "/" ? React.Component.forceUpdate() : null;
+        }}
+        className="header-d__logo"
+      >
         <img src={Logo} alt="zipiwisk logo" />
       </Link>
 
@@ -30,11 +40,7 @@ const HeaderDesktop = ({ isAuth, user_img, children }) => {
 
         {isAuth ? (
           <>
-            <Link
-              to="/"
-              onClick={() => window.location.reload()}
-              className="auth-btns__home"
-            >
+            <Link to="/" className="auth-btns__home">
               Home
             </Link>
             <Link to="/profile/create-recipe" className="auth-btns__create">
@@ -52,9 +58,8 @@ const HeaderDesktop = ({ isAuth, user_img, children }) => {
 };
 
 HeaderDesktop.propTypes = {
-  handleClick: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired,
   user_img: PropTypes.string
 };
 
-export default HeaderDesktop;
+export default withRouter(HeaderDesktop);

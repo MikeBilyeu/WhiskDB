@@ -17,7 +17,7 @@ class Results extends React.PureComponent {
   renderRecipeListLoading = () => {
     let recipeListLoading = [];
     for (let i = 0; i < 8; i++) {
-      recipeListLoading.push(<Loading />);
+      recipeListLoading.push(<Loading key={i} />);
     }
     return recipeListLoading;
   };
