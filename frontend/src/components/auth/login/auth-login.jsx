@@ -38,7 +38,7 @@ class Login extends Component {
           className="login-form__input"
         />
         <button className="signup-form__sbmt-btn" type="submit">
-          Log In
+          Login
         </button>
       </form>
     );

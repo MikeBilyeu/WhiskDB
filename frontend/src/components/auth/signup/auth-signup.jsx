@@ -48,7 +48,7 @@ class Signup extends Component {
           className="signup-form__input"
         />
         <button className="signup-form__sbmt-btn" type="submit">
-          Sign up
+          Sign Up
         </button>
       </form>
     );
