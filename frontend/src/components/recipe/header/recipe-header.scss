@@ -13,7 +13,8 @@
     grid-template-columns: 1fr 1fr 1fr;
     user-select: none;
     z-index: 1;
-    .back-btn {
+
+    &__back-btn {
       @include grid-center;
       grid-auto-flow: column;
       justify-self: start;
@@ -22,22 +23,7 @@
       width: 4rem;
     }
 
-    .whisk {
-      width: 5rem;
-    }
-
-    .saveIcon {
-      position: absolute;
-      margin-left: 9rem;
-      cursor: pointer;
-      padding: 1rem 2rem;
-      width: 5rem;
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
-    .more-btn {
+    &__more-btn {
       transform: rotate(90deg);
       cursor: pointer;
       padding: 1rem 1rem 1rem 1rem;

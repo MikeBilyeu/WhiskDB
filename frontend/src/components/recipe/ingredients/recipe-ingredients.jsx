@@ -1,22 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import UnitsAndServings from "../units_servings";
+import IngredientAdjust from "../ingredient_adjust";
 import convertIngredients from "../../../selectors/ingredient-selector";
 
 class Ingredient extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isStrikeThrough: false
-    };
-  }
-
-  handleClick = () => {
-    this.setState(({ isStrikeThrough }) => {
-      return { isStrikeThrough: !isStrikeThrough };
-    });
-  };
-
   render() {
     const { amount, unit, ingredient } = this.props;
 
@@ -26,27 +13,19 @@ class Ingredient extends React.Component {
         return `${amount.amount} ${amount.unit}`;
       });
       return (
-        <li
-          onClick={this.handleClick}
-          style={{
-            textDecoration: this.state.isStrikeThrough
-              ? "line-through"
-              : "none",
-            opacity: this.state.isStrikeThrough ? ".2" : "1"
-          }}
-        >{`${amounts.join(" & ")} ${ingredient}`}</li>
+        <li className="r-ingredients__item">
+          <span className="r-ingredients__item-amount">{`${amounts.join(
+            " & "
+          )} `}</span>
+          <span className="r-ingredients__item-ingredient">{ingredient}</span>
+        </li>
       );
     }
 
     return (
-      <li
-        onClick={this.handleClick}
-        style={{
-          textDecoration: this.state.isStrikeThrough ? "line-through" : "none",
-          opacity: this.state.isStrikeThrough ? ".2" : "1"
-        }}
-      >
-        {`${amount} ${unit} ${ingredient}`}
+      <li className="r-ingredients__item">
+        <span className="r-ingredients__item-amount">{`${amount} ${unit} `}</span>
+        <span className="r-ingredients__item-ingredient">{ingredient}</span>
       </li>
     );
   }
@@ -54,10 +33,9 @@ class Ingredient extends React.Component {
 
 const Ingredients = props => {
   return (
-    <div className="ingredients">
-      <h2>Ingredients</h2>
-      <UnitsAndServings />
-      <ul className="ingredient-list">
+    <div className="r-ingredients">
+      <IngredientAdjust />
+      <ul className="r-ingredients__list">
         {props.ingredients.map(({ amount, unit = "", ingredient }, i) => {
           return (
             <Ingredient

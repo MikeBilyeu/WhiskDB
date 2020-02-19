@@ -1,14 +1,10 @@
 import React from "react";
-import renderTime from "../../../utils/time";
-import Footnote from "./footnote";
 
-const Directions = ({ time, directions, footnote }) => {
+const Directions = ({ directions, footnote }) => {
   return (
-    <div className="directions">
-      <h2>Directions</h2>
-      <div className="time">{renderTime(time)}</div>
-      <p id="directions">{directions}</p>
-      <Footnote footnote={footnote} />
+    <div className="r-directions">
+      <p className="r-directions__text">{directions}</p>
+      {footnote ? <p className="r-directions__footnote">{footnote}</p> : null}
     </div>
   );
 };

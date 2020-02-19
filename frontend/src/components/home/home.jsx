@@ -18,7 +18,7 @@ import "./home.scss";
 
 class Home extends React.Component {
   componentDidMount() {
-    document.title = "Zipiwhisk | The internet’s source of free recipes.";
+    document.title = "Zipiwisk | The internet’s source of free recipes.";
     if (!this.props.recipes.recipes.length && !this.props.recipes.isFetching) {
       this.props.updateFilterRecipe("meal", "All Meals");
     }

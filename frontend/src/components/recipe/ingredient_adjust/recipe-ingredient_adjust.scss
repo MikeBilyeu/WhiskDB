@@ -1,0 +1,54 @@
+@import "../../../assets/styles/variables";
+
+.ingredient-adjust {
+  display: inline-grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.5rem 0;
+  place-items: center;
+
+  &__units {
+    border: solid lightColor(dark) 0.09rem;
+    border-radius: 0.3rem;
+    text-align: center;
+    cursor: pointer;
+    line-height: 1.75rem;
+    width: 8rem;
+    height: 2rem;
+    font-size: 0.9rem;
+    color: darkColor(medium);
+
+    &--active {
+      color: $primary-color;
+    }
+  }
+
+  .adjust-servings {
+    @extend .ingredient-adjust__units;
+
+    &--active {
+      border-color: $primary-color;
+      color: $primary-color;
+      line-height: 0.5rem;
+
+      .adjust-servings__text {
+        display: none;
+      }
+
+      .adjust-servings__input {
+        padding: 0.1rem;
+        font-size: 1.5rem;
+        width: 100%;
+      }
+    }
+
+    &__input {
+      all: unset;
+      width: 1.4rem;
+      height: 1.5rem;
+      // color: $primary-color;
+      // -webkit-text-fill-color: $primary-color;
+      // opacity: 1;
+    }
+  }
+}

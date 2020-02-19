@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getRatingDetails } from "../../../../actions/review";
 import StarVotes from "./star_votes";
 
-class Details extends React.Component {
+class ReviewDetails extends React.Component {
   componentDidMount() {
     this.props.getRatingDetails(this.props.recipe_id);
   }
@@ -13,8 +13,8 @@ class Details extends React.Component {
     } = this.props;
 
     return (
-      <div className="review-details">
-        <h2>
+      <div className="r-details">
+        <h2 className="r-details__num-votes">
           {num_reviews + " "} vote{num_reviews === 1 ? "" : "s"}
         </h2>
         <StarVotes star="5" votes={star5} num_reviews={num_reviews} />
@@ -34,4 +34,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getRatingDetails }
-)(Details);
+)(ReviewDetails);

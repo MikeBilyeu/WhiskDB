@@ -1,11 +1,11 @@
 import React from "react";
+import classNames from "classnames";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { toggleShare, saveRecipe } from "../../../actions/recipe";
 import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
 import { ReactComponent as SaveIcon } from "../../../assets/images/saveIcon.svg";
 import { ReactComponent as More } from "../../../assets/images/more.svg";
-import Whiskdb from "../../../assets/images/whiskdb.png";
 
 const Header = props => {
   const {
@@ -23,17 +23,17 @@ const Header = props => {
 
   return (
     <div className="recipe-header">
-      <Arrow className="back-btn" onClick={handleBackClick} />
-      <img className="whisk" src={Whiskdb} alt="Whiskdb logo" />
-      <SaveIcon
-        className="saveIcon"
+      <Arrow className="recipe-header__back-btn" onClick={handleBackClick} />
+      <button
+        className={classNames("recipe-header__save-btn", {
+          "recipe-header__save-btn--active": recipeSaved
+        })}
         onClick={() => saveRecipe(recipe_id, user_id)}
-        style={{
-          fill: recipeSaved && user_id !== null ? "#0172C4" : "#E2E2E2"
-        }}
-      />
+      >
+        {recipeSaved ? "Saved" : "Save"}
+      </button>
 
-      <More onClick={toggleShare} className="more-btn" />
+      <More onClick={toggleShare} className="recipe-header__more-btn" />
     </div>
   );
 };

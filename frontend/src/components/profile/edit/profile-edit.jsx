@@ -12,7 +12,7 @@ import "./profile-edit.scss";
 
 class Edit extends React.Component {
   componentDidMount() {
-    document.title = "Zipiwhisk | Edit Profile";
+    document.title = "Zipiwisk | Edit Profile";
   }
   handleSubmit = values => {
     this.props.editProfile(values, this.props.history);

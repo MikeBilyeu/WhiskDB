@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Stars from "./stars";
-import Details from "./details";
+import ReviewDetails from "./details";
 
 import { ReactComponent as Close } from "../../../assets/images/removeDark.svg";
 import { toggleReview, submitReview } from "../../../actions/review";
@@ -41,24 +41,28 @@ class Review extends React.Component {
   render() {
     const { recipe_id, isAuthenticated } = this.props;
     return (
-      <div className="rate">
-        <Close className="close-btn" onClick={this.props.toggleReview} />
+      <div className="review">
+        <Close
+          className="review__close-btn"
+          onClick={this.props.toggleReview}
+        />
 
         {!isAuthenticated ? (
-          <h3>
-            {"You must "}
-            <Link to="/auth" style={{ color: "#0172c4" }}>
-              login
+          <>
+            <h3 className="review__login-text">
+              You must login to rate a recipe.
+            </h3>
+            <Link to="/auth/login" className="review__login-btn">
+              Login
             </Link>
-            {" to rate a recipe."}
-          </h3>
+          </>
         ) : (
-          <div style={{ width: "100%" }}>
-            <h2>How was it?</h2>
+          <>
             <Stars handleClick={this.handleClick} rating={this.state.rating} />
-            <label className="review">
+            <label className="review__input-label">
               Review
               <textarea
+                className="review__input"
                 placeholder="Write a review…"
                 value={this.state.comment}
                 onChange={this.handleChange}
@@ -66,22 +70,15 @@ class Review extends React.Component {
             </label>
 
             <div
-              className="submit-review"
-              style={{
-                opacity: this.state.rating && isAuthenticated ? "1" : ".5",
-                cursor:
-                  this.state.rating && isAuthenticated ? "pointer" : "auto"
-              }}
-              onClick={
-                this.state.rating && isAuthenticated ? this.handleSubmit : null
-              }
+              className="review__sbmt-btn"
+              onClick={this.state.rating ? this.handleSubmit : null}
             >
               Submit
             </div>
-          </div>
+          </>
         )}
 
-        <Details recipe_id={recipe_id} />
+        <ReviewDetails recipe_id={recipe_id} />
       </div>
     );
   }

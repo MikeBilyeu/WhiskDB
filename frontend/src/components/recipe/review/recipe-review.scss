@@ -1,98 +1,121 @@
 @import "../../../assets/styles/variables";
 
-.rate {
-  @include grid-center;
+.review {
+  //@include grid-center;
   width: 100%;
   height: 100vh;
   position: fixed;
-  left: 0;
-  right: 0;
-  margin: auto;
+  margin: 0 auto;
   background-color: #fff;
   z-index: 2;
   padding: 0.5rem;
 
-  .close-btn {
-    width: 2rem;
-    padding: 0.5rem;
+  &__close-btn {
+    width: 5rem;
+    padding: 1rem 2rem;
     cursor: pointer;
     justify-self: end;
-    position: absolute;
-    top: 1rem;
-    right: 0.5rem;
+    position: relative;
+    left: 85%;
   }
 
-  h2 {
+  &__login-text {
+    font-size: 1rem;
+    color: darkColor(medium);
+  }
+
+  &__login-btn {
+    border: solid $primary-color 0.09rem;
+    border-radius: 0.5rem;
+    width: 12rem;
+    color: $primary-color;
+    font-weight: 500;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
     text-align: center;
-    margin: 0 auto;
-    font-size: 1.3rem;
-    padding: 0.2rem 0;
+    background-color: #fff;
+    @include fast-transition;
+
+    &:hover {
+      background-color: $primary-color;
+      color: #fff;
+    }
   }
 
-  .stars {
-    @include grid-center;
-    gridautoflow: column;
-    width: 13rem;
-    margin: auto;
+  &__stars {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 10rem;
     cursor: pointer;
     .star {
       width: 100%;
-      padding: 0.3rem;
+      padding: 0.1rem;
     }
   }
 
-  .review {
+  &__input-label {
     width: 100%;
-    textarea {
-      border: solid lightColor(medium) 0.08rem;
-      border-radius: 0.3rem;
-      overflow: auto;
-      outline: none;
-      width: 100%;
-      resize: none;
-      min-height: 6rem;
-      max-height: 6rem;
-      padding: 0.5rem;
-      font-size: 1rem;
-    }
   }
 
-  .submit-review {
+  &__input {
+    border: solid lightColor(medium) 0.08rem;
+    border-radius: 0.3rem;
+    overflow: auto;
+    outline: none;
+    width: 100%;
+    resize: none;
+    min-height: 6rem;
+    max-height: 6rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+
+  &__sbmt-btn {
     background-color: #fff;
     border: solid $primary-color 0.09rem;
     color: $primary-color;
     text-align: center;
     padding: 0.5rem;
-    width: 70%;
-    max-width: 20rem;
+    width: 15rem;
     margin: 0 auto;
-    font-size: 1.3rem;
+    font-size: 1rem;
     border-radius: 0.5rem;
-    font-weight: 600;
+    font-weight: 500;
   }
 
-  .review-details {
+  .r-details {
     width: 100%;
-    margin: 0;
+    margin: 6rem auto 0 auto;
+    font-size: 0.75rem;
+    color: darkColor(medium);
+
+    &__num-votes {
+      font-size: 1rem;
+      text-align: center;
+    }
+
     .vote-bar {
       @include grid-center;
-      grid-template-columns: 3rem 1fr 3rem;
+      grid-template-columns: 2.5rem 1fr 2.5rem;
       margin: 0.5rem 0;
 
       .vote-percent-bar {
         overflow: hidden;
-        height: 1.3rem;
+        height: 1rem;
         width: 100%;
-        border: solid lightColor(medium) 0.1rem;
+        //border: solid lightColor(medium) 0.09rem;
+        box-shadow: 0 0 0 0.05rem rgba(200, 200, 200, 1);
         background-color: lightColor(light);
         display: grid;
         align-items: center;
-        border-radius: 0.2rem;
+        border-radius: 0.1rem;
 
         .votes-percent {
           background-color: $star-color;
           height: 100%;
           min-height: 100%;
+          border-radius: 0.1rem;
         }
       }
 

@@ -38,6 +38,10 @@ $star-color: #ffa805;
   place-items: center;
 }
 
+@mixin fast-transition {
+  transition: all 0.1s ease-out;
+}
+
 @mixin dark-overlay {
   &:after {
     -webkit-backdrop-filter: blur(0.05rem);

@@ -1,36 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
 import { toggleReview } from "../../actions/review";
-import { ReactComponent as DownArrow } from "../../assets/images/arrowLeft.svg";
+import renderTime from "../../utils/time";
 import Rating from "./rating";
 
 const RecipeDetails = ({
   recipe: {
-    recipe: { title, date_created, username },
+    recipe: { title, date_created, username, total_time_min },
     ratingDetails: { rating, num_reviews }
   },
   time,
   toggleReview
 }) => {
   return (
-    <div className="recipe-details">
-      <h1 className="title">{title}</h1>
-      <div className="username">-{username.toLowerCase()}</div>
+    <div className="recipe__details">
+      <h1 className="recipe__title">{title}</h1>
       <Rating
         className="recipe"
         onClick={toggleReview}
         rating={rating}
         votes={num_reviews}
       />
-      <DownArrow
-        className="down-arrow"
-        style={{
-          width: "1.3rem",
-          opacity: ".1",
-          transform: "rotate(-90deg)",
-          marginTop: "1rem"
-        }}
-      />
+      <div className="recipe__time">{renderTime(time)}</div>
     </div>
   );
 };

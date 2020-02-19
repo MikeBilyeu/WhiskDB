@@ -11,7 +11,7 @@ import "./profile-create_recipe.scss";
 
 class CreateRecipe extends React.Component {
   componentDidMount() {
-    document.title = "Zipiwhisk | Create Recipe";
+    document.title = "Zipiwisk | Create Recipe";
   }
 
   handleSubmit = values => {

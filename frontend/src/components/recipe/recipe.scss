@@ -1,12 +1,8 @@
 @import "../../assets/styles/variables";
 
-.whiskdb-print-logo {
-  display: none;
-}
-
 .recipe {
   @include grid-center;
-  grid-gap: 1rem;
+  //grid-gap: 1rem;
   color: darkColor(dark);
 
   .recipe-header {
@@ -18,10 +14,10 @@
     border-bottom: solid 0.01rem lightColor(light);
     @include grid-center;
     grid-template-columns: 1fr 1fr 1fr;
-
     user-select: none;
     z-index: 1;
-    .back-btn {
+
+    &__back-btn {
       @include grid-center;
       grid-auto-flow: column;
       justify-self: start;
@@ -30,22 +26,36 @@
       width: 4rem;
     }
 
-    .whisk {
-      width: 5rem;
-    }
-
-    .saveIcon {
-      position: absolute;
-      margin-left: 9rem;
+    &__save-btn {
+      border: solid lightColor(dark) 0.09rem;
+      border-radius: 0.2rem;
+      color: darkColor(medium);
+      background-color: #fff;
+      font-weight: 500;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      width: 6rem;
       cursor: pointer;
-      padding: 1rem 2rem;
-      width: 5rem;
+      outline: none;
+      @include fast-transition;
+
       &:hover {
-        opacity: 0.8;
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+
+      &--active {
+        border-color: $primary-color;
+        color: $primary-color;
+        &:hover {
+          border-color: lightColor(dark);
+          color: darkColor(light);
+          opacity: 0.9;
+        }
       }
     }
 
-    .more-btn {
+    &__more-btn {
       transform: rotate(90deg);
       cursor: pointer;
       padding: 1rem 1rem 1rem 1rem;
@@ -54,120 +64,128 @@
     }
   }
 
-  .recipe-img {
+  &__img {
     position: fixed;
-    top: 0.5rem;
+    top: rem;
     width: 100vw;
-    max-height: 65vh;
-    min-height: 65vh;
+    max-height: 100vh;
+    min-height: 100vh;
     margin: 0.5rem auto;
     padding: 0;
     object-fit: cover;
-    object-position: 50% 60%;
+    object-position: 50% 50%;
     text-align: center;
     display: block;
     z-index: -1;
   }
 
-  .card {
+  &__container {
     min-width: 100%;
-    margin-top: 60vh;
+    margin-top: 70vh;
     background-color: #fff;
-    padding: 2.5rem 0;
+    padding: 2.5rem 0.75rem;
     border-radius: 1rem 1rem 0 0;
-
-    h2 {
-      text-align: center;
-      border-bottom: solid lightColor(light) 0.05rem;
-      padding: 0.3rem 2rem;
-      width: 80%;
-      margin: 0 auto;
-      font-size: 1.3rem;
-    }
-  }
-}
-
-.recipe-details {
-  width: 100%;
-  margin: 0 0 4rem 0;
-  @include grid-center;
-  grid-gap: 0.5rem;
-
-  .title {
-    font-size: 1.5rem;
-    padding: 0 0.3rem;
-    line-height: 2rem;
-    text-align: center;
-    margin: 0;
+    z-index: 1;
   }
 
-  .username {
-    margin: 0.7rem 0 0 0;
-    font-size: 0.9rem;
-    text-align: center;
-    color: lightColor(dark);
+  &__details {
     width: 100%;
+    margin: 0 0 4rem 0;
+    display: grid;
+    align-items: center;
+    justify-items: start;
+    grid-gap: 0.5rem;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    margin: 0;
+    color: darkColor(medium);
+  }
+
+  &__time {
+    color: darkColor(medium);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  &__created-by {
+    font-size: 0.9rem;
+    color: darkColor(light);
+    font-style: italic;
+    text-align: center;
+    margin: 4rem 0 0.5rem 0;
   }
 }
 
-.ingredients {
+.r-ingredients {
   width: 100%;
-  padding: 0 0.8rem;
   margin: 6rem 0;
   @include grid-center;
   grid-gap: 1rem;
 
-  ul {
+  &__list {
     width: 100%;
     justify-self: start;
     padding: 0;
     list-style-type: none;
     margin: 0;
-    li {
-      margin: 1rem 0;
-      font-size: 1.1rem;
-      word-spacing: 0.05rem;
-      line-height: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
+  }
+
+  &__item {
+    margin: 0;
+    padding: 0.5rem 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1rem;
+    border-bottom: solid lightColor(medium) 0.09rem;
+
+    &:first-child {
+      border-top: solid lightColor(medium) 0.09rem;
     }
+  }
+
+  &__item-amount {
+    font-weight: 600;
+    font-style: italic;
+    color: darkColor(medium);
+  }
+
+  &__item-ingredient {
+    text-align: right;
+    color: darkColor(light);
   }
 }
 
-.directions {
+.r-directions {
   @include grid-center;
-  grid-gap: 0.7rem;
-  padding: 0 0.8rem;
 
-  .time {
-    text-align: center;
-    color: darkColor(medium);
-    line-height: 1.9rem;
-    width: 100%;
-  }
-
-  #directions {
+  &__text {
     white-space: pre-wrap;
-    margin: 1.5rem 0 0 0rem;
-    font-size: 1.13rem;
-    line-height: 1.45rem;
-    max-width: 40rem;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.2rem;
     &::first-letter {
       font-size: 3rem;
       font-weight: 600;
       float: left;
-      margin: -0.6rem 0 0 0;
+      margin: -0.75rem 0 0 0;
     }
   }
 
-  .footnote {
+  &__footnote {
     white-space: pre-line;
-    width: 100%;
-    margin: 3rem 0;
+    margin: 2rem 0 0 0;
+    font-size: 0.9rem;
+    color: darkColor(light);
+    line-height: 1.2rem;
     font-style: italic;
   }
 }
 
+//====================================================================
 @media print {
   /* Remove unwanted elements */
   .recipe-header,

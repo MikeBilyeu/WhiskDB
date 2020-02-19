@@ -22,10 +22,10 @@ describe("formatIngredientList", () => {
       "900 g olive oil"
     ];
     const expectedOutput = [
-      { amount: "1360.7759999999998", unit: "g.", ingredient: "rice" },
-      { amount: "7.3935", unit: "ml.", ingredient: "water" },
+      { amount: "1360.7759999999998", unit: "g", ingredient: "rice" },
+      { amount: "7.3935", unit: "ml", ingredient: "water" },
       { amount: "1", unit: "", ingredient: "egg" },
-      { amount: "900", unit: "g.", ingredient: "olive oil" }
+      { amount: "900", unit: "g", ingredient: "olive oil" }
     ];
     expect(formatIngredientList(expectedInput)).toEqual(expectedOutput);
   });

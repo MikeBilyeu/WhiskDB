@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { ReactComponent as Star } from "../../../assets/images/star.svg";
+import { ReactComponent as OpenArrow } from "../../../assets/images/arrowLeft.svg";
 import "./recipe-rating.scss";
 
 class Rating extends React.Component {
@@ -35,7 +36,7 @@ class Rating extends React.Component {
 
   renderRating = () => {
     return this.state.starColor.map((color, i) => {
-      return <Star key={"star" + i} style={{ width: "1rem", fill: color }} />;
+      return <Star key={"star" + i} style={{ width: "1.1rem", fill: color }} />;
     });
   };
 
@@ -46,9 +47,14 @@ class Rating extends React.Component {
         <div className={`${className}-rating__stars`}>
           {this.renderRating()}
         </div>
-        <div className={`${className}-rating__votes`}>{`(${
-          votes > 1000 ? parseFloat((votes / 1000).toFixed(1)) + "k" : votes
-        })`}</div>
+        <div className={`${className}-rating__votes`}>
+          {votes > 1000
+            ? `${parseFloat((votes / 1000).toFixed(1))}k`
+            : votes < 1
+            ? ""
+            : `(${votes})`}
+        </div>
+        <OpenArrow className={`${className}-rating__arrow`} />
       </div>
     );
   }

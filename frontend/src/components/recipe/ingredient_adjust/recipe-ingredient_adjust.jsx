@@ -2,16 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import Servings from "./servings";
 import Units from "./units";
-import "./recipe-units_servings.scss";
+import "./recipe-ingredient_adjust.scss";
 
-class UnitsAndServings extends React.Component {
+class IngredientAdjust extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
     return (
-      <div className="servings-units">
+      <div className="ingredient-adjust">
         <Units />
         <Servings />
       </div>
@@ -23,4 +23,4 @@ const mapStateToProps = state => ({
   unit: state.recipe.unit
 });
 
-export default connect(mapStateToProps)(UnitsAndServings);
+export default connect(mapStateToProps)(IngredientAdjust);

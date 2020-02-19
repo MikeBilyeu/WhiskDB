@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
-import Whiskdb from "../../assets/images/whiskdb.png";
 import Header from "./header";
 import RecipeDetails from "./RecipeDetails";
 import Ingredients from "./ingredients";
@@ -33,9 +32,9 @@ class Recipe extends React.Component {
       shareOpen,
       isFetching,
       editRecipe,
-      recipe: { image_url, directions, footnote, time, title }
+      recipe: { image_url, directions, footnote, time, title, username }
     } = this.props.recipeData;
-    document.title = !title ? document.title : `${title} |  Zipiwhisk`;
+    document.title = !title ? document.title : `${title} |  Zipiwisk`;
 
     // display loading if isFetching
     if (isFetching) {
@@ -48,21 +47,24 @@ class Recipe extends React.Component {
 
     return (
       <div className="recipe">
-        <img className="whiskdb-print-logo" src={Whiskdb} alt="Whiskdb logo" />
         <Header recipe_id={recipe_id} user_id={user_id} />
         {shareOpen ? <Share /> : null}
         {reviewOpen ? <Review recipe_id={recipe_id} /> : null}
 
         <img
-          className="recipe-img"
+          className="recipe__img"
           href="recipe photo"
           alt=""
           src={image_url}
         />
-        <div className="card">
-          <RecipeDetails />
+
+        <div className="recipe__container">
+          <RecipeDetails time={time} />
           <Ingredients />
           <Directions directions={directions} time={time} footnote={footnote} />
+          <div className="recipe__created-by">
+            Recipe by {username.toLowerCase()}
+          </div>
         </div>
       </div>
     );

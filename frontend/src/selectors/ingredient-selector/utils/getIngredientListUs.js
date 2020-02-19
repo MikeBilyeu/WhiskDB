@@ -10,7 +10,7 @@ const getIngredientListUs = metricIngredients => {
       let amounts = [];
 
       const unitType =
-        unit === "ml." ? "volume" : unit === "g." ? "mass" : undefined;
+        unit === "ml" ? "volume" : unit === "g" ? "mass" : undefined;
 
       if (unitType === "volume") {
         while (remainder >= 0.63) {
@@ -65,18 +65,18 @@ const getIngredientListUs = metricIngredients => {
         if (pounds > 0) {
           amounts.push({
             amount: pounds,
-            unit: "lb."
+            unit: "lb"
           });
           if (ounces >= 0.5) {
             amounts.push({
               amount: ounces,
-              unit: "oz."
+              unit: "oz"
             });
           }
         } else if (ounces >= 0.01) {
           amounts.push({
             amount: ounces,
-            unit: "oz."
+            unit: "oz"
           });
         }
 

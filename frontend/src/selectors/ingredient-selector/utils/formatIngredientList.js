@@ -25,41 +25,41 @@ const getMetricAmount = (amount, unit) => {
   switch (true) {
     case regEx.cup.test(unit):
       decimalAmount *= 236.588;
-      metricUnit = "ml.";
+      metricUnit = "ml";
       break;
     case regEx.tablespoon.test(unit):
     case regEx.T.test(unit):
       decimalAmount *= 14.787;
-      metricUnit = "ml.";
+      metricUnit = "ml";
       break;
     case regEx.teaspoon.test(unit):
     case regEx.t.test(unit):
       decimalAmount *= 4.929;
-      metricUnit = "ml.";
+      metricUnit = "ml";
       break;
     case regEx.milliliter.test(unit):
       decimalAmount *= 1;
-      metricUnit = "ml.";
+      metricUnit = "ml";
       break;
     case regEx.liter.test(unit):
       decimalAmount *= 1000;
-      metricUnit = "ml.";
+      metricUnit = "ml";
       break;
     case regEx.ounce.test(unit):
       decimalAmount *= 28.35;
-      metricUnit = "g.";
+      metricUnit = "g";
       break;
     case regEx.pound.test(unit):
       decimalAmount *= 453.592;
-      metricUnit = "g.";
+      metricUnit = "g";
       break;
     case regEx.kilogram.test(unit):
       decimalAmount *= 1000;
-      metricUnit = "g.";
+      metricUnit = "g";
       break;
     case regEx.gram.test(unit):
       decimalAmount *= 1;
-      metricUnit = "g.";
+      metricUnit = "g";
       break;
     default:
       break;

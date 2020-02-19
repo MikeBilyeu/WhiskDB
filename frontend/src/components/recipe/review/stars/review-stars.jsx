@@ -46,7 +46,7 @@ class Stars extends React.Component {
 
   render() {
     return (
-      <div onMouseLeave={this.handleMouseLeave} className="stars">
+      <div onMouseLeave={this.handleMouseLeave} className="review__stars">
         {this.renderRating()}
       </div>
     );
