@@ -6,7 +6,7 @@ import RecipeDetails from "./RecipeDetails";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Review from "./review";
-import Share from "./share";
+import More from "./more";
 import { getRecipe, submitEditRecipe } from "../../actions/recipe";
 import convertTime from "../../selectors/time-selector";
 import Loading from "../loading";
@@ -45,11 +45,14 @@ class Recipe extends React.Component {
       return <Edit />;
     }
 
+    if (reviewOpen) {
+      return <Review recipe_id={recipe_id} />;
+    }
+
     return (
       <div className="recipe">
         <Header recipe_id={recipe_id} user_id={user_id} />
-        {shareOpen ? <Share /> : null}
-        {reviewOpen ? <Review recipe_id={recipe_id} /> : null}
+        {shareOpen ? <More /> : null}
 
         <img
           className="recipe__img"

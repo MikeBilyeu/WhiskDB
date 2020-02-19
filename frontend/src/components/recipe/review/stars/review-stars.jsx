@@ -21,13 +21,18 @@ class Stars extends React.Component {
     this.setStarColor(rating);
   };
 
+  handleClick = rating => {
+    this.setStarColor(rating);
+    this.props.handleClick(rating);
+  };
+
   handleMouseLeave = () => {
     this.setStarColor(this.props.rating);
   };
 
   setStarColor = rating => {
-    this.setState(({ starColor }) => {
-      return { starColor: [...this.emptyStars].fill("#FFA805", 0, rating) };
+    this.setState({
+      starColor: [...this.emptyStars].fill("#FFA805", 0, rating)
     });
   };
 
@@ -38,7 +43,7 @@ class Stars extends React.Component {
           index={i}
           color={color}
           handleMouseEnter={this.handleMouseEnter}
-          handleClick={this.props.handleClick}
+          handleClick={this.handleClick}
         />
       );
     });

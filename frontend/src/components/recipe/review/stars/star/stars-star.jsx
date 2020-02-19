@@ -7,15 +7,18 @@ class Star extends React.Component {
   }
   render() {
     return (
-      <StarIcon
-        key={"star" + this.props.index}
+      <span
+        key={"starIcon" + this.props.index}
         className="star"
-        style={{
-          fill: this.props.color
-        }}
         onMouseEnter={() => this.props.handleMouseEnter(this.props.index + 1)}
-        onClick={() => this.props.handleClick(this.props.index)}
-      />
+        onClick={() => this.props.handleClick(this.props.index + 1)}
+      >
+        <StarIcon
+          style={{
+            fill: this.props.color
+          }}
+        />
+      </span>
     );
   }
 }

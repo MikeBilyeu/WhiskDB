@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toggleShare, toggleEditRecipe } from "../../../actions/recipe";
 import { ReactComponent as Close } from "../../../assets/images/removeDark.svg";
-import "./share.scss";
+import "./more.scss";
 
-class Share extends React.Component {
+class More extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,18 +14,13 @@ class Share extends React.Component {
   }
   render() {
     return (
-      <div className="share">
-        <Close className="close" onClick={this.props.toggleShare} />
+      <div className="recipe-more">
+        <Close
+          className="recipe-more__close-btn"
+          onClick={this.props.toggleShare}
+        />
         {this.state.copied ? (
-          <div
-            style={{
-              textAlign: "center",
-              fontSize: "1.5rem",
-              color: "#313131"
-            }}
-          >
-            Link copied!
-          </div>
+          <h1 className="recipe-more__copy-msg">Link copied!</h1>
         ) : (
           <CopyToClipboard
             text={window.location.href}
@@ -33,12 +28,12 @@ class Share extends React.Component {
               this.setState({ copied: true });
             }}
           >
-            <div className="share-option">Copy Link</div>
+            <div className="recipe-more__copy-btn">Copy Link</div>
           </CopyToClipboard>
         )}
 
         <div
-          className="print-option"
+          className="recipe-more__print-btn"
           onClick={() => {
             window.print();
           }}
@@ -52,7 +47,7 @@ class Share extends React.Component {
               this.props.toggleEditRecipe();
               this.props.toggleShare();
             }}
-            className="edit-btn"
+            className="recipe-more__edit-btn"
           >
             Edit Recipe
           </div>
@@ -73,4 +68,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { toggleShare, toggleEditRecipe }
-)(Share);
+)(More);

@@ -83,7 +83,7 @@
     min-width: 100%;
     margin-top: 70vh;
     background-color: #fff;
-    padding: 2.5rem 0.75rem;
+    padding: 2rem 0.75rem;
     border-radius: 1rem 1rem 0 0;
     z-index: 1;
   }
@@ -92,8 +92,7 @@
     width: 100%;
     margin: 0 0 4rem 0;
     display: grid;
-    align-items: center;
-    justify-items: start;
+    place-items: center;
     grid-gap: 0.5rem;
   }
 
@@ -101,6 +100,7 @@
     font-size: 1.2rem;
     margin: 0;
     color: darkColor(medium);
+    text-align: center;
   }
 
   &__time {
@@ -166,12 +166,11 @@
     white-space: pre-wrap;
     margin: 0;
     font-size: 0.95rem;
-    line-height: 1.2rem;
+    line-height: 1.1rem;
+    //text-indent: 0.5rem;
     &::first-letter {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 600;
-      float: left;
-      margin: -0.75rem 0 0 0;
     }
   }
 
@@ -180,7 +179,7 @@
     margin: 2rem 0 0 0;
     font-size: 0.9rem;
     color: darkColor(light);
-    line-height: 1.2rem;
+    line-height: 1.1rem;
     font-style: italic;
   }
 }
@@ -193,9 +192,11 @@
   .units,
   .navBar,
   .rate,
-  .share,
+  .recipe-more,
   .down-arrow,
   .username,
+  .recipe-rating,
+  .ingredient-adjust__units,
   h2,
   img {
     display: none !important;
@@ -205,41 +206,40 @@
     padding: 0 !important;
     margin: 0 !important;
     color: black !important;
-    font-size: 16pt;
-  }
-  .whiskdb-print-logo {
-    display: block !important;
-    width: 65pt !important;
+    font-size: 12pt !important;
+    //border: solid red 1px !important;
   }
 
   body {
     font-family: Goergia, serif;
     overflow-y: visible !important;
-    display: block !important;
+    //display: block !important;
   }
 
   .recipe {
-    .card {
+    &__container {
       display: grid;
       grid-gap: 2rem;
-
-      .title {
-        font-size: 25pt;
-      }
+    }
+    &__details {
+      margin: 0 !important;
     }
   }
 
-  .ingredients {
-    margin-top: -0.5rem !important;
+  .r-ingredients {
+    margin: 0 auto !important;
     grid-gap: 0.5rem;
+    font-size: 12pt !important;
+    width: 60%;
 
-    .servings-units {
-      display: grid !important;
-      place-items: center !important;
-      grid-template-columns: 1fr !important;
-
-      .servings {
-        input {
+    .ingredient-adjust {
+      display: block !important;
+      .adjust-servings {
+        border: none !important;
+        display: block !important;
+        width: 100% !important;
+        margin: 0 auto;
+        &__input {
           width: 2rem;
           border: none !important;
           color: black !important;
@@ -248,42 +248,41 @@
         }
       }
     }
-    ul {
+
+    &__list {
       margin: 0 auto !important;
       min-width: 20rem;
       max-width: 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       grid-row-gap: 0.2rem;
       grid-column-gap: 1.5rem;
     }
-    li {
+    &__item {
       text-decoration: none !important;
       opacity: 1 !important;
-      font-size: 16pt !important;
+      font-size: 12pt !important;
       line-height: 18pt !important;
+      border-bottom: solid lightColor(medium) 1pt;
     }
   }
 
-  .directions {
-    margin-top: 1rem !important;
-    .time {
-      color: black !important;
-    }
-    #directions {
-      margin-top: 0.5rem !important;
-      font-size: 14pt !important;
-      line-height: 17pt !important;
+  .r-directions {
+    margin: 0 auto !important;
+    width: 90%;
+
+    &__text {
+      margin: 0 !important;
+      font-size: 12pt !important;
+      line-height: 13pt !important;
       text-indent: 20pt;
       white-space: pre-line;
+
       &::first-letter {
-        font-size: 17pt;
-        font-weight: normal;
-        margin: 0;
-        float: none;
-        // margin: 1rem 0 0 0;
-        // float: left;
-        // margin: -0.2rem 0 0 0;
+        font-size: 12pt !important;
+        font-weight: normal !important;
+        margin: 0 !important;
+        float: none !important;
       }
     }
   }

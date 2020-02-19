@@ -27,9 +27,12 @@ class Review extends React.Component {
   handleChange = e => {
     this.setState({ comment: e.target.value });
   };
+
   handleClick = rating => {
-    this.setState({ rating: rating + 1 });
+    console.log(rating);
+    this.setState({ rating: rating });
   };
+
   handleSubmit = () => {
     const review = {
       recipe_id: this.props.recipe_id,
@@ -38,6 +41,7 @@ class Review extends React.Component {
     };
     this.props.submitReview(review);
   };
+
   render() {
     const { recipe_id, isAuthenticated } = this.props;
     return (
