@@ -35,8 +35,10 @@ class Servings extends React.Component {
   };
 
   handleFocus = () => {
-    this.setState({ focus: true, input: "" });
-    this.textInput.current.focus();
+    if (!this.state.focus) {
+      this.textInput.current.focus();
+      this.setState({ focus: true, input: "" });
+    }
   };
 
   handleBlur = () => {
@@ -66,9 +68,6 @@ class Servings extends React.Component {
         <span className="adjust-servings__text">Yield</span>
 
         <input
-          style={{
-            textAlign: "center"
-          }}
           className={classNames("adjust-servings__input", {
             "adjust-servings__input--active": this.state.focus
           })}
@@ -78,7 +77,6 @@ class Servings extends React.Component {
           type="text"
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
-          onFocus={this.handleFocus}
         />
       </div>
     );

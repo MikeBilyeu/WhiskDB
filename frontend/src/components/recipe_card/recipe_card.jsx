@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import renderTime from "../../utils/time";
-import { ReactComponent as SaveIcon } from "../../assets/images/saveIcon.svg";
+import { ReactComponent as SaveIcon } from "../../assets/images/heart.svg";
 import clock from "../../assets/images/time.png";
 import Rating from "../recipe/rating";
 import "./recipe_card.scss";

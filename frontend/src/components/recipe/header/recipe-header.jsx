@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { toggleShare, saveRecipe } from "../../../actions/recipe";
 import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
-import { ReactComponent as SaveIcon } from "../../../assets/images/saveIcon.svg";
+import { ReactComponent as SaveIcon } from "../../../assets/images/heart.svg";
 import { ReactComponent as More } from "../../../assets/images/more.svg";
 
 const Header = props => {
@@ -24,14 +24,15 @@ const Header = props => {
   return (
     <div className="recipe-header">
       <Arrow className="recipe-header__back-btn" onClick={handleBackClick} />
-      <button
+      <div
         className={classNames("recipe-header__save-btn", {
           "recipe-header__save-btn--active": recipeSaved
         })}
         onClick={() => saveRecipe(recipe_id, user_id)}
       >
+        <SaveIcon className="recipe-header__save-icon" />
         {recipeSaved ? "Saved" : "Save"}
-      </button>
+      </div>
 
       <More onClick={toggleShare} className="recipe-header__more-btn" />
     </div>

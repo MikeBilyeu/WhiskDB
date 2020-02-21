@@ -26,6 +26,10 @@
   .adjust-servings {
     @extend .ingredient-adjust__units;
 
+    &__text {
+      color: $primary-color;
+    }
+
     &--active {
       border-color: $primary-color;
       color: $primary-color;
@@ -36,8 +40,7 @@
       }
 
       .adjust-servings__input {
-        padding: 0.1rem;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         width: 100%;
       }
     }
@@ -45,10 +48,7 @@
     &__input {
       all: unset;
       width: 1.4rem;
-      height: 1.5rem;
-      // color: $primary-color;
-      // -webkit-text-fill-color: $primary-color;
-      // opacity: 1;
+      height: 1.8rem;
     }
   }
 }
