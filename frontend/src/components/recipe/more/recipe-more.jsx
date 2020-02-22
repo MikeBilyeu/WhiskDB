@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { toggleShare, toggleEditRecipe } from "../../../actions/recipe";
+import { toggleShowMore, toggleEditRecipe } from "../../../actions/recipe";
+import { toggleReview } from "../../../actions/review";
 import { ReactComponent as Close } from "../../../assets/images/removeDark.svg";
-import "./more.scss";
+import "./recipe-more.scss";
 
 class More extends React.Component {
   constructor(props) {
@@ -13,14 +14,30 @@ class More extends React.Component {
     };
   }
   render() {
+    const {
+      created_by,
+      user_id,
+      toggleShowMore,
+      toggleEditRecipe,
+      toggleReview,
+      className
+    } = this.props;
     return (
-      <div className="recipe-more">
-        <Close
-          className="recipe-more__close-btn"
-          onClick={this.props.toggleShare}
-        />
+      <div className={className}>
+        <Close className={`${className}__close-btn`} onClick={toggleShowMore} />
+        {user_id === created_by ? (
+          <div
+            onClick={() => {
+              toggleEditRecipe();
+              toggleShowMore();
+            }}
+            className={`${className}__edit-btn`}
+          >
+            Edit
+          </div>
+        ) : null}
         {this.state.copied ? (
-          <h1 className="recipe-more__copy-msg">Link copied!</h1>
+          <h1 className={`${className}__copy-msg`}>Link copied!</h1>
         ) : (
           <CopyToClipboard
             text={window.location.href}
@@ -28,44 +45,38 @@ class More extends React.Component {
               this.setState({ copied: true });
             }}
           >
-            <div className="recipe-more__copy-btn">Copy Link</div>
+            <div className={`${className}__copy-btn`}>Share</div>
           </CopyToClipboard>
         )}
 
         <div
-          className="recipe-more__print-btn"
+          className={`${className}__print-btn`}
           onClick={() => {
             window.print();
           }}
         >
           Print
         </div>
-
-        {this.props.user_id === this.props.created_by ? (
-          <div
-            onClick={() => {
-              this.props.toggleEditRecipe();
-              this.props.toggleShare();
-            }}
-            className="recipe-more__edit-btn"
-          >
-            Edit Recipe
-          </div>
-        ) : null}
+        <div
+          className={`${className}__print-btn`}
+          onClick={() => {
+            toggleReview();
+          }}
+        >
+          Review
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    created_by: state.recipe.recipe.created_by,
-    user_id: state.auth.user.user_id,
-    recipe_id: state.recipe.recipe.recipe_id
-  };
-};
+const mapStateToProps = state => ({
+  created_by: state.recipe.recipe.created_by,
+  user_id: state.auth.user.user_id,
+  recipe_id: state.recipe.recipe.recipe_id
+});
 
 export default connect(
   mapStateToProps,
-  { toggleShare, toggleEditRecipe }
+  { toggleShowMore, toggleEditRecipe, toggleReview }
 )(More);

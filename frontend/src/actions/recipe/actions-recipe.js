@@ -1,4 +1,4 @@
-import { TOGGLE_EDIT_RECIPE, TOGGLE_SHARE } from "../types";
+import { TOGGLE_EDIT_RECIPE, TOGGLE_SHOW_MORE } from "../types";
 
 export { default as createRecipe } from "./create-recipe";
 export { default as submitEditRecipe } from "./edit-recipe";
@@ -9,6 +9,6 @@ export const toggleEditRecipe = () => {
   return { type: TOGGLE_EDIT_RECIPE };
 };
 
-export const toggleShare = () => {
-  return { type: TOGGLE_SHARE };
+export const toggleShowMore = () => {
+  return { type: TOGGLE_SHOW_MORE };
 };

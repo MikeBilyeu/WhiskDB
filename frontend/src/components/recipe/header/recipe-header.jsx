@@ -2,25 +2,21 @@ import React from "react";
 import classNames from "classnames";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { toggleShare, saveRecipe } from "../../../actions/recipe";
+import { toggleShowMore, saveRecipe } from "../../../actions/recipe";
 import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
 import { ReactComponent as SaveIcon } from "../../../assets/images/heart.svg";
 import { ReactComponent as More } from "../../../assets/images/more.svg";
 
-const Header = props => {
-  const {
-    recipe_id,
-    user_id,
-    saveRecipe,
-    toggleShare,
-    recipeSaved,
-    history
-  } = props;
+import "./recipe-header.scss";
 
-  const handleBackClick = () => {
-    history.location.key ? history.goBack() : history.push("/");
-  };
-
+const Header = ({
+  recipe_id,
+  user_id,
+  saveRecipe,
+  toggleShowMore,
+  recipeSaved,
+  handleBackClick
+}) => {
   return (
     <div className="recipe-header">
       <Arrow className="recipe-header__back-btn" onClick={handleBackClick} />
@@ -34,7 +30,7 @@ const Header = props => {
         {recipeSaved ? "Saved" : "Save"}
       </div>
 
-      <More onClick={toggleShare} className="recipe-header__more-btn" />
+      <More onClick={toggleShowMore} className="recipe-header__more-btn" />
     </div>
   );
 };
@@ -48,6 +44,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { saveRecipe, toggleShare }
+    { saveRecipe, toggleShowMore }
   )(Header)
 );

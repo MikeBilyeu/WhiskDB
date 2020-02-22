@@ -3,7 +3,6 @@
 .recipe {
   .recipe-header {
     position: fixed;
-    top: 0;
     width: 100%;
     height: 3rem;
     padding: 0;
@@ -21,6 +20,58 @@
       cursor: pointer;
       padding: 1rem 2rem 1rem 1rem;
       width: 4rem;
+    }
+
+    &__save-icon {
+      width: 0.9rem;
+      fill: darkColor(medium) !important;
+    }
+
+    &__save-btn {
+      @include grid-center;
+      grid-template-columns: min-content 1fr;
+      grid-gap: 0.25rem;
+      border: solid lightColor(dark) 0.09rem;
+      border-radius: 0.2rem;
+      color: darkColor(medium);
+      background-color: #fff;
+      font-weight: 500;
+      font-size: 0.75rem;
+      padding: 0.25rem 2rem;
+      width: 8rem;
+      cursor: pointer;
+      outline: none;
+      @include fast-transition;
+
+      @media (hover: hover) {
+        &:hover {
+          border-color: $primary-color;
+          color: $primary-color;
+          .recipe-header__save-icon {
+            fill: $primary-color !important;
+          }
+        }
+      }
+
+      &--active {
+        border-color: $primary-color;
+        color: $primary-color;
+
+        .recipe-header__save-icon {
+          fill: $primary-color !important;
+        }
+
+        @media (hover: hover) {
+          &:hover {
+            border-color: lightColor(dark);
+            color: darkColor(light);
+            opacity: 0.9;
+            .recipe-header__save-icon {
+              fill: darkColor(medium) !important;
+            }
+          }
+        }
+      }
     }
 
     &__more-btn {

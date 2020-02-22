@@ -5,91 +5,8 @@
   //grid-gap: 1rem;
   color: darkColor(dark);
 
-  .recipe-header {
-    position: fixed;
-    width: 100%;
-    height: 3rem;
-    padding: 0;
-    background-color: #fff;
-    border-bottom: solid 0.01rem lightColor(light);
-    @include grid-center;
-    grid-template-columns: 1fr 1fr 1fr;
-    user-select: none;
-    z-index: 1;
-
-    &__back-btn {
-      @include grid-center;
-      grid-auto-flow: column;
-      justify-self: start;
-      cursor: pointer;
-      padding: 1rem 2rem 1rem 1rem;
-      width: 4rem;
-    }
-
-    &__save-icon {
-      width: 0.9rem;
-      fill: darkColor(medium) !important;
-    }
-
-    &__save-btn {
-      @include grid-center;
-      grid-template-columns: min-content 1fr;
-      grid-gap: 0.25rem;
-      border: solid lightColor(dark) 0.09rem;
-      border-radius: 0.2rem;
-      color: darkColor(medium);
-      background-color: #fff;
-      font-weight: 500;
-      font-size: 0.75rem;
-      padding: 0.25rem 2rem;
-      width: 8rem;
-      cursor: pointer;
-      outline: none;
-      @include fast-transition;
-
-      @media (hover: hover) {
-        &:hover {
-          border-color: $primary-color;
-          color: $primary-color;
-          .recipe-header__save-icon {
-            fill: $primary-color !important;
-          }
-        }
-      }
-
-      &--active {
-        border-color: $primary-color;
-        color: $primary-color;
-
-        .recipe-header__save-icon {
-          fill: $primary-color !important;
-        }
-
-        @media (hover: hover) {
-          &:hover {
-            border-color: lightColor(dark);
-            color: darkColor(light);
-            opacity: 0.9;
-            .recipe-header__save-icon {
-              fill: darkColor(medium) !important;
-            }
-          }
-        }
-      }
-    }
-
-    &__more-btn {
-      transform: rotate(90deg);
-      cursor: pointer;
-      padding: 1rem 1rem 1rem 1rem;
-      width: 3.3rem;
-      justify-self: end;
-    }
-  }
-
   &__img {
     position: fixed;
-    top: rem;
     width: 100vw;
     max-height: 100vh;
     min-height: 100vh;
@@ -133,11 +50,11 @@
   }
 
   &__created-by {
-    font-size: 0.9rem;
-    color: darkColor(light);
+    font-size: 0.85rem;
+    color: lightColor(dark);
     font-style: italic;
     text-align: center;
-    margin: 4rem 0 0.5rem 0;
+    margin: 4rem 0 0rem 0;
   }
 }
 
@@ -157,7 +74,7 @@
 
   &__item {
     margin: 0;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     display: grid;
     grid-auto-flow: column;
     grid-gap: 0.5rem;
@@ -189,7 +106,7 @@
     white-space: pre-wrap;
     margin: 0;
     font-size: 0.95rem;
-    line-height: 1.1rem;
+    line-height: 1.2rem;
     //text-indent: 0.5rem;
     &::first-letter {
       font-size: 2.5rem;
@@ -204,6 +121,56 @@
     color: darkColor(light);
     line-height: 1.1rem;
     font-style: italic;
+  }
+}
+
+//===================================================================
+@media (min-device-width: 650px) {
+  .recipe {
+    grid-template-columns: 1fr 3fr;
+    align-items: start;
+
+    &__details {
+      justify-items: start;
+    }
+
+    &__container {
+      margin-top: 4rem;
+      border-radius: 0;
+      border-left: solid lightColor(medium) 0.09rem;
+      padding: 5rem;
+    }
+
+    &__img {
+      position: relative;
+      min-width: 30rem;
+      max-width: 30rem;
+      min-height: 22.5rem;
+      max-height: 22.5rem;
+      margin: 5rem 0 0 0;
+      z-index: 1;
+    }
+
+    &__created-by {
+      text-align: left;
+      margin: 0.5rem 0;
+    }
+  }
+
+  .r-ingredients {
+    margin: 5rem 0 0 0;
+    //position: fixed;
+    padding: 0;
+    width: 100% !important;
+  }
+
+  .r-directions {
+    max-width: 40rem;
+
+    &__text,
+    &__footnote {
+      line-height: 1.3rem;
+    }
   }
 }
 

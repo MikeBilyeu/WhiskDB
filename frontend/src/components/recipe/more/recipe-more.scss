@@ -31,6 +31,7 @@
     border: solid lightColor(dark) 0.09rem;
     border-radius: 0.5rem;
     text-align: center;
+    font-size: 0.9rem;
     padding: 0.6rem;
     margin: 0 1rem;
     color: darkColor(medium);
@@ -41,7 +42,7 @@
 
   &__edit-btn {
     display: inline-block;
-    border-top: solid lightColor(light) 0.09rem;
+    border-bottom: solid lightColor(light) 0.09rem;
     padding: 1rem 2rem;
     max-width: 20rem;
     width: 85%;
@@ -49,5 +50,47 @@
     color: #0172c4;
     font-size: 0.9rem;
     cursor: pointer;
+  }
+}
+
+.recipe {
+  &__d-back-btn {
+    @extend .header-d-more__edit-btn;
+    align-self: end;
+  }
+}
+
+.header-d-more {
+  @include grid-center;
+  grid-auto-flow: column;
+  grid-column: 3 / 5;
+  place-self: end;
+  min-width: 15rem;
+  max-width: 20rem;
+
+  &__copy-msg,
+  &__copy-btn,
+  &__print-btn,
+  &__edit-btn {
+    cursor: pointer;
+    font-weight: normal;
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 0.2rem 1.5rem;
+    white-space: nowrap;
+    margin: 0;
+    @include fast-transition;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  &__copy-msg {
+    color: $primary-color;
+  }
+
+  &__close-btn {
+    display: none;
   }
 }
