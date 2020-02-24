@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
@@ -9,7 +10,9 @@ import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Review from "./review";
 import More from "./more";
-import { getRecipe, submitEditRecipe } from "../../actions/recipe";
+import { ReactComponent as SaveIcon } from "../../assets/images/heart.svg";
+import { ReactComponent as Arrow } from "../../assets/images/arrowLeft.svg";
+import { getRecipe, submitEditRecipe, saveRecipe } from "../../actions/recipe";
 import convertTime from "../../selectors/time-selector";
 import Loading from "../loading";
 import Edit from "./edit";
@@ -40,6 +43,7 @@ class Recipe extends React.Component {
       showMoreOpen,
       isFetching,
       editRecipe,
+      saved,
       recipe: { image_url, directions, footnote, time, title, username }
     } = this.props.recipeData;
     document.title = !title ? document.title : `${title} |  Zipiwisk`;
@@ -93,6 +97,7 @@ class Recipe extends React.Component {
             user_img={this.props.user_img}
           >
             <div className="recipe__d-back-btn" onClick={this.handleBackClick}>
+              <Arrow className="recipe__d-back-icon" />
               Go back
             </div>
             <More className="header-d-more" />
@@ -100,7 +105,20 @@ class Recipe extends React.Component {
           <Ingredients />
 
           <div className="recipe__container">
+            <div
+              className={classNames("recipe__save-btn", {
+                "recipe__save-btn--active": saved
+              })}
+              onClick={() => this.props.saveRecipe(recipe_id, user_id)}
+            >
+              <SaveIcon className="recipe__save-icon" />
+              {saved ? "Saved" : "Save"}
+            </div>
+
             <RecipeDetails time={time} />
+
+            <Ingredients />
+
             <Directions
               directions={directions}
               time={time}
@@ -133,7 +151,7 @@ const mapStateToProps = state => ({
 });
 Recipe = connect(
   mapStateToProps,
-  { getRecipe, submitEditRecipe }
+  { getRecipe, submitEditRecipe, saveRecipe }
 )(Recipe);
 
 export default withRouter(Recipe);

@@ -61,9 +61,6 @@
 .r-ingredients {
   width: 100%;
   margin: 6rem 0;
-  @include grid-center;
-  grid-gap: 1rem;
-
   &__list {
     width: 100%;
     justify-self: start;
@@ -107,7 +104,7 @@
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.2rem;
-    //text-indent: 0.5rem;
+
     &::first-letter {
       font-size: 2.5rem;
       font-weight: 600;
@@ -127,26 +124,87 @@
 //===================================================================
 @media (min-device-width: 650px) {
   .recipe {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: minmax(17rem, 30%) 1fr;
     align-items: start;
+
+    &__save-icon {
+      width: 0.9rem;
+      fill: darkColor(medium) !important;
+    }
+
+    &__save-btn {
+      @include grid-center;
+      grid-template-columns: min-content 1fr;
+      grid-gap: 0.25rem;
+      border: solid lightColor(dark) 0.09rem;
+      border-radius: 0.2rem;
+      color: darkColor(medium);
+      background-color: #fff;
+      font-weight: 500;
+      font-size: 0.75rem;
+      padding: 0.25rem 2rem;
+      margin-bottom: 4rem;
+      width: 8rem;
+      cursor: pointer;
+      outline: none;
+      @include fast-transition;
+
+      @media (hover: hover) {
+        &:hover {
+          border-color: $primary-color;
+          color: $primary-color;
+          .recipe__save-icon {
+            fill: $primary-color !important;
+          }
+        }
+      }
+
+      &--active {
+        border-color: $primary-color;
+        color: $primary-color;
+
+        .recipe__save-icon {
+          fill: $primary-color !important;
+        }
+
+        @media (hover: hover) {
+          &:hover {
+            border-color: lightColor(dark);
+            color: darkColor(light);
+            opacity: 0.9;
+            .recipe__save-icon {
+              fill: darkColor(medium) !important;
+            }
+          }
+        }
+      }
+    }
+
+    &__container {
+      width: 100%;
+      grid-column: 2 / 3;
+      margin-top: 5rem;
+      border-radius: 0;
+      border-left: solid lightColor(medium) 0.09rem;
+      padding: 3rem 8%;
+
+      .r-ingredients {
+        display: none;
+      }
+    }
 
     &__details {
       justify-items: start;
     }
 
-    &__container {
-      margin-top: 4rem;
-      border-radius: 0;
-      border-left: solid lightColor(medium) 0.09rem;
-      padding: 5rem;
-    }
-
     &__img {
       position: relative;
-      min-width: 30rem;
-      max-width: 30rem;
-      min-height: 22.5rem;
-      max-height: 22.5rem;
+      width: 100%;
+      max-width: 35rem !important;
+
+      height: 100%;
+      min-height: 15rem;
+      max-height: 20rem;
       margin: 5rem 0 0 0;
       z-index: 1;
     }
@@ -159,9 +217,12 @@
 
   .r-ingredients {
     margin: 5rem 0 0 0;
-    //position: fixed;
-    padding: 0;
-    width: 100% !important;
+    position: fixed;
+    overflow-y: scroll;
+    height: calc(100vh - 5rem);
+    width: 30% !important;
+    min-width: 17rem;
+    grid-gap: 0.25rem;
   }
 
   .r-directions {
@@ -171,6 +232,60 @@
     &__footnote {
       line-height: 1.3rem;
     }
+
+    &__footnote {
+      max-width: 30rem;
+      justify-self: start;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .recipe {
+    display: block;
+
+    &__save-btn {
+      margin: 0 auto 4rem auto;
+    }
+
+    &__container {
+      padding: 3rem 0.5rem;
+      border: none;
+
+      .r-ingredients {
+        display: block;
+        position: relative;
+        margin: 5rem auto;
+        width: 100% !important;
+        max-width: 30rem;
+        height: 100% !important;
+
+        &__list {
+          padding: 0;
+        }
+      }
+    }
+
+    &__details {
+      margin: 0;
+      place-items: center;
+    }
+
+    // &__img {
+    //   min-width: 25rem;
+    //   max-width: 25rem;
+    //   min-height: 18.75rem;
+    //   max-height: 18.75rem;
+    //   margin: 5rem auto 0.5rem auto;
+    // }
+
+    &__created-by {
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+  .r-ingredients {
+    display: none;
   }
 }
 
