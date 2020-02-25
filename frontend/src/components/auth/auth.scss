@@ -23,7 +23,6 @@
     font-size: 0.75rem;
     color: darkColor(medium);
     position: relative;
-    // @include grid-center;
     display: grid;
     text-align: start;
 
@@ -36,7 +35,7 @@
       border: solid lightColor(medium) 0.08rem;
       background-color: #fff;
       padding: 0.5rem;
-      color: #484848;
+      color: darkColor(medium);
       font-size: 1rem;
       font-weight: normal;
       margin-top: 0.1rem;

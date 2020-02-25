@@ -4,6 +4,24 @@
   position: relative;
   top: 3rem;
 
+  &__d-back-btn {
+    color: darkColor(medium);
+    cursor: pointer;
+    font-weight: normal;
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 0.2rem 1.5rem;
+    white-space: nowrap;
+    margin: 0;
+    @include fast-transition;
+    align-self: end;
+    position: relative;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
   &__title {
     text-align: center;
     font-size: 1.1rem;

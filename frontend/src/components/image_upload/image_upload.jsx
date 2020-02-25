@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { change } from "redux-form";
 
-import "./image_upload.scss";
-
 class ImageUpload extends React.Component {
   onImgChange = e => {
     const file = e.target.files[0];

@@ -3,7 +3,7 @@ import "./loading.scss";
 
 const Loading = () => {
   return (
-    <div className="lds-spinner">
+    <div className="loading">
       <div />
       <div />
       <div />

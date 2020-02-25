@@ -1,31 +1,191 @@
 @import "../../../assets/styles/variables";
 .edit-profile {
-  h2 {
-    margin: 0;
-    font-size: 1.3rem;
-  }
-  .radio {
-    @include grid-center;
-    grid-auto-flow: column;
-    grid-gap: 0.5rem;
-    width: 3rem;
-    margin: 0.5rem 0;
+  &__d-back-btn {
+    color: darkColor(medium);
     cursor: pointer;
+    font-weight: normal;
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 0.2rem 1.5rem;
+    white-space: nowrap;
+    margin: 0;
+    @include fast-transition;
+    align-self: end;
+    position: relative;
+
+    &:hover {
+      color: $primary-color;
+    }
   }
 
-  .saveBtn {
-    width: 100%;
+  &__d-back-icon {
+    width: 1rem;
+    position: relative;
+    left: 0rem;
+    margin: 0 0.3rem;
+    top: 0.23rem;
   }
-  .deleteBtn {
-    border: solid #c40801 0.09rem;
-    text-align: center;
-    color: #c40801;
-    padding: 0.5rem;
-    place-self: center;
-    margin: 2rem;
-    width: 100%;
-    postion: relative;
-    cursor: pointer;
-    border-radius: 0.3rem;
+
+  &__d-logout-btn {
+    @extend .edit-profile__d-back-btn;
+    grid-column: 4 / 5;
+    color: $primary-color;
+    justify-self: end;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .edit-profile-form {
+    max-width: 25rem;
+    margin: 5rem auto 0 auto;
+    padding-top: 1rem;
+    display: grid;
+    grid-gap: 1rem;
+
+    &__user-img {
+      @include grid-center;
+      place-self: center;
+      position: relative;
+      text-align: center;
+      width: 10rem;
+      height: 10rem;
+      margin: 1rem auto;
+      background-size: 100% auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 0.2rem;
+      outline: none;
+      cursor: pointer;
+      color: darkColor(dark);
+      font-size: 0.8rem;
+      font-weight: 100 !important;
+
+      &:hover {
+        opacity: 0.7;
+      }
+
+      &__text {
+        padding: 0.5rem 1rem;
+        opacity: 0.8;
+        background-color: lightColor(light);
+        border-radius: 2rem;
+        z-index: 1;
+        color: $primary-color;
+      }
+
+      &__img {
+        outline: none;
+        width: 10rem;
+        height: 10rem;
+        min-height: 10rem;
+        object-fit: cover;
+        position: absolute;
+        border-radius: 100%;
+        border: solid lightColor(medium) 0.08rem;
+      }
+    }
+
+    &__input {
+      font-weight: bold;
+      font-size: 0.75rem;
+      color: darkColor(medium);
+      position: relative;
+      display: grid;
+      text-align: start;
+
+      input[type="text"] {
+        all: unset;
+        box-sizing: border-box;
+        width: 100%;
+        border-radius: 0.3rem;
+        border: solid lightColor(medium) 0.08rem;
+        background-color: #fff;
+        padding: 0.5rem;
+        color: darkColor(medium);
+        font-size: 1rem;
+        font-weight: normal;
+        margin-top: 0.1rem;
+        cursor: text;
+        &::placeholder {
+          /* Chrome, Firefox, Opera, Safari 10.1+ */
+          color: #000;
+          opacity: 0.2; /* Firefox */
+        }
+        &:focus {
+          border: solid darkColor(dark) 0.08rem;
+        }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+          -webkit-box-shadow: 0 0 0 30px white inset !important;
+        }
+      }
+
+      .error {
+        color: $error-color;
+        justify-self: start;
+        font-size: 0.8rem;
+      }
+    }
+
+    .edit-profile-diet {
+      &__title {
+        font-size: 1rem;
+        width: 7rem;
+        margin: 0 auto;
+        margin-bottom: 0.5rem;
+      }
+
+      &__option {
+        display: block;
+        width: 7rem;
+        margin: 0.25rem auto;
+        cursor: pointer;
+      }
+    }
+
+    &__save-btn {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border: solid $primary-color 0.09rem;
+      font-weight: bold;
+      color: $primary-color;
+      border-radius: 50rem;
+      background-color: #fff;
+      height: 2.3rem;
+      width: 100%;
+      max-width: 20rem;
+      margin: 2rem auto;
+      display: block;
+      transition: all 0.1s ease-in;
+
+      &:hover {
+        background-color: $primary-color;
+        color: #fff;
+      }
+    }
+
+    &__delete-btn {
+      @extend .edit-profile-form__save-btn;
+      border-color: lightColor(dark);
+      border-radius: 0.3rem;
+      max-width: 10rem;
+      font-size: 0.9rem;
+      color: $error-color;
+      text-align: center;
+      line-height: 2.2rem;
+
+      &:hover {
+        background-color: $error-color;
+        border: solid $error-color 0.09rem;
+        color: #fff;
+      }
+    }
   }
 }

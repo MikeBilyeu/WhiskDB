@@ -11,6 +11,7 @@ import HeaderDesktop from "../../header_desktop";
 import FilterResults from "../../filter_results";
 import UserInfo from "./user_info";
 import PageToggle from "./page_toggle";
+import userLogo from "../../../assets/images/profileLogo.png";
 import Results from "../../results";
 
 import "./profile-home.scss";
@@ -68,7 +69,7 @@ class Home extends React.PureComponent {
         <UserInfo
           fullName={full_name}
           diet={diet === "none" ? null : diet}
-          image_url={image_url}
+          image_url={image_url || userLogo}
         />
         <PageToggle
           page={this.state.page}

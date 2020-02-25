@@ -4,6 +4,7 @@ import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
 import Header from "./header";
 import HeaderDesktop from "../../header_desktop";
+import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
 import RecipeUpsert from "../../recipe_upsert";
 import { createRecipe } from "../../../actions/recipe";
 
@@ -19,7 +20,9 @@ class CreateRecipe extends React.Component {
   };
 
   handleBackClick = () => {
-    this.props.history.goBack();
+    this.props.history.location.key
+      ? this.props.history.goBack()
+      : this.props.history.push("/profile");
   };
 
   render() {
@@ -33,7 +36,15 @@ class CreateRecipe extends React.Component {
           <Header onClick={this.handleBackClick} />
         </MediaQuery>
         <MediaQuery minDeviceWidth={650}>
-          <HeaderDesktop isAuth={true} user_img={this.props.user_img} />
+          <HeaderDesktop isAuth={true} user_img={this.props.user_img}>
+            <div
+              className="create-recipe__d-back-btn"
+              onClick={this.handleBackClick}
+            >
+              <Arrow className="edit-profile__d-back-icon" />
+              Go back
+            </div>
+          </HeaderDesktop>
         </MediaQuery>
         <h1 className="create-recipe__title">Create Recipe</h1>
         <RecipeUpsert

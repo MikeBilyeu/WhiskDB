@@ -1,12 +1,17 @@
 import React from "react";
+import MediaQuery from "react-responsive";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { Field, reduxForm, isDirty } from "redux-form";
 import { logoutUser, editProfile, toggleDelete } from "../../../actions/auth";
 import { validateUsername } from "../../auth/utils/validation.js";
 import { usernameValidate } from "../../auth/utils/async-validation";
 import Input from "../../form_inputs/input";
+import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
 import ImageUpload from "../../image_upload";
+
 import Header from "./header";
+import HeaderDesktop from "../../header_desktop";
 import Delete from "./delete";
 import "./profile-edit.scss";
 
@@ -18,21 +23,50 @@ class Edit extends React.Component {
     this.props.editProfile(values, this.props.history);
   };
 
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+  };
+
+  handleBackClick = () => {
+    this.props.history.location.key
+      ? this.props.history.goBack()
+      : this.props.history.push("/profile");
+  };
+
   render() {
     if (this.props.openDelete) {
       return <Delete />;
     }
     return (
       <div className="edit-profile">
-        <Header />
+        <MediaQuery maxDeviceWidth={649}>
+          <Header />
+        </MediaQuery>
+        <MediaQuery minDeviceWidth={650}>
+          <HeaderDesktop isAuth={true} user_img={this.props.userImg}>
+            <div
+              className="edit-profile__d-back-btn"
+              onClick={this.handleBackClick}
+            >
+              <Arrow className="edit-profile__d-back-icon" />
+              Go back
+            </div>
+            <div
+              className="edit-profile__d-logout-btn"
+              onClick={this.onLogoutClick}
+            >
+              Logout
+            </div>
+          </HeaderDesktop>
+        </MediaQuery>
         <form
-          className="auth-form"
-          style={{ marginTop: "3rem" }}
+          className="edit-profile-form"
           onSubmit={this.props.handleSubmit(this.handleSubmit)}
         >
           <Field
             name="image_url"
-            className="imageInput circle"
+            className="edit-profile-form__user-img"
             component={ImageUpload}
           />
           <Field
@@ -41,6 +75,7 @@ class Edit extends React.Component {
             inputId="fullname"
             placeholder="Enter full name"
             label="Full name"
+            className="edit-profile-form__input"
           />
           <Field
             name="username"
@@ -48,48 +83,41 @@ class Edit extends React.Component {
             inputId="username"
             placeholder="Enter new username"
             label="Username"
+            className="edit-profile-form__input"
           />
-          <div>
-            <h2>Diet</h2>
-            <div>
-              <label className="radio">
-                <Field
-                  name="diet"
-                  component={Input}
-                  type="radio"
-                  value="none"
-                />
-                None
-              </label>
-              <label className="radio">
-                <Field
-                  name="diet"
-                  component={Input}
-                  type="radio"
-                  value="vegetarian"
-                />
-                Vegetarian
-              </label>
-              <label className="radio">
-                <Field
-                  name="diet"
-                  component={Input}
-                  type="radio"
-                  value="vegan"
-                />
-                Vegan
-              </label>
-            </div>
+          <div className="edit-profile-diet">
+            <h2 className="edit-profile-diet__title">Diet</h2>
+
+            <label className="edit-profile-diet__option">
+              <Field name="diet" component={Input} type="radio" value="none" />
+              None
+            </label>
+            <label className="edit-profile-diet__option">
+              <Field
+                name="diet"
+                component={Input}
+                type="radio"
+                value="vegetarian"
+              />
+              Vegetarian
+            </label>
+            <label className="edit-profile-diet__option">
+              <Field name="diet" component={Input} type="radio" value="vegan" />
+              Vegan
+            </label>
           </div>
 
           {this.props.dirty ? (
-            <button className="saveBtn" type="submit">
+            <button className="edit-profile-form__save-btn" type="submit">
               Save changes
             </button>
           ) : null}
 
-          <div className="deleteBtn" onClick={this.props.toggleDelete}>
-            Delete Account
+          <div
+            className="edit-profile-form__delete-btn"
+            onClick={this.props.toggleDelete}
+          >
+            Delete account
           </div>
         </form>
       </div>
@@ -104,18 +132,21 @@ const mapStateToProps = state => ({
     diet: state.auth.user.diet || "none"
   },
   dirty: isDirty("edit-profile"),
-  openDelete: state.auth.openDelete
+  openDelete: state.auth.openDelete,
+  userImg: state.auth.user.image_url
 });
 
-export default connect(
-  mapStateToProps,
-  { logoutUser, editProfile, toggleDelete }
-)(
-  reduxForm({
-    form: "edit-profile",
-    validate: validateUsername,
-    asyncValidate: usernameValidate,
-    asyncBlurFields: ["username"],
-    enableReinitialize: true
-  })(Edit)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { logoutUser, editProfile, toggleDelete }
+  )(
+    reduxForm({
+      form: "edit-profile",
+      validate: validateUsername,
+      asyncValidate: usernameValidate,
+      asyncBlurFields: ["username"],
+      enableReinitialize: true
+    })(Edit)
+  )
 );
