@@ -68,6 +68,7 @@ class Home extends React.PureComponent {
         </MediaQuery>
         <UserInfo
           fullName={full_name}
+          username={username}
           diet={diet === "none" ? null : diet}
           image_url={image_url || userLogo}
         />

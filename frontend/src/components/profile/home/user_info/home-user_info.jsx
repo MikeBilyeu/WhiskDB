@@ -11,7 +11,9 @@ class UserInfo extends React.PureComponent {
         <Link className="user-info__edit" to="/profile/edit">
           <img src={this.props.image_url} alt="user profile" />
         </Link>
-        <h2 className="user-info__full-name">{this.props.fullName || null}</h2>
+        <h2 className="user-info__full-name">
+          {this.props.fullName || this.props.username}
+        </h2>
         <h3 className="user-info__diet">{this.props.diet || null}</h3>
         <Link className="user-info__create-recipe" to="/profile/create-recipe">
           Create Recipe
