@@ -15,11 +15,16 @@ router.put(
     const ingredientsArr = recipe.ingredients.split(/\n/);
     const keywordsArr = recipe.keywords.split(",").map(item => item.trim());
 
+    console.log(recipe.image_url);
+
     try {
       await db.query(
         `UPDATE recipes
-       SET title = $1, servings = $2, ingredients = $3, directions = $4,
-        footnote = $5, categories = $6, keywords = $7, total_time_mins = $8, image_url = $9
+       SET title = $1::VARCHAR, servings = $2, ingredients = $3,
+       directions = $4::VARCHAR, footnote = $5, categories = $6,
+       keywords = CAST($7 AS VARCHAR[]), total_time_mins = $8,
+         image_url = $9, document_vectors = ( setweight(to_tsvector($1), 'A')
+         || setweight(to_tsvector($4), 'B') || setweight(to_tsvector(array_to_string($7, ' ')), 'C') )
        WHERE recipe_id = $10`,
         [
           recipe.title.trim(),
@@ -55,6 +60,7 @@ router.put(
 
       response.status(200).send("Changes saved!");
     } catch (err) {
+      console.error(err);
       response.status(500).json(err);
     }
   }

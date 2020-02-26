@@ -26,24 +26,19 @@ router.get("/", async (request, response) => {
              COALESCE(AVG(rw.rating), 0) AS rating,
              CAST(count(distinct rw.*) AS INTEGER) AS num_reviews,
              COUNT(distinct sr.*) AS num_saves,
-             COUNT(*) OVER() AS full_count
+             COUNT(*) OVER() AS full_count,
+             ts_rank_cd(document_vectors, to_tsquery($1)) AS rank
       FROM recipes r
       LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
       LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
-      WHERE document_vectors @@ to_tsquery($1)
+      WHERE to_tsquery($1) @@ document_vectors
       GROUP BY r.recipe_id,
                sr.recipe_saved
-               ORDER BY CASE
-                      WHEN $4 = 'a-z' THEN LOWER(r.title)
-                  END ASC, CASE
-                               WHEN $4 = 'time' THEN r.total_time_mins
-                           END ASC, CASE
-                                        WHEN $4 = 'newest' THEN r.created_at
-                                    END DESC, rating DESC,
-                                              num_reviews DESC,
-                                              created_at DESC
+
+               ORDER BY rank DESC
+
                                               LIMIT $2 OFFSET $3;`,
-      [search, LIMIT, OFFSET, sort]
+      [search, LIMIT, OFFSET]
     );
     if (rowCount < 1) {
       response.status(204).send();
