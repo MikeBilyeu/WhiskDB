@@ -45,7 +45,7 @@ export const getSearchRecipes = () => async (dispatch, getState) => {
 
   // dispatch a browse request
   dispatch({ type: GET_BROWSE_REQUEST });
-
+  dispatch({ type: TOGGLE_FILTER_BUTTON_BROWSE, payload: null });
   dispatch({ type: SET_BROWSE_DATA, payload: filterRecipes });
 
   try {

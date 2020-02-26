@@ -5,9 +5,12 @@ const passport = require("passport");
 module.exports = router;
 
 router.get("/", async (request, response) => {
-  let { search, offset } = JSON.parse(
+  let { search, offset, sort } = JSON.parse(
     request.query.filterRecipes.toLowerCase()
   );
+  search = search.trim().replace(/\s+/g, " | ");
+
+  console.log("SEARCH TERM:", search);
   const { user_id } = request.query;
   search = search.trim();
   const LIMIT = 10;
@@ -30,10 +33,17 @@ router.get("/", async (request, response) => {
       WHERE document_vectors @@ to_tsquery($1)
       GROUP BY r.recipe_id,
                sr.recipe_saved
-      ORDER BY rating DESC,
-               num_reviews DESC
-               LIMIT $2 OFFSET $3;`,
-      [search, LIMIT, OFFSET]
+               ORDER BY CASE
+                      WHEN $4 = 'a-z' THEN LOWER(r.title)
+                  END ASC, CASE
+                               WHEN $4 = 'time' THEN r.total_time_mins
+                           END ASC, CASE
+                                        WHEN $4 = 'newest' THEN r.created_at
+                                    END DESC, rating DESC,
+                                              num_reviews DESC,
+                                              created_at DESC
+                                              LIMIT $2 OFFSET $3;`,
+      [search, LIMIT, OFFSET, sort]
     );
     if (rowCount < 1) {
       response.status(204).send();
