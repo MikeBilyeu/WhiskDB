@@ -5,7 +5,11 @@ import imageUpload from "../../image";
 // Edit Recipe
 const submitEditRecipe = recipeData => async dispatch => {
   try {
-    let imageURL = await dispatch(imageUpload(recipeData.imageFile));
+    let imageURL = recipeData.image_url;
+
+    if (recipeData.imageFile) {
+      imageURL = await dispatch(imageUpload(recipeData.imageFile));
+    }
 
     await axios.put("/profile/edit-recipe", {
       ...recipeData,

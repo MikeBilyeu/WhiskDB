@@ -15,8 +15,6 @@ router.put(
     const ingredientsArr = recipe.ingredients.split(/\n/);
     const keywordsArr = recipe.keywords.split(",").map(item => item.trim());
 
-    console.log(recipe.image_url);
-
     try {
       await db.query(
         `UPDATE recipes
