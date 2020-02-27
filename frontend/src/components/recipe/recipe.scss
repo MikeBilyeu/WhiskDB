@@ -286,11 +286,14 @@
 @media print {
   /* Remove unwanted elements */
   .recipe-header,
+  .header-d,
   .rating,
   .units,
   .navBar,
   .rate,
   .recipe-more,
+  .recipe__save-btn,
+  .recipe__created-by,
   .down-arrow,
   .username,
   .recipe-rating,
@@ -328,7 +331,6 @@
     margin: 0 auto !important;
     grid-gap: 0.5rem;
     font-size: 12pt !important;
-    width: 40%;
 
     .ingredient-adjust {
       display: block !important;
@@ -350,6 +352,7 @@
     &__list {
       margin: 0 auto !important;
       min-width: 20rem;
+      width: 50% !important;
       max-width: 100%;
       display: grid;
       grid-template-columns: 1fr;

@@ -13,7 +13,7 @@ router.get("/", async (request, response) => {
   console.log("SEARCH TERM:", search);
   const { user_id } = request.query;
   search = search.trim();
-  const LIMIT = 10;
+  const LIMIT = 12;
   const OFFSET = offset * LIMIT;
 
   try {
