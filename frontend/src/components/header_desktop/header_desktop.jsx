@@ -17,7 +17,7 @@ const HeaderDesktop = ({
       <Link
         to="/"
         onClick={() => {
-          return pathname === "/" ? React.Component.forceUpdate() : true;
+          return pathname === "/" ? window.location.reload() : true;
         }}
         className="header-d__logo"
       >
