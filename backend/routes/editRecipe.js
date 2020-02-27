@@ -22,7 +22,7 @@ router.put(
        directions = $4::VARCHAR, footnote = $5, categories = $6,
        keywords = CAST($7 AS VARCHAR[]), total_time_mins = $8,
          image_url = $9, document_vectors = ( setweight(to_tsvector($1), 'A')
-         || setweight(to_tsvector($4), 'B') || setweight(to_tsvector(array_to_string($7, ' ')), 'C') )
+         || setweight(to_tsvector($4), 'C') || setweight(to_tsvector(array_to_string($7, ' ')), 'B') )
        WHERE recipe_id = $10`,
         [
           recipe.title.trim(),
