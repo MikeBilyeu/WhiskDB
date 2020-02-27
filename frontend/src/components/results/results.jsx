@@ -8,6 +8,8 @@ import NoResults from "./no_results";
 import "./results.scss";
 
 class Results extends React.PureComponent {
+  shouldCoponentUpdate() {}
+
   renderRecipeList = () => {
     return this.props.recipes.map((recipe, i) => {
       return <RecipeCard key={recipe.recipe_id} recipe={recipe} />;
@@ -23,35 +25,33 @@ class Results extends React.PureComponent {
   };
 
   render() {
-    if (this.props.recipes.length < 1 && !this.props.isFetching) {
+    if (!this.props.recipes.length && !this.props.isFetching) {
       return <NoResults />;
     }
 
-    return (
-      <div
-        className={classNames("recipe-results", {
-          "recipe-results--active": this.props.filterOptionsOpened
-        })}
-      >
-        {this.props.isFetching ? (
+    if (this.props.recipes.length) {
+      return (
+        <div
+          className={classNames("recipe-results", {
+            "recipe-results--active": this.props.filterOptionsOpened
+          })}
+        >
           <ul className="recipe-results__list">
-            {this.renderRecipeListLoading()}
+            {this.renderRecipeList()}
+            {this.props.isFetching && this.renderRecipeListLoading()}
           </ul>
-        ) : (
-          <>
-            <ul className="recipe-results__list">{this.renderRecipeList()}</ul>
-            {this.props.recipes.length < this.props.recipes[0].full_count ? (
-              <button
-                className="recipe-results__load-more"
-                onClick={this.props.handleClick}
-              >
-                Load More
-              </button>
-            ) : null}
-          </>
-        )}
-      </div>
-    );
+          {this.props.recipes.length < this.props.recipes[0].full_count ? (
+            <button
+              className="recipe-results__load-more"
+              onClick={this.props.handleClick}
+            >
+              Load More
+            </button>
+          ) : null}
+        </div>
+      );
+    }
+    return null;
   }
 }
 
