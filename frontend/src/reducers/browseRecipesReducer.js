@@ -4,7 +4,8 @@ import {
   SET_BROWSE_DATA,
   TOGGLE_FILTER_BUTTON_BROWSE,
   OFFSET_INCREMENT,
-  REMOVE_RECIPES
+  REMOVE_RECIPES,
+  GET_USER
 } from "../actions/types";
 
 const initialState = {
@@ -47,6 +48,12 @@ export default function(state = initialState, action) {
           ...state.filterRecipes,
           offset: state.filterRecipes.offset + 1
         }
+      };
+
+    case GET_USER:
+      return {
+        ...state,
+        filterRecipes: { ...state.filterRecipes, diet: action.payload.diet }
       };
 
     case TOGGLE_FILTER_BUTTON_BROWSE:

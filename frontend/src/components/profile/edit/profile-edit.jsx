@@ -85,7 +85,7 @@ class Edit extends React.Component {
             label="Username"
             className="edit-profile-form__input"
           />
-          <div className="edit-profile-diet">
+          {/*<div className="edit-profile-diet">
             <h2 className="edit-profile-diet__title">Diet</h2>
 
             <label className="edit-profile-diet__option">
@@ -105,7 +105,7 @@ class Edit extends React.Component {
               <Field name="diet" component={Input} type="radio" value="vegan" />
               Vegan
             </label>
-          </div>
+          </div>*/}
 
           {this.props.dirty ? (
             <button className="edit-profile-form__save-btn" type="submit">

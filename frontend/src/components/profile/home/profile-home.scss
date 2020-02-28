@@ -149,6 +149,10 @@
   .profile-home > .filter-results-meal {
     left: 1rem;
     top: 4.8rem !important;
+
+    .filter-results-meal__title {
+      display: none;
+    }
   }
 }
 

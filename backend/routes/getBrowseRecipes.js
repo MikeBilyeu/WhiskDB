@@ -9,7 +9,7 @@ router.get("/", async (request, response) => {
   );
   const { user_id } = request.query;
   diet = diet === "none" ? null : diet;
-  const numOfCats = diet ? (meal == "all meals" ? 1 : 2) : 1;
+  const numOfCats = diet ? (meal === "all meals" ? 1 : 2) : 1;
   const LIMIT = 12;
   const OFFSETNUM = offset * LIMIT;
 
