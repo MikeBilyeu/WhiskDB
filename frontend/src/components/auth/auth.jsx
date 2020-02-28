@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { loginUser, registerUser } from "../../actions/auth";
 import MediaQuery from "react-responsive";
 import { Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router-dom";
@@ -9,43 +10,51 @@ import Login from "./login";
 import Signup from "./signup";
 import "./auth.scss";
 
-class Auth extends React.Component {
-  componentDidMount() {
+const Auth = props => {
+  useEffect(() => {
     document.title = "Zipiwisk | The internet’s source of free recipes.";
     // If logged in and user auth redirect to profile
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/profile");
+    if (props.isAuthenticated) {
+      props.history.push("/profile");
     }
-  }
+  }, []);
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      // push user to profile when they login
-      this.props.history.push("/profile");
+  useEffect(() => {
+    // If logged in and user auth redirect to profile
+    if (props.isAuthenticated) {
+      props.history.push("/profile");
     }
-  }
+  }, [props.isAuthenticated]);
 
-  render() {
-    //const page = this.state.page;
-    return (
-      <div className="auth-page">
-        <MediaQuery maxDeviceWidth={649}>
-          <Header />
-        </MediaQuery>
-        <MediaQuery minDeviceWidth={650}>
-          <HeaderDesktop />
-        </MediaQuery>
-        <Switch>
-          <Route path="/auth/signup" component={Signup} />
-          <Route path="/auth" component={Login} />
-        </Switch>
-      </div>
-    );
-  }
-}
+  const { registerUser, loginUser } = props;
+
+  return (
+    <div className="auth-page">
+      <MediaQuery maxDeviceWidth={649}>
+        <Header />
+      </MediaQuery>
+      <MediaQuery minDeviceWidth={650}>
+        <HeaderDesktop />
+      </MediaQuery>
+      <Switch>
+        <Route
+          path="/auth/signup"
+          render={props => <Signup {...props} registerUser={registerUser} />}
+        />
+        <Route
+          path="/auth"
+          render={props => <Login {...props} loginUser={loginUser} />}
+        />
+      </Switch>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps)(withRouter(Auth));
+export default connect(
+  mapStateToProps,
+  { loginUser, registerUser }
+)(withRouter(Auth));

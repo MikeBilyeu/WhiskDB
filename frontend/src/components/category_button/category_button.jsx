@@ -5,29 +5,24 @@ import { ReactComponent as Arrow } from "../../assets/images/filterArrow.svg";
 import { ReactComponent as DesktopArrow } from "../../assets/images/openArrow.svg";
 import "./category_button.scss";
 
-const CategoryButton = ({
-  meal,
-  className,
-  activeFilterBtn,
-  toggleFilterButton
-}) => {
-  const active = activeFilterBtn === "Meal";
+const CategoryButton = props => {
+  const active = props.activeFilterBtn === "Meal";
   return (
     <button
-      className={classNames(`${className}`, {
-        [`${className}--active`]: active
+      className={classNames(`${props.className}`, {
+        [`${props.className}--active`]: active
       })}
-      onClick={() => toggleFilterButton("Meal")}
+      onClick={() => props.toggleFilterButton("Meal")}
     >
-      {meal === "All Meals" ? "All categories" : meal}
+      {props.meal === "All Meals" ? "All categories" : props.meal}
       <Arrow
-        className={classNames(`${className}__icon-m`, {
-          [`${className}__icon-m--active`]: active
+        className={classNames(`${props.className}__icon-m`, {
+          [`${props.className}__icon-m--active`]: active
         })}
       />
       <DesktopArrow
-        className={classNames(`${className}__icon-d`, {
-          [`${className}__icon-d--active`]: active
+        className={classNames(`${props.className}__icon-d`, {
+          [`${props.className}__icon-d--active`]: active
         })}
       />
     </button>

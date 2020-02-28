@@ -11,7 +11,7 @@ import ScrollUp from "./scroll_up";
 
 checkAuthToken();
 
-const App = props => {
+const App = () => {
   return (
     <Router>
       <ScrollUp>
