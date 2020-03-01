@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import classNames from "classnames";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -10,77 +10,65 @@ import {
 import { ReactComponent as SearchIcon } from "../../assets/images/searchIcon.svg";
 import "./search_bar.scss";
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.textInput = React.createRef();
-    this.state = { focus: false, searchTerm: "" };
-  }
-  componentDidMount() {
-    this.setState({ searchTerm: this.props.searchTerm });
-  }
+const SearchBar = props => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [focus, setFocus] = useState(false);
+  const textInput = useRef(null);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.searchTerm !== this.props.searchTerm) {
-      this.setState({ ...this.state, searchTerm: this.props.searchTerm });
-    }
-  }
+  useEffect(() => setSearchTerm(props.searchTerm), [props.searchTerm]);
 
-  handleChange = e => {
-    this.setState({ ...this.state, searchTerm: e.target.value });
-  };
+  const handleChange = e => setSearchTerm(e.target.value);
 
-  handleKeyPress = e => {
-    if (e.key === "Enter") {
-      if (/\S/.test(this.state.searchTerm)) {
-        this.props.history.push("/");
-        this.props.updateFilterRecipe("search", this.state.searchTerm);
-      }
+  const handleKeyDown = e => {
+    if (e.key === "Enter" && !e.repeat) {
+      handleBlur();
+      props.history.push("/");
+      /\S/.test(searchTerm)
+        ? props.updateFilterRecipe("search", searchTerm)
+        : props.updateFilterRecipe("meal", "All Meals");
     }
   };
 
-  handleFocus = () => {
-    this.setState({ focus: true });
-    this.props.toggleFilterBtnBrowse(null);
-    this.props.toggleFilterBtnProfile(null);
-    this.textInput.current.focus();
+  const handleFocus = () => {
+    setFocus(true);
+    textInput.current.focus();
+    props.toggleFilterBtnBrowse(null);
+    props.toggleFilterBtnProfile(null);
   };
 
-  handleBlur = () => {
-    this.setState({ focus: false });
+  const handleBlur = () => {
+    setFocus(false);
+    textInput.current.blur();
   };
 
-  render() {
-    // if redux searchTerm store it in local searchTerm
-    return (
-      <div
-        className={classNames("search-bar", {
-          "search-bar--active": this.state.focus
+  return (
+    <div
+      className={classNames("search-bar", {
+        "search-bar--active": focus
+      })}
+      onClick={handleFocus}
+      onBlur={handleBlur}
+    >
+      <SearchIcon
+        className={classNames("search-bar__icon", {
+          "search-bar__icon--active": focus
         })}
-        onClick={this.handleFocus}
-        onBlur={this.handleBlur}
-      >
-        <SearchIcon
-          className={classNames("search-bar__icon", {
-            "search-bar__icon--active": this.state.focus
-          })}
-        />
-        <input
-          ref={this.textInput}
-          className="search-bar__input"
-          onChange={this.handleChange}
-          onFocus={this.handleFocus}
-          onKeyPress={this.handleKeyPress}
-          autoComplete="off"
-          placeholder="Search thousands of delicious recipes…"
-          value={this.state.searchTerm}
-          type="search"
-          aria-label="Search"
-        />
-      </div>
-    );
-  }
-}
+      />
+      <input
+        ref={textInput}
+        className="search-bar__input"
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onKeyDown={handleKeyDown}
+        autoComplete="off"
+        placeholder="Search thousands of delicious recipes…"
+        value={searchTerm}
+        type="search"
+        aria-label="Search"
+      />
+    </div>
+  );
+};
 
 const mapSateToProps = state => {
   return {

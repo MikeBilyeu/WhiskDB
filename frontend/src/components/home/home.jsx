@@ -16,9 +16,15 @@ import {
 import "./home.scss";
 
 const Home = props => {
+  // Check if user changed the filterRecipes
+  const isDirtyFilter =
+    props.filterRecipes.search !== "" ||
+    props.filterRecipes.meal !== "All Meals";
+
   useEffect(() => {
     document.title = "Zipiwisk | The internet’s source of free recipes.";
-    if (!props.recipes.recipes.length) {
+
+    if (!props.recipes.recipes.length && !isDirtyFilter) {
       props.updateFilterRecipe("meal", "All Meals");
     }
   }, []);
@@ -32,11 +38,6 @@ const Home = props => {
   const handleLoadMoreClick = () => {
     props.incrementOffset();
   };
-
-  // Check if user changed the filterRecipes
-  const isDirtyFilter =
-    props.filterRecipes.search !== "" ||
-    props.filterRecipes.meal !== "All Meals";
 
   return (
     <div className="home">
