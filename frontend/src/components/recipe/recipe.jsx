@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
@@ -10,138 +10,119 @@ import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Review from "./review";
 import More from "./more";
-import { ReactComponent as SaveIcon } from "../../assets/images/heart.svg";
-import { ReactComponent as Arrow } from "../../assets/images/arrowLeft.svg";
-import { getRecipe, submitEditRecipe, saveRecipe } from "../../actions/recipe";
-import convertTime from "../../selectors/time-selector";
 import Loading from "../loading";
 import Edit from "./edit";
+import { ReactComponent as SaveIcon } from "../../assets/images/heart.svg";
+import { ReactComponent as Arrow } from "../../assets/images/arrowLeft.svg";
+import { getRecipe, saveRecipe } from "../../actions/recipe";
+import convertTime from "../../selectors/time-selector";
 import "./recipe.scss";
 
-class Recipe extends React.Component {
-  componentDidMount() {
-    const recipe_id = this.props.match.params.recipe_id;
-    const user_id = this.props.user_id;
-    this.props.getRecipe(recipe_id, user_id);
+const Recipe = props => {
+  const recipe_id = props.match.params.recipe_id;
+  const user_id = props.user_id;
+
+  useEffect(() => {
+    props.getRecipe(recipe_id, user_id);
+  }, []);
+
+  const {
+    reviewOpen,
+    showMoreOpen,
+    isFetching,
+    editRecipe,
+    saved,
+    recipe: { image_url, directions, footnote, time, title, username }
+  } = props.recipeData;
+  document.title = !title ? document.title : `${title} |  Zipiwisk`;
+
+  const handleBackClick = () => {
+    props.history.location.key
+      ? props.history.goBack()
+      : props.history.push("/");
+  };
+
+  if (isFetching) {
+    return <Loading />;
   }
 
-  handleSubmit = values => {
-    this.props.submitEditRecipe(values);
-  };
+  if (editRecipe) {
+    return <Edit />;
+  }
 
-  handleBackClick = () => {
-    this.props.history.location.key
-      ? this.props.history.goBack()
-      : this.props.history.push("/");
-  };
+  if (reviewOpen) {
+    return <Review recipe_id={recipe_id} />;
+  }
 
-  render() {
-    const recipe_id = this.props.match.params.recipe_id;
-    const user_id = this.props.user_id;
-    const {
-      reviewOpen,
-      showMoreOpen,
-      isFetching,
-      editRecipe,
-      saved,
-      recipe: { image_url, directions, footnote, time, title, username }
-    } = this.props.recipeData;
-    document.title = !title ? document.title : `${title} |  Zipiwisk`;
+  return (
+    <div className="recipe">
+      <MediaQuery maxDeviceWidth={649}>
+        <Header
+          recipe_id={recipe_id}
+          user_id={user_id}
+          handleBackClick={handleBackClick}
+        />
+        {showMoreOpen ? <More className="recipe-more" /> : null}
+        <img
+          className="recipe__img"
+          href="recipe photo"
+          alt=""
+          src={image_url.replace(
+            "https://res.cloudinary.com/mikebilyeuimg/image/upload/",
+            "https://res.cloudinary.com/mikebilyeuimg/image/upload/q_auto:good,w_1500/"
+          )}
+        />
 
-    // display loading if isFetching
-    if (isFetching) {
-      return <Loading />;
-    }
+        <div className="recipe__container">
+          <RecipeDetails time={time} />
+          <Ingredients />
+          <Directions directions={directions} time={time} footnote={footnote} />
+          <div className="recipe__created-by">
+            Recipe by {username.toLowerCase()}
+          </div>
+        </div>
+      </MediaQuery>
 
-    if (editRecipe) {
-      return <Edit />;
-    }
+      <MediaQuery minDeviceWidth={650}>
+        <HeaderDesktop isAuth={props.isAuth} user_img={props.user_img}>
+          <div className="recipe__d-back-btn" onClick={handleBackClick}>
+            <Arrow className="recipe__d-back-icon" />
+            Go back
+          </div>
+          <More className="header-d-more" />
+        </HeaderDesktop>
+        <Ingredients />
 
-    if (reviewOpen) {
-      return <Review recipe_id={recipe_id} />;
-    }
+        <div className="recipe__container">
+          <div
+            className={classNames("recipe__save-btn", {
+              "recipe__save-btn--active": saved
+            })}
+            onClick={() => props.saveRecipe(recipe_id, user_id)}
+          >
+            <SaveIcon className="recipe__save-icon" />
+            {saved ? "Saved" : "Save"}
+          </div>
 
-    return (
-      <div className="recipe">
-        <MediaQuery maxDeviceWidth={649}>
-          <Header
-            recipe_id={recipe_id}
-            user_id={user_id}
-            handleBackClick={this.handleBackClick}
-          />
-          {showMoreOpen ? <More className="recipe-more" /> : null}
+          <RecipeDetails time={time} />
+
+          <Ingredients />
+
+          <Directions directions={directions} time={time} footnote={footnote} />
           <img
             className="recipe__img"
             href="recipe photo"
             alt=""
-            src={image_url.replace(
-              "https://res.cloudinary.com/mikebilyeuimg/image/upload/",
-              "https://res.cloudinary.com/mikebilyeuimg/image/upload/q_auto:good,w_1500/"
-            )}
+            src={image_url}
           />
-
-          <div className="recipe__container">
-            <RecipeDetails time={time} />
-            <Ingredients />
-            <Directions
-              directions={directions}
-              time={time}
-              footnote={footnote}
-            />
-            <div className="recipe__created-by">
-              Recipe by {username.toLowerCase()}
-            </div>
+          <div className="recipe__created-by">
+            Recipe by {username.toLowerCase()}
           </div>
-        </MediaQuery>
-
-        <MediaQuery minDeviceWidth={650}>
-          <HeaderDesktop
-            isAuth={this.props.isAuth}
-            user_img={this.props.user_img}
-          >
-            <div className="recipe__d-back-btn" onClick={this.handleBackClick}>
-              <Arrow className="recipe__d-back-icon" />
-              Go back
-            </div>
-            <More className="header-d-more" />
-          </HeaderDesktop>
-          <Ingredients />
-
-          <div className="recipe__container">
-            <div
-              className={classNames("recipe__save-btn", {
-                "recipe__save-btn--active": saved
-              })}
-              onClick={() => this.props.saveRecipe(recipe_id, user_id)}
-            >
-              <SaveIcon className="recipe__save-icon" />
-              {saved ? "Saved" : "Save"}
-            </div>
-
-            <RecipeDetails time={time} />
-
-            <Ingredients />
-
-            <Directions
-              directions={directions}
-              time={time}
-              footnote={footnote}
-            />
-            <img
-              className="recipe__img"
-              href="recipe photo"
-              alt=""
-              src={image_url}
-            />
-            <div className="recipe__created-by">
-              Recipe by {username.toLowerCase()}
-            </div>
-          </div>
-        </MediaQuery>
-      </div>
-    );
-  }
-}
+        </div>
+      </MediaQuery>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   recipeData: {
@@ -152,9 +133,10 @@ const mapStateToProps = state => ({
   isAuth: state.auth.isAuthenticated,
   user_img: state.auth.user.image_url
 });
-Recipe = connect(
-  mapStateToProps,
-  { getRecipe, submitEditRecipe, saveRecipe }
-)(Recipe);
 
-export default withRouter(Recipe);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getRecipe, saveRecipe }
+  )(Recipe)
+);
