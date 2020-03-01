@@ -1,25 +1,19 @@
 import React from "react";
 
-const Input = ({
-  input,
-  meta: { touched, error, warning, active },
-  placeholder,
-  type = "text",
-  label,
-  className,
-  ...props
-}) => {
+const Input = ({ type = "text", ...props }) => {
   return (
-    <label className={className}>
-      {label}
+    <label className={props.className}>
+      {props.label}
       <input
-        {...input}
+        {...props.input}
         autoComplete="off"
         type={type}
-        placeholder={placeholder}
+        placeholder={props.placeholder}
       />
       {props.children}
-      {touched && error && <div className="error">*{error}</div>}
+      {props.meta.touched && props.meta.error && (
+        <div className={`${props.className}-error`}>*{props.meta.error}</div>
+      )}
     </label>
   );
 };

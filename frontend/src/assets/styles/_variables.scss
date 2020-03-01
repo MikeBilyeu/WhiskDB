@@ -42,6 +42,10 @@ $star-color: #ffa805;
   transition: all 0.1s ease-out;
 }
 
+// @mixin slow-transition {
+//   transition: all 10s ease;
+// }
+
 @mixin dark-overlay {
   &:after {
     -webkit-backdrop-filter: blur(0.05rem);

@@ -14,7 +14,7 @@ const Header = ({ meal, activeFilterBtn, toggleFilterBtnBrowse }) => {
       <CategoryButton
         className="category-btn-m"
         meal={meal}
-        activeFilterBtn={activeFilterBtn}
+        active={activeFilterBtn === "Meal"}
         toggleFilterButton={toggleFilterBtnBrowse}
       />
       {/*<SearchBar />*/}

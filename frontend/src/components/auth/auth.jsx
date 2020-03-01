@@ -13,10 +13,6 @@ import "./auth.scss";
 const Auth = props => {
   useEffect(() => {
     document.title = "Zipiwisk | The internet’s source of free recipes.";
-    // If logged in and user auth redirect to profile
-    if (props.isAuthenticated) {
-      props.history.push("/profile");
-    }
   }, []);
 
   useEffect(() => {
@@ -34,7 +30,7 @@ const Auth = props => {
         <Header />
       </MediaQuery>
       <MediaQuery minDeviceWidth={650}>
-        <HeaderDesktop />
+        <HeaderDesktop isAuth={props.isAuthenticated} />
       </MediaQuery>
       <Switch>
         <Route

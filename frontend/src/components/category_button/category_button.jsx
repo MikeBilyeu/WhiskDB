@@ -6,23 +6,22 @@ import { ReactComponent as DesktopArrow } from "../../assets/images/openArrow.sv
 import "./category_button.scss";
 
 const CategoryButton = props => {
-  const active = props.activeFilterBtn === "Meal";
   return (
     <button
       className={classNames(`${props.className}`, {
-        [`${props.className}--active`]: active
+        [`${props.className}--active`]: props.active
       })}
       onClick={() => props.toggleFilterButton("Meal")}
     >
       {props.meal === "All Meals" ? "All categories" : props.meal}
       <Arrow
         className={classNames(`${props.className}__icon-m`, {
-          [`${props.className}__icon-m--active`]: active
+          [`${props.className}__icon-m--active`]: props.active
         })}
       />
       <DesktopArrow
         className={classNames(`${props.className}__icon-d`, {
-          [`${props.className}__icon-d--active`]: active
+          [`${props.className}__icon-d--active`]: props.active
         })}
       />
     </button>
@@ -32,7 +31,7 @@ const CategoryButton = props => {
 CategoryButton.propTypes = {
   className: PropTypes.string.isRequired,
   meal: PropTypes.string.isRequired,
-  activeFilterBtn: PropTypes.string.isRequired,
+  active: PropTypes.bool.isRequired,
   toggleFilterButton: PropTypes.func.isRequired
 };
 

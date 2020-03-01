@@ -27,20 +27,14 @@ const RenderOptions = (options, type, filterRecipes, handleClick) => {
   });
 };
 
-const FilterResults = ({
-  filterRecipes,
-  getBrowseRecipes,
-  handleClick,
-  buttonToggled,
-  className
-}) => {
-  const { options, type } = filterOptions(buttonToggled);
+const FilterResults = props => {
+  const { options, type } = filterOptions(props.buttonToggled);
 
   return (
     <div className={`filter-results-${type}`}>
       <h2 className={`filter-results-${type}__title`}>{type}</h2>
       <ul className="filter-list">
-        {RenderOptions(options, type, filterRecipes, handleClick)}
+        {RenderOptions(options, type, props.filterRecipes, props.handleClick)}
       </ul>
     </div>
   );

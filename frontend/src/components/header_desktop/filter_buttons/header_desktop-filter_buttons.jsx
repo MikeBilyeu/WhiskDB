@@ -5,24 +5,18 @@ import SortButton from "../../sort_button";
 import CategoryButton from "../../category_button";
 import { toggleFilterBtnBrowse } from "../../../actions/browse";
 
-const FitlerButtons = ({
-  filterRecipes,
-  handleClick,
-  meal,
-  activeFilterBtn,
-  toggleFilterBtnBrowse
-}) => {
+const FitlerButtons = props => {
   return (
     <>
       <CategoryButton
         className="category-btn-d"
-        meal={meal}
-        activeFilterBtn={activeFilterBtn}
-        toggleFilterButton={toggleFilterBtnBrowse}
+        meal={props.meal}
+        active={props.activeFilterBtn === "Meal"}
+        toggleFilterButton={props.toggleFilterBtnBrowse}
       />
       <FilterResults
-        filterRecipes={filterRecipes}
-        handleClick={handleClick}
+        filterRecipes={props.filterRecipes}
+        handleClick={props.handleClick}
         buttonToggled="Meal"
       />
       <SortButton className="sort-btn-d" />

@@ -19,8 +19,4 @@ Button.propTypes = {
   ]).isRequired
 };
 
-Button.defaultProps = {
-  //className: "button"
-};
-
 export default Button;

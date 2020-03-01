@@ -74,7 +74,10 @@ class Recipe extends React.Component {
             className="recipe__img"
             href="recipe photo"
             alt=""
-            src={image_url}
+            src={image_url.replace(
+              "https://res.cloudinary.com/mikebilyeuimg/image/upload/",
+              "https://res.cloudinary.com/mikebilyeuimg/image/upload/q_auto:good,w_1500/"
+            )}
           />
 
           <div className="recipe__container">

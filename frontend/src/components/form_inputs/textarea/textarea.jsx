@@ -1,17 +1,15 @@
 import React from "react";
 
-const Textarea = ({
-  input,
-  label,
-  placeholder,
-  meta: { touched, error, warning, active },
-  className
-}) => {
+const Textarea = props => {
   return (
     <label>
-      {label}
-      <textarea {...input} placeholder={placeholder} className={className} />
-      {touched && error && <div>*{error}</div>}
+      {props.label}
+      <textarea
+        {...props.input}
+        placeholder={props.placeholder}
+        className={props.className}
+      />
+      {props.meta.touched && props.meta.error && <div>*{props.meta.error}</div>}
     </label>
   );
 };

@@ -6,28 +6,21 @@ import Logo from "../../assets/images/zipiwisk-logo.png";
 import userLogo from "../../assets/images/profileLogo.png";
 import "./header_desktop.scss";
 
-const HeaderDesktop = ({
-  isAuth,
-  user_img,
-  children,
-  location: { pathname }
-}) => {
+const HeaderDesktop = props => {
+  const handleLogoClick = () => {
+    return props.location.pathname === "/" ? window.location.reload() : true;
+  };
+
   return (
     <header className="header-d">
-      <Link
-        to="/"
-        onClick={() => {
-          return pathname === "/" ? window.location.reload() : true;
-        }}
-        className="header-d__logo"
-      >
+      <Link to="/" onClick={handleLogoClick} className="header-d__logo">
         <img src={Logo} alt="zipiwisk logo" />
       </Link>
 
       <SearchBar />
 
       <div className="auth-btns">
-        {!isAuth ? (
+        {!props.isAuth ? (
           <>
             <Link className="auth-btns__login" to="/auth/login">
               Login
@@ -36,9 +29,7 @@ const HeaderDesktop = ({
               Signup free
             </Link>
           </>
-        ) : null}
-
-        {isAuth ? (
+        ) : (
           <>
             <Link to="/" className="auth-btns__home">
               Home
@@ -47,12 +38,12 @@ const HeaderDesktop = ({
               Create Recipe
             </Link>
             <Link to="/profile" className="auth-btns__profile">
-              <img src={user_img || userLogo} alt="user profile" />
+              <img src={props.user_img || userLogo} alt="user profile" />
             </Link>
           </>
-        ) : null}
+        )}
       </div>
-      {children}
+      {props.children}
     </header>
   );
 };

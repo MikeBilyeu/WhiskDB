@@ -8,57 +8,44 @@ import { toggleFilterBtnProfile } from "../../../../actions/browse";
 import { updateFilterRecipe } from "../../../../actions/recipeActions";
 import "./home-page_toggle.scss";
 
-const PageToggle = ({
-  page,
-  onClick,
-  meal,
-  numSaved,
-  numPosted,
-  isFetching,
-  savedRecipes,
-  activeFilterBtn,
-  toggleFilterBtnProfile,
-  updateFilterRecipe,
-  filterRecipes
-}) => {
-  const savedActive = page === "saved";
+const PageToggle = props => {
+  const savedActive = props.page === "saved";
   const postedActive = !savedActive;
   const handleClick = option => {
     // set the filterRecipes to the option selected
-    updateFilterRecipe(option);
+    props.updateFilterRecipe(option);
     //window.scrollTo(0, 0);
   };
   return (
     <div className="page-toggle">
       <CategoryButton
         className="category-btn-d"
-        meal={meal}
-        activeFilterBtn={activeFilterBtn}
-        toggleFilterButton={toggleFilterBtnProfile}
+        meal={props.meal}
+        active={props.activeFilterBtn === "Meal"}
+        toggleFilterButton={props.toggleFilterBtnProfile}
       />
 
       <FilterResults
-        filterRecipes={filterRecipes}
+        filterRecipes={props.filterRecipes}
         handleClick={handleClick}
         buttonToggled="Meal"
       />
-
       <button
         className={classNames("page-toggle__btn", {
           "page-toggle__btn--active": savedActive
         })}
-        onClick={() => onClick("saved")}
+        onClick={() => props.onClick("saved")}
       >
-        {!isFetching && numSaved} Saved
+        {!props.isFetching && props.numSaved} Saved
       </button>
 
       <button
         className={classNames("page-toggle__btn", {
           "page-toggle__btn--active": postedActive
         })}
-        onClick={() => onClick("myRecipes")}
+        onClick={() => props.onClick("myRecipes")}
       >
-        {!isFetching && numPosted} Posted
+        {!props.isFetching && props.numPosted} Posted
       </button>
     </div>
   );
