@@ -8,30 +8,24 @@ import { ReactComponent as OpenArrow } from "../../assets/images/openArrow.svg";
 import { abbreviateSortBy } from "./utils";
 import "./sort_button.scss";
 
-// Mobile
-const SortButton = ({
-  sortBy,
-  toggleFilterBtnBrowse,
-  activeFilterBtn,
-  className
-}) => {
-  const active = activeFilterBtn === "Sort";
+const SortButton = props => {
+  const active = props.activeFilterBtn === "Sort";
   return (
     <button
-      className={classNames(`${className}`)}
-      onClick={() => toggleFilterBtnBrowse("Sort")}
+      className={props.className}
+      onClick={() => props.toggleFilterBtnBrowse("Sort")}
     >
-      <SortIcon className={classNames(`${className}__icon-m`)} />
-      <div className={classNames(`${className}__sort-by-m`)}>
-        {abbreviateSortBy(sortBy)}
+      <SortIcon className={`${props.className}__icon-m`} />
+      <div className={`${props.className}__sort-by-m`}>
+        {abbreviateSortBy(props.sortBy)}
       </div>
 
-      <div className={classNames(`${className}__sort-by-d`)}>
-        Sort by <span style={{ fontWeight: "bold" }}>{sortBy}</span>
+      <div className={`${props.className}__sort-by-d`}>
+        Sort by <span style={{ fontWeight: "bold" }}>{props.sortBy}</span>
       </div>
       <OpenArrow
-        className={classNames(`${className}__icon-d`, {
-          [`${className}__icon-d--active`]: active
+        className={classNames(`${props.className}__icon-d`, {
+          [`${props.className}__icon-d--active`]: active
         })}
       />
     </button>
