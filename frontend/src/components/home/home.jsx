@@ -18,7 +18,7 @@ import "./home.scss";
 const Home = props => {
   useEffect(() => {
     document.title = "Zipiwisk | The internet’s source of free recipes.";
-    if (!props.recipes.recipes.length && !props.recipes.isFetching) {
+    if (!props.recipes.recipes.length) {
       props.updateFilterRecipe("meal", "All Meals");
     }
   }, []);
