@@ -7,38 +7,35 @@ import Header from "./header";
 import RecipeUpsert from "../../recipe_upsert";
 import Loading from "../../loading";
 
-class Edit extends React.Component {
-  handleSubmit = values => {
-    this.props.submitEditRecipe(values);
+const Edit = props => {
+  const handleSubmit = values => {
+    props.submitEditRecipe(values);
   };
 
-  render() {
-    let { isFetching, recipe } = this.props.recipeData;
-    const ingredientsStr = recipe.ingredients.join("\n");
-    const keywordsStr = recipe.keywords.join(", ");
+  let { isFetching, recipe } = props.recipeData;
+  const ingredientsStr = recipe.ingredients.join("\n");
+  const keywordsStr = recipe.keywords.join(", ");
 
-    recipe = {
-      ...recipe,
-      time: this.props.recipeTime,
-      ingredients: ingredientsStr,
-      keywords: keywordsStr
-    };
+  recipe = {
+    ...recipe,
+    time: props.recipeTime,
+    ingredients: ingredientsStr,
+    keywords: keywordsStr
+  };
 
-    if (isFetching) {
-      return <Loading />;
-    }
-    return (
-      <div>
-        <Header />
-        <RecipeUpsert
-          initialValues={recipe}
-          submitText="Save Changes"
-          onSubmit={this.handleSubmit}
-        />
-      </div>
-    );
-  }
-}
+  return isFetching ? (
+    <Loading />
+  ) : (
+    <div>
+      <Header />
+      <RecipeUpsert
+        initialValues={recipe}
+        submitText="Save Changes"
+        onSubmit={handleSubmit}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   dirty: isDirty("edit-profile"),
@@ -47,10 +44,10 @@ const mapStateToProps = state => ({
   recipeTime: convertTime(state)
 });
 
-// submit function used for remote submit
-function submit(values, dispatch, props) {
-  return props.submitEditRecipe(values);
-}
+// //submit function used for remote submit
+// function submit(values, dispatch, props) {
+//   props.submitEditRecipe(values);
+// }
 
 export default connect(
   mapStateToProps,
@@ -58,7 +55,7 @@ export default connect(
 )(
   reduxForm({
     form: "edit-recipe",
-    enableReinitialize: true,
-    onSubmit: submit
+    enableReinitialize: true
+    //onSubmit: submit
   })(Edit)
 );
