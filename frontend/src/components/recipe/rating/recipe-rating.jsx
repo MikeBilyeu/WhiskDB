@@ -52,7 +52,7 @@ class Rating extends React.Component {
             ? `${parseFloat((votes / 1000).toFixed(1))}k`
             : votes < 1
             ? ""
-            : `(${votes})`}
+            : `${votes}`}
         </div>
         <OpenArrow className={`${className}-rating__arrow`} />
       </div>

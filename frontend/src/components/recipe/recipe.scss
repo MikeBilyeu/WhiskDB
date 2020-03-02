@@ -3,8 +3,8 @@
 .recipe {
   @include grid-center;
   //grid-gap: 1rem;
-  color: darkColor(dark);
-
+  //color: darkColor(medium);
+  position: relative;
   &__img {
     position: fixed;
     top: 0;
@@ -24,9 +24,10 @@
     min-width: 100%;
     margin-top: 70vh;
     background-color: #fff;
+    position: relative;
+    z-index: 2;
     padding: 1rem 0.75rem;
     border-radius: 1rem 1rem 0 0;
-    z-index: 1;
   }
 
   &__details {
@@ -38,6 +39,7 @@
   }
 
   &__title {
+    font-family: "Roboto", Arial, sans-serif;
     font-size: 1.2rem;
     margin: 0;
     color: darkColor(medium);
@@ -45,14 +47,16 @@
   }
 
   &__time {
-    color: darkColor(medium);
-    font-size: 0.9rem;
+    font-family: "Noto Serif", Arial, sans-serif;
+    color: darkColor(light);
+    font-size: 0.8rem;
     font-style: italic;
   }
 
   &__created-by {
-    font-size: 0.75rem;
-    color: lightColor(dark);
+    font-family: "Noto Serif", Arial, sans-serif;
+    font-size: 0.8rem;
+    color: darkColor(light);
     font-style: italic;
     text-align: center;
     margin: 4rem 0 0rem 0;
@@ -76,7 +80,7 @@
     display: grid;
     grid-auto-flow: column;
     grid-gap: 0.5rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1rem;
     border-bottom: solid lightColor(medium) 0.09rem;
 
@@ -92,6 +96,7 @@
   }
 
   &__item-ingredient {
+    font-family: "Noto Serif", Arial, sans-serif;
     text-align: right;
     color: darkColor(light);
   }
@@ -99,25 +104,24 @@
 
 .r-directions {
   @include grid-center;
+  font-family: "Noto Serif", Arial, sans-serif;
+  line-height: 1.25rem;
 
   &__text {
     white-space: pre-wrap;
     margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.2rem;
-
+    font-size: 0.9rem;
+    color: darkColor(medium);
     &::first-letter {
-      font-size: 2.5rem;
-      font-weight: 600;
+      font-size: 1.75rem;
     }
   }
 
   &__footnote {
     white-space: pre-line;
     margin: 2rem 0 0 0;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: darkColor(light);
-    line-height: 1.1rem;
     font-style: italic;
   }
 }
@@ -231,11 +235,11 @@
 
     &__text,
     &__footnote {
-      line-height: 1.3rem;
+      //  line-height: 1.3rem;
     }
 
     &__footnote {
-      max-width: 30rem;
+      //max-width: 35rem;
       justify-self: start;
     }
   }

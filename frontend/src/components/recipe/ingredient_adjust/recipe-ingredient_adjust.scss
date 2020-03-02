@@ -14,8 +14,8 @@
     cursor: pointer;
     line-height: 1.75rem;
     width: 8rem;
-    height: 2rem;
-    font-size: 0.9rem;
+    height: 1.8rem;
+    font-size: 0.75rem;
     color: darkColor(medium);
 
     &--active {
@@ -25,7 +25,7 @@
 
   .adjust-servings {
     @extend .ingredient-adjust__units;
-
+    cursor: text;
     &__text {
       color: $primary-color;
     }
@@ -48,7 +48,7 @@
     &__input {
       all: unset;
       width: 1.4rem;
-      height: 1.8rem;
+      height: 1.6rem;
     }
   }
 }
