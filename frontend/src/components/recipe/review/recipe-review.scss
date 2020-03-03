@@ -1,21 +1,12 @@
 @import "../../../assets/styles/variables";
 
 .review {
-  position: fixed;
   width: 100%;
-  margin: 0 auto;
+  margin: 1rem 0;
   background-color: #fff;
-  z-index: 2;
-  padding: 0.5rem;
-
-  &__close-btn {
-    width: 5rem;
-    padding: 1rem 2rem;
-    cursor: pointer;
-    justify-self: end;
-    position: relative;
-    left: 80%;
-  }
+  padding: 0.75rem;
+  border: solid lightColor(medium) 0.08rem;
+  border-radius: 0.3rem;
 
   &__login-text {
     font-size: 1rem;
@@ -35,6 +26,7 @@
     font-size: 0.9rem;
     text-align: center;
     background-color: #fff;
+    cursor: pointer;
     @include fast-transition;
 
     &:hover {
@@ -56,8 +48,9 @@
   }
 
   &__input-label {
-    width: 100%;
+    color: darkColor(medium);
     font-size: 0.9rem;
+    width: 100%;
   }
 
   &__input {
@@ -72,16 +65,40 @@
     max-height: 6rem;
     padding: 0.5rem;
     font-size: 0.9rem;
+    color: darkColor(medium);
+
+    &::placeholder {
+      color: lightColor(medium);
+    }
+    &:focus {
+      border: solid darkColor(dark) 0.08rem;
+    }
   }
 
   &__sbmt-btn {
     @extend .review__login-btn;
     margin: 2rem auto;
+    opacity: 0.4;
+    cursor: auto;
+
+    &:hover {
+      background-color: #fff;
+      color: $primary-color;
+    }
+
+    &--active {
+      opacity: 1;
+      cursor: pointer;
+      &:hover {
+        background-color: $primary-color;
+        color: #fff;
+      }
+    }
   }
 
-  .r-details {
+  .review-details {
     width: 100%;
-    margin: 6rem auto 0 auto;
+    margin: 0 auto 2rem auto;
     font-size: 0.75rem;
     color: darkColor(medium);
 
@@ -89,14 +106,20 @@
       font-size: 0.9rem;
       text-align: center;
       font-weight: 500;
+      margin: 0 0 1rem 0;
     }
 
-    .vote-bar {
+    .review-details-votes {
       @include grid-center;
-      grid-template-columns: 2.5rem 1fr 2.5rem;
+      grid-template-columns: 2rem 1fr 2rem;
+      grid-column-gap: 0.2rem;
       margin: 0.5rem 0;
 
-      .vote-percent-bar {
+      &__star-num {
+        justify-self: start;
+      }
+
+      &__bar {
         overflow: hidden;
         height: 1rem;
         width: 100%;
@@ -106,18 +129,26 @@
         display: grid;
         align-items: center;
         border-radius: 0.1rem;
-
-        .votes-percent {
-          background-color: $star-color;
-          height: 100%;
-          min-height: 100%;
-          border-radius: 0.1rem;
-        }
       }
 
-      .percent-num {
+      &__percent-bar {
+        background-color: $star-color;
+        height: 100%;
+        min-height: 100%;
+        border-radius: 0.1rem;
+      }
+
+      &__percent-num {
         justify-self: end;
       }
     }
+  }
+}
+
+@media (min-device-width: 650px) {
+  .review {
+    margin: 0;
+    max-width: 30rem;
+    padding: 2rem 1rem;
   }
 }

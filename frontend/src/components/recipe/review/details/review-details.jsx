@@ -13,8 +13,8 @@ class ReviewDetails extends React.Component {
     } = this.props;
 
     return (
-      <div className="r-details">
-        <h2 className="r-details__num-votes">
+      <div className="review-details">
+        <h2 className="review-details__num-votes">
           {num_reviews + " "} vote{num_reviews === 1 ? "" : "s"}
         </h2>
         <StarVotes star="5" votes={star5} num_reviews={num_reviews} />

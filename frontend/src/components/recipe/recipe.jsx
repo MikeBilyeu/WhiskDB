@@ -50,9 +50,9 @@ const Recipe = props => {
     return <Edit />;
   }
 
-  if (reviewOpen) {
-    return <Review recipe_id={recipe_id} />;
-  }
+  // if (reviewOpen) {
+  //   return <Review recipe_id={recipe_id} />;
+  // }
 
   return (
     <div className="recipe">

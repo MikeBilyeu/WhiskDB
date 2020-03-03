@@ -1,10 +1,9 @@
 import React from "react";
+import classNames from "classnames";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Stars from "./stars";
 import ReviewDetails from "./details";
-
-import { ReactComponent as Close } from "../../../assets/images/removeDark.svg";
 import { toggleReview, submitReview } from "../../../actions/review";
 import "./recipe-review.scss";
 
@@ -46,11 +45,7 @@ class Review extends React.Component {
     const { recipe_id, isAuthenticated } = this.props;
     return (
       <div className="review">
-        <Close
-          className="review__close-btn"
-          onClick={this.props.toggleReview}
-        />
-
+        <ReviewDetails recipe_id={recipe_id} />
         {!isAuthenticated ? (
           <>
             <h3 className="review__login-text">
@@ -74,15 +69,15 @@ class Review extends React.Component {
             </label>
 
             <div
-              className="review__sbmt-btn"
+              className={classNames("review__sbmt-btn", {
+                "review__sbmt-btn--active": this.state.rating
+              })}
               onClick={this.state.rating ? this.handleSubmit : null}
             >
               Submit
             </div>
           </>
         )}
-
-        <ReviewDetails recipe_id={recipe_id} />
       </div>
     );
   }

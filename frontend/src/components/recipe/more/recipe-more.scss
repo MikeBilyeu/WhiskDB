@@ -2,29 +2,27 @@
 
 .recipe-more {
   border-bottom: solid lightColor(light) 0.09rem;
-  padding-bottom: 1rem;
-  width: 100%;
-  height: 15rem;
   position: fixed;
   top: 0;
-  margin: auto;
+  width: 100%;
+  margin: 0 auto;
   background-color: #fff;
-  z-index: 2;
-  @include grid-center;
-  grid-gap: 0.5rem;
-  grid-template-rows: repeat(4, 1fr);
+  z-index: 3;
+  padding: 0.5rem;
 
   &__close-btn {
     width: 5rem;
     padding: 1rem 2rem;
     cursor: pointer;
-    justify-self: end;
+    position: relative;
+    right: calc(-100% + 4rem);
   }
 
   &__copy-msg {
     font-size: 1.5rem;
     color: darkColor(medium);
-    margin: 0;
+    margin: 0 auto;
+    text-align: center;
   }
 
   &__copy-btn,
@@ -34,7 +32,7 @@
     text-align: center;
     font-size: 0.9rem;
     padding: 0.6rem;
-    margin: 0 1rem;
+    margin: 1.5rem auto;
     color: darkColor(medium);
     background-color: #fff;
     width: 85%;
@@ -42,9 +40,10 @@
   }
 
   &__edit-btn {
-    display: inline-block;
+    display: block;
     border-bottom: solid lightColor(light) 0.09rem;
     padding: 1rem 2rem;
+    margin: 0 auto 0.5rem auto;
     max-width: 20rem;
     width: 85%;
     text-align: center;
