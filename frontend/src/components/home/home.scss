@@ -5,6 +5,7 @@
   .filter-results-meal {
     position: fixed;
     top: 2.5rem;
+    left: 0;
   }
 
   .recipe-results {
@@ -17,6 +18,8 @@
     .filter-results-meal {
       width: 9rem;
       position: fixed;
+      top: 4.8rem;
+
       padding: 1rem 0;
       background-color: #fff;
       border: solid lightColor(medium) 0.05rem;
@@ -40,7 +43,10 @@
     }
     .filter-results-sort {
       right: 1rem;
-      top: 4.8rem;
+      left: auto;
+    }
+    .filter-results-meal {
+      left: 1rem;
     }
   }
 }

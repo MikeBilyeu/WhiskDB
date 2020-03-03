@@ -9,7 +9,7 @@
   outline: none;
   cursor: pointer;
   font-family: Gelion, Arial, sans-serif, times !important;
-  font-size: 1rem;
+  font-size: 0.9rem;
   //margin: 0.4rem 0 0.5rem 1.6rem !important;
   place-self: center;
   color: darkColor(medium);
@@ -22,8 +22,8 @@
 
   &__icon-m {
     display: inline;
-    width: 1.1rem;
-    margin-left: 0.4rem;
+    width: 0.7rem;
+    margin-left: 0.3rem;
     transition: all 0.2s ease-out;
 
     &--active {
