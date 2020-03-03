@@ -28,7 +28,6 @@ class Review extends React.Component {
   };
 
   handleClick = rating => {
-    console.log(rating);
     this.setState({ rating: rating });
   };
 

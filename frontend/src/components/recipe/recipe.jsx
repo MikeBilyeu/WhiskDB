@@ -8,7 +8,6 @@ import HeaderDesktop from "../header_desktop";
 import RecipeDetails from "./RecipeDetails";
 import Ingredients from "./ingredients";
 import Directions from "./directions";
-import Review from "./review";
 import More from "./more";
 import Loading from "../loading";
 import Edit from "./edit";
@@ -27,13 +26,13 @@ const Recipe = props => {
   }, []);
 
   const {
-    reviewOpen,
     showMoreOpen,
     isFetching,
     editRecipe,
     saved,
     recipe: { image_url, directions, footnote, time, title, username }
   } = props.recipeData;
+
   document.title = !title ? document.title : `${title} |  Zipiwisk`;
 
   const handleBackClick = () => {
@@ -49,10 +48,6 @@ const Recipe = props => {
   if (editRecipe) {
     return <Edit />;
   }
-
-  // if (reviewOpen) {
-  //   return <Review recipe_id={recipe_id} />;
-  // }
 
   return (
     <div className="recipe">

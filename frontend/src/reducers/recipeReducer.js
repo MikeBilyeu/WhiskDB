@@ -39,6 +39,9 @@ export default function(state = initialState, action) {
         recipe: action.payload,
         isFetching: false,
         saved: action.payload.saved,
+        reviewOpen: false,
+        editRecipe: false,
+        showMoreOpen: false,
         convertedServings: action.payload.servings,
         ratingDetails: {
           star5: 0,

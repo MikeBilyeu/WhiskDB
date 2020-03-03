@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { toggleReview } from "../../actions/review";
 import renderTime from "../../utils/time";
@@ -6,7 +6,6 @@ import Rating from "./rating";
 import Review from "./review";
 
 const RecipeDetails = props => {
-  console.log(props);
   return (
     <div className="recipe__details">
       <h1 className="recipe__title">{props.recipe.recipe.title}</h1>
