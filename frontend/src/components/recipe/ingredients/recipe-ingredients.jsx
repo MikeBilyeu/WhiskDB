@@ -48,6 +48,7 @@ const Ingredients = props => {
           );
         })}
       </ul>
+      <span className="r-ingredients__fade"></span>
     </div>
   );
 };

@@ -66,6 +66,11 @@
 .r-ingredients {
   width: 100%;
   margin: 6rem 0;
+
+  &__fade {
+    display: none;
+  }
+
   &__list {
     width: 100%;
     justify-self: start;
@@ -223,11 +228,22 @@
   .r-ingredients {
     margin: 5rem 0 0 0;
     position: fixed;
+    left: 0;
     overflow-y: scroll;
     height: calc(100vh - 5rem);
     width: 30% !important;
     min-width: 17rem;
     grid-gap: 0.25rem;
+    padding-bottom: 2.5rem;
+
+    &__fade {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 0;
+      box-shadow: 0 0rem 2rem 2rem rgba(256, 256, 256, 1);
+    }
   }
 
   .r-directions {
@@ -264,6 +280,9 @@
         width: 100% !important;
         max-width: 30rem;
         height: 100% !important;
+        &__fade {
+          display: none;
+        }
 
         &__list {
           padding: 0;
