@@ -9,6 +9,9 @@
   background-color: #fff;
   z-index: 3;
   padding: 0.5rem;
+  &__review-btn {
+    display: none;
+  }
 
   &__close-btn {
     width: 5rem;
@@ -80,7 +83,8 @@
   &__copy-msg,
   &__copy-btn,
   &__print-btn,
-  &__edit-btn {
+  &__edit-btn,
+  &__review-btn {
     color: darkColor(medium);
     cursor: pointer;
     font-weight: normal;

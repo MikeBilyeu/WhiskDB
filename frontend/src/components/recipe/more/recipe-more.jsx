@@ -58,7 +58,7 @@ class More extends React.Component {
           Print
         </div>
         <div
-          className={`${className}__print-btn`}
+          className={`${className}__review-btn`}
           onClick={() => {
             toggleReview();
           }}

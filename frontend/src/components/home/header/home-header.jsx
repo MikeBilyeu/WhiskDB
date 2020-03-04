@@ -17,7 +17,7 @@ const Header = ({ meal, activeFilterBtn, toggleFilterBtnBrowse }) => {
         active={activeFilterBtn === "Meal"}
         toggleFilterButton={toggleFilterBtnBrowse}
       />
-      {/*<SearchBar />*/}
+      <SearchBar />
     </header>
   );
 };

@@ -20,7 +20,7 @@
     object-fit: cover;
     transition: all 0.2s;
     margin-bottom: 0.1rem;
-    border-radius: 0.15rem;
+
     box-shadow: 0 0.5rem 0.9rem 0 rgba(0, 0, 0, 0.1);
     background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
     background-size: 200% 200%;
@@ -84,6 +84,14 @@
   }
   &__meta {
     width: 100%;
+  }
+}
+
+@media (min-device-width: 650px) {
+  .recipe-card {
+    &__thumbnail {
+      border-radius: 0.15rem;
+    }
   }
 }
 

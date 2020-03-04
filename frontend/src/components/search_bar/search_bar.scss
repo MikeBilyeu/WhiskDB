@@ -1,21 +1,21 @@
 @import "../../assets/styles/variables";
 
 .search-bar {
+  position: absolute;
   padding: 0 0.5rem;
-  background-color: lightColor(light);
+  background-color: #fff;
   height: 2.2rem;
-  width: 100%;
-  max-width: 45rem;
-  min-width: 10rem;
+  width: 3rem;
+  right: 0.25rem;
   border-radius: 50rem;
-  border: solid lightColor(light) 0.05rem;
+  border: solid #fff 0.08rem;
   z-index: 1;
   justify-self: center;
   display: grid;
   grid-template-columns: 2rem 1fr;
   box-sizing: border-box;
   cursor: text;
-  transition: all 0.1s ease-in;
+  transition: all 0.2s ease-in;
 
   &__icon {
     width: 100%;
@@ -45,17 +45,35 @@
   }
 
   &--active {
-    border: solid lightColor(dark) 0.05rem;
     background-color: #fff;
+    animation: expand 0.3s linear forwards;
+  }
+}
+
+@media (min-device-width: 650px) {
+  .search-bar {
+    background-color: lightColor(light);
+    border: solid lightColor(light) 0.08rem;
+    position: relative;
+    right: auto;
+    width: 100%;
+    max-width: 45rem;
+    min-width: 10rem;
+    animation: none;
+
+    &--active {
+      border: solid lightColor(dark) 0.08rem;
+      background-color: #fff;
+    }
   }
 }
 
 @keyframes expand {
   0% {
-    width: 60%;
+    width: 3rem;
   }
 
   100% {
-    width: 100%;
+    width: calc(100% - 0.5rem);
   }
 }
