@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { ReactComponent as AddIcon } from "../../../../assets/images/add.svg";
 import "./home-user_info.scss";
 
 class UserInfo extends React.PureComponent {
@@ -17,7 +16,6 @@ class UserInfo extends React.PureComponent {
         <h3 className="user-info__diet">{this.props.diet || null}</h3>
         <Link className="user-info__create-recipe" to="/profile/create-recipe">
           Create Recipe
-          <AddIcon style={{ width: "1.3rem" }} />
         </Link>
         <Link className="user-info__edit-profile-btn" to="/profile/edit">
           Edit Profile

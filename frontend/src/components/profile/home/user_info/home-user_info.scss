@@ -57,11 +57,14 @@
     &__create-recipe {
       grid-column: 2 / 3;
       grid-row: 3 / 4;
-      @include grid-center;
-      display: grid;
-      place-items: center;
-      padding: 0 0.5rem;
-      grid-template-columns: 1fr 1rem;
+      align-self: start;
+      border: solid lightColor(dark) 0.05rem;
+      white-space: nowrap;
+      padding: 0.25rem 1.5rem;
+      color: darkColor(light);
+      font-weight: medium;
+      font-size: 0.75rem;
+      border-radius: 0.2rem;
     }
   }
 }
