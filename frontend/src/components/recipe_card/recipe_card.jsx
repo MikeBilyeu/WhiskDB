@@ -29,8 +29,8 @@ const RecipeCard = props => {
         <img
           className="recipe-card__thumbnail"
           src={props.recipe.image_url.replace(
-            "https://res.cloudinary.com/mikebilyeuimg/image/upload/",
-            "https://res.cloudinary.com/mikebilyeuimg/image/upload/q_auto:good,w_1500/"
+            "upload/",
+            "upload/q_auto:good,w_1500/"
           )}
           alt=""
         />

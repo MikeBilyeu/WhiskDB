@@ -33,6 +33,9 @@ const Recipe = props => {
     recipe: { image_url, directions, footnote, time, title, username }
   } = props.recipeData;
 
+  let recipeImage =
+    !isFetching && image_url.replace("upload/", "upload/q_auto:good,w_1500/");
+
   document.title = !title ? document.title : `${title} |  Zipiwisk`;
 
   const handleBackClick = () => {
@@ -62,10 +65,7 @@ const Recipe = props => {
           className="recipe__img"
           href="recipe photo"
           alt=""
-          src={image_url.replace(
-            "https://res.cloudinary.com/mikebilyeuimg/image/upload/",
-            "https://res.cloudinary.com/mikebilyeuimg/image/upload/q_auto:good,w_1500/"
-          )}
+          src={recipeImage}
         />
 
         <div className="recipe__container">
@@ -108,7 +108,7 @@ const Recipe = props => {
             className="recipe__img"
             href="recipe photo"
             alt=""
-            src={image_url}
+            src={recipeImage}
           />
           <div className="recipe__created-by">
             Recipe by {username.toLowerCase()}
