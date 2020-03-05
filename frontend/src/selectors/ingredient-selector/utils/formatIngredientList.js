@@ -24,17 +24,17 @@ const getMetricAmount = (amount, unit) => {
   let metricUnit = "";
   switch (true) {
     case regEx.cup.test(unit):
-      decimalAmount *= 236.588;
+      decimalAmount *= 240;
       metricUnit = "ml";
       break;
     case regEx.tablespoon.test(unit):
     case regEx.T.test(unit):
-      decimalAmount *= 14.787;
+      decimalAmount *= 15;
       metricUnit = "ml";
       break;
     case regEx.teaspoon.test(unit):
     case regEx.t.test(unit):
-      decimalAmount *= 4.929;
+      decimalAmount *= 5;
       metricUnit = "ml";
       break;
     case regEx.milliliter.test(unit):
