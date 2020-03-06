@@ -173,6 +173,7 @@
       width: 8rem;
       cursor: pointer;
       outline: none;
+      user-select: none;
       @include fast-transition;
 
       @media (hover: hover) {

@@ -44,6 +44,7 @@
     grid-gap: 0.5rem;
     place-items: center;
     font-size: 0.75rem;
+    user-select: none;
 
     &__login,
     &__signup {
@@ -89,6 +90,7 @@
     }
 
     &__home {
+      user-select: none;
       padding: 0.3rem 1rem;
       color: darkColor(medium);
       &:hover {
@@ -97,6 +99,7 @@
     }
 
     &__create {
+      user-select: none;
       border: solid lightColor(dark) 0.05rem;
       white-space: nowrap;
       padding: 0.4rem 0.75rem;
@@ -113,6 +116,7 @@
 
   // header-d Categories horizontal list
   .filter-results-meal {
+    user-select: none;
     border: none !important;
     display: block !important;
     padding: 0 0.5rem !important;

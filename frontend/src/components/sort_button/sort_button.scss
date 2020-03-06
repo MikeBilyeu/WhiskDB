@@ -32,6 +32,7 @@
   }
 
   @extend .sort-btn-m;
+  user-select: none;
   width: 9rem;
   height: 2rem;
   justify-self: end;

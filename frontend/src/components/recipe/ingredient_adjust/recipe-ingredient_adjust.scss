@@ -17,6 +17,7 @@
     height: 1.8rem;
     font-size: 0.75rem;
     color: darkColor(medium);
+    user-select: none;
 
     &--active {
       color: $primary-color;
