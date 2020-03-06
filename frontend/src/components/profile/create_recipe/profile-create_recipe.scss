@@ -1,8 +1,24 @@
 @import "../../../assets/styles/variables";
 
+.create-recipe-header {
+  display: grid;
+  grid-template-columns: 4rem 1fr 4rem;
+  place-items: center;
+
+  &__back-btn {
+    width: 1.2rem;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    text-align: center;
+    color: darkColor(medium);
+  }
+}
+
 .create-recipe {
   position: relative;
-  top: 3rem;
+  top: 0rem;
 
   &__d-back-btn {
     color: darkColor(medium);
@@ -27,5 +43,11 @@
     font-size: 1.1rem;
     color: darkColor(medium);
     margin: 3rem;
+  }
+}
+
+@media (min-device-width: 650px) {
+  .create-recipe {
+    top: 5rem;
   }
 }

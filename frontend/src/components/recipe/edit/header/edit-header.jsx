@@ -1,14 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { toggleEditRecipe } from "../../../../actions/recipe";
 
-const Header = ({ history, toggleEditRecipe }) => {
+const Header = props => {
   return (
     <header className="edit-recipe-header">
       <div
         className="edit-recipe-header__cancel-btn"
-        onClick={toggleEditRecipe}
+        onClick={props.toggleEditRecipe}
       >
         Cancel
       </div>
@@ -17,9 +16,7 @@ const Header = ({ history, toggleEditRecipe }) => {
   );
 };
 
-export default withRouter(
-  connect(
-    null,
-    { toggleEditRecipe }
-  )(Header)
-);
+export default connect(
+  null,
+  { toggleEditRecipe }
+)(Header);

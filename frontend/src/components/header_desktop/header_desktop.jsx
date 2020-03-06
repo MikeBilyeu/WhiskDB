@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import SearchBar from "../search_bar";
 import Logo from "../../assets/images/zipiwisk-logo.png";
@@ -38,7 +38,7 @@ const HeaderDesktop = props => {
               Create Recipe
             </Link>
             <Link to="/profile" className="auth-btns__profile">
-              <img src={props.user_img || userLogo} alt="user profile" />
+              <img src={props.userImg || userLogo} alt="user profile" />
             </Link>
           </>
         )}
@@ -48,9 +48,9 @@ const HeaderDesktop = props => {
   );
 };
 
-HeaderDesktop.propTypes = {
-  isAuth: PropTypes.bool.isRequired,
-  user_img: PropTypes.string
-};
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuthenticated,
+  userImg: state.auth.user.image_url
+});
 
-export default withRouter(HeaderDesktop);
+export default withRouter(connect(mapStateToProps)(HeaderDesktop));

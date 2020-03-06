@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
@@ -10,60 +10,54 @@ import { createRecipe } from "../../../actions/recipe";
 
 import "./profile-create_recipe.scss";
 
-class CreateRecipe extends React.Component {
-  componentDidMount() {
+const CreateRecipe = props => {
+  useEffect(() => {
     document.title = "Zipiwisk | Create Recipe";
-  }
+  }, []);
 
-  handleSubmit = values => {
-    this.props.createRecipe(values, this.props.history);
+  const handleSubmit = values => {
+    props.createRecipe(values, props.history);
   };
 
-  handleBackClick = () => {
-    this.props.history.location.key
-      ? this.props.history.goBack()
-      : this.props.history.push("/profile");
+  const handleBackClick = () => {
+    props.history.location.key
+      ? props.history.goBack()
+      : props.history.push("/profile");
   };
 
-  render() {
-    const initialValues = {
-      categories: [],
-      imageFile: null
-    };
-    return (
-      <div className="create-recipe">
-        <MediaQuery maxDeviceWidth={649}>
-          <Header onClick={this.handleBackClick} />
-        </MediaQuery>
-        <MediaQuery minDeviceWidth={650}>
-          <HeaderDesktop isAuth={true} user_img={this.props.user_img}>
-            <div
-              className="create-recipe__d-back-btn"
-              onClick={this.handleBackClick}
-            >
-              <Arrow className="edit-profile__d-back-icon" />
-              Go back
-            </div>
-          </HeaderDesktop>
-        </MediaQuery>
+  const initialValues = {
+    categories: [],
+    imageFile: null
+  };
+
+  return (
+    <div className="create-recipe">
+      <MediaQuery maxDeviceWidth={649}>
+        <Header onClick={handleBackClick} />
+      </MediaQuery>
+      <MediaQuery minDeviceWidth={650}>
+        <HeaderDesktop>
+          <div className="create-recipe__d-back-btn" onClick={handleBackClick}>
+            <Arrow className="edit-profile__d-back-icon" />
+            Go back
+          </div>
+        </HeaderDesktop>
         <h1 className="create-recipe__title">Create Recipe</h1>
-        <RecipeUpsert
-          initialValues={initialValues}
-          destroyOnUnmount={false}
-          submitText="Save"
-          onSubmit={this.handleSubmit}
-        />
-      </div>
-    );
-  }
-}
+      </MediaQuery>
 
-const mapStateToProps = state => ({
-  user_img: state.auth.user.image_url
-});
+      <RecipeUpsert
+        initialValues={initialValues}
+        destroyOnUnmount={false}
+        submitText="Save"
+        onSubmit={handleSubmit}
+      />
+    </div>
+  );
+};
+
 export default withRouter(
   connect(
-    mapStateToProps,
+    null,
     { createRecipe }
   )(CreateRecipe)
 );
