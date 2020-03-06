@@ -1,6 +1,6 @@
 import regEx from "./ingredientRegex";
 
-const replaceFractionSymbols = amount => {
+export const replaceFractionSymbols = amount => {
   let fracs = ["⅛", "¼", "⅓", "½", "⅔", "¾"];
   let replacementFracs = [" 1/8", " 1/4", " 1/3", " 1/2", " 2/3", " 3/4"];
 

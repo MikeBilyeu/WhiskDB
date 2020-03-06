@@ -30,7 +30,6 @@
     text-align: center;
     display: block;
     z-index: -1;
-
     background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
     background-size: 200% 200%;
     animation: Animation 3s ease-in infinite;
@@ -38,9 +37,9 @@
 
   &__container {
     min-width: 100%;
-    margin-top: 70vh;
     background-color: #fff;
     position: relative;
+    top: calc(100vh - 9rem);
     z-index: 2;
     padding: 1rem 0.75rem;
     border-radius: 1rem 1rem 0 0;
@@ -209,8 +208,9 @@
 
     &__container {
       width: 100%;
+      min-height: calc(100vh - 4.95rem);
       grid-column: 2 / 3;
-      margin-top: 5rem;
+      top: 4.95rem;
       border-radius: 0;
       border-left: solid lightColor(medium) 0.09rem;
       padding: 3rem 8%;
