@@ -1,5 +1,5 @@
 const regEx = {
-  amount: /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3}( |-)[1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2})/,
+  amount: /^(\d{0,3}(( |-){0,2}[⅛¼⅓½⅔¾])|(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3}( |-)[1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2})/,
   units: /^\b(cup(s?)|c|cp|tablespoon(s?)|tb(sp|s|l|ls)?|teaspoon(s?)|tsp|ts|t|lit(er|re)(s?)|l|millilit(er|re)(s?)|ml|ounce(s?)|oz|pound(s?)|lb(s?)|kilogram(s?)|kg(s?)|gram(s?)|g(s?))\b/i,
   cup: /\b(cup(s?)|c|cp)\b/i,
   tablespoon: /\b(tablespoon(s?)|tb(sp|s|l|ls)?)\b/i,

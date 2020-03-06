@@ -1,11 +1,20 @@
 import regEx from "./ingredientRegex";
 
+const replaceFractionSymbols = amount => {
+  let fracs = ["⅛", "¼", "⅓", "½", "⅔", "¾"];
+  let replacementFracs = [" 1/8", " 1/4", " 1/3", " 1/2", " 2/3", " 3/4"];
+
+  let index = fracs.findIndex(frac => amount.includes(frac));
+
+  return amount.replace(fracs[index], replacementFracs[index]).trim();
+};
+
 export const splitIngredientStr = ingredientStr => {
   //remove extra white space
   ingredientStr = ingredientStr.replace(/\s+/g, " ").trim();
 
   // match the amount from the ingredient with regex
-  const amount = regEx.amount.exec(ingredientStr)[0];
+  let amount = replaceFractionSymbols(regEx.amount.exec(ingredientStr)[0]);
 
   ingredientStr = ingredientStr.replace(regEx.amount, "").trim();
 
@@ -20,7 +29,7 @@ export const splitIngredientStr = ingredientStr => {
 
 const getMetricAmount = (amount, unit) => {
   // using eval to get the decimal of mixed fractions
-  let decimalAmount = eval(amount.split(/[ -]/).join("+"));
+  let decimalAmount = eval(amount.split(/[ -]+/).join("+"));
   let metricUnit = "";
   switch (true) {
     case regEx.cup.test(unit):

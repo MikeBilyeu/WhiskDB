@@ -71,9 +71,9 @@
 
   &__created-by {
     font-family: "Noto Serif", Arial, sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: darkColor(light);
-    font-style: italic;
+    //font-style: italic;
     text-align: center;
     margin: 4rem 0 0rem 0;
   }
@@ -313,7 +313,7 @@
 
     &__created-by {
       text-align: center;
-      margin: 2rem auto;
+      margin: 1rem auto;
     }
   }
   .r-ingredients {
