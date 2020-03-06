@@ -142,8 +142,9 @@
   @include grid-center;
   &__input {
     height: 10rem;
-    white-space: nowrap;
+    white-space: pre;
     overflow: auto;
+    word-wrap: normal;
   }
 }
 

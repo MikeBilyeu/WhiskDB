@@ -6,6 +6,7 @@ import convertTime from "../../../selectors/time-selector";
 import Header from "./header";
 import RecipeUpsert from "../../recipe_upsert";
 import Loading from "../../loading";
+import "./recipe-edit.scss";
 
 const Edit = props => {
   const handleSubmit = values => {
@@ -13,7 +14,9 @@ const Edit = props => {
   };
 
   let { isFetching, recipe } = props.recipeData;
+  console.log("before newline", recipe.ingredients);
   const ingredientsStr = recipe.ingredients.join("\n");
+  console.log("newLine added", ingredientsStr);
   const keywordsStr = recipe.keywords.join(", ");
 
   recipe = {

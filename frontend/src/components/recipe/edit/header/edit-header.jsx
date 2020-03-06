@@ -1,42 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { submit } from "redux-form";
 import { toggleEditRecipe } from "../../../../actions/recipe";
 
-const Header = ({ history, submit, toggleEditRecipe }) => {
+const Header = ({ history, toggleEditRecipe }) => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 2fr 1fr",
-        placeItems: "center"
-      }}
-    >
+    <header className="edit-recipe-header">
       <div
-        style={{ cursor: "pointer", color: "#0172C4" }}
-        onClick={() => {
-          toggleEditRecipe();
-        }}
+        className="edit-recipe-header__cancel-btn"
+        onClick={toggleEditRecipe}
       >
         Cancel
       </div>
-      <h2>Edit Recipe</h2>
-      <div
-        style={{ cursor: "pointer", color: "#0172C4" }}
-        onClick={() => {
-          submit("edit-recipe");
-        }}
-      >
-        Save
-      </div>
-    </div>
+      <h1 className="edit-recipe-header__title">Edit Recipe</h1>
+    </header>
   );
 };
 
 export default withRouter(
   connect(
     null,
-    { toggleEditRecipe, submit }
+    { toggleEditRecipe }
   )(Header)
 );
