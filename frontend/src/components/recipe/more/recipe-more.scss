@@ -15,7 +15,7 @@
 
   &__close-btn {
     width: 5rem;
-    padding: 1rem 2rem;
+    padding: 1rem 2rem 0.25rem 2rem;
     cursor: pointer;
     position: relative;
     right: calc(-100% + 4rem);
@@ -45,7 +45,7 @@
   &__edit-btn {
     display: block;
     border-bottom: solid lightColor(light) 0.09rem;
-    padding: 1rem 2rem;
+    padding: 0.25rem 2rem 1rem 2rem;
     margin: 0 auto 0.5rem auto;
     max-width: 20rem;
     width: 85%;
