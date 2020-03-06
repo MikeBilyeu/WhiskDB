@@ -348,32 +348,36 @@
     margin: 0 !important;
     color: black !important;
     font-size: 12pt !important;
-    //border: solid red 1px !important;
   }
 
   body {
     font-family: Goergia, serif;
     overflow-y: visible !important;
-    //display: block !important;
+    display: block !important;
   }
 
   .recipe {
     &__container {
-      display: grid;
-      grid-gap: 2rem;
+      display: block;
+      top: 0;
     }
     &__details {
       margin: 0 !important;
+      padding: 0 !important;
+      height: 5rem;
     }
   }
 
   .r-ingredients {
     margin: 0 auto !important;
+    padding: 0 !important;
     grid-gap: 0.5rem;
     font-size: 12pt !important;
 
     .ingredient-adjust {
       display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
       .adjust-servings {
         border: none !important;
         display: block !important;
@@ -391,6 +395,7 @@
 
     &__list {
       margin: 0 auto !important;
+      padding: 0 !important;
       min-width: 20rem;
       width: 50% !important;
       max-width: 100%;
@@ -406,10 +411,14 @@
       line-height: 18pt !important;
       border-bottom: solid lightColor(medium) 1pt;
     }
+
+    &__fade {
+      display: none;
+    }
   }
 
   .r-directions {
-    margin: 0 auto !important;
+    margin: 2rem auto 0 auto !important;
     width: 90%;
 
     &__text {

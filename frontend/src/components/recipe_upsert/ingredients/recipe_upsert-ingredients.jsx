@@ -6,10 +6,10 @@ import { numberParse, validIngredientRegEx } from "../utils/input-parse";
 import "../recipe_upsert.scss";
 
 class Ingredients extends React.Component {
-  handleChange = e => {
-    this.setState({ ingredient: e.target.value, error: null });
-  };
-
+  // handleChange = e => {
+  //   this.setState({ ingredient: e.target.value, error: null });
+  // };
+  //
   // handleKeyDown = e => {
   //   if (e.key === "Enter") {
   //     if (!validIngredientRegEx.test(this.state.ingredient)) {

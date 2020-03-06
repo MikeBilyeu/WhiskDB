@@ -81,7 +81,7 @@ const RecipeUpsert = props => {
         name="keywords"
         component={Input}
         label="Tags"
-        placeholder="Tags (e.g., baked, crunchy, healthy)"
+        placeholder="Tags (e.g., baked, crispy, healthy)"
       />
 
       <Categories categories={props.categories} change={props.change} />

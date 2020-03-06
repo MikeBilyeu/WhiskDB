@@ -21,7 +21,7 @@ const getIngredientListMetric = (
         let remainder = amountAdjusted;
 
         const threshold =
-          amountAdjusted >= 600 ? 30 : amountAdjusted >= 120 ? 5 : 0;
+          amountAdjusted >= 600 ? 30 : amountAdjusted >= 100 ? 15 : 0;
 
         while (remainder >= threshold) {
           if (remainder < 0.63) {
