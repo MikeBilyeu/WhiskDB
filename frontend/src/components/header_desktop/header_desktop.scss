@@ -100,7 +100,7 @@
 
     &__create {
       user-select: none;
-      border: solid lightColor(dark) 0.05rem;
+      border: solid lightColor(dark) 0.09rem;
       white-space: nowrap;
       padding: 0.4rem 0.75rem;
       color: darkColor(light);
@@ -108,7 +108,7 @@
       border-radius: 0.2rem;
 
       &:hover {
-        border: solid $primary-color 0.05rem;
+        border: solid $primary-color 0.09rem;
         color: $primary-color;
       }
     }

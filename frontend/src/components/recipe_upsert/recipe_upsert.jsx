@@ -4,9 +4,7 @@ import {
   Field,
   reduxForm,
   formValueSelector,
-  getFormSyncErrors,
-  pristine,
-  submitting
+  getFormSyncErrors
 } from "redux-form";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
@@ -112,7 +110,6 @@ const RecipeUpsert = props => {
         submitFailed={props.submitFailed}
       />
       <button
-        disabled={props.submitting}
         className={classNames("recipe-upsert__sbmt-btn", {
           "recipe-upsert__sbmt-btn--disabled":
             Object.keys(props.syncErrors).length && props.submitFailed

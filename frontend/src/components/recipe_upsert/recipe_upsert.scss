@@ -15,7 +15,6 @@
   }
 
   &__ingredients {
-    height: 10rem;
     white-space: pre;
     overflow: auto;
     word-wrap: normal;
@@ -63,9 +62,11 @@
     background: none;
     border: 0;
     outline: 0;
-    padding: 0.5rem;
+    padding: 0.75rem;
     width: 100%;
     max-width: 55rem;
+    min-height: 6rem;
+    max-height: 50rem;
     appearance: none;
     margin-top: 0.1rem;
     font-size: 0.9rem;
@@ -220,12 +221,7 @@
 }
 
 .ru-directions {
-  &__input {
-    height: 15rem;
-  }
-
   &__footnote {
-    height: 7rem;
     font-style: italic;
   }
 }

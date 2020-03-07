@@ -26,7 +26,6 @@ const Directions = () => {
         type="text"
         component={TextArea}
         label="Footnote"
-        normalize={footnoteParse}
         placeholder={placeholder.footnote}
       />
     </div>

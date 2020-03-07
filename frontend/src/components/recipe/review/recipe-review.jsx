@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Stars from "./stars";
+import TextArea from "../../form_inputs/textarea";
 import ReviewDetails from "./details";
 import { submitReview } from "../../../actions/review";
 import "./recipe-review.scss";
@@ -43,15 +44,14 @@ const Review = props => {
       ) : (
         <>
           <Stars handleClick={handleClick} rating={rating} />
-          <label className="review__input-label">
-            Review
-            <textarea
-              className="review__input"
-              placeholder="Write a review…"
-              value={comment}
-              onChange={handleChange}
-            />
-          </label>
+
+          <TextArea
+            className="review-comment"
+            placeholder="Write a review…"
+            label="Review"
+            input={{ onChange: handleChange, value: comment }}
+            meta={{ touched: null, error: null }}
+          />
 
           <div
             className={classNames("review__sbmt-btn", {
