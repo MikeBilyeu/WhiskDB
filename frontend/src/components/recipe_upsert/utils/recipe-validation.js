@@ -1,51 +1,47 @@
 // Store regex to check validation
-const titleRegEx = /^[A-Z0-9]([a-zA-Z0-9()-\/ ]){2,55}$/;
+const titleRegEx = /^[A-Z0-9].{2,55}$/;
 
-// Alternative RegEx with no lookbehinds
-const amountRegEx = /^\d{0,3}(\.(?=\d)\d{1,2})$|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?$|^\d{1,3} [1-9]\d?\/[1-9]\d?$|^\d{1,3}$/;
+const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3}( |-)[1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) (. *){3,90}?$/i;
 
-const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3} [1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) ([a-z\d-,\/+.%&*!] *){3,40}( \( *([a-z\d-,\/+.%&*!] *){1,40}\) *)?$/i;
-
-const ingredientNameRegEx = /^[A-Z0-9](( )?[a-zA-Z0-9-\/]){2,55}$/;
 let errors = {};
 
 const validateTitle = title => {
   if (!title) {
-    return (errors.title = "Title field is required");
+    errors.title = "Add a recipe title";
   } else if (!titleRegEx.test(title)) {
     // The field parse doesn't prevent invalid title, must check title here
-    return (errors.title = "Title is not valid");
+    errors.title = "Title is not valid";
   }
 };
 
-const validateTime = time => {
-  if (!time) {
-    errors.time = {
-      hours: "Time field is required",
-      minutes: "Time field is required"
-    };
+const validateImage = (imageFile, image) => {
+  if (!image && !imageFile) {
+    errors.image_url = "Add an image for the recipe";
   }
 };
 
 const validateServings = servings => {
   if (!servings) {
-    errors.servings = "Servings field is required";
+    errors.servings = "Add a yield for the recipe";
   }
 };
 
 const validateIngredients = ingredients => {
   // set errors to an empty array beacuse ingredients input is a FieldArray
+
   errors.ingredients = [];
+  let ingredientList = ingredients ? ingredients.split("\n") : [];
+
   // check if ingredietns array is empty
-  if (!ingredients.length) {
+  if (!ingredientList.length) {
     errors.ingredients.push("Add at least one ingredient");
   } else {
-    for (let i = 0; i < ingredients.length; i++) {
+    for (let i = 0; i < ingredientList.length; i++) {
       errors.ingredients.push(null);
 
-      if (!ingredientRegEx.test(ingredients[i])) {
-        errors.ingredients[i] =
-          "Ingredient is not in a valid format: Amount Unit Ingredient";
+      if (!ingredientRegEx.test(ingredientList[i])) {
+        errors.ingredients[i] = `Ingredient on line ${i +
+          1} is not in a valid format: must have an amount(number) and the ingredient. `;
       }
     }
   }
@@ -59,114 +55,47 @@ const validateIngredients = ingredients => {
   }
 };
 
-const validateDirections = directions => {
-  // set errors to an empty array beacuse directions input is a FieldArray
-  errors.directions = [];
-  if (!directions.length) {
-    errors.directions.push("Add at least one ingredient");
-  } else {
-    for (let i = 0; i < directions.length; i++) {
-      errors.directions.push({});
-
-      if (!directions[i].step) {
-        errors.directions[i] = {
-          step: `step ${i + 1} must be 3 - 640 characters`
-        };
-      } else if (!/.{3,640}/.test(directions[i].step)) {
-        errors.directions[i] = {
-          step: `step ${i + 1} must be 3 - 640 characters`
-        };
-      }
-    }
-  }
-
-  const noErrors =
-    // find index of !empty object or not found return -1 check if -1
-    errors.directions.findIndex(obj => JSON.stringify(obj) !== "{}") === -1;
-
-  if (noErrors) {
-    delete errors.directions;
+const validateTime = time => {
+  if (!time || (!time.hours && !time.minutes)) {
+    errors.time = {
+      hours: "Add a time for the recipe",
+      minutes: "Time field is required"
+    };
   }
 };
 
-const validateCategories = categories => {
-  if (categories) {
-    let numOfTrueValues = 0;
-    //get the values of the sub-categories
-    for (let subCategory in categories) {
-      numOfTrueValues += Object.values(categories[subCategory]).filter(
-        value => value
-      ).length;
-    }
-
-    if (numOfTrueValues < 1) {
-      errors.categories = {
-        diet: { vegetarian: "categories must be 1 - 3 selected" }
-      };
-    }
+const validateDirections = directions => {
+  if (!directions) {
+    errors.directions = "Add instructions for the recipe";
   }
 };
 
 const validateKeywords = keywords => {
-  // set errors to an empty array beacuse ingredients input is a FieldArray
-  errors.keywords = [];
-  // check if ingredietns array is empty
-  if (!keywords.length) {
-    errors.keywords.push("Add at least one keyword");
-  } else if (keywords.length > 10) {
-    errors.keywords.push("Only inlcude 1 - 10 keywords");
-  } else {
-    for (let i = 0; i < keywords.length; i++) {
-      errors.keywords.push(null);
-
-      if (!/.{3,25}/.test(keywords[i])) {
-        errors.keywords[i] = "Keyword is not valid: must be 3 - 25 characters";
-      }
-    }
-  }
-
-  const noErrors =
-    // check if array contains !null vlaue
-    errors.keywords.findIndex(str => str !== null) === -1;
-
-  if (noErrors) {
-    delete errors.keywords;
+  if (!keywords) {
+    errors.keywords = "Inlcude at least one keyword";
   }
 };
 
-export const ValidateTitle = ({ title }) => {
-  errors = {};
-  validateTitle(title);
-  return errors;
+const validateCategories = categories => {
+  if (categories && categories.length < 1) {
+    errors.categories = "Select at least one category";
+  } else if (categories && categories.length > 4) {
+    errors.categories = "Too many categories selected";
+  }
 };
 
-export const ValidateTimeServingsFootnote = ({ time, servings }) => {
+export const validate = values => {
   errors = {};
-  validateTime(time);
-  validateServings(servings);
-  return errors;
-};
+  if (Object.keys(values).length) {
+    validateTitle(values.title);
+    validateImage(values.imageFile, values.image_url);
+    validateServings(values.servings);
+    validateIngredients(values.ingredients);
+    validateTime(values.time);
+    validateDirections(values.directions);
+    validateKeywords(values.keywords);
+    validateCategories(values.categories);
+  }
 
-export const ValidateIngredients = ({ ingredients }) => {
-  errors = {};
-  validateIngredients(ingredients);
-  return errors;
-};
-
-export const ValidateDirections = ({ directions }) => {
-  errors = {};
-  validateDirections(directions);
-  return errors;
-};
-
-export const ValidateCategories = ({ categories }) => {
-  errors = {};
-  validateCategories(categories);
-  return errors;
-};
-
-export const ValidateKeywords = ({ keywords }) => {
-  errors = {};
-  validateKeywords(keywords);
   return errors;
 };

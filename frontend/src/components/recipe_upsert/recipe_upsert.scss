@@ -5,9 +5,21 @@
   position: relative;
   max-width: 40rem;
   margin: 2rem auto 5rem auto;
-
   @include grid-center;
   grid-gap: 5rem;
+
+  .validation-error {
+    font-size: 0.9rem;
+    color: $error-color;
+    padding: 0.25rem 0;
+  }
+
+  &__ingredients {
+    height: 10rem;
+    white-space: pre;
+    overflow: auto;
+    word-wrap: normal;
+  }
 
   &__yield {
     input {
@@ -33,6 +45,10 @@
     &:hover {
       background-color: $primary-color;
       color: #fff;
+    }
+
+    &--disabled {
+      opacity: 0.5;
     }
   }
 
@@ -94,6 +110,7 @@
   position: relative;
   text-align: center;
   width: 100%;
+  height: 40vh;
   min-height: 15rem;
   background-color: lightColor(light);
   background-size: 100% auto;
@@ -106,20 +123,30 @@
   font-size: 0.8rem;
   font-weight: 100 !important;
 
+  &--error {
+    border: solid $error-color 0.08rem;
+    .ru-image__text {
+      color: $error-color;
+    }
+  }
+
   &:hover {
-    opacity: 0.7;
+    .ru-image__img {
+      opacity: 0.8;
+    }
   }
 
   &__text {
-    padding: 0.5rem 1rem;
-    opacity: 0.8;
-    background-color: lightColor(light);
+    padding: 0.5rem 2rem;
+    opacity: 1;
+    background-color: rgba(242, 242, 242, 0.5);
     border-radius: 2rem;
     z-index: 1;
     color: $primary-color;
   }
 
   &__img {
+    @include fast-transition;
     outline: none;
     width: 100%;
     height: 40vh;
@@ -130,22 +157,12 @@
   }
 }
 
-.ru-ingredients,
+.recipe-upsert__ingredients,
 .ru-directions,
 .ru-categories {
   @include grid-center;
   grid-gap: 5rem;
   width: 100%;
-}
-
-.ru-ingredients {
-  @include grid-center;
-  &__input {
-    height: 10rem;
-    white-space: pre;
-    overflow: auto;
-    word-wrap: normal;
-  }
 }
 
 .ru-time {
@@ -168,6 +185,9 @@
 
   &__hours,
   &__minutes {
+    .validation-error {
+      display: none;
+    }
     &:focus-within {
       color: $primary-color;
     }

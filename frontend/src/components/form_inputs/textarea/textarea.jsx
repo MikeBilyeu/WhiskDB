@@ -9,7 +9,9 @@ const Textarea = props => {
         placeholder={props.placeholder}
         className={props.className}
       />
-      {props.meta.touched && props.meta.error && <div>*{props.meta.error}</div>}
+      {props.meta.touched && props.meta.error && (
+        <div className="validation-error">{props.meta.error}</div>
+      )}
     </label>
   );
 };

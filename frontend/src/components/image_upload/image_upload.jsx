@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { change } from "redux-form";
@@ -23,7 +24,12 @@ const ImageUpload = props => {
   };
 
   return (
-    <label className={props.className}>
+    <label
+      className={classNames(props.className, {
+        [`${props.className}--error`]:
+          props.meta.submitFailed && props.meta.error
+      })}
+    >
       <span className={`${props.className}__text`}>
         {props.input.value ? "Change Image" : "Choose Image to Upload"}
       </span>

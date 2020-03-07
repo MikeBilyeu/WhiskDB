@@ -1,19 +1,29 @@
 import React from "react";
-import { Field, reduxForm, formValueSelector } from "redux-form";
+import classNames from "classnames";
+import {
+  Field,
+  reduxForm,
+  formValueSelector,
+  getFormSyncErrors,
+  pristine,
+  submitting
+} from "redux-form";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import ImageUpload from "../image_upload";
-import Ingredients from "./ingredients";
 import Directions from "./directions";
 import Categories from "./categories";
 import Input from "../form_inputs/input";
+import TextArea from "../form_inputs/textarea";
 import {
   capitalize,
   titleParse,
   minuteParse,
   numberParse
 } from "./utils/input-parse";
+
+import { validate } from "./utils/recipe-validation";
 
 import "./recipe_upsert.scss";
 
@@ -34,7 +44,7 @@ const RecipeUpsert = props => {
         name="title"
         className="recipe-upsert__title"
         component={Input}
-        label="Name"
+        label="Title"
         placeholder="Juicy Roasted Chicken"
         normalize={capitalize}
         parse={titleParse}
@@ -52,7 +62,15 @@ const RecipeUpsert = props => {
         className="recipe-upsert__yield"
       />
 
-      <Ingredients />
+      <Field
+        name="ingredients"
+        className="recipe-upsert__ingredients"
+        type="text"
+        component={TextArea}
+        label="Ingredients"
+        placeholder="One ingredient per line"
+      />
+
       <label className="ru-time">
         Time
         <div className="ru-time__border">
@@ -75,6 +93,9 @@ const RecipeUpsert = props => {
             className="ru-time__minutes"
           />
         </div>
+        {props.syncErrors.time && props.submitFailed && (
+          <div className="validation-error">{props.syncErrors.time.hours}</div>
+        )}
       </label>
       <Directions />
       <Field
@@ -84,8 +105,20 @@ const RecipeUpsert = props => {
         placeholder="Tags (e.g., baked, crispy, healthy)"
       />
 
-      <Categories categories={props.categories} change={props.change} />
-      <button className="recipe-upsert__sbmt-btn" type="submit">
+      <Categories
+        categories={props.categories}
+        change={props.change}
+        errors={props.syncErrors}
+        submitFailed={props.submitFailed}
+      />
+      <button
+        disabled={props.submitting}
+        className={classNames("recipe-upsert__sbmt-btn", {
+          "recipe-upsert__sbmt-btn--disabled":
+            Object.keys(props.syncErrors).length && props.submitFailed
+        })}
+        type="submit"
+      >
         {props.submitText}
       </button>
     </form>
@@ -102,11 +135,11 @@ RecipeUpsert.propTypes = {
 const selector = formValueSelector("newRecipe");
 
 const mapSateToProps = state => ({
-  recipeData: state.recipe,
-  keywords: selector(state, "keywords"),
-  categories: selector(state, "categories")
+  categories: selector(state, "categories"),
+  syncErrors: getFormSyncErrors("newRecipe")(state)
 });
 
 export default reduxForm({
-  form: "newRecipe"
+  form: "newRecipe",
+  validate
 })(withRouter(connect(mapSateToProps)(RecipeUpsert)));

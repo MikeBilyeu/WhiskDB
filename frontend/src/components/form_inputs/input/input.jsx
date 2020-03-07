@@ -12,7 +12,7 @@ const Input = ({ type = "text", ...props }) => {
       />
       {props.children}
       {props.meta.touched && props.meta.error && (
-        <div className={`${props.className}-error`}>*{props.meta.error}</div>
+        <div className="validation-error">{props.meta.error}</div>
       )}
     </label>
   );
