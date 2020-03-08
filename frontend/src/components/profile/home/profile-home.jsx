@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
@@ -16,93 +16,76 @@ import Results from "../../results";
 
 import "./profile-home.scss";
 
-class Home extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: "saved"
-    };
-  }
+const Home = props => {
+  const [page, setPage] = useState("saved");
 
-  componentDidMount() {
-    if (!this.props.postedRecipes.length && !this.props.savedRecipes.length) {
-      this.props.getPostedRecipes();
-      this.props.getSavedRecipes();
+  useEffect(() => {
+    if (!props.postedRecipes.length && !props.savedRecipes.length) {
+      props.getPostedRecipes();
+      props.getSavedRecipes();
     }
-  }
+  }, []);
+  const { full_name, username, diet, image_url } = props.auth.user;
 
-  componentDidUpdate() {
+  useEffect(() => {
     // Auto switch page state if results are empty
-    if (!this.props.isFetching && !this.props.savedRecipes.length) {
-      if (!this.props.postedRecipes.length) {
-        this.setState({ page: "saved" });
-      } else {
-        this.setState({ page: "posted" });
-      }
-    }
-  }
-
-  handlePageClick = page => {
-    this.setState(prevState => {
-      if (prevState.page !== page) {
-        return { page };
-      }
-    });
-  };
-
-  handleFilterClick = option => {
-    this.props.updateFilterRecipe(option);
-  };
-
-  render() {
-    const { page } = this.state;
-    const { full_name, username, diet, image_url } = this.props.auth.user;
     document.title = `Zipiwisk | ${username || "Profile"}`;
-    const { savedRecipes, postedRecipes } = this.props;
 
-    return (
-      <div className="profile-home">
-        <MediaQuery minDeviceWidth={650}>
-          <HeaderDesktop isAuth={true} user_img={image_url} />
-        </MediaQuery>
-        <UserInfo
-          fullName={full_name}
-          username={username}
-          diet={diet === "none" ? null : diet}
-          image_url={image_url || userLogo}
+    if (!props.isFetching && !props.savedRecipes.length) {
+      !props.postedRecipes.length ? setPage("saved") : setPage("posted");
+    }
+  }, [props.savedRecipes, username]);
+
+  const handlePageClick = page => {
+    setPage(page);
+  };
+
+  const handleFilterClick = option => {
+    props.updateFilterRecipe(option);
+  };
+
+  return (
+    <div className="profile-home">
+      <MediaQuery minDeviceWidth={650}>
+        <HeaderDesktop isAuth={true} user_img={image_url} />
+      </MediaQuery>
+      <UserInfo
+        fullName={full_name}
+        username={username}
+        diet={diet === "none" ? null : diet}
+        image_url={image_url || userLogo}
+      />
+      <PageToggle
+        page={page}
+        onClick={handlePageClick}
+        numSaved={props.savedRecipes.length}
+        savedRecipes={props.savedRecipes}
+        numPosted={props.postedRecipes.length}
+        isFetching={props.isFetching}
+      />
+      {props.activeFilterBtn ? (
+        <FilterResults
+          filterRecipes={props.filterRecipes}
+          buttonToggled={props.activeFilterBtn}
+          handleClick={handleFilterClick}
         />
-        <PageToggle
-          page={this.state.page}
-          onClick={this.handlePageClick}
-          numSaved={savedRecipes.length}
-          savedRecipes={savedRecipes}
-          numPosted={postedRecipes.length}
-          isFetching={this.props.isFetching}
+      ) : null}
+      {page === "saved" ? (
+        <Results
+          filterOptionsOpened={props.activeFilterBtn}
+          recipes={props.savedRecipes}
+          isFetching={props.isFetching}
         />
-        {this.props.activeFilterBtn ? (
-          <FilterResults
-            filterRecipes={this.props.filterRecipes}
-            buttonToggled={this.props.activeFilterBtn}
-            handleClick={this.handleFilterClick}
-          />
-        ) : null}
-        {page === "saved" ? (
-          <Results
-            filterOptionsOpened={this.props.activeFilterBtn}
-            recipes={savedRecipes}
-            isFetching={this.props.isFetching}
-          />
-        ) : (
-          <Results
-            filterOptionsOpened={this.props.activeFilterBtn}
-            recipes={postedRecipes}
-            isFetching={this.props.isFetching}
-          />
-        )}
-      </div>
-    );
-  }
-}
+      ) : (
+        <Results
+          filterOptionsOpened={props.activeFilterBtn}
+          recipes={props.postedRecipes}
+          isFetching={props.isFetching}
+        />
+      )}
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   filterRecipes: state.auth.filterRecipes,
