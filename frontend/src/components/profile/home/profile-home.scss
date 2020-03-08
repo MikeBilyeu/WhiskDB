@@ -28,12 +28,14 @@
       top: 8rem;
       left: 50%;
       margin-left: -12.5rem;
-      max-width: 25rem;
+      min-width: 25rem;
+      width: 50%;
+      max-width: 30rem;
       grid-template-columns: 1fr 1fr;
       place-items: center !important;
 
       &__full-name {
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
 
       &__edit {

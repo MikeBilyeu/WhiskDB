@@ -8,12 +8,6 @@
   @include grid-center;
   grid-gap: 5rem;
 
-  .validation-error {
-    font-size: 0.9rem;
-    color: $error-color;
-    padding: 0.25rem 0;
-  }
-
   &__ingredients {
     white-space: pre;
     overflow: auto;
@@ -52,8 +46,9 @@
   }
 
   label {
+    font-weight: bold;
+    font-size: 0.75rem;
     color: darkColor(medium);
-    font-size: 0.9rem;
     width: 100%;
   }
 

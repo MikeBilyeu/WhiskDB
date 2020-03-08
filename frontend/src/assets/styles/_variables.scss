@@ -4,6 +4,13 @@ $dark-colors: (
   "dark": #313131
 );
 
+.validation-error {
+  font-size: 0.9rem;
+  color: #c40801;
+  padding: 0.25rem 0;
+  font-weight: normal;
+}
+
 @function darkColor($color) {
   @return map-get($dark-colors, $color);
 }

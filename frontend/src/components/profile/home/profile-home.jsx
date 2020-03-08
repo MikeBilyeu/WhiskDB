@@ -25,7 +25,6 @@ class Home extends React.PureComponent {
   }
 
   componentDidMount() {
-    document.title = "Zipiwisk | Profile";
     if (!this.props.postedRecipes.length && !this.props.savedRecipes.length) {
       this.props.getPostedRecipes();
       this.props.getSavedRecipes();
@@ -58,7 +57,7 @@ class Home extends React.PureComponent {
   render() {
     const { page } = this.state;
     const { full_name, username, diet, image_url } = this.props.auth.user;
-    document.title = `Zipiwisk | ${username}`;
+    document.title = `Zipiwisk | ${username || "Profile"}`;
     const { savedRecipes, postedRecipes } = this.props;
 
     return (
