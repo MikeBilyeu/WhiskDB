@@ -60,8 +60,8 @@ const mapSateToProps = state => ({
 PageToggle.propTypes = {
   onClick: PropTypes.func.isRequired,
   page: PropTypes.string.isRequired,
-  numSaved: PropTypes.string.isRequired,
-  numPosted: PropTypes.string.isRequired,
+  numSaved: PropTypes.number.isRequired,
+  numPosted: PropTypes.number.isRequired,
   isFetching: PropTypes.bool.isRequired
 };
 

@@ -27,7 +27,7 @@ class UserInfo extends React.PureComponent {
 
 UserInfo.propTypes = {
   fullName: PropTypes.string.isRequired,
-  diet: PropTypes.string.isRequired,
+  diet: PropTypes.string,
   image_url: PropTypes.string,
   numSaved: PropTypes.string.isRequired,
   numPosted: PropTypes.string.isRequired

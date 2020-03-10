@@ -54,8 +54,8 @@ const Results = props => {
 Results.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   recipes: PropTypes.array.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  filterOptionsOpened: PropTypes.bool.isRequired
+  handleClick: PropTypes.func,
+  filterOptionsOpened: PropTypes.bool
 };
 
 export default Results;
