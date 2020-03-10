@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MediaQuery from "react-responsive";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Field, reduxForm, isDirty } from "redux-form";
 import { logoutUser, editProfile, toggleDelete } from "../../../actions/auth";
 import { validateUsername } from "../../auth/utils/validation.js";
-import { usernameValidate } from "../../auth/utils/async-validation";
+import asyncValidate from "../../auth/utils/async-validation";
 import Input from "../../form_inputs/input";
 import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
 import ImageUpload from "../../image_upload";
@@ -15,77 +15,71 @@ import HeaderDesktop from "../../header_desktop";
 import Delete from "./delete";
 import "./profile-edit.scss";
 
-class Edit extends React.Component {
-  componentDidMount() {
+const Edit = props => {
+  useEffect(() => {
     document.title = "Zipiwisk | Edit Profile";
-  }
-  handleSubmit = values => {
-    this.props.editProfile(values, this.props.history);
+  }, []);
+
+  const handleSubmit = values => {
+    props.editProfile(values, props.history);
   };
 
-  onLogoutClick = e => {
+  const onLogoutClick = e => {
     e.preventDefault();
-    this.props.logoutUser();
+    props.logoutUser();
   };
 
-  handleBackClick = () => {
-    this.props.history.location.key
-      ? this.props.history.goBack()
-      : this.props.history.push("/profile");
+  const handleBackClick = () => {
+    props.history.location.key
+      ? props.history.goBack()
+      : props.history.push("/profile");
   };
 
-  render() {
-    if (this.props.openDelete) {
-      return <Delete />;
-    }
-    return (
-      <div className="edit-profile">
-        <MediaQuery maxDeviceWidth={649}>
-          <Header />
-        </MediaQuery>
-        <MediaQuery minDeviceWidth={650}>
-          <HeaderDesktop isAuth={true} user_img={this.props.userImg}>
-            <div
-              className="edit-profile__d-back-btn"
-              onClick={this.handleBackClick}
-            >
-              <Arrow className="edit-profile__d-back-icon" />
-              Go back
-            </div>
-            <div
-              className="edit-profile__d-logout-btn"
-              onClick={this.onLogoutClick}
-            >
-              Logout
-            </div>
-          </HeaderDesktop>
-        </MediaQuery>
-        <form
-          className="edit-profile-form"
-          onSubmit={this.props.handleSubmit(this.handleSubmit)}
-        >
-          <Field
-            name="image_url"
-            className="edit-profile-form__user-img"
-            component={ImageUpload}
-          />
-          <Field
-            name="full_name"
-            component={Input}
-            inputId="fullname"
-            placeholder="Enter full name"
-            label="Full name"
-            className="edit-profile-form__input"
-          />
-          <Field
-            name="username"
-            component={Input}
-            inputId="username"
-            placeholder="Enter new username"
-            label="Username"
-            className="edit-profile-form__input"
-          />
-          {/*<div className="edit-profile-diet">
+  if (props.openDelete) {
+    return <Delete />;
+  }
+  return (
+    <div className="edit-profile">
+      <MediaQuery maxDeviceWidth={649}>
+        <Header />
+      </MediaQuery>
+      <MediaQuery minDeviceWidth={650}>
+        <HeaderDesktop isAuth={true} user_img={props.userImg}>
+          <div className="edit-profile__d-back-btn" onClick={handleBackClick}>
+            <Arrow className="edit-profile__d-back-icon" />
+            Go back
+          </div>
+          <div className="edit-profile__d-logout-btn" onClick={onLogoutClick}>
+            Logout
+          </div>
+        </HeaderDesktop>
+      </MediaQuery>
+      <form
+        className="edit-profile-form"
+        onSubmit={props.handleSubmit(handleSubmit)}
+      >
+        <Field
+          name="image_url"
+          className="edit-profile-form__user-img"
+          component={ImageUpload}
+        />
+        <Field
+          name="full_name"
+          component={Input}
+          inputId="fullname"
+          placeholder="Enter full name"
+          label="Full name"
+          className="edit-profile-form__input"
+        />
+        <Field
+          name="username"
+          component={Input}
+          inputId="username"
+          placeholder="Enter new username"
+          label="Username"
+          className="edit-profile-form__input"
+        />
+        {/*<div className="edit-profile-diet">
             <h2 className="edit-profile-diet__title">Diet</h2>
 
             <label className="edit-profile-diet__option">
@@ -107,23 +101,22 @@ class Edit extends React.Component {
             </label>
           </div>*/}
 
-          {this.props.dirty ? (
-            <button className="edit-profile-form__save-btn" type="submit">
-              Save changes
-            </button>
-          ) : null}
+        {props.dirty ? (
+          <button className="edit-profile-form__save-btn" type="submit">
+            Save changes
+          </button>
+        ) : null}
 
-          <div
-            className="edit-profile-form__delete-btn"
-            onClick={this.props.toggleDelete}
-          >
-            Delete account
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
+        <div
+          className="edit-profile-form__delete-btn"
+          onClick={props.toggleDelete}
+        >
+          Delete account
+        </div>
+      </form>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   initialValues: {
@@ -144,7 +137,7 @@ export default withRouter(
     reduxForm({
       form: "edit-profile",
       validate: validateUsername,
-      asyncValidate: usernameValidate,
+      asyncValidate: asyncValidate,
       asyncBlurFields: ["username"],
       enableReinitialize: true
     })(Edit)

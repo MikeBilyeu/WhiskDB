@@ -17,10 +17,11 @@ router.get("/", async (request, response) => {
     );
 
     if (res.rowCount > 0) {
-      response.status(409).json({ email: "Email is in use" });
+      return response.status(409).json({ email: "Email is already in use" });
     }
-    response.status(200).json({ email: "Email is not in use" });
+    response.status(200);
   } catch (err) {
+    console.error(err);
     response.status(500).json(err);
   }
 });

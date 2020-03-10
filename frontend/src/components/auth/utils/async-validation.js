@@ -1,8 +1,4 @@
-//credit -- https://codesandbox.io/s/6R4xMwXOQ
-
 import axios from "axios";
-
-let errors = {};
 
 //combine validator function
 const combineAsyncValidation = validator => {
@@ -15,45 +11,28 @@ const combineAsyncValidation = validator => {
   };
 };
 
-export const usernameValidate = (values, dispatch) => {
-  return new Promise((resolve, reject) => {
-    const { username, currentUsername } = values;
-
-    if (!currentUsername) {
-      // Check db if username is taken
-      axios
-        .get("/usernames", { params: { username } })
-        .then(() => {
-          delete errors.username;
-          Object.keys(errors).length ? reject(errors) : resolve();
-        })
-        .catch(err => {
-          errors = { ...errors, username: "This username is taken" };
-          reject(errors);
-        });
+export const usernameValidate = async ({ username, currentUsername }) => {
+  if (currentUsername.toLowerCase() !== username.toLowerCase()) {
+    try {
+      await axios.get("/usernames", { params: { username } });
+    } catch (err) {
+      if (err.response.status === 409) {
+        throw err.response.data;
+      }
+      throw err;
     }
-    // Username unaltered
-    else if (username.toLowerCase() === currentUsername.toLowerCase()) {
-      delete errors.username;
-      Object.keys(errors).length ? reject(errors) : resolve();
-    }
-  });
+  }
 };
 
-const emailValidate = (values, dispatch) => {
-  return new Promise((resolve, reject) => {
-    const { email } = values;
-    axios
-      .get("/emails", { params: { email } })
-      .then(() => {
-        delete errors.email;
-        Object.keys(errors).length ? reject(errors) : resolve();
-      })
-      .catch(err => {
-        errors = { ...errors, email: "This email is already in use" };
-        reject(errors);
-      });
-  });
+const emailValidate = async ({ email }) => {
+  try {
+    await axios.get("/emails", { params: { email } });
+  } catch (err) {
+    if (err.response.status === 409) {
+      throw err.response.data;
+    }
+    throw err;
+  }
 };
 
 const asyncValidate = combineAsyncValidation({

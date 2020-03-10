@@ -5,6 +5,7 @@ module.exports = router;
 
 router.get("/", async (request, response) => {
   const { username } = request.query;
+  console.log("username");
 
   try {
     const { rowCount } = await db.query(
@@ -15,10 +16,13 @@ router.get("/", async (request, response) => {
     );
 
     if (rowCount > 0) {
-      response.status(409).json({ username: "This username is already taken" });
+      return response
+        .status(409)
+        .json({ username: "This username is already taken" });
     }
-    response.status(200).json({ username: "Username is available" });
+    response.status(200);
   } catch (err) {
+    console.error(err);
     response.status(500).json(err);
   }
 });

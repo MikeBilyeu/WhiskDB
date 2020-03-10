@@ -4,17 +4,18 @@ const emailRegEx = /^.+@.+\.(.)+$/i;
 const passwordRegEx = /^\S{8,30}$/;
 
 let errors = {};
-const checkUsername = username => {
+export const checkUsername = username => {
+  delete errors.username;
   if (!username) {
     errors.username = "You must enter a username";
   } else if (!usernameRegEx.test(username)) {
     errors.username = "Username must be 2-20 alphanumeric characters";
   }
-
   return errors;
 };
 
-const checkEmail = email => {
+export const checkEmail = email => {
+  delete errors.email;
   if (!email) {
     errors.email = "You must enter your email address";
   } else if (!emailRegEx.test(email)) {
@@ -23,11 +24,10 @@ const checkEmail = email => {
   return errors;
 };
 
-const checkPassword = (password, page) => {
+export const checkPassword = (password, page) => {
+  delete errors.password;
   if (!password) {
-    errors.password = `You must enter ${
-      page === "login" ? "your" : "a"
-    } password`;
+    errors.password = "Enter password";
   } else if (!passwordRegEx.test(password) && page !== "login") {
     errors.password =
       "Password must be 8 - 30 characters, no whitespaces allowed";
@@ -36,7 +36,6 @@ const checkPassword = (password, page) => {
 };
 
 export const validateSignup = ({ username, email, password }) => {
-  errors = {};
   checkUsername(username);
   checkEmail(email);
   checkPassword(password);
@@ -44,14 +43,12 @@ export const validateSignup = ({ username, email, password }) => {
 };
 
 export const validateLogin = ({ email, password }) => {
-  errors = {};
   checkEmail(email);
   checkPassword(password, "login");
   return errors;
 };
 
 export const validateUsername = ({ username }) => {
-  errors = {};
   checkUsername(username);
   return errors;
 };
