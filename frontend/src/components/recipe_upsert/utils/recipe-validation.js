@@ -1,7 +1,7 @@
 // Store regex to check validation
 const titleRegEx = /^[A-Z0-9].{2,55}$/;
 
-const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]?\d?(( |-){0,2}[⅛¼⅓½⅔¾])|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3}( |-)[1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) ([\w (),\-!#$%&*+\.]*){3,90}?$/i;
+const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]?\d?(( |-){0,2}[⅛¼⅓½⅔¾])|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3}( |-)[1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) (.){3,100}?$/i;
 
 let errors = {};
 
@@ -32,16 +32,20 @@ const validateIngredients = ingredients => {
   errors.ingredients = [];
   let ingredientList = ingredients ? ingredients.split("\n") : [];
 
+  console.log(ingredientList);
+
   // check if ingredietns array is empty
   if (!ingredientList.length) {
     errors.ingredients.push("Add at least one ingredient");
   } else {
+    console.log("a");
     for (let i = 0; i < ingredientList.length; i++) {
       errors.ingredients.push(null);
 
       if (!ingredientRegEx.test(ingredientList[i])) {
-        errors.ingredients[i] = `Ingredient on line ${i +
-          1} is not in a valid format: must have an amount(number) and the ingredient. `;
+        errors.ingredients[i] = `Ingredient on line ${i + 1} "${
+          ingredientList[i]
+        }" is not in a valid format: must have an amount(number) and the ingredient. `;
       }
     }
   }
