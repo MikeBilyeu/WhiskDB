@@ -55,12 +55,12 @@
       &__edit-profile-btn {
         border: solid lightColor(dark) 0.05rem;
         white-space: nowrap;
-        padding: 0.4rem 1.5rem;
+        padding: 0.3rem 1rem;
         color: darkColor(light);
         font-weight: medium;
         border-radius: 0.2rem;
         display: block;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
 
         &:hover {
           border: solid $primary-color 0.05rem;
