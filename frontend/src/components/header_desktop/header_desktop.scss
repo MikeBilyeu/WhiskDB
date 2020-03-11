@@ -166,12 +166,16 @@
 // Small screens
 @media (max-width: 475px) {
   .header-d {
-    &__logo {
-      display: none;
-    }
-    .search-bar {
-      margin-left: 0.5rem;
-      grid-column: 1 / 4;
+    grid-gap: 0.5rem;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+
+    .auth-btns {
+      &__create {
+        display: none;
+      }
+      &__profile {
+        padding: 0 0rem;
+      }
     }
   }
 }
@@ -179,9 +183,11 @@
 @media (max-width: 630px) {
   .header-d {
     .auth-btns {
+      border: none;
+      grid-gap: 0;
       padding: 0 0.25rem;
       &__create {
-        display: none;
+        //display: none;
       }
     }
   }
