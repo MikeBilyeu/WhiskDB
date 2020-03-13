@@ -9,6 +9,7 @@ $dark-colors: (
   color: #c40801;
   padding: 0.25rem 0;
   font-weight: normal;
+  overflow: scroll;
 }
 
 @function darkColor($color) {

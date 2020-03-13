@@ -2,20 +2,21 @@
 
 .recipe-results {
   width: 100%;
-  padding: 2rem 0 0 0;
+  padding: 1rem 0 0 0;
   position: relative;
   text-align: center;
   z-index: 2;
   background-color: #fff;
 
   &__list {
+    width: 58rem;
     margin: 3rem auto;
     display: grid;
-    grid-column-gap: 1rem;
+    grid-column-gap: 0.25rem;
     grid-row-gap: 4rem;
     align-items: start;
     justify-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(17.6rem, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     padding: 0;
     list-style-type: none;
     list-style: none;
@@ -44,9 +45,24 @@
   }
 }
 
-@media (min-width: 500px) {
+@media (max-width: 1000px) {
   .recipe-results {
-    padding: 2rem 2rem 0 2rem;
+    * {
+      //  border: solid blue;
+    }
+    padding: 0rem;
+    &__list {
+      grid-template-columns: 1fr 1fr;
+      width: 38.5rem;
+    }
+  }
+}
+@media (max-width: 639px) {
+  .recipe-results {
+    &__list {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
   }
 }
 

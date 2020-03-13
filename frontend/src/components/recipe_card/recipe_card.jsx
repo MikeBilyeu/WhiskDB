@@ -20,38 +20,35 @@ const RecipeCard = props => {
       ? parseFloat((num / 1000000).toFixed(1)) + "m"
       : num > 1000
       ? parseFloat((num / 1000).toFixed(1)) + "k"
-      : num;
+      : num > 0
+      ? num
+      : "";
   };
 
   return (
-    <li className="recipe-card">
-      <Link to={`/recipe/${props.recipe.recipe_id}`}>
-        <img
-          className="recipe-card__thumbnail"
-          src={props.recipe.image_url.replace(
-            "upload/",
-            "upload/q_auto:good,w_1500/"
-          )}
-          alt=""
-        />
+    <Link className="recipe-card" to={`/recipe/${props.recipe.recipe_id}`}>
+      <img
+        className="recipe-card__thumbnail"
+        src={props.recipe.image_url.replace(
+          "upload/",
+          "upload/q_auto:good,w_1500/"
+        )}
+        alt=""
+      />
+      <div className="recipe-card__meta">
         <div className="recipe-card__title">{props.recipe.title}</div>
-        <div className="recipe-card__meta">
-          <Rating
-            className="recipe-card"
-            rating={props.recipe.rating}
-            votes={props.recipe.num_reviews}
-          />
-          <div className="recipe-card__time">
-            <img className="recipe-card__icon" src={clock} alt="" />
-            {convertTime(props.recipe.total_time_mins)}
-          </div>
-          <div className="recipe-card__saves">
-            <SaveIcon className="recipe-card__icon" />
-            {convertSaves(props.recipe.num_saves)}
-          </div>
+        <Rating
+          className="recipe-card"
+          rating={props.recipe.rating}
+          votes={props.recipe.num_reviews}
+        />
+
+        <div className="recipe-card__saves">
+          <SaveIcon className="recipe-card__icon" />
+          {convertSaves(props.recipe.num_saves)}
         </div>
-      </Link>
-    </li>
+      </div>
+    </Link>
   );
 };
 

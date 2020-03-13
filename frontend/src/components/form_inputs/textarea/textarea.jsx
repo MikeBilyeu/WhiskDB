@@ -33,7 +33,7 @@ const Textarea = props => {
         ref={inputEl}
       />
       {props.meta.touched && props.meta.error && (
-        <div className="validation-error">{props.meta.error}</div>
+        <span className="validation-error">{props.meta.error}</span>
       )}
     </label>
   );

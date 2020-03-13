@@ -30,22 +30,33 @@ const validateIngredients = ingredients => {
   // set errors to an empty array beacuse ingredients input is a FieldArray
 
   errors.ingredients = [];
-  let ingredientList = ingredients ? ingredients.split("\n") : [];
-
+  let ingredientList = ingredients
+    ? ingredients
+        .split("\n")
+        .map(ing => {
+          return ing.trim().replace(/[ \t]{2,}/, " ");
+        })
+        .filter(Boolean)
+    : [];
   console.log(ingredientList);
-
   // check if ingredietns array is empty
   if (!ingredientList.length) {
     errors.ingredients.push("Add at least one ingredient");
   } else {
-    console.log("a");
     for (let i = 0; i < ingredientList.length; i++) {
       errors.ingredients.push(null);
 
       if (!ingredientRegEx.test(ingredientList[i])) {
-        errors.ingredients[i] = `Ingredient on line ${i + 1} "${
-          ingredientList[i]
-        }" is not in a valid format: must have an amount(number) and the ingredient. `;
+        errors.ingredients[
+          i
+        ] = `Ingredient "${ingredientList[i]}" is not in a valid format: must include an amount(number) and the ingredient. `;
+      }
+      if (ingredientList[i].length > 100) {
+        errors.ingredients[i] = `Ingredient "${ingredientList[i]}" is too long`;
+      }
+
+      if (!ingredientList[i].length) {
+        errors.ingredients[i] = null;
       }
     }
   }

@@ -3,28 +3,46 @@
 .recipe-card {
   &:hover {
     .recipe-card__thumbnail {
-      opacity: 0.8;
+      //opacity: 0.8;
+      //  transform: scale(1.025);
     }
   }
+
+  overflow: hidden;
   position: relative;
-  width: 100%;
-  max-width: 25rem;
+
+  width: 19rem;
+  height: 22.2rem;
   background-color: #fff;
   margin: 0 auto;
   text-align: left;
+  //box-shadow: 0 0.5rem 0.9rem 0 rgba(0, 0, 0, 0.1);
 
   &__thumbnail {
-    min-height: 9rem;
-    max-height: 9rem;
+    height: 22.2rem;
     width: 100%;
     object-fit: cover;
-    transition: all 0.2s;
-    margin-bottom: 0.1rem;
-
-    box-shadow: 0 0.5rem 0.9rem 0 rgba(0, 0, 0, 0.1);
+    @include slow-transition;
     background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
     background-size: 200% 200%;
     animation: Animation 3s ease-in infinite;
+  }
+
+  &__meta {
+    height: 3.2rem;
+    padding: 0.2rem 0.25rem;
+    position: absolute;
+    bottom: -1px;
+    background-color: rgba(265, 256, 256, 0.95);
+    color: darkColor(light);
+    font-family: Arial !important;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    align-items: center;
+    justify-items: start;
+    width: 100%;
   }
 
   &__title {
@@ -33,19 +51,8 @@
     letter-spacing: -0.5px;
     line-height: 1.1rem;
     color: darkColor(dark);
-    margin: 0.2rem;
-  }
-
-  &__meta {
-    margin: 0 0.1rem;
-    color: darkColor(light);
-    font-family: Arial !important;
-    font-size: 0.75rem;
-    white-space: nowrap;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-gap: 0.3rem;
-    place-items: center;
+    margin: 0;
+    grid-column: 1 / 3;
   }
 
   &__icon {
@@ -88,11 +95,6 @@
 }
 
 @media (min-device-width: 650px) {
-  .recipe-card {
-    &__thumbnail {
-      border-radius: 0.15rem;
-    }
-  }
 }
 
 @keyframes Animation {

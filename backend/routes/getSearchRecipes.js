@@ -8,7 +8,7 @@ router.get("/", async (request, response) => {
   let { search, offset, sort } = JSON.parse(
     request.query.filterRecipes.toLowerCase()
   );
-  search = search.trim().replace(/\s+/g, " | ");
+  search = search.trim().replace(/\s+/g, " & ");
 
   console.log("SEARCH TERM:", search);
   const { user_id } = request.query;
