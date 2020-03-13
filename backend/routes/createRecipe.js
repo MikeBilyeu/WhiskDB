@@ -12,12 +12,16 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   async ({ user, body: recipe }, response) => {
-    console.log(recipe);
     // const errors = validateRecipeInput(recipe);
     // if (Object.keys(errors).length !== 0) {
     //   response.status(400).json(errors);
     // }
-    const ingredientsArr = recipe.ingredients.split(/\n/);
+    const ingredientsArr = recipe.ingredients
+      .split(/\n/)
+      .map(ing => {
+        return ing.trim().replace(/[ \t]{2,}/, " ");
+      })
+      .filter(Boolean);
     const keywordsArr = recipe.keywords.split(",").map(item => item.trim());
 
     try {

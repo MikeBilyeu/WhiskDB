@@ -12,7 +12,12 @@ router.put(
     if (user.user_id !== recipe.created_by) {
       response.status(401).send("You can't edit this recipe");
     }
-    const ingredientsArr = recipe.ingredients.split(/\n/);
+    const ingredientsArr = recipe.ingredients
+      .split(/\n/)
+      .map(ing => {
+        return ing.trim().replace(/[ \t]{2,}/, " ");
+      })
+      .filter(Boolean);
     const keywordsArr = recipe.keywords.split(",").map(item => item.trim());
 
     try {
