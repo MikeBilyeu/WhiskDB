@@ -18,21 +18,27 @@ router.get(
                r.image_url,
                r.total_time_mins,
                COALESCE(AVG(rw.rating), 0) AS rating,
-               CAST(COUNT(DISTINCT rw.*) AS INTEGER) AS num_reviews,
-               COUNT(DISTINCT sr.*) AS num_saves
+               CAST(count(DISTINCT rw.*) AS INTEGER) AS num_reviews,
+               COUNT(DISTINCT sr.*) AS num_saves,
+          COALESCE((SELECT sr.saved_at
+           FROM saved_recipes sr
+           WHERE sr.recipe_saved = r.recipe_id
+             AND sr.saved_by = $1), r.created_at) AS saved_at
         FROM recipes r
+        LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
         LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
         LEFT JOIN recipes_join_categories rjc ON rjc.recipe = r.recipe_id
-        LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
-        WHERE r.recipe_id IN
-            (SELECT sr.recipe_saved
-             FROM saved_recipes sr
-             WHERE CASE
-                       WHEN $2 = 'All Meals' THEN sr.saved_by = $1
-                       ELSE sr.saved_by = $1
-                            AND rjc.category = LOWER($2)
-                   END)
-        GROUP BY r.recipe_id;`,
+        WHERE (r.recipe_id IN
+                 (SELECT sr.recipe_saved
+                  FROM saved_recipes sr
+                  WHERE sr.saved_by = $1)
+               OR r.created_by = $1)
+          AND CASE
+                  WHEN $2 = 'All Meals' THEN TRUE
+                  ELSE rjc.category = LOWER($2)
+              END
+        GROUP BY r.recipe_id
+        ORDER BY saved_at DESC`,
         [user_id, meal]
       );
       response.status(200).json(rows);

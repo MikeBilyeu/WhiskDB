@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
 import {
-  getPostedRecipes,
   getSavedRecipes,
   updateFilterRecipe
 } from "../../../actions/recipeActions";
@@ -17,11 +16,8 @@ import Results from "../../results";
 import "./profile-home.scss";
 
 const Home = props => {
-  const [page, setPage] = useState("saved");
-
   useEffect(() => {
-    if (!props.postedRecipes.length && !props.savedRecipes.length) {
-      props.getPostedRecipes();
+    if (!props.savedRecipes.length) {
       props.getSavedRecipes();
     }
   }, []);
@@ -30,15 +26,7 @@ const Home = props => {
   useEffect(() => {
     // Auto switch page state if results are empty
     document.title = `Zipiwisk | ${username || "Profile"}`;
-
-    if (!props.isFetching && !props.savedRecipes.length) {
-      !props.postedRecipes.length ? setPage("saved") : setPage("posted");
-    }
-  }, [props.savedRecipes, username]);
-
-  const handlePageClick = page => {
-    setPage(page);
-  };
+  }, [username]);
 
   const handleFilterClick = option => {
     props.updateFilterRecipe(option);
@@ -56,11 +44,8 @@ const Home = props => {
         image_url={image_url || userLogo}
       />
       <PageToggle
-        page={page}
-        onClick={handlePageClick}
         numSaved={props.savedRecipes.length}
         savedRecipes={props.savedRecipes}
-        numPosted={props.postedRecipes.length}
         isFetching={props.isFetching}
       />
       {props.activeFilterBtn ? (
@@ -70,19 +55,12 @@ const Home = props => {
           handleClick={handleFilterClick}
         />
       ) : null}
-      {page === "saved" ? (
-        <Results
-          filterOptionsOpened={props.activeFilterBtn}
-          recipes={props.savedRecipes}
-          isFetching={props.isFetching}
-        />
-      ) : (
-        <Results
-          filterOptionsOpened={props.activeFilterBtn}
-          recipes={props.postedRecipes}
-          isFetching={props.isFetching}
-        />
-      )}
+
+      <Results
+        filterOptionsOpened={props.activeFilterBtn}
+        recipes={props.savedRecipes}
+        isFetching={props.isFetching}
+      />
     </div>
   );
 };
@@ -92,13 +70,12 @@ const mapStateToProps = state => ({
   activeFilterBtn: state.auth.activeFilterBtn,
   auth: state.auth,
   savedRecipes: state.savedRecipes.recipes,
-  postedRecipes: state.postedRecipes.recipes,
-  isFetching: state.savedRecipes.isFetching || state.postedRecipes.isFetching
+  isFetching: state.savedRecipes.isFetching
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getPostedRecipes, getSavedRecipes, updateFilterRecipe }
+    { getSavedRecipes, updateFilterRecipe }
   )(Home)
 );

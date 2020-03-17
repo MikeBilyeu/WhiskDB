@@ -9,8 +9,6 @@ import { updateFilterRecipe } from "../../../../actions/recipeActions";
 import "./home-page_toggle.scss";
 
 const PageToggle = props => {
-  const savedActive = props.page === "saved";
-  const postedActive = !savedActive;
   const handleClick = option => {
     // set the filterRecipes to the option selected
     props.updateFilterRecipe(option);
@@ -30,23 +28,6 @@ const PageToggle = props => {
         handleClick={handleClick}
         buttonToggled="Meal"
       />
-      <button
-        className={classNames("page-toggle__btn", {
-          "page-toggle__btn--active": savedActive
-        })}
-        onClick={() => props.onClick("saved")}
-      >
-        {!props.isFetching && props.numSaved} Saved
-      </button>
-
-      <button
-        className={classNames("page-toggle__btn", {
-          "page-toggle__btn--active": postedActive
-        })}
-        onClick={() => props.onClick("myRecipes")}
-      >
-        {!props.isFetching && props.numPosted} Posted
-      </button>
     </div>
   );
 };
@@ -59,9 +40,6 @@ const mapSateToProps = state => ({
 
 PageToggle.propTypes = {
   onClick: PropTypes.func.isRequired,
-  page: PropTypes.string.isRequired,
-  numSaved: PropTypes.number.isRequired,
-  numPosted: PropTypes.number.isRequired,
   isFetching: PropTypes.bool.isRequired
 };
 
