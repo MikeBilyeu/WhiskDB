@@ -74,17 +74,15 @@
       top: 3rem;
       padding: 0 0.5rem 0.5rem 0.5rem;
       grid-gap: 0.5rem;
-      grid-template-columns: 5rem 5rem 1fr;
+      grid-template-columns: 1fr;
       grid-template-rows: 1fr;
       place-items: center !important;
 
       .category-btn-d {
-        grid-column: 3 / 4;
         height: 1.5rem;
       }
 
       &__btn {
-        grid-row: 1 / 2;
         width: 5rem;
         font-weight: 400 !important;
         font-size: 0.75rem;
@@ -101,7 +99,6 @@
         position: static !important;
         min-width: 20rem;
         max-width: 40rem;
-        grid-column: 3 / 4;
         box-shadow: none;
         background-color: inherit;
         &__title {

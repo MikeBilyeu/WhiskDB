@@ -37,11 +37,6 @@ const RecipeCard = props => {
       />
       <div className="recipe-card__meta">
         <div className="recipe-card__title">{props.recipe.title}</div>
-        <Rating
-          className="recipe-card"
-          rating={props.recipe.rating}
-          votes={props.recipe.num_reviews}
-        />
 
         <div className="recipe-card__saves">
           <SaveIcon className="recipe-card__icon" />

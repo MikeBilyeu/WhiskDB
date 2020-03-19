@@ -180,7 +180,9 @@
           border-color: $primary-color;
           color: $primary-color;
           .recipe__save-icon {
-            fill: $primary-color !important;
+            path:last-child {
+              fill: $primary-color !important;
+            }
           }
         }
       }
@@ -190,7 +192,9 @@
         color: $primary-color;
 
         .recipe__save-icon {
-          fill: $primary-color !important;
+          path:last-child {
+            fill: $primary-color !important;
+          }
         }
 
         @media (hover: hover) {
@@ -198,8 +202,11 @@
             border-color: lightColor(dark);
             color: darkColor(light);
             opacity: 0.9;
+
             .recipe__save-icon {
-              fill: darkColor(medium) !important;
+              path:last-child {
+                fill: lightColor(medium) !important;
+              }
             }
           }
         }
@@ -228,7 +235,6 @@
       position: relative;
       width: 100%;
       max-width: 35rem !important;
-
       height: 100%;
       min-height: 15rem;
       max-height: 20rem;
@@ -281,6 +287,10 @@
 @media (max-width: 700px) {
   .recipe {
     display: block;
+
+    &__img {
+      margin: 5rem auto 0 auto;
+    }
 
     &__save-btn {
       margin: 0 auto 4rem auto;

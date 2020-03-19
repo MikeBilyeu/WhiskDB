@@ -2,8 +2,7 @@
 
 .page-toggle {
   @include grid-center;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   border-bottom: solid lightColor(medium) 0.07rem;
   position: sticky;
   top: 0rem;
@@ -12,10 +11,6 @@
   width: 100%;
   z-index: 5;
   padding: 0.5rem 0 0 0;
-
-  .category-btn-m {
-    grid-column: 1 / 3;
-  }
 
   &__btn {
     width: 8rem;

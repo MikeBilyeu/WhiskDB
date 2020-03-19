@@ -1,25 +1,22 @@
 @import "../../assets/styles/variables";
 
 .recipe-results {
-  width: 100%;
-  padding: 1rem 0 0 0;
+  padding: 1rem 0;
   position: relative;
   text-align: center;
   z-index: 2;
   background-color: #fff;
+  width: 100%;
+  min-height: calc(100vh - 5.25rem);
 
   &__list {
-    width: 58rem;
-    margin: 3rem auto;
-    display: grid;
-    grid-column-gap: 0.25rem;
-    grid-row-gap: 4rem;
-    align-items: start;
-    justify-items: center;
-    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
     padding: 0;
     list-style-type: none;
     list-style: none;
+    display: inline-grid;
+    justify-items: start;
+    grid-template-columns: repeat(3, minmax(20.5rem, 1fr));
   }
 
   &__load-more {
@@ -37,6 +34,7 @@
     margin: 4rem auto;
     padding: 0.6rem 2rem;
     text-align: center;
+    display: block;
 
     &:hover {
       border-color: $primary-color;
@@ -47,22 +45,13 @@
 
 @media (max-width: 1000px) {
   .recipe-results {
-    * {
-      //  border: solid blue;
-    }
-    padding: 0rem;
     &__list {
-      grid-template-columns: 1fr 1fr;
-      width: 38.5rem;
+      grid-template-columns: repeat(2, minmax(20.5rem, 1fr));
     }
   }
 }
 @media (max-width: 639px) {
   .recipe-results {
-    &__list {
-      grid-template-columns: 1fr;
-      width: 100%;
-    }
   }
 }
 
