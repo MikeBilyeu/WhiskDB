@@ -1,11 +1,10 @@
 @import "../../../assets/styles/variables";
 
 .ingredient-adjust {
-  display: inline-grid;
+  display: block;
   width: 100%;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   padding: 0.5rem 0;
-  place-items: center;
 
   &__units {
     border: solid lightColor(dark) 0.09rem;
@@ -26,6 +25,8 @@
 
   .adjust-servings {
     @extend .ingredient-adjust__units;
+    margin: 0 auto;
+    width: 10rem;
     cursor: text;
     &__text {
       color: $primary-color;

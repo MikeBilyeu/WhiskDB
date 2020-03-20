@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import IngredientAdjust from "../ingredient_adjust";
+import ServingsAdjust from "../servings_adjust";
 import convertIngredients from "../../../selectors/ingredient-selector";
 
 class Ingredient extends React.Component {
@@ -34,7 +34,7 @@ class Ingredient extends React.Component {
 const Ingredients = props => {
   return (
     <div className="r-ingredients">
-      <IngredientAdjust />
+      <ServingsAdjust />
       <ul className="r-ingredients__list">
         {props.ingredients.map(({ amount, unit = "", ingredient }, i) => {
           return (
