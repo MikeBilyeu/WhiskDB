@@ -213,6 +213,27 @@
       }
     }
 
+    &__login-btn {
+      width: 7rem;
+      margin-bottom: 4rem;
+      text-align: center;
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      white-space: nowrap;
+      border: solid $primary-color 0.08rem;
+      border-radius: 50rem;
+      color: $primary-color;
+      @media (hover: hover) {
+        &:hover {
+          &:hover {
+            color: #fff;
+            background-color: $primary-color;
+          }
+        }
+      }
+    }
+
     &__container {
       width: 100%;
       min-height: calc(100vh - 4.95rem);
@@ -292,7 +313,9 @@
       margin: 5rem auto 0 auto;
     }
 
-    &__save-btn {
+    &__save-btn,
+    &__login-btn {
+      display: block;
       margin: 0 auto 4rem auto;
     }
 

@@ -1,6 +1,7 @@
 @import "../../../assets/styles/variables";
 .edit-profile {
-  padding: 0.5rem;
+  position: relative;
+  top: 5rem;
 
   &__d-back-btn {
     color: darkColor(medium);
@@ -41,7 +42,7 @@
 
   .edit-profile-form {
     max-width: 25rem;
-    margin: 5rem auto 0 auto;
+    margin: 0 auto 0 auto;
     padding-top: 1rem;
     display: grid;
     grid-gap: 1rem;

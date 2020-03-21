@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import { withRouter } from "react-router";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import Header from "./header";
@@ -59,6 +59,7 @@ const Recipe = props => {
           recipe_id={recipe_id}
           user_id={user_id}
           handleBackClick={handleBackClick}
+          isAuth={props.isAuth}
         />
         {showMoreOpen ? <More className="recipe-more" /> : null}
         <img
@@ -89,15 +90,21 @@ const Recipe = props => {
         <Ingredients />
 
         <div className="recipe__container">
-          <div
-            className={classNames("recipe__save-btn", {
-              "recipe__save-btn--active": saved
-            })}
-            onClick={() => props.saveRecipe(recipe_id, user_id)}
-          >
-            <SaveIcon className="recipe__save-icon" />
-            {saved ? "Saved" : "Save"}
-          </div>
+          {props.isAuth ? (
+            <div
+              className={classNames("recipe__save-btn", {
+                "recipe__save-btn--active": saved
+              })}
+              onClick={() => props.saveRecipe(recipe_id, user_id)}
+            >
+              <SaveIcon className="recipe__save-icon" />
+              {saved ? "Saved" : "Save"}
+            </div>
+          ) : (
+            <Link className="recipe__login-btn" to="/auth">
+              Login to save
+            </Link>
+          )}
 
           <RecipeDetails time={time} />
 

@@ -77,6 +77,18 @@
       }
     }
 
+    &__login-btn {
+      width: 7rem;
+      text-align: center;
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      white-space: nowrap;
+      border: solid $primary-color 0.08rem;
+      border-radius: 50rem;
+      color: $primary-color;
+    }
+
     &__more-btn {
       transform: rotate(90deg);
       cursor: pointer;

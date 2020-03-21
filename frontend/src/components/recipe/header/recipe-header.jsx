@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { toggleShowMore, saveRecipe } from "../../../actions/recipe";
@@ -9,28 +10,33 @@ import { ReactComponent as More } from "../../../assets/images/more.svg";
 
 import "./recipe-header.scss";
 
-const Header = ({
-  recipe_id,
-  user_id,
-  saveRecipe,
-  toggleShowMore,
-  recipeSaved,
-  handleBackClick
-}) => {
+const Header = props => {
   return (
     <div className="recipe-header">
-      <Arrow className="recipe-header__back-btn" onClick={handleBackClick} />
-      <div
-        className={classNames("recipe-header__save-btn", {
-          "recipe-header__save-btn--active": recipeSaved
-        })}
-        onClick={() => saveRecipe(recipe_id, user_id)}
-      >
-        <SaveIcon className="recipe-header__save-icon" />
-        {recipeSaved ? "Saved" : "Save"}
-      </div>
+      <Arrow
+        className="recipe-header__back-btn"
+        onClick={props.handleBackClick}
+      />
+      {props.isAuth ? (
+        <div
+          className={classNames("recipe-header__save-btn", {
+            "recipe-header__save-btn--active": props.recipeSaved
+          })}
+          onClick={() => saveRecipe(props.recipe_id, props.user_id)}
+        >
+          <SaveIcon className="recipe-header__save-icon" />
+          {props.recipeSaved ? "Saved" : "Save"}
+        </div>
+      ) : (
+        <Link className="recipe-header__login-btn" to="/auth">
+          Login to save
+        </Link>
+      )}
 
-      <More onClick={toggleShowMore} className="recipe-header__more-btn" />
+      <More
+        onClick={props.toggleShowMore}
+        className="recipe-header__more-btn"
+      />
     </div>
   );
 };
