@@ -1,4 +1,8 @@
-import { GET_SAVED_RECIPES, GET_SAVED_RECIPES_REQUEST } from "../actions/types";
+import {
+  GET_SAVED_RECIPES,
+  GET_SAVED_RECIPES_REQUEST,
+  REMOVE_SAVED_RECIPES
+} from "../actions/types";
 
 const initialState = {
   recipes: [],
@@ -12,9 +16,11 @@ export default function(state = initialState, action) {
     case GET_SAVED_RECIPES:
       return {
         ...state,
-        recipes: action.payload,
+        recipes: [...state.recipes, ...action.payload],
         isFetching: false
       };
+    case REMOVE_SAVED_RECIPES:
+      return { ...state, recipes: initialState.recipes };
 
     default:
       return state;

@@ -4,14 +4,15 @@ import {
   USER_LOADING,
   TOGGLE_DELETE,
   SET_PROFILE_FILTER_DATA,
-  TOGGLE_FILTER_BUTTON_PROFILE
+  TOGGLE_FILTER_BUTTON_PROFILE,
+  SAVED_OFFSET_INCREMENT
 } from "../actions/types";
 const initialState = {
   isAuthenticated: false,
   user: { user_id: null, username: "", full_name: "", email: "" },
   loading: false,
   openDelete: false,
-  filterRecipes: { meal: "All Meals" },
+  filterRecipes: { meal: "All Meals", offset: 0 },
   activeFilterBtn: null
 };
 
@@ -29,17 +30,25 @@ export default function(state = initialState, action) {
     case SET_PROFILE_FILTER_DATA:
       return { ...state, filterRecipes: action.payload };
     case TOGGLE_FILTER_BUTTON_PROFILE:
-      if (action.payload === state.activeFilterBtn)
+      if (action.payload === state.activeFilterBtn) {
         return {
           ...state,
           activeFilterBtn: null
         };
-      else {
+      } else {
         return {
           ...state,
           activeFilterBtn: action.payload
         };
       }
+    case SAVED_OFFSET_INCREMENT:
+      return {
+        ...state,
+        filterRecipes: {
+          ...state.filterRecipes,
+          offset: state.filterRecipes.offset + 1
+        }
+      };
     case GET_USER:
       return {
         ...state,

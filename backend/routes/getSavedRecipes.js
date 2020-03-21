@@ -9,10 +9,13 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   async (request, response) => {
     const { user_id } = request.user;
-    const { meal } = request.query;
+    const { meal, offset } = request.query;
+    console.log(offset);
+    const LIMIT = 12;
+    const OFFSETNUM = offset * LIMIT;
 
     try {
-      const { rows } = await db.query(
+      const { rows, rowCount } = await db.query(
         `SELECT r.recipe_id,
                r.title,
                r.image_url,
@@ -20,10 +23,12 @@ router.get(
                COALESCE(AVG(rw.rating), 0) AS rating,
                CAST(count(DISTINCT rw.*) AS INTEGER) AS num_reviews,
                COUNT(DISTINCT sr.*) AS num_saves,
-          COALESCE((SELECT sr.saved_at
-           FROM saved_recipes sr
-           WHERE sr.recipe_saved = r.recipe_id
-             AND sr.saved_by = $1), r.created_at) AS saved_at
+               COUNT(*) OVER() AS full_count,
+               COALESCE(
+                          (SELECT sr.saved_at
+                           FROM saved_recipes sr
+                           WHERE sr.recipe_saved = r.recipe_id
+                             AND sr.saved_by = $1), r.created_at) AS saved_at
         FROM recipes r
         LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
         LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
@@ -38,10 +43,16 @@ router.get(
                   ELSE rjc.category = LOWER($2)
               END
         GROUP BY r.recipe_id
-        ORDER BY saved_at DESC`,
-        [user_id, meal]
+        ORDER BY saved_at DESC
+        LIMIT $3
+        OFFSET $4;`,
+        [user_id, meal, LIMIT, OFFSETNUM]
       );
-      response.status(200).json(rows);
+      if (rowCount < 1) {
+        response.status(204).send();
+      } else {
+        response.status(200).json(rows);
+      }
     } catch (err) {
       console.error(err);
       response.status(500).json(err);

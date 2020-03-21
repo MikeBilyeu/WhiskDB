@@ -4,7 +4,6 @@ import authReducer from "./authReducer";
 import errorReducer from "./errorReducer";
 import recipeReducer from "./recipeReducer";
 import savedRecipesReducer from "./savedRecipesReducer";
-import postedRecipesRecuder from "./postedRecipesReducer";
 import browseRecipesReducer from "./browseRecipesReducer";
 
 export default combineReducers({
@@ -12,7 +11,6 @@ export default combineReducers({
   auth: authReducer,
   recipe: recipeReducer,
   savedRecipes: savedRecipesReducer,
-  postedRecipes: postedRecipesRecuder,
   browseRecipes: browseRecipesReducer,
   errors: errorReducer
 });

@@ -15,7 +15,7 @@ export default function(state = initialState, action) {
     case GET_POSTED_RECIPES:
       return {
         ...state,
-        recipes: action.payload,
+        recipes: [...state.recipes, ...action.payload],
         isFetching: false
       };
     default:

@@ -16,50 +16,48 @@ router.get("/", async (request, response) => {
   try {
     const { rows, rowCount } = await db.query(
       `SELECT r.recipe_id,
-       r.title,
-       r.total_time_mins,
-       r.image_url,
-       r.created_at,
-       COALESCE(AVG(rw.rating), 0) AS rating,
-       CAST(COUNT(distinct rw.*) AS INTEGER) AS num_reviews,
-       COUNT(distinct sr.*) AS num_saves,
-       COUNT(*) OVER() AS full_count
+             r.title,
+             r.total_time_mins,
+             r.image_url,
+             r.created_at,
+             COALESCE(AVG(rw.rating), 0) AS rating,
+             CAST(COUNT(DISTINCT rw.*) AS INTEGER) AS num_reviews,
+             COUNT(DISTINCT sr.*) AS num_saves,
+             COUNT(*) OVER() AS full_count
       FROM recipes r
       LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
       LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
       WHERE r.recipe_id IN
-      (SELECT recipe
-      FROM recipes_join_categories
-      WHERE CASE
-               WHEN $2 != ''
-                    AND $1 != 'all meals' THEN category IN
-                      ($1, $2)
-               WHEN $2 != ''
-                    AND $1 = 'all meals' THEN category IN
-                      ($2)
-               WHEN $1 != 'all meals' THEN category IN
-                      ($1)
-               ELSE TRUE
-           END
-      GROUP BY recipe
-      HAVING COUNT(*) >= $3)
+          (SELECT recipe
+           FROM recipes_join_categories
+           WHERE CASE
+                     WHEN $2 != ''
+                          AND $1 != 'all meals' THEN category IN ($1,
+                                                                  $2)
+                     WHEN $2 != ''
+                          AND $1 = 'all meals' THEN category IN ($2)
+                     WHEN $1 != 'all meals' THEN category IN ($1)
+                     ELSE TRUE
+                 END
+           GROUP BY recipe
+           HAVING COUNT(*) >= $3)
       GROUP BY r.recipe_id,
-         rw.recipe_id,
-         sr.recipe_saved
+               rw.recipe_id,
+               sr.recipe_saved
       ORDER BY CASE
-             WHEN $4 = 'a-z' THEN LOWER(r.title)
-         END ASC, CASE
-                      WHEN $4 = 'time' THEN r.total_time_mins
-                  END ASC, CASE
-                               WHEN $4 = 'newest' THEN r.created_at
-                           END DESC, rating DESC,
-                                     num_reviews DESC,
-                                     created_at DESC
-                                     LIMIT $5 OFFSET $6;`,
+                   WHEN $4 = 'a-z' THEN LOWER(r.title)
+               END ASC, CASE
+                            WHEN $4 = 'time' THEN r.total_time_mins
+                        END ASC, CASE
+                                     WHEN $4 = 'newest' THEN r.created_at
+                                 END DESC, rating DESC,
+                                           num_reviews DESC,
+                                           created_at DESC
+      LIMIT $5
+      OFFSET $6;`,
       [meal, diet, numOfCats, sort, LIMIT, OFFSETNUM]
     );
     if (rowCount < 1) {
-      console.log();
       response.status(204).send();
     } else {
       response.status(200).json(rows);

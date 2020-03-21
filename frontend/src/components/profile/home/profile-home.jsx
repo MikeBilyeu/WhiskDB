@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
 import {
   getSavedRecipes,
-  updateFilterRecipe
+  updateFilterRecipe,
+  incrementSavedOffset
 } from "../../../actions/recipeActions";
 import HeaderDesktop from "../../header_desktop";
 import FilterResults from "../../filter_results";
@@ -60,6 +61,7 @@ const Home = props => {
         filterOptionsOpened={props.activeFilterBtn}
         recipes={props.savedRecipes}
         isFetching={props.isFetching}
+        handleClick={props.incrementSavedOffset}
       />
     </div>
   );
@@ -76,6 +78,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getSavedRecipes, updateFilterRecipe }
+    { getSavedRecipes, updateFilterRecipe, incrementSavedOffset }
   )(Home)
 );
