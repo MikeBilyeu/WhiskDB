@@ -59,7 +59,9 @@
         color: $primary-color;
 
         .recipe-header__save-icon {
-          fill: $primary-color !important;
+          path:last-child {
+            fill: $primary-color !important;
+          }
         }
 
         @media (hover: hover) {

@@ -384,22 +384,17 @@
     grid-gap: 0.5rem;
     font-size: 12pt !important;
 
-    .ingredient-adjust {
+    .adjust-servings {
+      border: none !important;
       display: block !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      .adjust-servings {
+      width: 100% !important;
+      margin: 0 auto;
+      &__input {
+        width: 2rem;
         border: none !important;
-        display: block !important;
-        width: 100% !important;
-        margin: 0 auto;
-        &__input {
-          width: 2rem;
-          border: none !important;
-          color: black !important;
-          -webkit-text-fill-color: black !important;
-          font-weight: normal;
-        }
+        color: black !important;
+        -webkit-text-fill-color: black !important;
+        font-weight: normal;
       }
     }
 

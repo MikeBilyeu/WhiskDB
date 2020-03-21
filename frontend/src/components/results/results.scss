@@ -52,6 +52,9 @@
 }
 @media (max-width: 639px) {
   .recipe-results {
+    &__list {
+      grid-template-columns: 1fr;
+    }
   }
 }
 

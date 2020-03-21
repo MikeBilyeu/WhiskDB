@@ -4,6 +4,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toggleShowMore, toggleEditRecipe } from "../../../actions/recipe";
 import { toggleReview } from "../../../actions/review";
 import { ReactComponent as Close } from "../../../assets/images/removeDark.svg";
+import UnitsAdjust from "../units_adjust";
 import "./recipe-more.scss";
 
 class More extends React.Component {
@@ -36,6 +37,7 @@ class More extends React.Component {
             Edit
           </div>
         ) : null}
+
         {this.state.copied ? (
           <h1 className={`${className}__copy-msg`}>Link copied!</h1>
         ) : (
@@ -65,6 +67,7 @@ class More extends React.Component {
         >
           Review
         </div>
+        <UnitsAdjust className={`${className}__unit-btn`} />
       </div>
     );
   }

@@ -75,7 +75,7 @@ export const toggleSortButton = () => {
   return { type: TOGGLE_SORT_BUTTON };
 };
 
-export const toggleUnit = unit => {
+export const toggleUnit = () => {
   return { type: TOGGLE_UNIT };
 };
 

@@ -29,7 +29,8 @@
   }
 
   &__copy-btn,
-  &__print-btn {
+  &__print-btn,
+  &__unit-btn {
     border: solid lightColor(dark) 0.09rem;
     border-radius: 0.5rem;
     text-align: center;
@@ -40,6 +41,12 @@
     background-color: #fff;
     width: 85%;
     cursor: pointer;
+  }
+
+  &__unit-btn {
+    &--active {
+      color: $primary-color;
+    }
   }
 
   &__edit-btn {
@@ -78,14 +85,15 @@
   grid-column: 3 / 5;
   place-self: end;
   min-width: 15rem;
-  max-width: 20rem;
+  max-width: 25rem;
   user-select: none;
 
   &__copy-msg,
   &__copy-btn,
   &__print-btn,
   &__edit-btn,
-  &__review-btn {
+  &__review-btn,
+  &__unit-btn {
     color: darkColor(medium);
     cursor: pointer;
     font-weight: normal;
@@ -97,6 +105,15 @@
     @include fast-transition;
 
     &:hover {
+      color: $primary-color;
+    }
+  }
+
+  &__unit-btn {
+    &:hover {
+      color: darkColor(medium);
+    }
+    &--active {
       color: $primary-color;
     }
   }
