@@ -1,15 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getRatingDetails } from "../../../../actions/review";
+import { getRatingPercentage } from "../../../../actions/review";
 import StarVotes from "./star_votes";
 
 class ReviewDetails extends React.Component {
   componentDidMount() {
-    this.props.getRatingDetails(this.props.recipe_id);
+    this.props.getRatingPercentage(this.props.recipe_id);
   }
   render() {
     const {
-      ratingDetails: { star5, star4, star3, star2, star1, num_reviews }
+      ratingPercentage: { star5, star4, star3, star2, star1, num_reviews }
     } = this.props;
 
     return (
@@ -28,10 +28,10 @@ class ReviewDetails extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { ratingDetails: state.recipe.ratingDetails };
+  return { ratingPercentage: state.recipe.ratingPercentage };
 };
 
 export default connect(
   mapStateToProps,
-  { getRatingDetails }
+  { getRatingPercentage }
 )(ReviewDetails);

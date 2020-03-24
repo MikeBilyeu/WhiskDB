@@ -27,17 +27,17 @@
   }
 
   &__meta {
-    padding: 0.9rem 0.5rem;
+    padding: 0.8rem 0.5rem;
     position: absolute;
     bottom: -1px;
-    background-color: rgba(250, 250, 250, 0.96);
-    backdrop-filter: blur(2px);
-    color: darkColor(light);
+    background-color: rgba(0, 0, 0, 0.35);
+    //  backdrop-filter: blur(2px);
+    color: #fff;
     font-family: Arial !important;
     font-size: 0.75rem;
-    white-space: nowrap;
+    //white-space: nowrap;
     display: grid;
-    grid-template-columns: 1fr min-content;
+    grid-template-columns: 16rem min-content;
     align-items: center;
     justify-items: start;
     width: 100%;
@@ -45,15 +45,15 @@
 
   &__title {
     font-size: 0.8rem;
+    max-width: 16rem;
     font-weight: bold;
-    letter-spacing: -0.5px;
-    line-height: 1.1rem;
-    color: darkColor(dark);
+    letter-spacing: -0.1px;
     margin: 0;
   }
 
   &__icon {
     width: 0.9rem;
+    fill: #fff;
   }
 
   &__time,

@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
 import {
-  getSavedRecipes,
   updateFilterRecipe,
   incrementSavedOffset
 } from "../../../actions/recipeActions";
+import { getSavedRecipes } from "../../../actions/recipe";
 import HeaderDesktop from "../../header_desktop";
 import FilterResults from "../../filter_results";
 import UserInfo from "./user_info";

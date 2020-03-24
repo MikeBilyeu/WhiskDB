@@ -8,6 +8,26 @@
   border: solid lightColor(medium) 0.08rem;
   border-radius: 0.3rem;
 
+  .user-review {
+    color: darkColor(medium);
+    &__username {
+      margin: 0 0.1rem;
+      font-size: 0.8rem;
+    }
+
+    &__star-rating {
+      &__votes,
+      &__arrow {
+        display: none;
+      }
+    }
+
+    &__comment {
+      margin: 0 0.1rem;
+      font-size: 0.75rem;
+    }
+  }
+
   &__login-text {
     font-size: 1rem;
     color: darkColor(medium);

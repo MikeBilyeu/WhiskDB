@@ -5,9 +5,10 @@ import {
   SAVE_RECIPE,
   TOGGLE_UNIT,
   CONVERT_SERVINGS,
-  GET_RATING_DETAILS,
+  GET_RATING_PERCENTAGE,
   TOGGLE_SHOW_MORE,
   SUBMIT_REVIEW,
+  GET_RECIPE_REVIEW,
   TOGGLE_EDIT_RECIPE
 } from "../actions/types";
 
@@ -18,7 +19,7 @@ const initialState = {
   reviewOpen: false,
   showMoreOpen: false,
   editRecipe: false,
-  ratingDetails: {
+  ratingPercentage: {
     star5: 0,
     star4: 0,
     star3: 0,
@@ -26,7 +27,8 @@ const initialState = {
     star1: 0,
     num_reviews: 0,
     rating: 0
-  }
+  },
+  review: null
 };
 
 export default function(state = initialState, action) {
@@ -43,7 +45,7 @@ export default function(state = initialState, action) {
         editRecipe: false,
         showMoreOpen: false,
         convertedServings: action.payload.servings,
-        ratingDetails: {
+        ratingPercentage: {
           star5: 0,
           star4: 0,
           star3: 0,
@@ -51,10 +53,13 @@ export default function(state = initialState, action) {
           star1: 0,
           rating: action.payload.rating,
           num_reviews: action.payload.num_reviews
-        }
+        },
+        review: null
       };
-    case GET_RATING_DETAILS:
-      return { ...state, ratingDetails: action.payload };
+    case GET_RECIPE_REVIEW:
+      return { ...state, review: action.payload };
+    case GET_RATING_PERCENTAGE:
+      return { ...state, ratingPercentage: action.payload };
     case SUBMIT_REVIEW:
       return { ...state, recipe: { ...state.recipe } };
     case SAVE_RECIPE:

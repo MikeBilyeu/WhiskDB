@@ -37,11 +37,12 @@ const RecipeCard = props => {
       />
       <div className="recipe-card__meta">
         <div className="recipe-card__title">{props.recipe.title}</div>
-
-        <div className="recipe-card__saves">
-          <SaveIcon className="recipe-card__icon" />
-          {convertSaves(props.recipe.num_saves)}
-        </div>
+        {props.recipe.num_saves > 0 && (
+          <div className="recipe-card__saves">
+            <SaveIcon className="recipe-card__icon" />
+            {convertSaves(props.recipe.num_saves)}
+          </div>
+        )}
       </div>
     </Link>
   );

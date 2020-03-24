@@ -17,13 +17,14 @@
   //grid-gap: 1rem;
   //color: darkColor(medium);
   position: relative;
+
   &__img {
     position: fixed;
     top: 0;
     width: 100vw;
     max-height: 100vh;
     min-height: 100vh;
-    margin: 0.5rem auto;
+    margin: 0rem auto;
     padding: 0;
     object-fit: cover;
     object-position: 50% 50%;
@@ -152,9 +153,13 @@
     grid-template-columns: minmax(17rem, 30%) 1fr;
     align-items: start;
 
+    &__img {
+      margin: 0 auto;
+    }
+
     &__save-icon {
       width: 0.9rem;
-      fill: darkColor(medium) !important;
+      fill: lightColor(medium) !important;
     }
 
     &__save-btn {
@@ -352,6 +357,14 @@
   }
   .r-ingredients {
     display: none;
+  }
+}
+
+@media (max-device-width: 650px) {
+  .recipe {
+    &__img {
+      margin: 0 auto;
+    }
   }
 }
 

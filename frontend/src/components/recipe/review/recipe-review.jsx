@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Stars from "./stars";
+import Rating from "../rating";
 import TextArea from "../../form_inputs/textarea";
 import ReviewDetails from "./details";
-import { submitReview } from "../../../actions/review";
+import { submitReview, getRecipeReview } from "../../../actions/review";
 import "./recipe-review.scss";
 
 const Review = props => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+
+  useEffect(() => {
+    props.getRecipeReview(props.recipe_id);
+  }, []);
 
   const handleChange = e => {
     setComment(e.target.value);
@@ -41,6 +46,15 @@ const Review = props => {
             Login
           </Link>
         </>
+      ) : props.review ? (
+        <div className="user-review">
+          <h4 className="user-review__username">{props.username}</h4>
+          <Rating className="user-review__star" rating={props.review.rating} />
+          <p className="user-review__comment">
+            {props.review.comment ||
+              "You didn't leave a comment for this recipe."}
+          </p>
+        </div>
       ) : (
         <>
           <Stars handleClick={handleClick} rating={rating} />
@@ -68,10 +82,12 @@ const Review = props => {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  username: state.auth.user.username,
+  review: state.recipe.review
 });
 
 export default connect(
   mapStateToProps,
-  { submitReview }
+  { submitReview, getRecipeReview }
 )(Review);

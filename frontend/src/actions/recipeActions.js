@@ -1,18 +1,16 @@
 import axios from "axios";
 import { change } from "redux-form";
 import {
-  GET_ERRORS,
-  GET_SAVED_RECIPES,
-  GET_SAVED_RECIPES_REQUEST,
   TOGGLE_UNIT,
   CONVERT_SERVINGS,
   TOGGLE_SORT_BUTTON,
   GET_SCRAPE_URL_REQUEST,
-  TOGGLE_FILTER_BUTTON_PROFILE,
   SET_PROFILE_FILTER_DATA,
   SAVED_OFFSET_INCREMENT,
   REMOVE_SAVED_RECIPES
 } from "./types";
+
+import { getSavedRecipes } from "./recipe";
 
 export const scrapeSite = URL => async dispatch => {
   dispatch({ type: GET_SCRAPE_URL_REQUEST });
@@ -29,23 +27,6 @@ export const scrapeSite = URL => async dispatch => {
     dispatch(change("newRecipe", "keywords", recipe.keywords));
   } catch (err) {
     console.error(err);
-  }
-};
-
-export const getSavedRecipes = () => async (dispatch, getState) => {
-  const {
-    auth: { filterRecipes }
-  } = getState();
-
-  dispatch({ type: GET_SAVED_RECIPES_REQUEST });
-  dispatch({ type: TOGGLE_FILTER_BUTTON_PROFILE, payload: null });
-  dispatch({ type: SET_PROFILE_FILTER_DATA, payload: filterRecipes });
-
-  try {
-    const res = await axios.get("/save-recipe", { params: filterRecipes });
-    dispatch({ type: GET_SAVED_RECIPES, payload: res.data });
-  } catch (err) {
-    dispatch({ type: GET_ERRORS, payload: err });
   }
 };
 
