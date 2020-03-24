@@ -38,7 +38,7 @@ const validateIngredients = ingredients => {
         })
         .filter(Boolean)
     : [];
-  console.log(ingredientList);
+
   // check if ingredietns array is empty
   if (!ingredientList.length) {
     errors.ingredients.push("Add at least one ingredient");

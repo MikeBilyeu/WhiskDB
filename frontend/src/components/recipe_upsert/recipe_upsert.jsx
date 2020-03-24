@@ -8,6 +8,7 @@ import {
 } from "redux-form";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import ImageUpload from "../image_upload";
 import Directions from "./directions";
@@ -26,6 +27,7 @@ import { validate } from "./utils/recipe-validation";
 import "./recipe_upsert.scss";
 
 const RecipeUpsert = props => {
+  console.log(props);
   const handleKeyDown = e => {
     if (e.target.type !== "textarea" && e.key === "Enter") {
       e.preventDefault();
@@ -126,17 +128,21 @@ RecipeUpsert.propTypes = {
   initialValues: PropTypes.object.isRequired,
   destroyOnUnmount: PropTypes.bool,
   submitText: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  form: PropTypes.string.isRequired
 };
 
-const selector = formValueSelector("newRecipe");
+//const selector = formValueSelector("newRecipe");
 
-const mapSateToProps = state => ({
-  categories: selector(state, "categories"),
-  syncErrors: getFormSyncErrors("newRecipe")(state)
-});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    categories: formValueSelector(ownProps.form)(state, "categories"),
+    syncErrors: getFormSyncErrors(ownProps.form)(state)
+  };
+};
 
-export default reduxForm({
-  form: "newRecipe",
-  validate
-})(withRouter(connect(mapSateToProps)(RecipeUpsert)));
+export default compose(
+  reduxForm({ validate }),
+  withRouter,
+  connect(mapStateToProps)
+)(RecipeUpsert);

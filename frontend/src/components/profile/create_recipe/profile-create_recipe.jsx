@@ -50,6 +50,7 @@ const CreateRecipe = props => {
         destroyOnUnmount={false}
         submitText="Save"
         onSubmit={handleSubmit}
+        form="create-recipe"
       />
     </div>
   );

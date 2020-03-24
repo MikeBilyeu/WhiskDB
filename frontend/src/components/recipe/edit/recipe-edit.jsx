@@ -24,12 +24,13 @@ const Edit = props => {
   const ingredientsStr = recipe.ingredients.join("\n");
   const keywordsStr = recipe.keywords.join(", ");
 
-  recipe = {
+  const initialValues = {
     ...recipe,
     time: props.recipeTime,
     ingredients: ingredientsStr,
     keywords: keywordsStr
   };
+  console.log("Recipe Data:", initialValues);
 
   return isFetching ? (
     <Loading />
@@ -51,9 +52,10 @@ const Edit = props => {
         <h1 className="edit-recipe__title">Edit Recipe</h1>
       </MediaQuery>
       <RecipeUpsert
-        initialValues={recipe}
+        initialValues={initialValues}
         submitText="Save Changes"
         onSubmit={handleSubmit}
+        form="recipe-upsert"
       />
     </div>
   );
@@ -69,10 +71,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getRecipe, submitEditRecipe, toggleEditRecipe }
-)(
-  reduxForm({
-    form: "edit-recipe"
-    //enableReinitialize: true
-    //onSubmit: submit
-  })(Edit)
-);
+)(Edit);
