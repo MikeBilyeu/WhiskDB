@@ -6,6 +6,8 @@
     grid-template-columns: 4rem 1fr 4rem;
     position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
 
     .back-btn {
       @include grid-center;
@@ -18,6 +20,7 @@
 
     h2 {
       margin: 0;
+      font-size: 1.2rem;
       color: darkColor(medium);
     }
   }

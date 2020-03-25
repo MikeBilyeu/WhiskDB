@@ -88,10 +88,3 @@
     background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
   }
 }
-
-@media (min-device-width: 650px) {
-  .recipe-card,
-  .recipe-card-loading {
-    margin: 0.75rem 0.75rem;
-  }
-}
