@@ -23,15 +23,8 @@
       width: 4rem;
     }
 
-    &__save-icon {
-      width: 0.9rem;
-      fill: $primary-color !important;
-    }
-
     &__save-btn {
-      @include grid-center;
-      grid-template-columns: min-content 1fr;
-      grid-gap: 0.25rem;
+      text-align: center;
       border: solid $primary-color 0.09rem;
       border-radius: 0.2rem;
       color: $primary-color;
@@ -48,30 +41,19 @@
         &:hover {
           border-color: lightColor(dark);
           color: darkColor(medium);
-          .recipe-header__save-icon {
-            fill: darkColor(light) !important;
-          }
         }
       }
 
       &--active {
         border-color: lightColor(dark);
         color: darkColor(medium);
-
-        .recipe-header__save-icon {
-          path:last-child {
-            fill: darkColor(light) !important;
-          }
-        }
+        font-weight: bold;
 
         @media (hover: hover) {
           &:hover {
             border-color: $primary-color;
             color: $primary-color;
             opacity: 0.9;
-            .recipe-header__save-icon {
-              fill: $primary-color !important;
-            }
           }
         }
       }

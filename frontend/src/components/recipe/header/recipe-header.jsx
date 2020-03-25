@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { toggleShowMore, saveRecipe } from "../../../actions/recipe";
 import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
-import { ReactComponent as SaveIcon } from "../../../assets/images/heart.svg";
 import { ReactComponent as More } from "../../../assets/images/more.svg";
 
 import "./recipe-header.scss";
@@ -24,7 +23,6 @@ const Header = props => {
           })}
           onClick={() => props.saveRecipe(props.recipe_id, props.user_id)}
         >
-          <SaveIcon className="recipe-header__save-icon" />
           {props.recipeSaved ? "Saved" : "Save"}
         </div>
       ) : (

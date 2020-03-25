@@ -157,15 +157,8 @@
       margin: 0 auto;
     }
 
-    &__save-icon {
-      width: 0.8rem;
-      fill: $primary-color !important;
-    }
-
     &__save-btn {
-      @include grid-center;
-      grid-template-columns: min-content 1fr;
-      grid-gap: 0.25rem;
+      text-align: center;
       border: solid $primary-color 0.09rem;
       border-radius: 0.2rem;
       color: $primary-color;
@@ -184,35 +177,19 @@
         &:hover {
           border-color: lightColor(dark);
           color: darkColor(medium);
-          .recipe__save-icon {
-            path:last-child {
-              fill: darkColor(medium) !important;
-            }
-          }
         }
       }
 
       &--active {
         border-color: lightColor(dark);
         color: darkColor(medium);
-
-        .recipe__save-icon {
-          path:last-child {
-            fill: darkColor(medium) !important;
-          }
-        }
+        font-weight: bold;
 
         @media (hover: hover) {
           &:hover {
             border-color: $primary-color;
             color: $primary-color;
             opacity: 0.9;
-
-            .recipe__save-icon {
-              path:last-child {
-                fill: $primary-color !important;
-              }
-            }
           }
         }
       }

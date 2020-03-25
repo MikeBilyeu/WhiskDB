@@ -11,7 +11,6 @@ import Directions from "./directions";
 import More from "./more";
 import Loading from "../loading";
 import Edit from "./edit";
-import { ReactComponent as SaveIcon } from "../../assets/images/heart.svg";
 import { ReactComponent as Arrow } from "../../assets/images/arrowLeft.svg";
 import { getRecipe, saveRecipe } from "../../actions/recipe";
 import convertTime from "../../selectors/time-selector";
@@ -97,7 +96,6 @@ const Recipe = props => {
               })}
               onClick={() => props.saveRecipe(recipe_id, user_id)}
             >
-              <SaveIcon className="recipe__save-icon" />
               {saved ? "Saved" : "Save"}
             </div>
           ) : (
