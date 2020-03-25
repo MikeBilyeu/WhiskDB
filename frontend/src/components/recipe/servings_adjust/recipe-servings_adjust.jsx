@@ -6,25 +6,19 @@ import "./recipe-servings_adjust.scss";
 
 const ServingsAdjust = props => {
   const [focus, setFocus] = useState(false);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(props.originalServings.toString());
   const textInput = useRef(null);
   const numLimit = /^(?!0)[0-9]{0,2}$/;
 
   useEffect(() => {
-    setInput(props.originalServings);
-  }, []);
-
-  useEffect(() => {
-    if (input !== "" && numLimit.test(input)) {
-      props.convertServings(input);
-    } else if (input === "") {
-      props.convertServings(props.originalServings);
-    }
+    input
+      ? props.convertServings(input)
+      : props.convertServings(props.originalServings);
   }, [input]);
 
-  const handleChange = event => {
-    if (numLimit.test(event.target.value)) {
-      setInput(event.target.value);
+  const handleChange = e => {
+    if (numLimit.test(e.target.value)) {
+      setInput(e.target.value);
     }
   };
 
@@ -43,14 +37,11 @@ const ServingsAdjust = props => {
   };
 
   const handleBlur = () => {
-    if (input === "") {
-      setFocus(false);
-      setInput(props.originalServings);
-    } else {
-      setFocus(false);
-    }
-
     textInput.current.blur();
+    setFocus(false);
+    if (!input) {
+      setInput(props.originalServings.toString());
+    }
   };
 
   return (

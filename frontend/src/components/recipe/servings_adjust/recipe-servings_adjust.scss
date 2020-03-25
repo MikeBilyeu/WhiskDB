@@ -10,26 +10,22 @@
   height: 1.8rem;
   font-size: 0.75rem;
   color: darkColor(medium);
-  user-select: none;
+
   margin: 0.5rem auto;
 
   cursor: text;
   &__text {
     color: $primary-color;
+    user-select: none;
   }
 
   &--active {
     border-color: $primary-color;
     color: $primary-color;
-    line-height: 0.5rem;
+    line-height: 1rem;
 
     .adjust-servings__text {
       display: none;
-    }
-
-    .adjust-servings__input {
-      font-size: 1.2rem;
-      width: 100%;
     }
   }
 
@@ -37,5 +33,11 @@
     all: unset;
     width: 1.4rem;
     height: 1.6rem;
+
+    &--active {
+      line-height: 0.5rem;
+      font-size: 1rem;
+      width: 100%;
+    }
   }
 }
