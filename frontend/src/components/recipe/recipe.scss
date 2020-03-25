@@ -103,10 +103,10 @@
     grid-gap: 0.5rem;
     font-size: 0.9rem;
     line-height: 1rem;
-    border-bottom: solid lightColor(medium) 0.09rem;
+    border-bottom: solid lightColor(light) 0.09rem;
 
     &:first-child {
-      border-top: solid lightColor(medium) 0.09rem;
+      border-top: solid lightColor(light) 0.09rem;
     }
   }
 
