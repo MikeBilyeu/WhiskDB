@@ -22,7 +22,7 @@ const Header = props => {
           className={classNames("recipe-header__save-btn", {
             "recipe-header__save-btn--active": props.recipeSaved
           })}
-          onClick={() => saveRecipe(props.recipe_id, props.user_id)}
+          onClick={() => props.saveRecipe(props.recipe_id, props.user_id)}
         >
           <SaveIcon className="recipe-header__save-icon" />
           {props.recipeSaved ? "Saved" : "Save"}

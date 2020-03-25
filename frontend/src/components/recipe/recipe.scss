@@ -158,22 +158,22 @@
     }
 
     &__save-icon {
-      width: 0.9rem;
-      fill: lightColor(medium) !important;
+      width: 0.8rem;
+      fill: $primary-color !important;
     }
 
     &__save-btn {
       @include grid-center;
       grid-template-columns: min-content 1fr;
       grid-gap: 0.25rem;
-      border: solid lightColor(dark) 0.09rem;
+      border: solid $primary-color 0.09rem;
       border-radius: 0.2rem;
-      color: darkColor(medium);
+      color: $primary-color;
       background-color: #fff;
       font-weight: 500;
       font-size: 0.75rem;
       padding: 0.25rem 2rem;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
       width: 8rem;
       cursor: pointer;
       outline: none;
@@ -182,35 +182,35 @@
 
       @media (hover: hover) {
         &:hover {
-          border-color: $primary-color;
-          color: $primary-color;
+          border-color: lightColor(dark);
+          color: darkColor(medium);
           .recipe__save-icon {
             path:last-child {
-              fill: $primary-color !important;
+              fill: darkColor(medium) !important;
             }
           }
         }
       }
 
       &--active {
-        border-color: $primary-color;
-        color: $primary-color;
+        border-color: lightColor(dark);
+        color: darkColor(medium);
 
         .recipe__save-icon {
           path:last-child {
-            fill: $primary-color !important;
+            fill: darkColor(medium) !important;
           }
         }
 
         @media (hover: hover) {
           &:hover {
-            border-color: lightColor(dark);
-            color: darkColor(light);
+            border-color: $primary-color;
+            color: $primary-color;
             opacity: 0.9;
 
             .recipe__save-icon {
               path:last-child {
-                fill: lightColor(medium) !important;
+                fill: $primary-color !important;
               }
             }
           }
@@ -220,7 +220,7 @@
 
     &__login-btn {
       width: 7rem;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
       text-align: center;
       display: inline-block;
       font-size: 0.75rem;
@@ -318,10 +318,13 @@
       margin: 5rem auto 0 auto;
     }
 
-    &__save-btn,
+    &__save-btn {
+      margin: 0 auto 3rem auto;
+    }
+
     &__login-btn {
       display: block;
-      margin: 0 auto 4rem auto;
+      margin: 0 auto 3rem auto;
     }
 
     &__container {

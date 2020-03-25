@@ -50,10 +50,10 @@
     &__signup {
       padding: 0.3rem 0.7rem;
       white-space: nowrap;
-      color: darkColor(light);
     }
 
     &__login {
+      color: darkColor(medium);
       &:hover {
         color: $primary-color;
       }
