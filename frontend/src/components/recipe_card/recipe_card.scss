@@ -37,7 +37,9 @@
     font-size: 0.75rem;
     //white-space: nowrap;
     display: grid;
-    grid-template-columns: 16rem min-content;
+    grid-template-columns: 1fr min-content;
+    //grid-template-rows: 1fr min-content;
+    grid-row-gap: 0.25rem;
     align-items: center;
     justify-items: start;
     width: 100%;
@@ -45,7 +47,9 @@
 
   &__title {
     font-size: 0.8rem;
-    max-width: 16rem;
+    width: 100%;
+    overflow: hidden;
+    hyphens: auto;
     font-weight: bold;
     letter-spacing: -0.1px;
     margin: 0;
@@ -56,16 +60,17 @@
     fill: #fff;
   }
 
-  &__time,
   &__saves {
     @include grid-center;
     grid-auto-flow: column;
     grid-gap: 0.25rem;
-  }
-
-  &__saves {
     justify-self: end;
     padding: 0 0.5rem;
+    grid-column: 2 / 3;
+
+    &--two-rows {
+      grid-row: 2 / 3;
+    }
   }
 }
 

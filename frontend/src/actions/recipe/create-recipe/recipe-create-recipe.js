@@ -15,7 +15,7 @@ export const createRecipe = (recipeData, history) => async dispatch => {
     let recipe_id = res.data.recipe_id;
 
     // clear the recipe form after successful submit
-    dispatch(reset("newRecipe"));
+    dispatch(reset("create-recipe"));
 
     // redirect to home after successful submit
     return history.push(`/recipe/${recipe_id}`);

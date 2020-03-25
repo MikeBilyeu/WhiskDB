@@ -1,20 +1,14 @@
 import React from "react";
+import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import renderTime from "../../utils/time";
 import { ReactComponent as SaveIcon } from "../../assets/images/heart.svg";
-import clock from "../../assets/images/time.png";
+
 import Rating from "../recipe/rating";
 import "./recipe_card.scss";
 import { saveRecipe } from "../../actions/recipe";
 
 const RecipeCard = props => {
-  const convertTime = total_time_mins => {
-    const hours = Math.floor(parseInt(total_time_mins) / 60) || "";
-    const minutes = parseInt(total_time_mins) % 60 || "";
-    return renderTime({ hours, minutes });
-  };
-
   const convertSaves = num => {
     return num > 1000000
       ? parseFloat((num / 1000000).toFixed(1)) + "m"
@@ -37,11 +31,23 @@ const RecipeCard = props => {
       />
       <div className="recipe-card__meta">
         <div className="recipe-card__title">{props.recipe.title}</div>
+
         {props.recipe.num_saves > 0 && (
-          <div className="recipe-card__saves">
+          <div
+            className={classNames("recipe-card__saves", {
+              "recipe-card__saves--two-rows": props.recipe.num_reviews > 0
+            })}
+          >
             <SaveIcon className="recipe-card__icon" />
             {convertSaves(props.recipe.num_saves)}
           </div>
+        )}
+        {props.recipe.num_reviews > 0 && (
+          <Rating
+            className="recipe-card"
+            rating={props.recipe.rating}
+            votes={props.recipe.num_reviews}
+          />
         )}
       </div>
     </Link>
