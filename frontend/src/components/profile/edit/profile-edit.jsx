@@ -35,9 +35,6 @@ const Edit = props => {
       : props.history.push("/profile");
   };
 
-  if (props.openDelete) {
-    return <Delete />;
-  }
   return (
     <div className="edit-profile">
       <MediaQuery maxDeviceWidth={649}>
@@ -113,6 +110,8 @@ const Edit = props => {
         >
           Delete account
         </div>
+
+        {props.openDelete && <Delete />}
       </form>
     </div>
   );
