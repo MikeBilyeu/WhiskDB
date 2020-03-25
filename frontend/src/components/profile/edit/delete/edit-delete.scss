@@ -1,0 +1,59 @@
+@import "../../../../assets/styles/variables";
+
+.edit-delete {
+  border: solid lightColor(dark) 0.09rem;
+  border-radius: 0.3rem;
+  padding: 1rem;
+  position: fixed;
+  background-color: #fff;
+  width: 19rem;
+  height: 15rem;
+  left: calc(50% - 9.5rem);
+  top: 40vh;
+  z-index: 1;
+  text-align: center;
+  color: darkColor(dark);
+
+  &__title {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  &__cancle-btn {
+    display: inline-block;
+    position: relative;
+    padding: 1rem 6rem;
+    color: $primary-color;
+    cursor: pointer;
+    margin: 1rem auto;
+    border-bottom: solid lightColor(light) 0.09rem;
+  }
+
+  &__msg {
+    font-size: 0.9rem;
+    color: darkColor(medium);
+    margin: 0;
+    font-weight: normal;
+  }
+
+  &__delete-btn {
+    color: #fff;
+    background-color: $error-color;
+    border-radius: 0.3rem;
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin: 2rem auto;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+  }
+}
+
+@media (min-device-width: 650px) {
+  .edit-delete {
+    width: 30rem;
+    height: 20rem;
+    left: calc(50% - 15rem);
+    top: 43vh;
+  }
+}

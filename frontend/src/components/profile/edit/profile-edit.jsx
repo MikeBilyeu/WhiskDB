@@ -60,6 +60,7 @@ const Edit = props => {
           className="edit-profile-form__user-img"
           component={ImageUpload}
         />
+        <div className="edit-profile-form__email">{props.email}</div>
         <Field
           name="full_name"
           component={Input}
@@ -125,7 +126,8 @@ const mapStateToProps = state => ({
   },
   dirty: isDirty("edit-profile"),
   openDelete: state.auth.openDelete,
-  userImg: state.auth.user.image_url
+  userImg: state.auth.user.image_url,
+  email: state.auth.user.email
 });
 
 export default withRouter(
