@@ -10,7 +10,7 @@ const filterBy = {
     "Side"
   ],
   dietOptions: ["None", "Vegetarian", "Vegan"],
-  sortOptions: ["Top Rated", "A-Z", "Time", "Newest"]
+  sortOptions: ["Top Rated", "Time", "Newest"]
 };
 
 export const filterOptions = buttonToggled => {
