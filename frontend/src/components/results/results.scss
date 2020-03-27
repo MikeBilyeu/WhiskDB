@@ -20,6 +20,7 @@
   }
 
   &__load-more {
+    visibility: hidden;
     outline: none;
     border: solid lightColor(dark) 0.09rem;
     border-radius: 0.3rem;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import Loading from "../recipe_card/loading";
@@ -7,6 +7,22 @@ import NoResults from "./no_results";
 import "./results.scss";
 
 const Results = props => {
+  const [el, setEl] = useState(null);
+  let inputEl = useRef(null);
+  inputEl = el;
+
+  const options = {};
+
+  let observer = new IntersectionObserver((entries, oberver) => {
+    if (entries[0].isIntersecting) {
+      console.log("get more reicpes");
+      props.handleClick();
+    }
+  }, options);
+  if (inputEl) {
+    observer.observe(inputEl);
+  }
+
   const renderRecipeList = () => {
     return props.recipes.map((recipe, i) => {
       return <RecipeCard key={recipe.recipe_id} recipe={recipe} />;
@@ -20,6 +36,9 @@ const Results = props => {
     }
     return recipeListLoading;
   };
+  if (props.isFetching) {
+    console.log("RECIPES LOADING...");
+  }
 
   if (!props.recipes.length && !props.isFetching) {
     return <NoResults />;
@@ -36,8 +55,12 @@ const Results = props => {
           {renderRecipeList()}
           {props.isFetching && renderRecipeListLoading()}
         </ul>
+
         {props.recipes.length < props.recipes[0].full_count ? (
           <button
+            ref={el => {
+              setEl(el);
+            }}
             className="recipe-results__load-more"
             onClick={props.handleClick}
           >
