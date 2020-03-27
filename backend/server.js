@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const mountRoutes = require("./routes");
 const cors = require("cors");
 const app = express();
@@ -37,6 +38,12 @@ mountRoutes(app);
 //     res.redirect("/profile");
 //   }
 // );
+
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);

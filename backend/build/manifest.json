@@ -1,0 +1,31 @@
+{
+  "name": "Zipiwisk",
+  "short_name": "Zipiwisk",
+  "icons": [
+    {
+      "src": "whisk-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "whisk-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "whisk-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "whisk-120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "orientation": "portrait"
+}
