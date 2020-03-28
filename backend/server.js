@@ -23,22 +23,6 @@ app.use(cors());
 // Routes
 mountRoutes(app);
 
-// app.get(
-//   "/auth/google",
-//   passport.authenticate("google", {
-//     scope: ["profile"]
-//   })
-// );
-//
-// app.get(
-//   "/auth/google/redirect",
-//   passport.authenticate("google"),
-//   (req, res) => {
-//     // Successful authentication, redirect profile.
-//     res.redirect("/profile");
-//   }
-// );
-
 app.use(express.static(path.join(__dirname, "build")));
 
 app.get("/*", (req, res) => {
