@@ -20,14 +20,16 @@ app.use(
 app.use(passport.initialize());
 app.use(cors());
 
-// Routes
-mountRoutes(app);
-
-app.use(express.static(path.join(__dirname, "build")));
-
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.send("<h1>Zipiwisk</h1>");
 });
+
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "frontend", "build")));
+// }
+//
+// // Routes
+// mountRoutes(app);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);

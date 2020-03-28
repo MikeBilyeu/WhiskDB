@@ -1,3 +1,4 @@
+const path = require("path");
 const createRecipe = require("./createRecipe");
 const getEmails = require("./getEmails");
 const createUser = require("./createUser");
@@ -18,24 +19,29 @@ const getSearchRecipes = require("./getSearchRecipes");
 const scrapeURL = require("./scrape-url/scrapeURL");
 
 module.exports = app => {
-  app.use("/profile/create-recipe", createRecipe);
-  app.use("/emails", getEmails);
-  app.use("/register", createUser);
-  app.use("/delete-user", deleteUser);
-  app.use("/edit-profile", editProfile);
-  app.use("/login", userLogin);
-  app.use("/profile/edit-recipe", editRecipe);
-  app.use("/recipe", getRecipe);
-  app.use("/recipe/save", saveRecipe);
-  app.use("/recipe/saved", getSavedRecipes);
-  app.use("/recipe/review", postReview);
-  app.use("/recipe/review", getRecipeReview);
-  app.use("/rating-percentage", getRatingPercentage);
-  app.use("/user", getUser);
-  app.use("/browse-recipe", getBrowseRecipes);
-  app.use("/usernames", getUsernames);
-  app.use("/search-recipe", getSearchRecipes);
-  app.use("/scrape-url", scrapeURL);
+  app.get("/*", (req, res) => {
+    //res.sendFile("/frontend/build/index.html");
+    console.log("dirname: ", __dirname);
+    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+  });
+  // app.use("/profile/create-recipe", createRecipe);
+  // app.use("/emails", getEmails);
+  // app.use("/register", createUser);
+  // app.use("/delete-user", deleteUser);
+  // app.use("/edit-profile", editProfile);
+  // app.use("/login", userLogin);
+  // app.use("/profile/edit-recipe", editRecipe);
+  // app.use("/recipe", getRecipe);
+  // app.use("/recipe/save", saveRecipe);
+  // app.use("/recipe/saved", getSavedRecipes);
+  // app.use("/recipe/review", postReview);
+  // app.use("/recipe/review", getRecipeReview);
+  // app.use("/rating-percentage", getRatingPercentage);
+  // app.use("/user", getUser);
+  // app.use("/browse-recipe", getBrowseRecipes);
+  // app.use("/usernames", getUsernames);
+  // app.use("/search-recipe", getSearchRecipes);
+  // app.use("/scrape-url", scrapeURL);
 
   app.use((request, response, next) => {
     const error = new Error("Not found");
