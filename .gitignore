@@ -12,7 +12,7 @@
 /backend/config/dev.js
 
 # production
-/build
+/frontend/build
 
 # misc
 .DS_Store

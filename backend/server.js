@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
 const path = require("path");
 const passport = require("passport");
 require("./config/passport")(passport);
@@ -13,6 +14,11 @@ app.use(
   })
 );
 app.use(passport.initialize());
+
+app.use(morgan("dev"));
+
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 // API Routes
 app.use(require("./routes"));
