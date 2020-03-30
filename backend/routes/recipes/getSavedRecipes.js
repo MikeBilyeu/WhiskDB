@@ -1,22 +1,14 @@
-const Router = require("express-promise-router");
-const db = require("../db");
-const router = new Router();
-const passport = require("passport");
-module.exports = router;
+const db = require("../../db");
 
-router.get(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  async (request, response) => {
-    const { user_id } = request.user;
-    const { meal, offset } = request.query;
-    console.log(offset);
-    const LIMIT = 12;
-    const OFFSETNUM = offset * LIMIT;
+module.exports = async (req, res) => {
+  const { user_id } = req.user;
+  const { meal, offset } = req.query;
+  const LIMIT = 12;
+  const OFFSETNUM = offset * LIMIT;
 
-    try {
-      const { rows, rowCount } = await db.query(
-        `SELECT r.recipe_id,
+  try {
+    const { rows, rowCount } = await db.query(
+      `SELECT r.recipe_id,
                r.title,
                r.image_url,
                r.total_time_mins,
@@ -46,16 +38,15 @@ router.get(
         ORDER BY saved_at DESC
         LIMIT $3
         OFFSET $4;`,
-        [user_id, meal, LIMIT, OFFSETNUM]
-      );
-      if (rowCount < 1) {
-        response.status(204).send();
-      } else {
-        response.status(200).json(rows);
-      }
-    } catch (err) {
-      console.error(err);
-      response.status(500).json(err);
+      [user_id, meal, LIMIT, OFFSETNUM]
+    );
+    if (rowCount < 1) {
+      res.status(204).send();
+    } else {
+      res.status(200).json(rows);
     }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
   }
-);
+};

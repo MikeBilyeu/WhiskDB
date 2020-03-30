@@ -1,10 +1,7 @@
-const Router = require("express-promise-router");
-const db = require("../db");
-const router = new Router();
-module.exports = router;
+const db = require("../../db");
 
-router.get("/", async (request, response) => {
-  const { recipe_id, user_id } = request.query;
+module.exports = async (req, res) => {
+  const { recipe_id, user_id } = req.query;
   try {
     const { rows } = await db.query(
       `SELECT r.*,
@@ -25,9 +22,10 @@ router.get("/", async (request, response) => {
       [recipe_id, user_id]
     );
     if (rows[0]) {
-      response.status(200).json(rows[0]);
+      res.status(200).json(rows[0]);
     }
   } catch (err) {
-    response.status(500).json(err);
+    console.error(err);
+    res.status(500).json(err);
   }
-});
+};

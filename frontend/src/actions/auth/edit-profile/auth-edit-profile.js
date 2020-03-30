@@ -14,7 +14,7 @@ const editProfile = (userData, history) => async dispatch => {
       profileData = { ...userData, image_url: imageURL };
     }
 
-    const res = await axios.post("/edit-profile", profileData);
+    const res = await axios.put("/users/edit", profileData);
     const token = res.data.token;
     localStorage.setItem("jwtToken", token);
     // Add token to auth header for future requests
@@ -23,8 +23,8 @@ const editProfile = (userData, history) => async dispatch => {
     dispatch(setCurrentUser(decodedToken));
     history.push(`/profile/`);
   } catch (err) {
-    console.error(err);
-    throw new SubmissionError(err);
+    console.error("erroror", err);
+    //  throw new SubmissionError(err);
   }
 };
 

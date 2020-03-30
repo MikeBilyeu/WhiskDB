@@ -1,10 +1,7 @@
-const Router = require("express-promise-router");
-const db = require("../db");
-const router = new Router();
-module.exports = router;
+const db = require("../../db");
 
-router.get("/", async (request, response) => {
-  const { recipe_id } = request.query;
+module.exports = async (req, res) => {
+  const { recipe_id } = req.query;
   try {
     const { rows } = await db.query(
       `SELECT COALESCE(CAST(SUM(CASE
@@ -34,9 +31,9 @@ router.get("/", async (request, response) => {
       [recipe_id]
     );
     if (rows[0]) {
-      response.status(200).json(rows[0]);
+      res.status(200).json(rows[0]);
     }
   } catch (err) {
-    response.status(500).json(err);
+    res.status(500).json(err);
   }
-});
+};

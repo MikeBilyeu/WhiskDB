@@ -5,7 +5,7 @@ import { toggleReview } from "../actions-review";
 
 const submitReview = review => async dispatch => {
   try {
-    await axios.post("/recipe/review", review);
+    await axios.post("/recipes/review", review);
     dispatch({ type: SUBMIT_REVIEW });
     dispatch(toggleReview());
     dispatch(getRatingPercentage(review.recipe_id));

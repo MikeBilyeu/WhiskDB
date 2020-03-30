@@ -15,7 +15,6 @@ const Results = props => {
 
   let observer = new IntersectionObserver((entries, oberver) => {
     if (entries[0].isIntersecting) {
-      console.log("get more reicpes");
       props.handleClick();
     }
   }, options);
@@ -36,9 +35,6 @@ const Results = props => {
     }
     return recipeListLoading;
   };
-  if (props.isFetching) {
-    console.log("RECIPES LOADING...");
-  }
 
   if (!props.recipes.length && !props.isFetching) {
     return <NoResults />;

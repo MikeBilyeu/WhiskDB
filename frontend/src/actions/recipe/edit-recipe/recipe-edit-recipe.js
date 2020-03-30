@@ -11,7 +11,7 @@ const submitEditRecipe = recipeData => async dispatch => {
       imageURL = await dispatch(imageUpload(recipeData.imageFile));
     }
 
-    await axios.put("/profile/edit-recipe", {
+    await axios.put("/recipes/edit", {
       ...recipeData,
       image_url: imageURL
     });

@@ -4,7 +4,7 @@ import { GET_ERRORS } from "../../types";
 
 const deleteUser = () => async dispatch => {
   try {
-    await axios.delete("/delete-user");
+    await axios.delete("/users/delete");
     dispatch(logoutUser());
   } catch (err) {
     dispatch({

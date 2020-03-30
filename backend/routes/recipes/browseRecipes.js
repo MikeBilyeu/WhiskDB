@@ -1,13 +1,10 @@
-const Router = require("express-promise-router");
-const db = require("../db");
-const router = new Router();
-module.exports = router;
+const db = require("../../db");
 
-router.get("/", async (request, response) => {
+module.exports = async (req, res) => {
   let { meal, diet, sort, offset } = JSON.parse(
-    request.query.filterRecipes.toLowerCase()
+    req.query.filterRecipes.toLowerCase()
   );
-  const { user_id } = request.query;
+  const { user_id } = req.query;
   diet = diet === "none" ? null : diet;
   const numOfCats = diet ? (meal === "all meals" ? 1 : 2) : 1;
   const LIMIT = 12;
@@ -58,12 +55,12 @@ router.get("/", async (request, response) => {
       [meal, diet, numOfCats, sort, LIMIT, OFFSETNUM]
     );
     if (rowCount < 1) {
-      response.status(204).send();
+      res.status(204).send();
     } else {
-      response.status(200).json(rows);
+      res.status(200).json(rows);
     }
   } catch (err) {
     console.error(err);
-    response.status(500).json(err);
+    res.status(500).json(err);
   }
-});
+};

@@ -1,17 +1,12 @@
-const Router = require("express-promise-router");
-const db = require("../db");
-const router = new Router();
-const passport = require("passport");
-module.exports = router;
-
-router.get("/", async (request, response) => {
+const db = require("../../db");
+module.exports = async (req, res) => {
   let { search, offset, sort } = JSON.parse(
-    request.query.filterRecipes.toLowerCase()
+    req.query.filterRecipes.toLowerCase()
   );
   search = search.trim().replace(/\s+/g, " & ");
 
   console.log("SEARCH TERM:", search);
-  const { user_id } = request.query;
+  const { user_id } = req.query;
   search = search.trim();
   const LIMIT = 12;
   const OFFSET = offset * LIMIT;
@@ -49,12 +44,12 @@ router.get("/", async (request, response) => {
       [search, LIMIT, OFFSET, sort]
     );
     if (rowCount < 1) {
-      response.status(204).send();
+      res.status(204).send();
     } else {
-      response.status(200).json(rows);
+      res.status(200).json(rows);
     }
   } catch (err) {
     console.error(err);
-    response.status(500).json(err);
+    res.status(500).json(err);
   }
-});
+};

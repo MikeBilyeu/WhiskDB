@@ -7,7 +7,7 @@ export const createRecipe = (recipeData, history) => async dispatch => {
   try {
     let imageURL = await dispatch(imageUpload(recipeData.imageFile));
 
-    let res = await axios.post("/profile/create-recipe", {
+    let res = await axios.post("/recipes/create", {
       ...recipeData,
       image_url: imageURL
     });

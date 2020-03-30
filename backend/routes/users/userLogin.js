@@ -1,24 +1,19 @@
-const Router = require("express-promise-router");
-const db = require("../db");
-const keys = require("../config/keys");
+const db = require("../../db");
+const keys = require("../../config/keys");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const validateLoginInput = require("../validation/login");
+const validateLoginInput = require("../../validation/login");
 
-const router = new Router();
-
-module.exports = router;
-
-router.post("/", async (request, response) => {
+module.exports = async (req, res) => {
   // Form validation
-  const errors = validateLoginInput(request.body);
+  const errors = validateLoginInput(req.body);
   // checking if login validator has errors
 
   if (Object.keys(errors).length !== 0) {
-    return response.status(400).json(errors);
+    return res.status(400).json(errors);
   }
-  const email = request.body.email;
-  const password = request.body.password;
+  const email = req.body.email;
+  const password = req.body.password;
 
   try {
     const { rowCount, rows } = await db.query(
@@ -29,7 +24,7 @@ router.post("/", async (request, response) => {
     );
 
     if (rowCount === 0) {
-      response.status(401).json({
+      res.status(401).json({
         email: "We can't find an account with that email address"
       });
     }
@@ -52,16 +47,17 @@ router.post("/", async (request, response) => {
         },
         (err, token) => {
           if (err) throw err;
-          response.json({
+          res.json({
             success: true,
             token: "Bearer " + token
           });
         }
       );
     } else {
-      response.status(401).json({ password: "Password incorrect" });
+      res.status(401).json({ password: "Password incorrect" });
     }
   } catch (err) {
-    response.status(500).json(err);
+    console.error(err);
+    res.status(500).json(err);
   }
-});
+};

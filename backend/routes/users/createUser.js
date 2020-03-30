@@ -1,16 +1,12 @@
-const Router = require("express-promise-router");
-const db = require("../db");
-const router = new Router();
+const db = require("../../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const validateRegisterInput = require("../validation/register");
+const validateRegisterInput = require("../../validation/register");
 
-module.exports = router;
-
-router.post("/", async ({ body: { username, email, password } }, response) => {
+module.exports = async ({ body: { username, email, password } }, res) => {
   const errors = validateRegisterInput({ username, email, password });
   if (Object.keys(errors).length !== 0) {
-    response.status(400).json(errors);
+    res.status(400).json(errors);
   }
 
   const { rows } = await db.query(
@@ -26,7 +22,7 @@ router.post("/", async ({ body: { username, email, password } }, response) => {
     if (email === rows[0].email) {
       err = "This email is already registered, Want to Log in?";
     }
-    response.status(400).send(err);
+    res.status(400).send(err);
   } else {
     try {
       const password_encrypted = await bcrypt.hash(password, 10);
@@ -35,9 +31,9 @@ router.post("/", async ({ body: { username, email, password } }, response) => {
         VALUES ($1, $2, $3) RETURNING user_id`,
         [username, email, password_encrypted]
       );
-      response.status(201).send(`User added with ID: ${rows[0].user_id}`);
+      res.status(201).send(`User added with ID: ${rows[0].user_id}`);
     } catch (err) {
-      response.status(400).json(err);
+      res.status(400).json(err);
     }
   }
-});
+};

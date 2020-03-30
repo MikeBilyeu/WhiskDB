@@ -14,7 +14,7 @@ const combineAsyncValidation = validator => {
 export const usernameValidate = async ({ username, currentUsername }) => {
   if (currentUsername.toLowerCase() !== username.toLowerCase()) {
     try {
-      await axios.get("/usernames", { params: { username } });
+      await axios.get("/users/usernames", { params: { username } });
     } catch (err) {
       if (err.response.status === 409) {
         throw err.response.data;
@@ -26,7 +26,7 @@ export const usernameValidate = async ({ username, currentUsername }) => {
 
 const emailValidate = async ({ email }) => {
   try {
-    await axios.get("/emails", { params: { email } });
+    await axios.get("/users/emails", { params: { email } });
   } catch (err) {
     if (err.response.status === 409) {
       throw err.response.data;
