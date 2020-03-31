@@ -8,6 +8,7 @@ const getRecipeReview = recipe_id => async dispatch => {
     });
     if (data) {
       dispatch({ type: GET_RECIPE_REVIEW, payload: data });
+      console.log(data);
     }
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });

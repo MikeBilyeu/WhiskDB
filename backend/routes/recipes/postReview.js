@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
         VALUES ($1, $2, $3, $4)`,
       [recipe_id, rating, comment, user_id]
     );
-    res.status(200);
+    res.status(200).send("Review sent");
   } catch (err) {
     res.status(500).json(err);
   }

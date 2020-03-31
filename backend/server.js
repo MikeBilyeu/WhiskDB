@@ -17,8 +17,10 @@ app.use(passport.initialize());
 
 app.use(morgan("dev"));
 
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(__dirname));
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+}
 
 // API Routes
 app.use(require("./routes"));

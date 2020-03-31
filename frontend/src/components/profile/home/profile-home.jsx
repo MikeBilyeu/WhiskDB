@@ -25,7 +25,6 @@ const Home = props => {
   const { full_name, username, diet, image_url } = props.auth.user;
 
   useEffect(() => {
-    // Auto switch page state if results are empty
     document.title = `Zipiwisk | ${username || "Profile"}`;
   }, [username]);
 
