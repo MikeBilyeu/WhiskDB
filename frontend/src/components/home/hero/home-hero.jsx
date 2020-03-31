@@ -21,7 +21,7 @@ const Hero = () => {
         <img
           onLoad={() => setSmallImgLoaded(true)}
           alt=""
-          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,e_blur:100,q_auto:low,w_300/v1580746441/Recipes/lukas-blazek-f-TWhXOrLiU-unsplash.jpg"
+          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,e_blur:50,q_auto:low,w_15/v1580746441/Recipes/lukas-blazek-f-TWhXOrLiU-unsplash.jpg"
           style={{
             width: "1px",
             height: "1px",
@@ -33,7 +33,7 @@ const Hero = () => {
         <img
           onLoad={() => setBigImgLoaded(true)}
           alt=""
-          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/q_auto:good/v1580746441/Recipes/lukas-blazek-f-TWhXOrLiU-unsplash.jpg"
+          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,h_900,q_auto:low/v1580746441/Recipes/lukas-blazek-f-TWhXOrLiU-unsplash.jpg"
           style={{
             width: "1px",
             height: "1px",

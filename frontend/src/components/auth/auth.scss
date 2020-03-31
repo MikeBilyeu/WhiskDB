@@ -32,9 +32,9 @@
       box-sizing: border-box;
       width: 100%;
       border-radius: 0.3rem;
-      border: solid lightColor(medium) 0.08rem;
+      border: solid lightColor(medium) thin;
       background-color: #fff;
-      padding: 0.5rem;
+      padding: 0.5rem 0.75rem;
       color: darkColor(medium);
       font-size: 1rem;
       font-weight: normal;
@@ -46,7 +46,7 @@
         opacity: 0.2; /* Firefox */
       }
       &:focus {
-        border: solid darkColor(dark) 0.08rem;
+        border: solid darkColor(dark) thin;
       }
 
       &:-webkit-autofill,

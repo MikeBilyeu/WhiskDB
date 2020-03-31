@@ -33,7 +33,8 @@ const Recipe = props => {
   } = props.recipeData;
 
   let recipeImage =
-    !isFetching && image_url.replace("upload/", "upload/q_auto:good,w_1500/");
+    !isFetching &&
+    image_url.replace("upload/", "upload/c_scale,h_900,q_auto:low/");
 
   document.title = !title ? document.title : `${title} |  Zipiwisk`;
 

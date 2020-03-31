@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   place-items: end center;
-  border-bottom: solid lightColor(light) 0.09rem;
+  border-bottom: solid lightColor(dark) 0.1px;
   width: 100%;
   position: fixed;
   background-color: #fff;
@@ -19,8 +19,8 @@
     border: none;
     outline: none;
     border-bottom: none;
-    padding: 1rem 0.7rem 0.2rem 0.7rem;
-    margin-bottom: 0.1rem;
+    padding: 1rem 0.7rem 0.25rem 0.7rem;
+    margin-bottom: 2px;
     font-size: 0.85rem;
     color: $primary-color;
 
@@ -29,7 +29,7 @@
       color: darkColor(dark);
       cursor: inherit;
       opacity: 1;
-      border-bottom: solid darkColor(medium) 0.1rem;
+      border-bottom: solid darkColor(dark) 1.5px;
       margin-bottom: 0;
     }
   }

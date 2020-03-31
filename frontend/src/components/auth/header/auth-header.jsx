@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "./auth-header.scss";
 
 const Header = props => {
-  console.log(props);
   return (
     <div className="auth-header">
       <Link
