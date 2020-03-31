@@ -20,7 +20,7 @@ const Signup = props => {
         name="username"
         component={Input}
         inputId="username"
-        placeholder="Username"
+        placeholder="Enter a username"
         label="Username"
         className="signup-form__input"
       />

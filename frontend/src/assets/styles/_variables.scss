@@ -36,7 +36,7 @@ $font-weights: (
   @return map-get($font-weights, $weight);
 }
 
-$primary-color: #0172c4;
+$primary-color: #0386f7;
 $secondary-color: #85c33d;
 $error-color: #c72a24;
 $star-color: #ffa805;
@@ -69,4 +69,11 @@ $star-color: #ffa805;
     left: 0;
     bottom: 0;
   }
+}
+
+// Button state styles
+
+@mixin btn-active {
+  transform: translateY(1px);
+  filter: saturate(150%);
 }

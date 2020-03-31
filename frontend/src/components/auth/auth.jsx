@@ -27,7 +27,7 @@ const Auth = props => {
   return (
     <div className="auth-page">
       <MediaQuery maxDeviceWidth={649}>
-        <Header />
+        <Header path={props.history.location.pathname} />
       </MediaQuery>
       <MediaQuery minDeviceWidth={650}>
         <HeaderDesktop isAuth={props.isAuthenticated} />

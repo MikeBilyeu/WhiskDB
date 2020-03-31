@@ -54,8 +54,10 @@
 
     &__login {
       color: darkColor(medium);
-      &:hover {
-        color: $primary-color;
+      @media (hover: hover) {
+        &:hover {
+          color: $primary-color;
+        }
       }
     }
 
@@ -63,10 +65,14 @@
       border: solid $primary-color 0.08rem;
       border-radius: 50rem;
       color: $primary-color;
-
-      &:hover {
-        color: #fff;
-        background-color: $primary-color;
+      @media (hover: hover) {
+        &:hover {
+          color: #fff;
+          background-color: $primary-color;
+        }
+      }
+      &:active {
+        @include btn-active;
       }
     }
 

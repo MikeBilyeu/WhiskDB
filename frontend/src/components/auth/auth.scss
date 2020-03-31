@@ -3,9 +3,9 @@
 .login-form,
 .signup-form {
   position: relative;
-  top: 8rem;
+  top: 4.5rem;
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: 0.75rem;
   padding: 0.5rem;
   color: #313131;
   margin: 0 auto;
@@ -15,7 +15,7 @@
     font-size: 1rem;
     text-align: center;
     margin: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   &__input {
@@ -58,12 +58,6 @@
     }
   }
 
-  &__input-error {
-    color: $error-color;
-    justify-self: start;
-    font-size: 0.75rem;
-  }
-
   &__sbmt-btn {
     border: none;
     outline: none;
@@ -79,11 +73,27 @@
     max-width: 20rem;
     margin: 2rem 0;
     place-self: center;
-    transition: all 0.1s ease-in;
+    @include fast-transition;
+    user-select: none;
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover {
+        background-color: $primary-color;
+        color: #fff;
+      }
+    }
+    &:active {
+      @include btn-active;
       background-color: $primary-color;
       color: #fff;
     }
+  }
+}
+
+@media (min-device-width: 650px) {
+  .login-form,
+  .signup-form {
+    top: 8rem;
+    grid-gap: 1rem;
   }
 }
