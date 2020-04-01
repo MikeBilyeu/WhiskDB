@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { toggleReview } from "../../actions/review";
 import renderTime from "../../utils/time";
