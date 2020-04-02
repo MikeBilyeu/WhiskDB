@@ -97,7 +97,7 @@ const Recipe = props => {
               })}
               onClick={() => props.saveRecipe(recipe_id, user_id)}
             >
-              {saved ? "Saved" : "Save"}
+              {saved ? "Unsave" : "Save"}
             </div>
           ) : (
             <Link className="recipe__login-btn" to="/auth">

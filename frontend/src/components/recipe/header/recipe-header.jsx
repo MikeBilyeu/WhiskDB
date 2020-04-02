@@ -23,7 +23,7 @@ const Header = props => {
           })}
           onClick={() => props.saveRecipe(props.recipe_id, props.user_id)}
         >
-          {props.recipeSaved ? "Saved" : "Save"}
+          {props.recipeSaved ? "Unsave" : "Save"}
         </div>
       ) : (
         <Link className="recipe-header__login-btn" to="/auth">

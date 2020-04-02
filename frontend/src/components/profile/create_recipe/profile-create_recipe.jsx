@@ -15,9 +15,10 @@ const CreateRecipe = props => {
     document.title = "Zipiwisk | Create Recipe";
   }, []);
 
-  const handleSubmit = values => {
-    props.createRecipe(values, props.history);
-  };
+  const handleSubmit = values =>
+    props.createRecipe(values, props.history).catch(err => {
+      console.error(err);
+    });
 
   const handleBackClick = () => {
     props.history.location.key

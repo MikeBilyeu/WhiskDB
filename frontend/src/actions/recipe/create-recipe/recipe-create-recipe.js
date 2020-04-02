@@ -3,25 +3,27 @@ import { reset } from "redux-form";
 import imageUpload from "../../image";
 
 // Create Recipe
-export const createRecipe = (recipeData, history) => async dispatch => {
-  try {
-    let imageURL = await dispatch(imageUpload(recipeData.imageFile));
+const createRecipe = (recipeForm, history) => dispatch => {
+	console.log(recipeForm);
+	return new Promise(async (resolve, reject) => {
+    	let imageURL = await dispatch(imageUpload(recipeForm.imageFile));
+		if(!imageURL) reject('Image upload error');	
 
-    let res = await axios.post("/recipes/create", {
-      ...recipeData,
-      image_url: imageURL
-    });
+    	let res = await axios.post("/recipes/create", {
+      		...recipeForm,
+      		image_url: imageURL
+    	});
+		
+		if(res.statusCode === '400') reject('Recipe upload error');
+			
+    	let recipe_id = res.data.recipe_id;
 
-    let recipe_id = res.data.recipe_id;
-
-    // clear the recipe form after successful submit
-    dispatch(reset("create-recipe"));
-
-    // redirect to home after successful submit
-    return history.push(`/recipe/${recipe_id}`);
-  } catch (err) {
-    console.error(err);
-  }
+    	// clear the recipe form after successful submit
+    	dispatch(reset("create-recipe"));
+    	// redirect to recipe after successful submit
+		history.push(`/recipe/${recipe_id}`);
+  		resolve();
+	});
 };
 
 export default createRecipe;
