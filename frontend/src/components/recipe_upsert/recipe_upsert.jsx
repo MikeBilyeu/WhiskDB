@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import {
   Field,
@@ -27,18 +27,18 @@ import { validate } from "./utils/recipe-validation";
 import "./recipe_upsert.scss";
 
 const RecipeUpsert = props => {
-  console.log(props);
   const handleKeyDown = e => {
     if (e.target.type !== "textarea" && e.key === "Enter") {
       e.preventDefault();
     }
   };
+  console.log(props);
   return (
     <form
       action="#"
       className="recipe-upsert"
       onKeyDown={handleKeyDown}
-      onSubmit={props.handleSubmit(props.onSubmit)}
+      onSubmit={props.handleSubmit}
     >
       <Field
         name="title"
@@ -112,13 +112,15 @@ const RecipeUpsert = props => {
         submitFailed={props.submitFailed}
       />
       <button
+        disabled={props.submitting}
         className={classNames("recipe-upsert__sbmt-btn", {
           "recipe-upsert__sbmt-btn--disabled":
-            Object.keys(props.syncErrors).length && props.submitFailed
+            Object.keys(props.syncErrors).length && props.submitFailed,
+          "recipe-upsert__sbmt-btn--success": props.submitting
         })}
         type="submit"
       >
-        {props.submitText}
+        {props.submitting ? "Saving..." : props.submitText}
       </button>
     </form>
   );
@@ -143,6 +145,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   reduxForm({ validate }),
-  withRouter,
   connect(mapStateToProps)
 )(RecipeUpsert);

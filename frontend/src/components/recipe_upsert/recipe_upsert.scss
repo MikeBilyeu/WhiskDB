@@ -34,16 +34,45 @@
     width: 90%;
     max-width: 15rem;
     place-self: center;
-    transition: all 0.2s;
-
-    &:hover {
-      background-color: $primary-color;
-      color: #fff;
-    }
+    @include fast-transition;
+	
+	&:active {
+	@include btn-active;
+	}
+	@media (hover:hover) {
+		&:hover {
+		background-color: $primary-color;
+		color: #fff;
+		} 		
+	}
 
     &--disabled {
       opacity: 0.5;
+	  cursor: default;
+	  &:active {
+	  	@include btn-active;
+	  }
+	  @media (hover:hover) {
+		&:hover {
+		background-color: #fff;
+		color: $primary-color;
+		} 		
+	  }
     }
+	
+	&--success {
+	background-color: $success-color;
+	border-color: $success-color;
+	color: #fff;
+	cursor: default;
+
+	@media (hover:hover) {
+		&:hover {
+			background-color: $success-color;
+			color: #fff;
+		}
+	}
+	}
   }
 
   label {
