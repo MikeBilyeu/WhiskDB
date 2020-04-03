@@ -32,7 +32,6 @@ const RecipeUpsert = props => {
       e.preventDefault();
     }
   };
-  console.log(props);
   return (
     <form
       action="#"

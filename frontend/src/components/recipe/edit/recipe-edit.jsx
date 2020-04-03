@@ -16,9 +16,11 @@ import Loading from "../../loading";
 import "./recipe-edit.scss";
 
 const Edit = props => {
-  const handleSubmit = values => {
-    props.submitEditRecipe(values);
-  };
+  const handleSubmit = values => (
+    props.submitEditRecipe(values).catch(err =>{
+		console.errror(err);
+	})
+  );
 
   let { isFetching, recipe } = props.recipeData;
   const ingredientsStr = recipe.ingredients.join("\n");
