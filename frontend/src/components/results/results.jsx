@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useCallback } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import Loading from "../recipe_card/loading";
@@ -7,9 +7,6 @@ import NoResults from "./no_results";
 import "./results.scss";
 
 const Results = props => {
-  const [el, setEl] = useState(null);
-  let inputEl = useRef(null);
-  inputEl = el;
 
   const options = {};
 
@@ -18,9 +15,12 @@ const Results = props => {
       props.handleClick();
     }
   }, options);
-  if (inputEl) {
-    observer.observe(inputEl);
-  }
+
+	const ref = useCallback((node) => {
+		if(node !== null) {
+			observer.observe(node);
+		}
+	}, []);
 
   const renderRecipeList = () => {
     return props.recipes.map((recipe, i) => {
@@ -54,11 +54,9 @@ const Results = props => {
 
         {props.recipes.length < props.recipes[0].full_count ? (
           <button
-            ref={el => {
-              setEl(el);
-            }}
-            className="recipe-results__load-more"
+            ref={ref}
             onClick={props.handleClick}
+			className="recipe-results__load-more"
           >
             Load More
           </button>
