@@ -6,14 +6,21 @@ import imageUpload from "../../image";
 const createRecipe = (recipeForm, history) => dispatch => {
 	return new Promise(async (resolve, reject) => {
     	let imageURL = await dispatch(imageUpload(recipeForm.imageFile));
-		if(!imageURL) reject('Image upload error');	
-
+		if(!imageURL) {
+			reject('Image upload error');
+			return;		
+		} 
+			
     	let res = await axios.post("/recipes/create", {
       		...recipeForm,
       		image_url: imageURL
     	});
-		if(res.status !== 200) reject("Recipe upload error");
-			
+
+		if(res.status !== 200) {
+			reject("Recipe upload error");
+			return;
+		}
+
     	let recipe_id = res.data.recipe_id;
 
     	// clear the recipe form after successful submit
