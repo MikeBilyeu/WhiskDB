@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
+import { withRouter } from "react-router-dom";
 import { reduxForm, isDirty } from "redux-form";
 import {
   getRecipe,
@@ -16,11 +17,10 @@ import Loading from "../../loading";
 import "./recipe-edit.scss";
 
 const Edit = props => {
-  const handleSubmit = values => (
-    props.submitEditRecipe(values).catch(err =>{
-		console.errror(err);
-	})
-  );
+  const handleSubmit = values =>
+    props.submitEditRecipe(values).catch(err => {
+      console.errror(err);
+    });
 
   let { isFetching, recipe } = props.recipeData;
   const ingredientsStr = recipe.ingredients.join("\n");
@@ -32,7 +32,6 @@ const Edit = props => {
     ingredients: ingredientsStr,
     keywords: keywordsStr
   };
-  console.log("Recipe Data:", initialValues);
 
   return isFetching ? (
     <Loading />
@@ -58,6 +57,7 @@ const Edit = props => {
         submitText="Save Changes"
         onSubmit={handleSubmit}
         form="recipe-upsert"
+        goBack={props.history.goBack}
       />
     </div>
   );
@@ -70,7 +70,9 @@ const mapStateToProps = state => ({
   recipeTime: convertTime(state)
 });
 
-export default connect(
-  mapStateToProps,
-  { getRecipe, submitEditRecipe, toggleEditRecipe }
-)(Edit);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getRecipe, submitEditRecipe, toggleEditRecipe }
+  )(Edit)
+);

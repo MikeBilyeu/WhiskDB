@@ -1,17 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 import FilterResults from "../../../filter_results";
 import CategoryButton from "../../../category_button";
 import { toggleFilterBtnProfile } from "../../../../actions/browse";
-import { updateFilterRecipe } from "../../../../actions/recipeActions";
+import { updateSavedFilterRecipe } from "../../../../actions/recipe";
 import "./home-page_toggle.scss";
 
 const PageToggle = props => {
   const handleClick = option => {
     // set the filterRecipes to the option selected
-    props.updateFilterRecipe(option);
+    props.updateSavedFilterRecipe(option);
     //window.scrollTo(0, 0);
   };
   return (
@@ -45,5 +44,5 @@ PageToggle.propTypes = {
 
 export default connect(
   mapSateToProps,
-  { toggleFilterBtnProfile, updateFilterRecipe }
+  { toggleFilterBtnProfile, updateSavedFilterRecipe }
 )(PageToggle);

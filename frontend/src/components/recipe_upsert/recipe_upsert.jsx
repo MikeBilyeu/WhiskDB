@@ -21,12 +21,14 @@ import {
   minuteParse,
   numberParse
 } from "./utils/input-parse";
+import { deleteRecipe } from "../../actions/recipe";
 
 import { validate } from "./utils/recipe-validation";
 
 import "./recipe_upsert.scss";
 
 const RecipeUpsert = props => {
+  console.log(props);
   const handleKeyDown = e => {
     if (e.target.type !== "textarea" && e.key === "Enter") {
       e.preventDefault();
@@ -121,6 +123,21 @@ const RecipeUpsert = props => {
       >
         {props.submitting ? "Saving..." : props.submitText}
       </button>
+      {props.form === "recipe-upsert" && (
+        <button
+          disabled={props.submitting}
+          onClick={e => {
+            e.preventDefault();
+            props
+              .deleteRecipe(props.initialValues.recipe_id)
+              .then(props.goBack)
+              .catch(err => console.error(err));
+          }}
+          className="recipe-upsert__delete-btn"
+        >
+          Delete Recipe
+        </button>
+      )}
     </form>
   );
 };
@@ -133,8 +150,6 @@ RecipeUpsert.propTypes = {
   form: PropTypes.string.isRequired
 };
 
-//const selector = formValueSelector("newRecipe");
-
 const mapStateToProps = (state, ownProps) => {
   return {
     categories: formValueSelector(ownProps.form)(state, "categories"),
@@ -144,5 +159,8 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   reduxForm({ validate }),
-  connect(mapStateToProps)
+  connect(
+    mapStateToProps,
+    { deleteRecipe }
+  )
 )(RecipeUpsert);

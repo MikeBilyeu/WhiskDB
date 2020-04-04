@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
 import {
-  updateFilterRecipe,
+  updateSavedFilterRecipe,
   incrementSavedOffset
-} from "../../../actions/recipeActions";
+} from "../../../actions/recipe";
 import { getSavedRecipes } from "../../../actions/recipe";
 import HeaderDesktop from "../../header_desktop";
 import FilterResults from "../../filter_results";
@@ -29,7 +29,8 @@ const Home = props => {
   }, [username]);
 
   const handleFilterClick = option => {
-    props.updateFilterRecipe(option);
+    console.log(option);
+    props.updateSavedFilterRecipe(option);
   };
 
   return (
@@ -77,6 +78,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getSavedRecipes, updateFilterRecipe, incrementSavedOffset }
+    { getSavedRecipes, updateSavedFilterRecipe, incrementSavedOffset }
   )(Home)
 );

@@ -18,6 +18,12 @@ router.put(
   require("./editRecipe")
 );
 
+router.delete(
+  "/delete",
+  passport.authenticate("jwt", { session: false }),
+  require("./deleteRecipe")
+);
+
 router.get("/rating", require("./recipeRating"));
 
 router.get(
