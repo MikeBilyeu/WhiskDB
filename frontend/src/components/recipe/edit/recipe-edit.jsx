@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
-import { reduxForm, isDirty } from "redux-form";
+import { isDirty } from "redux-form";
 import {
   getRecipe,
   submitEditRecipe,

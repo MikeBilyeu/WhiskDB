@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames";
 import {
   Field,
@@ -7,7 +7,6 @@ import {
   getFormSyncErrors
 } from "redux-form";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import ImageUpload from "../image_upload";
@@ -28,7 +27,6 @@ import { validate } from "./utils/recipe-validation";
 import "./recipe_upsert.scss";
 
 const RecipeUpsert = props => {
-  console.log(props);
   const handleKeyDown = e => {
     if (e.target.type !== "textarea" && e.key === "Enter") {
       e.preventDefault();
@@ -72,8 +70,8 @@ const RecipeUpsert = props => {
         placeholder="One ingredient per line"
       />
 
-      <label className="ru-time">
-        Time
+      <fieldset className="ru-time">
+        <legend>Time</legend>
         <div className="ru-time__border">
           <Field
             name="time.hours"
@@ -97,7 +95,7 @@ const RecipeUpsert = props => {
         {props.syncErrors.time && props.submitFailed && (
           <div className="validation-error">{props.syncErrors.time.hours}</div>
         )}
-      </label>
+      </fieldset>
       <Directions />
       <Field
         name="keywords"
