@@ -3,6 +3,9 @@ const db = require("../../db");
 module.exports = async (req, res) => {
   const { recipe_id, user_id } = req.query;
   try {
+    if (isNaN(recipe_id)) {
+      return res.status(404).send("Recipe not found");
+    }
     const { rows } = await db.query(
       `SELECT r.*,
              TO_CHAR(r.created_at, 'Mon fmDD, YYYY') AS date_created,

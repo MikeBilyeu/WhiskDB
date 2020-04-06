@@ -1,5 +1,10 @@
 import axios from "axios";
-import { GET_RECIPE_REQUEST, GET_RECIPE, GET_ERRORS } from "../../types";
+import {
+  GET_RECIPE_REQUEST,
+  GET_RECIPE,
+  GET_ERRORS,
+  NO_MATCH
+} from "../../types";
 
 const getRecipe = (recipe_id, user_id) => async dispatch => {
   try {
@@ -10,6 +15,9 @@ const getRecipe = (recipe_id, user_id) => async dispatch => {
 
     dispatch({ type: GET_RECIPE, payload: res.data });
   } catch (err) {
+    if (err.response.status === 404) {
+      dispatch({ type: NO_MATCH });
+    }
     dispatch({ type: GET_ERRORS, payload: err });
   }
 };

@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
+import NoMatch from "../no_match";
 import Header from "./header";
 import HeaderDesktop from "../header_desktop";
 import RecipeDetails from "./RecipeDetails";
@@ -25,6 +26,7 @@ const Recipe = props => {
   }, []);
 
   const {
+    noMatch,
     showMoreOpen,
     isFetching,
     editRecipe,
@@ -44,6 +46,9 @@ const Recipe = props => {
       : props.history.push("/");
   };
 
+  if (noMatch) {
+    return <NoMatch />;
+  }
   if (isFetching) {
     return <Loading />;
   }

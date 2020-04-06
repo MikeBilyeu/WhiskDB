@@ -9,7 +9,8 @@ import {
   TOGGLE_SHOW_MORE,
   SUBMIT_REVIEW,
   GET_RECIPE_REVIEW,
-  TOGGLE_EDIT_RECIPE
+  TOGGLE_EDIT_RECIPE,
+  NO_MATCH
 } from "../actions/types";
 
 const initialState = {
@@ -28,13 +29,14 @@ const initialState = {
     num_reviews: 0,
     rating: 0
   },
-  review: null
+  review: null,
+  noMatch: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_RECIPE_REQUEST:
-      return { ...state, isFetching: true };
+      return { ...state, isFetching: true, noMatch: false };
     case GET_RECIPE:
       return {
         ...state,
@@ -54,7 +56,8 @@ export default function(state = initialState, action) {
           rating: action.payload.rating,
           num_reviews: action.payload.num_reviews
         },
-        review: null
+        review: null,
+        noMatch: false
       };
     case GET_RECIPE_REVIEW:
       return { ...state, review: action.payload };
@@ -74,6 +77,8 @@ export default function(state = initialState, action) {
       return { ...state, convertedServings: action.payload };
     case TOGGLE_EDIT_RECIPE:
       return { ...state, editRecipe: !state.editRecipe };
+    case NO_MATCH:
+      return { ...initialState, noMatch: true };
     default:
       return state;
   }

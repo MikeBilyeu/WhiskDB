@@ -19,7 +19,7 @@ const App = () => {
         <Switch>
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/auth" component={Auth} />
-          <Route path="/recipe/:recipe_id" component={Recipe} />
+          <Route exact path="/recipe/:recipe_id" component={Recipe} />
           <Route exact path="/" component={Home} />
           <Route path="*" component={NoMatch} />
         </Switch>
