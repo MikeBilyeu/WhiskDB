@@ -23,6 +23,8 @@ module.exports = async (req, res) => {
     );
     if (rows[0]) {
       res.status(200).json(rows[0]);
+    } else {
+      res.status(404).send("Recipe not found");
     }
   } catch (err) {
     console.error(err);

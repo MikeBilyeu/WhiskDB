@@ -53,7 +53,7 @@
       }
 
       &__edit-profile-btn {
-        border: solid lightColor(dark) 0.05rem;
+        border: solid lightColor(dark) thin;
         white-space: nowrap;
         padding: 0.3rem 1rem;
         color: darkColor(light);
@@ -63,7 +63,7 @@
         font-size: 0.75rem;
 
         &:hover {
-          border: solid $primary-color 0.05rem;
+          border-color: $primary-color;
           color: $primary-color;
         }
       }
@@ -71,7 +71,7 @@
 
     .page-toggle {
       margin-top: 15rem;
-      top: 2.6rem;
+      top: 3rem;
       padding: 0 0.5rem 0.5rem 0.5rem;
       grid-gap: 0.5rem;
       grid-template-columns: 1fr;
@@ -147,7 +147,8 @@
   }
   .profile-home > .filter-results-meal {
     left: 1rem;
-    top: 4.8rem !important;
+    position: sticky;
+    top: 5rem !important;
 
     .filter-results-meal__title {
       display: none;

@@ -14,7 +14,7 @@
   align-items: center;
   grid-template-columns: 1fr 3fr 3fr 2fr;
   //grid-template-rows: 2rem 2rem;
-  grid-template-rows: 2rem;
+  grid-template-rows: 2rem 2rem;
   grid-row-gap: 0.25rem;
   grid-column-gap: 1rem;
 
@@ -107,15 +107,15 @@
 
     &__create {
       user-select: none;
-      border: solid lightColor(dark) 0.09rem;
+      border: solid lightColor(dark) thin;
       white-space: nowrap;
-      padding: 0.4rem 0.75rem;
+      padding: 0.3rem 0.75rem;
       color: darkColor(light);
       font-weight: medium;
       border-radius: 0.2rem;
 
       &:hover {
-        border: solid $primary-color 0.09rem;
+        border-color: $primary-color;
         color: $primary-color;
       }
     }
@@ -175,15 +175,6 @@
   .header-d {
     grid-gap: 0.5rem;
     grid-template-columns: 1fr 3fr 3fr 1fr;
-
-    .auth-btns {
-      &__create {
-        display: none;
-      }
-      &__profile {
-        padding: 0 0rem;
-      }
-    }
   }
 }
 

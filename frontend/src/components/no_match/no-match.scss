@@ -1,0 +1,57 @@
+@import "../../assets/styles/variables";
+
+.not-found {
+  background-color: darkColor(dark);
+  min-height: 100vh;
+  height: auto;
+  display: inline-block;
+
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 0.5rem;
+
+  &__home-link {
+    height: auto;
+    margin: 0 auto;
+    display: inline-block;
+  }
+  &__home-link-img {
+    width: 10rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    margin: 3rem 0 0.5rem 0;
+  }
+  &__msg {
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.25rem;
+    margin: 0;
+  }
+
+  // .search-bar {
+  //   margin: 3rem 0;
+  //   border-radius: 0.3rem;
+  //   text-align: left;
+  // }
+
+  .search-bar {
+    margin: 4rem auto;
+    height: 3rem;
+    max-width: 35rem;
+    width: 100%;
+    text-align: left;
+    border-radius: 0.3rem;
+    border: none;
+    background-color: #ffff;
+    position: relative;
+    right: auto;
+
+    &--active {
+      box-shadow: 0 0 0 0.3rem rgba(200, 200, 200, 0.2);
+      animation: none;
+    }
+  }
+}

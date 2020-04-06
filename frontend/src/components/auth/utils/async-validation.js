@@ -12,7 +12,10 @@ const combineAsyncValidation = validator => {
 };
 
 export const usernameValidate = async ({ username, currentUsername }) => {
-  if (currentUsername.toLowerCase() !== username.toLowerCase()) {
+  if (
+    !currentUsername ||
+    currentUsername.toLowerCase() !== username.toLowerCase()
+  ) {
     try {
       await axios.get("/users/usernames", { params: { username } });
     } catch (err) {
