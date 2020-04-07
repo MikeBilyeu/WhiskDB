@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "../private_route";
 import { checkAuthToken } from "./utils";
@@ -9,10 +10,19 @@ import Auth from "../auth";
 import Recipe from "../recipe";
 import ScrollUp from "./scroll_up";
 import NoMatch from "../no_match";
+import getSavedRecipes from "../../actions/recipe/get-saved-recipes";
+import { getBrowseRecipes } from "../../actions/browse/get_recipes";
 
 checkAuthToken();
 
-const App = () => {
+const App = props => {
+  useEffect(() => {
+    if (props.isAuth) {
+      props.getSavedRecipes();
+    }
+    props.getBrowseRecipes();
+  }, [props.isAuth]);
+
   return (
     <Router>
       <ScrollUp>
@@ -29,4 +39,11 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { getSavedRecipes, getBrowseRecipes }
+)(App);

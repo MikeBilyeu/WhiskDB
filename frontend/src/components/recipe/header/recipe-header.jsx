@@ -16,20 +16,20 @@ const Header = props => {
         className="recipe-header__back-btn"
         onClick={props.handleBackClick}
       />
-      {props.isAuth ? (
+      {props.isAuth && props.user_id !== props.created_by ? (
         <div
           className={classNames("recipe-header__save-btn", {
             "recipe-header__save-btn--active": props.recipeSaved
           })}
-          onClick={() => props.saveRecipe(props.recipe_id, props.user_id)}
+          onClick={props.handleSaveClick}
         >
           {props.recipeSaved ? "Unsave" : "Save"}
         </div>
-      ) : (
+      ) : !props.isAuth ? (
         <Link className="recipe-header__login-btn" to="/auth">
           Login to save
         </Link>
-      )}
+      ) : null}
 
       <More
         onClick={props.toggleShowMore}

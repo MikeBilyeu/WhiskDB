@@ -31,7 +31,15 @@ const Recipe = props => {
     isFetching,
     editRecipe,
     saved,
-    recipe: { image_url, directions, footnote, time, title, username }
+    recipe: {
+      image_url,
+      directions,
+      footnote,
+      time,
+      title,
+      username,
+      created_by
+    }
   } = props.recipeData;
 
   let recipeImage =
@@ -46,8 +54,8 @@ const Recipe = props => {
       : props.history.push("/");
   };
 
-  const handleSaveClick = (recipeId, userId, isSaved) => {
-    if (isSaved) {
+  const handleSaveClick = () => {
+    if (saved) {
       props.unsaveRecipe(recipe_id, user_id);
     } else {
       props.saveRecipe(recipe_id, user_id);
@@ -73,6 +81,8 @@ const Recipe = props => {
           user_id={user_id}
           handleBackClick={handleBackClick}
           isAuth={props.isAuth}
+          created_by={created_by}
+          handleSaveClick={handleSaveClick}
         />
         {showMoreOpen ? <More className="recipe-more" /> : null}
         <img
@@ -103,20 +113,20 @@ const Recipe = props => {
         <Ingredients />
 
         <div className="recipe__container">
-          {props.isAuth ? (
+          {props.isAuth && user_id !== created_by ? (
             <div
               className={classNames("recipe__save-btn", {
                 "recipe__save-btn--active": saved
               })}
-              onClick={() => handleSaveClick(recipe_id, user_id, saved)}
+              onClick={handleSaveClick}
             >
               {saved ? "Unsave" : "Save"}
             </div>
-          ) : (
+          ) : !props.isAuth ? (
             <Link className="recipe__login-btn" to="/auth">
               Login to save
             </Link>
-          )}
+          ) : null}
 
           <RecipeDetails time={time} />
 

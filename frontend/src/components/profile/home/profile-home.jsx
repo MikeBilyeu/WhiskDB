@@ -6,7 +6,6 @@ import {
   updateSavedFilterRecipe,
   incrementSavedOffset
 } from "../../../actions/recipe";
-import { getSavedRecipes } from "../../../actions/recipe";
 import HeaderDesktop from "../../header_desktop";
 import FilterResults from "../../filter_results";
 import UserInfo from "./user_info";
@@ -17,11 +16,6 @@ import Results from "../../results";
 import "./profile-home.scss";
 
 const Home = props => {
-  useEffect(() => {
-    if (!props.savedRecipes.length) {
-      props.getSavedRecipes();
-    }
-  }, []);
   const { full_name, username, diet, image_url } = props.auth.user;
 
   useEffect(() => {
@@ -77,6 +71,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getSavedRecipes, updateSavedFilterRecipe, incrementSavedOffset }
+    { updateSavedFilterRecipe, incrementSavedOffset }
   )(Home)
 );
