@@ -19,7 +19,7 @@ import "./recipe-edit.scss";
 const Edit = props => {
   const handleSubmit = values =>
     props.submitEditRecipe(values).catch(err => {
-      console.errror(err);
+      console.error(err);
     });
 
   let { isFetching, recipe } = props.recipeData;

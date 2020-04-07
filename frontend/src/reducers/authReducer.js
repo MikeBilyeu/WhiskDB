@@ -5,7 +5,8 @@ import {
   TOGGLE_DELETE,
   SET_PROFILE_FILTER_DATA,
   TOGGLE_FILTER_BUTTON_PROFILE,
-  SAVED_OFFSET_INCREMENT
+  SAVED_OFFSET_INCREMENT,
+  REMOVE_SAVED_RECIPES
 } from "../actions/types";
 const initialState = {
   isAuthenticated: false,
@@ -47,6 +48,14 @@ export default function(state = initialState, action) {
         filterRecipes: {
           ...state.filterRecipes,
           offset: state.filterRecipes.offset + 1
+        }
+      };
+    case REMOVE_SAVED_RECIPES:
+      return {
+        ...state,
+        filterRecipes: {
+          ...state.filterRecipes,
+          offset: 0
         }
       };
     case GET_USER:

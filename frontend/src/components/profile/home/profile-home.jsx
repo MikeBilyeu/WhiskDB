@@ -29,7 +29,6 @@ const Home = props => {
   }, [username]);
 
   const handleFilterClick = option => {
-    console.log(option);
     props.updateSavedFilterRecipe(option);
   };
 

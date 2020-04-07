@@ -6,7 +6,7 @@ import recipeReducer from "./recipeReducer";
 import savedRecipesReducer from "./savedRecipesReducer";
 import browseRecipesReducer from "./browseRecipesReducer";
 
-export default combineReducers({
+const appReducer = combineReducers({
   form: formReducer,
   auth: authReducer,
   recipe: recipeReducer,
@@ -14,3 +14,13 @@ export default combineReducers({
   browseRecipes: browseRecipesReducer,
   errors: errorReducer
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === "USER_LOGOUT") {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+};
+
+export default rootReducer;
