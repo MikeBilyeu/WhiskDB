@@ -13,7 +13,7 @@ import More from "./more";
 import Loading from "../loading";
 import Edit from "./edit";
 import { ReactComponent as Arrow } from "../../assets/images/arrowLeft.svg";
-import { getRecipe, saveRecipe } from "../../actions/recipe";
+import { getRecipe, saveRecipe, unsaveRecipe } from "../../actions/recipe";
 import convertTime from "../../selectors/time-selector";
 import "./recipe.scss";
 
@@ -44,6 +44,14 @@ const Recipe = props => {
     props.history.location.key
       ? props.history.goBack()
       : props.history.push("/");
+  };
+
+  const handleSaveClick = (recipeId, userId, isSaved) => {
+    if (isSaved) {
+      props.unsaveRecipe(recipe_id, user_id);
+    } else {
+      props.saveRecipe(recipe_id, user_id);
+    }
   };
 
   if (noMatch) {
@@ -100,7 +108,7 @@ const Recipe = props => {
               className={classNames("recipe__save-btn", {
                 "recipe__save-btn--active": saved
               })}
-              onClick={() => props.saveRecipe(recipe_id, user_id)}
+              onClick={() => handleSaveClick(recipe_id, user_id, saved)}
             >
               {saved ? "Unsave" : "Save"}
             </div>
@@ -143,6 +151,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getRecipe, saveRecipe }
+    { getRecipe, saveRecipe, unsaveRecipe }
   )(Recipe)
 );

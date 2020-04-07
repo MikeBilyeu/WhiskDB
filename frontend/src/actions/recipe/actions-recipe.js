@@ -13,6 +13,7 @@ export { default as submitEditRecipe } from "./edit-recipe";
 export { default as deleteRecipe } from "./delete-recipe";
 export { default as getRecipe } from "./get-recipe";
 export { default as saveRecipe } from "./save-recipe";
+export { default as unsaveRecipe } from "./unsave-recipe";
 export { default as getSavedRecipes } from "./get-saved-recipes";
 
 export const toggleEditRecipe = () => {

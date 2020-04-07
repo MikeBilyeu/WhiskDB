@@ -44,8 +44,14 @@ router.post(
   require("./saveRecipe")
 );
 
+router.delete(
+  "/unsave",
+  passport.authenticate("jwt", { session: false }),
+  require("./unsaveRecipe")
+);
+
 router.get(
-  "/save",
+  "/saved",
   passport.authenticate("jwt", { session: false }),
   require("./getSavedRecipes")
 );

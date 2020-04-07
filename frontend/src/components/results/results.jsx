@@ -7,7 +7,6 @@ import NoResults from "./no_results";
 import "./results.scss";
 
 const Results = props => {
-
   const options = {};
 
   let observer = new IntersectionObserver((entries, oberver) => {
@@ -16,11 +15,11 @@ const Results = props => {
     }
   }, options);
 
-	const ref = useCallback((node) => {
-		if(node !== null) {
-			observer.observe(node);
-		}
-	}, []);
+  const ref = useCallback(node => {
+    if (node !== null) {
+      observer.observe(node);
+    }
+  }, []);
 
   const renderRecipeList = () => {
     return props.recipes.map((recipe, i) => {
@@ -56,7 +55,7 @@ const Results = props => {
           <button
             ref={ref}
             onClick={props.handleClick}
-			className="recipe-results__load-more"
+            className="recipe-results__load-more"
           >
             Load More
           </button>
