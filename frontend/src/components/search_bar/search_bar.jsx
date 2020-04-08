@@ -25,7 +25,7 @@ const SearchBar = props => {
       props.history.push("/");
       /\S/.test(searchTerm)
         ? props.updateFilterRecipe("search", searchTerm)
-        : props.updateFilterRecipe("meal", "All Meals");
+        : props.updateFilterRecipe("category", "All Categories");
     }
   };
 

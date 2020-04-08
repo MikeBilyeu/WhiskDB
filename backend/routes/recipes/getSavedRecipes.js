@@ -2,7 +2,7 @@ const db = require("../../db");
 
 module.exports = async (req, res) => {
   const { user_id } = req.user;
-  const { meal, offset } = req.query;
+  const { category, offset } = req.query;
   const LIMIT = 12;
   const OFFSETNUM = offset * LIMIT;
 
@@ -31,14 +31,14 @@ module.exports = async (req, res) => {
                   WHERE sr.saved_by = $1)
                OR r.created_by = $1)
           AND CASE
-                  WHEN $2 = 'All Meals' THEN TRUE
+                  WHEN $2 = 'All Categories' THEN TRUE
                   ELSE rjc.category = LOWER($2)
               END
         GROUP BY r.recipe_id
         ORDER BY saved_at DESC
         LIMIT $3
         OFFSET $4;`,
-      [user_id, meal, LIMIT, OFFSETNUM]
+      [user_id, category, LIMIT, OFFSETNUM]
     );
     if (rowCount < 1) {
       res.status(204).send();

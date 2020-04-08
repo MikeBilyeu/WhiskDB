@@ -17,22 +17,22 @@ const PageToggle = props => {
     <div className="page-toggle">
       <CategoryButton
         className="category-btn-d"
-        meal={props.meal}
-        active={props.activeFilterBtn === "Meal"}
+        category={props.category}
+        active={props.activeFilterBtn === "Category"}
         toggleFilterButton={props.toggleFilterBtnProfile}
       />
 
       <FilterResults
         filterRecipes={props.filterRecipes}
         handleClick={handleClick}
-        buttonToggled="Meal"
+        buttonToggled="Category"
       />
     </div>
   );
 };
 
 const mapSateToProps = state => ({
-  meal: state.auth.filterRecipes.meal,
+  category: state.auth.filterRecipes.category,
   activeFilterBtn: state.auth.activeFilterBtn,
   filterRecipes: state.auth.filterRecipes
 });

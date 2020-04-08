@@ -11,9 +11,9 @@ const CategoryButton = props => {
       className={classNames(`${props.className}`, {
         [`${props.className}--active`]: props.active
       })}
-      onClick={() => props.toggleFilterButton("Meal")}
+      onClick={() => props.toggleFilterButton("Category")}
     >
-      {props.meal === "All Meals" ? "All categories" : props.meal}
+      {props.category}
       <Arrow
         className={classNames(`${props.className}__icon-m`, {
           [`${props.className}__icon-m--active`]: props.active
@@ -30,7 +30,7 @@ const CategoryButton = props => {
 
 CategoryButton.propTypes = {
   className: PropTypes.string.isRequired,
-  meal: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
   toggleFilterButton: PropTypes.func.isRequired
 };

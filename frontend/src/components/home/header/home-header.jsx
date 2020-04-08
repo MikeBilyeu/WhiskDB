@@ -7,14 +7,14 @@ import { toggleFilterBtnBrowse } from "../../../actions/browse";
 
 import "./home-header.scss";
 
-const Header = ({ meal, activeFilterBtn, toggleFilterBtnBrowse }) => {
+const Header = ({ category, activeFilterBtn, toggleFilterBtnBrowse }) => {
   return (
     <header className="header">
       <SortButton className="sort-btn-m" />
       <CategoryButton
         className="category-btn-m"
-        meal={meal}
-        active={activeFilterBtn === "Meal"}
+        category={category}
+        active={activeFilterBtn === "Category"}
         toggleFilterButton={toggleFilterBtnBrowse}
       />
       <SearchBar />
@@ -23,7 +23,7 @@ const Header = ({ meal, activeFilterBtn, toggleFilterBtnBrowse }) => {
 };
 
 const mapSateToProps = state => ({
-  meal: state.browseRecipes.filterRecipes.meal,
+  category: state.browseRecipes.filterRecipes.category,
   activeFilterBtn: state.browseRecipes.activeFilterBtn
 });
 

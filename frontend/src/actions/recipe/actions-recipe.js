@@ -35,7 +35,7 @@ export const updateSavedFilterRecipe = option => (dispatch, getState) => {
 
   dispatch({
     type: SET_PROFILE_FILTER_DATA,
-    payload: { meal: option, offset: 0 }
+    payload: { category: option, offset: 0 }
   });
   dispatch(getSavedRecipes());
 };

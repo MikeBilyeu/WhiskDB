@@ -122,7 +122,7 @@
   }
 
   // header-d Categories horizontal list
-  .filter-results-meal {
+  .filter-results-category {
     user-select: none;
     border: none !important;
     display: block !important;
@@ -193,7 +193,7 @@
 
 @media (max-width: 669px) {
   .header-d {
-    .filter-results-meal {
+    .filter-results-category {
       display: none !important;
     }
   }
@@ -221,7 +221,7 @@
 }
 
 @media (min-width: 670px) {
-  .home > .filter-results-meal {
+  .home > .filter-results-category {
     display: none;
   }
 }

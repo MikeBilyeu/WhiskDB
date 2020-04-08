@@ -89,7 +89,7 @@
       }
 
       // header-d Categories horizontal list
-      .filter-results-meal {
+      .filter-results-category {
         border: none !important;
         justify-self: center !important;
         display: block;
@@ -141,16 +141,16 @@
 
 @media (max-width: 669px) {
   .page-toggle {
-    .filter-results-meal {
+    .filter-results-category {
       display: none !important;
     }
   }
-  .profile-home > .filter-results-meal {
+  .profile-home > .filter-results-category {
     left: 1rem;
     position: sticky;
     top: 5rem !important;
 
-    .filter-results-meal__title {
+    .filter-results-category__title {
       display: none;
     }
   }
@@ -168,7 +168,7 @@
 }
 
 @media (min-width: 670px) {
-  .profile-home > .filter-results-meal {
+  .profile-home > .filter-results-category {
     display: none;
   }
 }

@@ -13,8 +13,8 @@ const deleteRecipe = recipeId => dispatch => {
       return;
     }
 
-    dispatch(updateSavedFilterRecipe("All Meals"));
-    dispatch(updateFilterRecipe("meal", "All Meals"));
+    dispatch(updateSavedFilterRecipe("All Categories"));
+    dispatch(updateFilterRecipe("category", "All Categories"));
 
     resolve();
   });

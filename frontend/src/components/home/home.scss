@@ -2,7 +2,7 @@
 
 .home {
   .filter-results-sort,
-  .filter-results-meal {
+  .filter-results-category {
     position: fixed;
     top: 2.5rem;
     left: 0;
@@ -15,7 +15,7 @@
   // Desktop view
   @media (min-device-width: 650px) {
     .filter-results-sort,
-    .filter-results-meal {
+    .filter-results-category {
       width: 9rem;
       position: fixed;
       top: 4.8rem;
@@ -45,7 +45,7 @@
       right: 1rem;
       left: auto;
     }
-    .filter-results-meal {
+    .filter-results-category {
       left: 1rem;
     }
   }

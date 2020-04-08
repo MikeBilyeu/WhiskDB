@@ -10,14 +10,14 @@ const FitlerButtons = props => {
     <>
       <CategoryButton
         className="category-btn-d"
-        meal={props.meal}
-        active={props.activeFilterBtn === "Meal"}
+        category={props.category}
+        active={props.activeFilterBtn === "Category"}
         toggleFilterButton={props.toggleFilterBtnBrowse}
       />
       <FilterResults
         filterRecipes={props.filterRecipes}
         handleClick={props.handleClick}
-        buttonToggled="Meal"
+        buttonToggled="Category"
       />
       <SortButton className="sort-btn-d" />
     </>
@@ -25,7 +25,7 @@ const FitlerButtons = props => {
 };
 
 const mapSateToProps = state => ({
-  meal: state.browseRecipes.filterRecipes.meal,
+  category: state.browseRecipes.filterRecipes.category,
   activeFilterBtn: state.browseRecipes.activeFilterBtn
 });
 

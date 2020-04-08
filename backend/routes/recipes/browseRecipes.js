@@ -1,12 +1,12 @@
 const db = require("../../db");
 
 module.exports = async (req, res) => {
-  let { meal, diet, sort, offset } = JSON.parse(
+  let { category, diet, sort, offset } = JSON.parse(
     req.query.filterRecipes.toLowerCase()
   );
   const { user_id } = req.query;
   diet = diet === "none" ? null : diet;
-  const numOfCats = diet ? (meal === "all meals" ? 1 : 2) : 1;
+  const numOfCats = diet ? (category === "all categories" ? 1 : 2) : 1;
   const LIMIT = 12;
   const OFFSETNUM = offset * LIMIT;
 
@@ -29,11 +29,11 @@ module.exports = async (req, res) => {
            FROM recipes_join_categories
            WHERE CASE
                      WHEN $2 != ''
-                          AND $1 != 'all meals' THEN category IN ($1,
+                          AND $1 != 'all categories' THEN category IN ($1,
                                                                   $2)
                      WHEN $2 != ''
-                          AND $1 = 'all meals' THEN category IN ($2)
-                     WHEN $1 != 'all meals' THEN category IN ($1)
+                          AND $1 = 'all categories' THEN category IN ($2)
+                     WHEN $1 != 'all categories' THEN category IN ($1)
                      ELSE TRUE
                  END
            GROUP BY recipe
@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
                                            created_at DESC
       LIMIT $5
       OFFSET $6;`,
-      [meal, diet, numOfCats, sort, LIMIT, OFFSETNUM]
+      [category, diet, numOfCats, sort, LIMIT, OFFSETNUM]
     );
     if (rowCount < 1) {
       res.status(204).send();

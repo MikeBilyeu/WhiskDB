@@ -13,7 +13,7 @@ const initialState = {
   user: { user_id: null, username: "", full_name: "", email: "" },
   loading: false,
   openDelete: false,
-  filterRecipes: { meal: "All Meals", offset: 0 },
+  filterRecipes: { category: "All Categories", offset: 0 },
   activeFilterBtn: null
 };
 

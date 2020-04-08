@@ -13,7 +13,7 @@ const initialState = {
   isFetching: true,
   filterRecipes: {
     search: "",
-    meal: "All Meals",
+    category: "All Categories",
     diet: "None",
     sort: "Top Rated",
     offset: 0

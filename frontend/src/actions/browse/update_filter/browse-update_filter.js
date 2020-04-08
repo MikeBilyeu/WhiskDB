@@ -12,7 +12,7 @@ const updateFilterRecipe = (type, value) => (dispatch, getState) => {
   if (type === "search" || (filterRecipes.search && type === "sort")) {
     dispatch({
       type: SET_BROWSE_DATA,
-      payload: { [type]: value, offset: 0, meal: "All Meals" }
+      payload: { [type]: value, offset: 0, category: "All Categories" }
     });
     dispatch(getSearchRecipes());
   } else {

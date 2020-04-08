@@ -1,6 +1,6 @@
 const filterBy = {
-  mealOptions: [
-    "All Meals",
+  categoryOptions: [
+    "All Categories",
     "Breakfast",
     "Lunch",
     "Dinner",
@@ -14,13 +14,13 @@ const filterBy = {
 };
 
 export const filterOptions = buttonToggled => {
-  let options = filterBy.mealOptions;
+  let options = filterBy.categoryOptions;
   let type = null;
 
   switch (buttonToggled) {
-    case "Meal":
-      options = filterBy.mealOptions;
-      type = "meal";
+    case "Category":
+      options = filterBy.categoryOptions;
+      type = "category";
       break;
     case "Diet":
       options = filterBy.dietOptions;
