@@ -23,10 +23,6 @@ const Home = props => {
 
   useEffect(() => {
     document.title = "Zipiwisk | The internet’s source of free recipes.";
-
-    if (!props.recipes.recipes.length && !isDirtyFilter) {
-      props.updateFilterRecipe("category", "All Categories");
-    }
   }, []);
 
   const handleFilterClick = (option, type) => {
