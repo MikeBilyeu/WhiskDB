@@ -1,13 +1,12 @@
 const db = require("../../db");
 module.exports = async (req, res) => {
-  let { search, offset, sort } = JSON.parse(
+  let { search, offset, sort, diet } = JSON.parse(
     req.query.filterRecipes.toLowerCase()
   );
+  !diet ? (diet = "none") : null;
   search = search.trim().replace(/\s+/g, " & ");
-
-  console.log("SEARCH TERM:", search);
-  const { user_id } = req.query;
   search = search.trim();
+
   const LIMIT = 12;
   const OFFSET = offset * LIMIT;
 
@@ -22,26 +21,28 @@ module.exports = async (req, res) => {
              CAST(count(DISTINCT rw.*) AS INTEGER) AS num_reviews,
              COUNT(DISTINCT sr.*) AS num_saves,
              COUNT(*) OVER() AS full_count,
-             ts_rank_cd('{0.1, 0.05, 0.1, 1.0}', document_vectors, to_tsquery($1), 1) AS rank
+             ts_rank_cd('{0.1, 0.05, 0.1, 1.0}',
+                        document_vectors, to_tsquery($1), 1) AS rank
       FROM recipes r
       LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
       LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
       WHERE to_tsquery($1) @@ document_vectors
-      GROUP BY r.recipe_id,
-               sr.recipe_saved
+      AND r.recipe_id IN
+            (SELECT recipe
+             FROM recipes_join_categories
+             WHERE CASE WHEN $5 = 'none' THEN true
+                        ELSE category = $5 END)
+      GROUP BY r.recipe_id
       ORDER BY rank DESC,
-               CASE
-                   WHEN $4 = 'a-z' THEN LOWER(r.title)
-               END ASC, CASE
-                            WHEN $4 = 'time' THEN r.total_time_mins
-                        END ASC, CASE
-                                     WHEN $4 = 'newest' THEN r.created_at
-                                 END DESC, rating DESC,
-                                           num_reviews DESC,
-                                           created_at DESC
+               CASE WHEN $4 = 'time' THEN r.total_time_mins END ASC,
+               CASE WHEN $4 = 'newest' THEN r.created_at END DESC,
+               rating  DESC,
+               created_at DESC,
+               num_saves DESC,
+               num_reviews DESC
       LIMIT $2
       OFFSET $3;`,
-      [search, LIMIT, OFFSET, sort]
+      [search, LIMIT, OFFSET, sort, diet]
     );
     if (rowCount < 1) {
       res.status(204).send();

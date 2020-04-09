@@ -1,5 +1,5 @@
-import { SET_BROWSE_DATA, REMOVE_RECIPES } from "../../types";
-import { getBrowseRecipes, getSearchRecipes } from "../get_recipes";
+import { SET_BROWSE_DATA, REMOVE_RECIPES } from "../types";
+import { getBrowseRecipes, getSearchRecipes } from "./";
 
 const updateFilterRecipe = (type, value) => (dispatch, getState) => {
   const {

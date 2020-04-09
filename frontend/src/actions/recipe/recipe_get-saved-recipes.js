@@ -5,7 +5,7 @@ import {
   GET_SAVED_RECIPES_REQUEST,
   TOGGLE_FILTER_BUTTON_PROFILE,
   SET_PROFILE_FILTER_DATA
-} from "../../types";
+} from "../types";
 
 const getSavedRecipes = () => async (dispatch, getState) => {
   const {

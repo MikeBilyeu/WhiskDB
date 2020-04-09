@@ -10,8 +10,8 @@ import Auth from "../auth";
 import Recipe from "../recipe";
 import ScrollUp from "./scroll_up";
 import NoMatch from "../no_match";
-import getSavedRecipes from "../../actions/recipe/get-saved-recipes";
-import { getBrowseRecipes } from "../../actions/browse/get_recipes";
+import { getSavedRecipes } from "../../actions/recipe";
+import { getBrowseRecipes } from "../../actions/browse";
 
 checkAuthToken();
 
@@ -40,7 +40,8 @@ const App = props => {
 };
 
 const mapStateToProps = state => ({
-  isAuth: state.auth.isAuthenticated
+  isAuth: state.auth.isAuthenticated,
+  diet: state.browseRecipes.filterRecipes.diet
 });
 
 export default connect(

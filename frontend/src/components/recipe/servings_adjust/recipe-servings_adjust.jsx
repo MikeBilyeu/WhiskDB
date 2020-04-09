@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import classNames from "classnames";
 import { connect } from "react-redux";
-import { convertServings } from "../../../actions/recipeActions";
+import { convertServings } from "../../../actions/recipe";
 import "./recipe-servings_adjust.scss";
 
 const ServingsAdjust = props => {

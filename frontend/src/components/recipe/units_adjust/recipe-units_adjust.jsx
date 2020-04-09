@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { connect } from "react-redux";
-import { toggleUnit } from "../../../actions/recipeActions";
+import { toggleUnit } from "../../../actions/recipe";
 
 const UnitsAdjust = props => {
   return (

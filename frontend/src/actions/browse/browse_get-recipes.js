@@ -1,19 +1,15 @@
 import axios from "axios";
-
 import {
   GET_ERRORS,
   GET_BROWSE_RECIPES,
   GET_BROWSE_REQUEST,
   SET_BROWSE_DATA,
   TOGGLE_FILTER_BUTTON_BROWSE
-} from "../../types";
+} from "../types";
 
 export const getBrowseRecipes = () => async (dispatch, getState) => {
   // Get the user_id from state to check if user saved the recipe
   const {
-    auth: {
-      user: { user_id }
-    },
     browseRecipes: { filterRecipes }
   } = getState();
 
@@ -24,9 +20,8 @@ export const getBrowseRecipes = () => async (dispatch, getState) => {
 
   try {
     const { data } = await axios.get("/recipes/browse", {
-      params: { filterRecipes, user_id }
+      params: { filterRecipes }
     });
-
     dispatch({ type: GET_BROWSE_RECIPES, payload: data });
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
@@ -37,9 +32,6 @@ export const getBrowseRecipes = () => async (dispatch, getState) => {
 export const getSearchRecipes = () => async (dispatch, getState) => {
   // Get the user_id from state to check if user saved the recipe
   const {
-    auth: {
-      user: { user_id }
-    },
     browseRecipes: { filterRecipes }
   } = getState();
 
@@ -50,7 +42,7 @@ export const getSearchRecipes = () => async (dispatch, getState) => {
 
   try {
     let { data } = await axios.get("/recipes/search", {
-      params: { filterRecipes, user_id }
+      params: { filterRecipes }
     });
 
     // dispatch({ type: REMOVE_RECIPES, payload: data });

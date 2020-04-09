@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import { updateFilterRecipe } from "../../browse";
-import { updateSavedFilterRecipe } from "../";
+import { updateFilterRecipe } from "../browse";
+import { updateSavedFilterRecipe } from "./";
 
 // Delete Recipe
 const deleteRecipe = recipeId => dispatch => {

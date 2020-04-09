@@ -1,5 +1,5 @@
-import { OFFSET_INCREMENT } from "../../types";
-import { getBrowseRecipes, getSearchRecipes } from "../get_recipes";
+import { OFFSET_INCREMENT } from "../types";
+import { getBrowseRecipes, getSearchRecipes } from "./";
 
 const incrementOffset = () => (dispatch, getState) => {
   const {

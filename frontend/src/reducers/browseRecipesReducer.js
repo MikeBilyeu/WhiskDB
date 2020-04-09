@@ -2,6 +2,7 @@ import {
   GET_BROWSE_RECIPES,
   GET_BROWSE_REQUEST,
   SET_BROWSE_DATA,
+  SET_CURRENT_USER,
   TOGGLE_FILTER_BUTTON_BROWSE,
   OFFSET_INCREMENT,
   REMOVE_RECIPES,
@@ -14,7 +15,7 @@ const initialState = {
   filterRecipes: {
     search: "",
     category: "All Categories",
-    diet: "None",
+    diet: null,
     sort: "Top Rated",
     offset: 0
   },
@@ -31,6 +32,8 @@ export default function(state = initialState, action) {
         recipes: [...state.recipes, ...action.payload],
         isFetching: false
       };
+    case SET_CURRENT_USER:
+      return state;
     case SET_BROWSE_DATA:
       return {
         ...state,
@@ -39,7 +42,7 @@ export default function(state = initialState, action) {
     case REMOVE_RECIPES:
       return {
         ...state,
-        recipes: initialState.recipes
+        recipes: []
       };
     case OFFSET_INCREMENT:
       return {

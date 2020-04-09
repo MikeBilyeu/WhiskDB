@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RATING_PERCENTAGE, GET_ERRORS } from "../../types";
+import { GET_RATING_PERCENTAGE, GET_ERRORS } from "../types";
 
 const getRatingPercentage = recipe_id => async dispatch => {
   try {

@@ -4,7 +4,7 @@ import {
   GET_ERRORS,
   REMOVE_SAVED_RECIPES,
   GET_SAVED_RECIPES
-} from "../../types";
+} from "../types";
 
 const saveRecipe = recipe_id => async (dispatch, getState) => {
   const {

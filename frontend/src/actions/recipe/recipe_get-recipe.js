@@ -1,10 +1,5 @@
 import axios from "axios";
-import {
-  GET_RECIPE_REQUEST,
-  GET_RECIPE,
-  GET_ERRORS,
-  NO_MATCH
-} from "../../types";
+import { GET_RECIPE_REQUEST, GET_RECIPE, GET_ERRORS, NO_MATCH } from "../types";
 
 const getRecipe = (recipe_id, user_id) => async dispatch => {
   try {

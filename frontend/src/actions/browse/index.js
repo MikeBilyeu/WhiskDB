@@ -1,1 +1,1 @@
-export * from "./actions-browse.js";
+export * from "./actions_browse.js";

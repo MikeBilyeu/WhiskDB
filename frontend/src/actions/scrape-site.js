@@ -1,6 +1,5 @@
 //import axios from "axios";
 //import { change } from "redux-form";
-import { TOGGLE_UNIT, CONVERT_SERVINGS, TOGGLE_SORT_BUTTON } from "./types";
 
 // export const scrapeSite = URL => async dispatch => {
 //   dispatch({ type: GET_SCRAPE_URL_REQUEST });
@@ -19,15 +18,3 @@ import { TOGGLE_UNIT, CONVERT_SERVINGS, TOGGLE_SORT_BUTTON } from "./types";
 //     console.error(err);
 //   }
 // };
-
-export const toggleSortButton = () => {
-  return { type: TOGGLE_SORT_BUTTON };
-};
-
-export const toggleUnit = () => {
-  return { type: TOGGLE_UNIT };
-};
-
-export const convertServings = number => {
-  return { type: CONVERT_SERVINGS, payload: number };
-};
