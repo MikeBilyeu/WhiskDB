@@ -43,15 +43,15 @@ module.exports = async ({ user, body: recipe }, res) => {
         WHERE recipe= $1`,
       [recipe.recipe_id]
     );
-    // Add new categories
-    Promise.all(
-      recipe.categories.map(async category => {
-        await db.query(
-          `INSERT INTO recipes_join_categories (recipe, category)
-           VALUES ($1, $2)`,
-          [recipe.recipe_id, category]
-        );
-      })
+
+    let categoryValues = [];
+
+    recipe.categories.forEach(category => {
+      categoryValues.push(`(${recipe.recipe_id}, '${category}')`);
+    });
+
+    await db.query(
+      `INSERT INTO recipes_join_categories VALUES ${categoryValues.join()};`
     );
 
     res.status(200).send("Changes saved!");

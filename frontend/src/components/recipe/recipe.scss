@@ -124,10 +124,8 @@
 }
 
 .r-directions {
-  @include grid-center;
   font-family: "Noto Serif", Arial, sans-serif;
   line-height: 1.25rem;
-
   &__text {
     white-space: pre-wrap;
     margin: 0;

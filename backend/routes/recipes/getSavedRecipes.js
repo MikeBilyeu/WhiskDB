@@ -19,16 +19,16 @@ module.exports = async (req, res) => {
                COALESCE(
                           (SELECT sr.saved_at
                            FROM saved_recipes sr
-                           WHERE sr.recipe_saved = r.recipe_id
-                             AND sr.saved_by = $1), r.created_at) AS saved_at
+                           WHERE sr.recipe_id = r.recipe_id
+                             AND sr.user_id = $1), r.created_at) AS saved_at
         FROM recipes r
         LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
-        LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
+        LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_id
         LEFT JOIN recipes_join_categories rjc ON rjc.recipe = r.recipe_id
         WHERE (r.recipe_id IN
-                 (SELECT sr.recipe_saved
+                 (SELECT sr.recipe_id
                   FROM saved_recipes sr
-                  WHERE sr.saved_by = $1)
+                  WHERE sr.user_id = $1)
                OR r.created_by = $1)
           AND CASE
                   WHEN $2 = 'All Categories' THEN TRUE

@@ -14,16 +14,14 @@ module.exports = async (req, res) => {
     const { rows, rowCount } = await db.query(
       `SELECT r.recipe_id,
              r.title,
-             r.total_time_mins,
              r.image_url,
-             r.created_at,
              COALESCE(AVG(rw.rating), 0) AS rating,
              CAST(COUNT(DISTINCT rw.*) AS INTEGER) AS num_reviews,
              COUNT(DISTINCT sr.*) AS num_saves,
              COUNT(*) OVER() AS full_count
       FROM recipes r
-      LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
-      LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
+      LEFT JOIN reviews rw USING (recipe_id)
+      LEFT JOIN saved_recipes sr USING (recipe_id)
       WHERE r.recipe_id
       IN
         (SELECT recipe
@@ -40,10 +38,10 @@ module.exports = async (req, res) => {
       ORDER BY
         CASE WHEN $3 = 'time' THEN r.total_time_mins END ASC,
         CASE WHEN $3 = 'newest' THEN r.created_at END DESC,
-        rating  DESC,
-        created_at DESC,
-        num_saves DESC,
-        num_reviews DESC
+        num_reviews DESC,
+        rating DESC,
+        num_reviews DESC,
+        created_at DESC
       LIMIT $4
       OFFSET $5;`,
       [category, diet, sort, LIMIT, OFFSETNUM]

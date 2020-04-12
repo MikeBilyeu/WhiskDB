@@ -17,36 +17,49 @@ module.exports = async ({ user, body: recipe }, res) => {
 
   try {
     const { rows } = await db.query(
-      `INSERT INTO recipes ( created_by, title, servings, total_time_mins,
-        footnote, directions, ingredients, keywords, categories, image_url,
-        document_vectors ) VALUES ( $1, CAST($2 AS VARCHAR), $3, $4, $5, CAST($6 AS VARCHAR),
-        $7, CAST($8 AS VARCHAR[]), $9, $10, ( setweight(to_tsvector($2), 'A')
-        || setweight(to_tsvector($6), 'C')  || setweight(to_tsvector(
-        array_to_string($8, ' ') ), 'B') ) ) RETURNING recipe_id`,
+      `INSERT INTO recipes
+       VALUES (
+          DEFAULT,
+          $1,
+          $2,
+          $3,
+          $4,
+          $5,
+          $6,
+          NULL,
+          DEFAULT,
+          (setweight(to_tsvector($3::VARCHAR), 'A')
+            || setweight(to_tsvector($8::VARCHAR), 'C')
+            || setweight(to_tsvector(
+                 array_to_string($7::VARCHAR[], ' ')), 'B')),
+          $7,
+          $8,
+          $9,
+          $10
+        )
+         RETURNING recipe_id;`,
       [
         user.user_id,
+        recipe.image_url,
         recipe.title.trim(),
-        recipe.servings,
         convertTimeToMin(recipe.time),
+        recipe.servings,
         recipe.footnote,
+        keywordsArr,
         recipe.directions,
         ingredientsArr,
-        keywordsArr,
-        recipe.categories,
-        recipe.image_url
+        recipe.categories
       ]
     );
-
     const recipe_id = rows[0].recipe_id;
+    let categoryValues = [];
 
-    Promise.all(
-      recipe.categories.map(async category => {
-        await db.query(
-          `INSERT INTO recipes_join_categories (recipe, category)
-           VALUES ($1, $2)`,
-          [recipe_id, category]
-        );
-      })
+    recipe.categories.forEach(category => {
+      categoryValues.push(`(${recipe_id}, '${category}')`);
+    });
+
+    await db.query(
+      `INSERT INTO recipes_join_categories VALUES ${categoryValues.join()};`
     );
 
     res.status(200).send({ recipe_id: recipe_id });

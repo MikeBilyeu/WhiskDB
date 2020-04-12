@@ -24,8 +24,8 @@ module.exports = async (req, res) => {
              ts_rank_cd('{0.1, 0.05, 0.1, 1.0}',
                         document_vectors, to_tsquery($1), 1) AS rank
       FROM recipes r
-      LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
-      LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_saved
+      LEFT JOIN reviews rw USING (recipe_id)
+      LEFT JOIN saved_recipes sr USING (recipe_id)
       WHERE to_tsquery($1) @@ document_vectors
       AND r.recipe_id IN
             (SELECT recipe
@@ -36,10 +36,10 @@ module.exports = async (req, res) => {
       ORDER BY rank DESC,
                CASE WHEN $4 = 'time' THEN r.total_time_mins END ASC,
                CASE WHEN $4 = 'newest' THEN r.created_at END DESC,
-               rating  DESC,
-               created_at DESC,
-               num_saves DESC,
-               num_reviews DESC
+               num_reviews DESC,
+               rating DESC,
+               num_reviews DESC,
+               created_at DESC
       LIMIT $2
       OFFSET $3;`,
       [search, LIMIT, OFFSET, sort, diet]
