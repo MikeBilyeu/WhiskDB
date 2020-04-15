@@ -17,7 +17,6 @@
   margin: 1rem auto;
   text-align: left;
   box-shadow: 0 0.3rem 0.5rem 0 rgba(0, 0, 0, 0.3);
-  border-radius: 0xrem;
 
   &__thumbnail {
     height: 23.2rem;
@@ -94,5 +93,11 @@
   &__thumbnail {
     @extend .recipe-card__thumbnail;
     background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
+  }
+}
+
+@media (min-device-width: 650px) {
+  .recipe-card {
+    border-radius: 0.3rem;
   }
 }

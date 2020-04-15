@@ -6,7 +6,7 @@ const validateRegisterInput = require("../../validation/register");
 module.exports = async ({ body: { username, email, password } }, res) => {
   const errors = validateRegisterInput({ username, email, password });
   if (Object.keys(errors).length !== 0) {
-    res.status(400).json(errors);
+    res.status(400).send(errors);
   }
 
   const { rows } = await db.query(
