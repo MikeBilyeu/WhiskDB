@@ -32,8 +32,6 @@
     display: block;
     z-index: -1;
     background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
-    background-size: 200% 200%;
-    animation: Animation 3s ease-in infinite;
   }
 
   &__container {
@@ -44,6 +42,7 @@
     z-index: 2;
     padding: 1rem 0.75rem;
     border-radius: 1rem 1rem 0 0;
+    box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.2);
   }
 
   &__details {
@@ -222,6 +221,7 @@
       border-radius: 0;
       border-left: solid lightColor(medium) 0.09rem;
       padding: 3rem 8%;
+      box-shadow: none;
 
       .r-ingredients {
         display: none;

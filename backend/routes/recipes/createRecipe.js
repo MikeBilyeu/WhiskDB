@@ -62,6 +62,16 @@ module.exports = async ({ user, body: recipe }, res) => {
       `INSERT INTO recipes_join_categories VALUES ${categoryValues.join()};`
     );
 
+    let keywordValues = [];
+
+    keywordsArr.forEach(keyword => {
+      keywordValues.push(`('${keyword}')`);
+    });
+
+    await db.query(
+      `INSERT INTO keywords (keyword) VALUES ${keywordValues.join()};`
+    );
+
     res.status(200).send({ recipe_id: recipe_id });
   } catch (err) {
     console.error(err);

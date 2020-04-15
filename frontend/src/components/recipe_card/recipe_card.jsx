@@ -25,7 +25,7 @@ const RecipeCard = props => {
         className="recipe-card__thumbnail"
         src={props.recipe.image_url.replace(
           "upload/",
-          "upload/c_scale,h_900,q_auto:low/"
+          "upload/c_scale,h_1000,q_auto:good/"
         )}
         alt=""
       />
@@ -49,6 +49,7 @@ const RecipeCard = props => {
             votes={props.recipe.num_reviews}
           />
         )}
+        <div className="recipe-card__fade"></div>
       </div>
     </Link>
   );

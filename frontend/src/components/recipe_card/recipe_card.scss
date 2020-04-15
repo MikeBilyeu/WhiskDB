@@ -16,8 +16,8 @@
   background-color: #fff;
   margin: 1rem auto;
   text-align: left;
-  box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.3);
-  border-radius: 0.3rem;
+  box-shadow: 0 0.3rem 0.5rem 0 rgba(0, 0, 0, 0.3);
+  border-radius: 0xrem;
 
   &__thumbnail {
     height: 23.2rem;
@@ -31,9 +31,7 @@
     padding: 0 0.5rem 0.75rem 0.5rem;
     position: absolute;
     bottom: -1px;
-    background-color: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 -1rem 3rem 3rem rgba(0, 0, 0, 0.6);
-
+    background-color: none;
     color: #fff;
     font-family: Arial !important;
     font-size: 0.75rem;
@@ -43,6 +41,16 @@
     align-items: center;
     justify-items: start;
     width: 100%;
+    z-index: 1;
+  }
+
+  &__fade {
+    z-index: -1;
+    box-shadow: 0 0rem 4rem 6rem rgba(0, 0, 0, 0.6);
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    height: 0;
   }
 
   &__title {
