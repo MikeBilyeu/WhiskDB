@@ -16,7 +16,13 @@ module.exports = passport => {
         return done("jwt expired");
       }
       db.query(`SELECT 1 FROM users WHERE user_id = $1;`, [jwtPayload.user_id])
-        .then(() => done(null, jwtPayload))
+        .then(res => {
+          if (res.rowCount) {
+            return done(null, jwtPayload);
+          } else {
+            throw err;
+          }
+        })
         .catch(err => done(err, false));
     })
   );

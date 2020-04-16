@@ -21,13 +21,13 @@ const initialState = {
   showMoreOpen: false,
   editRecipe: false,
   ratingPercentage: {
-    star5: 0,
-    star4: 0,
-    star3: 0,
-    star2: 0,
-    star1: 0,
+    star5: null,
+    star4: null,
+    star3: null,
+    star2: null,
+    star1: null,
     num_reviews: 0,
-    rating: 0
+    rating: null
   },
   review: null,
   noMatch: false

@@ -1,6 +1,7 @@
 import React from "react";
 
 const StarVotes = ({ star, num_reviews, votes }) => {
+  votes = votes || 0;
   num_reviews = num_reviews || 1;
   return (
     <div className="review-details-votes">

@@ -1,13 +1,6 @@
 @import "../../assets/styles/variables";
 
 .recipe-card {
-  &:hover {
-    .recipe-card__thumbnail {
-      //opacity: 0.8;
-      //  transform: scale(1.025);
-    }
-  }
-
   overflow: hidden;
   position: relative;
   display: inline-block;
@@ -97,7 +90,24 @@
 }
 
 @media (min-device-width: 650px) {
-  .recipe-card {
+  .recipe-card,
+  .recipe-card-loading {
     border-radius: 0.3rem;
   }
 }
+
+@media (min-device-width: 650px) and (max-width: 650px) {
+  .recipe-card,
+  .recipe-card-loading {
+    width: 9rem;
+    height: 12rem;
+  }
+}
+//
+// @media (max-width: 639px) {
+//   .recipe-card,
+//   .recipe-card-loading {
+//     width: 9rem;
+//     height: 12rem;
+//   }
+// }

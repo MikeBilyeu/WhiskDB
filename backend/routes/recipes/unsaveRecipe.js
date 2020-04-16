@@ -7,8 +7,8 @@ module.exports = async (req, res) => {
     await db.query(
       `DELETE
           FROM saved_recipes
-          WHERE saved_by = $1
-            AND recipe_saved = $2`,
+          WHERE user_id = $1
+            AND recipe_id = $2`,
       [user_id, recipe_id]
     );
     res.status(200).send("unsaved");
