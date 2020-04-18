@@ -43,8 +43,8 @@
           width: 11rem;
           height: 11rem;
           border-radius: 100%;
-          border: solid lightColor(medium) 0.1rem;
-          padding: 0.4rem;
+          border: solid lightColor(medium) 0.09rem;
+          padding: 0;
         }
       }
 
@@ -170,5 +170,11 @@
 @media (min-width: 670px) {
   .profile-home > .filter-results-category {
     display: none;
+  }
+}
+
+@media (max-device-width: 649px) {
+  .profile-home > .filter-results-category {
+    top: 2rem !important;
   }
 }
