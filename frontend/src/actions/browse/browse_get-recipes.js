@@ -10,17 +10,20 @@ import {
 export const getBrowseRecipes = () => async (dispatch, getState) => {
   // Get the user_id from state to check if user saved the recipe
   const {
-    browseRecipes: { filterRecipes }
+    browseRecipes: { filterRecipes },
+    auth: {
+      user: { user_id }
+    }
   } = getState();
 
   // Dispatch a browse request sets isFetching: true
   dispatch({ type: GET_BROWSE_REQUEST });
   dispatch({ type: TOGGLE_FILTER_BUTTON_BROWSE, payload: null });
-  dispatch({ type: SET_BROWSE_DATA, payload: filterRecipes });
+  dispatch({ type: SET_BROWSE_DATA, payload: { ...filterRecipes, user_id } });
 
   try {
     const { data } = await axios.get("/recipes/browse", {
-      params: { filterRecipes }
+      params: { ...filterRecipes, user_id }
     });
     dispatch({ type: GET_BROWSE_RECIPES, payload: data });
   } catch (err) {
@@ -32,17 +35,20 @@ export const getBrowseRecipes = () => async (dispatch, getState) => {
 export const getSearchRecipes = () => async (dispatch, getState) => {
   // Get the user_id from state to check if user saved the recipe
   const {
-    browseRecipes: { filterRecipes }
+    browseRecipes: { filterRecipes },
+    auth: {
+      user: { user_id }
+    }
   } = getState();
 
   // dispatch a browse request
   dispatch({ type: GET_BROWSE_REQUEST });
   dispatch({ type: TOGGLE_FILTER_BUTTON_BROWSE, payload: null });
-  dispatch({ type: SET_BROWSE_DATA, payload: filterRecipes });
+  dispatch({ type: SET_BROWSE_DATA, payload: { ...filterRecipes, user_id } });
 
   try {
     let { data } = await axios.get("/recipes/search", {
-      params: { filterRecipes }
+      params: { ...filterRecipes, user_id }
     });
 
     // dispatch({ type: REMOVE_RECIPES, payload: data });

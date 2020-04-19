@@ -3,19 +3,32 @@ import {
   SAVE_RECIPE,
   GET_ERRORS,
   REMOVE_SAVED_RECIPES,
-  GET_SAVED_RECIPES
+  GET_SAVED_RECIPES,
+  GET_BROWSE_RECIPES
 } from "../types";
 
 const saveRecipe = recipe_id => async (dispatch, getState) => {
-  const {
-    savedRecipes: { recipes },
+  let {
+    savedRecipes: { recipes: savedRecipes },
+    browseRecipes: { recipes: browseRecipes },
     recipe: { recipe }
   } = getState();
-
+  // Update the data for saved and browse recipes
   let fullCount = 0;
+  if (savedRecipes[0]) {
+    fullCount = parseInt(savedRecipes[0].full_count) + 1;
+  }
 
-  if (recipes[0]) {
-    fullCount = parseInt(recipes[0].full_count) + 1;
+  savedRecipes = [
+    { ...recipe, saved: true, full_count: fullCount },
+    ...savedRecipes
+  ];
+
+  for (let i in browseRecipes) {
+    if (browseRecipes[i].recipe_id === parseInt(recipe_id)) {
+      browseRecipes[i].saved = true;
+      browseRecipes[i].num_saves = browseRecipes[i].num_saves + 1;
+    }
   }
 
   try {
@@ -24,8 +37,9 @@ const saveRecipe = recipe_id => async (dispatch, getState) => {
     dispatch({ type: REMOVE_SAVED_RECIPES });
     dispatch({
       type: GET_SAVED_RECIPES,
-      payload: [{ ...recipe, full_count: fullCount }, ...recipes]
+      payload: savedRecipes
     });
+    dispatch({ type: GET_BROWSE_RECIPES, payload: browseRecipes });
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
   }

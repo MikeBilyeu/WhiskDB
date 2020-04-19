@@ -1,7 +1,7 @@
 const db = require("../../db");
 module.exports = async (req, res) => {
-  let { search, offset, sort, diet } = JSON.parse(
-    req.query.filterRecipes.toLowerCase()
+  let { search, offset, sort, diet, user_id } = JSON.parse(
+    JSON.stringify(req.query).toLowerCase()
   );
   !diet ? (diet = "none") : null;
   search = search.trim().replace(/\s+/g, " & ");
@@ -10,39 +10,51 @@ module.exports = async (req, res) => {
   const LIMIT = 12;
   const OFFSET = offset * LIMIT;
 
+  let orderBy = `rank DESC,${
+    sort === "time"
+      ? "r.total_time_mins ASC,"
+      : sort === "newest"
+      ? "r.created_at DESC,"
+      : ""
+  } num_reviews DESC,
+  rating DESC,
+  r.created_at DESC`;
+
   try {
     const { rows, rowCount } = await db.query(
-      `SELECT r.recipe_id,
+      `SELECT DISTINCT(r.recipe_id),
+             r.created_by,
+             r.image_url,
              r.title,
              r.total_time_mins,
-             r.image_url,
+             r.servings,
+             r.footnote,
+             r.directions,
+             r.ingredients,
              r.created_at,
-             COALESCE(AVG(rw.rating), 0) AS rating,
-             CAST(count(DISTINCT rw.*) AS INTEGER) AS num_reviews,
-             COUNT(DISTINCT sr.*) AS num_saves,
-             COUNT(*) OVER() AS full_count,
+             u.username,
+             sr.user_id = $5 AS saved,
+             AVG(rw.rating) AS rating,
+             COUNT(DISTINCT rw)::INT AS num_reviews,
+             COUNT(DISTINCT sr)::INT AS num_saves,
+             COUNT(r.recipe_id) OVER()::INT AS full_count,
              ts_rank_cd('{0.1, 0.05, 0.1, 1.0}',
                         document_vectors, to_tsquery($1), 1) AS rank
       FROM recipes r
+      right JOIN users u ON u.user_id = r.created_by
       LEFT JOIN reviews rw USING (recipe_id)
-      LEFT JOIN saved_recipes sr USING (recipe_id)
+      LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_id AND sr.user_id = $5
       WHERE to_tsquery($1) @@ document_vectors
       AND r.recipe_id IN
             (SELECT recipe
              FROM recipes_join_categories
-             WHERE CASE WHEN $5 = 'none' THEN true
-                        ELSE category = $5 END)
-      GROUP BY r.recipe_id
-      ORDER BY rank DESC,
-               CASE WHEN $4 = 'time' THEN r.total_time_mins END ASC,
-               CASE WHEN $4 = 'newest' THEN r.created_at END DESC,
-               num_reviews DESC,
-               rating DESC,
-               num_reviews DESC,
-               created_at DESC
+             WHERE CASE WHEN $4 = 'none' THEN true
+                        ELSE category = $4 END)
+      GROUP BY r.recipe_id, u.user_id, sr.user_id
+      ORDER BY ${orderBy}
       LIMIT $2
       OFFSET $3;`,
-      [search, LIMIT, OFFSET, sort, diet]
+      [search, LIMIT, OFFSET, diet, user_id]
     );
     if (rowCount < 1) {
       res.status(204).send();
