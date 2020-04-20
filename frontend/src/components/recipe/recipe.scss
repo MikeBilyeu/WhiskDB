@@ -38,7 +38,7 @@
     min-width: 100%;
     background-color: #fff;
     position: relative;
-    top: calc(100vh - 9rem);
+    top: calc(100vh - 12rem);
     z-index: 2;
     padding: 1rem 0.75rem;
     border-radius: 1rem 1rem 0 0;
@@ -51,6 +51,14 @@
     display: grid;
     place-items: center;
     grid-gap: 0.5rem;
+
+    &:before {
+      content: "";
+      border: solid lightColor(light) 0.1rem;
+      border-radius: 5rem;
+      width: 2rem;
+      margin-bottom: 1.5rem;
+    }
   }
 
   &__title {
@@ -230,6 +238,9 @@
 
     &__details {
       justify-items: start;
+      &:before {
+        content: none;
+      }
     }
 
     &__img {
@@ -285,7 +296,7 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (min-device-width: 650px) and (max-width: 700px) {
   .recipe {
     display: block;
 

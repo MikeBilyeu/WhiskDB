@@ -1,16 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router";
 
-class ScrollUp extends React.Component {
-  componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 0);
-    }
-  }
+const ScrollUp = props => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [props.location]);
 
-  render() {
-    return this.props.children;
-  }
-}
+  return props.children;
+};
 
 export default withRouter(ScrollUp);
