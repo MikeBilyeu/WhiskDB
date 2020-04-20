@@ -5,14 +5,15 @@
   position: relative;
   display: inline-block;
   width: 19rem;
-  height: 23.2rem;
+  height: 24rem;
   background-color: #fff;
   margin: 1rem auto;
   text-align: left;
   box-shadow: 0 0.3rem 0.5rem 0 rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
 
   &__thumbnail {
-    height: 23.2rem;
+    height: 24rem;
     width: 100%;
     object-fit: cover;
     @include slow-transition;
@@ -22,7 +23,7 @@
   &__meta {
     padding: 0 0.5rem 0.75rem 0.5rem;
     position: absolute;
-    bottom: -1px;
+    bottom: 0px;
     background-color: none;
     color: #fff;
     font-family: Arial !important;
@@ -82,17 +83,11 @@
   height: 23.2rem;
   background-color: #fff;
   margin: 1rem auto;
+  border-radius: 0.5rem;
 
   &__thumbnail {
     @extend .recipe-card__thumbnail;
     background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
-  }
-}
-
-@media (min-device-width: 650px) {
-  .recipe-card,
-  .recipe-card-loading {
-    border-radius: 0.3rem;
   }
 }
 

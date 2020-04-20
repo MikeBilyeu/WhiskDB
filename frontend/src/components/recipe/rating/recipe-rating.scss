@@ -32,6 +32,7 @@
 
 .recipe-rating {
   @extend .recipe-card-rating;
+  grid-row: 3 / 4;
   grid-template-columns: repeat(3, min-content);
   cursor: pointer;
   position: relative;
