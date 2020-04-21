@@ -66,7 +66,6 @@ const Edit = props => {
 const mapStateToProps = state => ({
   dirty: isDirty("edit-profile"),
   recipeData: state.recipe,
-  // redux memoized selector
   recipeTime: convertTime(state)
 });
 

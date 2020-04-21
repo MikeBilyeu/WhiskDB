@@ -30,6 +30,8 @@ module.exports = async (req, res) => {
              r.directions,
              r.ingredients,
              r.created_at,
+             r.keywords,
+             r.categories,
              u.username,
              sr.user_id = $5 AS saved,
              AVG(rw.rating) AS rating,

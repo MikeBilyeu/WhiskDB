@@ -15,7 +15,7 @@ class ReviewDetails extends React.Component {
     return (
       <div className="review-details">
         <h2 className="review-details__num-votes">
-          {num_reviews + " "} vote{num_reviews === 1 ? "" : "s"}
+          {num_reviews + " "} review{num_reviews === 1 ? "" : "s"}
         </h2>
         <StarVotes star="5" votes={star5} num_reviews={num_reviews} />
         <StarVotes star="4" votes={star4} num_reviews={num_reviews} />

@@ -27,13 +27,17 @@ router.delete(
 router.get("/rating", require("./recipeRating"));
 
 router.get(
-  "/review",
+  "/my-review",
   passport.authenticate("jwt", { session: false }),
-  require("./getReview")
+  require("./getMyReview")
 );
 
+router.get("/reviews", require("./getRecentReviews"));
+
+router.get("/reviews", require("./getRecentReviews"));
+
 router.post(
-  "/review",
+  "/reviews",
   passport.authenticate("jwt", { session: false }),
   require("./postReview")
 );

@@ -8,7 +8,8 @@ import {
   GET_RATING_PERCENTAGE,
   TOGGLE_SHOW_MORE,
   SUBMIT_REVIEW,
-  GET_RECIPE_REVIEW,
+  GET_RECIPE_REVIEWS,
+  GET_MY_RECIPE_REVIEW,
   TOGGLE_EDIT_RECIPE,
   NO_MATCH
 } from "../actions/types";
@@ -29,7 +30,8 @@ const initialState = {
     num_reviews: 0,
     rating: null
   },
-  review: null,
+  reviews: [],
+  myReview: {},
   noMatch: false
 };
 
@@ -56,11 +58,14 @@ export default function(state = initialState, action) {
           rating: action.payload.rating,
           num_reviews: action.payload.num_reviews
         },
-        review: null,
+        reviews: [],
+        myReview: {},
         noMatch: false
       };
-    case GET_RECIPE_REVIEW:
-      return { ...state, review: action.payload };
+    case GET_RECIPE_REVIEWS:
+      return { ...state, reviews: action.payload };
+    case GET_MY_RECIPE_REVIEW:
+      return { ...state, myReview: action.payload };
     case GET_RATING_PERCENTAGE:
       return { ...state, ratingPercentage: action.payload };
     case SUBMIT_REVIEW:

@@ -7,9 +7,28 @@
   padding: 0.75rem;
   border: solid lightColor(medium) 0.08rem;
   border-radius: 0.3rem;
+  color: darkColor(medium);
+  display: grid;
+  grid-row-gap: 2rem;
+
+  .recent-reviews {
+    &__title {
+      font-size: 0.8rem;
+      margin: 0.25rem 0;
+      text-align: center;
+    }
+    &__list {
+      margin: 0;
+      padding: 0.25rem 0;
+      list-style: none;
+      border-top: solid lightColor(light) thin;
+      border-bottom: solid lightColor(light) thin;
+    }
+  }
 
   .user-review {
     color: darkColor(medium);
+    margin: 0.5rem 0;
     &__username {
       margin: 0.2rem 0.1rem;
       font-size: 0.8rem;
@@ -122,15 +141,15 @@
 
   .review-details {
     width: 100%;
-    margin: 0 auto 2rem auto;
+    margin: 0 auto;
     font-size: 0.75rem;
     color: darkColor(medium);
 
     &__num-votes {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       text-align: center;
-      font-weight: 500;
-      margin: 0 0 1rem 0;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
     }
 
     .review-details-votes {

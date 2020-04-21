@@ -2,19 +2,20 @@ const db = require("../../db");
 
 module.exports = async (req, res) => {
   const { recipe_id } = req.query;
-  const { user_id } = req.user; // Get user_id from auth
+  const { user_id } = req.user;
   try {
-    const { rows, rowCount } = await db.query(
+    const { rows } = await db.query(
       `SELECT rw.rating,
-               rw.comment
-        FROM reviews rw
-        WHERE rw.recipe_id = $1
-          AND rw.user_id = $2
-        LIMIT 1`,
+              rw.comment,
+              u.username
+       FROM reviews rw
+       LEFT JOIN users u USING (user_id)
+       WHERE rw.user_id = $2
+          AND rw.recipe_id = $1;`,
       [recipe_id, user_id]
     );
-
-    if (rowCount < 1) {
+    console.log(rows);
+    if (!rows.length) {
       res.status(204).send();
     } else {
       res.status(200).json(rows[0]);

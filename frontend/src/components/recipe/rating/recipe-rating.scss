@@ -32,13 +32,15 @@
 
 .recipe-rating {
   @extend .recipe-card-rating;
-  grid-row: 3 / 4;
+  grid-row: auto;
   grid-template-columns: repeat(3, min-content);
   cursor: pointer;
   position: relative;
 
-  &:hover {
-    opacity: 0.8;
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   &__stars {

@@ -72,80 +72,86 @@ const Recipe = props => {
   if (editRecipe) {
     return <Edit />;
   }
-
-  return (
-    <div className="recipe">
-      <MediaQuery maxDeviceWidth={649}>
-        <Header
-          recipe_id={recipe_id}
-          user_id={user_id}
-          handleBackClick={handleBackClick}
-          isAuth={props.isAuth}
-          created_by={created_by}
-          handleSaveClick={handleSaveClick}
-        />
-        {showMoreOpen ? <More className="recipe-more" /> : null}
-        <img
-          className="recipe__img"
-          href="recipe photo"
-          alt=""
-          src={recipeImage}
-        />
-
-        <div className="recipe__container">
-          <RecipeDetails time={time} />
-          <Ingredients />
-          <Directions directions={directions} time={time} footnote={footnote} />
-          <div className="recipe__created-by">
-            Recipe by {username.toLowerCase()}
-          </div>
-        </div>
-      </MediaQuery>
-
-      <MediaQuery minDeviceWidth={650}>
-        <HeaderDesktop isAuth={props.isAuth} user_img={props.user_img}>
-          <div className="recipe__d-back-btn" onClick={handleBackClick}>
-            <Arrow className="recipe__d-back-icon" />
-            Go back
-          </div>
-          <More className="header-d-more" />
-        </HeaderDesktop>
-        <Ingredients />
-
-        <div className="recipe__container">
-          {props.isAuth && user_id !== created_by ? (
-            <div
-              className={classNames("recipe__save-btn", {
-                "recipe__save-btn--active": saved
-              })}
-              onClick={handleSaveClick}
-            >
-              {saved ? "Unsave" : "Save"}
-            </div>
-          ) : !props.isAuth ? (
-            <Link className="recipe__login-btn" to="/auth">
-              Login to save
-            </Link>
-          ) : null}
-
-          <RecipeDetails time={time} />
-
-          <Ingredients />
-
-          <Directions directions={directions} time={time} footnote={footnote} />
+  if (recipe_id == props.recipeData.recipe.recipe_id) {
+    return (
+      <div className="recipe">
+        <MediaQuery maxDeviceWidth={649}>
+          <Header
+            recipe_id={recipe_id}
+            user_id={user_id}
+            handleBackClick={handleBackClick}
+            isAuth={props.isAuth}
+            created_by={created_by}
+            handleSaveClick={handleSaveClick}
+          />
+          {showMoreOpen ? <More className="recipe-more" /> : null}
           <img
             className="recipe__img"
             href="recipe photo"
             alt=""
             src={recipeImage}
           />
-          <div className="recipe__created-by">
-            Recipe by {username.toLowerCase()}
+
+          <div className="recipe__container">
+            <RecipeDetails time={time} />
+            <Ingredients />
+            <Directions directions={directions} footnote={footnote} />
+            <div className="recipe__created-by">
+              Recipe by {username.toLowerCase()}
+            </div>
           </div>
-        </div>
-      </MediaQuery>
-    </div>
-  );
+        </MediaQuery>
+
+        <MediaQuery minDeviceWidth={650}>
+          <HeaderDesktop isAuth={props.isAuth} user_img={props.user_img}>
+            <div className="recipe__d-back-btn" onClick={handleBackClick}>
+              <Arrow className="recipe__d-back-icon" />
+              Go back
+            </div>
+            <More className="header-d-more" />
+          </HeaderDesktop>
+          <Ingredients />
+
+          <div className="recipe__container">
+            {props.isAuth && user_id !== created_by ? (
+              <div
+                className={classNames("recipe__save-btn", {
+                  "recipe__save-btn--active": saved
+                })}
+                onClick={handleSaveClick}
+              >
+                {saved ? "Unsave" : "Save"}
+              </div>
+            ) : !props.isAuth ? (
+              <Link className="recipe__login-btn" to="/auth">
+                Login to save
+              </Link>
+            ) : null}
+
+            <RecipeDetails time={time} />
+
+            <Ingredients />
+
+            <Directions
+              directions={directions}
+              time={time}
+              footnote={footnote}
+            />
+            <img
+              className="recipe__img"
+              href="recipe photo"
+              alt=""
+              src={recipeImage}
+            />
+            <div className="recipe__created-by">
+              Recipe by {username.toLowerCase()}
+            </div>
+          </div>
+        </MediaQuery>
+      </div>
+    );
+  }
+  return null;
 };
 
 const mapStateToProps = state => ({
