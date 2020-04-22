@@ -123,7 +123,13 @@ const Recipe = props => {
                 {saved ? "Unsave" : "Save"}
               </div>
             ) : !props.isAuth ? (
-              <Link className="recipe__login-btn" to="/auth">
+              <Link
+                className="recipe__login-btn"
+                to={{
+                  pathname: "/auth",
+                  state: { prevPath: props.location.pathname }
+                }}
+              >
                 Login to save
               </Link>
             ) : null}

@@ -7,7 +7,11 @@ import Rating from "../rating";
 import RecentReviews from "./recent-reviews";
 import TextArea from "../../form_inputs/textarea";
 import ReviewDetails from "./details";
-import { submitReview, getRecentReviews } from "../../../actions/review";
+import {
+  submitReview,
+  getRecentReviews,
+  getMyReview
+} from "../../../actions/review";
 import "./recipe-review.scss";
 
 const Review = props => {
@@ -16,6 +20,7 @@ const Review = props => {
 
   useEffect(() => {
     props.getRecentReviews(props.recipe_id);
+    props.getMyReview(props.recipe_id);
   }, []);
 
   const handleChange = e => {
@@ -94,5 +99,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { submitReview, getRecentReviews }
+  { submitReview, getRecentReviews, getMyReview }
 )(Review);

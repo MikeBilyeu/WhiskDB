@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { loginUser, registerUser } from "../../actions/auth";
 import MediaQuery from "react-responsive";
@@ -11,14 +11,17 @@ import Signup from "./signup";
 import "./auth.scss";
 
 const Auth = props => {
+  const [goBackPath] = useState(props.location.state);
+
   useEffect(() => {
     document.title = "Zipiwisk | The internet’s source of free recipes.";
   }, []);
 
   useEffect(() => {
-    // If logged in and user auth redirect to profile
     if (props.isAuthenticated) {
-      props.history.push("/profile");
+      goBackPath
+        ? props.history.push(goBackPath.prevPath)
+        : props.history.push("/profile");
     }
   }, [props.isAuthenticated]);
 

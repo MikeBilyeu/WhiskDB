@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   let { full_name, username, diet, image_url } = req.body;
   const { user_id } = req.user; // get user_id from auth
   const errors = validateUsername(username);
-  full_name = full_name.trim();
+  full_name = full_name && full_name.trim();
   // Check errors for username validation
   if (Object.keys(errors).length !== 0) {
     return res.status(400).json(errors);

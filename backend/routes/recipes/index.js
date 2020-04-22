@@ -34,8 +34,6 @@ router.get(
 
 router.get("/reviews", require("./getRecentReviews"));
 
-router.get("/reviews", require("./getRecentReviews"));
-
 router.post(
   "/reviews",
   passport.authenticate("jwt", { session: false }),

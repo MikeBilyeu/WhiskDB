@@ -7,18 +7,19 @@ import {
 
 const getRecentReviews = recipe_id => async dispatch => {
   try {
+    const { data } = await axios.get("/recipes/reviews", {
+      params: { recipe_id }
+    });
+
+    if (data) {
+      dispatch({ type: GET_RECIPE_REVIEWS, payload: data });
+    }
+
     const myReview = await axios.get("/recipes/my-review", {
       params: { recipe_id }
     });
     if (myReview.data) {
       dispatch({ type: GET_MY_RECIPE_REVIEW, payload: myReview.data });
-    }
-
-    const { data } = await axios.get("/recipes/reviews", {
-      params: { recipe_id }
-    });
-    if (data) {
-      dispatch({ type: GET_RECIPE_REVIEWS, payload: data });
     }
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
