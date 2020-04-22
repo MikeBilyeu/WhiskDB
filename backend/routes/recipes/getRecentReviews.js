@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
               u.username
        FROM reviews rw
        LEFT JOIN users u USING (user_id)
-       WHERE rw.recipe_id = $1
+       WHERE rw.recipe_id = $1 AND rw.comment != ''
        ORDER BY reviewed_at DESC
        LIMIT 3`,
       [recipe_id]
