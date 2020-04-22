@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import MediaQuery from "react-responsive";
+import classNames from "classnames";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { Field, reduxForm, isDirty } from "redux-form";
+import { Field, reduxForm, isDirty, getFormSyncErrors } from "redux-form";
 import { logoutUser, editProfile, toggleDelete } from "../../../actions/auth";
 import { validateUsername } from "../../auth/utils/validation.js";
 import asyncValidate from "../../auth/utils/async-validation";
@@ -20,9 +21,10 @@ const Edit = props => {
     document.title = "Zipiwisk | Edit Profile";
   }, []);
 
-  const handleSubmit = values => {
-    props.editProfile(values, props.history);
-  };
+  const handleSubmit = values =>
+    props.editProfile(values, props.history).catch(err => {
+      console.log(err);
+    });
 
   const onLogoutClick = e => {
     e.preventDefault();
@@ -99,18 +101,27 @@ const Edit = props => {
             </label>
           </div>*/}
 
-        {props.dirty ? (
-          <button className="edit-profile-form__save-btn" type="submit">
-            Save changes
-          </button>
-        ) : null}
+        <button
+          disabled={props.submitting || !props.dirty}
+          className={classNames("edit-profile-form__save-btn", {
+            "edit-profile-form__save-btn--disabled":
+              Object.keys(props.formSyncErrors).length ||
+              props.submitFailed ||
+              !props.dirty,
+            "edit-profile-form__save-btn--success": props.submitting
+          })}
+          type="submit"
+        >
+          Save changes
+        </button>
 
-        <div
+        <button
+          disabled={props.submitting}
           className="edit-profile-form__delete-btn"
           onClick={props.toggleDelete}
         >
           Delete account
-        </div>
+        </button>
 
         {props.openDelete && <Delete />}
       </form>
@@ -127,7 +138,8 @@ const mapStateToProps = state => ({
   dirty: isDirty("edit-profile"),
   openDelete: state.auth.openDelete,
   userImg: state.auth.user.image_url,
-  email: state.auth.user.email
+  email: state.auth.user.email,
+  formSyncErrors: getFormSyncErrors("edit-profile")(state)
 });
 
 export default withRouter(

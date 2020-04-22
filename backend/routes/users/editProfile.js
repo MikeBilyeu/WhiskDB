@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
       },
       (err, token) => {
         if (err) throw err;
-        res.json({
+        res.status(200).json({
           success: true,
           token: "Bearer " + token
         });

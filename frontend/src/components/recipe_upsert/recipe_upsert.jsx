@@ -32,6 +32,7 @@ const RecipeUpsert = props => {
       e.preventDefault();
     }
   };
+
   return (
     <form
       action="#"
@@ -92,8 +93,10 @@ const RecipeUpsert = props => {
             className="ru-time__minutes"
           />
         </div>
-        {props.syncErrors.time && props.submitFailed && (
-          <div className="validation-error">{props.syncErrors.time.hours}</div>
+        {props.formSyncErrors.time && props.submitFailed && (
+          <div className="validation-error">
+            {props.formSyncErrors.time.hours}
+          </div>
         )}
       </fieldset>
       <Directions />
@@ -107,14 +110,14 @@ const RecipeUpsert = props => {
       <Categories
         categories={props.categories}
         change={props.change}
-        errors={props.syncErrors}
+        errors={props.formSyncErrors}
         submitFailed={props.submitFailed}
       />
       <button
         disabled={props.submitting}
         className={classNames("recipe-upsert__sbmt-btn", {
           "recipe-upsert__sbmt-btn--disabled":
-            Object.keys(props.syncErrors).length && props.submitFailed,
+            Object.keys(props.formSyncErrors).length && props.submitFailed,
           "recipe-upsert__sbmt-btn--success": props.submitting
         })}
         type="submit"
@@ -151,7 +154,7 @@ RecipeUpsert.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     categories: formValueSelector(ownProps.form)(state, "categories"),
-    syncErrors: getFormSyncErrors(ownProps.form)(state)
+    formSyncErrors: getFormSyncErrors(ownProps.form)(state)
   };
 };
 
