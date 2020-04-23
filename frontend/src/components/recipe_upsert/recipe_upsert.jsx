@@ -32,7 +32,6 @@ const RecipeUpsert = props => {
       e.preventDefault();
     }
   };
-
   return (
     <form
       action="#"
@@ -107,11 +106,18 @@ const RecipeUpsert = props => {
         placeholder="Tags (e.g., baked, crispy, healthy)"
       />
 
-      <Categories
-        categories={props.categories}
-        change={props.change}
-        errors={props.formSyncErrors}
-        submitFailed={props.submitFailed}
+      <Field
+        name="categories"
+        props={{
+          type: "text"
+        }}
+        component={Categories}
+        {...{
+          categories: props.categories,
+          change: props.change,
+          errors: props.formSyncErrors,
+          submitFailed: props.submitFailed
+        }}
       />
       <button
         disabled={props.submitting}

@@ -2,12 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router-dom";
-import { isDirty } from "redux-form";
-import {
-  getRecipe,
-  submitEditRecipe,
-  toggleEditRecipe
-} from "../../../actions/recipe";
+import { submitEditRecipe, toggleEditRecipe } from "../../../actions/recipe";
 import convertTime from "../../../selectors/time-selector";
 import Header from "./header";
 import HeaderDesktop from "../../header_desktop";
@@ -64,7 +59,6 @@ const Edit = props => {
 };
 
 const mapStateToProps = state => ({
-  dirty: isDirty("edit-profile"),
   recipeData: state.recipe,
   recipeTime: convertTime(state)
 });
@@ -72,6 +66,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getRecipe, submitEditRecipe, toggleEditRecipe }
+    { submitEditRecipe, toggleEditRecipe }
   )(Edit)
 );
