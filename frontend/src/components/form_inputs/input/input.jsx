@@ -8,6 +8,7 @@ const Input = ({ type = "text", ...props }) => {
         {...props.input}
         autoComplete="off"
         type={type}
+        pattern={props.pattern}
         placeholder={props.placeholder}
       />
       {props.children}
