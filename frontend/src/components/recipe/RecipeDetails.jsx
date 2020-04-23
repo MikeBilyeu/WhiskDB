@@ -14,6 +14,7 @@ const RecipeDetails = props => {
         onClick={props.toggleReview}
         rating={props.recipe.recipe.rating}
         votes={props.recipe.recipe.num_reviews}
+        active={props.recipe.reviewOpen}
       />
       {props.recipe.reviewOpen && (
         <Review recipe_id={props.recipe.recipe.recipe_id} />

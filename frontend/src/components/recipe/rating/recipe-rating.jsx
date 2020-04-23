@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { ReactComponent as Star } from "../../../assets/images/star.svg";
-import { ReactComponent as OpenArrow } from "../../../assets/images/arrowLeft.svg";
+import { ReactComponent as OpenArrow } from "../../../assets/images/filterArrow.svg";
 import "./recipe-rating.scss";
 
 class Rating extends React.Component {
@@ -47,9 +47,9 @@ class Rating extends React.Component {
   };
 
   render() {
-    const { votes, className, onClick } = this.props;
+    const { votes, className, onClick, active } = this.props;
     return (
-      <div className={classNames(`${className}-rating`)} onClick={onClick}>
+      <div className={`${className}-rating`} onClick={onClick}>
         <div className={`${className}-rating__stars`}>
           {this.renderRating()}
         </div>
@@ -60,7 +60,11 @@ class Rating extends React.Component {
             ? ""
             : `${votes}`}
         </div>
-        <OpenArrow className={`${className}-rating__arrow`} />
+        <OpenArrow
+          className={classNames(`${className}-rating__arrow`, {
+            [`${className}-rating__arrow--active`]: active
+          })}
+        />
       </div>
     );
   }

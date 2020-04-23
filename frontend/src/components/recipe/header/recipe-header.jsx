@@ -26,7 +26,13 @@ const Header = props => {
           {props.recipeSaved ? "Unsave" : "Save"}
         </div>
       ) : !props.isAuth ? (
-        <Link className="recipe-header__login-btn" to="/auth">
+        <Link
+          className="recipe-header__login-btn"
+          to={{
+            pathname: "/auth",
+            state: { prevPath: props.location.pathname }
+          }}
+        >
           Login to save
         </Link>
       ) : null}

@@ -57,7 +57,11 @@
   }
 
   &__arrow {
-    transform: rotate(-90deg);
-    width: 0.9rem;
+    width: 0.8rem;
+    @include fast-transition;
+
+    &--active {
+      transform: rotate(-90deg);
+    }
   }
 }
