@@ -1,73 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import { ReactComponent as Star } from "../../../assets/images/star.svg";
 import { ReactComponent as OpenArrow } from "../../../assets/images/filterArrow.svg";
 import "./recipe-rating.scss";
 
-class Rating extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      starColor: ["#FFA805", "#FFA805", "#FFA805", "#FFA805", "##FFA805"]
-    };
-  }
-
-  setStarColors = () => {
-    this.setState(({ starColor }, { rating }) => {
-      let colors = [];
-      for (let i = 0; i < 5; i++) {
-        colors = [...colors, Math.round(rating) > i ? "#FFA805" : "#E2E2E2"];
-      }
-      return {
-        starColor: colors
-      };
-    });
-  };
-
-  componentDidMount() {
-    this.setStarColors();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.rating !== this.props.rating) {
-      this.setStarColors();
+const Rating = props => {
+  const updateRating = () => {
+    let colors = [];
+    for (let i = 0; i < 5; i++) {
+      colors.push(Math.round(props.rating) > i ? "#FFA805" : "#E2E2E2");
     }
-  }
-
-  renderRating = () => {
-    return this.state.starColor.map((color, i) => {
-      return (
-        <Star
-          className="star"
-          skey={"star" + i}
-          style={{ width: "1.1rem", fill: color }}
-        />
-      );
-    });
+    return colors;
   };
 
-  render() {
-    const { votes, className, onClick, active } = this.props;
-    return (
-      <div className={`${className}-rating`} onClick={onClick}>
-        <div className={`${className}-rating__stars`}>
-          {this.renderRating()}
-        </div>
-        <div className={`${className}-rating__votes`}>
-          {votes > 1000
-            ? `${parseFloat((votes / 1000).toFixed(1))}k`
-            : votes < 1
-            ? ""
-            : `${votes}`}
-        </div>
-        <OpenArrow
-          className={classNames(`${className}-rating__arrow`, {
-            [`${className}-rating__arrow--active`]: active
-          })}
-        />
-      </div>
-    );
-  }
-}
+  const [starColors, setStarColors] = useState(updateRating);
+
+  useEffect(() => {
+    setStarColors(updateRating);
+  }, [props.rating]);
+
+  const renderRating = starColors.map((color, i) => (
+    <Star
+      className="star"
+      key={"star" + i + color}
+      style={{ width: "1.1rem", fill: color }}
+    />
+  ));
+
+  const numVotes =
+    props.votes > 1000
+      ? `${parseFloat((props.votes / 1000).toFixed(1))}k`
+      : props.votes < 1
+      ? ""
+      : `${props.votes}`;
+
+  return (
+    <div className={`${props.className}-rating`} onClick={props.onClick}>
+      <div className={`${props.className}-rating__stars`}>{renderRating}</div>
+      <div className={`${props.className}-rating__votes`}>{numVotes}</div>
+      <OpenArrow
+        className={classNames(`${props.className}-rating__arrow`, {
+          [`${props.className}-rating__arrow--active`]: props.active
+        })}
+      />
+    </div>
+  );
+};
 
 export default Rating;
