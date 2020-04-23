@@ -3,10 +3,9 @@ import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { ReactComponent as SaveIcon } from "../../assets/images/heart.svg";
-
+import { getRecipe } from "../../actions/recipe";
 import Rating from "../recipe/rating";
 import "./recipe_card.scss";
-import { saveRecipe } from "../../actions/recipe";
 
 const RecipeCard = props => {
   const convertSaves = num => {
@@ -20,7 +19,13 @@ const RecipeCard = props => {
   };
 
   return (
-    <Link className="recipe-card" to={`/recipe/${props.recipe.recipe_id}`}>
+    <Link
+      className="recipe-card"
+      to={`/recipe/${props.recipe.recipe_id}`}
+      onClick={() => {
+        props.getRecipe(props.recipe.recipe_id, props.user_id);
+      }}
+    >
       <img
         className="recipe-card__thumbnail"
         src={props.recipe.image_url.replace(
@@ -60,5 +65,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { saveRecipe }
+  { getRecipe }
 )(RecipeCard);

@@ -1,17 +1,5 @@
 @import "../../assets/styles/variables";
 
-@keyframes Animation {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 91% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
-
 .recipe {
   @include grid-center;
   //grid-gap: 1rem;
