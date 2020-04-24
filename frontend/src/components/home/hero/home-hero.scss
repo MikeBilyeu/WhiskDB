@@ -27,7 +27,6 @@
 }
 
 .hero {
-  //border: solid red;
   overflow: hidden;
   position: relative;
   display: grid;
@@ -64,6 +63,18 @@
 
     &--active {
       box-shadow: 0 0 0 0.3rem rgba(200, 200, 200, 0.2);
+    }
+  }
+}
+
+@media (min-width: 1500px) {
+  .hero {
+    &__title {
+      font-size: 4rem;
+    }
+
+    &__desc {
+      font-size: 1.1rem;
     }
   }
 }

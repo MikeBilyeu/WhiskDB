@@ -2,7 +2,6 @@
 .edit-profile {
   position: relative;
   top: 2rem;
-  //padding: 0 0.5rem 2rem 0.5rem;
 
   &__d-back-btn {
     color: darkColor(medium);
@@ -59,8 +58,8 @@
       place-self: center;
       position: relative;
       text-align: center;
-      width: 10rem;
-      height: 10rem;
+      width: 7.5rem;
+      height: 7.5rem;
       margin: 1rem auto;
       background-size: 100% auto;
       background-position: center;
@@ -71,25 +70,25 @@
       color: darkColor(dark);
       font-size: 0.8rem;
       font-weight: 100 !important;
-
-      &:hover {
-        opacity: 0.7;
+      @media (hover: hover) {
+        &:hover {
+          opacity: 0.7;
+        }
       }
 
       &__text {
-        padding: 0.5rem 1rem;
-        opacity: 0.8;
-        background-color: lightColor(light);
+        padding: 0.5rem 0.75rem;
+        background-color: rgba(0, 0, 0, 0.8);
         border-radius: 2rem;
         z-index: 1;
-        color: $primary-color;
+        color: #fff;
       }
 
       &__img {
         outline: none;
-        width: 10rem;
-        height: 10rem;
-        min-height: 10rem;
+        width: 7.5rem;
+        height: 7.5rem;
+        min-height: 7.5rem;
         object-fit: cover;
         position: absolute;
         border-radius: 100%;
@@ -160,6 +159,7 @@
 
     &__save-btn {
       @include submit-btn;
+      margin: 1rem;
     }
 
     &__delete-btn {

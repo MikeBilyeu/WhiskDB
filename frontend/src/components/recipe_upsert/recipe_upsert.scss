@@ -110,20 +110,21 @@
       color: $error-color;
     }
   }
-
-  &:hover {
-    .ru-image__img {
-      opacity: 0.8;
+  @media (hover: hover) {
+    &:hover {
+      .ru-image__img {
+        opacity: 0.8;
+      }
     }
   }
 
   &__text {
     padding: 0.5rem 2rem;
     opacity: 1;
-    background-color: rgba(242, 242, 242, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 2rem;
     z-index: 1;
-    color: $primary-color;
+    color: #fff;
   }
 
   &__img {

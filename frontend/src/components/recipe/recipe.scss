@@ -2,8 +2,6 @@
 
 .recipe {
   @include grid-center;
-  //grid-gap: 1rem;
-  //color: darkColor(medium);
   position: relative;
 
   &__img {
