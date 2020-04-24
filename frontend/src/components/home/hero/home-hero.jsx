@@ -50,28 +50,6 @@ const Hero = () => {
         </p>
         <SearchBar />
       </div>
-      <div className="hero__img-credit">
-        {"Photo by "}
-        <a
-          className="hero__img-src"
-          href="https://unsplash.com/@goumbik?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Download free do whatever you want high-resolution photos from Lukas Blazek"
-        >
-          Lukas Blazek
-        </a>
-        {" on "}
-        <a
-          className="hero__img-src"
-          href="https://unsplash.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Download free do whatever you want high-resolution photos from Unsplash"
-        >
-          Unsplash
-        </a>
-      </div>
     </div>
   );
 };
