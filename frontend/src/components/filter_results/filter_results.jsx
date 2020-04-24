@@ -7,12 +7,18 @@ import { getBrowseRecipes } from "../../actions/browse";
 
 import "./filter_results.scss";
 
-const RenderOptions = (options, type, filterRecipes, handleClick) => {
+const RenderOptions = (
+  options,
+  type,
+  { sort, category, search },
+  handleClick
+) => {
   return options.map((option, i) => {
+    let activeBtn = option === (type === "sort" ? sort : !search && category);
     const btnStyle = classNames("filter-list__option", {
-      "filter-list__option--active":
-        Object.values(filterRecipes).indexOf(option) >= 0
+      "filter-list__option--active": activeBtn
     });
+
     return (
       <button
         key={i + option}

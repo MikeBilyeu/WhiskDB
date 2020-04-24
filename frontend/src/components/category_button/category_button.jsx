@@ -6,6 +6,7 @@ import { ReactComponent as DesktopArrow } from "../../assets/images/openArrow.sv
 import "./category_button.scss";
 
 const CategoryButton = props => {
+  const btnText = props.search ? `Search ${props.search}` : props.category;
   return (
     <button
       className={classNames(`${props.className}`, {
@@ -13,7 +14,7 @@ const CategoryButton = props => {
       })}
       onClick={() => props.toggleFilterButton("Category")}
     >
-      {props.category}
+      {btnText}
       <Arrow
         className={classNames(`${props.className}__icon-m`, {
           [`${props.className}__icon-m--active`]: props.active
