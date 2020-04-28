@@ -6,6 +6,12 @@ router.get("/browse", require("./browseRecipes"));
 
 router.get("/search", require("./searchRecipes"));
 
+router.get(
+  "/create/scrape",
+  passport.authenticate("jwt", { session: false }),
+  require("./scrapeRecipe")
+);
+
 router.post(
   "/create",
   passport.authenticate("jwt", { session: false }),

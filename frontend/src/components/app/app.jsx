@@ -10,6 +10,7 @@ import Auth from "../auth";
 import Recipe from "../recipe";
 import ScrollUp from "./scroll_up";
 import NoMatch from "../no_match";
+import Alerts from "./alerts";
 import { getSavedRecipes } from "../../actions/recipe";
 import { getBrowseRecipes } from "../../actions/browse";
 
@@ -22,10 +23,12 @@ const App = props => {
     }
     props.getBrowseRecipes();
   }, [props.isAuth]);
-
   return (
     <Router>
       <ScrollUp>
+        <Alerts />
+        <span className="lf1">.</span>
+        <span className="lf2">.</span>
         <Switch>
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/auth" component={Auth} />
@@ -40,8 +43,7 @@ const App = props => {
 };
 
 const mapStateToProps = state => ({
-  isAuth: state.auth.isAuthenticated,
-  diet: state.browseRecipes.filterRecipes.diet
+  isAuth: state.auth.isAuthenticated
 });
 
 export default connect(

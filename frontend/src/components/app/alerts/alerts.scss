@@ -1,0 +1,36 @@
+@import "../../../assets/styles/variables.scss";
+
+.alerts {
+  z-index: 10;
+  position: fixed;
+  display: inline-block;
+  width: 20rem;
+  left: calc(50% - 10rem);
+  top: 5.5rem;
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: solid rgba(0, 0, 0, 0.75) 0.1rem;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  &--primary {
+  }
+  &--secondary {
+  }
+  &--success {
+    border-color: rgb(8, 209, 86);
+    background-color: rgba(8, 209, 86, 0.8);
+    color: white;
+  }
+  &--danger {
+  }
+  &--warning {
+    border-color: rgb(255, 199, 47);
+    background-color: rgba(255, 199, 47, 0.8);
+    color: black;
+  }
+  &--info {
+  }
+}

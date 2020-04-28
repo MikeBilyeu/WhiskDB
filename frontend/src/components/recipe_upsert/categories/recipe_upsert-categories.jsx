@@ -34,8 +34,8 @@ const Categories = props => {
   return (
     <div className="ru-categories">
       <h2 className="ru-categories__title">Categories</h2>
-      {props.errors.categories && props.submitFailed && (
-        <div className="validation-error">{props.errors.categories}</div>
+      {props.meta.error && props.meta.submitFailed && (
+        <div className="validation-error">{props.meta.error}</div>
       )}
       <ul className="ru-categories__list">
         {recipeCategories.map((category, index, arr) => {

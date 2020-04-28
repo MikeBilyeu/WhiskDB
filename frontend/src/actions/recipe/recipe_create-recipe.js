@@ -6,6 +6,7 @@ import imageUpload from "../image";
 const createRecipe = (recipeForm, history) => dispatch => {
   return new Promise(async (resolve, reject) => {
     let imageURL = await dispatch(imageUpload(recipeForm.imageFile));
+
     if (!imageURL) {
       reject("Image upload error");
       return;

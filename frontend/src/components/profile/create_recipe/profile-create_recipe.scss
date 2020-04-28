@@ -43,7 +43,49 @@
     text-align: center;
     font-size: 1.1rem;
     color: darkColor(medium);
-    margin: 3rem;
+    margin: 3rem auto;
+    max-width: 40rem;
+    padding: 0.6rem;
+
+    &:before {
+      content: "";
+      border-bottom: solid lightColor(light) thin;
+      display: block;
+      margin: 4rem 0;
+    }
+  }
+}
+
+.clone {
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 0 0.6rem;
+  display: block;
+  position: relative;
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: darkColor(medium);
+  cursor: text;
+
+  &__input {
+    background: none;
+    outline: 0;
+    padding: 0.75rem;
+    width: 100%;
+    appearance: none;
+    margin-top: 0.1rem;
+    font-size: 0.9rem;
+    color: darkColor(medium);
+    background-color: #fff;
+    border: solid lightColor(dark) 0.08rem;
+    border-radius: 0.2rem;
+
+    &::placeholder {
+      color: lightColor(medium);
+    }
+    &:focus {
+      border: solid darkColor(dark) 0.08rem;
+    }
   }
 }
 

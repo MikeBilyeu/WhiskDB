@@ -14,6 +14,7 @@ import Directions from "./directions";
 import Categories from "./categories";
 import Input from "../form_inputs/input";
 import TextArea from "../form_inputs/textarea";
+import Loading from "../loading";
 import {
   capitalize,
   titleParse,
@@ -32,6 +33,7 @@ const RecipeUpsert = props => {
       e.preventDefault();
     }
   };
+
   return (
     <form
       action="#"
@@ -114,9 +116,7 @@ const RecipeUpsert = props => {
         component={Categories}
         {...{
           categories: props.categories,
-          change: props.change,
-          errors: props.formSyncErrors,
-          submitFailed: props.submitFailed
+          change: props.change
         }}
       />
       <button
@@ -130,6 +130,7 @@ const RecipeUpsert = props => {
       >
         {props.submitting ? "Saving..." : props.submitText}
       </button>
+      {props.submitting && <Loading />}
       {props.form === "recipe-upsert" && (
         <button
           disabled={props.submitting}

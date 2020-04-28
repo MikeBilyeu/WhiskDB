@@ -4,11 +4,6 @@ $dark-colors: (
   "dark": #313131
 );
 
-//Pre loads the font
-#LoadFont {
-  font-family: "Roboto", "Noto Serif";
-}
-
 .validation-error {
   font-size: 0.75rem;
   color: #c72a24;

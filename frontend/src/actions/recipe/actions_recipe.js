@@ -18,6 +18,7 @@ export { default as getRecipe } from "./recipe_get-recipe";
 export { default as saveRecipe } from "./recipe_save-recipe";
 export { default as unsaveRecipe } from "./recipe_unsave-recipe";
 export { default as getSavedRecipes } from "./recipe_get-saved-recipes";
+export { default as scrapeSite } from "./recipe_scrape-site.js";
 
 export const toggleEditRecipe = () => {
   return { type: TOGGLE_EDIT_RECIPE };

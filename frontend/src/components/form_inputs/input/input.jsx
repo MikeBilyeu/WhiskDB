@@ -12,7 +12,7 @@ const Input = ({ type = "text", ...props }) => {
         placeholder={props.placeholder}
       />
       {props.children}
-      {props.meta.touched && props.meta.error && (
+      {props.meta.submitFailed && props.meta.error && (
         <div className="validation-error">{props.meta.error}</div>
       )}
     </label>

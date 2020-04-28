@@ -6,6 +6,7 @@ import Header from "./header";
 import HeaderDesktop from "../../header_desktop";
 import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
 import RecipeUpsert from "../../recipe_upsert";
+import ScrapeUrl from "./scrape";
 import { createRecipe } from "../../../actions/recipe";
 
 import "./profile-create_recipe.scss";
@@ -35,6 +36,7 @@ const CreateRecipe = props => {
     <div className="create-recipe">
       <MediaQuery maxDeviceWidth={649}>
         <Header onClick={handleBackClick} />
+        <ScrapeUrl />
       </MediaQuery>
       <MediaQuery minDeviceWidth={650}>
         <HeaderDesktop>
@@ -43,9 +45,9 @@ const CreateRecipe = props => {
             Go back
           </div>
         </HeaderDesktop>
+        <ScrapeUrl />
         <h1 className="create-recipe__title">Create Recipe</h1>
       </MediaQuery>
-
       <RecipeUpsert
         initialValues={initialValues}
         destroyOnUnmount={false}

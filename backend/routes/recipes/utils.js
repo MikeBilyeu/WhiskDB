@@ -1,35 +1,36 @@
 const cheerio = require("cheerio");
 
 const querySelector = {
-  image_url: [
-    ".hero-photo__wrap img", // allrecipes.com
-    ".media-container [itemprop='image']"
-  ],
-  title: [
-    "h1#recipe-main-content", // allrecipes.com
-    "h1.recipe-title" //cooking.nytimes.com
-  ],
-  yield: [
-    ".adjustServings .subtext", // allrecipes.com
-    "[itemprop='recipeYield']" //cooking.nytimes.com
-  ],
-  ingredients: [
-    "[itemprop='recipeIngredient']" // allrecipes.com, cooking.nytimes.com
-  ],
-  time: [
-    "[itemprop='totalTime']", // allrecipes.com
-    ".recipe-time-yield li:nth-child(2)" //cooking.nytimes.com
-  ],
-  directions: [
-    ".recipe-directions__list--item", // allrecipes.com
-    "[itemprop='recipeInstructions'] li" //cooking.nytimes.com
-  ],
-  footnotes: [
-    ".recipe-notes" //cooking.nytimes.com
-  ],
-  keywords: [
-    "a.tag" //cooking.nytimes.com
-  ]
+  imageUrl: {
+    allrecipes: ".rec-photo",
+    nytimes: ".media-container [itemprop='image']"
+  },
+  title: {
+    allrecipes: "h1.recipe-summary__h1",
+    nytimes: "h1"
+  },
+  yield: {
+    allrecipes: ".adjustServings .subtext",
+    nytimes: "[itemprop='recipeYield']"
+  },
+  ingredients: {
+    allrecipes: "[itemprop='recipeIngredient']",
+    nytimes: "[itemprop='recipeIngredient']"
+  },
+  time: {
+    allrecipes: "[itemprop='totalTime']",
+    nytimes: ".recipe-time-yield li:nth-child(2)"
+  },
+  directions: {
+    allrecipes: ".recipe-directions__list--item",
+    nytimes: "[itemprop='recipeInstructions'] li"
+  },
+  footnotes: {
+    nytimes: ".recipe-notes"
+  },
+  keywords: {
+    nytimes: "a.tag"
+  }
 };
 
 const formatRecipeImage = recipeImage => {
@@ -107,26 +108,31 @@ const findRecipe = data => {
 };
 
 const formatData = data => {
+  console.log(data);
   let recipe = {};
   recipe.image_url = formatRecipeImage(data.image);
   recipe.title = data.name;
   let servings =
     data.recipeYield && data.recipeYield.match(/\d{1,2}(?=( *serving))/i);
+
   recipe.servings = servings ? servings[0] : "";
+
   recipe.ingredients = data.recipeIngredient
     .map(ing => ing.replace(/\s\s+/g, " "))
     .join("\n");
-  let hours = data.totalTime.match(/\d{1,2}(?=H)/i);
-  let minutes = data.totalTime.match(/\d{1,2}(?=M)/i);
+
+  let hours = data.totalTime && data.totalTime.match(/\d{1,2}(?=H)/i);
+  let minutes = data.totalTime && data.totalTime.match(/\d{1,2}(?=M)/i);
   recipe.time = {
     hours: hours ? hours[0] : "",
     minutes: minutes ? minutes[0] : ""
   };
+
   recipe.directions = formatDirections(data.recipeInstructions);
 
-  recipe.categores = data.recipeCategory;
+  recipe.categories = data.recipeCategory;
 
-  // need to join categores array into keywords
+  // need to join categories array into keywords
   if (typeof data.keywords === "string") {
     recipe.keywords = data.keywords.split(",").map(keywords => keywords.trim());
   } else {
@@ -136,44 +142,70 @@ const formatData = data => {
   return recipe;
 };
 
-const formatHTMLData = html => {
+const selectorKey = url => {
+  const allrecipesRegEx = /^https:\/\/www\.allrecipes\.com\/recipe.+/i;
+  const nytimesRegEx = /^https:\/\/cooking\.nytimes\.com\/recipes.+/i;
+  if (allrecipesRegEx.test(url)) {
+    return "allrecipes";
+  }
+  if (nytimesRegEx.test(url)) {
+    return "nytimes";
+  }
+  return;
+};
+
+const formatHTMLData = (html, url) => {
   const $ = cheerio.load(html);
   let recipe = {};
-  recipe.image_url = $(querySelector.image_url[1]).attr("src");
-  recipe.title = $(querySelector.title[1])
+
+  let key = selectorKey(url);
+
+  recipe.image_url = $(querySelector.imageUrl[key]).attr("src");
+
+  recipe.title = $(querySelector.title[key])
     .text()
     .trim();
-  let servings = $(querySelector.yield[1])
+
+  let servings = $(querySelector.yield[key])
     .text()
     .match(/\d{1,2}(?=( *serving))/i);
+
   recipe.servings = servings ? servings[0] : "";
+
   recipe.ingredients = "";
-  $(querySelector.ingredients[0]).each((index, element) => {
+
+  $(querySelector.ingredients[key]).each((index, element) => {
     recipe.ingredients +=
       $(element)
         .text()
         .replace(/\s\s+/g, " ")
         .trim() + "\n";
   });
-  let totalTime = $(querySelector.time[1]).text();
+
+  recipe.ingredients = recipe.ingredients.trim();
+
+  let totalTime = $(querySelector.time[key]).text();
   let hours = totalTime.match(/\d{1,2}(?=( *h))/i);
   let minutes = totalTime.match(/\d{1,2}(?=( *m))/i);
   recipe.time = {
     hours: hours ? hours[0] : "",
     minutes: minutes ? minutes[0] : ""
   };
+
   recipe.directions = "";
 
-  $(querySelector.directions[1]).each((i, e) => {
+  $(querySelector.directions[key]).each((i, e) => {
     recipe.directions +=
       $(e)
         .text()
         .trim() + " \n\n";
   });
+
   recipe.keywords = [];
-  $(querySelector.keywords[0]).each((i, e) => {
+  $(querySelector.keywords[key]).each((i, e) => {
     recipe.keywords.push($(e).text());
   });
+  recipe.keywords = recipe.keywords.length ? recipe.keywords.toString() : "";
 
   return recipe;
 };

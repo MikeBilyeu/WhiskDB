@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "Gelion";
-  src: URL("./assets/fonts/Gelion-Medium.ttf") format("truetype");
-}
-
 * {
   /* Disable selection/Copy of UIWebView */
   -webkit-touch-callout: none;
@@ -15,7 +10,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  //  font-family: "Gelion", Arial, sans-serif, times;
   font-family: Arial, sans-serif, times;
   height: 100%;
   width: 100%;
@@ -28,6 +22,19 @@ textarea {
   /* Exception for input areas */
   // -webkit-touch-callout: default !important;
   // -webkit-user-select: text !important;
+}
+
+.lf1,
+.lf2 {
+  font-family: "Roboto";
+  opacity: 0.1;
+  font-size: 1px;
+  position: absolute;
+  z-index: -100;
+}
+
+.lf2 {
+  font-family: "Noto Serif";
 }
 
 a {

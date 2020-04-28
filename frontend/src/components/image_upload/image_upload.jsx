@@ -17,6 +17,7 @@ const ImageUpload = props => {
       let data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "recipes");
+
       props.change(props.meta.form, "imageFile", data);
 
       props.input.onChange(imageURL);
