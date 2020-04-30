@@ -33,7 +33,7 @@ const Hero = () => {
         <img
           onLoad={() => setBigImgLoaded(true)}
           alt=""
-          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,h_900,q_auto:low/v1580746441/Recipes/lukas-blazek-f-TWhXOrLiU-unsplash.jpg"
+          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,h_2500,q_auto:good/v1580746441/Recipes/lukas-blazek-f-TWhXOrLiU-unsplash.jpg"
           style={{
             width: "1px",
             height: "1px",

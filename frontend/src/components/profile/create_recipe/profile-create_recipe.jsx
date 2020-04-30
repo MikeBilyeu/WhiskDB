@@ -37,6 +37,7 @@ const CreateRecipe = props => {
       <MediaQuery maxDeviceWidth={649}>
         <Header onClick={handleBackClick} />
         <ScrapeUrl />
+        <div className="create-recipe__line"></div>
       </MediaQuery>
       <MediaQuery minDeviceWidth={650}>
         <HeaderDesktop>
@@ -46,6 +47,7 @@ const CreateRecipe = props => {
           </div>
         </HeaderDesktop>
         <ScrapeUrl />
+        <div className="create-recipe__line"></div>
         <h1 className="create-recipe__title">Create Recipe</h1>
       </MediaQuery>
       <RecipeUpsert

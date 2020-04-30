@@ -30,7 +30,7 @@ const RecipeCard = props => {
         className="recipe-card__thumbnail"
         src={props.recipe.image_url.replace(
           "upload/",
-          "upload/c_scale,h_1000,q_auto:good/"
+          "upload/c_scale,h_1500,q_auto:good/"
         )}
         alt=""
       />

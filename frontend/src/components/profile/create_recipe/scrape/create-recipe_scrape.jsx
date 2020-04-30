@@ -43,8 +43,8 @@ const ScrapeUrl = props => {
   return (
     <Input
       className={className}
-      label="Recipe Source"
-      placeholder="Enter URL of recipe to clone"
+      label="Import Recipe"
+      placeholder="Enter URL of recipe to import"
       meta
       input={{
         className: "clone__input",

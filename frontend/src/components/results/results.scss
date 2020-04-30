@@ -16,8 +16,9 @@
     list-style: none;
     display: inline-grid;
     justify-items: start;
-    //grid-template-columns: repeat(3, minmax(20rem, 1fr));
-    grid-template-columns: 1fr;
+
+    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   &__load-more {

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import MediaQuery from "react-responsive";
 import FilterResults from "../../../filter_results";
 import CategoryButton from "../../../category_button";
 import { toggleFilterBtnProfile } from "../../../../actions/browse";
@@ -15,12 +16,22 @@ const PageToggle = props => {
   };
   return (
     <div className="page-toggle">
-      <CategoryButton
-        className="category-btn-d"
-        category={props.category}
-        active={props.activeFilterBtn === "Category"}
-        toggleFilterButton={props.toggleFilterBtnProfile}
-      />
+      <MediaQuery maxDeviceWidth={649}>
+        <CategoryButton
+          className="category-btn-m"
+          category={props.category}
+          active={props.activeFilterBtn === "Category"}
+          toggleFilterButton={props.toggleFilterBtnProfile}
+        />
+      </MediaQuery>
+      <MediaQuery minDeviceWidth={650}>
+        <CategoryButton
+          className="category-btn-d"
+          category={props.category}
+          active={props.activeFilterBtn === "Category"}
+          toggleFilterButton={props.toggleFilterBtnProfile}
+        />
+      </MediaQuery>
 
       <FilterResults
         filterRecipes={props.filterRecipes}

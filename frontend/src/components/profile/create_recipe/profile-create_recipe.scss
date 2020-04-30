@@ -39,6 +39,13 @@
     }
   }
 
+  &__line {
+    border-bottom: solid lightColor(light) thin;
+    display: block;
+    max-width: 39.4rem;
+    margin: 4rem auto;
+  }
+
   &__title {
     text-align: center;
     font-size: 1.1rem;
@@ -46,13 +53,6 @@
     margin: 3rem auto;
     max-width: 40rem;
     padding: 0.6rem;
-
-    &:before {
-      content: "";
-      border-bottom: solid lightColor(light) thin;
-      display: block;
-      margin: 4rem 0;
-    }
   }
 }
 
