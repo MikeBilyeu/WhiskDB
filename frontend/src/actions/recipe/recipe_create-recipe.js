@@ -1,6 +1,7 @@
 import axios from "axios";
 import { reset } from "redux-form";
 import imageUpload from "../image";
+import { updateSavedFilterRecipe } from "../recipe";
 
 // Create Recipe
 const createRecipe = (recipeForm, history) => dispatch => {
@@ -28,6 +29,7 @@ const createRecipe = (recipeForm, history) => dispatch => {
     dispatch(reset("create-recipe"));
     // redirect to recipe after successful submit
     history.push(`/recipe/${recipe_id}`);
+    dispatch(updateSavedFilterRecipe("All Categories"));
     resolve();
   });
 };

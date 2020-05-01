@@ -13,8 +13,11 @@ module.exports = async ({ user, body: recipe }, res) => {
       return ing.trim().replace(/[ \t]{2,}/, " ");
     })
     .filter(Boolean);
-  console.log(recipe.keywords);
-  const keywordsArr = recipe.keywords.split(",").map(item => item.trim());
+
+  const keywordsArr = recipe.keywords
+    .toString()
+    .split(",")
+    .map(item => item.trim());
 
   try {
     const { rows } = await db.query(

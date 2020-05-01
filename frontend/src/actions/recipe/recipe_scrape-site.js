@@ -30,7 +30,6 @@ const scrapeSite = url => async dispatch => {
     }
 
     dispatch(alert("success", "Recipe Copied!"));
-
     dispatch({ type: CLONE_RECIPE_END });
   } catch (err) {
     console.error(err);
