@@ -1,5 +1,7 @@
 import axios from "axios";
-import { toggleEditRecipe, getRecipe } from "./";
+import { REMOVE_SAVED_RECIPES, REMOVE_RECIPES } from "../types";
+import { toggleEditRecipe, getRecipe, getSavedRecipes } from "./";
+import { getBrowseRecipes } from "../browse";
 import imageUpload from "../image";
 
 // Edit Recipe
@@ -19,7 +21,11 @@ const submitEditRecipe = recipeData => dispatch => {
     if (res.status !== 200) reject("Recipe upload error");
 
     dispatch(toggleEditRecipe());
+    dispatch({ type: REMOVE_SAVED_RECIPES });
+    dispatch({ type: REMOVE_RECIPES });
     dispatch(getRecipe(recipeData.recipe_id, recipeData.created_by));
+    dispatch(getSavedRecipes());
+    dispatch(getBrowseRecipes());
     resolve();
   });
 };
