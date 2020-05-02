@@ -63,22 +63,6 @@
   }
 }
 
-.recipe {
-  &__d-back-btn {
-    @extend .header-d-more__edit-btn;
-    align-self: end;
-    position: relative;
-  }
-
-  &__d-back-icon {
-    width: 1rem;
-    position: relative;
-    left: 0rem;
-    margin: 0 0.3rem;
-    top: 0.23rem;
-  }
-}
-
 .header-d-more {
   @include grid-center;
   grid-auto-flow: column;
@@ -124,5 +108,24 @@
 
   &__close-btn {
     display: none;
+  }
+}
+
+.recipe {
+  &__d-back-btn {
+    @extend .header-d-more__edit-btn;
+    padding: 0.2rem 0;
+    margin: 0;
+    width: 100%;
+    align-self: end;
+    position: relative;
+  }
+
+  &__d-back-icon {
+    width: 1rem;
+    position: relative;
+    left: 0rem;
+    margin: 0 0.3rem;
+    top: 0.23rem;
   }
 }
