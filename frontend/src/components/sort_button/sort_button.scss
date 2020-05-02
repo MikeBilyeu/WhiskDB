@@ -51,11 +51,12 @@
     position: relative;
     top: 0.2rem;
     left: 0.5rem;
-    transition: all 0.2s ease-out;
-    transform: rotate(-90deg);
+    @include fast-transition;
+
+    transform: rotate(0deg);
 
     &--active {
-      transform: rotate(0deg);
+      transform: rotate(180deg);
     }
   }
 

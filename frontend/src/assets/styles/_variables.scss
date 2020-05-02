@@ -48,7 +48,7 @@ $star-color: #ffa805;
 }
 
 @mixin fast-transition {
-  transition: all 0.1s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 @mixin slow-transition {
