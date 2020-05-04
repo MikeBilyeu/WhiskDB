@@ -31,6 +31,7 @@ const ScrapeUrl = props => {
   const handleKeyDown = e => {
     if (e.key === "Enter") {
       handleScrape(e);
+      e.target.blur();
     }
   };
 
