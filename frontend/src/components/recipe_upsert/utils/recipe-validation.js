@@ -1,5 +1,5 @@
 // Store regex to check validation
-const titleRegEx = /^[A-Z0-9].{2,55}$/;
+const titleRegEx = /^[A-Z0-9].{2,75}$/;
 
 const ingredientRegEx = /^(\d{0,3}(\.(?=\d)\d{1,2})|^[1-9]?\d?(( |-){0,2}[⅛¼⅓½⅔¾])|^[1-9]\d?\/(?=[1-9]\d?)[1-9]\d?|^\d{1,3}( |-)[1-9]\d?\/[1-9]\d?|^[1-9]\d{0,2}) (.){3,100}?$/i;
 

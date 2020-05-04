@@ -9,7 +9,7 @@ export const capitalize = value => {
 };
 
 export const titleParse = value => {
-  let strArr = value.match(/.{0,55}/) || [""];
+  let strArr = value.match(/.{0,75}/) || [""];
   return value && strArr[0];
 };
 
