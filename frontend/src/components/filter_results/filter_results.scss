@@ -5,12 +5,11 @@
   @include grid-center;
   grid-gap: 0.5rem;
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: 0 auto;
-  //border-bottom: solid lightColor(light) 0.05rem;
   box-shadow: 0 0.4rem 1rem 0 rgba(0, 0, 0, 0.08);
   border-radius: 0 0 0.8rem 0.8rem;
-  background-color: #fcfcfc;
+  background-color: #fff;
   width: 100%;
   z-index: 3;
 
@@ -45,5 +44,36 @@
         color: $primary-color;
       }
     }
+  }
+}
+
+@media (max-device-width: 649px) {
+  .filter-results-sort,
+  .filter-results-category {
+    animation: 0.2s 0s 1 ease-out alternate slide-down;
+
+    &__title,
+    .filter-list {
+      opacity: 0;
+      animation: 0.3s 0.2s 1 ease-out forwards fade-in;
+    }
+  }
+}
+
+@keyframes slide-down {
+  from {
+    margin-top: -11rem;
+  }
+  to {
+    margin-top: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
