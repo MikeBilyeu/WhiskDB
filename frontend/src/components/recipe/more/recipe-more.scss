@@ -87,6 +87,8 @@
     white-space: nowrap;
     margin: 0;
     @include fast-transition;
+    align-self: end;
+    position: relative;
 
     &:hover {
       color: $primary-color;

@@ -20,13 +20,14 @@
 .edit-recipe {
   position: relative;
   top: 0rem;
+
   &__d-back-btn {
     color: darkColor(medium);
     cursor: pointer;
     font-weight: normal;
     text-align: center;
     font-size: 0.75rem;
-    padding: 0.2rem 1.5rem;
+    padding: 0.2rem 0;
     white-space: nowrap;
     margin: 0;
     @include fast-transition;
@@ -36,6 +37,14 @@
     &:hover {
       color: $primary-color;
     }
+  }
+
+  &__d-back-icon {
+    width: 1rem;
+    position: relative;
+    left: 0rem;
+    margin: 0 0.3rem;
+    top: 0.23rem;
   }
 
   &__title {

@@ -41,7 +41,7 @@ const Edit = props => {
             className="edit-recipe__d-back-btn"
             onClick={props.toggleEditRecipe}
           >
-            <Arrow className="edit-profile__d-back-icon" />
+            <Arrow className="edit-recipe__d-back-icon" />
             Cancel
           </div>
         </HeaderDesktop>
