@@ -20,6 +20,15 @@
     background: linear-gradient(130deg, #e2e2e2, #fafafa, #e2e2e2);
   }
 
+  &__img-fade {
+    z-index: 1;
+    box-shadow: 0 0rem 1.5rem 10rem #fff;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    height: 0;
+  }
+
   &__container {
     min-width: 100%;
     background-color: #fff;

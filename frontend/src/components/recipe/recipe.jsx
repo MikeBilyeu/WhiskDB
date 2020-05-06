@@ -90,6 +90,7 @@ const Recipe = props => {
           alt=""
           src={recipeImage}
         />
+        <div className="recipe__img-fade"></div>
 
         <div
           className="recipe__container"
