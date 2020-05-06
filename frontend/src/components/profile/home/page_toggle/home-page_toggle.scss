@@ -4,13 +4,13 @@
   @include grid-center;
   grid-template-columns: 1fr;
   border-bottom: solid lightColor(medium) thin;
-  position: sticky;
+  position: fixed;
   top: 0rem;
-  margin-top: 6.5rem;
+  margin-top: 4rem;
   background-color: #fff;
   width: 100%;
   z-index: 5;
-  padding: 0.5rem 0 0.1rem 0;
+  padding: 0.25rem 0 0.25rem 0;
 
   &__btn {
     width: 8rem;

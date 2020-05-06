@@ -4,7 +4,6 @@
   padding: 1rem 0 3rem 0;
   position: relative;
   text-align: center;
-  z-index: 2;
   background-color: #fff;
   width: 100%;
   min-height: calc(100vh - 5.25rem);
@@ -46,6 +45,15 @@
   }
 }
 
+@media (max-device-width: 649px) {
+  .profile-home > .recipe-results {
+    top: 7rem;
+  }
+  .recipe-results--active {
+    @include dark-overlay;
+  }
+}
+
 @media (min-device-width: 650px) {
   .recipe-results {
     &__list {
@@ -76,11 +84,5 @@
     &__list {
       grid-template-columns: repeat(4, minmax(20rem, 1fr));
     }
-  }
-}
-
-@media (max-devive-width: 649px) {
-  .recipe-results--active {
-    @include dark-overlay;
   }
 }
