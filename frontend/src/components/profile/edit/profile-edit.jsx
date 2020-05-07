@@ -112,7 +112,7 @@ const Edit = props => {
           })}
           type="submit"
         >
-          Save changes
+          {props.submitting ? "Saving..." : "Save Changes"}
         </button>
 
         <button
