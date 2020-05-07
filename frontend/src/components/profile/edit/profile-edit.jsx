@@ -116,9 +116,11 @@ const Edit = props => {
         </button>
 
         <button
-          disabled={props.submitting}
           className="edit-profile-form__delete-btn"
-          onClick={props.toggleDelete}
+          onClick={e => {
+            e.preventDefault();
+            props.toggleDelete();
+          }}
         >
           Delete account
         </button>

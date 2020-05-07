@@ -37,9 +37,7 @@ const Results = props => {
 
   if (!props.recipes.length && !props.isFetching) {
     return <NoResults />;
-  }
-
-  if (props.recipes.length) {
+  } else {
     return (
       <div
         className={classNames("recipe-results", {
@@ -47,11 +45,12 @@ const Results = props => {
         })}
       >
         <ul className="recipe-results__list">
-          {renderRecipeList()}
+          {props.recipes.length > 0 && renderRecipeList()}
           {props.isFetching && renderRecipeListLoading()}
         </ul>
 
-        {props.recipes.length < props.recipes[0].full_count ? (
+        {!props.isFetching &&
+        props.recipes.length < props.recipes[0].full_count ? (
           <button
             ref={ref}
             onClick={props.handleClick}
@@ -63,8 +62,6 @@ const Results = props => {
       </div>
     );
   }
-
-  return null;
 };
 
 Results.propTypes = {
