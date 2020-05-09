@@ -3,38 +3,42 @@
 .recipe {
   .recipe-header {
     position: fixed;
-    top: 0;
+    top: 0.75rem;
     width: 100%;
-    height: 2.5rem;
+    height: 0;
     padding: 0;
     background-color: #fff;
     @include grid-center;
     grid-template-columns: 1fr 1fr 1fr;
     user-select: none;
     z-index: 1;
+    box-shadow: 0rem 0rem 5rem 3rem rgba(0, 0, 0, 0.7);
 
     &__back-btn {
       @include grid-center;
       grid-auto-flow: column;
       justify-self: start;
       cursor: pointer;
-      padding: 1rem 2rem 1rem 1rem;
-      width: 4rem;
+      padding: 1.3rem 1.3rem 1.3rem 1rem;
+      width: 3.5rem;
+      path {
+        fill: #fff;
+      }
     }
 
     &__save-btn {
       text-align: center;
-      border: solid $primary-color 0.09rem;
-      border-radius: 0.2rem;
-      color: $primary-color;
-      background-color: #fff;
+      border: solid #fff 0.09rem;
+      border-radius: 5rem;
+      color: #fff;
       font-weight: 500;
       font-size: 0.75rem;
-      padding: 0.25rem 2rem;
-      width: 8rem;
+      font-weight: bold;
+      padding: 0.3rem 0;
+      width: 7.5rem;
       cursor: pointer;
       outline: none;
-      @include fast-transition;
+      //@include fast-transition;
 
       @media (hover: hover) {
         &:hover {
@@ -44,9 +48,9 @@
       }
 
       &--active {
-        border-color: lightColor(dark);
-        color: darkColor(medium);
-        font-weight: bold;
+        border-color: #fff;
+        color: #fff;
+        border-radius: 0.2rem;
 
         @media (hover: hover) {
           &:hover {
@@ -63,9 +67,10 @@
       text-align: center;
       display: inline-block;
       font-size: 0.75rem;
+      font-weight: bold;
       padding: 0.3rem 0.7rem;
       white-space: nowrap;
-      border: solid $primary-color 0.08rem;
+      border: solid #fff 0.08rem;
       border-radius: 50rem;
       color: $primary-color;
     }
