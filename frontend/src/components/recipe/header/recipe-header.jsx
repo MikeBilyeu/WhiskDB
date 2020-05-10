@@ -30,7 +30,7 @@ const Header = props => {
           className="recipe-header__login-btn"
           to={{
             pathname: "/auth",
-            state: { prevPath: props.location.pathname }
+            state: { from: props.location.pathname }
           }}
         >
           Login to save

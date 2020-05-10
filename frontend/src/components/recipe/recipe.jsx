@@ -49,9 +49,11 @@ const Recipe = props => {
   document.title = !title ? document.title : `${title} |  Zipiwisk`;
 
   const handleBackClick = () => {
-    props.history.location.key
-      ? props.history.goBack()
-      : props.history.push("/");
+    if (props.location.key && !props.location.state) {
+      props.history.goBack();
+    } else {
+      props.history.push("/");
+    }
   };
 
   const handleSaveClick = () => {
@@ -130,7 +132,7 @@ const Recipe = props => {
               className="recipe__login-btn"
               to={{
                 pathname: "/auth",
-                state: { prevPath: props.location.pathname }
+                state: { from: props.location.pathname }
               }}
             >
               Login to save

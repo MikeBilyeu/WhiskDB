@@ -20,7 +20,10 @@ const Auth = props => {
   useEffect(() => {
     if (props.isAuthenticated) {
       goBackPath
-        ? props.history.push(goBackPath.prevPath)
+        ? props.history.push({
+            pathname: goBackPath.from,
+            state: { from: "/auth" }
+          })
         : props.history.push("/profile");
     }
   }, [props.isAuthenticated]);
