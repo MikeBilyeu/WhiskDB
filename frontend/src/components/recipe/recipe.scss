@@ -35,7 +35,7 @@
     position: relative;
     top: calc(100vh - 11rem);
     z-index: 2;
-    padding: 1rem 0.75rem;
+    padding: 1rem 0.75rem 3rem 0.75rem;
     border-radius: 1rem 1rem 0 0;
     box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.2);
   }
@@ -73,11 +73,12 @@
 
   &__created-by {
     font-family: "Noto Serif", Arial, sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     color: darkColor(light);
-    //font-style: italic;
+    font-style: italic;
     text-align: center;
     margin: 4rem 0 0rem 0;
+    display: none;
   }
 }
 
@@ -241,12 +242,13 @@
     &__img {
       position: relative;
       width: 100%;
-      max-width: 35rem !important;
+      max-width: 40rem !important;
       height: 100%;
-      min-height: 15rem;
-      max-height: 20rem;
-      margin: 5rem 0 0 0;
+      min-height: 24rem;
+      max-height: 24rem;
+      margin: 4rem 0 0 0;
       z-index: 1;
+      border-radius: 2px;
     }
 
     &__created-by {

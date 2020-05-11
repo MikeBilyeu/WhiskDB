@@ -46,7 +46,7 @@ const RecipeUpsert = props => {
         className="recipe-upsert__title"
         component={Input}
         label="Title"
-        placeholder="Juicy Roasted Chicken"
+        placeholder="Roasted Brussel Sprouts"
         normalize={capitalize}
         parse={titleParse}
       />
