@@ -392,12 +392,18 @@
   .recipe {
     &__container {
       display: block;
-      top: 0;
+      top: 0 !important;
+      box-shadow: none !important;
     }
     &__details {
-      margin: 0 !important;
+      display: block;
+      text-align: center;
+      font-size: 1rem;
+      margin: 1rem auto !important;
       padding: 0 !important;
-      height: 5rem;
+      &:before {
+        content: none;
+      }
     }
   }
 
