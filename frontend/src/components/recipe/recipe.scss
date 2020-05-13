@@ -66,7 +66,7 @@
 
   &__time {
     font-family: "Noto Serif", Arial, sans-serif;
-    color: darkColor(light);
+    color: darkColor(medium);
     font-size: 0.8rem;
     font-style: italic;
   }
@@ -104,25 +104,28 @@
     display: grid;
     grid-auto-flow: column;
     grid-gap: 0.5rem;
-    font-size: 0.9rem;
     line-height: 1rem;
     border-bottom: solid lightColor(light) 0.09rem;
-
+    &:nth-child(odd) {
+      background-color: rgb(250, 250, 250);
+    }
     &:first-child {
       border-top: solid lightColor(light) 0.09rem;
     }
   }
 
   &__item-amount {
+    font-size: 0.9rem;
     font-weight: 600;
     font-style: italic;
-    color: darkColor(medium);
+    color: darkColor(dark);
   }
 
   &__item-ingredient {
+    font-size: 0.9rem;
     font-family: "Noto Serif", Arial, sans-serif;
     text-align: right;
-    color: darkColor(light);
+    color: darkColor(medium);
   }
 }
 

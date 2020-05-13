@@ -6,12 +6,11 @@
   text-align: center;
   cursor: pointer;
   line-height: 1.75rem;
-  width: 10rem;
+  width: 12rem;
   height: 1.8rem;
   font-size: 0.75rem;
   color: darkColor(medium);
-
-  margin: 0.5rem auto;
+  margin: 0.75rem auto 1rem auto;
 
   cursor: text;
   &__text {
