@@ -141,15 +141,17 @@ const Recipe = props => {
 
           <RecipeDetails time={time} />
 
-          <Ingredients />
-
-          <Directions directions={directions} time={time} footnote={footnote} />
           <img
             className="recipe__img"
             href="recipe photo"
             alt=""
             src={recipeImage}
           />
+
+          <Ingredients />
+
+          <Directions directions={directions} time={time} footnote={footnote} />
+
           <div className="recipe__created-by">
             Recipe by {username.toLowerCase()}
           </div>

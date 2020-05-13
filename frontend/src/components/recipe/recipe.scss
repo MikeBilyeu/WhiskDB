@@ -115,14 +115,14 @@
   }
 
   &__item-amount {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     font-style: italic;
     color: darkColor(dark);
   }
 
   &__item-ingredient {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-family: "Noto Serif", Arial, sans-serif;
     text-align: right;
     color: darkColor(medium);
@@ -131,12 +131,12 @@
 
 .r-directions {
   font-family: "Noto Serif", Arial, sans-serif;
-  line-height: 1.25rem;
   &__text {
     white-space: pre-wrap;
     margin: 0;
-    font-size: 0.9rem;
-    color: darkColor(medium);
+    font-size: 1rem;
+    line-height: 1.7rem;
+    color: darkColor(dark);
     &::first-letter {
       font-size: 1.75rem;
     }
@@ -146,6 +146,7 @@
     white-space: pre-line;
     margin: 2rem 0 0 0;
     font-size: 0.8rem;
+    line-height: 1.25rem;
     color: darkColor(light);
     font-style: italic;
   }
@@ -170,7 +171,8 @@
       font-weight: 500;
       font-size: 0.75rem;
       padding: 0.25rem 2rem;
-      margin-bottom: 3rem;
+      margin: 0;
+      display: block;
       width: 8rem;
       cursor: pointer;
       outline: none;
@@ -201,9 +203,9 @@
 
     &__login-btn {
       width: 7rem;
-      margin-bottom: 3rem;
+      margin: 0;
       text-align: center;
-      display: inline-block;
+      display: block;
       font-size: 0.75rem;
       padding: 0.3rem 0.7rem;
       white-space: nowrap;
@@ -219,7 +221,9 @@
         }
       }
     }
-
+    &__title {
+      text-align: left;
+    }
     &__container {
       width: 100%;
       min-height: calc(100vh - 4.95rem);
@@ -236,6 +240,11 @@
     }
 
     &__details {
+      display: inline-grid;
+      position: relative;
+      top: -0.5rem;
+      margin: 2rem 2rem 0 0;
+      max-width: 25rem;
       justify-items: start;
       &:before {
         content: none;
@@ -243,15 +252,16 @@
     }
 
     &__img {
+      display: inline;
+      vertical-align: middle;
       position: relative;
-      width: 100%;
-      max-width: 40rem !important;
-      height: 100%;
-      min-height: 24rem;
-      max-height: 24rem;
-      margin: 4rem 0 0 0;
-      z-index: 1;
-      border-radius: 2px;
+      width: 10rem;
+      min-height: 10rem;
+      max-height: 10rem;
+      //border: solid lightColor(light) 0.09rem;
+      margin: 1rem auto;
+      z-index: -1;
+      border-radius: 100%;
     }
 
     &__created-by {
@@ -301,7 +311,7 @@
     display: block;
 
     &__img {
-      margin: 5rem auto 0 auto;
+      display: block;
     }
 
     &__save-btn {
@@ -335,7 +345,8 @@
     }
 
     &__details {
-      margin: 0;
+      display: grid;
+      margin: 2rem auto;
       place-items: center;
     }
 
