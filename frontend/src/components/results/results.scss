@@ -1,10 +1,10 @@
 @import "../../assets/styles/variables";
 
 .recipe-results {
-  padding: 3rem 0 4rem 0;
+  padding: 6rem 0 4rem 0;
   position: relative;
   text-align: center;
-  background-color: #fff;
+  background-color: rgb(250, 250, 250);
   width: 100%;
   min-height: calc(100vh - 5.25rem);
 
@@ -47,7 +47,7 @@
 
 @media (max-device-width: 649px) {
   .profile-home > .recipe-results {
-    top: 7rem;
+    top: 4rem;
   }
   .recipe-results--active {
     @include dark-overlay;

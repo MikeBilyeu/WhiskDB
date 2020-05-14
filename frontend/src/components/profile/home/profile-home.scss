@@ -24,14 +24,15 @@
 
     .user-info {
       padding: 0 25% !important;
-      height: 6rem;
+      height: 3rem;
       grid-template-rows: 6rem;
-      top: 5rem;
+      top: 3rem;
       min-width: 25rem;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1.25rem 1rem 3rem;
       place-items: center !important;
       z-index: 0;
+      position: relative;
 
       &__edit {
         grid-row: 1 / 4;
