@@ -372,21 +372,22 @@
 @media print {
   /* Remove unwanted elements */
   .recipe-header,
-  .header-d,
   .rating,
   .units,
   .navBar,
   .rate,
   .recipe-more,
+  .recipe__img-fade,
   .recipe__save-btn,
   .recipe__created-by,
   .down-arrow,
   .username,
   .recipe-rating,
-  .ingredient-adjust__units,
   .review,
+  .lf1,
+  .lf2,
   h2,
-  img {
+  header {
     display: none !important;
   }
 
@@ -395,6 +396,9 @@
     margin: 0 !important;
     color: black !important;
     font-size: 12pt !important;
+    font-family: "Noto Serif", Arial, sans-serif !important;
+    background-color: transparent !important;
+    z-index: 1 !important;
   }
 
   body {
@@ -406,14 +410,33 @@
   .recipe {
     &__container {
       display: block;
+      border-radius: 0;
       top: 0 !important;
       box-shadow: none !important;
+      padding: 24pt !important;
+    }
+    &__title {
+      text-align: center !important;
+      font-size: 18pt !important;
+    }
+
+    &__img {
+      margin: 16pt auto 0 auto !important;
+      width: 80pt;
+      height: 80pt;
+      min-height: 60pt;
+      display: none;
+      position: absolute;
+      border-radius: 100%;
+      left: calc(50% - 40pt);
+      top: 70pt;
     }
     &__details {
       display: block;
-      text-align: center;
-      font-size: 1rem;
-      margin: 1rem auto !important;
+      width: 100%;
+      max-width: 100%;
+      text-align: center !important;
+      margin: 1rem auto 0 auto !important;
       padding: 0 !important;
       &:before {
         content: none;
@@ -422,18 +445,19 @@
   }
 
   .r-ingredients {
-    margin: 0 auto !important;
+    margin: 24pt auto 0 auto !important;
     padding: 0 !important;
-    grid-gap: 0.5rem;
-    font-size: 12pt !important;
+    width: 100% !important;
+    min-width: 100% !important;
 
     .adjust-servings {
       border: none !important;
       display: block !important;
       width: 100% !important;
       margin: 0 auto;
+      font-style: italic !important;
+
       &__input {
-        width: 2rem;
         border: none !important;
         color: black !important;
         -webkit-text-fill-color: black !important;
@@ -442,22 +466,26 @@
     }
 
     &__list {
-      margin: 0 auto !important;
+      margin: 0 !important;
       padding: 0 !important;
-      min-width: 20rem;
-      width: 50% !important;
-      max-width: 100%;
+      width: 100% !important;
       display: grid;
-      grid-template-columns: 1fr;
-      grid-row-gap: 0.2rem;
-      grid-column-gap: 1.5rem;
+      grid-column-gap: 1rem;
+      grid-template-columns: 1fr 1fr;
     }
     &__item {
-      text-decoration: none !important;
-      opacity: 1 !important;
-      font-size: 12pt !important;
-      line-height: 18pt !important;
-      border-bottom: solid lightColor(medium) 1pt;
+      display: block;
+      line-height: 14pt !important;
+      padding: 3pt 0 !important;
+      background-color: transparent !important;
+      border: none !important;
+
+      &-ingredient {
+        &:before {
+          content: "-- ";
+          color: grey;
+        }
+      }
     }
 
     &__fade {
@@ -466,18 +494,16 @@
   }
 
   .r-directions {
-    margin: 2rem auto 0 auto !important;
-    width: 90%;
+    margin: 40pt auto 0 auto !important;
+    width: 100%;
+    max-width: 100%;
 
     &__text {
       margin: 0 !important;
-      font-size: 12pt !important;
-      line-height: 13pt !important;
-      //text-indent: 20pt;
+      line-height: 16pt !important;
       white-space: pre-line;
 
       &::first-letter {
-        font-size: 12pt !important;
         font-weight: normal !important;
         margin: 0 !important;
         float: none !important;
