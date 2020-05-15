@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toggleShowMore, toggleEditRecipe } from "../../../actions/recipe";
-import { toggleReview } from "../../../actions/review";
 import { ReactComponent as Close } from "../../../assets/images/removeDark.svg";
 import UnitsAdjust from "../units_adjust";
 import "./recipe-more.scss";
@@ -20,7 +19,6 @@ class More extends React.Component {
       user_id,
       toggleShowMore,
       toggleEditRecipe,
-      toggleReview,
       className
     } = this.props;
     return (
@@ -59,14 +57,7 @@ class More extends React.Component {
         >
           Print
         </div>
-        <div
-          className={`${className}__review-btn`}
-          onClick={() => {
-            toggleReview();
-          }}
-        >
-          Review
-        </div>
+
         <UnitsAdjust className={`${className}__unit-btn`} />
       </div>
     );
@@ -75,11 +66,10 @@ class More extends React.Component {
 
 const mapStateToProps = state => ({
   created_by: state.recipe.recipe.created_by,
-  user_id: state.auth.user.user_id,
-  recipe_id: state.recipe.recipe.recipe_id
+  user_id: state.auth.user.user_id
 });
 
 export default connect(
   mapStateToProps,
-  { toggleShowMore, toggleEditRecipe, toggleReview }
+  { toggleShowMore, toggleEditRecipe }
 )(More);
