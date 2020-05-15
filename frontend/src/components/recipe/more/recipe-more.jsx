@@ -47,7 +47,7 @@ class More extends React.Component {
               this.setState({ copied: true });
             }}
           >
-            <div className={`${className}__copy-btn`}>Share</div>
+            <div className={`${className}__copy-btn`}>Copy Link</div>
           </CopyToClipboard>
         )}
 
