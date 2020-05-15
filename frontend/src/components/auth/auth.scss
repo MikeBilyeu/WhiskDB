@@ -1,5 +1,11 @@
 @import "../../assets/styles/variables.scss";
 
+.auth-page {
+  .header-d {
+    height: 3rem;
+  }
+}
+
 .login-form,
 .signup-form {
   position: relative;

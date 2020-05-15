@@ -9,7 +9,7 @@
     font-weight: normal;
     text-align: center;
     font-size: 0.75rem;
-    padding: 0.2rem 1.5rem;
+    padding: 0.2rem 0;
     white-space: nowrap;
     margin: 0;
     @include fast-transition;
@@ -33,6 +33,7 @@
     @extend .edit-profile__d-back-btn;
     grid-column: 4 / 5;
     color: $primary-color;
+    padding: 0.2rem 1.5rem;
     justify-self: end;
 
     &:hover {
