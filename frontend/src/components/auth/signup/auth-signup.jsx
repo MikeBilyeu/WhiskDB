@@ -13,7 +13,7 @@ const Signup = props => {
       onSubmit={props.handleSubmit(props.registerUser)}
     >
       <h1 className="signup-form__title">
-        Make an Account with Zipiwisk.
+        Make an Account with ZipiWhisk.
         <br /> It’s Easy & Free!
       </h1>
       <Field

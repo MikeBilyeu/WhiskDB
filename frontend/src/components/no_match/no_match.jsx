@@ -1,7 +1,7 @@
 import React from "react";
 import SearchBar from "../search_bar";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/images/zipiwisk-logo.png";
+import Logo from "../../assets/images/ZipiWhisk-Logo.png";
 import "./no-match.scss";
 
 const NoMatch = () => {

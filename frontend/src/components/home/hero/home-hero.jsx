@@ -43,7 +43,7 @@ const Hero = () => {
         />
       </div>
       <div className="hero__container">
-        <h1 className="hero__title">Zipiwisk</h1>
+        <h1 className="hero__title">ZipiWhisk</h1>
         <p className="hero__desc">
           The internet’s source of free recipes.
           <br /> Explore thousands of recipes from around the world!

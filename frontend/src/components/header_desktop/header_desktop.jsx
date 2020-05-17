@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import SearchBar from "../search_bar";
-import Logo from "../../assets/images/zipiwisk-logo.png";
+import Logo from "../../assets/images/ZipiWhisk-Logo.png";
 import userLogo from "../../assets/images/profileLogo.png";
 import "./header_desktop.scss";
 
