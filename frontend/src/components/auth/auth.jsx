@@ -14,7 +14,7 @@ const Auth = props => {
   const [goBackPath] = useState(props.location.state);
 
   useEffect(() => {
-    document.title = "Zipiwisk | The internet’s source of free recipes.";
+    document.title = "ZipiWhisk | The internet’s source of free recipes.";
   }, []);
 
   useEffect(() => {

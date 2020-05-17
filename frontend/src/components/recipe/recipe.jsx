@@ -46,7 +46,7 @@ const Recipe = props => {
     !isFetching &&
     image_url.replace("upload/", "upload/c_scale,h_1500,q_auto:good/");
 
-  document.title = !title ? document.title : `${title} |  Zipiwisk`;
+  document.title = !title ? document.title : `${title} |  ZipiWhisk`;
 
   const handleBackClick = () => {
     if (props.location.key && !props.location.state) {

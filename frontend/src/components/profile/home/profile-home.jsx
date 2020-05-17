@@ -19,7 +19,7 @@ const Home = props => {
   const { full_name, username, diet, image_url } = props.auth.user;
 
   useEffect(() => {
-    document.title = `Zipiwisk | ${username || "Profile"}`;
+    document.title = `ZipiWhisk | ${username || "Profile"}`;
   }, [username]);
 
   const handleFilterClick = option => {

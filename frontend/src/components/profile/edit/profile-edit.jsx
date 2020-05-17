@@ -18,7 +18,7 @@ import "./profile-edit.scss";
 
 const Edit = props => {
   useEffect(() => {
-    document.title = "Zipiwisk | Edit Profile";
+    document.title = "ZipiWhisk | Edit Profile";
   }, []);
 
   const handleSubmit = values =>

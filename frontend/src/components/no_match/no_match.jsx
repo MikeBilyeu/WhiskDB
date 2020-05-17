@@ -12,7 +12,7 @@ const NoMatch = () => {
         <img
           className="not-found__home-link-img"
           src={Logo}
-          alt="zipiwisk logo"
+          alt="zipiWhisk logo"
         />
       </Link>
       <h1 className="not-found__title">404 Not Found</h1>

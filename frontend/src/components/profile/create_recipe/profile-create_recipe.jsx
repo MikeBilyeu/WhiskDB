@@ -13,7 +13,7 @@ import "./profile-create_recipe.scss";
 
 const CreateRecipe = props => {
   useEffect(() => {
-    document.title = "Zipiwisk | Create Recipe";
+    document.title = "ZipiWhisk | Create Recipe";
   }, []);
 
   const handleSubmit = values =>

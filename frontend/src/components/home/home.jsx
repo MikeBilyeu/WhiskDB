@@ -22,7 +22,7 @@ const Home = props => {
     props.filterRecipes.category !== "All Categories";
 
   useEffect(() => {
-    document.title = "Zipiwisk | The internet’s source of free recipes.";
+    document.title = "ZipiWhisk | The internet’s source of free recipes.";
   }, []);
 
   const handleFilterClick = (option, type) => {
