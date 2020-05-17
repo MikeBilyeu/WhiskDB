@@ -42,7 +42,9 @@ const SearchBar = props => {
   };
 
   return (
-    <div
+    <form
+      action="#"
+      onsubmit="return false;"
       className={classNames("search-bar", {
         "search-bar--active": focus
       })}
@@ -54,7 +56,9 @@ const SearchBar = props => {
           "search-bar__icon--active": focus
         })}
       />
+
       <input
+        id="SearchTextBox"
         ref={textInput}
         className="search-bar__input"
         onChange={handleChange}
@@ -66,7 +70,8 @@ const SearchBar = props => {
         type="search"
         aria-label="Search"
       />
-    </div>
+      <input style={{ display: "none" }} type="button" value="Search" />
+    </form>
   );
 };
 

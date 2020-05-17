@@ -37,7 +37,7 @@ class More extends React.Component {
         ) : null}
 
         {this.state.copied ? (
-          <h1 className={`${className}__copy-msg`}>Link copied!</h1>
+          <h1 className={`${className}__copy-msg`}>Link Copied</h1>
         ) : (
           <CopyToClipboard
             text={window.location.href}

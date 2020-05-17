@@ -10,24 +10,31 @@ import "./sort_button.scss";
 
 const SortButton = props => {
   const active = props.activeFilterBtn === "Sort";
+  const iconStyles = classNames(`${props.className}__icon-d`, {
+    [`${props.className}__icon-d--active`]: active
+  });
+  const mobileIconStyles = classNames(`${props.className}__icon-m`, {
+    [`${props.className}__icon-m--active`]: active
+  });
+
   return (
     <button
       className={props.className}
       onClick={() => props.toggleFilterBtnBrowse("Sort")}
     >
-      <SortIcon className={`${props.className}__icon-m`} />
-      <div className={`${props.className}__sort-by-m`}>
+      <SortIcon className={mobileIconStyles} />
+      <div
+        className={classNames(`${props.className}__sort-by-m`, {
+          [`${props.className}__sort-by-m--active`]: active
+        })}
+      >
         {abbreviateSortBy(props.sortBy)}
       </div>
 
       <div className={`${props.className}__sort-by-d`}>
         Sort by <span style={{ fontWeight: "bold" }}>{props.sortBy}</span>
       </div>
-      <OpenArrow
-        className={classNames(`${props.className}__icon-d`, {
-          [`${props.className}__icon-d--active`]: active
-        })}
-      />
+      <OpenArrow className={iconStyles} />
     </button>
   );
 };
