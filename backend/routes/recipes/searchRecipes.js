@@ -35,24 +35,25 @@ module.exports = async (req, res) => {
              r.keywords,
              r.categories,
              u.username,
-             sr.user_id = $5 AS saved,
              AVG(rw.rating) AS rating,
              COUNT(DISTINCT rw)::INT AS num_reviews,
+             s.user_id = $5 AS saved,
              COUNT(DISTINCT sr)::INT AS num_saves,
              COUNT(r.recipe_id) OVER()::INT AS full_count,
              ts_rank_cd('{0.1, 0.05, 0.1, 1.0}',
                         document_vectors, to_tsquery($1), 1) AS rank
       FROM recipes r
       right JOIN users u ON u.user_id = r.created_by
-      LEFT JOIN reviews rw USING (recipe_id)
-      LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_id AND sr.user_id = $5
+      LEFT JOIN reviews rw USING(recipe_id)
+      LEFT JOIN saved_recipes sr USING(recipe_id)
+      LEFT JOIN saved_recipes s ON r.recipe_id = s.recipe_id AND s.user_id = $5
       WHERE to_tsquery($1) @@ document_vectors
       AND r.recipe_id IN
             (SELECT recipe
              FROM recipes_join_categories
              WHERE CASE WHEN $4 = 'none' THEN true
                         ELSE category = $4 END)
-      GROUP BY r.recipe_id, u.user_id, sr.user_id
+      GROUP BY r.recipe_id, u.user_id, s.user_id
       ORDER BY ${orderBy}
       LIMIT $2
       OFFSET $3;`,
