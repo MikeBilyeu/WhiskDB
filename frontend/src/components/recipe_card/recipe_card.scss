@@ -47,7 +47,7 @@
   }
 
   &__title {
-    font-size: 0.9rem;
+    font-size: 1rem;
     width: 100%;
     overflow: hidden;
     hyphens: auto;
@@ -65,7 +65,7 @@
     @include grid-center;
     grid-auto-flow: column;
     grid-gap: 0.25rem;
-    justify-self: end;
+    place-self: end;
     padding: 0 0.25rem;
     grid-column: 2 / 3;
 
@@ -97,6 +97,9 @@
   .recipe-card-loading {
     width: 19rem;
     height: 24rem;
+    &__title {
+      font-size: 1.3rem;
+    }
   }
   .profile-home {
     .recipe-card,
@@ -116,7 +119,11 @@
     width: 9rem !important;
     height: 12rem !important;
     &__fade {
-      box-shadow: 0 0rem 3rem 4rem rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0rem 3rem 5rem rgba(0, 0, 0, 0.6);
+    }
+
+    &__title {
+      font-size: 1.1rem;
     }
   }
 }
