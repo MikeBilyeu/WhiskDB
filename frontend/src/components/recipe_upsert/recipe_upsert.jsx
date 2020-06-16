@@ -53,7 +53,7 @@ const RecipeUpsert = props => {
 
       <Field name="image_url" className="ru-image" component={ImageUpload} />
       <Field
-        name="servings"
+        name="yield"
         component={Input}
         label="Yield"
         placeholder="2"

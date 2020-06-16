@@ -31,15 +31,7 @@ const Recipe = props => {
     isFetching,
     editRecipe,
     saved,
-    recipe: {
-      image_url,
-      directions,
-      footnote,
-      time,
-      title,
-      username,
-      created_by
-    }
+    recipe: { image_url, directions, footnote, time, title }
   } = props.recipeData;
 
   let recipeImage =
@@ -82,7 +74,6 @@ const Recipe = props => {
           user_id={user_id}
           handleBackClick={handleBackClick}
           isAuth={props.isAuth}
-          created_by={created_by}
           handleSaveClick={handleSaveClick}
         />
         {showMoreOpen ? <More className="recipe-more" /> : null}
@@ -101,9 +92,6 @@ const Recipe = props => {
           <RecipeDetails time={time} />
           <Ingredients />
           <Directions directions={directions} footnote={footnote} />
-          <div className="recipe__created-by">
-            Recipe by {username.toLowerCase()}
-          </div>
         </div>
       </MediaQuery>
 
@@ -118,7 +106,7 @@ const Recipe = props => {
         <Ingredients />
 
         <div className="recipe__container">
-          {props.isAuth && user_id !== created_by ? (
+          {props.isAuth ? (
             <div
               className={classNames("recipe__save-btn", {
                 "recipe__save-btn--active": saved
@@ -151,10 +139,6 @@ const Recipe = props => {
           <Ingredients />
 
           <Directions directions={directions} time={time} footnote={footnote} />
-
-          <div className="recipe__created-by">
-            Recipe by {username.toLowerCase()}
-          </div>
         </div>
       </MediaQuery>
     </div>

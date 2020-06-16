@@ -7,25 +7,24 @@ module.exports = async (req, res) => {
       return res.status(404).send("Recipe not found");
     }
     const { rows } = await db.query(
-      `SELECT r.*,
-             TO_CHAR(r.created_at, 'Mon fmDD, YYYY') AS date_created,
-             u.username AS username,
-             sr.user_id = $2 saved,
-             COALESCE(AVG(rw.rating), 0) AS rating,
-             CAST(count(rw.*) AS INTEGER) AS num_reviews
-      FROM recipes r
-      LEFT JOIN users u ON u.user_id = r.created_by
-      LEFT JOIN saved_recipes sr ON r.recipe_id = sr.recipe_id
-      AND sr.user_id = $2
-      LEFT JOIN reviews rw ON r.recipe_id = rw.recipe_id
-      WHERE r.recipe_id = $1
-      GROUP BY r.recipe_id,
-               u.user_id,
-               sr.user_id;`,
+      `SELECT r.*, rs IS NOT NULL AS saved
+      FROM "RECIPES" r
+      LEFT JOIN "RECIPES_SAVES" rs ON rs.recipe_id = r.recipe_id AND rs.user_id = $2
+      WHERE r.recipe_id = $1;`,
       [recipe_id, user_id]
     );
+
+    const { rows: ingredients } = await db.query(
+      `SELECT amount, ingredient
+      FROM "INGREDIENTS"
+      WHERE recipe_id = $1;`,
+      [recipe_id]
+    );
+
+    const recipe = { ...rows[0], ingredients: ingredients };
+
     if (rows[0]) {
-      res.status(200).json(rows[0]);
+      res.status(200).json(recipe);
     } else {
       res.status(404).send("Recipe not found");
     }

@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     // Delete saved recipe from db
     await db.query(
       `DELETE
-          FROM saved_recipes
+          FROM "RECIPES_SAVES"
           WHERE user_id = $1
             AND recipe_id = $2`,
       [user_id, recipe_id]

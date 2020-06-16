@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
           SUM((rating=1)::INT) AS star1,
           count(1)::INT AS num_reviews,
           AVG(rating) AS rating
-      FROM reviews
+      FROM RECIPES_REVIEWS
       WHERE recipe_id = $1;`,
       [recipe_id]
     );

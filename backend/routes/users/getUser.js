@@ -5,12 +5,10 @@ module.exports = async (req, res) => {
   try {
     const { rows, rowCount } = await db.query(
       `SELECT user_id,
-             username,
-             full_name,
+             name,
              email,
-             diet,
              image_url
-      FROM users
+      FROM "USERS"
       WHERE user_id = $1`,
       [user_id]
     );

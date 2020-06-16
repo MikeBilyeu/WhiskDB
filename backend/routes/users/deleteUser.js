@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   try {
     await db.query(
       `DELETE
-      FROM users
+      FROM "USERS"
       WHERE user_id = $1`,
       [user_id]
     );

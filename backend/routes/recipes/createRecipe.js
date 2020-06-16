@@ -7,17 +7,17 @@ module.exports = async ({ user, body: recipe }, res) => {
   // if (Object.keys(errors).length !== 0) {
   //   res.status(400).json(errors);
   // }
-  const ingredientsArr = recipe.ingredients
-    .split(/\n/)
-    .map(ing => {
-      return ing.trim().replace(/[ \t]{2,}/, " ");
-    })
-    .filter(Boolean);
-
-  const keywordsArr = recipe.keywords
-    .toString()
-    .split(",")
-    .map(item => item.trim());
+  // const ingredientsArr = recipe.ingredients
+  //   .split(/\n/)
+  //   .map(ing => {
+  //     return ing.trim().replace(/[ \t]{2,}/, " ");
+  //   })
+  //   .filter(Boolean);
+  //
+  // const keywordsArr = recipe.keywords
+  //   .toString()
+  //   .split(",")
+  //   .map(item => item.trim());
 
   try {
     const { rows } = await db.query(
@@ -30,51 +30,40 @@ module.exports = async ({ user, body: recipe }, res) => {
           $4,
           $5,
           $6,
-          NULL,
           DEFAULT,
-          (setweight(to_tsvector($3::VARCHAR), 'A')
-            || setweight(to_tsvector($8::VARCHAR), 'C')
-            || setweight(to_tsvector(
-                 array_to_string($7::VARCHAR[], ' ')), 'B')),
-          $7,
-          $8,
-          $9,
-          $10
+          NOW()
         )
          RETURNING recipe_id;`,
       [
-        user.user_id,
+        recipe.title,
         recipe.image_url,
-        recipe.title.trim(),
         convertTimeToMin(recipe.time),
-        recipe.servings,
-        recipe.footnote,
-        keywordsArr,
-        recipe.directions,
-        ingredientsArr,
-        recipe.categories
+        recipe.yield,
+        recipe.instructions,
+        recipe.footnote
       ]
     );
     const recipe_id = rows[0].recipe_id;
-    let categoryValues = [];
 
-    recipe.categories.forEach(category => {
-      categoryValues.push(`(${recipe_id}, '${category}')`);
-    });
+    // let categoryValues = [];
+    //
+    // recipe.categories.forEach(category => {
+    //   categoryValues.push(`(${recipe_id}, '${category}')`);
+    // });
+    //
+    // await db.query(
+    //   `INSERT INTO "RECIPES_CATEGORIES" VALUES ${categoryValues.join()};`
+    // );
 
-    await db.query(
-      `INSERT INTO recipes_join_categories VALUES ${categoryValues.join()};`
-    );
-
-    let keywordValues = [];
-
-    keywordsArr.forEach(keyword => {
-      keywordValues.push(`('${keyword}')`);
-    });
-
-    await db.query(
-      `INSERT INTO keywords (keyword) VALUES ${keywordValues.join()};`
-    );
+    // let keywordValues = [];
+    //
+    // keywordsArr.forEach(keyword => {
+    //   keywordValues.push(`('${keyword}')`);
+    // });
+    //
+    // await db.query(
+    //   `INSERT INTO keywords (keyword) VALUES ${keywordValues.join()};`
+    // );
 
     res.status(200).send({ recipe_id: recipe_id });
   } catch (err) {

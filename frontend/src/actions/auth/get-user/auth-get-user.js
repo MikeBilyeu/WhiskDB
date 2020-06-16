@@ -4,6 +4,7 @@ import { GET_USER, GET_ERRORS } from "../../types";
 const getUser = () => async dispatch => {
   try {
     const { data } = await axios.get("/users/user");
+    console.log("user data:", data);
     dispatch({
       type: GET_USER,
       payload: data

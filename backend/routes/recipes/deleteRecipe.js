@@ -5,10 +5,7 @@ module.exports = async (req, res) => {
   const { user_id } = req.user;
 
   try {
-    await db.query(
-      `DELETE FROM recipes r WHERE r.recipe_id = $1 AND r.created_by = $2`,
-      [recipeId, user_id]
-    );
+    await db.query(`DELETE FROM RECIPES r WHERE r.recipe_id = $1`, [recipeId]);
 
     res.status(200).send("Recipe deleted");
   } catch (err) {

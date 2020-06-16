@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
              ts_rank_cd('{0.1, 0.05, 0.1, 1.0}',
                         document_vectors, to_tsquery($1), 1) AS rank
       FROM recipes r
-      right JOIN users u ON u.user_id = r.created_by
+      right JOIN "USERS" u ON u.user_id = r.created_by
       LEFT JOIN reviews rw USING(recipe_id)
       LEFT JOIN saved_recipes sr USING(recipe_id)
       LEFT JOIN saved_recipes s ON r.recipe_id = s.recipe_id AND s.user_id = $5

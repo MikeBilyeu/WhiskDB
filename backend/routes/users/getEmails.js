@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   try {
     const { rowCount } = await db.query(
       `SELECT *
-      FROM users
+      FROM "USERS"
       WHERE LOWER(email) = LOWER($1)`,
       [email]
     );

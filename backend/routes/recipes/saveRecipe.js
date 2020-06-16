@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   try {
     // Add saved recipe to db
     await db.query(
-      `INSERT INTO saved_recipes (user_id, recipe_id)
+      `INSERT INTO "RECIPE_SAVES" (user_id, recipe_id)
               VALUES ($1, $2)`,
       [user_id, recipe_id]
     );

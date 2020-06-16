@@ -6,19 +6,19 @@ import "../recipe_upsert.scss";
 
 const Directions = () => {
   const placeholder = {
-    directions:
+    instructions:
       "Sift the flour, sugar, baking powder, and salt into a large bowl.",
     footnote: "Drop batter by large spoonfuls onto the griddle…"
   };
   return (
     <div className="ru-directions">
       <Field
-        name="directions"
+        name="instructions"
         className="ru-directions__input"
         type="text"
         component={TextArea}
         label="Instructions"
-        placeholder={placeholder.directions}
+        placeholder={placeholder.instructions}
       />
       <Field
         name="footnote"

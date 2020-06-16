@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
   try {
     const { rowCount, rows } = await db.query(
       `SELECT *
-        FROM users
+        FROM "USERS"
         WHERE email = $1`,
       [email]
     );
@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
     const user = rows[0];
 
     // Check password
-    const isMatch = await bcrypt.compare(password, user.password_encrypted);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
       // Create JWT Payload
       const payload = {

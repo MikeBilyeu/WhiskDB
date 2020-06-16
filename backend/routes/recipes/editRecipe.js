@@ -15,8 +15,8 @@ module.exports = async ({ user, body: recipe }, res) => {
 
   try {
     await db.query(
-      `UPDATE recipes
-       SET title = $1::VARCHAR, servings = $2, ingredients = $3,
+      `UPDATE "RECIPES"
+       SET title = $1::VARCHAR, yield = $2, ingredients = $3,
        directions = $4::VARCHAR, footnote = $5, categories = $6,
        keywords = CAST($7 AS VARCHAR[]), total_time_mins = $8,
          image_url = $9, document_vectors = ( setweight(to_tsvector($1), 'A')

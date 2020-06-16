@@ -21,9 +21,9 @@ const getRecipe = (recipe_id, user_id) => async (dispatch, getState) => {
       dispatch({ type: GET_RECIPE, payload: recipe });
     }
   } catch (err) {
-    if (err.response.status === 404) {
-      dispatch({ type: NO_MATCH });
-    }
+    // if (err.response.status === 404) {
+    //   dispatch({ type: NO_MATCH });
+    // }
     dispatch({ type: GET_ERRORS, payload: err });
   }
 };
