@@ -15,7 +15,9 @@ module.exports = passport => {
       if (Date.now() > jwtPayload.expires) {
         return done("jwt expired");
       }
-      db.query(`SELECT 1 FROM users WHERE user_id = $1;`, [jwtPayload.user_id])
+      db.query(`SELECT 1 FROM "USERS" WHERE user_id = $1;`, [
+        jwtPayload.user_id
+      ])
         .then(res => {
           if (res.rowCount) {
             return done(null, jwtPayload);

@@ -64,14 +64,6 @@ const Edit = props => {
         />
         <div className="edit-profile-form__email">{props.email}</div>
         <Field
-          name="full_name"
-          component={Input}
-          inputId="fullname"
-          placeholder="Enter full name"
-          label="Full name"
-          className="edit-profile-form__input"
-        />
-        <Field
           name="username"
           component={Input}
           inputId="username"

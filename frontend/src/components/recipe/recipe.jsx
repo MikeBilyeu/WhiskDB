@@ -8,7 +8,7 @@ import Header from "./header";
 import HeaderDesktop from "../header_desktop";
 import RecipeDetails from "./RecipeDetails";
 import Ingredients from "./ingredients";
-import Directions from "./directions";
+import Instructions from "./instructions";
 import More from "./more";
 import Loading from "../loading";
 import Edit from "./edit";
@@ -31,7 +31,7 @@ const Recipe = props => {
     isFetching,
     editRecipe,
     saved,
-    recipe: { image_url, directions, footnote, time, title }
+    recipe: { image_url, instructions, footnote, total_time, title }
   } = props.recipeData;
 
   let recipeImage =
@@ -89,9 +89,9 @@ const Recipe = props => {
           className="recipe__container"
           style={{ position: "relative", top: "calc(100vh - 11rem)" }}
         >
-          <RecipeDetails time={time} />
+          <RecipeDetails time={total_time} />
           <Ingredients />
-          <Directions directions={directions} footnote={footnote} />
+          <Instructions instructions={instructions} footnote={footnote} />
         </div>
       </MediaQuery>
 
@@ -127,7 +127,7 @@ const Recipe = props => {
             </Link>
           ) : null}
 
-          <RecipeDetails time={time} />
+          <RecipeDetails time={total_time} />
 
           <img
             className="recipe__img"
@@ -138,7 +138,11 @@ const Recipe = props => {
 
           <Ingredients />
 
-          <Directions directions={directions} time={time} footnote={footnote} />
+          <Instructions
+            instructions={instructions}
+            time={total_time}
+            footnote={footnote}
+          />
         </div>
       </MediaQuery>
     </div>
@@ -148,7 +152,7 @@ const Recipe = props => {
 const mapStateToProps = state => ({
   recipeData: {
     ...state.recipe,
-    recipe: { ...state.recipe.recipe, time: convertTime(state) }
+    recipe: { ...state.recipe.recipe, total_time: convertTime(state) }
   },
   user_id: state.auth.user.user_id,
   isAuth: state.auth.isAuthenticated,

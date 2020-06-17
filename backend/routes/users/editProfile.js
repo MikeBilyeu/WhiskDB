@@ -1,11 +1,13 @@
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const db = require("../../db");
+const validateUsername = require("../../validation/usernameValidate");
 
 module.exports = async (req, res) => {
-  let { name, diet, image_url } = req.body;
+  let { username, image_url } = req.body;
   const { user_id } = req.user; // get user_id from auth
-  name = name && name.trim();
+
+  const errors = validateUsername(username);
   // Check errors for username validation
   if (Object.keys(errors).length !== 0) {
     return res.status(400).json(errors);
@@ -13,13 +15,13 @@ module.exports = async (req, res) => {
 
   try {
     await db.query(
-      `UPDATE "USERS" SET name = $1, diet = $2, image_url = $3 WHERE user_id = $4`,
-      [name, diet, image_url, user_id]
+      `UPDATE "USERS" SET username = $1, image_url = $2, updated_at = DEFAULT WHERE user_id = $3`,
+      [username, image_url, user_id]
     );
 
     const payload = {
       user_id: user_id,
-      name: name,
+      username: username,
       image_url: image_url
     };
 

@@ -10,7 +10,7 @@ import {
 } from "../actions/types";
 const initialState = {
   isAuthenticated: false,
-  user: { user_id: null, name: "", email: "" },
+  user: { user_id: null, username: "", email: "" },
   loading: false,
   openDelete: false,
   filterRecipes: { category: "All Categories", offset: 0 },
