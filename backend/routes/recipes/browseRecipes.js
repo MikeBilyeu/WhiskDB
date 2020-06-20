@@ -4,7 +4,6 @@ module.exports = async (req, res) => {
   let { category, diet, sort, offset, user_id } = JSON.parse(
     JSON.stringify(req.query).toLowerCase()
   );
-  console.log("data input", req.query);
 
   const LIMIT = 12;
   const OFFSETNUM = offset * LIMIT;
