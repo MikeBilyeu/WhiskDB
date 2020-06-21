@@ -22,7 +22,7 @@ const validateImage = (imageFile, image) => {
 
 const validateServings = servings => {
   if (!servings) {
-    errors.servings = "Add a yield for the recipe";
+    errors.servings = "Add servings for the recipe";
   }
 };
 
@@ -79,9 +79,9 @@ const validateTime = time => {
   }
 };
 
-const validateDirections = directions => {
-  if (!directions) {
-    errors.directions = "Add instructions for the recipe";
+const validateInstructions = instructions => {
+  if (!instructions) {
+    errors.instructions = "Add instructions for the recipe";
   }
 };
 
@@ -107,7 +107,7 @@ export const validate = values => {
     validateServings(values.servings);
     validateIngredients(values.ingredients);
     validateTime(values.time);
-    validateDirections(values.directions);
+    validateInstructions(values.instructions);
     validateKeywords(values.keywords);
     validateCategories(values.categories);
   }

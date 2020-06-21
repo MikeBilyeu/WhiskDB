@@ -53,9 +53,9 @@ const RecipeUpsert = props => {
 
       <Field name="image_url" className="ru-image" component={ImageUpload} />
       <Field
-        name="yield"
+        name="servings"
         component={Input}
-        label="Yield"
+        label="Servings"
         placeholder="2"
         type="number"
         pattern="[0-9]*"

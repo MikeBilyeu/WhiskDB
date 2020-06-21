@@ -4,15 +4,13 @@ import PropTypes from "prop-types";
 import "../recipe_upsert.scss";
 
 const recipeCategories = [
-  "vegetarian",
-  "vegan",
-  "breakfast",
-  "lunch",
-  "dinner",
-  "appetizer",
-  "side",
-  "dessert",
-  "beverage"
+  "Breakfast",
+  "Lunch",
+  "Dinner",
+  "Appetizer",
+  "Side",
+  "Dessert",
+  "Beverage"
 ];
 
 const Categories = props => {
