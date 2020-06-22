@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     const { rows } = await db.query(
       `SELECT rw.rating,
               rw.comment,
-              u.name
+              u.username
        FROM "RECIPES_REVIEWS" rw
        LEFT JOIN "USERS" u USING (user_id)
        WHERE rw.user_id = $2

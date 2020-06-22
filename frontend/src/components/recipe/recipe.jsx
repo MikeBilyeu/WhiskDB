@@ -31,7 +31,7 @@ const Recipe = props => {
     isFetching,
     editRecipe,
     saved,
-    recipe: { image_url, instructions, footnote, total_time, title }
+    recipe: { image_url, instructions, footnote, total_time, title, author }
   } = props.recipeData;
 
   let recipeImage =
@@ -74,6 +74,7 @@ const Recipe = props => {
           user_id={user_id}
           handleBackClick={handleBackClick}
           isAuth={props.isAuth}
+          author={author}
           handleSaveClick={handleSaveClick}
         />
         {showMoreOpen ? <More className="recipe-more" /> : null}
@@ -106,7 +107,7 @@ const Recipe = props => {
         <Ingredients />
 
         <div className="recipe__container">
-          {props.isAuth ? (
+          {props.isAuth && !author ? (
             <div
               className={classNames("recipe__save-btn", {
                 "recipe__save-btn--active": saved

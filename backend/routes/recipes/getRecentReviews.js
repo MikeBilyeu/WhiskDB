@@ -6,12 +6,12 @@ module.exports = async (req, res) => {
     const { rows } = await db.query(
       `SELECT rw.rating,
               rw.comment,
-              u.name
-       FROM "REIPES_REVIEWS" rw
+              u.username
+       FROM "RECIPES_REVIEWS" rw
        LEFT JOIN "USERS" u USING (user_id)
        WHERE rw.recipe_id = $1 AND rw.comment != ''
-       ORDER BY created_at DESC
-       LIMIT 3`,
+       ORDER BY rw.created_at DESC
+       LIMIT 3;`,
       [recipe_id]
     );
 

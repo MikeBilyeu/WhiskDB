@@ -10,13 +10,14 @@ import { ReactComponent as More } from "../../../assets/images/more.svg";
 import "./recipe-header.scss";
 
 const Header = props => {
+  console.log(props);
   return (
     <div className="recipe-header">
       <Arrow
         className="recipe-header__back-btn"
         onClick={props.handleBackClick}
       />
-      {props.isAuth && props.user_id !== props.created_by ? (
+      {props.isAuth && !props.author ? (
         <div
           className={classNames("recipe-header__save-btn", {
             "recipe-header__save-btn--active": props.recipeSaved

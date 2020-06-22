@@ -8,21 +8,27 @@ module.exports = async (req, res) => {
 
   try {
     const { rows, rowCount } = await db.query(
-      `SELECT r.*,
+      `SELECT DISTINCT r.*,
       (SELECT ARRAY_AGG(CONCAT(amount, ' ', ingredient)) FROM "INGREDIENTS" i WHERE i.recipe_id = r.recipe_id)
           AS ingredients,
       (SELECT COUNT(1) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::INT
           AS num_reviews,
       (SELECT COALESCE(AVG(rating), 0) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::FLOAT
           AS rating,
-          rs IS NOT NULL AS saved
+          rs IS NOT NULL AS saved,
+          rs.saved_at,
+          ur IS NOT NULL AS author
       FROM "RECIPES" r
-      JOIN "USERS_RECIPES" ur  USING(recipe_id)
+      JOIN "USERS_RECIPES" ur USING(recipe_id)
       FULL JOIN "RECIPES_SAVES" rs USING(recipe_id)
+      JOIN "RECIPES_CATEGORIES" rc ON rc.recipe_id = r.recipe_id AND
+        ($4 = 'All Categories' OR rc.category = $4)
       WHERE ur.user_id = $1 OR rs.user_id = $1
+      ORDER BY r.created_at DESC,
+        rs.saved_at DESC
       LIMIT $2
       OFFSET $3;`,
-      [user_id, LIMIT, OFFSETNUM]
+      [user_id, LIMIT, OFFSETNUM, category]
     );
     if (rowCount < 1) {
       res.status(204).send();

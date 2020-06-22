@@ -14,17 +14,11 @@ class More extends React.Component {
     };
   }
   render() {
-    const {
-      created_by,
-      user_id,
-      toggleShowMore,
-      toggleEditRecipe,
-      className
-    } = this.props;
+    const { author, toggleShowMore, toggleEditRecipe, className } = this.props;
     return (
       <div className={className}>
         <Close className={`${className}__close-btn`} onClick={toggleShowMore} />
-        {user_id === created_by ? (
+        {author ? (
           <div
             onClick={() => {
               toggleEditRecipe();
@@ -65,8 +59,7 @@ class More extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  created_by: state.recipe.recipe.created_by,
-  user_id: state.auth.user.user_id
+  author: state.recipe.recipe.author
 });
 
 export default connect(

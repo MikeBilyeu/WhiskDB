@@ -14,8 +14,10 @@ module.exports = async (req, res) => {
         AS num_reviews,
         (SELECT COALESCE(AVG(rating), 0) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::FLOAT
         AS rating,
-        rs IS NOT NULL AS saved
+        rs IS NOT NULL AS saved,
+        ur IS NOT NULL AS author
       FROM "RECIPES" r
+      LEFT JOIN "USERS_RECIPES" ur ON ur.recipe_id = r.recipe_id AND ur.user_id = $2
       LEFT JOIN "RECIPES_SAVES" rs ON rs.recipe_id = r.recipe_id AND rs.user_id = $2
       WHERE r.recipe_id = $1;`,
       [recipe_id, user_id]
