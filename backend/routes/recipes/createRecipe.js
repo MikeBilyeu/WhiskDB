@@ -7,6 +7,8 @@ module.exports = async ({ user: { user_id }, body: recipe }, res) => {
     .split(/\n/)
     .map(ing => splitIngredientStr(ing));
 
+  console.log(recipe.keywords);
+
   const keywords = recipe.keywords
     .toString()
     .split(",")
@@ -83,6 +85,16 @@ module.exports = async ({ user: { user_id }, body: recipe }, res) => {
       recipe_id,
       user_id
     ]);
+
+    await db.query(
+      `INSERT INTO "RECIPES_SEARCHES"
+    VALUES ($1, setweight(to_tsvector($2::VARCHAR), 'A')
+                || setweight(to_tsvector($3::VARCHAR), 'C')
+                || setweight(to_tsvector(array_to_string($4::VARCHAR[], ' ')), 'B')
+            )`,
+      [recipe_id, recipe.title, recipe.instructions, keywords]
+    );
+
     res.status(200).send({ recipe_id: recipe_id });
   } catch (err) {
     console.error(err);
