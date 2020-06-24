@@ -3,8 +3,7 @@ import {
   SAVE_RECIPE,
   GET_ERRORS,
   REMOVE_SAVED_RECIPES,
-  GET_SAVED_RECIPES,
-  GET_BROWSE_RECIPES
+  GET_SAVED_RECIPES
 } from "../types";
 
 const unsaveRecipe = recipe_id => async (dispatch, getState) => {
@@ -36,7 +35,6 @@ const unsaveRecipe = recipe_id => async (dispatch, getState) => {
     await axios.delete("/recipes/unsave", { params: { recipe_id } });
     dispatch({ type: REMOVE_SAVED_RECIPES });
     dispatch({ type: GET_SAVED_RECIPES, payload: updatedRecipes });
-    dispatch({ type: GET_BROWSE_RECIPES, payload: browseRecipes });
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
   }

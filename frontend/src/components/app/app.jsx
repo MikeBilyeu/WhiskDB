@@ -21,6 +21,7 @@ const App = props => {
     if (props.isAuth) {
       props.getSavedRecipes();
     }
+
     props.getBrowseRecipes();
   }, [props.isAuth]);
   return (

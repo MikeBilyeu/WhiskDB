@@ -3,8 +3,7 @@ import {
   SAVE_RECIPE,
   GET_ERRORS,
   REMOVE_SAVED_RECIPES,
-  GET_SAVED_RECIPES,
-  GET_BROWSE_RECIPES
+  GET_SAVED_RECIPES
 } from "../types";
 
 const saveRecipe = recipe_id => async (dispatch, getState) => {
@@ -20,7 +19,12 @@ const saveRecipe = recipe_id => async (dispatch, getState) => {
   }
 
   savedRecipes = [
-    { ...recipe, saved: true, full_count: fullCount },
+    {
+      ...recipe,
+      saved: true,
+      num_saves: recipe.num_saves + 1,
+      full_count: fullCount
+    },
     ...savedRecipes
   ];
 
@@ -39,7 +43,6 @@ const saveRecipe = recipe_id => async (dispatch, getState) => {
       type: GET_SAVED_RECIPES,
       payload: savedRecipes
     });
-    dispatch({ type: GET_BROWSE_RECIPES, payload: browseRecipes });
   } catch (err) {
     dispatch({ type: GET_ERRORS, payload: err });
   }

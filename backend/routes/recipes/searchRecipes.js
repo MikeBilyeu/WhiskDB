@@ -4,8 +4,7 @@ module.exports = async (req, res) => {
     JSON.stringify(req.query).toLowerCase()
   );
 
-  search = search.trim().replace(/\s+/g, " & ");
-  search = search.trim();
+  let textSearch = search.trim().replace(/\s+/g, ":* | ") + ":*";
 
   const LIMIT = 12;
   const OFFSET = offset * LIMIT;
@@ -29,18 +28,22 @@ module.exports = async (req, res) => {
         AS num_reviews,
         (SELECT COALESCE(AVG(rating), 0) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::FLOAT
         AS rating,
+        (SELECT COUNT(1) FROM "RECIPES_SAVES" rs WHERE rs.recipe_id = r.recipe_id)::INT
+        AS num_saves,
         rs IS NOT NULL AS saved,
         ur IS NOT NULL AS author,
-        ts_rank_cd('{0.1, 0.05, 0.1, 1.0}', rsearch.ts_vector, to_tsquery($4), 1) AS RANK
+        ts_rank_cd('{0.1, 0.05, 0.1, 1.0}', rsrch.ts_vector, to_tsquery('english', $4), 1) AS RANK,
+        COUNT(*) OVER()::INT AS full_count
       FROM "RECIPES" r
       LEFT JOIN "RECIPES_SAVES" rs ON rs.recipe_id = r.recipe_id AND rs.user_id = $1
       LEFT JOIN "USERS_RECIPES" ur ON ur.recipe_id = r.recipe_id AND ur.user_id = $1
-      JOIN "RECIPES_SEARCHES" rsearch ON rsearch.recipe_id = r.recipe_id
-      WHERE to_tsquery($4) @@ rsearch.ts_vector
+      JOIN "RECIPES_SEARCHES" rsrch ON rsrch.recipe_id = r.recipe_id
+      WHERE to_tsquery('english', $4) @@ rsrch.ts_vector
+      GROUP BY (r.recipe_id, rs.*, ur.*, rsrch.ts_vector)
       ORDER BY ${orderBy}
       LIMIT $2
       OFFSET $3;`,
-      [user_id, LIMIT, OFFSET, search]
+      [user_id, LIMIT, OFFSET, textSearch]
     );
     if (rowCount < 1) {
       res.status(204).send();

@@ -30,6 +30,7 @@ const SearchBar = props => {
   };
 
   const handleFocus = () => {
+    console.log("Focus");
     setFocus(true);
     textInput.current.focus();
     props.toggleFilterBtnBrowse(null);

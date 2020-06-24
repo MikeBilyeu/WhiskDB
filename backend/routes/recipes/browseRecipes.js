@@ -25,13 +25,17 @@ module.exports = async (req, res) => {
         AS num_reviews,
         (SELECT COALESCE(AVG(rating), 0) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::FLOAT
         AS rating,
+        (SELECT COUNT(1) FROM "RECIPES_SAVES" rs WHERE rs.recipe_id = r.recipe_id)::INT
+        AS num_saves,
         rs IS NOT NULL AS saved,
-        ur IS NOT NULL AS author
+        ur IS NOT NULL AS author,
+        COUNT(*) OVER()::INT AS full_count
       FROM "RECIPES" r
       JOIN "RECIPES_CATEGORIES" rc ON rc.recipe_id = r.recipe_id AND
         ($4 = 'All Categories' OR rc.category = $4)
       LEFT JOIN "RECIPES_SAVES" rs ON rs.recipe_id = r.recipe_id AND rs.user_id = $1
       LEFT JOIN "USERS_RECIPES" ur ON ur.recipe_id = r.recipe_id AND ur.user_id = $1
+      GROUP BY (r.recipe_id, rs.*, ur.*)
       ORDER BY ${orderBy}
       LIMIT $2
       OFFSET $3;`,

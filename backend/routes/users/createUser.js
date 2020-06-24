@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const validateRegisterInput = require("../../validation/register");
 
-module.exports = async ({ body: { email, password } }, res) => {
+module.exports = async ({ body: { username, email, password } }, res) => {
   // const errors = validateRegisterInput({ username, email, password });
   // if (Object.keys(errors).length !== 0) {
   //   res.status(400).send(errors);
@@ -23,9 +23,9 @@ module.exports = async ({ body: { email, password } }, res) => {
     try {
       const password_encrypted = await bcrypt.hash(password, 10);
       const { rows } = await db.query(
-        `INSERT INTO "USERS" (email, password, created_at)
-        VALUES ($1, $2, NOW()) RETURNING user_id`,
-        [email, password_encrypted]
+        `INSERT INTO "USERS" (email, password, username, created_at)
+        VALUES ($1, $2, $3, NOW()) RETURNING user_id`,
+        [email, password_encrypted, username]
       );
       res.status(201).send(`User added with ID: ${rows[0].user_id}`);
     } catch (err) {
