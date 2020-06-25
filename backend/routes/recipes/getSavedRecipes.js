@@ -20,6 +20,7 @@ module.exports = async (req, res) => {
           rs IS NOT NULL AS saved,
           rs.saved_at,
           COALESCE(ur.user_id = $1, false) AS author,
+          COALESCE(rs.saved_at, r.created_at) AS order_by_time,
           COUNT(*) OVER()::INT AS full_count
       FROM "RECIPES" r
       JOIN "USERS_RECIPES" ur USING(recipe_id)
@@ -28,8 +29,7 @@ module.exports = async (req, res) => {
         ($4 = 'All Categories' OR rc.category = $4)
       WHERE ur.user_id = $1 OR rs.user_id = $1
       GROUP BY (r.recipe_id, rs.saved_at, rs.*, ur.user_id, ur.*)
-      ORDER BY r.created_at DESC,
-        rs.saved_at ASC
+      ORDER BY order_by_time DESC
       LIMIT $2
       OFFSET $3;`,
       [user_id, LIMIT, OFFSETNUM, category]
