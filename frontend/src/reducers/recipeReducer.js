@@ -6,6 +6,7 @@ import {
   TOGGLE_UNIT,
   CONVERT_SERVINGS,
   GET_RATING_PERCENTAGE,
+  GET_RATING,
   TOGGLE_SHOW_MORE,
   SUBMIT_REVIEW,
   GET_RECIPE_REVIEWS,
@@ -26,9 +27,7 @@ const initialState = {
     star4: null,
     star3: null,
     star2: null,
-    star1: null,
-    num_reviews: 0,
-    rating: null
+    star1: null
   },
   reviews: [],
   myReview: {},
@@ -54,9 +53,7 @@ export default function(state = initialState, action) {
           star4: 0,
           star3: 0,
           star2: 0,
-          star1: 0,
-          rating: action.payload.rating,
-          num_reviews: action.payload.num_reviews
+          star1: 0
         },
         reviews: [],
         myReview: {},
@@ -68,6 +65,15 @@ export default function(state = initialState, action) {
       return { ...state, myReview: action.payload };
     case GET_RATING_PERCENTAGE:
       return { ...state, ratingPercentage: action.payload };
+    case GET_RATING:
+      return {
+        ...state,
+        recipe: {
+          ...state.recipe,
+          rating: action.payload.rating,
+          num_reviews: action.payload.num_reviews
+        }
+      };
     case SUBMIT_REVIEW:
       return { ...state, recipe: { ...state.recipe } };
     case SAVE_RECIPE:

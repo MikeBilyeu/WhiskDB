@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
       WHERE ur.user_id = $1 OR rs.user_id = $1
       GROUP BY (r.recipe_id, rs.saved_at, rs.*, ur.user_id, ur.*)
       ORDER BY r.created_at DESC,
-        rs.saved_at DESC
+        rs.saved_at ASC
       LIMIT $2
       OFFSET $3;`,
       [user_id, LIMIT, OFFSETNUM, category]

@@ -9,7 +9,8 @@ class ReviewDetails extends React.Component {
   }
   render() {
     const {
-      ratingPercentage: { star5, star4, star3, star2, star1, num_reviews }
+      ratingPercentage: { star5, star4, star3, star2, star1 },
+      num_reviews
     } = this.props;
 
     return (
@@ -27,9 +28,10 @@ class ReviewDetails extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { ratingPercentage: state.recipe.ratingPercentage };
-};
+const mapStateToProps = state => ({
+  ratingPercentage: state.recipe.ratingPercentage,
+  num_reviews: state.recipe.recipe.num_reviews
+});
 
 export default connect(
   mapStateToProps,
