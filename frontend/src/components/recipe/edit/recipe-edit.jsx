@@ -19,13 +19,11 @@ const Edit = props => {
 
   let { isFetching, recipe } = props.recipeData;
   const ingredientsStr = recipe.ingredients.join("\n");
-  const keywordsStr = recipe.keywords.join(", ");
 
   const initialValues = {
     ...recipe,
     time: props.recipeTime,
-    ingredients: ingredientsStr,
-    keywords: keywordsStr
+    ingredients: ingredientsStr
   };
 
   return isFetching ? (

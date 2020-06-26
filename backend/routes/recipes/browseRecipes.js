@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
   try {
     const { rows, rowCount } = await db.query(
       `SELECT DISTINCT r.*,
-        (SELECT ARRAY_AGG(CONCAT(amount, ' ', ingredient)) FROM "INGREDIENTS" i WHERE i.recipe_id = r.recipe_id)
+        (SELECT ARRAY_AGG(CONCAT(amount, ' ', ingredient) ORDER BY i.order ASC) FROM "INGREDIENTS" i WHERE i.recipe_id = r.recipe_id)
         AS ingredients,
         (SELECT COUNT(1) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::INT
         AS num_reviews,
@@ -27,6 +27,10 @@ module.exports = async (req, res) => {
         AS rating,
         (SELECT COUNT(1) FROM "RECIPES_SAVES" rs WHERE rs.recipe_id = r.recipe_id)::INT
         AS num_saves,
+        (SELECT STRING_AGG(rk.keyword, ', ' ORDER BY rk.order ASC) FROM "RECIPES_KEYWORDS" rk WHERE rk.recipe_id = r.recipe_id)
+        AS keywords,
+        (SELECT ARRAY_AGG(rc.category) FROM "RECIPES_CATEGORIES" rc WHERE rc.recipe_id = r.recipe_id)
+        AS categories,
         rs IS NOT NULL AS saved,
         ur IS NOT NULL AS author,
         COUNT(*) OVER()::INT AS full_count

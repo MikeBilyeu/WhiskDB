@@ -9,19 +9,23 @@ module.exports = async (req, res) => {
   try {
     const { rows, rowCount } = await db.query(
       `SELECT DISTINCT r.*,
-      (SELECT ARRAY_AGG(CONCAT(amount, ' ', ingredient)) FROM "INGREDIENTS" i WHERE i.recipe_id = r.recipe_id)
-          AS ingredients,
-      (SELECT COUNT(1) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::INT
-          AS num_reviews,
-      (SELECT COALESCE(AVG(rating), 0) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::FLOAT
-          AS rating,
-          (SELECT COUNT(1) FROM "RECIPES_SAVES" rs WHERE rs.recipe_id = r.recipe_id)::INT
+        (SELECT ARRAY_AGG(CONCAT(amount, ' ', ingredient) ORDER BY i.order ASC) FROM "INGREDIENTS" i WHERE i.recipe_id = r.recipe_id)
+        AS ingredients,
+        (SELECT COUNT(1) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::INT
+        AS num_reviews,
+        (SELECT COALESCE(AVG(rating), 0) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::FLOAT
+        AS rating,
+        (SELECT COUNT(1) FROM "RECIPES_SAVES" rs WHERE rs.recipe_id = r.recipe_id)::INT
         AS num_saves,
-          rs IS NOT NULL AS saved,
-          rs.saved_at,
-          COALESCE(ur.user_id = $1, false) AS author,
-          COALESCE(rs.saved_at, r.created_at) AS order_by_time,
-          COUNT(*) OVER()::INT AS full_count
+        (SELECT STRING_AGG(rk.keyword, ', ' ORDER BY rk.order ASC) FROM "RECIPES_KEYWORDS" rk WHERE rk.recipe_id = r.recipe_id)
+        AS keywords,
+        (SELECT ARRAY_AGG(rc.category) FROM "RECIPES_CATEGORIES" rc WHERE rc.recipe_id = r.recipe_id)
+        AS categories,
+        rs IS NOT NULL AS saved,
+        rs.saved_at,
+        COALESCE(ur.user_id = $1, false) AS author,
+        COALESCE(rs.saved_at, r.created_at) AS order_by_time,
+        COUNT(*) OVER()::INT AS full_count
       FROM "RECIPES" r
       JOIN "USERS_RECIPES" ur USING(recipe_id)
       FULL JOIN "RECIPES_SAVES" rs USING(recipe_id)
