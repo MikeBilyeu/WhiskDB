@@ -1,57 +1,100 @@
 const db = require("../../db");
-const { convertTimeToMin } = require("../../utils");
+const { convertTimeToMin, splitIngredientStr } = require("../../utils");
 
 module.exports = async ({ user, body: recipe }, res) => {
-  if (user.user_id !== recipe.created_by) {
+  const {
+    rows: [{ author }]
+  } = await db.query(
+    `SELECT user_id IS NOT NULL AS author
+    FROM "USERS_RECIPES"
+    WHERE user_id = $1
+      AND recipe_id = $2;`,
+    [user.user_id, recipe.recipe_id]
+  );
+
+  if (!author) {
     res.status(401).send("You can't edit this recipe");
+    return;
   }
-  const ingredientsArr = recipe.ingredients
+
+  const ingredients = recipe.ingredients
     .split(/\n/)
-    .map(ing => {
-      return ing.trim().replace(/[ \t]{2,}/, " ");
-    })
-    .filter(Boolean);
-  const keywordsArr = recipe.keywords.split(",").map(item => item.trim());
+    .map(ing => splitIngredientStr(ing));
+
+  console.log(recipe.keywords);
+
+  const keywords = recipe.keywords.split(",").map(item => item.trim());
+
+  let ingredientValues = [];
+
+  ingredients.forEach((ingredient, i) => {
+    ingredientValues.push(
+      `(${recipe.recipe_id}, '${ingredient.amount}', '${ingredient.ingredient}', ${i})`
+    );
+  });
+
+  let categoryValues = [];
+
+  recipe.categories.forEach(category => {
+    categoryValues.push(`(${recipe.recipe_id}, '${category}')`);
+  });
+
+  let keywordValues = [];
+
+  keywords.forEach(keyword => {
+    keywordValues.push(`('${keyword}', to_tsvector('${keyword}'))`);
+  });
+
+  let recipesKeywordsValues = [];
+
+  keywords.forEach((keyword, i) => {
+    recipesKeywordsValues.push(`('${keyword}', ${recipe.recipe_id}, ${i})`);
+  });
+
+  const editQuery = `BEGIN;
+  UPDATE "RECIPES"
+  SET title = '${recipe.title.trim()}',
+      image_url = '${recipe.image_url}',
+      total_time = ${convertTimeToMin(recipe.time)},
+      servings = ${recipe.servings},
+      instructions = '${recipe.instructions}' ,
+      footnote = '${recipe.footnote && recipe.footnote}',
+      updated_at = NOW()
+  WHERE recipe_id = ${recipe.recipe_id};
+
+  DELETE FROM "RECIPES_CATEGORIES"
+  WHERE recipe_id = ${recipe.recipe_id};
+
+  INSERT INTO "RECIPES_CATEGORIES" VALUES ${categoryValues.join()};
+
+  DELETE FROM "INGREDIENTS"
+  WHERE recipe_id = ${recipe.recipe_id};
+
+  INSERT INTO "INGREDIENTS" VALUES ${ingredientValues.join()};
+
+  DELETE FROM "RECIPES_KEYWORDS"
+  WHERE recipe_id = ${recipe.recipe_id};
+
+  INSERT INTO "KEYWORDS" VALUES ${keywordValues.join()}
+                  ON CONFLICT (keyword) DO NOTHING;
+
+  INSERT INTO "RECIPES_KEYWORDS" VALUES ${recipesKeywordsValues.join()};
+
+  DELETE FROM "RECIPES_SEARCHES"
+  WHERE recipe_id = ${recipe.recipe_id};
+
+  COMMIT;`;
 
   try {
-    await db.query(
-      `UPDATE "RECIPES"
-       SET title = $1::VARCHAR, yield = $2, ingredients = $3,
-       directions = $4::VARCHAR, footnote = $5, categories = $6,
-       keywords = CAST($7 AS VARCHAR[]), total_time_mins = $8,
-         image_url = $9, document_vectors = ( setweight(to_tsvector($1), 'A')
-         || setweight(to_tsvector($4), 'C') || setweight(to_tsvector(array_to_string($7, ' ')), 'B') )
-       WHERE recipe_id = $10`,
-      [
-        recipe.title.trim(),
-        recipe.servings,
-        ingredientsArr,
-        recipe.directions,
-        recipe.footnote,
-        recipe.categories,
-        keywordsArr,
-        convertTimeToMin(recipe.time),
-        recipe.image_url,
-        recipe.recipe_id
-      ]
-    );
-
-    // Remove categories from recipes_join_categories
-    await db.query(
-      `DELETE
-        FROM recipes_join_categories
-        WHERE recipe= $1`,
-      [recipe.recipe_id]
-    );
-
-    let categoryValues = [];
-
-    recipe.categories.forEach(category => {
-      categoryValues.push(`(${recipe.recipe_id}, '${category}')`);
-    });
+    await db.query(editQuery);
 
     await db.query(
-      `INSERT INTO recipes_join_categories VALUES ${categoryValues.join()};`
+      `INSERT INTO "RECIPES_SEARCHES"
+      VALUES ($1, setweight(to_tsvector($2::VARCHAR), 'A')
+                || setweight(to_tsvector($3::VARCHAR), 'C')
+                || setweight(to_tsvector(array_to_string($4::VARCHAR[], ' ')), 'B')
+            );`,
+      [recipe.recipe_id, recipe.title, recipe.instructions, keywords]
     );
 
     res.status(200).send("Changes saved!");

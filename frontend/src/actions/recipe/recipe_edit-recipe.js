@@ -5,7 +5,13 @@ import { getBrowseRecipes } from "../browse";
 import imageUpload from "../image";
 
 // Edit Recipe
-const submitEditRecipe = recipeData => dispatch => {
+const submitEditRecipe = recipeData => (dispatch, getState) => {
+  const {
+    auth: {
+      user: { user_id }
+    }
+  } = getState();
+
   return new Promise(async (resolve, reject) => {
     let imageURL = recipeData.image_url;
 
@@ -23,7 +29,7 @@ const submitEditRecipe = recipeData => dispatch => {
     dispatch(toggleEditRecipe());
     dispatch({ type: REMOVE_SAVED_RECIPES });
     dispatch({ type: REMOVE_RECIPES });
-    dispatch(getRecipe(recipeData.recipe_id, recipeData.created_by));
+    dispatch(getRecipe(recipeData.recipe_id, user_id));
     dispatch(getSavedRecipes());
     dispatch(getBrowseRecipes());
     resolve();

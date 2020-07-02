@@ -8,12 +8,12 @@ module.exports = async (req, res) => {
       `SELECT INITCAP(rk.keyword) AS keyword, COUNT(1)
        FROM "RECIPES_KEYWORDS" rk
        JOIN "KEYWORDS" k USING(keyword)
-       WHERE to_tsquery($1:*) @@ rk.ts_keyword;
+       WHERE to_tsquery('$1:*') @@ k.ts_keyword
        GROUP BY rk.keyword
-       HAVING COUNT(1) >= 10
+       HAVING COUNT(1) >= 1
        ORDER BY (count) DESC
-       LIMIT 5`,
-      [search]
+       LIMIT 5;`,
+      [textSearch]
     );
   } catch (err) {
     res.status(500).json(err);

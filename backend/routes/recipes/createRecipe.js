@@ -7,15 +7,15 @@ module.exports = async ({ user: { user_id }, body: recipe }, res) => {
     .split(/\n/)
     .map(ing => splitIngredientStr(ing));
 
-  console.log(recipe.keywords);
-
   const keywords = recipe.keywords
     .toString()
     .split(",")
     .map(item => item.trim());
 
   try {
-    const { rows } = await db.query(
+    const {
+      rows: [{ recipe_id }]
+    } = await db.query(
       `INSERT INTO "RECIPES"
        VALUES (
           DEFAULT,
@@ -38,7 +38,6 @@ module.exports = async ({ user: { user_id }, body: recipe }, res) => {
         recipe.footnote
       ]
     );
-    const recipe_id = rows[0].recipe_id;
 
     let ingredientValues = [];
 
@@ -48,28 +47,17 @@ module.exports = async ({ user: { user_id }, body: recipe }, res) => {
       );
     });
 
-    await db.query(
-      `INSERT INTO "INGREDIENTS" VALUES ${ingredientValues.join()};`
-    );
-
     let categoryValues = [];
 
     recipe.categories.forEach(category => {
       categoryValues.push(`(${recipe_id}, '${category}')`);
     });
 
-    await db.query(
-      `INSERT INTO "RECIPES_CATEGORIES" VALUES ${categoryValues.join()};`
-    );
-
     let keywordValues = [];
 
     keywords.forEach(keyword => {
       keywordValues.push(`('${keyword}', to_tsvector('${keyword}'))`);
     });
-
-    await db.query(`INSERT INTO "KEYWORDS" VALUES ${keywordValues.join()}
-                    ON CONFLICT (keyword) DO NOTHING;`);
 
     let recipesKeywordsValues = [];
 
@@ -78,22 +66,28 @@ module.exports = async ({ user: { user_id }, body: recipe }, res) => {
     });
 
     await db.query(
-      `INSERT INTO "RECIPES_KEYWORDS" VALUES ${recipesKeywordsValues.join()};`
+      `BEGIN;
+       INSERT INTO "INGREDIENTS" VALUES ${ingredientValues.join()};
+       INSERT INTO "RECIPES_CATEGORIES" VALUES ${categoryValues.join()};
+       INSERT INTO "KEYWORDS" VALUES ${keywordValues.join()}
+                       ON CONFLICT (keyword) DO NOTHING;
+       INSERT INTO "RECIPES_KEYWORDS" VALUES ${recipesKeywordsValues.join()};
+       COMMIT;`
     );
-
-    await db.query(`INSERT INTO "USERS_RECIPES" VALUES ($1, $2);`, [
-      recipe_id,
-      user_id
-    ]);
 
     await db.query(
       `INSERT INTO "RECIPES_SEARCHES"
     VALUES ($1, setweight(to_tsvector($2::VARCHAR), 'A')
                 || setweight(to_tsvector($3::VARCHAR), 'C')
                 || setweight(to_tsvector(array_to_string($4::VARCHAR[], ' ')), 'B')
-            )`,
+            );`,
       [recipe_id, recipe.title, recipe.instructions, keywords]
     );
+
+    await db.query(`INSERT INTO "USERS_RECIPES" VALUES ($1, $2);`, [
+      recipe_id,
+      user_id
+    ]);
 
     res.status(200).send({ recipe_id: recipe_id });
   } catch (err) {

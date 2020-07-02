@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
         COUNT(*) OVER()::INT AS full_count
       FROM "RECIPES" r
       JOIN "USERS_RECIPES" ur USING(recipe_id)
-      FULL JOIN "RECIPES_SAVES" rs USING(recipe_id)
+      FULL JOIN "RECIPES_SAVES" rs ON rs.recipe_id = r.recipe_id AND rs.user_id = $1
       JOIN "RECIPES_CATEGORIES" rc ON rc.recipe_id = r.recipe_id AND
         ($4 = 'All Categories' OR rc.category = $4)
       WHERE ur.user_id = $1 OR rs.user_id = $1

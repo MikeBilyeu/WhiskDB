@@ -8,6 +8,8 @@ import {
   updateFilterRecipe
 } from "../../actions/browse";
 import { ReactComponent as SearchIcon } from "../../assets/images/searchIcon.svg";
+import Suggestions from "../suggestions";
+
 import "./search_bar.scss";
 
 const SearchBar = props => {
@@ -30,7 +32,6 @@ const SearchBar = props => {
   };
 
   const handleFocus = () => {
-    console.log("Focus");
     setFocus(true);
     textInput.current.focus();
     props.toggleFilterBtnBrowse(null);
@@ -43,36 +44,39 @@ const SearchBar = props => {
   };
 
   return (
-    <form
-      action="#"
-      onsubmit="return false;"
-      className={classNames("search-bar", {
-        "search-bar--active": focus
-      })}
-      onClick={handleFocus}
-      onBlur={handleBlur}
-    >
-      <SearchIcon
-        className={classNames("search-bar__icon", {
-          "search-bar__icon--active": focus
+    <>
+      <form
+        action="#"
+        onsubmit="return false;"
+        className={classNames("search-bar", {
+          "search-bar--active": focus
         })}
-      />
+        onClick={handleFocus}
+        onBlur={handleBlur}
+      >
+        <SearchIcon
+          className={classNames("search-bar__icon", {
+            "search-bar__icon--active": focus
+          })}
+        />
 
-      <input
-        id="SearchTextBox"
-        ref={textInput}
-        className="search-bar__input"
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onKeyDown={handleKeyDown}
-        autoComplete="off"
-        placeholder="Search thousands of delicious recipes…"
-        value={searchTerm}
-        type="search"
-        aria-label="Search"
-      />
-      <input style={{ display: "none" }} type="button" value="Search" />
-    </form>
+        <input
+          id="SearchTextBox"
+          ref={textInput}
+          className="search-bar__input"
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onKeyDown={handleKeyDown}
+          autoComplete="off"
+          placeholder="Search thousands of delicious recipes…"
+          value={searchTerm}
+          type="search"
+          aria-label="Search"
+        />
+        <input style={{ display: "none" }} type="button" value="Search" />
+      </form>
+      {focus && searchTerm && <Suggestions />}
+    </>
   );
 };
 
