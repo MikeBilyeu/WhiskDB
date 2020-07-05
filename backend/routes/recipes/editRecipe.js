@@ -51,17 +51,8 @@ module.exports = async ({ user, body: recipe }, res) => {
     recipesKeywordsValues.push(`('${keyword}', ${recipe.recipe_id}, ${i})`);
   });
 
-  const editQuery = `BEGIN;
-  UPDATE "RECIPES"
-  SET title = '${recipe.title.trim()}',
-      image_url = '${recipe.image_url}',
-      total_time = ${convertTimeToMin(recipe.time)},
-      servings = ${recipe.servings},
-      instructions = '${recipe.instructions}' ,
-      footnote = '${recipe.footnote && recipe.footnote}',
-      updated_at = NOW()
-  WHERE recipe_id = ${recipe.recipe_id};
-
+  const editQuery = `
+  BEGIN;
   DELETE FROM "RECIPES_CATEGORIES"
   WHERE recipe_id = ${recipe.recipe_id};
 
@@ -86,6 +77,27 @@ module.exports = async ({ user, body: recipe }, res) => {
   COMMIT;`;
 
   try {
+    await db.query(
+      `UPDATE "RECIPES"
+    SET title = $1,
+        image_url = $2,
+        total_time = $3,
+        servings = $4,
+        instructions = $5,
+        footnote = $6,
+        updated_at = NOW()
+    WHERE recipe_id = $7;`,
+      [
+        recipe.title.trim(),
+        recipe.image_url,
+        convertTimeToMin(recipe.time),
+        recipe.servings,
+        recipe.instructions,
+        recipe.footnote,
+        recipe.recipe_id
+      ]
+    );
+
     await db.query(editQuery);
 
     await db.query(

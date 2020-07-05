@@ -1,12 +1,12 @@
 @import "../../assets/styles/variables";
 
 .recipe-results {
-  padding: 4.5rem 0 4rem 0;
+  padding: 3.5rem 0 4rem 0;
   position: relative;
   text-align: center;
   background-color: rgb(250, 250, 250);
   width: 100%;
-  min-height: calc(100vh - 5.25rem);
+  min-height: calc(100vh);
 
   &__list {
     margin: 0 auto;
@@ -56,6 +56,7 @@
 
 @media (min-device-width: 650px) {
   .recipe-results {
+    padding: 7rem 0 4rem 0;
     &__list {
       grid-gap: 1rem;
       grid-template-columns: repeat(3, 1fr);

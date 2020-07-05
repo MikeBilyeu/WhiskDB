@@ -9,7 +9,7 @@
     top: 5.2rem;
   }
   .no-results {
-    padding-top: 4rem;
+    padding-top: 10rem;
   }
 }
 
@@ -17,6 +17,10 @@
   .profile-home {
     position: relative;
     top: 3rem;
+
+    .no-results {
+      padding-top: 4rem;
+    }
 
     .header-d {
       border: none;

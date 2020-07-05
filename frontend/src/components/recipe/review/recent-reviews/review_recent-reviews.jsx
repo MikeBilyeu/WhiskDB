@@ -17,7 +17,7 @@ const RecentReviews = props => {
   });
   return props.reviews.length ? (
     <div className="recent-reviews">
-      <h3 className="recent-reviews__title">Recent Reviews</h3>
+      <h3 className="recent-reviews__title">Recent Comments</h3>
       <ul className="recent-reviews__list">{reviews}</ul>
     </div>
   ) : null;
