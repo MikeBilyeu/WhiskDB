@@ -21,9 +21,12 @@ const App = props => {
     if (props.isAuth) {
       props.getSavedRecipes();
     }
-
-    props.getBrowseRecipes();
   }, [props.isAuth]);
+
+  useEffect(() => {
+    props.getBrowseRecipes();
+  }, []);
+
   return (
     <Router>
       <ScrollUp>
