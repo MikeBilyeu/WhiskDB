@@ -31,18 +31,18 @@ const getMetricAmount = (amount, unit) => {
   // using eval to get the decimal of mixed fractions
   let decimalAmount = eval(amount.split(/[ -]+/).join("+"));
   let metricUnit = "";
+
   switch (true) {
     case regEx.cup.test(unit):
       decimalAmount *= 240;
       metricUnit = "ml";
       break;
     case regEx.tablespoon.test(unit):
-    case regEx.T.test(unit):
+    case regEx.upperCaseT.test(unit):
       decimalAmount *= 15;
       metricUnit = "ml";
       break;
     case regEx.teaspoon.test(unit):
-    case regEx.t.test(unit):
       decimalAmount *= 5;
       metricUnit = "ml";
       break;
