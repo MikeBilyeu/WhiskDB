@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Field, reduxForm, isDirty, getFormSyncErrors } from "redux-form";
 import { logoutUser, editProfile, toggleDelete } from "../../../actions/auth";
-import { validateUsername } from "../../auth/utils/validation.js";
+import { validateUsername } from "../../auth/utils/validation";
 import asyncValidate from "../../auth/utils/async-validation";
 import Input from "../../form_inputs/input";
 import { ReactComponent as Arrow } from "../../../assets/images/arrowLeft.svg";
@@ -21,10 +21,13 @@ const Edit = props => {
     document.title = "ZipiWhisk | Edit Profile";
   }, []);
 
-  const handleSubmit = values =>
-    props.editProfile(values, props.history).catch(err => {
-      console.log(err);
-    });
+  const handleSubmit = values => {
+    if (!props.asyncValidating) {
+      props.editProfile(values, props.history).catch(err => {
+        console.log(err);
+      });
+    }
+  };
 
   const onLogoutClick = e => {
     e.preventDefault();
@@ -98,7 +101,7 @@ const Edit = props => {
           className={classNames("edit-profile-form__save-btn", {
             "edit-profile-form__save-btn--disabled":
               Object.keys(props.formSyncErrors).length ||
-              props.submitFailed ||
+              !props.valid ||
               !props.dirty,
             "edit-profile-form__save-btn--success": props.submitting
           })}
@@ -107,15 +110,17 @@ const Edit = props => {
           {props.submitting ? "Saving..." : "Save Changes"}
         </button>
 
-        <button
-          className="edit-profile-form__delete-btn"
-          onClick={e => {
-            e.preventDefault();
-            props.toggleDelete();
-          }}
-        >
-          Delete account
-        </button>
+        {!props.openDelete && (
+          <button
+            className="edit-profile-form__delete-btn"
+            onClick={e => {
+              e.preventDefault();
+              props.toggleDelete();
+            }}
+          >
+            Delete account
+          </button>
+        )}
 
         {props.openDelete && <Delete />}
       </form>
@@ -145,7 +150,7 @@ export default withRouter(
       form: "edit-profile",
       validate: validateUsername,
       asyncValidate: asyncValidate,
-      asyncBlurFields: ["username"],
+      asyncChangeFields: ["username"],
       enableReinitialize: true
     })(Edit)
   )

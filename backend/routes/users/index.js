@@ -24,6 +24,8 @@ router.put(
 
 router.get("/emails", require("./getEmails"));
 
+router.get("/usernames", require("./getUsernames"));
+
 router.post("/login", require("./userLogin"));
 
 module.exports = router;

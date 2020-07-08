@@ -14,6 +14,19 @@ module.exports = async (req, res) => {
   }
 
   try {
+    const { rowCount } = await db.query(
+      `SELECT *
+      FROM "USERS"
+      WHERE LOWER(username) = LOWER($1)`,
+      [username]
+    );
+
+    if (rowCount) {
+      return res
+        .status(409)
+        .json({ username: "This username is already taken" });
+    }
+
     await db.query(
       `UPDATE "USERS" SET username = $1, image_url = $2, updated_at = DEFAULT WHERE user_id = $3`,
       [username, image_url, user_id]

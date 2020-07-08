@@ -9,11 +9,12 @@ const Delete = props => {
       <div className="edit-delete__cancle-btn" onClick={props.toggleDelete}>
         Cancel
       </div>
-      <h1 className="edit-delete__title">Delete Account</h1>
 
-      <h2 className="edit-delete__msg">Are you sure?</h2>
+      <h1 className="edit-delete__msg">
+        Are you sure you want to delete this account?
+      </h1>
       <div className="edit-delete__delete-btn" onClick={props.deleteUser}>
-        Delete Account
+        Yes, Delete Account
       </div>
     </div>
   );

@@ -144,13 +144,13 @@ $star-color: #ffa805;
 
 @mixin delete-btn {
   @include submit-btn;
-  margin: 1rem;
+  margin: 4rem 1rem;
   border-radius: 0.2rem;
   border-color: lightColor(dark);
   max-width: 10rem;
   color: $error-color;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 300;
   padding: 0.4rem 0.5rem;
   background-image: linear-gradient(180deg, #fff, #f8f8f8);
 

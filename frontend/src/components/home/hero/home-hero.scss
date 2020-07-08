@@ -8,19 +8,14 @@
   height: 90vh;
   min-height: 27rem;
   z-index: -1;
-  filter: blur(0.8rem);
-  transition: opacity 2s, transform 1s, filter 0.5s;
+  transition: opacity 2s, transform 1s;
   opacity: 0;
-  transform: scale(1.5);
-
-  border-bottom: solid lightColor(light) 1px;
   &--loaded-small {
     background: linear-gradient(rgba(0, 0, 0, 0)),
       url("https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,q_auto:low,w_100/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg")
         no-repeat 30% 30%;
     background-size: cover;
     opacity: 1;
-    transform: scale(1);
   }
 
   &--loaded-big {
@@ -28,9 +23,7 @@
       url("https://res.cloudinary.com/mikebilyeuimg/image/upload/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg")
         no-repeat 30% 30%;
     background-size: cover;
-    filter: blur(0);
     opacity: 1;
-    transform: scale(1);
   }
 }
 
@@ -43,6 +36,7 @@
   height: 90vh;
   min-height: 27rem;
   color: #fff;
+  border-bottom: solid lightColor(light) 1px;
 
   &__container {
     transform: translateZ(0);
@@ -66,7 +60,7 @@
     position: absolute;
     transform: translateX(-2rem);
     opacity: 0;
-    transition: all 1s 0.5s;
+    transition: opacity 1s 0.5s, transform 1s 0.5s;
   }
 
   &__desc {
@@ -76,7 +70,7 @@
     white-space: pre;
     transform: translateX(2rem);
     opacity: 0;
-    transition: all 1s 0.5s;
+    transition: opacity 1s 0.5s, transform 1s 0.5s;
   }
 
   .search-bar {
@@ -88,7 +82,8 @@
     background-color: #ffff;
     transform: translateY(1rem);
     opacity: 0;
-    transition: opacity 1.5s 1.5s, transform 1.5s 1.5s, box-shadow 0.2s ease-in;
+    transition: opacity 1.5s 1.25s, transform 1.5s 1.25s,
+      box-shadow 0.2s ease-in;
 
     &--active {
       box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.2);
