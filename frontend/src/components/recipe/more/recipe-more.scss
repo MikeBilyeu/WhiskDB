@@ -1,5 +1,16 @@
 @import "../../../assets/styles/variables";
 
+@keyframes slide-down {
+  from {
+    margin-top: -11rem;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
 .recipe-more {
   border-bottom: solid lightColor(light) 0.09rem;
   position: fixed;
@@ -9,16 +20,20 @@
   background-color: #fff;
   z-index: 3;
   padding: 0.5rem;
+  border-radius: 0 0 0.8rem 0.8rem;
+  animation: 0.2s 0s 1 ease-out alternate slide-down;
+
   &__review-btn {
     display: none;
   }
 
   &__close-btn {
-    width: 5rem;
-    padding: 1rem 2rem 0.25rem 2rem;
+    width: 5.3rem;
+    padding: 1rem 2rem 1rem 2rem;
     cursor: pointer;
     position: relative;
-    right: calc(-100% + 4rem);
+    top: -0.3rem;
+    right: calc(-100% + 4.8rem);
   }
 
   &__copy-msg {

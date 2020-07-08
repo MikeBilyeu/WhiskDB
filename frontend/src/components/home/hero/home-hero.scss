@@ -89,6 +89,13 @@
       box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.2);
     }
   }
+
+  .paypal {
+    position: absolute;
+    bottom: -5rem;
+    right: -13rem;
+    transform: scale(0.25);
+  }
 }
 
 @media (min-width: 1500px) {
