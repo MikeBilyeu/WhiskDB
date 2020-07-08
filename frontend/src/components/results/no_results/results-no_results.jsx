@@ -6,7 +6,7 @@ const NoResults = props => {
     <div className="no-results">
       <h1 className="no-results__title">
         Sorry,
-        <br /> we couldn't find any matches{" "}
+        <br /> we couldn't find any recipes{" "}
         <span style={{ whiteSpace: "nowrap" }}>:(</span>
       </h1>
       <h2 className="no-results__msg">

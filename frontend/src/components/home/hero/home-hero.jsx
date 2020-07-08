@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import SearchBar from "../../search_bar";
 import Logo from "../../../assets/images/ZipiWhisk-Logo.png";
@@ -8,8 +8,6 @@ const Hero = () => {
   const [smallImgLoaded, setSmallImgLoaded] = useState(false);
   const [bigImgLoaded, setBigImgLoaded] = useState(false);
   const [logoLoaded, setLogoLoaded] = useState(false);
-
-  useEffect(() => {}, []);
 
   return (
     <div className="hero">
