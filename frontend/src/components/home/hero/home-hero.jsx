@@ -7,10 +7,9 @@ import "./home-hero.scss";
 const Hero = () => {
   const [smallImgLoaded, setSmallImgLoaded] = useState(false);
   const [bigImgLoaded, setBigImgLoaded] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
 
-  useEffect(() => {
-    // check if the images are loaded
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="hero">
@@ -23,7 +22,7 @@ const Hero = () => {
         <img
           onLoad={() => setSmallImgLoaded(true)}
           alt=""
-          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,e_blur:50,q_auto:low,w_15/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg"
+          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,q_auto:low,w_100/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg"
           style={{
             width: "1px",
             height: "1px",
@@ -35,7 +34,7 @@ const Hero = () => {
         <img
           onLoad={() => setBigImgLoaded(true)}
           alt=""
-          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,h_2500,q_auto:good/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg"
+          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg"
           style={{
             width: "1px",
             height: "1px",
@@ -44,11 +43,21 @@ const Hero = () => {
           }}
         />
       </div>
-      <div className="hero__container">
-        <img className="hero__title" src={Logo} alt="zipiwisk logo" />
+      <div
+        className={classNames("hero__container", {
+          "hero__container--loaded": logoLoaded
+        })}
+      >
+        <img
+          onLoad={() => setLogoLoaded(true)}
+          className="hero__title"
+          src={Logo}
+          alt="zipiwhisk logo"
+        />
         <p className="hero__desc">
           The internet’s source of free recipes.
-          <br /> Explore thousands of recipes from around the world!
+          <br />
+          Explore thousands of recipes from around the world!
         </p>
         <SearchBar />
       </div>

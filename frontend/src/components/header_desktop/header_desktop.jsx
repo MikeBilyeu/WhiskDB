@@ -14,7 +14,7 @@ const HeaderDesktop = props => {
   return (
     <header className="header-d">
       <Link to="/" onClick={handleLogoClick} className="header-d__logo">
-        <img src={Logo} alt="zipiwisk logo" />
+        <img src={Logo} alt="zipiwhisk logo" />
       </Link>
 
       <SearchBar />

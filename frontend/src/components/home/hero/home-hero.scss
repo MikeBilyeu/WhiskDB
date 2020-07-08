@@ -8,20 +8,29 @@
   height: 90vh;
   min-height: 27rem;
   z-index: -1;
-  transition: all 1s;
+  filter: blur(0.8rem);
+  transition: opacity 2s, transform 1s, filter 0.5s;
+  opacity: 0;
+  transform: scale(1.5);
+
+  border-bottom: solid lightColor(light) 1px;
   &--loaded-small {
     background: linear-gradient(rgba(0, 0, 0, 0)),
-      url("https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,e_blur:50,q_auto:low,w_15/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg")
+      url("https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,q_auto:low,w_100/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg")
         no-repeat 30% 30%;
     background-size: cover;
+    opacity: 1;
+    transform: scale(1);
   }
 
   &--loaded-big {
     background: linear-gradient(rgba(0, 0, 0, 0)),
-      url("https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,h_2500,q_auto:good/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg")
+      url("https://res.cloudinary.com/mikebilyeuimg/image/upload/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg")
         no-repeat 30% 30%;
     background-size: cover;
     filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -36,20 +45,38 @@
   color: #fff;
 
   &__container {
+    transform: translateZ(0);
     width: 80%;
     max-width: 48rem;
     margin: 0rem auto 3rem auto;
     color: darkColor(dark);
+
+    &--loaded {
+      .hero__title,
+      .hero__desc,
+      .search-bar {
+        opacity: 1 !important;
+        transform: translate(0, 0) !important;
+      }
+    }
   }
 
   &__title {
-    width: 10rem;
+    width: 9rem;
+    position: absolute;
+    transform: translateX(-2rem);
+    opacity: 0;
+    transition: all 1s 0.5s;
   }
 
   &__desc {
     font-size: 0.9rem;
     line-height: 1.4rem;
-    margin: 0 0 2.5rem 0;
+    margin: 3rem 0 2rem 0;
+    white-space: pre;
+    transform: translateX(2rem);
+    opacity: 0;
+    transition: all 1s 0.5s;
   }
 
   .search-bar {
@@ -59,9 +86,12 @@
     border-radius: 0.3rem;
     border: none;
     background-color: #ffff;
+    transform: translateY(1rem);
+    opacity: 0;
+    transition: opacity 1.5s 1.5s, transform 1.5s 1.5s, box-shadow 0.2s ease-in;
 
     &--active {
-      box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.2);
     }
   }
 }
