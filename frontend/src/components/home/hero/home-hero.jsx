@@ -20,7 +20,7 @@ const Hero = () => {
         <img
           onLoad={() => setSmallImgLoaded(true)}
           alt=""
-          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,q_auto:low,w_100/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg"
+          src="https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,q_auto:low,w_50,e_blur:100/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg"
           style={{
             width: "1px",
             height: "1px",
