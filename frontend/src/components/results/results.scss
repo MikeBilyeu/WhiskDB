@@ -49,6 +49,7 @@
   .profile-home > .recipe-results {
     top: 4rem;
   }
+
   .recipe-results--active {
     @include dark-overlay;
   }

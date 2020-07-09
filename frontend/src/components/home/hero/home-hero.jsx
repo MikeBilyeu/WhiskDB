@@ -63,11 +63,10 @@ const Hero = () => {
         action="https://www.paypal.com/cgi-bin/webscr"
         method="post"
         target="_top"
-        className="paypal"
         style={{
           position: "absolute",
           bottom: "-5rem",
-          right: "-13rem",
+          right: "-15rem",
           transform: "scale(0.25)"
         }}
       >

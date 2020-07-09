@@ -52,10 +52,8 @@ const Home = props => {
             handleClick={handleFilterClick}
           />
         </HeaderDesktop>
-
-        {!isDirtyFilter && <Hero />}
       </MediaQuery>
-
+      {!isDirtyFilter && <Hero />}
       {props.activeFilterBtn && (
         <FilterResults
           className={`mobile ${props.activeFilterBtn}`}

@@ -13,7 +13,7 @@ const NoResults = props => {
             : `You don't have any saved ${props.category.toLowerCase()} recipes.`}
         </h1>
         <h2 className="no-results__msg">
-          Start saving recipes to see them here!
+          Save or create recipes to see them here!
         </h2>
       </div>
     );
