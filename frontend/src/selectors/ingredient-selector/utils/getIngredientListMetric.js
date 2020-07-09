@@ -54,10 +54,29 @@ const getIngredientListMetric = (
         return { amount: roundedAmount, unit, ingredient };
       }
 
+      // No Unit
+
       let roundedAmount = Math.round(amountAdjusted * 4) / 4 || 0.25;
 
+      function floatToStringFrac(num) {
+        let remainder = num % 1;
+        let frac =
+          remainder === 0.25
+            ? "¼"
+            : remainder === 0.5
+            ? "½"
+            : remainder === 0.75
+            ? "¾"
+            : "";
+
+        if (parseInt(num) >= 1) {
+          num = parseInt(num) + frac;
+        }
+        return num;
+      }
+
       return {
-        amount: roundedAmount,
+        amount: floatToStringFrac(roundedAmount),
         unit,
         ingredient
       };
