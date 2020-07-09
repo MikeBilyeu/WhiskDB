@@ -4,10 +4,9 @@
   position: absolute;
   padding: 0 0.5rem;
   background-color: #fff;
-  height: 2.2rem;
+  height: 2.5rem;
   width: 3rem;
-  right: 0.25rem;
-  border-radius: 50rem;
+  right: 0;
   border: solid #fff 0.08rem;
   z-index: 1;
   justify-self: center;
@@ -46,7 +45,8 @@
 
   &--active {
     background-color: #fff;
-    animation: expand 0.3s linear forwards;
+    right: 0.25rem;
+    width: calc(100% - 0.5rem);
   }
 }
 
@@ -54,8 +54,10 @@
   .search-bar {
     background-color: lightColor(light);
     border: solid lightColor(light) 0.08rem;
+    border-radius: 50rem;
     position: relative;
     right: auto;
+    height: 2.2rem;
     width: 100%;
     min-width: 10rem;
     animation: none;
@@ -64,15 +66,5 @@
       border: solid lightColor(dark) 0.08rem;
       background-color: #fff;
     }
-  }
-}
-
-@keyframes expand {
-  0% {
-    width: 3rem;
-  }
-
-  100% {
-    width: calc(100% - 0.5rem);
   }
 }
