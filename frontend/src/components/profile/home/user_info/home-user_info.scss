@@ -17,9 +17,11 @@
     &__edit {
       grid-column: 1 / 2;
       @include grid-center;
+
       &:hover {
         opacity: 0.9;
       }
+
       img {
         float: left;
         width: 3.5rem;
@@ -42,17 +44,17 @@
       margin: 0;
     }
 
-    &__username {
-      display: none;
-      word-wrap: nowrap;
-      align-self: center;
-      grid-column: 2 / 3;
-      grid-row: 2 / 3;
-      font-size: 0.8rem;
-      font-weight: medium;
-      color: darkColor(dark);
-      margin: 0;
-    }
+    // &__username {
+    //   display: none;
+    //   word-wrap: nowrap;
+    //   align-self: center;
+    //   grid-column: 2 / 3;
+    //   grid-row: 2 / 3;
+    //   font-size: 0.8rem;
+    //   font-weight: medium;
+    //   color: darkColor(dark);
+    //   margin: 0;
+    // }
 
     &__edit-profile-btn {
       display: none;
@@ -60,7 +62,6 @@
 
     &__create-recipe {
       grid-column: 2 / 3;
-
       border: solid lightColor(dark) 0.09rem;
       white-space: nowrap;
       padding: 0.25rem 1.5rem;

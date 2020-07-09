@@ -16,7 +16,7 @@ import Results from "../../results";
 import "./profile-home.scss";
 
 const Home = props => {
-  const { full_name, username, diet, image_url } = props.auth.user;
+  const { username, diet, image_url } = props.auth.user;
 
   useEffect(() => {
     document.title = `ZipiWhisk | ${username || "Profile"}`;
@@ -32,7 +32,6 @@ const Home = props => {
         <HeaderDesktop isAuth={true} user_img={image_url} />
       </MediaQuery>
       <UserInfo
-        fullName={full_name}
         username={username}
         diet={diet === "none" ? null : diet}
         image_url={image_url || userLogo}
