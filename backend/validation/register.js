@@ -4,11 +4,12 @@ module.exports = function validateRegisterInput(data) {
   const usernameRegEx = /^[\d\w]{2,20}$/;
   const emailRegEx = /^.+@.+\.(.)+$/i;
   const passwordRegEx = /^\S{8,30}$/;
+
   // make sure username is 3-20 chars
   if (!data.username) {
     errors.username = "Username field is required";
   } else if (!usernameRegEx.test(data.username)) {
-    errors.username = "Username must be 3-20 alphanumeric characters";
+    errors.username = "Username must be 2-20 alphanumeric characters";
   }
   // make sure email is valid
   if (!data.email) {
@@ -20,7 +21,7 @@ module.exports = function validateRegisterInput(data) {
   if (!data.password) {
     errors.password = "Password field is required";
   } else if (!passwordRegEx.test(data.password)) {
-    errors.password = "Password must be 6 - 30 characters";
+    errors.password = "Password must be 8 - 30 characters";
   }
 
   return errors;

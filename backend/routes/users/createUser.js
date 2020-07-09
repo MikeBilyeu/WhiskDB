@@ -4,16 +4,16 @@ const bcrypt = require("bcryptjs");
 const validateRegisterInput = require("../../validation/register");
 
 module.exports = async ({ body: { username, email, password } }, res) => {
-  // const errors = validateRegisterInput({ username, email, password });
-  // if (Object.keys(errors).length !== 0) {
-  //   res.status(400).send(errors);
-  // }
+  const errors = validateRegisterInput({ username, email, password });
+  if (Object.keys(errors).length !== 0) {
+    res.status(400).send(errors);
+  }
 
   const { rows } = await db.query(
     `SELECT *
     FROM "USERS"
-    WHERE email = $1`,
-    [email]
+    WHERE LOWR(email) = LOWER($1)`,
+    [email.toLowerCase()]
   );
 
   if (rows.length) {
@@ -24,8 +24,8 @@ module.exports = async ({ body: { username, email, password } }, res) => {
       const password_encrypted = await bcrypt.hash(password, 10);
       const { rows } = await db.query(
         `INSERT INTO "USERS" (email, password, username, created_at)
-        VALUES ($1, $2, $3, NOW()) RETURNING user_id`,
-        [email, password_encrypted, username]
+        VALUES (LOWER($1), $2, $3, NOW()) RETURNING user_id`,
+        [email.toLowerCase(), password_encrypted, username]
       );
       res.status(201).send(`User added with ID: ${rows[0].user_id}`);
     } catch (err) {
