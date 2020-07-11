@@ -70,9 +70,10 @@ const getIngredientListMetric = (
             : "";
 
         if (parseInt(num) >= 1) {
-          num = parseInt(num) + frac;
+          return parseInt(num) + frac;
+        } else {
+          return frac;
         }
-        return num;
       }
 
       return {
