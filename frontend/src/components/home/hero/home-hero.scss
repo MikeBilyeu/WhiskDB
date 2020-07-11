@@ -2,7 +2,7 @@
 
 .hero-img {
   position: absolute;
-  background: linear-gradient(rgba(0, 0, 0, 0)) no-repeat 30% 30%;
+  background: linear-gradient(rgba(0, 0, 0, 0)) no-repeat 50% 40%;
   background-size: cover;
   width: 100%;
   height: 90vh;
@@ -10,19 +10,22 @@
   z-index: -1;
   transition: opacity 2s, transform 1s;
   opacity: 0;
+  transform: scale(1.1);
   &--loaded-small {
     background: linear-gradient(rgba(0, 0, 0, 0)),
       url("https://res.cloudinary.com/mikebilyeuimg/image/upload/c_scale,q_auto:low,w_50,e_blur:100/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg")
-        no-repeat 30% 30%;
+        no-repeat 50% 40%;
     background-size: cover;
     opacity: 1;
+    transform: scale(1.1);
   }
 
   &--loaded-big {
     background: linear-gradient(rgba(0, 0, 0, 0)),
       url("https://res.cloudinary.com/mikebilyeuimg/image/upload/v1594146289/Recipes/joanna-kosinska-Prfs32wh-o4-unsplash.jpg")
-        no-repeat 30% 30%;
+        no-repeat 50% 40%;
     background-size: cover;
+    transform: scale(1);
     opacity: 1;
   }
 }
@@ -37,9 +40,7 @@
   min-height: 27rem;
   color: #fff;
   border-bottom: solid lightColor(light) 1px;
-  * {
-    //  border: solid red;
-  }
+
   &__container {
     width: 95%;
     max-width: 48rem;
