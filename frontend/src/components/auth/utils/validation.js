@@ -1,5 +1,5 @@
 // safari and firefox do NOT support negative loookbehinds
-const usernameRegEx = /^[\d\w]{2,20}$/;
+const usernameRegEx = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]{1,20}$/;
 const emailRegEx = /^.+@.+\.(.)+$/i;
 const passwordRegEx = /^\S{8,30}$/;
 
@@ -9,8 +9,7 @@ export const checkUsername = username => {
   if (!username) {
     errors.username = "You must enter a username";
   } else if (!usernameRegEx.test(username)) {
-    errors.username =
-      "Username must be 2-20 alphanumeric characters, no whitespaces allowed";
+    errors.username = "Username must be 2-20 alphanumeric characters";
   }
   return errors;
 };

@@ -1,7 +1,7 @@
 module.exports = function validateRegisterInput(data) {
   let errors = {};
   // store regex to check validation
-  const usernameRegEx = /^[\d\w]{2,20}$/;
+  const usernameRegEx = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]{1,20}$/;
   const emailRegEx = /^.+@.+\.(.)+$/i;
   const passwordRegEx = /^\S{8,30}$/;
 
