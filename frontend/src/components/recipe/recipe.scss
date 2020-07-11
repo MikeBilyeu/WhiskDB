@@ -35,7 +35,7 @@
     position: relative;
     top: calc(100vh - 11rem);
     z-index: 2;
-    padding: 1rem 0.75rem 3rem 0.75rem;
+    padding: 1rem 0 3rem 0;
     border-radius: 1rem 1rem 0 0;
     box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.2);
   }
@@ -100,42 +100,43 @@
 
   &__item {
     margin: 0;
-    padding: 0.5rem;
+    padding: 1rem 0.75rem;
     display: grid;
-    grid-auto-flow: column;
-    grid-gap: 0.5rem;
+    grid-gap: 0.3rem;
     line-height: 1rem;
-    border-bottom: solid lightColor(light) 0.09rem;
+    border-bottom: solid lightColor(light) 0.5px;
     &:nth-child(odd) {
-      background-color: rgb(250, 250, 250);
+      background-color: rgb(248, 248, 248);
     }
     &:first-child {
-      border-top: solid lightColor(light) 0.09rem;
+      border-top: solid lightColor(light) 0.5px;
     }
   }
 
   &__item-amount {
-    font-size: 0.95rem;
-    font-weight: 600;
-    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 800;
+    font-family: sans-serif;
     color: darkColor(dark);
+    word-spacing: -0.15rem;
   }
 
   &__item-ingredient {
-    font-size: 0.95rem;
-    font-family: "Noto Serif", Arial, sans-serif;
-    text-align: right;
-    color: darkColor(medium);
+    font-size: 0.85rem;
+    font-family: "Noto Serif", sans-serif;
+    color: darkColor(dark);
   }
 }
 
 .r-directions {
   font-family: "Noto Serif", Arial, sans-serif;
+  padding: 0 0.75rem;
+  margin: 1rem 0;
   &__text {
     white-space: pre-wrap;
     margin: 0;
     font-size: 1rem;
-    line-height: 1.7rem;
+    line-height: 1.55rem;
     color: darkColor(dark);
     &::first-letter {
       font-size: 1.75rem;
@@ -144,10 +145,10 @@
 
   &__footnote {
     white-space: pre-line;
-    margin: 2rem 0 0 0;
+    margin: 3rem 0 0 0;
     font-size: 0.8rem;
     line-height: 1.25rem;
-    color: darkColor(light);
+    color: darkColor(dark);
     font-style: italic;
   }
 }
@@ -294,6 +295,7 @@
 
   .r-directions {
     max-width: 40rem;
+    padding: 0;
 
     &__text,
     &__footnote {
