@@ -41,6 +41,7 @@ const SearchBar = props => {
 
   const handleBlur = () => {
     setFocus(false);
+    setSearchTerm(props.searchTerm);
     textInput.current.blur();
   };
 
