@@ -165,19 +165,20 @@
 
     &__save-btn {
       text-align: center;
-      border: solid $primary-color 0.09rem;
-      border-radius: 0.2rem;
+      border: solid $primary-color 0.5px;
+      border-radius: 0.3rem;
       color: $primary-color;
       background-color: #fff;
       font-weight: 500;
       font-size: 0.75rem;
-      padding: 0.25rem 2rem;
+      padding: 0.5rem 1rem;
       margin: 0;
       display: block;
-      width: 8rem;
+      width: 9rem;
       cursor: pointer;
       outline: none;
       user-select: none;
+      font-weight: bold;
       @include fast-transition;
 
       @media (hover: hover) {

@@ -52,8 +52,6 @@ const ServingsAdjust = props => {
       onClick={handleFocus}
       onBlur={handleBlur}
     >
-      <span className="adjust-servings__text">Yield</span>
-
       <input
         className={classNames("adjust-servings__input", {
           "adjust-servings__input--active": focus
@@ -65,6 +63,7 @@ const ServingsAdjust = props => {
         onChange={handleChange}
         onKeyPress={handleKeyPress}
       />
+      <span className="adjust-servings__text">Servings</span>
     </div>
   );
 };
