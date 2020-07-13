@@ -14,6 +14,8 @@ module.exports = async (req, res) => {
         AS num_reviews,
         (SELECT COALESCE(AVG(rating), 0) FROM "RECIPES_REVIEWS" rr WHERE rr.recipe_id = r.recipe_id)::FLOAT
         AS rating,
+        (SELECT COUNT(1) FROM "RECIPES_SAVES" rs WHERE rs.recipe_id = r.recipe_id)::INT
+        AS num_saves,
         (SELECT STRING_AGG(rk.keyword, ', ' ORDER BY rk.order ASC) FROM "RECIPES_KEYWORDS" rk WHERE rk.recipe_id = r.recipe_id)
         AS keywords,
         (SELECT ARRAY_AGG(rc.category) FROM "RECIPES_CATEGORIES" rc WHERE rc.recipe_id = r.recipe_id)
