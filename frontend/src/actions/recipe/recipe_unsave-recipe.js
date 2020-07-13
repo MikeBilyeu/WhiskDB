@@ -5,34 +5,36 @@ import {
   REMOVE_SAVED_RECIPES,
   GET_SAVED_RECIPES,
   REMOVE_RECIPES,
-  GET_BROWSE_RECIPES
+  GET_BROWSE_RECIPES,
+  GET_RECIPE
 } from "../types";
 
 const unsaveRecipe = recipe_id => async (dispatch, getState) => {
-  let savedRecipes = [...getState().savedRecipes.recipes];
-  let browseRecipes = [...getState().browseRecipes.recipes];
+  let savedRecipes = getState().savedRecipes.recipes.map(arr => ({ ...arr }));
+  let browseRecipes = getState().browseRecipes.recipes.map(arr => ({ ...arr }));
+  let recipe = { ...getState().recipe.recipe };
 
   // Update the data for saved and browse recipes
-  let fullCount = 0;
+
+  --recipe.num_saves;
+  recipe.saved = false;
 
   savedRecipes = savedRecipes.filter(
     recipe => recipe.recipe_id !== parseInt(recipe_id)
   );
 
-  if (savedRecipes[0]) {
-    fullCount = savedRecipes[0].full_count - 1;
-    savedRecipes[0].full_count = fullCount;
-  }
+  savedRecipes[0] && --savedRecipes[0].full_count;
 
   for (let i in browseRecipes) {
     if (browseRecipes[i].recipe_id === parseInt(recipe_id)) {
       browseRecipes[i].saved = false;
-      browseRecipes[i].num_saves = browseRecipes[i].num_saves - 1;
+      --browseRecipes[i].num_saves;
     }
   }
 
   try {
-    dispatch({ type: SAVE_RECIPE });
+    //dispatch({ type: SAVE_RECIPE });
+    dispatch({ type: GET_RECIPE, payload: recipe });
     await axios.delete("/recipes/unsave", { params: { recipe_id } });
 
     dispatch({ type: REMOVE_SAVED_RECIPES });

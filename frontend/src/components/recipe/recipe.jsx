@@ -30,8 +30,15 @@ const Recipe = props => {
     showMoreOpen,
     isFetching,
     editRecipe,
-    saved,
-    recipe: { image_url, instructions, footnote, total_time, title, author }
+    recipe: {
+      image_url,
+      instructions,
+      footnote,
+      total_time,
+      title,
+      author,
+      saved
+    }
   } = props.recipeData;
 
   let recipeImage =
@@ -66,6 +73,7 @@ const Recipe = props => {
   if (editRecipe) {
     return <Edit />;
   }
+  console.log("isSaved:", saved);
   return (
     <div className="recipe">
       <MediaQuery maxDeviceWidth={649}>

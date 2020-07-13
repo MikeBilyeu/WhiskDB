@@ -20,11 +20,11 @@ const Header = props => {
       {props.isAuth && !props.author ? (
         <div
           className={classNames("recipe-header__save-btn", {
-            "recipe-header__save-btn--active": props.recipeSaved
+            "recipe-header__save-btn--active": props.saved
           })}
           onClick={props.handleSaveClick}
         >
-          {props.recipeSaved ? "Unsave" : "Save"}
+          {props.saved ? "Unsave" : "Save"}
         </div>
       ) : !props.isAuth ? (
         <Link
@@ -48,7 +48,7 @@ const Header = props => {
 
 const mapStateToProps = state => {
   return {
-    recipeSaved: state.recipe.saved
+    saved: state.recipe.recipe.saved
   };
 };
 

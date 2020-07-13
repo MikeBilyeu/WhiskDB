@@ -43,7 +43,6 @@ export default function(state = initialState, action) {
         ...state,
         recipe: action.payload,
         isFetching: false,
-        saved: action.payload.saved,
         reviewOpen: false,
         editRecipe: false,
         showMoreOpen: false,
@@ -77,7 +76,10 @@ export default function(state = initialState, action) {
     case SUBMIT_REVIEW:
       return { ...state, recipe: { ...state.recipe } };
     case SAVE_RECIPE:
-      return { ...state, saved: !state.saved };
+      return {
+        ...state,
+        recipe: { ...state.recipe, saved: !state.recipe.saved }
+      };
     case TOGGLE_REVIEW:
       return { ...state, reviewOpen: !state.reviewOpen };
     case TOGGLE_SHOW_MORE:
