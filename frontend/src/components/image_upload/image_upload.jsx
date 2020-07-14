@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { change } from "redux-form";
 
 const ImageUpload = props => {
+  const [sizeErr, setSizeErr] = useState();
+
   const onImgChange = e => {
     const file = e.target.files[0];
 
-    if (file) {
+    if (file && file.size > 10000000) {
+      setSizeErr("Sorry, file size too large (10MB Limit)");
+    } else if (file) {
+      setSizeErr();
       // prevent memory issues
       URL.revokeObjectURL(props.input.value);
 
@@ -28,11 +33,15 @@ const ImageUpload = props => {
     <label
       className={classNames(props.className, {
         [`${props.className}--error`]:
-          props.meta.submitFailed && props.meta.error
+          sizeErr || (props.meta.submitFailed && props.meta.error)
       })}
     >
       <span className={`${props.className}__text`}>
-        {props.input.value ? "Change Image" : "Choose Image to Upload"}
+        {sizeErr
+          ? sizeErr
+          : props.input.value
+          ? "Change Image"
+          : "Choose Image to Upload"}
       </span>
       <img
         className={`${props.className}__img`}

@@ -10,7 +10,6 @@ import { ReactComponent as More } from "../../../assets/images/more.svg";
 import "./recipe-header.scss";
 
 const Header = props => {
-  console.log(props);
   return (
     <div className="recipe-header">
       <Arrow

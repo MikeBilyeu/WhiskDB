@@ -73,7 +73,7 @@ const Recipe = props => {
   if (editRecipe) {
     return <Edit />;
   }
-  console.log("isSaved:", saved);
+
   return (
     <div className="recipe">
       <MediaQuery maxDeviceWidth={649}>
