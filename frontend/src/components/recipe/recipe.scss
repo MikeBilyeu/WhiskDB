@@ -49,10 +49,11 @@
 
     &:before {
       content: "";
-      border: solid lightColor(light) 0.1rem;
+      border: solid lightColor(light) 0.15rem;
       border-radius: 5rem;
-      width: 2rem;
+      width: 4rem;
       margin-bottom: 1.5rem;
+      margin-top: 0.5rem;
     }
   }
 
