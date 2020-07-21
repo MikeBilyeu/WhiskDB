@@ -8,6 +8,7 @@ import Home from "../home";
 import Profile from "../profile";
 import Auth from "../auth";
 import Recipe from "../recipe";
+import PrivacyPolicy from "../privacy_policy";
 import ScrollUp from "./scroll_up";
 import NoMatch from "../no_match";
 import Alerts from "./alerts";
@@ -37,6 +38,7 @@ const App = props => {
           <PrivateRoute path="/profile" component={Profile} />
           <Route path="/auth" component={Auth} />
           <Route exact path="/recipe/:recipe_id" component={Recipe} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/" component={Home} />
           <Route path="*" component={NoMatch} />
         </Switch>
