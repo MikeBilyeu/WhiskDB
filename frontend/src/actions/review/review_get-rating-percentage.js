@@ -14,7 +14,7 @@ const getRatingPercentage = recipe_id => async (dispatch, getState) => {
   let browseRecipes = [...getState().browseRecipes.recipes];
 
   try {
-    const { data } = await axios.get("/recipes/rating", {
+    const { data } = await axios.get("/api/recipes/rating", {
       params: { recipe_id }
     });
 

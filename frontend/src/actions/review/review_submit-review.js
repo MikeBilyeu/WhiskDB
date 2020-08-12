@@ -4,7 +4,7 @@ import getRatingPercentage from "./review_get-rating-percentage";
 
 const submitReview = review => async dispatch => {
   try {
-    await axios.post("/recipes/reviews", review);
+    await axios.post("/api/recipes/reviews", review);
     dispatch({ type: SUBMIT_REVIEW });
     dispatch({ type: TOGGLE_REVIEW });
     dispatch(getRatingPercentage(review.recipe_id));

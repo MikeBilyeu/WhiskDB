@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
           AND rw.recipe_id = $1;`,
       [recipe_id, user_id]
     );
-    console.log(rows);
+
     if (!rows.length) {
       res.status(204).send();
     } else {

@@ -17,7 +17,7 @@ const editProfile = (userData, history) => dispatch => {
       profileData = { ...userData, image_url: imageURL };
     }
 
-    const res = await axios.put("/users/edit", profileData);
+    const res = await axios.put("/api/users/edit", profileData);
     if (res.status !== 200) {
       reject("Profile edit error");
       return;

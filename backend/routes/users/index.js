@@ -10,6 +10,19 @@ router.get(
 
 router.post("/user", require("./createUser"));
 
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    session: false
+  }),
+  require("./googleLogin")
+);
+
 router.delete(
   "/delete",
   passport.authenticate("jwt", { session: false }),

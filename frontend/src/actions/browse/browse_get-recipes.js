@@ -22,7 +22,7 @@ export const getBrowseRecipes = () => async (dispatch, getState) => {
   dispatch({ type: SET_BROWSE_DATA, payload: { ...filterRecipes, user_id } });
 
   try {
-    const { data } = await axios.get("/recipes/browse", {
+    const { data } = await axios.get("/api/recipes/browse", {
       params: { ...filterRecipes, user_id }
     });
     dispatch({ type: GET_BROWSE_RECIPES, payload: data });

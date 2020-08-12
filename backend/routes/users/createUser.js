@@ -12,7 +12,7 @@ module.exports = async ({ body: { username, email, password } }, res) => {
   const { rows } = await db.query(
     `SELECT *
     FROM "USERS"
-    WHERE LOWR(email) = LOWER($1)`,
+    WHERE LOWER(email) = LOWER($1)`,
     [email.toLowerCase()]
   );
 

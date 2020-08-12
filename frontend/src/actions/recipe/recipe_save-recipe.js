@@ -43,7 +43,7 @@ const saveRecipe = recipe_id => async (dispatch, getState) => {
   try {
     //dispatch({ type: SAVE_RECIPE });
     dispatch({ type: GET_RECIPE, payload: recipe });
-    await axios.post("/recipes/save", { recipe_id });
+    await axios.post("/api/recipes/save", { recipe_id });
 
     dispatch({ type: REMOVE_SAVED_RECIPES });
     dispatch({

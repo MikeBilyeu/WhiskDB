@@ -3,7 +3,7 @@ import { GET_MY_RECIPE_REVIEW, GET_ERRORS } from "../types.js";
 
 const getMyReview = recipe_id => async dispatch => {
   try {
-    const myReview = await axios.get("/recipes/my-review", {
+    const myReview = await axios.get("/api/recipes/my-review", {
       params: { recipe_id }
     });
     if (myReview.data) {

@@ -4,6 +4,43 @@
   .header-d {
     height: 3rem;
   }
+
+  &__google-btn {
+    width: 90%;
+    max-width: 20rem;
+    height: 2.3rem;
+    cursor: pointer;
+    color: darkColor(medium);
+    font-size: 0.95rem;
+    display: grid;
+    justify-items: start;
+    align-items: center;
+    grid-auto-flow: column;
+    position: relative;
+    text-align: center;
+    box-shadow: 0rem 0.05rem 0.1rem 0.05rem rgba(0, 0, 0, 0.3);
+    border-radius: 0.2rem;
+    margin: 5rem auto 0 auto;
+    user-select: none;
+    @include fast-transition;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $primary-color;
+        color: #fff;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__google-img {
+    width: 1.2rem;
+    display: inline-block;
+    line-height: 5rem;
+    position: relative;
+    justify-self: center;
+    text-align: left;
+  }
 }
 
 .login-form,
@@ -101,5 +138,11 @@
   .signup-form {
     top: 8rem;
     grid-gap: 1rem;
+  }
+
+  .auth-page {
+    &__google-btn {
+      margin: 10rem auto 0 auto;
+    }
   }
 }

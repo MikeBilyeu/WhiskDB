@@ -21,8 +21,6 @@ module.exports = async ({ user, body: recipe }, res) => {
     .split(/\n/)
     .map(ing => splitIngredientStr(ing));
 
-  console.log(recipe.keywords);
-
   const keywords = recipe.keywords.split(",").map(item => item.trim());
 
   let ingredientValues = [];

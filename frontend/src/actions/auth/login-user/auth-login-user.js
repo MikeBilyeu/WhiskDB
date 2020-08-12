@@ -6,7 +6,7 @@ import { setCurrentUser } from "../../auth";
 
 const loginUser = userData => async dispatch => {
   try {
-    const res = await axios.post("/users/login", userData);
+    const res = await axios.post("/api/users/login", userData);
     const token = res.data.token;
     localStorage.setItem("jwtToken", token);
     // Add token to auth header for future requests

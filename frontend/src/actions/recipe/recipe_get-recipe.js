@@ -13,7 +13,7 @@ const getRecipe = (recipe_id, user_id) => async (dispatch, getState) => {
   );
   try {
     if (!recipe) {
-      const { data } = await axios.get("/recipes/recipe", {
+      const { data } = await axios.get("/api/recipes/recipe", {
         params: { recipe_id, user_id }
       });
       dispatch({ type: GET_RECIPE, payload: data });

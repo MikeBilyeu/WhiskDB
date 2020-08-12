@@ -13,7 +13,7 @@ const createRecipe = (recipeForm, history) => dispatch => {
       return;
     }
 
-    let res = await axios.post("/recipes/create", {
+    let res = await axios.post("/api/recipes/create", {
       ...recipeForm,
       image_url: imageURL
     });

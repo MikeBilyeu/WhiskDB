@@ -20,7 +20,7 @@ const submitEditRecipe = recipeData => (dispatch, getState) => {
       if (!imageURL) reject("Image upload error");
     }
 
-    let res = await axios.put("/recipes/edit", {
+    let res = await axios.put("/api/recipes/edit", {
       ...recipeData,
       image_url: imageURL
     });

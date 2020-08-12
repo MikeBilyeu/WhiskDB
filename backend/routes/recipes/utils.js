@@ -108,7 +108,6 @@ const findRecipe = data => {
 };
 
 const formatData = data => {
-  console.log(data);
   let recipe = {};
   recipe.image_url = formatRecipeImage(data.image);
   recipe.title = data.name;

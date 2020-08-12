@@ -1,17 +1,13 @@
-import axios from "axios";
-import { GET_ERRORS } from "../../types";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "../../../utils/setAuthToken";
+import { setCurrentUser } from "../../auth";
 
-const googleLogin = () => async dispatch => {
-  try {
-    const result = await axios.get("/auth/google");
-    const URL = result.request.responseURL;
-    window.open(URL, "_self");
-  } catch (err) {
-    dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data
-    });
-  }
+const googleLogin = token => dispatch => {
+  localStorage.setItem("jwtToken", token);
+  // Add token to auth header for future requests
+  setAuthToken(token);
+  const decodedToken = jwt_decode(token);
+  dispatch(setCurrentUser(decodedToken));
 };
 
 export default googleLogin;

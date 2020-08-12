@@ -35,7 +35,7 @@ const unsaveRecipe = recipe_id => async (dispatch, getState) => {
   try {
     //dispatch({ type: SAVE_RECIPE });
     dispatch({ type: GET_RECIPE, payload: recipe });
-    await axios.delete("/recipes/unsave", { params: { recipe_id } });
+    await axios.delete("/api/recipes/unsave", { params: { recipe_id } });
 
     dispatch({ type: REMOVE_SAVED_RECIPES });
     dispatch({ type: GET_SAVED_RECIPES, payload: savedRecipes });

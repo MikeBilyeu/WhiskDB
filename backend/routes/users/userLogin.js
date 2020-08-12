@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
     const { rowCount, rows } = await db.query(
       `SELECT *
         FROM "USERS"
-        WHERE email = $1`,
+        WHERE email = $1 AND password IS NOT NULL`,
       [email]
     );
 

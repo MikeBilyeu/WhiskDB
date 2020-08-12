@@ -2,7 +2,6 @@ const db = require("../../db");
 module.exports = async (req, res) => {
   const { recipe_id, rating, comment } = req.body;
   const { user_id } = req.user; // Get user_id from auth
-  console.log(req.body);
   try {
     await db.query(
       `INSERT INTO "RECIPES_REVIEWS"

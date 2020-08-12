@@ -7,7 +7,7 @@ const scrapeSite = url => async dispatch => {
   dispatch({ type: CLONE_RECIPE_START });
 
   try {
-    const { data: recipe } = await axios.get("/recipes/create/scrape", {
+    const { data: recipe } = await axios.get("/api/recipes/create/scrape", {
       params: { url }
     });
 
