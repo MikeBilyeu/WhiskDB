@@ -19,7 +19,11 @@ app.use(
 // set up cors to allow us to accept requests from our client
 app.use(
   cors({
-    origin: ["http://zipiwhisk.com", "http://localhost:3000"], // allow to server to accept request from different origin
+    origin: [
+      "http://zipiwhisk.com",
+      "https://zipiwhisk.herokuapp.com",
+      "http://localhost:3000"
+    ], // allow to server to accept request from different origin
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true // allow session cookie from browser to pass through
   })
@@ -29,13 +33,29 @@ app.use(passport.initialize());
 
 app.use(morgan("dev"));
 
+// API Routes
+app.use(require("./routes"));
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(__dirname));
   app.use(express.static(path.join(__dirname, "../frontend/build")));
 }
 
-// API Routes
-app.use(require("./routes"));
+// errors
+app.use((req, res, next) => {
+  const error = new Error("Not found");
+  error.status = 404;
+  next(error);
+});
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message
+    }
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}.`);

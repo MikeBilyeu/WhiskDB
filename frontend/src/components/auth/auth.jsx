@@ -19,13 +19,6 @@ const Auth = props => {
   }, []);
 
   useEffect(() => {
-    if (props.location.search) {
-      let token = props.location.search.replace("?token=Bearer%20", "Bearer ");
-      props.googleLogin(token);
-    }
-  }, [props.location.search]);
-
-  useEffect(() => {
     if (props.isAuthenticated) {
       goBackPath
         ? props.history.push({
@@ -57,17 +50,14 @@ const Auth = props => {
           render={props => <Login {...props} loginUser={loginUser} />}
         />
       </Switch>
-      <div
+      <a
+        href="http://zipiwhisk.herokuapp.com/api/users/google"
+        target="_self"
         className="auth-page__google-btn"
-        onClick={() => {
-          //  window.open("http://localhost:3001/api/users/google", "_self");
-          //this doesn't work
-          window.open("http://zipiwhisk.com:80/api/users/google", "_self");
-        }}
       >
         <img className="auth-page__google-img" alt="" src={googleIcon} />
         <span>Login with Google</span>
-      </div>
+      </a>
     </div>
   );
 };

@@ -15,10 +15,7 @@ module.exports = passport => {
         const { email, displayName, picture } = profile;
 
         try {
-          const {
-            rowCount,
-            rows: [{ user_id }]
-          } = await db.query(
+          const { rowCount, rows } = await db.query(
             `SELECT user_id
             FROM "USERS"
             WHERE LOWER(email) = LOWER($1)`,
@@ -27,7 +24,7 @@ module.exports = passport => {
 
           //User email found in DB
           if (rowCount) {
-            done(null, user_id);
+            done(null, rows[0].user_id);
           } else {
             //User email NOT found in DB create new user with Google profile
             let randomNum = Math.floor(Math.random() * 50000);
@@ -38,7 +35,7 @@ module.exports = passport => {
               [email, displayName.concat(randomNum), picture]
             );
 
-            done(null, user_id);
+            done(null, rows[0].user_id);
           }
         } catch (err) {
           done(err);

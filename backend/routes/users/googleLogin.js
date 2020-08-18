@@ -15,8 +15,10 @@ module.exports = async (req, res) => {
     },
     (err, token) => {
       if (err) throw err;
-      res.redirect("http://www.zipiwhisk.com/auth/login?token=Bearer " + token);
-      //res.redirect("http://localhost:3000/auth/login?token=Bearer " + token);
+
+      res.redirect("https://zipiwhisk.herokuapp.com?token=Bearer " + token);
+
+      //res.redirect("http://localhost:3000?token=Bearer " + token);
     }
   );
 };

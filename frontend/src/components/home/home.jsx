@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import MediaQuery from "react-responsive";
 import Header from "./header";
 import HeaderDesktop from "../header_desktop";
@@ -7,6 +8,8 @@ import FilterButtons from "../header_desktop/filter_buttons";
 import Hero from "./hero";
 import FilterResults from "../filter_results";
 import Results from "../results";
+import { googleLogin } from "../../actions/auth";
+
 import {
   getBrowseRecipes,
   getSearchRecipes,
@@ -24,6 +27,13 @@ const Home = props => {
   useEffect(() => {
     document.title = "ZipiWhisk | The internet’s source of free recipes.";
   }, []);
+
+  useEffect(() => {
+    if (props.location.search) {
+      let token = props.location.search.replace("?token=Bearer%20", "Bearer ");
+      props.googleLogin(token);
+    }
+  }, [props.location.search]);
 
   const handleFilterClick = (option, type) => {
     // set the filterRecipes to the option selected
@@ -84,5 +94,11 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getBrowseRecipes, getSearchRecipes, incrementOffset, updateFilterRecipe }
-)(Home);
+  {
+    getBrowseRecipes,
+    getSearchRecipes,
+    incrementOffset,
+    updateFilterRecipe,
+    googleLogin
+  }
+)(withRouter(Home));

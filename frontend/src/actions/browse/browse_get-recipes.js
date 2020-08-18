@@ -47,7 +47,7 @@ export const getSearchRecipes = () => async (dispatch, getState) => {
   dispatch({ type: SET_BROWSE_DATA, payload: { ...filterRecipes, user_id } });
 
   try {
-    let { data } = await axios.get("/recipes/search", {
+    let { data } = await axios.get("/api/recipes/search", {
       params: { ...filterRecipes, user_id }
     });
 
