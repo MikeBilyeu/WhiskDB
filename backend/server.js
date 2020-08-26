@@ -37,11 +37,15 @@ app.use(morgan("dev"));
 app.use(require("./routes"));
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(__dirname));
+  //set static folder
   app.use(express.static(path.join(__dirname, "../frontend/build")));
 }
 
-// errors
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
+});
+
+//errors
 app.use((req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;

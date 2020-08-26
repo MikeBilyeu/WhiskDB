@@ -50,6 +50,7 @@ const Auth = props => {
           render={props => <Login {...props} loginUser={loginUser} />}
         />
       </Switch>
+      <div className="or-line">or</div>
       <a
         href="http://zipiwhisk.herokuapp.com/api/users/google"
         target="_self"
