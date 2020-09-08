@@ -1,7 +1,8 @@
 import formatIngredientList from "./formatIngredientList";
 import {
   splitIngredientStr,
-  replaceFractionSymbols
+  replaceFractionSymbols,
+  getMetricAmount
 } from "./formatIngredientList";
 
 describe("formatIngredientList", () => {
@@ -10,6 +11,32 @@ describe("formatIngredientList", () => {
       const expectedInput = "1½";
       const expectedOutput = "1 1/2";
       expect(replaceFractionSymbols(expectedInput)).toEqual(expectedOutput);
+    });
+  });
+
+  describe("getMetricAmount", () => {
+    it("converts pound amount and unit to metric", () => {
+      const expectedAmountInput = "1";
+      const expectedUnitInput = "lb";
+      const expectedOutput = {
+        decimalAmount: 453.592,
+        metricUnit: "g"
+      };
+      expect(getMetricAmount(expectedAmountInput, expectedUnitInput)).toEqual(
+        expectedOutput
+      );
+    });
+
+    it("converts liter amount and unit to metric", () => {
+      const expectedAmountInput = "1";
+      const expectedUnitInput = "liter";
+      const expectedOutput = {
+        decimalAmount: 1000,
+        metricUnit: "ml"
+      };
+      expect(getMetricAmount(expectedAmountInput, expectedUnitInput)).toEqual(
+        expectedOutput
+      );
     });
   });
 

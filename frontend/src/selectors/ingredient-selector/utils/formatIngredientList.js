@@ -27,7 +27,7 @@ export const splitIngredientStr = ingredientStr => {
   return { amount, unit, ingredient };
 };
 
-const getMetricAmount = (amount, unit) => {
+export const getMetricAmount = (amount, unit) => {
   // using eval to get the decimal of mixed fractions
   let decimalAmount = eval(amount.split(/[ -]+/).join("+"));
   let metricUnit = "";
@@ -50,16 +50,16 @@ const getMetricAmount = (amount, unit) => {
       decimalAmount *= 1;
       metricUnit = "ml";
       break;
+    case regEx.pound.test(unit):
+      decimalAmount *= 453.592;
+      metricUnit = "g";
+      break;
     case regEx.liter.test(unit):
       decimalAmount *= 1000;
       metricUnit = "ml";
       break;
     case regEx.ounce.test(unit):
       decimalAmount *= 28.35;
-      metricUnit = "g";
-      break;
-    case regEx.pound.test(unit):
-      decimalAmount *= 453.592;
       metricUnit = "g";
       break;
     case regEx.kilogram.test(unit):

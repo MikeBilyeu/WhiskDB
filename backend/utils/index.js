@@ -18,22 +18,28 @@ const replaceFractionSymbols = amount => {
   return amount.replace(fracs[index], replacementFracs[index]).trim();
 };
 
-const splitIngredientStr = ingredientStr => {
-  //remove extra white space
-  ingredientStr = ingredientStr.replace(/\s+/g, " ").trim();
+const removeWhiteSpace = s =>
+  s
+    .replace(/ +/gm, " ")
+    .replace(/^[ \n]+|[ \n]+$/gm, "")
+    .replace(/\n+/g, "\n");
 
-  // match the amount from the ingredient with regex
-  let amount = replaceFractionSymbols(regEx.amount.exec(ingredientStr)[0]);
+const splitIngredientStr = ingredientList =>
+  removeWhiteSpace(ingredientList)
+    .split(/\n/)
+    .map(ing => {
+      // match the amount from the ingredient with regex
+      let amount = replaceFractionSymbols(regEx.amount.exec(ing)[0]);
+      ing = ing.replace(regEx.amount, "").replace(/^ /, "");
 
-  ingredientStr = ingredientStr.replace(regEx.amount, "").trim();
+      // match the unit from the ingredient with regex if has unit
+      amount = regEx.units.exec(ing)
+        ? `${amount} ${regEx.units.exec(ing)[0]}`
+        : amount;
 
-  const unit = regEx.units.exec(ingredientStr)
-    ? regEx.units.exec(ingredientStr)[0]
-    : "";
+      ing = ing.replace(regEx.units, "").replace(/^ /, "");
 
-  const ingredient = ingredientStr.replace(regEx.units, "").trim();
-
-  return { amount: `${amount} ${unit}`, ingredient };
-};
+      return { amount, ingredient: ing };
+    });
 
 module.exports = { convertTimeToMin, splitIngredientStr };

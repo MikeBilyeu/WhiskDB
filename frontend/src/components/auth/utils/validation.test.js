@@ -46,7 +46,7 @@ describe("checkEmail", () => {
 describe("checkPassword", () => {
   it("invalid sync validation for password", () => {
     const expectedInput = "";
-    const expectedOutput = { password: "Enter password" };
+    const expectedOutput = { password: "You must enter your password" };
     expect(checkPassword(expectedInput, "login")).toEqual(expectedOutput);
   });
 

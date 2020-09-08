@@ -17,9 +17,7 @@ module.exports = async ({ user, body: recipe }, res) => {
     return;
   }
 
-  const ingredients = recipe.ingredients
-    .split(/\n/)
-    .map(ing => splitIngredientStr(ing));
+  const ingredients = splitIngredientStr(recipe.ingredients);
 
   const keywords = recipe.keywords.split(",").map(item => item.trim());
 

@@ -3,9 +3,7 @@ const keys = require("../../config/keys");
 const { convertTimeToMin, splitIngredientStr } = require("../../utils");
 
 module.exports = async ({ user: { user_id }, body: recipe }, res) => {
-  const ingredients = recipe.ingredients
-    .split(/\n/)
-    .map(ing => splitIngredientStr(ing));
+  const ingredients = splitIngredientStr(recipe.ingredients);
 
   const keywords = recipe.keywords
     .toString()
