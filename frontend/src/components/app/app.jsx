@@ -40,7 +40,7 @@ const App = props => {
           <Route exact path="/recipe/:recipe_id" component={Recipe} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/" component={Home} />
-          <Route path="*" component={NoMatch} />
+          <Route component={NoMatch} />
         </Switch>
         <Nav />
       </ScrollUp>

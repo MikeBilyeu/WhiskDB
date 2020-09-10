@@ -107,6 +107,20 @@ const findRecipe = data => {
   return false;
 };
 
+const getTotalTime = duration => {
+  if (!duration) {
+    return { hours: "", minutes: "" };
+  }
+
+  let hours = duration.match(/[1-9]?([1-9]|(?<=\d)0)(?=H)/i);
+  let minutes = duration.match(/(?<=H)[1-5]?([1-9]|(?<=\d)0)(?=M)/i);
+
+  return {
+    hours: hours ? hours[0] : "",
+    minutes: minutes ? minutes[0] : ""
+  };
+};
+
 const formatData = data => {
   let recipe = {};
   recipe.image_url = formatRecipeImage(data.image);
@@ -120,12 +134,7 @@ const formatData = data => {
     .map(ing => ing.replace(/\s\s+/g, " "))
     .join("\n");
 
-  let hours = data.totalTime && data.totalTime.match(/\d{1,2}(?=H)/i);
-  let minutes = data.totalTime && data.totalTime.match(/\d{1,2}(?=M)/i);
-  recipe.time = {
-    hours: hours ? hours[0] : "",
-    minutes: minutes ? minutes[0] : ""
-  };
+  recipe.time = getTotalTime(data.totalTime);
 
   recipe.directions = formatDirections(data.recipeInstructions);
 
@@ -209,8 +218,10 @@ const formatHTMLData = (html, url) => {
   return recipe;
 };
 
-module.exports = { searchData, findRecipe, formatData, formatHTMLData };
-
-// cooking.NYTimes.com
-
-//title; //h1.recipe-title
+module.exports = {
+  searchData,
+  findRecipe,
+  formatData,
+  formatHTMLData,
+  getTotalTime
+};
