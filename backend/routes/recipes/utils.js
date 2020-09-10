@@ -107,13 +107,13 @@ const findRecipe = data => {
   return false;
 };
 
-const getTotalTime = duration => {
+const formateTotalTime = duration => {
   if (!duration) {
     return { hours: "", minutes: "" };
   }
 
-  let hours = duration.match(/[1-9]?([1-9]|(?<=\d)0)(?=H)/i);
-  let minutes = duration.match(/(?<=H)[1-5]?([1-9]|(?<=\d)0)(?=M)/i);
+  let hours = duration.match(/[1-9]?([1-9]|(?<=[1-9])0)(?=H)/i);
+  let minutes = duration.match(/(?<=(T|H))[1-5]?([1-9]|(?<=[1-5])0)(?=M)/i);
 
   return {
     hours: hours ? hours[0] : "",
@@ -121,20 +121,28 @@ const getTotalTime = duration => {
   };
 };
 
+const formatServings = servings => {
+  if (
+    typeof servings === "string" &&
+    servings.match(/[1-9]?([1-9]|(?<=[1-9])0)/i)
+  ) {
+    return servings.match(/[1-9]?([1-9]|(?<=[1-9])0)/i)[0];
+  }
+  return "";
+};
+
 const formatData = data => {
+  console.log(data);
   let recipe = {};
   recipe.image_url = formatRecipeImage(data.image);
   recipe.title = data.name;
-  let servings =
-    data.recipeYield && data.recipeYield.match(/\d{1,2}(?=( *serving))/i);
-
-  recipe.servings = servings ? servings[0] : "";
+  recipe.servings = formatServings(data.recipeYield);
 
   recipe.ingredients = data.recipeIngredient
     .map(ing => ing.replace(/\s\s+/g, " "))
     .join("\n");
 
-  recipe.time = getTotalTime(data.totalTime);
+  recipe.time = formateTotalTime(data.totalTime);
 
   recipe.directions = formatDirections(data.recipeInstructions);
 
@@ -223,5 +231,6 @@ module.exports = {
   findRecipe,
   formatData,
   formatHTMLData,
-  getTotalTime
+  formateTotalTime,
+  formatServings
 };
