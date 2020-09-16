@@ -1,17 +1,10 @@
-const renderTime = ({ hours, minutes }) => {
-  const hr =
-    hours && !minutes
-      ? `${hours} Hour${hours > 1 ? "s" : ""}`
-      : hours && minutes
-      ? `${hours}Hr`
-      : "";
-  const min =
-    !hours && minutes
-      ? `${minutes} Minute${minutes > 1 ? "s" : ""}`
-      : hours && minutes
-      ? `${minutes}Min`
-      : "";
-  return `${hr} ${min}`;
+const renderTime = ({ hours: hrs, minutes: mins }) => {
+  if (hrs && mins) {
+    return `${hrs}Hr ${mins}Min`;
+  } else if (!mins) {
+    return `${hrs} Hour${hrs > 1 ? "s" : ""}`;
+  }
+  return `${mins} Minute${mins > 1 ? "s" : ""}`;
 };
 
 export default renderTime;
